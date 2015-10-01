@@ -1,35 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>310</x>
-      <y>0</y>
-      <w>120</w>
-      <h>100</h>
+      <x>378</x>
+      <y>35</y>
+      <w>84</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>总经理/财务人员</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>790</x>
-      <y>0</y>
-      <w>60</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>系统</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>80</y>
-      <w>30</w>
-      <h>860</h>
+      <x>413</x>
+      <y>91</y>
+      <w>21</w>
+      <h>602</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
@@ -37,10 +26,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>80</y>
-      <w>30</w>
-      <h>860</h>
+      <x>728</x>
+      <y>91</y>
+      <w>21</w>
+      <h>602</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
@@ -48,10 +37,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>360</x>
-      <y>100</y>
-      <w>20</w>
-      <h>800</h>
+      <x>413</x>
+      <y>105</y>
+      <w>14</w>
+      <h>560</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,10 +48,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>810</x>
-      <y>100</y>
-      <w>20</w>
-      <h>800</h>
+      <x>728</x>
+      <y>105</y>
+      <w>14</w>
+      <h>560</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -70,10 +59,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>190</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>168</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 请求查看成本收益表</panel_attributes>
@@ -82,10 +71,10 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>270</x>
-      <y>140</y>
-      <w>610</w>
-      <h>170</h>
+      <x>350</x>
+      <y>133</y>
+      <w>427</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>alt
 --
@@ -95,10 +84,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>240</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>203</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 显示成本收益表</panel_attributes>
@@ -107,10 +96,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>270</x>
-      <y>310</y>
-      <w>610</w>
-      <h>280</h>
+      <x>350</x>
+      <y>252</y>
+      <w>427</w>
+      <h>196</h>
     </coordinates>
     <panel_attributes>查看经营情况表</panel_attributes>
     <additional_attributes/>
@@ -118,10 +107,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>360</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>287</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 请求查看经营情况表</panel_attributes>
@@ -130,10 +119,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>400</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>315</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 等待选择日期</panel_attributes>
@@ -142,10 +131,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>450</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>350</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 起始、结束日期</panel_attributes>
@@ -154,13 +143,36 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>510</y>
-      <w>460</w>
-      <h>40</h>
+      <x>420</x>
+      <y>392</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 日期内所有出、入款单</panel_attributes>
     <additional_attributes>10.0;20.0;440.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>686</x>
+      <y>49</y>
+      <w>98</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+系统</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>280</x>
+      <y>21</y>
+      <w>581</w>
+      <h>686</h>
+    </coordinates>
+    <panel_attributes>查看财务报表</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

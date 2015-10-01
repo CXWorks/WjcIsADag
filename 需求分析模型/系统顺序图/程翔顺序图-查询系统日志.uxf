@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>280</x>
+      <x>336</x>
       <y>0</y>
-      <w>120</w>
-      <h>100</h>
+      <w>96</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>总经理/财务人员</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>80</y>
-      <w>30</w>
-      <h>860</h>
+      <x>376</x>
+      <y>64</y>
+      <w>24</w>
+      <h>688</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
@@ -26,32 +26,21 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>330</x>
-      <y>130</y>
-      <w>20</w>
-      <h>700</h>
+      <x>376</x>
+      <y>104</y>
+      <w>16</w>
+      <h>560</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>900</x>
-      <y>0</y>
-      <w>60</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>系统</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>80</y>
-      <w>30</w>
-      <h>850</h>
+      <x>848</x>
+      <y>64</y>
+      <w>24</w>
+      <h>680</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
@@ -59,10 +48,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>920</x>
-      <y>130</y>
-      <w>20</w>
-      <h>700</h>
+      <x>848</x>
+      <y>104</y>
+      <w>16</w>
+      <h>560</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -70,10 +59,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>170</y>
-      <w>600</w>
-      <h>40</h>
+      <x>384</x>
+      <y>136</y>
+      <w>480</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 请求查看系统日志</panel_attributes>
@@ -82,10 +71,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>400</y>
-      <w>600</w>
-      <h>40</h>
+      <x>384</x>
+      <y>320</y>
+      <w>480</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 日志导出成功</panel_attributes>
@@ -94,14 +83,37 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
-      <y>180</y>
-      <w>270</w>
-      <h>260</h>
+      <x>856</x>
+      <y>144</y>
+      <w>216</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 导出日志到本地
 </panel_attributes>
     <additional_attributes>10.0;10.0;250.0;160.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>808</x>
+      <y>16</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>
+系统</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>272</x>
+      <y>0</y>
+      <w>792</w>
+      <h>760</h>
+    </coordinates>
+    <panel_attributes>查询系统日志</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

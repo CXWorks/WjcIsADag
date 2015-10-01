@@ -4,30 +4,30 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>408</x>
-      <y>8</y>
-      <w>96</w>
+      <x>416</x>
+      <y>0</y>
+      <w>80</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>总经理/财务人员</panel_attributes>
+    <panel_attributes>营业厅业务员</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>720</y>
+      <y>64</y>
       <w>24</w>
-      <h>32</h>
+      <h>680</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>832</x>
-      <y>72</y>
+      <y>64</y>
       <w>24</w>
       <h>672</h>
     </coordinates>
@@ -38,7 +38,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>448</x>
-      <y>104</y>
+      <y>96</y>
       <w>16</w>
       <h>600</h>
     </coordinates>
@@ -49,7 +49,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>832</x>
-      <y>112</y>
+      <y>104</y>
       <w>16</w>
       <h>584</h>
     </coordinates>
@@ -57,53 +57,28 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>408</x>
-      <y>144</y>
-      <w>480</w>
-      <h>168</h>
-    </coordinates>
-    <panel_attributes>alt
---
-审核单据</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>208</y>
+      <y>200</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-提出审核请求</panel_attributes>
+输入托运订单条形码</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>224</y>
-      <w>392</w>
+      <y>240</y>
+      <w>384</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-返回提交状态的单据清单</panel_attributes>
-    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>456</x>
-      <y>248</y>
-      <w>392</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;&gt;
-选择单据通过审核</panel_attributes>
-    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
+返回该订单的信息</panel_attributes>
+    <additional_attributes>10.0;20.0;460.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -113,138 +88,76 @@
       <w>392</w>
       <h>32</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.
-提示审核完成</panel_attributes>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+选择生成派件单</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>256</y>
-      <w>128</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-
-
-更新单据数据</panel_attributes>
-    <additional_attributes>10.0;40.0;140.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>408</x>
-      <y>312</y>
-      <w>480</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>修改单据</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>456</x>
-      <y>344</y>
+      <y>328</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-提出修改提交状态单据请求</panel_attributes>
+货物派件信息</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>384</y>
+      <y>360</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-返回提交状态的单据清单</panel_attributes>
+返回此派件单信息</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>408</y>
+      <y>400</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-选择单据进行修改</panel_attributes>
+确认生成派件单</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
+      <x>448</x>
+      <y>440</y>
+      <w>400</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+返回派件单创建成功提示</panel_attributes>
+    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
       <x>456</x>
-      <y>432</y>
+      <y>304</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-返回修改成功提示</panel_attributes>
-    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>840</x>
-      <y>416</y>
-      <w>128</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-
-
-更新单据数据</panel_attributes>
-    <additional_attributes>10.0;40.0;140.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>408</x>
-      <y>472</y>
-      <w>480</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>查看审批记录</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>456</x>
-      <y>504</y>
-      <w>392</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;&gt;
-提出查看审批历史的请求</panel_attributes>
-    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>456</x>
-      <y>544</y>
-      <w>392</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-返回审批历史</panel_attributes>
+等待货物派件信息</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>784</x>
-      <y>24</y>
-      <w>112</w>
+      <x>792</x>
+      <y>16</y>
+      <w>96</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>
@@ -254,12 +167,12 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>328</x>
+      <x>352</x>
       <y>0</y>
-      <w>664</w>
+      <w>600</w>
       <h>752</h>
     </coordinates>
-    <panel_attributes>审批单据</panel_attributes>
+    <panel_attributes>派送待中转快递</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
