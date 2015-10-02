@@ -104,16 +104,14 @@
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
-    <id>UMLPackage</id>
+    <id>UMLFrame</id>
     <coordinates>
-      <x>190</x>
-      <y>50</y>
-      <w>420</w>
-      <h>530</h>
+      <x>200</x>
+      <y>90</y>
+      <w>430</w>
+      <h>400</h>
     </coordinates>
-    <panel_attributes>输入新订单
---
-bg=white</panel_attributes>
+    <panel_attributes>输入新订单</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

@@ -2,19 +2,6 @@
 <diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>280</x>
-      <y>70</y>
-      <w>420</w>
-      <h>530</h>
-    </coordinates>
-    <panel_attributes>输入收件信息
---
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLActor</id>
     <coordinates>
       <x>340</x>
@@ -139,5 +126,16 @@ bg=white</panel_attributes>
     <panel_attributes>lt=&lt;-
 确认填入信息</panel_attributes>
     <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>300</x>
+      <y>110</y>
+      <w>390</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>输入收件信息</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

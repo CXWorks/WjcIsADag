@@ -2,19 +2,6 @@
 <diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>290</x>
-      <y>10</y>
-      <w>420</w>
-      <h>680</h>
-    </coordinates>
-    <panel_attributes>管理账户信息
---
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLActor</id>
     <coordinates>
       <x>350</x>
@@ -104,19 +91,6 @@ bg=white</panel_attributes>
 待填写的账户信息
 </panel_attributes>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>350</x>
-      <y>210</y>
-      <w>300</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>alt
---
-bg=white</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
@@ -259,5 +233,27 @@ bg=white</panel_attributes>
 确认修改用户账户信息
 </panel_attributes>
     <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>290</x>
+      <y>30</y>
+      <w>440</w>
+      <h>670</h>
+    </coordinates>
+    <panel_attributes>管理账户信息</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>350</x>
+      <y>220</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>alt</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

@@ -104,16 +104,14 @@
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLPackage</id>
+    <id>UMLFrame</id>
     <coordinates>
       <x>200</x>
-      <y>80</y>
-      <w>480</w>
-      <h>550</h>
+      <y>130</y>
+      <w>450</w>
+      <h>410</h>
     </coordinates>
-    <panel_attributes>查询物流信息
---
-bg=white</panel_attributes>
+    <panel_attributes>查询物流信息</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
