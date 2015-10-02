@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>350</x>
-      <y>90</y>
-      <w>100</w>
-      <h>60</h>
+      <x>486</x>
+      <y>54</y>
+      <w>90</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>_系统_
 </panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>130</x>
-      <y>60</y>
-      <w>80</w>
-      <h>100</h>
+      <x>288</x>
+      <y>27</y>
+      <w>72</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>_财务人员_</panel_attributes>
     <additional_attributes/>
@@ -27,10 +27,10 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>60</x>
-      <y>10</y>
-      <w>460</w>
-      <h>580</h>
+      <x>225</x>
+      <y>0</y>
+      <w>414</w>
+      <h>990</h>
     </coordinates>
     <panel_attributes>期初建账</panel_attributes>
     <additional_attributes/>
@@ -38,21 +38,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>140</y>
-      <w>30</w>
-      <h>80</h>
+      <x>522</x>
+      <y>99</y>
+      <w>27</w>
+      <h>909</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;990.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>160</x>
-      <y>200</y>
-      <w>20</w>
-      <h>360</h>
+      <x>315</x>
+      <y>153</y>
+      <w>18</w>
+      <h>828</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -60,10 +60,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>390</x>
-      <y>200</y>
-      <w>20</w>
-      <h>360</h>
+      <x>522</x>
+      <y>153</y>
+      <w>18</w>
+      <h>828</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -71,33 +71,21 @@
   <element>
     <id>Text</id>
     <coordinates>
-      <x>740</x>
-      <y>80</y>
-      <w>80</w>
-      <h>30</h>
+      <x>333</x>
+      <y>243</y>
+      <w>126</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>[huiyuan]</panel_attributes>
+    <panel_attributes>[还有要修改的条目]</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>740</x>
-      <y>0</y>
-      <w>140</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-sync call</panel_attributes>
-    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>620</x>
-      <y>300</y>
-      <w>320</w>
-      <h>250</h>
+      <x>279</x>
+      <y>288</y>
+      <w>288</w>
+      <h>639</h>
     </coordinates>
     <panel_attributes>alt
 --
@@ -115,21 +103,10 @@ sync call</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>120</y>
-      <w>240</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>610</x>
-      <y>440</y>
-      <w>350</w>
-      <h>40</h>
+      <x>270</x>
+      <y>486</y>
+      <w>315</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.
 </panel_attributes>
@@ -138,10 +115,10 @@ sync call</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>590</x>
-      <y>190</y>
-      <w>320</w>
-      <h>100</h>
+      <x>261</x>
+      <y>243</y>
+      <w>324</w>
+      <h>702</h>
     </coordinates>
     <panel_attributes>loop
 --
@@ -159,44 +136,21 @@ sync call</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>550</y>
-      <w>30</w>
-      <h>60</h>
+      <x>315</x>
+      <y>99</y>
+      <w>27</w>
+      <h>909</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;990.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>50</y>
-      <w>240</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>160</x>
-      <y>140</y>
-      <w>30</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>170</x>
-      <y>220</y>
-      <w>240</w>
-      <h>40</h>
+      <x>324</x>
+      <y>171</y>
+      <w>216</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 期初建账请求</panel_attributes>
@@ -205,10 +159,10 @@ sync call</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>270</y>
-      <w>240</w>
-      <h>50</h>
+      <x>324</x>
+      <y>207</y>
+      <w>216</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 显示现在的机构，人员，车辆，
@@ -216,38 +170,199 @@ sync call</panel_attributes>
     <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
   <element>
+    <id>Text</id>
+    <coordinates>
+      <x>333</x>
+      <y>288</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[增加条目]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>330</y>
-      <w>240</w>
-      <h>40</h>
+      <x>270</x>
+      <y>684</y>
+      <w>315</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.
+</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>324</y>
+      <w>216</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-对上述项目进行增删改查</panel_attributes>
+新建某类条目请求</panel_attributes>
     <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>380</y>
-      <w>240</w>
-      <h>40</h>
+      <x>324</x>
+      <y>360</y>
+      <w>216</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-期初信息</panel_attributes>
+根据条目类别
+提示需要输入内容</panel_attributes>
     <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>550</y>
-      <w>30</w>
-      <h>60</h>
+      <x>324</x>
+      <y>414</y>
+      <w>216</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+输入上述信息</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>459</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+显示更新后的机构，人员，车辆，
+库存，银行账户信息</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>333</x>
+      <y>513</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[修改条目]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>540</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+选择要修改的条目
+发起修改请求</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>585</y>
+      <w>216</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+显示条目详细信息</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>621</y>
+      <w>216</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+修改信息</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>657</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+显示更新后的机构，人员，车辆，
+库存，银行账户信息</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>738</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+选择要删除的条目
+发起删除请求</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>333</x>
+      <y>711</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[删除条目]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>783</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+显示条目详细信息
+请求确认</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>828</y>
+      <w>216</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+确认</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>864</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+显示更新后的机构，人员，车辆，
+库存，银行账户信息</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
 </diagram>
