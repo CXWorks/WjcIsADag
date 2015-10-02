@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>378</x>
-      <y>35</y>
+      <x>371</x>
+      <y>14</y>
       <w>84</w>
       <h>70</h>
     </coordinates>
@@ -15,32 +15,32 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>413</x>
-      <y>91</y>
+      <x>406</x>
+      <y>70</y>
       <w>21</w>
-      <h>602</h>
+      <h>469</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>728</x>
-      <y>91</y>
+      <x>721</x>
+      <y>70</y>
       <w>21</w>
-      <h>602</h>
+      <h>469</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>413</x>
-      <y>105</y>
+      <x>406</x>
+      <y>84</y>
       <w>14</w>
-      <h>560</h>
+      <h>413</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -48,10 +48,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>728</x>
-      <y>105</y>
+      <x>721</x>
+      <y>84</y>
       <w>14</w>
-      <h>560</h>
+      <h>420</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,8 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>168</y>
+      <x>413</x>
+      <y>147</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -71,21 +71,21 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>350</x>
-      <y>133</y>
+      <x>343</x>
+      <y>112</y>
       <w>427</w>
       <h>119</h>
     </coordinates>
     <panel_attributes>alt
 --
-查看成本收益表</panel_attributes>
+[查看成本收益表]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>203</y>
+      <x>413</x>
+      <y>182</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -96,19 +96,19 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>350</x>
-      <y>252</y>
+      <x>343</x>
+      <y>231</y>
       <w>427</w>
       <h>196</h>
     </coordinates>
-    <panel_attributes>查看经营情况表</panel_attributes>
+    <panel_attributes>[查看经营情况表]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>287</y>
+      <x>413</x>
+      <y>266</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -119,8 +119,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>315</y>
+      <x>413</x>
+      <y>294</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -131,8 +131,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>350</y>
+      <x>413</x>
+      <y>329</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -143,8 +143,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>392</y>
+      <x>413</x>
+      <y>371</y>
       <w>322</w>
       <h>28</h>
     </coordinates>
@@ -155,8 +155,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>686</x>
-      <y>49</y>
+      <x>679</x>
+      <y>28</y>
       <w>98</w>
       <h>42</h>
     </coordinates>
@@ -167,10 +167,10 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>280</x>
-      <y>21</y>
+      <x>273</x>
+      <y>0</y>
       <w>581</w>
-      <h>686</h>
+      <h>525</h>
     </coordinates>
     <panel_attributes>查看财务报表</panel_attributes>
     <additional_attributes/>

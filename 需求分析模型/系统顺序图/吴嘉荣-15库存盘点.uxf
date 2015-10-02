@@ -73,23 +73,11 @@
     <coordinates>
       <x>180</x>
       <y>360</y>
-      <w>80</w>
+      <w>120</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>[导出excel文件]</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>740</x>
-      <y>0</y>
-      <w>140</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-sync call</panel_attributes>
-    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
@@ -123,27 +111,6 @@ sync call</panel_attributes>
     <panel_attributes>lt=&lt;.
 包含前述信息的excel文件</panel_attributes>
     <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>590</x>
-      <y>190</y>
-      <w>320</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>loop
---
-
-
-
-
- 
- 
- 
- 
-</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>

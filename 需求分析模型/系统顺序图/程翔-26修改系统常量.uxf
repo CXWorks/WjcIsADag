@@ -27,12 +27,12 @@
     <id>Relation</id>
     <coordinates>
       <x>768</x>
-      <y>88</y>
+      <y>64</y>
       <w>24</w>
-      <h>664</h>
+      <h>688</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;810.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -78,7 +78,7 @@
     </coordinates>
     <panel_attributes>alt
 --
-修改城市间距离常量</panel_attributes>
+[修改城市间距离常量]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -139,7 +139,7 @@
       <w>488</w>
       <h>136</h>
     </coordinates>
-    <panel_attributes>修改普通快递运费</panel_attributes>
+    <panel_attributes>[修改普通快递运费]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -212,7 +212,7 @@
       <w>488</w>
       <h>152</h>
     </coordinates>
-    <panel_attributes>修改包装费用</panel_attributes>
+    <panel_attributes>[修改包装费用]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -285,7 +285,7 @@
       <w>488</w>
       <h>152</h>
     </coordinates>
-    <panel_attributes>修改不同快递间价格比率</panel_attributes>
+    <panel_attributes>[修改不同快递间价格比率]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

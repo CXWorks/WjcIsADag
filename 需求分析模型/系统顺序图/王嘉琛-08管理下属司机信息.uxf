@@ -5,7 +5,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>360</x>
-      <y>8</y>
+      <y>32</y>
       <w>80</w>
       <h>80</h>
     </coordinates>
@@ -16,31 +16,31 @@
     <id>Relation</id>
     <coordinates>
       <x>392</x>
-      <y>80</y>
-      <w>24</w>
-      <h>688</h>
+      <y>96</y>
+      <w>32</w>
+      <h>736</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
+    <additional_attributes>12.0;10.0;10.0;900.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>696</x>
-      <y>80</y>
+      <y>88</y>
       <w>24</w>
-      <h>688</h>
+      <h>744</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;910.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>392</x>
-      <y>96</y>
+      <y>128</y>
       <w>16</w>
-      <h>648</h>
+      <h>680</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -49,9 +49,9 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>696</x>
-      <y>104</y>
+      <y>120</y>
       <w>16</w>
-      <h>640</h>
+      <h>688</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -60,7 +60,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>104</y>
+      <y>168</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -72,9 +72,9 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>328</x>
-      <y>104</y>
+      <y>136</y>
       <w>408</w>
-      <h>200</h>
+      <h>232</h>
     </coordinates>
     <panel_attributes>alt
 --
@@ -85,7 +85,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>128</y>
+      <y>192</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -97,7 +97,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>152</y>
+      <y>216</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -109,7 +109,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>176</y>
+      <y>240</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -121,7 +121,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>216</y>
+      <y>280</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -133,7 +133,7 @@
     <id>Relation</id>
     <coordinates>
       <x>704</x>
-      <y>224</y>
+      <y>288</y>
       <w>88</w>
       <h>64</h>
     </coordinates>
@@ -147,7 +147,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>256</y>
+      <y>320</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -159,18 +159,18 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>328</x>
-      <y>304</y>
+      <y>368</y>
       <w>408</w>
       <h>184</h>
     </coordinates>
-    <panel_attributes>删除司机</panel_attributes>
+    <panel_attributes>[删除司机]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>328</y>
+      <y>392</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -182,7 +182,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>352</y>
+      <y>416</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -194,7 +194,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>384</y>
+      <y>448</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -206,7 +206,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>456</y>
+      <y>520</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -218,7 +218,7 @@
     <id>Relation</id>
     <coordinates>
       <x>704</x>
-      <y>440</y>
+      <y>504</y>
       <w>88</w>
       <h>56</h>
     </coordinates>
@@ -232,18 +232,18 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>328</x>
-      <y>488</y>
+      <y>552</y>
       <w>408</w>
       <h>128</h>
     </coordinates>
-    <panel_attributes>更改司机信息</panel_attributes>
+    <panel_attributes>[更改司机信息]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>504</y>
+      <y>568</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -255,7 +255,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>520</y>
+      <y>584</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -267,7 +267,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>536</y>
+      <y>600</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -279,7 +279,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>552</y>
+      <y>616</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -291,7 +291,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>568</y>
+      <y>632</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -303,7 +303,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>584</y>
+      <y>648</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -315,7 +315,7 @@
     <id>Relation</id>
     <coordinates>
       <x>704</x>
-      <y>576</y>
+      <y>640</y>
       <w>96</w>
       <h>48</h>
     </coordinates>
@@ -329,18 +329,18 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>328</x>
-      <y>616</y>
+      <y>680</y>
       <w>408</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>查询司机信息</panel_attributes>
+    <panel_attributes>[查询司机信息]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>640</y>
+      <y>704</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -352,7 +352,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>664</y>
+      <y>728</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -364,7 +364,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>680</y>
+      <y>744</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -376,7 +376,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>704</y>
+      <y>768</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -388,7 +388,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>408</y>
+      <y>472</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -400,7 +400,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>432</y>
+      <y>496</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -412,7 +412,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>672</x>
-      <y>24</y>
+      <y>48</y>
       <w>72</w>
       <h>48</h>
     </coordinates>
@@ -426,9 +426,20 @@
       <x>272</x>
       <y>0</y>
       <w>552</w>
-      <h>768</h>
+      <h>832</h>
     </coordinates>
     <panel_attributes>管理下属司机信息</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Text</type>
+    <coordinates>
+      <x>496</x>
+      <y>136</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>[增加司机]</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

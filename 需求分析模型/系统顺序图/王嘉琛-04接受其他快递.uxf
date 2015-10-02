@@ -5,7 +5,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>416</x>
-      <y>0</y>
+      <y>64</y>
       <w>80</w>
       <h>80</h>
     </coordinates>
@@ -16,31 +16,31 @@
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>64</y>
+      <y>136</y>
       <w>24</w>
-      <h>680</h>
+      <h>480</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;580.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>832</x>
-      <y>64</y>
+      <y>136</y>
       <w>24</w>
-      <h>672</h>
+      <h>480</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;820.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;580.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>448</x>
-      <y>96</y>
+      <y>168</y>
       <w>16</w>
-      <h>600</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -49,9 +49,9 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>832</x>
-      <y>104</y>
+      <y>168</y>
       <w>16</w>
-      <h>584</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -131,14 +131,14 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>456</x>
       <y>440</y>
-      <w>400</w>
+      <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 返回接收单创建成功提示</panel_attributes>
-    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -156,7 +156,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>800</x>
-      <y>16</y>
+      <y>96</y>
       <w>88</w>
       <h>48</h>
     </coordinates>
@@ -168,9 +168,9 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>336</x>
-      <y>0</y>
+      <y>32</y>
       <w>608</w>
-      <h>736</h>
+      <h>568</h>
     </coordinates>
     <panel_attributes>接收其它快递</panel_attributes>
     <additional_attributes/>

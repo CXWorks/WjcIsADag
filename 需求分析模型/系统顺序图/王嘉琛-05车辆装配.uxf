@@ -5,7 +5,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>360</x>
-      <y>8</y>
+      <y>0</y>
       <w>80</w>
       <h>80</h>
     </coordinates>
@@ -16,7 +16,7 @@
     <id>Relation</id>
     <coordinates>
       <x>392</x>
-      <y>736</y>
+      <y>728</y>
       <w>24</w>
       <h>32</h>
     </coordinates>
@@ -27,7 +27,7 @@
     <id>Relation</id>
     <coordinates>
       <x>696</x>
-      <y>80</y>
+      <y>72</y>
       <w>24</w>
       <h>688</h>
     </coordinates>
@@ -38,7 +38,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>392</x>
-      <y>96</y>
+      <y>88</y>
       <w>16</w>
       <h>648</h>
     </coordinates>
@@ -49,7 +49,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>696</x>
-      <y>104</y>
+      <y>96</y>
       <w>16</w>
       <h>640</h>
     </coordinates>
@@ -60,7 +60,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>104</y>
+      <y>96</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -72,7 +72,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>128</y>
+      <y>120</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -84,7 +84,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>152</y>
+      <y>144</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -96,7 +96,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>176</y>
+      <y>168</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -108,7 +108,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>256</y>
+      <y>248</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -120,20 +120,20 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>336</x>
-      <y>208</y>
+      <y>200</y>
       <w>400</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>loop
 --
-录入所有订单信息</panel_attributes>
+[订单信息未录入完成]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>296</y>
+      <y>288</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -145,7 +145,7 @@
     <id>Relation</id>
     <coordinates>
       <x>696</x>
-      <y>264</y>
+      <y>256</y>
       <w>104</w>
       <h>64</h>
     </coordinates>
@@ -159,7 +159,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>328</y>
+      <y>320</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -171,7 +171,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>392</y>
+      <y>384</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -183,7 +183,7 @@
     <id>Relation</id>
     <coordinates>
       <x>400</x>
-      <y>424</y>
+      <y>416</y>
       <w>312</w>
       <h>32</h>
     </coordinates>
@@ -194,20 +194,20 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>456</y>
-      <w>320</w>
+      <x>400</x>
+      <y>448</y>
+      <w>312</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 装车单创建成功</panel_attributes>
-    <additional_attributes>10.0;20.0;380.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;370.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>656</x>
-      <y>24</y>
+      <y>16</y>
       <w>96</w>
       <h>48</h>
     </coordinates>
@@ -219,11 +219,22 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>272</x>
-      <y>8</y>
+      <y>0</y>
       <w>544</w>
       <h>752</h>
     </coordinates>
     <panel_attributes>车辆装配</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>72</y>
+      <w>24</w>
+      <h>688</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
   </element>
 </diagram>

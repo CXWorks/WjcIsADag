@@ -18,10 +18,10 @@
       <x>270</x>
       <y>210</y>
       <w>30</w>
-      <h>90</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -96,12 +96,12 @@
     <id>Relation</id>
     <coordinates>
       <x>510</x>
-      <y>190</y>
+      <y>180</y>
       <w>30</w>
-      <h>110</h>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>

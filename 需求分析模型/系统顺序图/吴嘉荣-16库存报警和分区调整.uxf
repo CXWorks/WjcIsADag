@@ -5,7 +5,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>350</x>
-      <y>90</y>
+      <y>80</y>
       <w>100</w>
       <h>60</h>
     </coordinates>
@@ -17,7 +17,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>90</x>
-      <y>60</y>
+      <y>50</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
@@ -28,7 +28,7 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>60</x>
-      <y>10</y>
+      <y>0</y>
       <w>460</w>
       <h>700</h>
     </coordinates>
@@ -39,7 +39,7 @@
     <id>Relation</id>
     <coordinates>
       <x>390</x>
-      <y>140</y>
+      <y>130</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -50,7 +50,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>160</x>
-      <y>200</y>
+      <y>190</y>
       <w>20</w>
       <h>460</h>
     </coordinates>
@@ -61,7 +61,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>390</x>
-      <y>200</y>
+      <y>190</y>
       <w>20</w>
       <h>460</h>
     </coordinates>
@@ -69,77 +69,10 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>Text</id>
-    <coordinates>
-      <x>740</x>
-      <y>80</y>
-      <w>80</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>[huiyuan]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>740</x>
-      <y>0</y>
-      <w>140</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-sync call</panel_attributes>
-    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>620</x>
-      <y>300</y>
-      <w>320</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>alt
---
-
-
-
-
- 
- 
- 
- 
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>660</x>
-      <y>120</y>
-      <w>240</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>610</x>
-      <y>440</y>
-      <w>350</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=.
-</panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLFrame</id>
     <coordinates>
       <x>110</x>
-      <y>300</y>
+      <y>290</y>
       <w>320</w>
       <h>340</h>
     </coordinates>
@@ -160,7 +93,7 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>390</x>
-      <y>650</y>
+      <y>640</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -170,20 +103,8 @@ sync call</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>50</y>
-      <w>240</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>160</x>
-      <y>140</y>
+      <y>130</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -194,7 +115,7 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>250</y>
+      <y>240</y>
       <w>240</w>
       <h>50</h>
     </coordinates>
@@ -207,7 +128,7 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>350</y>
+      <y>340</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -219,7 +140,7 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>590</y>
+      <y>580</y>
       <w>240</w>
       <h>50</h>
     </coordinates>
@@ -232,7 +153,7 @@ A区的货物的列表</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>160</x>
-      <y>650</y>
+      <y>640</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -243,7 +164,7 @@ A区的货物的列表</panel_attributes>
     <id>Text</id>
     <coordinates>
       <x>180</x>
-      <y>300</y>
+      <y>290</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -254,7 +175,7 @@ A区的货物的列表</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>390</y>
+      <y>380</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -266,7 +187,7 @@ A区的货物的列表</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>430</y>
+      <y>420</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -278,7 +199,7 @@ A区的货物的列表</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>480</y>
+      <y>470</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -290,7 +211,7 @@ A区的货物的列表</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>530</y>
+      <y>520</y>
       <w>240</w>
       <h>40</h>
     </coordinates>

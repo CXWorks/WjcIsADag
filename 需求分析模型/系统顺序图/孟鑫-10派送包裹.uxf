@@ -18,10 +18,10 @@
       <x>340</x>
       <y>140</y>
       <w>30</w>
-      <h>90</h>
+      <h>520</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -50,9 +50,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>540</x>
-      <y>90</y>
+      <y>80</y>
       <w>100</w>
-      <h>30</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>系统</panel_attributes>
     <additional_attributes/>
@@ -86,10 +86,10 @@
       <x>580</x>
       <y>120</y>
       <w>30</w>
-      <h>110</h>
+      <h>540</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;520.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

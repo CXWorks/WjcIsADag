@@ -5,7 +5,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>408</x>
-      <y>8</y>
+      <y>96</y>
       <w>96</w>
       <h>80</h>
     </coordinates>
@@ -15,32 +15,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>720</y>
-      <w>24</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>832</x>
-      <y>72</y>
+      <y>160</y>
       <w>24</w>
-      <h>672</h>
+      <h>624</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;820.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;760.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>448</x>
-      <y>104</y>
+      <y>192</y>
       <w>16</w>
-      <h>600</h>
+      <h>552</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -49,9 +38,9 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>832</x>
-      <y>112</y>
+      <y>200</y>
       <w>16</w>
-      <h>584</h>
+      <h>544</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -60,20 +49,20 @@
     <id>UMLFrame</id>
     <coordinates>
       <x>408</x>
-      <y>144</y>
+      <y>232</y>
       <w>480</w>
       <h>168</h>
     </coordinates>
     <panel_attributes>alt
 --
-审核单据</panel_attributes>
+[审核单据]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>208</y>
+      <y>296</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -85,7 +74,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>224</y>
+      <y>312</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -97,7 +86,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>248</y>
+      <y>336</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -109,7 +98,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>272</y>
+      <y>360</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -121,7 +110,7 @@
     <id>Relation</id>
     <coordinates>
       <x>840</x>
-      <y>256</y>
+      <y>344</y>
       <w>128</w>
       <h>56</h>
     </coordinates>
@@ -135,18 +124,18 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>408</x>
-      <y>312</y>
+      <y>400</y>
       <w>480</w>
       <h>160</h>
     </coordinates>
-    <panel_attributes>修改单据</panel_attributes>
+    <panel_attributes>[修改单据]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>344</y>
+      <y>432</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -158,7 +147,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>384</y>
+      <y>472</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -170,7 +159,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>408</y>
+      <y>496</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -182,7 +171,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>432</y>
+      <y>520</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -194,7 +183,7 @@
     <id>Relation</id>
     <coordinates>
       <x>840</x>
-      <y>416</y>
+      <y>504</y>
       <w>128</w>
       <h>56</h>
     </coordinates>
@@ -208,18 +197,18 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>408</x>
-      <y>472</y>
+      <y>560</y>
       <w>480</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>查看审批记录</panel_attributes>
+    <panel_attributes>[查看审批记录]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>504</y>
+      <y>592</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -231,7 +220,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>544</y>
+      <y>632</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -243,7 +232,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>784</x>
-      <y>24</y>
+      <y>112</y>
       <w>112</w>
       <h>48</h>
     </coordinates>
@@ -254,12 +243,23 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>328</x>
+      <x>320</x>
       <y>0</y>
       <w>664</w>
-      <h>752</h>
+      <h>768</h>
     </coordinates>
     <panel_attributes>审批单据</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>160</y>
+      <w>24</w>
+      <h>624</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;760.0</additional_attributes>
   </element>
 </diagram>

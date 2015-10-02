@@ -131,14 +131,14 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>456</x>
       <y>440</y>
-      <w>400</w>
+      <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 返回派件单创建成功提示</panel_attributes>
-    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

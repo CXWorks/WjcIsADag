@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>336</x>
-      <y>0</y>
+      <x>256</x>
+      <y>24</y>
       <w>96</w>
       <h>80</h>
     </coordinates>
@@ -15,21 +15,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>64</y>
+      <x>296</x>
+      <y>88</y>
       <w>24</w>
-      <h>688</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;840.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;410.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>376</x>
-      <y>104</y>
+      <x>296</x>
+      <y>128</y>
       <w>16</w>
-      <h>560</h>
+      <h>264</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -37,21 +37,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>848</x>
-      <y>64</y>
+      <x>768</x>
+      <y>88</y>
       <w>24</w>
-      <h>680</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;410.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>848</x>
-      <y>104</y>
-      <w>16</w>
-      <h>560</h>
+      <x>768</x>
+      <y>128</y>
+      <w>24</w>
+      <h>264</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,8 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>136</y>
+      <x>304</x>
+      <y>160</y>
       <w>480</w>
       <h>32</h>
     </coordinates>
@@ -71,8 +71,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>320</y>
+      <x>304</x>
+      <y>272</y>
       <w>480</w>
       <h>32</h>
     </coordinates>
@@ -83,21 +83,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>856</x>
-      <y>144</y>
-      <w>216</w>
-      <h>208</h>
+      <x>784</x>
+      <y>168</y>
+      <w>88</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 导出日志到本地
 </panel_attributes>
-    <additional_attributes>10.0;10.0;250.0;160.0;10.0;240.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;80.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>808</x>
-      <y>16</y>
+      <x>728</x>
+      <y>40</y>
       <w>96</w>
       <h>48</h>
     </coordinates>
@@ -108,10 +108,10 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>272</x>
+      <x>184</x>
       <y>0</y>
-      <w>792</w>
-      <h>760</h>
+      <w>712</w>
+      <h>424</h>
     </coordinates>
     <panel_attributes>查询系统日志</panel_attributes>
     <additional_attributes/>
