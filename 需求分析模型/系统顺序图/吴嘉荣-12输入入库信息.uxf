@@ -16,12 +16,12 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>140</x>
+      <x>90</x>
       <y>60</y>
-      <w>60</w>
+      <w>160</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>_快递员_</panel_attributes>
+    <panel_attributes>_中转中心库存管理人员_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -32,7 +32,7 @@
       <w>460</w>
       <h>580</h>
     </coordinates>
-    <panel_attributes>收件信息输入</panel_attributes>
+    <panel_attributes>输入入库信息</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -41,10 +41,10 @@
       <x>390</x>
       <y>140</y>
       <w>30</w>
-      <h>80</h>
+      <h>470</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;450.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -116,12 +116,13 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>660</x>
-      <y>120</y>
+      <y>110</y>
       <w>240</w>
-      <h>30</h>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -159,17 +160,6 @@ sync call</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>550</y>
-      <w>30</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>650</x>
       <y>50</y>
       <w>240</w>
@@ -185,16 +175,40 @@ sync call</panel_attributes>
       <x>160</x>
       <y>140</y>
       <w>30</w>
-      <h>80</h>
+      <h>470</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;450.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>220</y>
+      <y>210</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+输入入库单请求</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>250</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+提示输入快递单号</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>290</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -206,47 +220,70 @@ sync call</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>270</y>
+      <y>370</y>
       <w>240</w>
-      <h>40</h>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.
-对应的订单的信息，可编辑</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>320</y>
+      <y>400</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-收件人姓名，收件时间</panel_attributes>
+入库日期，目的地，区号</panel_attributes>
     <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>200</x>
+      <y>330</y>
+      <w>190</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>对应的订单信息，提示输入入库日期，目的地，区号</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>370</y>
+      <y>440</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-更新订单状态为完成</panel_attributes>
+提示输入排号架号位号</panel_attributes>
     <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>550</y>
-      <w>30</w>
-      <h>60</h>
+      <x>170</x>
+      <y>510</y>
+      <w>240</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <panel_attributes>lt=&lt;.
+入库单</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>480</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+排号架号位号</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
