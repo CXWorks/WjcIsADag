@@ -1,35 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>440</x>
+      <x>464</x>
       <y>0</y>
-      <w>60</w>
-      <h>100</h>
+      <w>48</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>总经理</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>1020</x>
-      <y>0</y>
-      <w>60</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>系统</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>80</y>
-      <w>30</w>
-      <h>870</h>
+      <x>480</x>
+      <y>64</y>
+      <w>24</w>
+      <h>696</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;850.0;10.0;10.0</additional_attributes>
@@ -37,10 +26,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1040</x>
-      <y>80</y>
-      <w>30</w>
-      <h>870</h>
+      <x>944</x>
+      <y>64</y>
+      <w>24</w>
+      <h>696</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;850.0;10.0;10.0</additional_attributes>
@@ -48,10 +37,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>150</y>
-      <w>20</w>
-      <h>540</h>
+      <x>480</x>
+      <y>120</y>
+      <w>16</w>
+      <h>432</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,10 +48,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>140</y>
-      <w>20</w>
-      <h>540</h>
+      <x>944</x>
+      <y>112</y>
+      <w>16</w>
+      <h>432</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -70,10 +59,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>140</y>
-      <w>600</w>
-      <h>40</h>
+      <x>480</x>
+      <y>112</y>
+      <w>480</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 修改薪水策略</panel_attributes>
@@ -82,10 +71,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>210</y>
-      <w>590</w>
-      <h>40</h>
+      <x>488</x>
+      <y>168</y>
+      <w>472</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 工种信息及现有策略</panel_attributes>
@@ -94,10 +83,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>300</y>
-      <w>590</w>
-      <h>40</h>
+      <x>488</x>
+      <y>240</y>
+      <w>472</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 新的薪水策略</panel_attributes>
@@ -106,10 +95,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>370</y>
-      <w>590</w>
-      <h>40</h>
+      <x>488</x>
+      <y>296</y>
+      <w>472</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 修改成功提示</panel_attributes>
@@ -118,13 +107,36 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>310</y>
-      <w>260</w>
-      <h>100</h>
+      <x>952</x>
+      <y>248</y>
+      <w>208</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 更新策略</panel_attributes>
     <additional_attributes>10.0;80.0;240.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>392</x>
+      <y>0</y>
+      <w>776</w>
+      <h>784</h>
+    </coordinates>
+    <panel_attributes>调整薪水策略</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>912</x>
+      <y>16</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>
+系统</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
