@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>6</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>282</x>
-      <y>636</y>
-      <w>66</w>
-      <h>276</h>
+      <x>329</x>
+      <y>742</y>
+      <w>77</w>
+      <h>322</h>
     </coordinates>
     <panel_attributes>营业厅业务员
 --
@@ -19,24 +19,33 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>684</y>
-      <w>1020</w>
-      <h>156</h>
+      <x>399</x>
+      <y>798</y>
+      <w>1232</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
+
+
+
+
+
+
+
+
+
 增加，删除，查询，修改 &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;890.0;40.0;1680.0;240.0</additional_attributes>
+    <additional_attributes>10.0;10.0;1160.0;10.0;1160.0;190.0;1740.0;190.0;1740.0;240.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1338</x>
-      <y>828</y>
-      <w>108</w>
-      <h>72</h>
+      <x>1561</x>
+      <y>966</y>
+      <w>126</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>车辆列表
 --</panel_attributes>
@@ -45,23 +54,23 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
-      <y>834</y>
-      <w>252</w>
-      <h>60</h>
+      <x>1281</x>
+      <y>973</y>
+      <w>294</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>400.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>400.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>630</y>
-      <w>132</w>
-      <h>30</h>
+      <x>399</x>
+      <y>735</y>
+      <w>154</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -72,10 +81,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>618</y>
-      <w>60</w>
-      <h>36</h>
+      <x>539</x>
+      <y>721</y>
+      <w>70</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>司机列表
 --
@@ -85,10 +94,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>516</x>
-      <y>636</y>
-      <w>90</w>
-      <h>24</h>
+      <x>602</x>
+      <y>742</y>
+      <w>105</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -98,10 +107,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>594</x>
-      <y>558</y>
-      <w>54</w>
-      <h>96</h>
+      <x>693</x>
+      <y>651</y>
+      <w>63</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>司机
 --
@@ -119,24 +128,24 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>900</y>
-      <w>96</w>
-      <h>90</h>
+      <x>399</x>
+      <y>1043</y>
+      <w>126</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 新建 &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;130.0</additional_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0;160.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>426</x>
-      <y>960</y>
-      <w>84</w>
-      <h>48</h>
+      <x>497</x>
+      <y>1134</y>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>营业中心到达单
 --
@@ -149,10 +158,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>882</y>
-      <w>60</w>
-      <h>36</h>
+      <x>525</x>
+      <y>1050</y>
+      <w>70</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>中转单
 --
@@ -164,23 +173,23 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>474</x>
-      <y>912</y>
-      <w>18</w>
-      <h>60</h>
+      <x>553</x>
+      <y>1085</y>
+      <w>21</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>906</y>
-      <w>30</w>
-      <h>60</h>
+      <x>385</x>
+      <y>1057</y>
+      <w>35</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -191,10 +200,10 @@ m2=0..1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>312</x>
-      <y>954</y>
-      <w>66</w>
-      <h>18</h>
+      <x>364</x>
+      <y>1113</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>赔款策略
 
@@ -204,23 +213,23 @@ m2=0..1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>312</x>
-      <y>966</y>
-      <w>36</w>
-      <h>84</h>
+      <x>385</x>
+      <y>1127</y>
+      <w>21</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>1038</y>
-      <w>90</w>
-      <h>66</h>
+      <x>336</x>
+      <y>1211</y>
+      <w>105</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>赔款单
 --
@@ -234,36 +243,36 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>354</x>
-      <y>1002</y>
-      <w>108</w>
-      <h>60</h>
+      <x>434</x>
+      <y>1183</y>
+      <w>105</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>10.0;80.0;160.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;130.0;60.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
-      <y>1002</y>
-      <w>162</w>
-      <h>324</h>
+      <x>567</x>
+      <y>1183</y>
+      <w>189</w>
+      <h>364</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;510.0;250.0;510.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;490.0;250.0;490.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>636</x>
-      <y>1242</y>
-      <w>150</w>
-      <h>174</h>
+      <x>742</x>
+      <y>1449</y>
+      <w>175</w>
+      <h>203</h>
     </coordinates>
     <panel_attributes>订单
 --
@@ -281,10 +290,10 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>816</y>
-      <w>108</w>
-      <h>42</h>
+      <x>399</x>
+      <y>952</y>
+      <w>126</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -295,10 +304,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>438</x>
-      <y>822</y>
-      <w>60</w>
-      <h>48</h>
+      <x>511</x>
+      <y>959</y>
+      <w>70</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>派件单
 --
@@ -311,10 +320,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>492</x>
-      <y>840</y>
-      <w>156</w>
-      <h>432</h>
+      <x>574</x>
+      <y>980</y>
+      <w>182</w>
+      <h>504</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
@@ -324,10 +333,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>780</y>
-      <w>240</w>
-      <h>54</h>
+      <x>399</x>
+      <y>910</y>
+      <w>280</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -338,10 +347,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>804</y>
-      <w>84</w>
-      <h>102</h>
+      <x>665</x>
+      <y>938</y>
+      <w>98</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>装车单
 --
@@ -359,10 +368,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>900</y>
-      <w>60</w>
-      <h>396</h>
+      <x>686</x>
+      <y>1050</y>
+      <w>70</w>
+      <h>462</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*
@@ -372,10 +381,10 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>1134</y>
-      <w>36</w>
-      <h>48</h>
+      <x>252</x>
+      <y>1323</y>
+      <w>42</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>体积
 --
@@ -388,10 +397,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>246</x>
-      <y>1158</y>
-      <w>90</w>
-      <h>24</h>
+      <x>287</x>
+      <y>1351</y>
+      <w>105</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -401,10 +410,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
-      <y>1140</y>
-      <w>48</w>
-      <h>48</h>
+      <x>378</x>
+      <y>1330</y>
+      <w>56</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>货物
 --
@@ -417,10 +426,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>366</x>
-      <y>1170</y>
-      <w>318</w>
-      <h>84</h>
+      <x>427</x>
+      <y>1365</y>
+      <w>371</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -430,24 +439,49 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>714</y>
-      <w>666</w>
-      <h>294</h>
+      <x>399</x>
+      <y>833</y>
+      <w>812</w>
+      <h>350</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 修改，添加订单 &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;1020.0;250.0;1090.0;470.0</additional_attributes>
+    <additional_attributes>10.0;10.0;1030.0;10.0;1030.0;470.0;1090.0;470.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>996</x>
-      <y>984</y>
-      <w>72</w>
-      <h>84</h>
+      <x>1162</x>
+      <y>1148</y>
+      <w>84</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>收款单
 --
@@ -463,23 +497,23 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1062</x>
-      <y>1044</y>
-      <w>120</w>
-      <h>36</h>
+      <x>1239</x>
+      <y>1218</y>
+      <w>140</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;180.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1170</x>
-      <y>1032</y>
-      <w>108</w>
-      <h>96</h>
+      <x>1365</x>
+      <y>1204</y>
+      <w>126</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>账户
 --
@@ -491,10 +525,10 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>606</y>
-      <w>120</w>
-      <h>60</h>
+      <x>840</x>
+      <y>707</y>
+      <w>140</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>中转中心业务员
 --
@@ -506,10 +540,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>738</x>
-      <y>660</y>
-      <w>42</w>
-      <h>84</h>
+      <x>861</x>
+      <y>770</y>
+      <w>49</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -520,10 +554,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>738</x>
-      <y>732</y>
-      <w>60</w>
-      <h>72</h>
+      <x>861</x>
+      <y>854</y>
+      <w>70</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>中转中心到达单
 --
@@ -538,10 +572,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>798</y>
-      <w>18</w>
-      <h>456</h>
+      <x>882</x>
+      <y>931</y>
+      <w>21</w>
+      <h>532</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
@@ -551,37 +585,37 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>648</x>
-      <y>660</y>
-      <w>192</w>
-      <h>222</h>
+      <x>756</x>
+      <y>770</y>
+      <w>224</w>
+      <h>231</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 &lt; 新建</panel_attributes>
-    <additional_attributes>260.0;10.0;260.0;290.0;10.0;340.0</additional_attributes>
+    <additional_attributes>260.0;10.0;260.0;300.0;10.0;300.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>648</x>
-      <y>834</y>
-      <w>384</w>
-      <h>66</h>
+      <x>756</x>
+      <y>994</y>
+      <w>448</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
 m1=1</panel_attributes>
-    <additional_attributes>10.0;80.0;620.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;620.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>1200</y>
-      <w>108</w>
-      <h>318</h>
+      <y>1400</y>
+      <w>126</w>
+      <h>371</h>
     </coordinates>
     <panel_attributes>中转中心库存管理人员
 --
@@ -593,10 +627,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>336</x>
-      <y>1272</y>
-      <w>84</w>
-      <h>78</h>
+      <x>392</x>
+      <y>1484</y>
+      <w>98</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>入库单
 --
@@ -608,10 +642,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>1314</y>
-      <w>234</w>
-      <h>24</h>
+      <x>483</x>
+      <y>1533</y>
+      <w>273</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
@@ -621,10 +655,10 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>552</x>
-      <y>1590</y>
-      <w>30</w>
-      <h>54</h>
+      <x>644</x>
+      <y>1855</y>
+      <w>35</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>位置
 --
@@ -637,10 +671,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>1326</y>
-      <w>162</w>
-      <h>276</h>
+      <x>483</x>
+      <y>1547</y>
+      <w>189</w>
+      <h>322</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
@@ -650,10 +684,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>102</x>
-      <y>1302</y>
-      <w>246</w>
-      <h>30</h>
+      <x>119</x>
+      <y>1519</y>
+      <w>287</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -664,10 +698,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>102</x>
-      <y>1380</y>
-      <w>180</w>
-      <h>30</h>
+      <x>119</x>
+      <y>1610</y>
+      <w>210</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -678,10 +712,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>1362</y>
-      <w>90</w>
-      <h>66</h>
+      <x>315</x>
+      <y>1589</y>
+      <w>105</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>出库单
 --
@@ -695,10 +729,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>102</x>
-      <y>1254</y>
-      <w>84</w>
-      <h>30</h>
+      <x>119</x>
+      <y>1463</y>
+      <w>98</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -709,10 +743,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>174</x>
-      <y>1236</y>
-      <w>30</w>
-      <h>42</h>
+      <x>203</x>
+      <y>1442</y>
+      <w>35</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>盘点
 --
@@ -723,10 +757,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>228</x>
-      <y>1254</y>
-      <w>54</w>
-      <h>18</h>
+      <x>266</x>
+      <y>1463</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>库存信息列表</panel_attributes>
     <additional_attributes/>
@@ -734,10 +768,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>1260</y>
-      <w>42</w>
-      <h>24</h>
+      <x>231</x>
+      <y>1470</y>
+      <w>49</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -747,10 +781,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>1206</y>
-      <w>54</w>
-      <h>18</h>
+      <x>350</x>
+      <y>1407</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>库存信息</panel_attributes>
     <additional_attributes/>
@@ -758,10 +792,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>246</x>
-      <y>1212</y>
-      <w>66</w>
-      <h>54</h>
+      <x>287</x>
+      <y>1414</y>
+      <w>77</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -771,10 +805,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>312</x>
-      <y>1218</y>
-      <w>18</w>
-      <h>156</h>
+      <x>364</x>
+      <y>1421</y>
+      <w>21</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -784,10 +818,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>1218</y>
-      <w>18</w>
-      <h>66</h>
+      <x>392</x>
+      <y>1421</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -797,10 +831,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>348</x>
-      <y>1212</y>
-      <w>312</w>
-      <h>42</h>
+      <x>406</x>
+      <y>1414</y>
+      <w>364</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -810,10 +844,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
-      <y>1512</y>
-      <w>156</w>
-      <h>72</h>
+      <x>105</x>
+      <y>1764</y>
+      <w>182</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -825,10 +859,10 @@ m2=4
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
-      <y>1554</y>
-      <w>60</w>
-      <h>30</h>
+      <x>273</x>
+      <y>1813</y>
+      <w>70</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>库存区域
 --
@@ -838,10 +872,10 @@ m2=4
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>1560</y>
-      <w>72</w>
-      <h>24</h>
+      <x>336</x>
+      <y>1820</y>
+      <w>84</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -851,10 +885,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>348</x>
-      <y>1554</y>
-      <w>54</w>
-      <h>30</h>
+      <x>406</x>
+      <y>1813</y>
+      <w>63</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>库存货物列表</panel_attributes>
     <additional_attributes/>
@@ -862,10 +896,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>366</x>
-      <y>1578</y>
-      <w>18</w>
-      <h>60</h>
+      <x>427</x>
+      <y>1841</y>
+      <w>21</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -875,10 +909,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>1626</y>
-      <w>66</w>
-      <h>18</h>
+      <x>385</x>
+      <y>1897</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>库存货物</panel_attributes>
     <additional_attributes/>
@@ -886,10 +920,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>66</x>
-      <y>1512</y>
-      <w>276</w>
-      <h>138</h>
+      <x>77</x>
+      <y>1764</y>
+      <w>322</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -910,10 +944,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>1632</y>
-      <w>174</w>
-      <h>24</h>
+      <x>455</x>
+      <y>1904</y>
+      <w>203</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -923,10 +957,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>1410</y>
-      <w>276</w>
-      <h>240</h>
+      <x>455</x>
+      <y>1645</y>
+      <w>322</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -936,10 +970,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1422</x>
-      <y>1272</y>
-      <w>60</w>
-      <h>24</h>
+      <x>1659</x>
+      <y>1484</y>
+      <w>70</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>距离列表</panel_attributes>
     <additional_attributes/>
@@ -947,10 +981,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1446</x>
-      <y>1200</y>
-      <w>72</w>
-      <h>84</h>
+      <x>1687</x>
+      <y>1400</y>
+      <w>84</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -961,10 +995,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1506</x>
-      <y>1176</y>
-      <w>84</w>
-      <h>54</h>
+      <x>1757</x>
+      <y>1372</y>
+      <w>98</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>机构
 --
@@ -976,10 +1010,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1500</x>
-      <y>1224</y>
-      <w>30</w>
-      <h>132</h>
+      <x>1750</x>
+      <y>1428</y>
+      <w>35</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -989,10 +1023,10 @@ m2=2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>1344</y>
-      <w>78</w>
-      <h>42</h>
+      <x>1680</x>
+      <y>1568</y>
+      <w>91</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>距离项
 --
@@ -1002,10 +1036,10 @@ m2=2</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1446</x>
-      <y>1290</y>
-      <w>18</w>
-      <h>66</h>
+      <x>1687</x>
+      <y>1505</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1015,10 +1049,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>882</y>
-      <w>102</w>
-      <h>306</h>
+      <x>1680</x>
+      <y>1029</y>
+      <w>119</w>
+      <h>357</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1028,23 +1062,23 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1584</x>
-      <y>1206</y>
-      <w>180</w>
-      <h>36</h>
+      <x>1848</x>
+      <y>1407</y>
+      <w>147</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;280.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1560</x>
-      <y>1224</y>
-      <w>162</w>
-      <h>240</h>
+      <x>1820</x>
+      <y>1428</y>
+      <w>189</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 </panel_attributes>
@@ -1053,10 +1087,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1698</x>
-      <y>1452</y>
-      <w>78</w>
-      <h>24</h>
+      <x>1981</x>
+      <y>1694</y>
+      <w>91</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>中转中心</panel_attributes>
     <additional_attributes/>
@@ -1064,10 +1098,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1704</x>
-      <y>1356</y>
-      <w>42</w>
-      <h>108</h>
+      <x>1988</x>
+      <y>1582</y>
+      <w>49</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1077,10 +1111,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1578</x>
-      <y>1356</y>
-      <w>126</w>
-      <h>102</h>
+      <x>1841</x>
+      <y>1582</y>
+      <w>147</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1090,10 +1124,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1662</x>
-      <y>1284</y>
-      <w>78</w>
-      <h>78</h>
+      <x>1939</x>
+      <y>1498</y>
+      <w>91</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>机构清单</panel_attributes>
     <additional_attributes/>
@@ -1101,10 +1135,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1542</x>
-      <y>1446</y>
-      <w>78</w>
-      <h>24</h>
+      <x>1799</x>
+      <y>1687</y>
+      <w>91</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>营业厅</panel_attributes>
     <additional_attributes/>
@@ -1112,10 +1146,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1530</x>
-      <y>1224</y>
-      <w>42</w>
-      <h>234</h>
+      <x>1785</x>
+      <y>1428</y>
+      <w>49</w>
+      <h>273</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 </panel_attributes>
@@ -1124,23 +1158,23 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1734</x>
-      <y>1224</y>
-      <w>198</w>
-      <h>102</h>
+      <x>2023</x>
+      <y>1435</y>
+      <w>231</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>310.0;10.0;300.0;140.0;10.0;140.0</additional_attributes>
+    <additional_attributes>310.0;10.0;310.0;130.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1956</x>
-      <y>1284</y>
-      <w>78</w>
-      <h>30</h>
+      <x>2282</x>
+      <y>1498</y>
+      <w>91</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>库存</panel_attributes>
     <additional_attributes/>
@@ -1148,10 +1182,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1992</x>
-      <y>1230</y>
-      <w>18</w>
-      <h>66</h>
+      <x>2324</x>
+      <y>1435</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1161,10 +1195,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1914</x>
-      <y>918</y>
-      <w>216</w>
-      <h>132</h>
+      <x>2233</x>
+      <y>1071</y>
+      <w>252</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>财务人员
 --
@@ -1177,37 +1211,37 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1974</x>
-      <y>1044</y>
-      <w>36</w>
-      <h>102</h>
+      <x>2303</x>
+      <y>1232</y>
+      <w>42</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 新建</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1824</x>
-      <y>1164</y>
-      <w>78</w>
-      <h>66</h>
+      <x>2065</x>
+      <y>1414</y>
+      <w>154</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1752</x>
-      <y>1194</y>
-      <w>78</w>
-      <h>48</h>
+      <x>1981</x>
+      <y>1393</y>
+      <w>91</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>人员清单</panel_attributes>
     <additional_attributes/>
@@ -1215,23 +1249,23 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
-      <y>1116</y>
-      <w>300</w>
-      <h>102</h>
+      <x>1708</x>
+      <y>1302</y>
+      <w>343</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>480.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>470.0;130.0;470.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1386</x>
-      <y>1092</y>
-      <w>84</w>
-      <h>84</h>
+      <x>1617</x>
+      <y>1274</y>
+      <w>98</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>人员
 --
@@ -1245,23 +1279,23 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1272</x>
-      <y>1092</y>
-      <w>126</w>
-      <h>30</h>
+      <x>1484</x>
+      <y>1281</y>
+      <w>147</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;10.0</additional_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1020</x>
-      <y>810</y>
-      <w>84</w>
-      <h>60</h>
+      <x>1190</x>
+      <y>945</y>
+      <w>98</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>车辆
 --
@@ -1276,10 +1310,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1272</x>
-      <y>1056</y>
-      <w>138</w>
-      <h>24</h>
+      <x>1484</x>
+      <y>1232</y>
+      <w>161</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1289,10 +1323,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1398</x>
-      <y>1056</y>
-      <w>78</w>
-      <h>24</h>
+      <x>1631</x>
+      <y>1232</y>
+      <w>91</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>银行账户清单</panel_attributes>
     <additional_attributes/>
@@ -1300,23 +1334,23 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1470</x>
-      <y>1062</y>
-      <w>432</w>
-      <h>108</h>
+      <x>1715</x>
+      <y>1239</y>
+      <w>532</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>700.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>740.0;120.0;740.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>846</y>
-      <w>468</w>
-      <h>300</h>
+      <x>1680</x>
+      <y>987</y>
+      <w>546</w>
+      <h>350</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1326,10 +1360,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1890</x>
-      <y>1134</y>
-      <w>156</w>
-      <h>102</h>
+      <x>2205</x>
+      <y>1323</y>
+      <w>182</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>期初信息
 </panel_attributes>
@@ -1338,38 +1372,38 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2010</x>
-      <y>1044</y>
-      <w>30</w>
-      <h>102</h>
+      <x>2345</x>
+      <y>1232</y>
+      <w>35</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 查询</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1062</x>
-      <y>918</y>
-      <w>864</w>
-      <h>54</h>
+      <x>1239</x>
+      <y>1064</y>
+      <w>1001</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
-查询 &gt;</panel_attributes>
-    <additional_attributes>1420.0;60.0;10.0;10.0</additional_attributes>
+&lt; 查询</panel_attributes>
+    <additional_attributes>1410.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>888</y>
-      <w>60</w>
-      <h>48</h>
+      <x>1176</x>
+      <y>1036</y>
+      <w>70</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>收款单记录
 --
@@ -1381,10 +1415,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>930</y>
-      <w>18</w>
-      <h>66</h>
+      <x>1197</x>
+      <y>1085</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1394,24 +1428,24 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1206</x>
-      <y>726</y>
-      <w>738</w>
-      <h>204</h>
+      <x>1407</x>
+      <y>847</y>
+      <w>861</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
-新建 &gt;</panel_attributes>
+&lt; 新建</panel_attributes>
     <additional_attributes>1210.0;320.0;1210.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1098</x>
-      <y>666</y>
-      <w>132</w>
-      <h>66</h>
+      <x>1281</x>
+      <y>777</y>
+      <w>154</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>付款单
 --
@@ -1426,24 +1460,24 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1272</x>
-      <y>996</y>
-      <w>654</w>
-      <h>66</h>
+      <x>1484</x>
+      <y>1204</y>
+      <w>763</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 增加，删除，查询，修改名称 &gt;</panel_attributes>
-    <additional_attributes>1070.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>1070.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1572</x>
-      <y>576</y>
-      <w>54</w>
-      <h>174</h>
+      <x>2093</x>
+      <y>672</y>
+      <w>63</w>
+      <h>203</h>
     </coordinates>
     <panel_attributes>总经理
 --
@@ -1455,53 +1489,74 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>624</y>
-      <w>666</w>
-      <h>732</h>
+      <x>2023</x>
+      <y>728</y>
+      <w>644</w>
+      <h>854</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 &lt; 新建、删除、修改、查询
 </panel_attributes>
-    <additional_attributes>10.0;10.0;920.0;10.0;920.0;1190.0;200.0;1190.0</additional_attributes>
+    <additional_attributes>190.0;10.0;730.0;10.0;730.0;1190.0;10.0;1190.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>654</y>
-      <w>354</w>
-      <h>30</h>
+      <x>2149</x>
+      <y>763</y>
+      <w>154</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 查看 &gt;</panel_attributes>
-    <additional_attributes>570.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1308</x>
-      <y>714</y>
-      <w>276</w>
-      <h>264</h>
+      <x>1526</x>
+      <y>840</y>
+      <w>581</w>
+      <h>301</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 查看 &gt;</panel_attributes>
-    <additional_attributes>10.0;420.0;30.0;10.0;440.0;20.0</additional_attributes>
+    <additional_attributes>10.0;410.0;10.0;10.0;810.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1986</x>
-      <y>684</y>
-      <w>42</w>
-      <h>246</h>
+      <x>2317</x>
+      <y>798</y>
+      <w>49</w>
+      <h>287</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -1512,24 +1567,24 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1326</x>
-      <y>966</y>
-      <w>600</w>
-      <h>36</h>
+      <x>1547</x>
+      <y>1134</y>
+      <w>700</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
-查看 &gt;</panel_attributes>
-    <additional_attributes>10.0;30.0;980.0;10.0</additional_attributes>
+&lt; 查看</panel_attributes>
+    <additional_attributes>10.0;20.0;980.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1272</x>
-      <y>966</y>
-      <w>60</w>
-      <h>42</h>
+      <x>1484</x>
+      <y>1127</y>
+      <w>70</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>经营情况表
 --
@@ -1540,10 +1595,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1962</x>
-      <y>642</y>
-      <w>54</w>
-      <h>48</h>
+      <x>2289</x>
+      <y>749</y>
+      <w>63</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>成本收益表
 --
@@ -1555,36 +1610,36 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1062</x>
-      <y>972</y>
-      <w>222</w>
-      <h>72</h>
+      <x>1239</x>
+      <y>1134</y>
+      <w>259</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>350.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>350.0;10.0;90.0;10.0;90.0;100.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1152</x>
-      <y>726</y>
-      <w>150</w>
-      <h>252</h>
+      <x>1344</x>
+      <y>847</y>
+      <w>175</w>
+      <h>294</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>230.0;400.0;10.0;10.0</additional_attributes>
+    <additional_attributes>230.0;400.0;230.0;370.0;10.0;370.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2034</x>
-      <y>714</y>
-      <w>60</w>
-      <h>42</h>
+      <x>2373</x>
+      <y>833</y>
+      <w>70</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>系统操作日志
 --
@@ -1594,24 +1649,24 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>726</y>
-      <w>426</w>
-      <h>30</h>
+      <x>2149</x>
+      <y>847</y>
+      <w>238</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 查询 &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;690.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2064</x>
-      <y>750</y>
-      <w>42</w>
-      <h>180</h>
+      <x>2408</x>
+      <y>875</y>
+      <w>49</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -1622,25 +1677,25 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>468</y>
-      <w>414</w>
-      <h>156</h>
+      <x>2149</x>
+      <y>546</y>
+      <w>224</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 修改 &gt;
 </panel_attributes>
-    <additional_attributes>10.0;240.0;670.0;10.0</additional_attributes>
+    <additional_attributes>10.0;240.0;300.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2022</x>
-      <y>462</y>
-      <w>36</w>
-      <h>30</h>
+      <x>2359</x>
+      <y>539</y>
+      <w>42</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>系统常量
 --</panel_attributes>
@@ -1649,10 +1704,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2052</x>
-      <y>474</y>
-      <w>54</w>
-      <h>30</h>
+      <x>2394</x>
+      <y>553</y>
+      <w>63</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1663,10 +1718,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2052</x>
-      <y>456</y>
-      <w>54</w>
-      <h>30</h>
+      <x>2394</x>
+      <y>532</y>
+      <w>63</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1677,10 +1732,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2094</x>
-      <y>450</y>
-      <w>54</w>
-      <h>30</h>
+      <x>2443</x>
+      <y>525</y>
+      <w>63</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>距离常量
 --</panel_attributes>
@@ -1689,10 +1744,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2142</x>
-      <y>444</y>
-      <w>54</w>
-      <h>30</h>
+      <x>2499</x>
+      <y>518</y>
+      <w>63</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1704,10 +1759,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2184</x>
-      <y>438</y>
-      <w>66</w>
-      <h>42</h>
+      <x>2548</x>
+      <y>511</y>
+      <w>77</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>城市
 --
@@ -1718,10 +1773,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2094</x>
-      <y>486</y>
-      <w>168</w>
-      <h>42</h>
+      <x>2443</x>
+      <y>567</y>
+      <w>196</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>价格常量
 --
@@ -1732,10 +1787,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2256</x>
-      <y>492</y>
-      <w>48</w>
-      <h>30</h>
+      <x>2632</x>
+      <y>574</y>
+      <w>56</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -1747,10 +1802,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2292</x>
-      <y>480</y>
-      <w>54</w>
-      <h>48</h>
+      <x>2674</x>
+      <y>560</y>
+      <w>63</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>包装费用
 --
@@ -1762,10 +1817,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2082</x>
-      <y>126</y>
-      <w>84</w>
-      <h>48</h>
+      <x>2429</x>
+      <y>147</y>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>营业厅业务员薪水策略
 --
@@ -1777,10 +1832,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2082</x>
-      <y>60</y>
-      <w>84</w>
-      <h>48</h>
+      <x>2429</x>
+      <y>70</y>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>司机薪水策略
 --
@@ -1792,10 +1847,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2082</x>
+      <x>2429</x>
       <y>0</y>
-      <w>84</w>
-      <h>48</h>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>快递员薪水策略
 --
@@ -1807,10 +1862,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2088</x>
-      <y>192</y>
-      <w>102</w>
-      <h>48</h>
+      <x>2436</x>
+      <y>224</y>
+      <w>119</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>中转中心业务员薪水策略
 --
@@ -1822,10 +1877,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2088</x>
-      <y>258</y>
-      <w>102</w>
-      <h>48</h>
+      <x>2436</x>
+      <y>301</y>
+      <w>119</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>中转中心仓储人员薪水策略
 --
@@ -1837,10 +1892,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2082</x>
-      <y>324</y>
-      <w>84</w>
-      <h>48</h>
+      <x>2429</x>
+      <y>378</y>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>财务人员薪水策略
 --
@@ -1852,10 +1907,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2076</x>
-      <y>384</y>
-      <w>84</w>
-      <h>48</h>
+      <x>2422</x>
+      <y>448</y>
+      <w>98</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>总经理薪水策略
 --
@@ -1867,10 +1922,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>180</y>
-      <w>246</w>
-      <h>240</h>
+      <x>2149</x>
+      <y>210</y>
+      <w>287</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1879,24 +1934,24 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>180</y>
-      <w>240</w>
-      <h>414</h>
+      <x>2121</x>
+      <y>210</y>
+      <w>63</w>
+      <h>476</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 调整 &gt;</panel_attributes>
-    <additional_attributes>10.0;670.0;380.0;10.0</additional_attributes>
+    <additional_attributes>10.0;660.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1950</x>
-      <y>426</y>
-      <w>60</w>
-      <h>30</h>
+      <x>2275</x>
+      <y>497</y>
+      <w>70</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>薪水策略清单
 --</panel_attributes>
@@ -1905,10 +1960,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>180</y>
-      <w>138</w>
-      <h>258</h>
+      <x>2149</x>
+      <y>210</y>
+      <w>161</w>
+      <h>301</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1</panel_attributes>
@@ -1917,10 +1972,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>18</y>
-      <w>252</w>
-      <h>180</h>
+      <x>2149</x>
+      <y>21</y>
+      <w>294</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1929,10 +1984,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>102</y>
-      <w>252</w>
-      <h>96</h>
+      <x>2149</x>
+      <y>119</y>
+      <w>294</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1941,10 +1996,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>150</y>
-      <w>252</w>
-      <h>48</h>
+      <x>2149</x>
+      <y>175</y>
+      <w>294</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1953,10 +2008,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>180</y>
-      <w>258</w>
-      <h>54</h>
+      <x>2149</x>
+      <y>210</y>
+      <w>301</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1965,10 +2020,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>180</y>
-      <w>258</w>
-      <h>90</h>
+      <x>2149</x>
+      <y>210</y>
+      <w>301</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1977,10 +2032,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1842</x>
-      <y>180</y>
-      <w>252</w>
-      <h>156</h>
+      <x>2149</x>
+      <y>210</y>
+      <w>294</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=1</panel_attributes>
@@ -1989,10 +2044,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1572</x>
-      <y>1506</y>
-      <w>132</w>
-      <h>66</h>
+      <x>1834</x>
+      <y>1757</y>
+      <w>154</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>管理员
 --
@@ -2004,10 +2059,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1446</x>
-      <y>1542</y>
-      <w>138</w>
-      <h>30</h>
+      <x>1687</x>
+      <y>1799</y>
+      <w>161</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2018,10 +2073,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1368</x>
-      <y>1524</y>
-      <w>84</w>
-      <h>54</h>
+      <x>1596</x>
+      <y>1778</y>
+      <w>98</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>用户账户
 --
@@ -2033,10 +2088,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1398</x>
-      <y>1170</y>
-      <w>18</w>
-      <h>366</h>
+      <x>1631</x>
+      <y>1365</y>
+      <w>21</w>
+      <h>427</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -2046,25 +2101,25 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>600</y>
-      <w>702</w>
-      <h>354</h>
+      <x>1029</x>
+      <y>707</y>
+      <w>1078</w>
+      <h>406</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 &lt; 审批、修改、查询
 </panel_attributes>
-    <additional_attributes>1150.0;20.0;10.0;30.0;10.0;570.0</additional_attributes>
+    <additional_attributes>1520.0;20.0;10.0;20.0;10.0;560.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>258</x>
-      <y>1344</y>
-      <w>168</w>
-      <h>138</h>
+      <x>301</x>
+      <y>1568</y>
+      <w>196</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2075,10 +2130,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>246</x>
-      <y>1494</y>
-      <w>78</w>
-      <h>72</h>
+      <x>287</x>
+      <y>1743</y>
+      <w>91</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2089,10 +2144,10 @@ m2=4
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>198</x>
-      <y>1434</y>
-      <w>66</w>
-      <h>66</h>
+      <x>231</x>
+      <y>1673</y>
+      <w>77</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>出入库记录
 --
@@ -2107,10 +2162,10 @@ m2=4
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>102</x>
-      <y>1452</y>
-      <w>108</w>
-      <h>30</h>
+      <x>119</x>
+      <y>1694</y>
+      <w>126</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2121,10 +2176,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1116</x>
-      <y>1272</y>
-      <w>66</w>
-      <h>24</h>
+      <x>1330</x>
+      <y>1519</y>
+      <w>77</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>寄件人
 bg=red</panel_attributes>
@@ -2133,10 +2188,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1044</x>
-      <y>1338</y>
-      <w>66</w>
-      <h>24</h>
+      <x>1218</x>
+      <y>1582</y>
+      <w>77</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>收件人
 bg=red</panel_attributes>
@@ -2145,32 +2200,32 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1086</x>
-      <y>1356</y>
-      <w>36</w>
-      <h>96</h>
+      <x>1267</x>
+      <y>1603</y>
+      <w>21</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>40.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
-      <y>1290</y>
-      <w>30</w>
-      <h>162</h>
+      <x>1372</x>
+      <y>1540</y>
+      <w>21</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;250.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>1440</y>
-      <w>90</w>
-      <h>66</h>
+      <x>1260</x>
+      <y>1680</y>
+      <w>168</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>客户信息
 --
@@ -2185,23 +2240,23 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1122</x>
-      <y>726</y>
-      <w>90</w>
-      <h>318</h>
+      <x>1393</x>
+      <y>847</y>
+      <w>21</w>
+      <h>371</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;510.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;510.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>852</x>
-      <y>942</y>
-      <w>72</w>
-      <h>42</h>
+      <x>994</x>
+      <y>1099</y>
+      <w>84</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>单据清单
 --</panel_attributes>
@@ -2210,50 +2265,50 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>858</x>
-      <y>1146</y>
-      <w>270</w>
-      <h>144</h>
+      <x>1001</x>
+      <y>1337</y>
+      <w>343</w>
+      <h>203</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 查询 &gt;</panel_attributes>
-    <additional_attributes>430.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>470.0;270.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1344</y>
-      <w>276</w>
-      <h>42</h>
+      <x>910</x>
+      <y>1589</y>
+      <w>322</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;40.0;440.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;440.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1278</y>
-      <w>348</w>
-      <h>54</h>
+      <x>910</x>
+      <y>1526</y>
+      <w>434</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;60.0;560.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;600.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1020</x>
-      <y>1122</y>
-      <w>96</w>
-      <h>54</h>
+      <x>1190</x>
+      <y>1309</y>
+      <w>112</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>快递员
 --
@@ -2265,10 +2320,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1140</y>
-      <w>252</w>
-      <h>144</h>
+      <x>910</x>
+      <y>1330</y>
+      <w>294</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2280,24 +2335,24 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>834</x>
-      <y>1146</y>
-      <w>222</w>
-      <h>210</h>
+      <x>973</x>
+      <y>1337</y>
+      <w>259</w>
+      <h>266</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 查询 &gt;</panel_attributes>
-    <additional_attributes>350.0;330.0;10.0;10.0</additional_attributes>
+    <additional_attributes>350.0;360.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>906</x>
-      <y>1116</y>
-      <w>126</w>
-      <h>36</h>
+      <x>1057</x>
+      <y>1302</y>
+      <w>147</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2308,10 +2363,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>816</x>
-      <y>1092</y>
-      <w>96</w>
-      <h>60</h>
+      <x>952</x>
+      <y>1274</y>
+      <w>112</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>物流信息
 --
@@ -2323,10 +2378,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>690</y>
-      <w>210</w>
-      <h>264</h>
+      <x>1050</x>
+      <y>805</y>
+      <w>245</w>
+      <h>308</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -2336,10 +2391,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>906</x>
-      <y>978</y>
-      <w>102</w>
-      <h>72</h>
+      <x>1057</x>
+      <y>1141</y>
+      <w>119</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -2349,106 +2404,106 @@ m2=*</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>342</x>
-      <y>1062</y>
-      <w>360</w>
-      <h>366</h>
+      <x>399</x>
+      <y>1239</y>
+      <w>419</w>
+      <h>426</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;354;348;18</additional_attributes>
+    <additional_attributes>21;413;406;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>402</x>
-      <y>1062</y>
-      <w>300</w>
-      <h>240</h>
+      <x>469</x>
+      <y>1239</y>
+      <w>349</w>
+      <h>279</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;228;288;18</additional_attributes>
+    <additional_attributes>21;266;336;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>492</x>
-      <y>966</y>
-      <w>210</w>
-      <h>126</h>
+      <x>574</x>
+      <y>1148</y>
+      <w>244</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;18;198;114</additional_attributes>
+    <additional_attributes>21;21;231;112</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>492</x>
-      <y>888</y>
-      <w>210</w>
-      <h>204</h>
+      <x>574</x>
+      <y>1064</y>
+      <w>244</w>
+      <h>209</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;18;198;192</additional_attributes>
+    <additional_attributes>21;21;231;196</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>480</x>
-      <y>840</y>
-      <w>222</w>
-      <h>252</h>
+      <x>560</x>
+      <y>980</y>
+      <w>258</w>
+      <h>293</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;18;210;240</additional_attributes>
+    <additional_attributes>21;21;245;280</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>612</x>
-      <y>888</y>
-      <w>90</w>
-      <h>204</h>
+      <x>714</x>
+      <y>1036</y>
+      <w>104</w>
+      <h>237</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;18;78;192</additional_attributes>
+    <additional_attributes>21;21;91;224</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>672</x>
-      <y>1062</y>
-      <w>66</w>
-      <h>192</h>
+      <x>784</x>
+      <y>1239</y>
+      <w>76</w>
+      <h>223</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>18;18;54;180</additional_attributes>
+    <additional_attributes>21;21;63;210</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>672</x>
-      <y>786</y>
-      <w>90</w>
-      <h>306</h>
+      <x>784</x>
+      <y>917</y>
+      <w>104</w>
+      <h>356</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>78;18;18;294</additional_attributes>
+    <additional_attributes>91;21;21;343</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>1074</y>
-      <w>144</w>
-      <h>54</h>
+      <x>798</x>
+      <y>1253</y>
+      <w>168</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2459,10 +2514,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>966</y>
-      <w>180</w>
-      <h>126</h>
+      <x>798</x>
+      <y>1127</y>
+      <w>210</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -2472,10 +2527,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1044</y>
-      <w>84</w>
-      <h>36</h>
+      <x>1015</x>
+      <y>1218</y>
+      <w>98</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>派送清单
 --
@@ -2485,10 +2540,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>948</x>
-      <y>1062</y>
-      <w>120</w>
-      <h>72</h>
+      <x>1106</x>
+      <y>1239</y>
+      <w>140</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -2499,14 +2554,118 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
-      <y>864</y>
-      <w>396</w>
-      <h>216</h>
+      <x>567</x>
+      <y>1008</y>
+      <w>462</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*
 m1=1</panel_attributes>
     <additional_attributes>640.0;340.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1428</x>
+      <y>805</y>
+      <w>665</w>
+      <h>602</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+参考 &gt;
+</panel_attributes>
+    <additional_attributes>890.0;840.0;890.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1372</x>
+      <y>497</y>
+      <w>917</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+参考 &gt;</panel_attributes>
+    <additional_attributes>1290.0;20.0;10.0;20.0;10.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>742</x>
+      <y>812</y>
+      <w>552</w>
+      <h>237</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+&lt; 参考</panel_attributes>
+    <additional_attributes>539;21;252;21;252;224;21;224</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>574</x>
+      <y>826</y>
+      <w>720</w>
+      <h>265</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+&lt; 参考</panel_attributes>
+    <additional_attributes>707;21;441;21;441;252;21;252</additional_attributes>
   </element>
 </diagram>

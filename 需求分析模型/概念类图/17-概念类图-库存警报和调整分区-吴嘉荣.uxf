@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>0</y>
+      <w>150</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>库存区域
+--
+预设警戒比例</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>0</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>中转中心库存管理人员
+--
+账号
+密码</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>230</x>
+      <y>30</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=4
+设定比例 &gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>80</y>
+      <w>290</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+调整货架 &gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0;270.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>250</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>区域
+--
+航运方式
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>90</y>
+      <w>40</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>460</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>货架
+--
+货架编号
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>340</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+</diagram>

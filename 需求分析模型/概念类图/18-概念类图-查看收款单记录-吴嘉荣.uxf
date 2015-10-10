@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>80</y>
+      <x>90</x>
+      <y>140</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -19,59 +19,61 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>60</y>
-      <w>160</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>付款单
---
-付款日期
-付款金额
-付款人
-条目
-备注</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>680</x>
-      <y>270</y>
+      <x>380</x>
+      <y>140</y>
       <w>140</w>
-      <h>70</h>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>账户
+    <panel_attributes>收款单记录
 --
-名称
-余额</panel_attributes>
+日期
+营业厅</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>170</y>
+      <x>440</x>
+      <y>230</y>
       <w>30</w>
-      <h>120</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
-      <y>110</y>
-      <w>190</w>
+      <x>220</x>
+      <y>170</y>
+      <w>180</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
-新建 &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+查询 &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>340</y>
+      <w>140</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>收款单
+--
+收款日期
+收款单位
+收款人
+收款方
+收款金额
+收款地点
+	</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
