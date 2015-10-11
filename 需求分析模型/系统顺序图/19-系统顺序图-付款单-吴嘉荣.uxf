@@ -131,12 +131,13 @@
     <id>Relation</id>
     <coordinates>
       <x>170</x>
-      <y>410</y>
+      <y>420</y>
       <w>240</w>
-      <h>40</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-付款单</panel_attributes>
+生成付款单，更改为提交状态
+给经理提醒</panel_attributes>
     <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
   </element>
   <element>
