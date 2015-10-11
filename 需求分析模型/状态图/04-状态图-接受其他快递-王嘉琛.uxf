@@ -4,8 +4,8 @@
   <element>
     <type>com.baselet.element.old.element.InitialState</type>
     <coordinates>
-      <x>130</x>
-      <y>180</y>
+      <x>30</x>
+      <y>160</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>110</x>
-      <y>160</y>
+      <x>10</x>
+      <y>140</y>
       <w>150</w>
       <h>50</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <type>com.baselet.element.old.element.State</type>
     <coordinates>
-      <x>240</x>
-      <y>150</y>
+      <x>140</x>
+      <y>130</y>
       <w>160</w>
       <h>70</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>370</x>
-      <y>140</y>
+      <x>270</x>
+      <y>120</y>
       <w>220</w>
       <h>70</h>
     </coordinates>
@@ -49,8 +49,8 @@
   <element>
     <type>com.baselet.element.old.element.State</type>
     <coordinates>
-      <x>570</x>
-      <y>150</y>
+      <x>470</x>
+      <y>130</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -60,8 +60,8 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>260</x>
-      <y>20</y>
+      <x>160</x>
+      <y>0</y>
       <w>410</w>
       <h>150</h>
     </coordinates>
@@ -72,8 +72,8 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>170</x>
-      <y>190</y>
+      <x>70</x>
+      <y>170</y>
       <w>238</w>
       <h>150</h>
     </coordinates>
@@ -84,8 +84,8 @@
   <element>
     <type>com.baselet.element.old.element.State</type>
     <coordinates>
-      <x>240</x>
-      <y>320</y>
+      <x>140</x>
+      <y>300</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -95,65 +95,42 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>130</x>
-      <y>360</y>
+      <x>30</x>
+      <y>340</y>
       <w>308</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-选择生成派件单[订单信息无误]/等待输入</panel_attributes>
+选择生成到达单[订单信息无误]/等待输入</panel_attributes>
     <additional_attributes>160;120;160;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.State</type>
     <coordinates>
-      <x>680</x>
-      <y>480</y>
+      <x>580</x>
+      <y>460</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>系统显示派件单</panel_attributes>
+    <panel_attributes>系统生成到达单</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>620</x>
-      <y>520</y>
-      <w>210</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-确认生成[信息无误]/生成</panel_attributes>
-    <additional_attributes>110;80;110;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.baselet.element.old.element.State</type>
-    <coordinates>
-      <x>680</x>
-      <y>600</y>
-      <w>140</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>系统生成派件单</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.baselet.element.old.element.Relation</type>
-    <coordinates>
-      <x>790</x>
-      <y>610</y>
-      <w>130</w>
+      <x>690</x>
+      <y>470</y>
+      <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>110;30;30;30</additional_attributes>
+    <additional_attributes>100;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.FinalState</type>
     <coordinates>
-      <x>900</x>
-      <y>630</y>
+      <x>790</x>
+      <y>490</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -163,48 +140,48 @@
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>350</x>
-      <y>190</y>
-      <w>170</w>
+      <x>230</x>
+      <y>170</y>
+      <w>210</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-取消操作[]/重新填写</panel_attributes>
-    <additional_attributes>40;30;90;120;30;170</additional_attributes>
+取消操作[]/返回前一界面</panel_attributes>
+    <additional_attributes>60;30;110;120;50;170</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.State</type>
     <coordinates>
-      <x>230</x>
-      <y>480</y>
+      <x>130</x>
+      <y>460</y>
       <w>160</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>等待输入货物派件信息</panel_attributes>
+    <panel_attributes>等待输入货物到达信息</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>360</x>
-      <y>460</y>
+      <x>260</x>
+      <y>440</y>
       <w>340</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-选择生成派件单[信息无误]/等待输入</panel_attributes>
+选择生成到达单[信息无误]/结单</panel_attributes>
     <additional_attributes>320;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>370</x>
-      <y>180</y>
-      <w>420</w>
-      <h>320</h>
+      <x>260</x>
+      <y>160</y>
+      <w>350</w>
+      <h>340</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-                                      取消生成[]/重新填写</panel_attributes>
-    <additional_attributes>30;30;400;300</additional_attributes>
+取消生成[]/返回前一界面</panel_attributes>
+    <additional_attributes>40;30;250;250;30;320</additional_attributes>
   </element>
 </diagram>

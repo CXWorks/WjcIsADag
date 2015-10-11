@@ -165,7 +165,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-确认生成收款单</panel_attributes>
+确认生成收款单，提交</panel_attributes>
     <additional_attributes>10.0;20.0;370.0;20.0</additional_attributes>
   </element>
   <element>
@@ -177,7 +177,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-收款单创建成功</panel_attributes>
+收款单创建成功，提示“正在等待审批”</panel_attributes>
     <additional_attributes>10.0;20.0;370.0;20.0</additional_attributes>
   </element>
   <element>

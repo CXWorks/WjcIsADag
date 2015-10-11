@@ -60,7 +60,7 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>200</y>
+      <y>256</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -72,24 +72,12 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>240</y>
-      <w>384</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-返回该订单的信息</panel_attributes>
-    <additional_attributes>10.0;20.0;460.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>456</x>
-      <y>272</y>
+      <y>184</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-选择生成接收单</panel_attributes>
+选择生成到达单</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
@@ -108,24 +96,24 @@
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>352</y>
+      <y>368</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-返回此接收单信息</panel_attributes>
+返回此到达单信息</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>400</y>
+      <y>408</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-确认生成接收单</panel_attributes>
+确认生成到达单，提交</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
@@ -137,14 +125,14 @@
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-返回接收单创建成功提示</panel_attributes>
+创建成功，提示“正在等待审批”</panel_attributes>
     <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>304</y>
+      <y>296</y>
       <w>392</w>
       <h>32</h>
     </coordinates>
@@ -174,5 +162,17 @@
     </coordinates>
     <panel_attributes>接收其它快递</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>216</y>
+      <w>392</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+等待托运订单条形码</panel_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
 </diagram>
