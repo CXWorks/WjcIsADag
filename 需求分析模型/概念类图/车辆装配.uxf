@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
+      <x>100</x>
       <y>240</y>
       <w>160</w>
       <h>90</h>
@@ -18,7 +18,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
+      <x>250</x>
       <y>270</y>
       <w>160</w>
       <h>50</h>
@@ -32,7 +32,7 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
+      <x>390</x>
       <y>190</y>
       <w>140</w>
       <h>170</h>
@@ -52,7 +52,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
+      <x>520</x>
       <y>280</y>
       <w>180</w>
       <h>40</h>
@@ -65,7 +65,7 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
+      <x>680</x>
       <y>210</y>
       <w>140</w>
       <h>170</h>
@@ -85,7 +85,7 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
+      <x>740</x>
       <y>370</y>
       <w>30</w>
       <h>120</h>
@@ -98,7 +98,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
+      <x>680</x>
       <y>470</y>
       <w>140</w>
       <h>100</h>
@@ -114,7 +114,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
+      <x>450</x>
       <y>510</y>
       <w>250</w>
       <h>40</h>
@@ -127,7 +127,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>470</y>
       <w>140</w>
       <h>100</h>
@@ -138,6 +138,35 @@ m2=1</panel_attributes>
 宽
 高
 	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>110</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>60</y>
+      <w>150</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>车辆信息
+--
+车辆代号
+营业厅编号
+车牌号
+服役时间</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
