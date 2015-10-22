@@ -1173,12 +1173,12 @@ halign=left</panel_attributes>
     <coordinates>
       <x>4160</x>
       <y>40</y>
-      <w>100</w>
+      <w>110</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>
 --
-systemDataui
+configurationui
 halign=left</panel_attributes>
     <additional_attributes/>
   </element>
@@ -3121,7 +3121,7 @@ halign=left</panel_attributes>
     </coordinates>
     <panel_attributes>
 --
-systembl
+configurationbl
 halign=left</panel_attributes>
     <additional_attributes/>
   </element>
@@ -3782,12 +3782,12 @@ halign=left</panel_attributes>
     <coordinates>
       <x>4140</x>
       <y>1120</y>
-      <w>130</w>
+      <w>170</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>
 --
-systemblService
+configurationblService
 halign=left</panel_attributes>
     <additional_attributes/>
   </element>
