@@ -11,5 +11,12 @@
 
     <artifactId>Sever</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>2333</groupId>
+            <artifactId>Connection</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
