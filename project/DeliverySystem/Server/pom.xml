@@ -9,7 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Sever</artifactId>
+    <artifactId>Server</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>2333</groupId>
+            <artifactId>Connection</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
