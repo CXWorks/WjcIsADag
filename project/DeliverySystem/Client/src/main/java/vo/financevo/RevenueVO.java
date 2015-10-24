@@ -1,11 +1,11 @@
-package po.financedata;
+package vo.financevo;
 
-import po.FormPO;
+import vo.FormVO;
 
 /**
- * Created by Sissel on 2015/10/23.
+ * Created by Sissel on 2015/10/24.
  */
-public class RevenuePO extends FormPO{
+public class RevenueVO extends FormVO {
     private String date;
     private String amount;
     private String deliverName;

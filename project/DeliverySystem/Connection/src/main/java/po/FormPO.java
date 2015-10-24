@@ -1,4 +1,4 @@
-package po.examine;
+package po;
 
 public class FormPO {
 	private FormEnum formType;
