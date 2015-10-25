@@ -37,10 +37,5 @@ public interface companyDataCenterService {
 	 * @return
 	 */
 	public OperationMessage modifyCenter(CenterPO center);
-	/**
-	 * 
-	 * @param center
-	 * @return
-	 */
-	public CenterPO searchCenter(CenterPO center);
+	
 }

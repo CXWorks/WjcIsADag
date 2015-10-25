@@ -36,9 +36,4 @@ public class CompanyDataCenterImpl implements companyDataCenterService {
 		return new OperationMessage();
 	}
 
-	public CenterPO searchCenter(CenterPO center) {
-		// TODO Auto-generated method stub
-		return new CenterPO();
-	}
-
 }

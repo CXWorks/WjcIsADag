@@ -1,4 +1,4 @@
-package po.configurationdata;
+package po.companydata;
 
 import java.util.Calendar;
 

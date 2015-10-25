@@ -33,12 +33,6 @@ public interface companyDataHallService {
 	 */
 	public OperationMessage modifyHall(HallPO hall);
 	/**
-	 * 查找营业厅
-	 * @param hall
-	 * @return
-	 */
-	public HallPO searchHall(HallPO hall);
-	/**
 	 * 获取新营业厅ID
 	 * @return 返回合法ID
 	 */

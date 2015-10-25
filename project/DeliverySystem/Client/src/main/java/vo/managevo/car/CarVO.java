@@ -1,5 +1,4 @@
-package vo.configurationvo;
-
+package vo.managevo.car;
 
 import java.util.Calendar;
 
