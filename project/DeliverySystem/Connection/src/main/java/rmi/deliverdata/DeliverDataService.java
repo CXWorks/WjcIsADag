@@ -23,7 +23,7 @@ public interface DeliverDataService {
 	 * @param id 派件单编号
 	 * @return 返回目标派件信息
 	 */
-	public DeliverPO find(String id);
+	public DeliverPO getDeliverPO(String id);
 	
 	/**
 	 * 删除派件信息
@@ -34,7 +34,7 @@ public interface DeliverDataService {
 
 	/**
 	 * 更新派件信息
-	 * @param id 需被更新的派件信息对应派件单号
+	 * @param po 需被更新的派件信息
 	 * @return 返回操作结果
 	 */
 	public OperationMessage update(DeliverPO po);
