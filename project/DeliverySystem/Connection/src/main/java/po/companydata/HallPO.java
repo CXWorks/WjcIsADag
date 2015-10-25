@@ -1,9 +1,10 @@
 package po.companydata;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.memberdata.StaffPO;
 
-public class HallPO {
+public class HallPO implements Serializable{
 	private String hallID;
 	private String city;
 	private String area;

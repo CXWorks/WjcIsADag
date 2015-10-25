@@ -1,13 +1,18 @@
 package rmiImpl.companydata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.HallPO;
 import rmi.companydata.companyDataHallService;
 
-public class CompanyDataHallImpl implements companyDataHallService {
-
+public class CompanyDataHallImpl extends UnicastRemoteObject implements companyDataHallService {
+	private static final long serialVersionUID = 1L;
+	public CompanyDataHallImpl() throws RemoteException{
+		super();
+	}
 	public ArrayList<HallPO> getHall() {
 		// TODO Auto-generated method stub
 		ArrayList<HallPO> result =new ArrayList<HallPO>();

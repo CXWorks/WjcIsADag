@@ -1,13 +1,18 @@
 package rmiImpl.companydata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
 import rmi.companydata.companyDataCenterService;
 
-public class CompanyDataCenterImpl implements companyDataCenterService {
-
+public class CompanyDataCenterImpl extends UnicastRemoteObject implements companyDataCenterService {
+	private static final long serialVersionUID = 1L;
+	public CompanyDataCenterImpl() throws RemoteException{
+		super();
+	}
 	public ArrayList<CenterPO> getCenter() {
 		// TODO Auto-generated method stub
 		ArrayList<CenterPO> result=new ArrayList<CenterPO>();

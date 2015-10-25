@@ -1,7 +1,12 @@
 package blImpl.configurationbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.configurationdata.CityDistancePO;
 import rmi.configurationdata.ConfigurationDataService;
 import message.OperationMessage;
 import vo.configurationvo.CityDistanceVO;
@@ -18,14 +23,31 @@ import blService.configurationblService.ConfigurationblService;
  * @version 1.0 
  */
 public class ConfigurationblImpl implements ConfigurationblService {
-	ConfigurationDataService configurationDataImpl;
-
+	private ConfigurationDataService configurationDataImpl;
+	public ConfigurationblImpl() throws MalformedURLException, RemoteException, NotBoundException{
+		this.configurationDataImpl=(ConfigurationDataService)Naming.lookup("rmi://localhost:2333/configuration");
+	}
 	/* (non-Javadoc)
 	 * @see blService.configurationblService.ConfigurationblService#getCityDistance()
 	 */
 	public ArrayList<CityDistanceVO> getCityDistance() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CityDistancePO> accept;
+		try {
+			accept = configurationDataImpl.getCityDistance();
+			ArrayList<CityDistanceVO> result=new ArrayList<CityDistanceVO>();
+			CityDistanceVO temp;
+			for (int i = 0; i < accept.size(); i++) {
+				temp=new CityDistanceVO(accept.get(i));
+				result.add(temp);
+			}
+			return result;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	/* (non-Javadoc)

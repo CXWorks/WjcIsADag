@@ -1,10 +1,11 @@
 package po.companydata;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
-public class CarPO {
+public class CarPO implements Serializable{
 	private boolean free;
 	private int carID;
 	private Calendar useTime;

@@ -1,5 +1,7 @@
 package po.memberdata;
 
-public enum SexEnum {
+import java.io.Serializable;
+
+public enum SexEnum implements Serializable{
 MAN,WOMAN,OTHERS;
 }

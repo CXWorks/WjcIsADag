@@ -1,5 +1,7 @@
 package po.receivedata;
 
+import java.io.Serializable;
+
 import po.receivedata.StateEnum;
 
 /**
@@ -8,7 +10,7 @@ import po.receivedata.StateEnum;
  *2015/10/24
  */
 
-public class ReceivePO {
+public class ReceivePO implements Serializable{
 	private String orderID;
 	private String transitID;
 	private String data;

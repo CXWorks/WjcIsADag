@@ -1,5 +1,7 @@
 package rmiImpl.chatRemindImpl;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.ChatMessage;
@@ -12,7 +14,12 @@ import rmi.chatRemindService.chatRemindService;
  *2015/10/24
  */
 
-public class chatRemindImpl implements chatRemindService {
+public class chatRemindImpl extends UnicastRemoteObject implements chatRemindService {
+
+	protected chatRemindImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OperationMessage checkMessage(String ID) {
 		// TODO Auto-generated method stub
