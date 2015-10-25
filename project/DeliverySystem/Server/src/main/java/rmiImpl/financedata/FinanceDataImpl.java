@@ -9,8 +9,11 @@ import java.util.List;
 
 public class FinanceDataImpl implements BankAccountDataService{
 
+    public String getNewBankID() {
+        return null;
+    }
 
-    public BankAccountPO getBankAccount(String bankID) {
+    public OperationMessage checkIsNameUsed(String name) {
         return null;
     }
 

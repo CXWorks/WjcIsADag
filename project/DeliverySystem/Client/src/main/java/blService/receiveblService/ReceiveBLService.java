@@ -39,11 +39,11 @@ public interface ReceiveBLService {
 	 * @param orderID 订单号
 	 * @return 订单信息
 	 */
-	public OrderVO getOrderVO(String orderID);
+	//public OrderVO getOrderVO(String orderID); TODO
 	
 	/**
 	 * 载入中转单信息（已经载入订单信息）
 	 * @return 中转单信息
 	 */
-	public TransitVO getTransitVO();
+	//public TransitVO getTransitVO(); TODO
 }

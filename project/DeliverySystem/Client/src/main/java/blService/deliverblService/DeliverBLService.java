@@ -44,5 +44,5 @@ public interface DeliverBLService {
 	 * @param orderID 订单号
 	 * @return 订单信息
 	 */
-	public OrderVO getOrderVO(String orderID);
+	//public OrderVO getOrderVO(String orderID); TODO
 }
