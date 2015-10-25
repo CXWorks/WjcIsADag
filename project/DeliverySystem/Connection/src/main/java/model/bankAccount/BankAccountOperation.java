@@ -1,9 +1,11 @@
 package model.bankAccount;
 
+import java.io.Serializable;
+
 /**
  * Created by Sissel on 2015/10/23.
  */
-public class BankAccountOperation {
+public class BankAccountOperation implements Serializable{
     enum BankAccountOperationType {
         ADD_ACC,
         DELETE_ACC,

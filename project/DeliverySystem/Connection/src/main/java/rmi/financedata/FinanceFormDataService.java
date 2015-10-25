@@ -4,6 +4,7 @@ import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -11,20 +12,20 @@ import java.util.List;
  */
 public interface FinanceFormDataService extends Remote{
 
-    public String getNewRevenueID(String date, String hallID);
+    public String getNewRevenueID(String date, String hallID) throws RemoteException;
 
-    public String getNewPaymentID(String date);
+    public String getNewPaymentID(String date) throws RemoteException;
 
-    public RevenuePO getRevenuePO(String formID);
+    public RevenuePO getRevenuePO(String formID) throws RemoteException;
 
-    public PaymentPO getPaymentPO(String formID);
+    public PaymentPO getPaymentPO(String formID) throws RemoteException;
 
-    public List<RevenuePO> updateRevenuePOs(String staffID);
+    public List<RevenuePO> updateRevenuePOs(String staffID) throws RemoteException;
 
-    public List<PaymentPO> updatePaymentPOs(String staffID);
+    public List<PaymentPO> updatePaymentPOs(String staffID) throws RemoteException;
 
-    public List<PaymentPO> downloadAllPaymentPOs();
+    public List<PaymentPO> downloadAllPaymentPOs() throws RemoteException;
 
-    public List<RevenuePO> downloadAllRevenuePOs();
+    public List<RevenuePO> downloadAllRevenuePOs() throws RemoteException;
 
 }

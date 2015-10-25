@@ -1,5 +1,7 @@
 package po;
 
-public enum FormEnum {
+import java.io.Serializable;
+
+public enum FormEnum implements Serializable {
 
 }

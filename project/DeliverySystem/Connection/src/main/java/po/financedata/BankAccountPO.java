@@ -1,9 +1,11 @@
 package po.financedata;
 
+import java.io.Serializable;
+
 /**
  * Created by Sissel on 2015/10/23.
  */
-public class BankAccountPO {
+public class BankAccountPO implements Serializable {
     private String bankID;
     private String accountName;
     private String balance;

@@ -2,10 +2,12 @@ package po.financedata;
 
 import po.FormPO;
 
+import java.io.Serializable;
+
 /**
  * Created by Sissel on 2015/10/23.
  */
-public class PaymentPO extends FormPO{
+public class PaymentPO extends FormPO {
     private String	date;
     private String	amount;
     private String	payerAccID;

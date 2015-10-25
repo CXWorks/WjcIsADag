@@ -8,13 +8,26 @@ import po.storedata.StoreOutPO;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by Sissel on 2015/10/25.
  */
-public class StoreDataImpl implements StoreFormDataService, StoreModelDataService {
+public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataService, StoreModelDataService {
+
+    protected StoreDataImpl() throws RemoteException, MalformedURLException {
+        Naming.rebind("StoreDataService", this);
+    }
+
+    public static void main(String[] args) throws MalformedURLException, RemoteException {
+        new StoreDataImpl();
+    }
+
     public StoreInPO getStoreInPO(String id) {
         // TODO Auto-generated method stub
         return new StoreInPO();

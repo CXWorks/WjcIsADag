@@ -1,9 +1,11 @@
 package model.store;
 
+import java.io.Serializable;
+
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class StoreModelOperation {
+public class StoreModelOperation implements Serializable{
     public enum Type {
         ADD_ROW,
         DELETE_ROW,

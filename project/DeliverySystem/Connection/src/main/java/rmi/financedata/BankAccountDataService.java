@@ -5,6 +5,7 @@ import model.bankAccount.BankAccountOperation;
 import po.financedata.BankAccountPO;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -12,17 +13,17 @@ import java.util.List;
  */
 public interface BankAccountDataService extends Remote {
 
-    public String getNewBankID();
+    public String getNewBankID() throws RemoteException;
 
-    public OperationMessage checkIsNameUsed(String name);
+    public OperationMessage checkIsNameUsed(String name) throws RemoteException;
 
-    public BankAccountPO getBankAccount(String bankID);
+    public BankAccountPO getBankAccount(String bankID) throws RemoteException;
 
-    public List<BankAccountOperation> updateAccountOperations(String staffID);
+    public List<BankAccountOperation> updateAccountOperations(String staffID) throws RemoteException;
 
     public OperationMessage uploadAccountOperations
-            (String staffID, List<BankAccountOperation> operations);
+            (String staffID, List<BankAccountOperation> operations) throws RemoteException;
 
-    public List<BankAccountPO> downloadAllAccounts();
+    public List<BankAccountPO> downloadAllAccounts() throws RemoteException;
 
 }

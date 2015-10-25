@@ -8,10 +8,22 @@ import po.financedata.RevenuePO;
 import rmi.financedata.BankAccountDataService;
 import rmi.financedata.FinanceFormDataService;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FinanceDataImpl implements BankAccountDataService, FinanceFormDataService{
+public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountDataService, FinanceFormDataService{
+
+    protected FinanceDataImpl() throws RemoteException, MalformedURLException {
+        Naming.rebind("FinanceDataService", this);
+    }
+
+    public static void main(String[] args) throws MalformedURLException, RemoteException {
+        new FinanceDataImpl();
+    }
 
     public String getNewBankID() {
         // TODO Auto-generated method stub
