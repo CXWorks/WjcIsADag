@@ -14,6 +14,8 @@ public interface BankAccountDataService extends Remote {
 
     public String getNewBankID();
 
+    public OperationMessage checkIsNameUsed(String name);
+
     public BankAccountPO getBankAccount(String bankID);
 
     public List<BankAccountOperation> updateAccountOperations(String staffID);

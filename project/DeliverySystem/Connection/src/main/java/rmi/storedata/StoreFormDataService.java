@@ -23,5 +23,4 @@ public interface StoreFormDataService extends Remote{
 
     public List<StoreOutPO> downloadAllStoreOutPOs (String staffID);
 
-
 }

@@ -1,6 +1,7 @@
 package database;
 
 
+import message.OperationMessage;
 import po.financedata.BankAccountPO;
 
 /**
@@ -8,6 +9,26 @@ import po.financedata.BankAccountPO;
  */
 public class SqlHelper {
 
-	BankAccountPO a;
+    private final static SqlHelper instance = new SqlHelper();
+
+    static String DRIVER;
+	String username;
+	String password;
+
+    /*
+     * singleton mode
+     */
+    private SqlHelper(){}
+    public SqlHelper getInstance(){
+        return instance;
+    }
+
+    OperationMessage setUpSystem(String username, char[] password, String dbName){
+        return null;
+    }
+
+    OperationMessage recoverSystem(String username, char[] password, String dbName){
+        return null;
+    }
 
 }

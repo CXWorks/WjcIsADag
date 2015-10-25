@@ -8,7 +8,7 @@ public class CarPO {
 	private boolean free;
 	private int carID;
 	private Calendar useTime;
-	private ImageIcon imag;
+	private ImageIcon img;
 	//以下为无用内容，67脑洞真大
 	private int engineID;
 	private int nameID;
