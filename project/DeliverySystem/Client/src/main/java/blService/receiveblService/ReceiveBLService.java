@@ -6,6 +6,8 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import po.deliverdata.DeliverPO;
 import po.receivedata.ReceivePO;
+import vo.ordervo.OrderVO;
+import vo.transitvo.TransitVO;
 
 public interface ReceiveBLService {
 	/**
