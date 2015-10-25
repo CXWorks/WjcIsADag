@@ -26,9 +26,12 @@ public class DeliverDataImpl extends UnicastRemoteObject  implements DeliverData
 		return new OperationMessage();
 	}
 
+	/* (non-Javadoc)
+	 * @see rmi.deliverdata.DeliverDataService#getDeliverPO(java.lang.String)
+	 */
 	public DeliverPO getDeliverPO(String id) {
 		// TODO Auto-generated method stub
-		return new DeliverPO();
+		return null;
 	}
 
 	public OperationMessage delete(String id) {
@@ -62,13 +65,5 @@ public class DeliverDataImpl extends UnicastRemoteObject  implements DeliverData
 		DeliverPO stub=new DeliverPO();
 		result.add(stub);
 		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see rmi.deliverdata.DeliverDataService#getDeliverPO(java.lang.String)
-	 */
-	public DeliverPO getDeliverPO(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
