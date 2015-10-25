@@ -41,4 +41,9 @@ import po.memberdata.StaffTypeEnum;
 	 * @return
 	 */
 	public StaffPO searchStaff(StaffPO staff);
+	/**
+	 * 
+	 * @return
+	 */
+	public String newStaffID();
 }
