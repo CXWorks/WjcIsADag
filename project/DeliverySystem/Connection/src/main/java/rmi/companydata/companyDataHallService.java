@@ -38,4 +38,9 @@ public interface companyDataHallService {
 	 * @return
 	 */
 	public HallPO searchHall(HallPO hall);
+	/**
+	 * 获取新营业厅ID
+	 * @return 返回合法ID
+	 */
+	public String newHallID();
 }
