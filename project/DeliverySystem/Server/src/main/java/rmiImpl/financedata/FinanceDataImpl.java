@@ -22,5 +22,10 @@ public class FinanceDataImpl implements BankAccountDataService{
         return null;
     }
 
+	public BankAccountPO getBankAccount(String bankID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
