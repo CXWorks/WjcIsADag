@@ -33,7 +33,7 @@ public class MemberDataImpl implements memberDataService {
 	}
 
 
-	public String newStaffID() {
+	public String newStaffID(StaffTypeEnum staffType) {
 		// TODO Auto-generated method stub
 		return "1111";
 	}

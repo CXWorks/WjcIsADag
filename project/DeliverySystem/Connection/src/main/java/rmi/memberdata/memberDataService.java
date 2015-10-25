@@ -39,5 +39,5 @@ import po.memberdata.StaffTypeEnum;
 	 * 
 	 * @return
 	 */
-	public String newStaffID();
+	public String newStaffID(StaffTypeEnum staffType);
 }

@@ -22,6 +22,4 @@ public interface ManageblCenterService {
 	public OperationMessage modifyCenter(CenterVO center);
 	
 	public CenterVO searchCenter(CenterVO center);
-	
-	public String newCenterID();
 }

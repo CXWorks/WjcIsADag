@@ -19,11 +19,6 @@ public class DeliverDataImpl  implements DeliverDataService {
 		return new OperationMessage();
 	}
 
-	public DeliverPO getDeliverPO(String id) {
-		// TODO Auto-generated method stub
-		return new DeliverPO();
-	}
-
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();

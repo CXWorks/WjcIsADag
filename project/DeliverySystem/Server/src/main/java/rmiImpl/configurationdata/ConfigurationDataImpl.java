@@ -1,6 +1,10 @@
 package rmiImpl.configurationdata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import message.OperationMessage;
 import po.configurationdata.CityDistancePO;
@@ -14,9 +18,17 @@ import rmi.configurationdata.ConfigurationDataService;
  * @author cxworks
  *2015/10/25
  */
-public class ConfigurationDataImpl implements ConfigurationDataService {
+public class ConfigurationDataImpl extends UnicastRemoteObject implements ConfigurationDataService {
 
-	public ArrayList<CityDistancePO> getCityDistance() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public ConfigurationDataImpl() throws RemoteException{
+		super();
+	}
+
+	public ArrayList<CityDistancePO> getCityDistance()  throws RemoteException{
 		// TODO Auto-generated method stub
 		ArrayList<CityDistancePO> result=new ArrayList<CityDistancePO>();
 		CityDistancePO stub=new CityDistancePO();
@@ -24,12 +36,12 @@ public class ConfigurationDataImpl implements ConfigurationDataService {
 		return result;
 	}
 
-	public OperationMessage modifyCityDistance(CityDistancePO after) {
+	public OperationMessage modifyCityDistance(CityDistancePO after)  throws RemoteException{
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public ArrayList<SalaryStrategyPO> getSalaryStrategy() {
+	public ArrayList<SalaryStrategyPO> getSalaryStrategy()  throws RemoteException{
 		// TODO Auto-generated method stub
 		ArrayList<SalaryStrategyPO> result=new ArrayList<SalaryStrategyPO>();
 		SalaryStrategyPO stub=new SalaryStrategyPO();
@@ -37,12 +49,12 @@ public class ConfigurationDataImpl implements ConfigurationDataService {
 		return result;
 	}
 
-	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy) {
+	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy)  throws RemoteException{
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public ArrayList<PackPO> getPack() {
+	public ArrayList<PackPO> getPack() throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<PackPO> result=new ArrayList<PackPO>();
 		PackPO stub=new PackPO();
@@ -50,28 +62,28 @@ public class ConfigurationDataImpl implements ConfigurationDataService {
 		return result;
 	}
 
-	public OperationMessage modifyPack(PackPO pack) {
+	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public PricePO getPrice() {
+	public PricePO getPrice() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 		return new PricePO();
 	}
 
-	public OperationMessage modifyPrice(PricePO price) {
+	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public ProportionPO getProportion() {
+	public ProportionPO getProportion() throws RemoteException {
 		// TODO Auto-generated method stub
 		return new ProportionPO();
 	}
 
-	public OperationMessage modifyProportion(ProportionPO proportion) {
+	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}

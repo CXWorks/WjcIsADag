@@ -1,10 +1,12 @@
 package po.configurationdata;
 
+import java.io.Serializable;
+
 import po.configurationdata.enums.ConfigurationEnum;
 
-public class CityDistancePO {
+public class CityDistancePO implements Serializable{
 	private ConfigurationEnum ID;
 	private String city1;
 	private String city2;
-	private int distance;
+	public int distance;
 }
