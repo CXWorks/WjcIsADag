@@ -60,9 +60,6 @@ public class DeliverDataImpl  implements DeliverDataService {
 	/* (non-Javadoc)
 	 * @see rmi.deliverdata.DeliverDataService#getDeliverPO(java.lang.String)
 	 */
-	public DeliverPO getDeliverPO(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

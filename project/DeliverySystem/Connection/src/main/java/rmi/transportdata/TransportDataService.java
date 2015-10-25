@@ -2,7 +2,7 @@ package rmi.transportdata;
 
 import message.OperationMessage;
 import po.transportdata.LoadPO;
-import po.transportdata.CenterPO;
+import po.transportdata.CenterOutPO;
 import po.transportdata.TransportPO;
 
 /**

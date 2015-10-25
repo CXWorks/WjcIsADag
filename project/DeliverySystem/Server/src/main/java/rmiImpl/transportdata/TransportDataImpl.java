@@ -1,7 +1,7 @@
 package rmiImpl.transportdata;
 
 import message.OperationMessage;
-import po.transportdata.CenterPO;
+import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import po.transportdata.TransportPO;
 import rmi.transportdata.TransportDataService;

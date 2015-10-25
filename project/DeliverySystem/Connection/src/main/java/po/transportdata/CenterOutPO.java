@@ -2,7 +2,7 @@ package po.transportdata;
 
 import java.util.ArrayList;
 
-public class CenterPO extends TransportPO {
+public class CenterOutPO extends TransportPO {
 
 	String	placeFrom;
 	String	TransID;
