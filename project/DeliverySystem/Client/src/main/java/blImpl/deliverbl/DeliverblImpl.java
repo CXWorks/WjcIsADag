@@ -3,11 +3,14 @@ package blImpl.deliverbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
 import po.deliverdata.DeliverPO;
 import po.receivedata.ReceivePO;
+import vo.FormVO;
+import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import blService.deliverblService.DeliverBLService;
 
@@ -18,39 +21,47 @@ import blService.deliverblService.DeliverBLService;
  * @date 2015年10月25日 
  * @version 1.0 
  */
-public class DeliverblImpl extends UnicastRemoteObject implements DeliverBLService {
+public class DeliverblImpl implements DeliverBLService {
 
-	protected DeliverblImpl() throws RemoteException {
-		super();
-		// TODO Auto-generated constructor stub
+	public OperationMessage saveDraft(FormVO form) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public ArrayList<CheckFormMessage> checkFormat(DeliverPO form) {
+	public ArrayList checkFormat(FormVO form, boolean isFinal) {
 		// TODO Auto-generated method stub
-		ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
-		CheckFormMessage stub=new CheckFormMessage();
-		result.add(stub);
-		return result;
+		return null;
 	}
 
-	public OperationMessage submit(DeliverPO form) {
+	public OperationMessage submit(FormVO form) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		return null;
 	}
 
-	public OperationMessage saveDraft() {
+	public ArrayList<CheckFormMessage> checkFormat(DeliverVO form,
+			boolean isFinal) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		return null;
 	}
 
-	public DeliverPO loadDraft() {
+	public OperationMessage submit(DeliverVO form) {
 		// TODO Auto-generated method stub
-		return new DeliverPO();
+		return null;
+	}
+
+	public OperationMessage saveDraft(DeliverVO form) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public DeliverVO loadDraft() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public OrderVO getOrderVO(String orderID) {
 		// TODO Auto-generated method stub
-		return new OrderVO();
+		return null;
 	}
 
 }

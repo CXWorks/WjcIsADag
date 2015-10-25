@@ -14,7 +14,7 @@ import rmi.deliverdata.DeliverDataService;
  *2015/10/24
  */
 
-public class DeliverDataImpl extends UnicastRemoteObject  implements DeliverDataService {
+public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataService {
 
 	protected DeliverDataImpl() throws RemoteException {
 		super();

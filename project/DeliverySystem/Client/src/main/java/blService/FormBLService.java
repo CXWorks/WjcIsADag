@@ -4,6 +4,8 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import vo.FormVO;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public interface FormBLService<T extends FormVO> {
 
     public OperationMessage saveDraft(T form);
 
-    public List<CheckFormMessage> checkFormat(T form, boolean isFinal);
+    public ArrayList<CheckFormMessage> checkFormat(T form, boolean isFinal);
 
     public OperationMessage submit(T form);
 

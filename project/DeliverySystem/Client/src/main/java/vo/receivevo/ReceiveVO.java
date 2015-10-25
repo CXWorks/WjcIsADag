@@ -1,6 +1,7 @@
 package vo.receivevo;
 
 import po.receivedata.StateEnum;
+import vo.FormVO;
 
 /**
  * 
@@ -8,7 +9,7 @@ import po.receivedata.StateEnum;
  *2015/10/24
  */
 
-public class ReceiveVO {
+public class ReceiveVO extends FormVO{
 	private String orderID;
 	private String transitID;
 	private String data;
