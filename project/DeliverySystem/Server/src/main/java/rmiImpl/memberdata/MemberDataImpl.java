@@ -32,10 +32,6 @@ public class MemberDataImpl implements memberDataService {
 		return new OperationMessage();
 	}
 
-	public StaffPO searchStaff(StaffPO staff) {
-		// TODO Auto-generated method stub
-		return new StaffPO();
-	}
 
 	public String newStaffID() {
 		// TODO Auto-generated method stub

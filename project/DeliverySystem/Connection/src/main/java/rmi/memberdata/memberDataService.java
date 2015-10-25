@@ -36,12 +36,6 @@ import po.memberdata.StaffTypeEnum;
 	 */
 	public OperationMessage dismissStaff(StaffPO staff);
 	/**
-	 * 查询员工
-	 * @param staff 是待查询员工的部分信息
-	 * @return
-	 */
-	public StaffPO searchStaff(StaffPO staff);
-	/**
 	 * 
 	 * @return
 	 */

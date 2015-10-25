@@ -31,10 +31,6 @@ public class CompanyDataHallImpl implements companyDataHallService {
 		return new OperationMessage();
 	}
 
-	public HallPO searchHall(HallPO hall) {
-		// TODO Auto-generated method stub
-		return new HallPO();
-	}
 
 	public String newHallID() {
 		// TODO Auto-generated method stub

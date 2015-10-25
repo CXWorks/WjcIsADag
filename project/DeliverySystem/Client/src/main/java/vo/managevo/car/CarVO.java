@@ -1,10 +1,10 @@
-package po.configurationdata;
+package vo.managevo.car;
 
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
-public class CarPO {
+public class CarVO {
 	private boolean free;
 	private int carID;
 	private Calendar useTime;
