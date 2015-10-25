@@ -2,7 +2,7 @@ package vo.transitvo;
 
 import java.util.ArrayList;
 
-abstract class TransitVO {
+public abstract class TransitVO {
 	String	LoadDate;
 	String	LoadID;
 	String	placeTo;

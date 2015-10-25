@@ -5,6 +5,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
+import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface StoreInBLService extends FormBLService<StoreInVO> {
 
     public OperationMessage loadOrder(String orderNumber);
 
-    //public OrderVO getOrderVO(); TODO
+    public OrderVO getOrderVO();
 
     public OperationMessage clearLocalBuffer();
 
