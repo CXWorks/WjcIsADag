@@ -1,7 +1,5 @@
 package blImpl.formatCheck;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.CheckFormMessage;
@@ -13,12 +11,7 @@ import blService.FormatCheckService.FormatCheckService;
  * @date 2015年10月25日 
  * @version 1.0 
  */
-public class FormatCheckImpl extends UnicastRemoteObject implements FormatCheckService{
-
-	protected FormatCheckImpl() throws RemoteException {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+public class FormatCheckImpl implements FormatCheckService{
 
 	public CheckFormMessage checkOrderID(String ID) {
 		// TODO Auto-generated method stub

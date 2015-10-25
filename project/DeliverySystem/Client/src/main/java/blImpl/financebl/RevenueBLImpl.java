@@ -6,6 +6,7 @@ import message.OperationMessage;
 import vo.financevo.RevenueVO;
 import vo.ordervo.OrderVO;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,8 +46,11 @@ public class RevenueBLImpl implements RevenueBLService {
         return new OperationMessage();
     }
 
-    public List<CheckFormMessage> checkFormat(RevenueVO form, boolean isFinal) {
-        return new LinkedList<CheckFormMessage>();
+    public ArrayList<CheckFormMessage> checkFormat(RevenueVO form, boolean isFinal) {
+    	ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
+		CheckFormMessage stub=new CheckFormMessage();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage submit(RevenueVO form) {

@@ -23,45 +23,32 @@ import blService.deliverblService.DeliverBLService;
  */
 public class DeliverblImpl implements DeliverBLService {
 
-	public OperationMessage saveDraft(FormVO form) {
+	public ArrayList<CheckFormMessage> checkFormat(DeliverVO form,boolean isFinal) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList checkFormat(FormVO form, boolean isFinal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public OperationMessage submit(FormVO form) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<CheckFormMessage> checkFormat(DeliverVO form,
-			boolean isFinal) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
+		CheckFormMessage stub=new CheckFormMessage();
+		result.add(stub);
+		return result;
 	}
 
 	public OperationMessage submit(DeliverVO form) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	public OperationMessage saveDraft(DeliverVO form) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	public DeliverVO loadDraft() {
 		// TODO Auto-generated method stub
-		return null;
+		return new DeliverVO();
 	}
 
 	public OrderVO getOrderVO(String orderID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OrderVO();
 	}
-
+	
 }

@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import blService.FormBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
-import po.deliverdata.DeliverPO;
-import po.receivedata.ReceivePO;
+
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 import vo.transitvo.TransitVO;
 
-public interface ReceiveBLService extends FormBLService{
+/**
+ * 
+ * @author wjc
+ *2015/10/24
+ */
+public interface ReceiveBLService extends FormBLService<ReceiveVO>{
 	/**
 	 * 检查到达单
 	 * @param form 到达单信息

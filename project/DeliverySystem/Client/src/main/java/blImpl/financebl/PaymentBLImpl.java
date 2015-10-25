@@ -5,6 +5,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import vo.financevo.PaymentVO;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,8 +33,11 @@ public class PaymentBLImpl implements PaymentBLService {
         return new OperationMessage();
     }
 
-    public List<CheckFormMessage> checkFormat(PaymentVO form, boolean isFinal) {
-        return new LinkedList<CheckFormMessage>();
+    public ArrayList<CheckFormMessage> checkFormat(PaymentVO form, boolean isFinal) {
+    	ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
+		CheckFormMessage stub=new CheckFormMessage();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage submit(PaymentVO form) {

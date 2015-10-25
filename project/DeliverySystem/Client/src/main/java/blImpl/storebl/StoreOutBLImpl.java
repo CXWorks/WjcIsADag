@@ -8,6 +8,7 @@ import vo.storevo.StoreOutVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.TransitVO;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,8 +44,11 @@ public class StoreOutBLImpl implements StoreOutBLService {
         return new OperationMessage();
     }
 
-    public List<CheckFormMessage> checkFormat(StoreOutVO form, boolean isFinal) {
-        return new LinkedList<CheckFormMessage>();
+    public ArrayList<CheckFormMessage> checkFormat(StoreOutVO form, boolean isFinal) {
+    	ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
+		CheckFormMessage stub=new CheckFormMessage();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage submit(StoreOutVO form) {

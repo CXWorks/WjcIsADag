@@ -8,6 +8,7 @@ import model.store.StoreLocation;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,8 +44,11 @@ public class StoreInBLImpl implements StoreInBLService {
         return new OperationMessage();
     }
 
-    public List<CheckFormMessage> checkFormat(StoreInVO form, boolean isFinal) {
-        return new LinkedList<CheckFormMessage>();
+    public ArrayList<CheckFormMessage> checkFormat(StoreInVO form, boolean isFinal) {
+    	ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
+		CheckFormMessage stub=new CheckFormMessage();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage submit(StoreInVO form) {

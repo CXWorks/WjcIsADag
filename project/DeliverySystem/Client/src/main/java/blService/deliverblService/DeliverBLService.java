@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import blService.FormBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
-import po.deliverdata.DeliverPO;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 
@@ -15,7 +14,7 @@ import vo.ordervo.OrderVO;
  *2015/10/24
  */
 
-public interface DeliverBLService extends FormBLService{
+public interface DeliverBLService extends FormBLService<DeliverVO>{
 	/**
 	 * 检查派件单
 	 * @param form 派件信息
