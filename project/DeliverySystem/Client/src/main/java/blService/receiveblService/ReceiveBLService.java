@@ -7,6 +7,12 @@ import message.OperationMessage;
 import po.deliverdata.DeliverPO;
 import po.receivedata.ReceivePO;
 
+/**
+ * 
+ * @author wjc
+ *2015/10/24
+ */
+
 public interface ReceiveBLService {
 	/**
 	 * 检查到达单
