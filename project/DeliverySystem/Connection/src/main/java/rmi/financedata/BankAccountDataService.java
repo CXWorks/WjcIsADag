@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface BankAccountDataService extends Remote {
 
+    public String getNewBankID();
+
     public BankAccountPO getBankAccount(String bankID);
 
     public List<BankAccountOperation> updateAccountOperations(String staffID);

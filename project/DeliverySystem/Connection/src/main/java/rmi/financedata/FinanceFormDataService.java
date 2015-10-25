@@ -11,6 +11,10 @@ import java.util.List;
  */
 public interface FinanceFormDataService extends Remote{
 
+    public String getNewRevenueID(String date, String hallID);
+
+    public String getNewPaymentID(String date);
+
     public RevenuePO getRevenuePO(String formID);
 
     public PaymentPO getPaymentPO(String formID);

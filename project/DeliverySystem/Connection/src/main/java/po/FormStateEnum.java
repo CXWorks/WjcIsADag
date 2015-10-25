@@ -1,5 +1,5 @@
 package po;
 
 public enum FormStateEnum {
-DRAFT,SUBMIT,PASS;
+    DRAFT,SUBMIT,PASS;
 }

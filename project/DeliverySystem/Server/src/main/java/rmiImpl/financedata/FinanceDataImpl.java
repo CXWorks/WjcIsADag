@@ -10,6 +10,10 @@ import java.util.List;
 public class FinanceDataImpl implements BankAccountDataService{
 
 
+    public BankAccountPO getBankAccount(String bankID) {
+        return null;
+    }
+
     public List<BankAccountOperation> updateAccountOperations(String staffID) {
         return null;
     }
