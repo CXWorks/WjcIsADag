@@ -1,5 +1,7 @@
 package rmiImpl.deliverdata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -12,7 +14,12 @@ import rmi.deliverdata.DeliverDataService;
  *2015/10/24
  */
 
-public class DeliverDataImpl  implements DeliverDataService {
+public class DeliverDataImpl extends UnicastRemoteObject  implements DeliverDataService {
+
+	protected DeliverDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OperationMessage insert(DeliverPO po) {
 		// TODO Auto-generated method stub

@@ -7,5 +7,5 @@ public abstract class TransitVO {
 	String	LoadID;
 	String	placeTo;
 	String	peopleSee;
-	ArrayList<String>	IDs;
+	ArrayList<String> IDs;
 }

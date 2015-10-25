@@ -1,5 +1,8 @@
 package blService.FormatCheckService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import message.CheckFormMessage;
 
 
@@ -9,56 +12,56 @@ import message.CheckFormMessage;
  *2015/10/24
  */
 
-public interface FormatCheckService {
+public interface FormatCheckService extends Remote{
 	
 	/**
 	 * 检查订单号
 	 * @param ID 订单号
 	 * @return 返回检查结果
 	 */
-	public CheckFormMessage checkOrderID(String ID);
+	public CheckFormMessage checkOrderID(String ID) throws RemoteException;
 	
 	/**
 	 * 检查日期（系统时间之前）
 	 * @param data 日期
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkDate(String data);
+	public  CheckFormMessage checkDate(String data) throws RemoteException;
 	
 	/**
 	 * 检查日期（系统时间之hou）
 	 * @param data 日期
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkPreDate(String data);
+	public  CheckFormMessage checkPreDate(String data) throws RemoteException;
 	
 	/**
 	 * 检查位置
 	 * @param from 出发地,to 到达地
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkLoction(String from,String to);
+	public  CheckFormMessage checkLoction(String from,String to) throws RemoteException;
 	
 	/**
 	 * 检查中转单号
 	 * @param ID 中转单号
 	 * @return 返回检查结果
 	 */
-	public CheckFormMessage checkTransitID(String ID);
+	public CheckFormMessage checkTransitID(String ID) throws RemoteException;
 	
 	/**
 	 * 检查中转中心编号
 	 * @param ID 中转中心编号
 	 * @return 返回检查结果
 	 */
-	public CheckFormMessage checkTransportHallID(String ID);
+	public CheckFormMessage checkTransportHallID(String ID) throws RemoteException;
 	
 	/**
 	 * 检查营业厅编号
 	 * @param ID 营业厅编号
 	 * @return 返回检查结果
 	 */
-	public CheckFormMessage checkTransportCenterID(String ID);
+	public CheckFormMessage checkTransportCenterID(String ID) throws RemoteException;
 	
 	/**
 	 * 检查车辆代号

@@ -1,5 +1,7 @@
 package rmiImpl.receivedata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -12,7 +14,12 @@ import rmi.receivedata.ReceiveDataService;
  *2015/10/24
  */
 
-public class ReceiveDataImpl implements ReceiveDataService {
+public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataService {
+
+	protected ReceiveDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OperationMessage insert(ReceivePO po) {
 		// TODO Auto-generated method stub
