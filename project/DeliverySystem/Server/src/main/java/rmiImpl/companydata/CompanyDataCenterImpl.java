@@ -6,7 +6,7 @@ import message.OperationMessage;
 import po.companydata.CenterPO;
 import rmi.companydata.companyDataCenterService;
 
-public class CompanyDataCenterService implements companyDataCenterService {
+public class CompanyDataCenterImpl implements companyDataCenterService {
 
 	public ArrayList<CenterPO> getCenter() {
 		// TODO Auto-generated method stub
