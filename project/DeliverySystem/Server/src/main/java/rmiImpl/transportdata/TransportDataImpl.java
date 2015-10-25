@@ -1,28 +1,19 @@
-package rmiImpl.orderdata;
-
-import java.util.ArrayList;
+package rmiImpl.transportdata;
 
 import message.OperationMessage;
-import po.memberdata.StaffPO;
-import po.memberdata.StaffTypeEnum;
-import po.orderdata.OrderPO;
-import rmi.memberdata.memberDataService;
-import rmi.orderdata.OrderDataService;
+import po.transportdata.CenterPO;
+import po.transportdata.LoadPO;
+import po.transportdata.TransportPO;
+import rmi.transportdata.TransportDataService;
 
-/**
- * 
- * @author mx
- *2015/10/25
- */
+public class TransportDataImpl implements TransportDataService{
 
-public class OrderDataImpl implements OrderDataService {
-
-	public OrderPO getOrderPO(String id) {
+	public TransportPO getTransportPO(String id) {
 		// TODO Auto-generated method stub
-		return new OrderPO();
+		return new LoadPO();
 	}
 
-	public OperationMessage insert(OrderPO po) {
+	public OperationMessage insert(TransportPO po) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
@@ -32,7 +23,7 @@ public class OrderDataImpl implements OrderDataService {
 		return new OperationMessage();
 	}
 
-	public OperationMessage update(OrderPO po) {
+	public OperationMessage update(TransportPO po) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
@@ -44,10 +35,7 @@ public class OrderDataImpl implements OrderDataService {
 
 	public String newID() {
 		// TODO Auto-generated method stub
-		return "1010101010";
+		return "025000201510250000001";
 	}
 
-
-
-	
 }

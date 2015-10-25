@@ -19,7 +19,7 @@ public class DeliverDataImpl  implements DeliverDataService {
 		return new OperationMessage();
 	}
 
-	public DeliverPO find(String id) {
+	public DeliverPO getDeliverPO(String id) {
 		// TODO Auto-generated method stub
 		return new DeliverPO();
 	}

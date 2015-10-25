@@ -1,5 +1,6 @@
 package rmi.accountdata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import message.OperationMessage;
@@ -24,7 +25,7 @@ public interface AccountDataService {
 	 * @param 无
 	 * @return 返回所有账户信息
 	 */
-	public List<AccountPO> getAccountPOs();
+	public ArrayList<AccountPO> getAccountPOs();
 
 	/**
 	 * 插入新的账户信息
