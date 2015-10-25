@@ -1,7 +1,16 @@
 package blService.financeblService;
 
+import vo.financevo.BaseChartVO;
+import vo.financevo.PieChartVO;
+
 /**
  * Created by Sissel on 2015/10/25.
  */
-public class FinanceChartBLService {
+public interface FinanceChartBLService {
+
+    public BaseChartVO getHistogram();
+
+    public PieChartVO getPieChart();
+
+    public BaseChartVO getLineChart();
 }
