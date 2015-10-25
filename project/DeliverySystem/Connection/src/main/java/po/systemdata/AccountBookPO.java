@@ -3,7 +3,7 @@ package po.systemdata;
 import model.store.StoreModel;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
-import po.configurationdata.CarPO;
+import po.companydata.CarPO;
 import po.financedata.BankAccountPO;
 import po.memberdata.StaffPO;
 
