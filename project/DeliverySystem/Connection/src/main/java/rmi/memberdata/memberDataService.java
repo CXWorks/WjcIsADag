@@ -10,7 +10,7 @@ import po.memberdata.StaffTypeEnum;
  * @author cxworks
  * 2015/10/24
  */
-public interface memberDataService {
+	public interface memberDataService {
 	/**
 	 * 获取所有员工信息
 	 * @param staffTypeEnum 员工类型
