@@ -1,5 +1,7 @@
 package rmiImpl.companydata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -12,12 +14,15 @@ import rmi.companydata.CompanyDataCarService;
  * @date 2015年10月25日 下午2:56:26
  * @version 1.0 
  */
-public class CompanyDataCarImpl implements CompanyDataCarService {
-
+public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDataCarService {
+	private static final long serialVersionUID = 1L;
+	public CompanyDataCarImpl() throws RemoteException{
+		super();
+	}
 	/* (non-Javadoc)
 	 * @see rmi.companydata.CompanyDataCarService#getCar()
 	 */
-	public ArrayList<CarPO> getCar() {
+	public ArrayList<CarPO> getCar()  throws RemoteException{
 		// TODO Auto-generated method stub
 		ArrayList<CarPO> result=new ArrayList<CarPO>();
 		CarPO stub=new CarPO();
@@ -28,7 +33,7 @@ public class CompanyDataCarImpl implements CompanyDataCarService {
 	/* (non-Javadoc)
 	 * @see rmi.companydata.CompanyDataCarService#newCarID()
 	 */
-	public String newCarID() {
+	public String newCarID(){
 		// TODO Auto-generated method stub
 		return "11111";
 	}

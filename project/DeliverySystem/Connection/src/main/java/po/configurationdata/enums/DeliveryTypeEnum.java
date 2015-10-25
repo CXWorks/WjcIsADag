@@ -1,5 +1,7 @@
 package po.configurationdata.enums;
 
-public enum DeliveryTypeEnum {
+import java.io.Serializable;
+
+public enum DeliveryTypeEnum implements Serializable{
 USUAL,FAST,ECONOMIC;
 }

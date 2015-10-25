@@ -1,6 +1,8 @@
 package po.memberdata;
 
-public class StaffPO {
+import java.io.Serializable;
+
+public class StaffPO implements Serializable{
 	private StaffTypeEnum staff;
 	private String ID;
 	private String name;
