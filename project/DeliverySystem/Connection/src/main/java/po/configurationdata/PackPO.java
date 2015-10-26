@@ -23,4 +23,8 @@ public class PackPO implements Serializable{
 	public double getByType(PackEnum type){
 		return this.packPrice.get(type);
 	}
+	public Map<PackEnum, Double> getPackPrice() {
+		return packPrice;
+	}
+	
 }

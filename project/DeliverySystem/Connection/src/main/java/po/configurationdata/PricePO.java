@@ -17,7 +17,8 @@ public class PricePO implements Serializable{
 		price.put(DeliveryTypeEnum.ECONOMIC, 15);
 		price.put(DeliveryTypeEnum.FAST, 30);
 	}
-	public int getByType(DeliveryTypeEnum type){
-		return price.get(type);
+	public Map<DeliveryTypeEnum, Integer> getPrice() {
+		return price;
 	}
+	
 }

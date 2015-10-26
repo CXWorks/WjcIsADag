@@ -20,7 +20,7 @@ public interface ConfigurationDataService extends Remote{
 	
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy) throws RemoteException;
 	
-	public ArrayList<PackPO> getPack() throws RemoteException;
+	public PackPO getPack() throws RemoteException;
 	
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException;
 	

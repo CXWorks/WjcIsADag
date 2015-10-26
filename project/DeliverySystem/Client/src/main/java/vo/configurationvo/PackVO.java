@@ -15,17 +15,8 @@ public class PackVO {
 		
 	}
 	
-	public ConfigurationEnum getID() {
-		return ID;
-	}
-	public void setID(ConfigurationEnum iD) {
-		ID = iD;
-	}
-	public Map<PackEnum, Double> getPackPrice() {
-		return packPrice;
-	}
-	public void setPackPrice(Map<PackEnum, Double> packPrice) {
-		this.packPrice = packPrice;
+	public double getByType(PackEnum type){
+		return packPrice.get(type);
 	}
 	
 }

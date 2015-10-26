@@ -54,12 +54,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return new OperationMessage();
 	}
 
-	public ArrayList<PackPO> getPack() throws RemoteException {
+	public PackPO getPack() throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<PackPO> result=new ArrayList<PackPO>();
-		PackPO stub=new PackPO();
-		result.add(stub);
-		return result;
+		
+		return new PackPO();
 	}
 
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {

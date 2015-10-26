@@ -7,6 +7,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.configurationdata.CityDistancePO;
+import po.configurationdata.PackPO;
+import po.configurationdata.SalaryStrategyPO;
 import rmi.configurationdata.ConfigurationDataService;
 import message.OperationMessage;
 import vo.configurationvo.CityDistanceVO;
@@ -63,7 +65,21 @@ public class ConfigurationblImpl implements ConfigurationblService {
 	 */
 	public ArrayList<SalaryStrategyVO> getSalaryStrategy() {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			ArrayList<SalaryStrategyPO> accept= configurationDataImpl.getSalaryStrategy();
+			ArrayList<SalaryStrategyVO> result=new ArrayList<SalaryStrategyVO>();
+			SalaryStrategyVO temp;
+			for (int i = 0; i < accept.size(); i++) {
+				temp=new SalaryStrategyVO(accept.get(i));
+				result.add(temp);
+			}
+			return result;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	/* (non-Javadoc)
@@ -80,6 +96,13 @@ public class ConfigurationblImpl implements ConfigurationblService {
 	 */
 	public PackVO getPack() {
 		// TODO Auto-generated method stub
+		try {
+			PackPO accept=configurationDataImpl.getPack();
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
