@@ -33,8 +33,8 @@ public class FinanceBLDriver {
             System.out.println("pay tested");
         if(babls.receive("222", "333") != null)
             System.out.println("receive tested");
-        if(babls.filtAccounts(null, "fuck") != null)
-            System.out.println("filtAccounts tested");
+        if(babls.filterAccounts(null, "fuck") != null)
+            System.out.println("filterAccounts tested");
         if(babls.getTradeHistory(null) != null)
             System.out.println("getTradeHistory tested");
         System.out.println();

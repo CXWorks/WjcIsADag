@@ -22,7 +22,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
         return new LinkedList<BankAccountVO>();
     }
 
-    public List<BankAccountVO> filtAccounts(List<BankAccountVO> list, String s) {
+    public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
         return new LinkedList<BankAccountVO>();
     }
 

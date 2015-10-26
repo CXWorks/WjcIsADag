@@ -13,7 +13,7 @@ public interface BankAccountBLService {
 
     public List<BankAccountVO> getAllAccounts();
 
-    public List<BankAccountVO> filtAccounts(List<BankAccountVO> list, String s);
+    public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s);
 
     public OperationMessage addAccount(BankAccountVO avo);
 
