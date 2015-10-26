@@ -16,7 +16,7 @@ import rmi.deliverdata.DeliverDataService;
 
 public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataService {
 
-	protected DeliverDataImpl() throws RemoteException {
+	public DeliverDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

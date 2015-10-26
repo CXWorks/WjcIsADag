@@ -16,7 +16,7 @@ import rmi.receivedata.ReceiveDataService;
 
 public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataService {
 
-	protected ReceiveDataImpl() throws RemoteException {
+	public ReceiveDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -26,7 +26,7 @@ public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataS
 		return new OperationMessage();
 	}
 
-	public ReceivePO find(String id) {
+	public ReceivePO getReceivePO(String id) {
 		// TODO Auto-generated method stub
 		return new ReceivePO();
 	}

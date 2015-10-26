@@ -27,7 +27,7 @@ public interface ReceiveDataService extends Remote{
 	 * @param id 到达单编号
 	 * @return 返回目标到达信息
 	 */
-	public ReceivePO find(String id) throws RemoteException;
+	public ReceivePO getReceivePO(String id) throws RemoteException;
 	
 	/**
 	 * 删除到达信息
