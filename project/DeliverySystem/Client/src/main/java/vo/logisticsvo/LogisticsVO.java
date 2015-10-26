@@ -15,7 +15,7 @@ public class LogisticsVO {
 	  private String nameTo;
 	  private ArrayList<String> location;
 	  private ArrayList<String> time;
-	  private String loacal;
+	  private String local;
 	  private String phoneNumTo;
 	  private String goodsNum;
 	  private String goodsName;
