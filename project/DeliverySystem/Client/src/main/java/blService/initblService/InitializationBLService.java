@@ -10,8 +10,10 @@ import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreModel;
 import po.financedata.BankAccountPO;
+import po.initialdata.InitialDataPO;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
+import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
@@ -75,7 +77,7 @@ public interface InitializationBLService {
 
     public OperationMessage deleteStaff(StaffVO staff);
 
-    // Hall Manage
+    // Center Manage
     public List<CenterVO> getAllCenters();
 
     public List<CenterVO> filterCentersByNumber(String number);
@@ -91,10 +93,19 @@ public interface InitializationBLService {
 
     public List<HallVO> filterHallsByNumber(String number);
 
-    public OperationMessage addHall(HallVO center);
+    public OperationMessage addHall(HallVO hall);
 
-    public OperationMessage deleteHall(HallVO center);
+    public OperationMessage deleteHall(HallVO hall);
 
-    public OperationMessage modifyHall(HallVO center);
+    public OperationMessage modifyHall(HallVO hall);
+
+    // Initial Data Manage
+    public InitialDataVO getInitialDataVO(String version);
+
+    public OperationMessage requestInitData();
+
+    public OperationMessage uploadInitialData();
+
+    public OperationMessage abortInitData();
 
 }

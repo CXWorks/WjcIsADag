@@ -11,6 +11,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreModel;
+import po.initialdata.InitialDataPO;
 import vo.financevo.BankAccountVO;
 import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
@@ -195,5 +196,22 @@ public class InitializationBLImpl implements InitializationBLService {
 
     public OperationMessage modifyHall(HallVO center) {
         return new OperationMessage();
+    }
+
+    public InitialDataVO getInitialDataVO(String version) {
+        return new InitialDataVO();
+    }
+
+    public OperationMessage requestInitData() {
+        return new OperationMessage();
+    }
+
+    public OperationMessage uploadInitialData() {
+        return new OperationMessage();
+    }
+
+    public OperationMessage abortInitData() {
+        return new OperationMessage();
+
     }
 }
