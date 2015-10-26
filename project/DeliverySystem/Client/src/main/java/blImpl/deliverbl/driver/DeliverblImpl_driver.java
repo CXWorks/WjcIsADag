@@ -30,6 +30,7 @@ public class DeliverblImpl_driver {
 			System.out.println(DeliverDataService.newID() instanceof String);
 			System.out.println(DeliverDataService.init(null) instanceof OperationMessage);
 			System.out.println(DeliverDataService.clear() instanceof OperationMessage);
+			System.out.println(DeliverDataService.show() instanceof ArrayList<?>);
 			
 			
 		}catch (MalformedURLException e) {

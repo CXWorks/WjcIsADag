@@ -29,6 +29,7 @@ public class ReceiveblImpl_driver {
 			System.out.println(ReceiveDataService.newID() instanceof String);
 			System.out.println(ReceiveDataService.init(null) instanceof OperationMessage);
 			System.out.println(ReceiveDataService.clear() instanceof OperationMessage);
+			System.out.println(ReceiveDataService.show() instanceof ArrayList<?>);
 			
 			
 		}catch (MalformedURLException e) {

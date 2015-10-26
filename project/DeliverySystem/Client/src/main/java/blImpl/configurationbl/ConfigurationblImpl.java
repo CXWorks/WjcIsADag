@@ -80,7 +80,7 @@ public class ConfigurationblImpl implements ConfigurationblService {
 	 */
 	public PackVO getPack() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PackVO();
 	}
 
 	/* (non-Javadoc)
