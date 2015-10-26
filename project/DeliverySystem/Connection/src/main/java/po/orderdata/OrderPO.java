@@ -1,7 +1,11 @@
 package po.orderdata;
 
+import java.io.Serializable;
 
-public class OrderPO {
+import po.FormPO;
+
+
+public class OrderPO extends FormPO implements Serializable{
   private String nameFrom;
   private String nameTo;
   private String location;

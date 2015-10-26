@@ -1,12 +1,20 @@
 package rmiImpl.transportdata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import message.OperationMessage;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import po.transportdata.TransportPO;
 import rmi.transportdata.TransportDataService;
 
-public class TransportDataImpl implements TransportDataService{
+public class TransportDataImpl extends UnicastRemoteObject implements TransportDataService{
+
+	protected TransportDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public TransportPO getTransportPO(String id) {
 		// TODO Auto-generated method stub

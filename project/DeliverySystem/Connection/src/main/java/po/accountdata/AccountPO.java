@@ -1,6 +1,10 @@
 package po.accountdata;
 
-public class AccountPO {
+import java.io.Serializable;
+
+import po.FormPO;
+
+public class AccountPO implements Serializable{
 
 	private String ID;
 	private String password;

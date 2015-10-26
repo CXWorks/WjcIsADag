@@ -2,7 +2,9 @@ package vo.transitvo;
 
 import java.util.ArrayList;
 
-public abstract class TransitVO {
+import vo.FormVO;
+
+public abstract class TransitVO extends FormVO{
 	String	LoadDate;
 	String	LoadID;
 	String	placeTo;

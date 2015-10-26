@@ -1,5 +1,9 @@
 package po.accountdata;
 
-public enum AuthorityEnum {
+import java.io.Serializable;
+
+import po.FormPO;
+
+public enum AuthorityEnum  implements Serializable{
 HAVE,DONT_HAVE
 }

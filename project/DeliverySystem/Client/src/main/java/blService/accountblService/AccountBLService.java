@@ -24,7 +24,7 @@ public interface AccountBLService {
 	 * @param accountID 账户名
 	 * @return 返回ID对应账户信息
 	 */
-	public AccountVO getAccountVOs(String accountID);
+	public AccountVO getAccountVO(String accountID);
 	
 	/**
 	 * 添加账户

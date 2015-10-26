@@ -1,5 +1,7 @@
 package rmiImpl.accountdata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,12 @@ import rmi.accountdata.AccountDataService;
  *2015/10/25
  */
 
-public class AccountDataImpl implements AccountDataService{
+public class AccountDataImpl extends UnicastRemoteObject implements AccountDataService{
+
+	protected AccountDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public AccountPO getAccountPO(String accountID) {
 		// TODO Auto-generated method stub

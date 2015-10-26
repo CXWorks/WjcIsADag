@@ -1,6 +1,7 @@
 package vo.ordervo;
 
 import po.orderdata.TypeEnum;
+import vo.FormVO;
 
 /**
  * 
@@ -8,7 +9,7 @@ import po.orderdata.TypeEnum;
  *2015/10/24
  */
 
-public class OrderVO {
+public class OrderVO extends FormVO{
 	  private String nameFrom;
 	  private String nameTo;
 	  private String location;

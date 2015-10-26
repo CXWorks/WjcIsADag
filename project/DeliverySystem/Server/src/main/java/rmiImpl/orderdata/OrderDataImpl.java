@@ -1,5 +1,7 @@
 package rmiImpl.orderdata;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -15,7 +17,12 @@ import rmi.orderdata.OrderDataService;
  *2015/10/25
  */
 
-public class OrderDataImpl implements OrderDataService {
+public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService {
+
+	protected OrderDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OrderPO getOrderPO(String id) {
 		// TODO Auto-generated method stub
