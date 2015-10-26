@@ -68,34 +68,6 @@ public class MainPanel extends JPanel{
 	private void initPanel() {
 		//Set layout to FlowLayout
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		//Read data from Config file
-		//getConfigFromFile();
-		//Initiate buttons
-		
-	}
-	
-	private void getConfigFromFile() {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("tempUiConfig.txt"));
-			String line="";
-			//tton的text
-			String buttonText;
-			//相应button要调用的方法名
-			String methodName;
-			while((line=br.readLine())!=null){
-				buttonText=line.split(",")[0];
-				methodName=line.split(",")[1];
-				buttonString.add(buttonText);
-				allMethodNames.add(methodName);
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -108,7 +80,7 @@ public class MainPanel extends JPanel{
 			temp=methods.get(i);
 			for (int j = 0; j < temp.length; j++) {
 				buttons[index] = new JButton();
-				buttons[index].setText(temp[j].getName());
+				buttons[index].setText(myClass.get(i).getName()+" "+temp[j].getName());
 				// 添加监听类
 				buttons[index]
 						.addMouseListener((MouseListener) new TestMethodAdapter(
@@ -121,13 +93,7 @@ public class MainPanel extends JPanel{
 	}
 	
 	
-	/**
-	 * 监听类
-	 * @author Ann
-	 * 按钮要调用的方法名写在文件里，
-	 * 按钮按下时，通过反射机制调用方法，
-	 * 方法名在构造监听类时传入
-	 */
+	
 	class TestMethodAdapter extends MouseAdapter{
 		//方法名
 		private Method methodName;
@@ -139,9 +105,7 @@ public class MainPanel extends JPanel{
 			this.src=src;
 			this.shit=shit;
 		}
-		/**
-		 * 通过反射机制调用在MainPanel中的方法
-		 */
+		
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			try {
@@ -150,6 +114,7 @@ public class MainPanel extends JPanel{
 				.getMethod(methodName.getName(), methodName.getParameterTypes())
 				//调用方法
 				.invoke(shit, (Object)null);
+				System.out.println("run "+methodName.getName());
 			} catch (IllegalArgumentException e1) {
 				try {
 					src
@@ -157,20 +122,49 @@ public class MainPanel extends JPanel{
 					.getMethod(methodName.getName(), methodName.getParameterTypes())
 					//调用方法
 					.invoke(shit);
+					System.out.println("run "+methodName.getName());
 				} catch (IllegalAccessException e2) {
 					// TODO Auto-generated catch block
+					
+				} catch (IllegalArgumentException e2) {
+					// TODO Auto-generated catch block
+					System.out.println("test");
 					try {
 						src
 						//根据方法名和参数列表得到相应方法（测试时参数为空）
 						.getMethod(methodName.getName(), methodName.getParameterTypes())
 						//调用方法
-						.invoke(shit,(Object)null);
+						.invoke(shit,new Object[]{null,new Boolean(true)});
+						System.out.println("run "+methodName.getName());
 					} catch (IllegalAccessException e3) {
 						// TODO Auto-generated catch block
 						e3.printStackTrace();
 					} catch (IllegalArgumentException e3) {
 						// TODO Auto-generated catch block
-						e3.printStackTrace();
+						try {
+							src
+							//根据方法名和参数列表得到相应方法（测试时参数为空）
+							.getMethod(methodName.getName(), methodName.getParameterTypes())
+							//调用方法
+							.invoke(shit,new Object[]{null,null,null,null});
+							System.out.println("run "+methodName.getName());
+						} catch (IllegalAccessException e4) {
+							// TODO Auto-generated catch block
+							e4.printStackTrace();
+						} catch (IllegalArgumentException e4) {
+							// TODO Auto-generated catch block
+							e4.printStackTrace();
+						} catch (InvocationTargetException e4) {
+							// TODO Auto-generated catch block
+							e4.printStackTrace();
+						} catch (NoSuchMethodException e4) {
+							// TODO Auto-generated catch block
+							e4.printStackTrace();
+						} catch (SecurityException e4) {
+							// TODO Auto-generated catch block
+							e4.printStackTrace();
+						}
+						System.out.println("run "+methodName.getName());
 					} catch (InvocationTargetException e3) {
 						// TODO Auto-generated catch block
 						e3.printStackTrace();
@@ -181,9 +175,6 @@ public class MainPanel extends JPanel{
 						// TODO Auto-generated catch block
 						e3.printStackTrace();
 					}
-				} catch (IllegalArgumentException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
 				} catch (InvocationTargetException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
