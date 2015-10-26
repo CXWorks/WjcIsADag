@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import po.configurationdata.CityDistancePO;
 import po.configurationdata.PackPO;
+import po.configurationdata.PricePO;
+import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import rmi.configurationdata.ConfigurationDataService;
 import message.OperationMessage;
@@ -98,7 +100,7 @@ public class ConfigurationblImpl implements ConfigurationblService {
 		// TODO Auto-generated method stub
 		try {
 			PackPO accept=configurationDataImpl.getPack();
-			
+			return new PackVO(accept);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,6 +121,13 @@ public class ConfigurationblImpl implements ConfigurationblService {
 	 */
 	public PriceVO getPrice() {
 		// TODO Auto-generated method stub
+		try {
+			PricePO accept=configurationDataImpl.getPrice();
+			return new PriceVO(accept);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -135,6 +144,13 @@ public class ConfigurationblImpl implements ConfigurationblService {
 	 */
 	public ProportionVO getProportion() {
 		// TODO Auto-generated method stub
+		try {
+			ProportionPO accept=configurationDataImpl.getProportion();
+			return new ProportionVO(accept);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 

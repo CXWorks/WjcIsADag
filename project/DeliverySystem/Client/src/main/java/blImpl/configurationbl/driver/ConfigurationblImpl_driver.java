@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import message.OperationMessage;
@@ -30,7 +31,7 @@ public class ConfigurationblImpl_driver {
 			System.out.println(configurationDataService.modifyCityDistance(null) instanceof OperationMessage);
 			System.out.println(configurationDataService.getSalaryStrategy() instanceof ArrayList<?>);
 			System.out.println(configurationDataService.modifySalaryStrategy(null) instanceof OperationMessage);
-			System.out.println(configurationDataService.getPack() instanceof ArrayList<?>);
+			System.out.println(configurationDataService.getPack() instanceof PackPO);
 			System.out.println(configurationDataService.modifyPack(null) instanceof OperationMessage);
 			System.out.println(configurationDataService.getPrice() instanceof PricePO);
 			System.out.println(configurationDataService.modifyPrice(null) instanceof OperationMessage);

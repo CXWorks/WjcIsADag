@@ -8,11 +8,11 @@ import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.PackEnum;
 
 public class PackVO {
-	private ConfigurationEnum ID;
+	private ConfigurationEnum ID=ConfigurationEnum.PACK;
 	private Map<PackEnum,Double> packPrice;
 	
 	public PackVO(PackPO po){
-		
+		this.packPrice=po.getPackPrice();
 	}
 	
 	public double getByType(PackEnum type){

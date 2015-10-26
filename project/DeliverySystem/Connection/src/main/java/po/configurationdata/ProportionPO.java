@@ -17,7 +17,8 @@ public class ProportionPO implements Serializable{
 		proportion.put(DeliveryTypeEnum.ECONOMIC, 15);
 		proportion.put(DeliveryTypeEnum.FAST, 30);
 	}
-	public int getByType(DeliveryTypeEnum type){
-		return proportion.get(type);
+	public Map<DeliveryTypeEnum, Integer> getProportion() {
+		return proportion;
 	}
+	
 }
