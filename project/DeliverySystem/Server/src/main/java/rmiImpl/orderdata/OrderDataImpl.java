@@ -19,7 +19,7 @@ import rmi.orderdata.OrderDataService;
 
 public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService {
 
-	protected OrderDataImpl() throws RemoteException {
+	public OrderDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

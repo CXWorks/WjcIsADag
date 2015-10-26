@@ -1,8 +1,9 @@
 package rmi.accountdata;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import message.OperationMessage;
 import po.accountdata.AccountPO;
@@ -13,7 +14,7 @@ import po.accountdata.AccountPO;
  *2015/10/25
  */
 
-public interface AccountDataService {
+public interface AccountDataService extends Remote {
 	/**
 	 * 按照账户名查找到账户信息
 	 * @param accountID 账户名

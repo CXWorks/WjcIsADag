@@ -18,7 +18,7 @@ import rmi.accountdata.AccountDataService;
 
 public class AccountDataImpl extends UnicastRemoteObject implements AccountDataService{
 
-	protected AccountDataImpl() throws RemoteException {
+	public AccountDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

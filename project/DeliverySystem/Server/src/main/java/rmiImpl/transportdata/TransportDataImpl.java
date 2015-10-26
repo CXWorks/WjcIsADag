@@ -11,7 +11,7 @@ import rmi.transportdata.TransportDataService;
 
 public class TransportDataImpl extends UnicastRemoteObject implements TransportDataService{
 
-	protected TransportDataImpl() throws RemoteException {
+	public TransportDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
