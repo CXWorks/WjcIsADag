@@ -16,6 +16,13 @@ public class CityDistancePO implements Serializable{
 		this.distance=1000;
 	}
 	//
+	public CityDistancePO(ConfigurationEnum id,String city1,String city2,int dis){
+		this.ID=id;
+		this.city1=city1;
+		this.city2=city2;
+		this.distance=dis;
+	}
+	//
 	public ConfigurationEnum getID() {
 		return ID;
 	}
