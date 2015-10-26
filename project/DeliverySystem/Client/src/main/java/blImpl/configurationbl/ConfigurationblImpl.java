@@ -29,7 +29,7 @@ import blService.configurationblService.ConfigurationblService;
 public class ConfigurationblImpl implements ConfigurationblService {
 	private ConfigurationDataService configurationDataImpl;
 	public ConfigurationblImpl() throws MalformedURLException, RemoteException, NotBoundException{
-		this.configurationDataImpl=(ConfigurationDataService)Naming.lookup("rmi://localhost:2333/configuration");
+		this.configurationDataImpl=(ConfigurationDataService)Naming.lookup("rmi://localhost:2333/configurationDataService");
 	}
 	/* (non-Javadoc)
 	 * @see blService.configurationblService.ConfigurationblService#getCityDistance()
