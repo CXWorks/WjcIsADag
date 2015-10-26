@@ -23,7 +23,7 @@ public interface BankAccountDataService extends Remote {
     public LinkedList<BankAccountOperation> updateAccountOperations(String staffID) throws RemoteException;
 
     public OperationMessage uploadAccountOperations
-            (String staffID, List<BankAccountOperation> operations) throws RemoteException;
+            (String staffID, LinkedList<BankAccountOperation> operations) throws RemoteException;
 
     public LinkedList<BankAccountPO> downloadAllAccounts() throws RemoteException;
 

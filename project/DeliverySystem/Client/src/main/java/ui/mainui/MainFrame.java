@@ -22,7 +22,7 @@ public class MainFrame extends MyFrame {
 		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screensize.getWidth();
 		int height = (int)screensize.getHeight();
-		this.setBounds(width/2-400, height/2-300, 800, 600);
+		this.setBounds(width/2-400, height/2-500, 800, 1000);
 		//
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//

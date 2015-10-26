@@ -58,4 +58,12 @@ public class ManageblCenterImpl implements ManageblCenterService{
 		return new CenterVO();
 	}
 
+	/* (non-Javadoc)
+	 * @see blService.manageblService.ManageblCenterService#newInstitutionDistance(java.lang.String, java.lang.Object)
+	 */
+	public OperationMessage newInstitutionDistance(String ID, Object ob) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

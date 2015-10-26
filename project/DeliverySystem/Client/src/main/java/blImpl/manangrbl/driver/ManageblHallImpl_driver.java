@@ -25,7 +25,7 @@ public class ManageblHallImpl_driver {
 		try {
 			CompanyDataHallService companyDataHallService=(CompanyDataHallService)Naming.lookup("rmi://localhost:2333/companyDataHallService");
 			System.out.println(companyDataHallService.getHall() instanceof ArrayList<?>);
-			System.out.println(companyDataHallService.newHallID() instanceof String);
+			System.out.println(companyDataHallService.newHallID("111") instanceof String);
 			System.out.println(companyDataHallService.addHall(null) instanceof OperationMessage);
 			System.out.println(companyDataHallService.modifyHall(null) instanceof OperationMessage);
 			System.out.println(companyDataHallService.deleteHall(null) instanceof OperationMessage);

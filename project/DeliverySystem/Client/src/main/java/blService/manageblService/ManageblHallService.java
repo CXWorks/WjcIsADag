@@ -24,5 +24,7 @@ public interface ManageblHallService {
 	
 	public HallVO searchHall(HallVO hall);
 	
-	public String newHallID();
+	public String newHallID(String centerID);
+	
+	public OperationMessage newInstitutionDistance(String ID,Object ob);
 }

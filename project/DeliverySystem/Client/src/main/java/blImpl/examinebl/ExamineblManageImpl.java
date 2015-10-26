@@ -22,6 +22,7 @@ public class ExamineblManageImpl implements ExamineblManageService {
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
 		FormVO stub=new FormVO();
 		result.add(stub);
+		System.out.println("used");
 		return result;
 	}
 
@@ -30,6 +31,7 @@ public class ExamineblManageImpl implements ExamineblManageService {
 	 */
 	public OperationMessage passForm(ArrayList<FormVO> form) {
 		// TODO Auto-generated method stub
+		System.out.println("used");
 		return new OperationMessage();
 	}
 
@@ -38,6 +40,7 @@ public class ExamineblManageImpl implements ExamineblManageService {
 	 */
 	public OperationMessage deleteForm(ArrayList<FormVO> form) {
 		// TODO Auto-generated method stub
+		System.out.println("used");
 		return new OperationMessage();
 	}
 
@@ -46,6 +49,7 @@ public class ExamineblManageImpl implements ExamineblManageService {
 	 */
 	public FormVO getForm(FormVO form) {
 		// TODO Auto-generated method stub
+		System.out.println("used");
 		return new FormVO();
 	}
 
@@ -57,6 +61,7 @@ public class ExamineblManageImpl implements ExamineblManageService {
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
 		FormVO stub=new FormVO();
 		result.add(stub);
+		System.out.println("used");
 		return result;
 	}
 

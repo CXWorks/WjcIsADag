@@ -88,4 +88,40 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return new OperationMessage();
 	}
 
+	/* (non-Javadoc)
+	 * @see rmi.configurationdata.ConfigurationDataService#getInstitutionDistance()
+	 */
+	public Object getInstitutionDistance() throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Object();
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.configurationdata.ConfigurationDataService#modifyInstitutionDistance(java.lang.String, java.lang.Object)
+	 */
+	public OperationMessage modifyInstitutionDistance(String ID, Object ob)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return new OperationMessage();
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.configurationdata.ConfigurationDataService#newInstitutionDistanceSearch(java.lang.String)
+	 */
+	public Object[] newInstitutionDistanceSearch(String ID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		Object[] stub=new Object[2];
+		return stub;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.configurationdata.ConfigurationDataService#newInstitutionDistanceInsert(java.lang.String, java.lang.Object[])
+	 */
+	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return new OperationMessage();
+	}
+
 }

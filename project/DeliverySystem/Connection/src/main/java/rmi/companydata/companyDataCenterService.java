@@ -18,11 +18,6 @@ public interface CompanyDataCenterService extends Remote{
 	public ArrayList<CenterPO> getCenter() throws RemoteException;
 	/**
 	 * 
-	 * @return
-	 */
-	public String newCenterID() throws RemoteException;
-	/**
-	 * 
 	 * @param center
 	 * @return
 	 */

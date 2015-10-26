@@ -31,7 +31,7 @@ public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataS
 	 */
 	public DeliverPO getDeliverPO(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return new DeliverPO();
 	}
 
 	public OperationMessage delete(String id) {

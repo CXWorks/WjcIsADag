@@ -36,6 +36,11 @@ public class ConfigurationblImpl_driver {
 			System.out.println(configurationDataService.modifyPrice(null) instanceof OperationMessage);
 			System.out.println(configurationDataService.getProportion() instanceof ProportionPO);
 			System.out.println(configurationDataService.modifyProportion(null) instanceof OperationMessage);
+			System.out.println(configurationDataService.getInstitutionDistance() instanceof Object);
+			System.out.println(configurationDataService.newInstitutionDistanceSearch("111")[0] instanceof Object);
+			System.out.println(configurationDataService.modifyInstitutionDistance("111", null) instanceof OperationMessage);
+			System.out.println(configurationDataService.newInstitutionDistanceInsert("111", null) instanceof OperationMessage);
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

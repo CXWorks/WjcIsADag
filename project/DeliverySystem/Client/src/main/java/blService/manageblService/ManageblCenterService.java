@@ -22,4 +22,6 @@ public interface ManageblCenterService {
 	public OperationMessage modifyCenter(CenterVO center);
 	
 	public CenterVO searchCenter(CenterVO center);
+	
+	public OperationMessage newInstitutionDistance(String ID,Object ob);
 }

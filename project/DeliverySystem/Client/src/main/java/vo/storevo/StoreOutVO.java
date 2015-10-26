@@ -1,5 +1,6 @@
 package vo.storevo;
 
+import po.transportdata.TransportationEnum;
 import vo.FormVO;
 
 /**
@@ -9,6 +10,6 @@ public class StoreOutVO extends FormVO {
     private String	orderID;
     private String	date;
     private String	destination;
-    //Transportation	transportation; TODO
+    TransportationEnum transportation;
     private String	transID;
 }

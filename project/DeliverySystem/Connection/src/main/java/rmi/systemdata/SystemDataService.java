@@ -1,6 +1,6 @@
 package rmi.systemdata;
 
-import po.systemdata.AccountBookPO;
+import po.initialdata.InitialDataPO;
 import po.systemdata.SystemState;
 
 /**
@@ -8,7 +8,7 @@ import po.systemdata.SystemState;
  */
 public interface SystemDataService {
 
-    public AccountBookPO getAccountBook(String version);
+    public InitialDataPO getAccountBook(String version);
 
     public SystemState checkSystemState();
 

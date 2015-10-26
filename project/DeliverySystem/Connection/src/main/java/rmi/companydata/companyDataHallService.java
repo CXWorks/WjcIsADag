@@ -38,5 +38,5 @@ public interface CompanyDataHallService extends Remote{
 	 * 获取新营业厅ID
 	 * @return 返回合法ID
 	 */
-	public String newHallID() throws RemoteException;
+	public String newHallID(String centerID) throws RemoteException;
 }

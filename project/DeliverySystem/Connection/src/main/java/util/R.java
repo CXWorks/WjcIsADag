@@ -9,4 +9,8 @@ public class R {
         public final static String FinanceDataService = "FinanceDataService";
         public final static String StoreDataService = "StoreDataService";
     }
+
+    public static class path{
+        public final static String InitialModelPath = "buffer/model/initialization.ser";
+    }
 }

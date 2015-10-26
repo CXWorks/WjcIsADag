@@ -62,9 +62,17 @@ public class ManageblHallImpl implements ManageblHallService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#newHallID()
 	 */
-	public String newHallID() {
+	public String newHallID(String centerID) {
 		// TODO Auto-generated method stub
 		return "11111";
+	}
+
+	/* (non-Javadoc)
+	 * @see blService.manageblService.ManageblHallService#newInstitutionDistance(java.lang.String, java.lang.Object)
+	 */
+	public OperationMessage newInstitutionDistance(String ID, Object ob) {
+		// TODO Auto-generated method stub
+		return new OperationMessage();
 	}
 
 }
