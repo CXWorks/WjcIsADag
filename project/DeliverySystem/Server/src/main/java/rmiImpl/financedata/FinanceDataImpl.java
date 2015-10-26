@@ -98,4 +98,13 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
         // TODO Auto-generated method stub
         return new LinkedList<RevenuePO>();
     }
+
+	/* (non-Javadoc)
+	 * @see rmi.financedata.BankAccountDataService#uploadAccountOperations(java.lang.String, java.util.LinkedList)
+	 */
+	public OperationMessage uploadAccountOperations(String staffID,
+			LinkedList<BankAccountOperation> operations) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

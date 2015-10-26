@@ -32,4 +32,11 @@ public interface ConfigurationDataService extends Remote{
 	
 	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException;
 	
+	public Object getInstitutionDistance() throws RemoteException;
+	
+	public Object[] newInstitutionDistanceSearch(String ID) throws RemoteException;
+	
+	public OperationMessage newInstitutionDistanceInsert(String ID,Object[] ob) throws RemoteException;
+	
+	public OperationMessage modifyInstitutionDistance(String ID,Object ob) throws RemoteException;
 }

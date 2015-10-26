@@ -26,7 +26,6 @@ public class ManageblCenterImpl_driver {
 		try {
 			CompanyDataCenterService companyDataCenterService=(CompanyDataCenterService)Naming.lookup("rmi://localhost:2333/CompanyDataCenterService");
 			System.out.println(companyDataCenterService.getCenter() instanceof ArrayList<?>);
-			System.out.println(companyDataCenterService.newCenterID() instanceof String);
 			System.out.println(companyDataCenterService.addCenter(null) instanceof OperationMessage);
 			System.out.println(companyDataCenterService.modifyCenter(null) instanceof OperationMessage);
 			System.out.println(companyDataCenterService.deleteCenter(null) instanceof OperationMessage);

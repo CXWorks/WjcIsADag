@@ -37,7 +37,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 
-	public String newHallID() {
+	public String newHallID(String centerID) {
 		// TODO Auto-generated method stub
 		return "111111";
 	}
