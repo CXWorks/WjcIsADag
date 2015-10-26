@@ -7,10 +7,12 @@ import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
 import rmi.financedata.BankAccountDataService;
 import rmi.financedata.FinanceFormDataService;
+import util.R;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,10 +20,11 @@ import java.util.List;
 public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountDataService, FinanceFormDataService{
 
     protected FinanceDataImpl() throws RemoteException, MalformedURLException {
-        Naming.rebind("FinanceDataService", this);
+        Naming.rebind(R.string.FinanceDataService, this);
     }
 
     public static void main(String[] args) throws MalformedURLException, RemoteException {
+        LocateRegistry.createRegistry(1099);
         new FinanceDataImpl();
     }
 
@@ -35,7 +38,7 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
         return new OperationMessage();
     }
 
-    public List<BankAccountOperation> updateAccountOperations(String staffID) {
+    public LinkedList<BankAccountOperation> updateAccountOperations(String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<BankAccountOperation>();
     }
@@ -45,7 +48,7 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
         return new OperationMessage();
     }
 
-    public List<BankAccountPO> downloadAllAccounts() {
+    public LinkedList<BankAccountPO> downloadAllAccounts() {
         // TODO Auto-generated method stub
         return new LinkedList<BankAccountPO>();
     }
@@ -76,22 +79,22 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
         return new PaymentPO();
     }
 
-    public List<RevenuePO> updateRevenuePOs(String staffID) {
+    public LinkedList<RevenuePO> updateRevenuePOs(String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<RevenuePO>();
     }
 
-    public List<PaymentPO> updatePaymentPOs(String staffID) {
+    public LinkedList<PaymentPO> updatePaymentPOs(String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<PaymentPO>();
     }
 
-    public List<PaymentPO> downloadAllPaymentPOs() {
+    public LinkedList<PaymentPO> downloadAllPaymentPOs() {
         // TODO Auto-generated method stub
         return new LinkedList<PaymentPO>();
     }
 
-    public List<RevenuePO> downloadAllRevenuePOs() {
+    public LinkedList<RevenuePO> downloadAllRevenuePOs() {
         // TODO Auto-generated method stub
         return new LinkedList<RevenuePO>();
     }

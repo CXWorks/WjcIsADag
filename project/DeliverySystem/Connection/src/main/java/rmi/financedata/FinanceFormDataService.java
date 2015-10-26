@@ -5,6 +5,7 @@ import po.financedata.RevenuePO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,12 +21,12 @@ public interface FinanceFormDataService extends Remote{
 
     public PaymentPO getPaymentPO(String formID) throws RemoteException;
 
-    public List<RevenuePO> updateRevenuePOs(String staffID) throws RemoteException;
+    public LinkedList<RevenuePO> updateRevenuePOs(String staffID) throws RemoteException;
 
-    public List<PaymentPO> updatePaymentPOs(String staffID) throws RemoteException;
+    public LinkedList<PaymentPO> updatePaymentPOs(String staffID) throws RemoteException;
 
-    public List<PaymentPO> downloadAllPaymentPOs() throws RemoteException;
+    public LinkedList<PaymentPO> downloadAllPaymentPOs() throws RemoteException;
 
-    public List<RevenuePO> downloadAllRevenuePOs() throws RemoteException;
+    public LinkedList<RevenuePO> downloadAllRevenuePOs() throws RemoteException;
 
 }

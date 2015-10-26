@@ -7,10 +7,12 @@ import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import util.R;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +23,8 @@ import java.util.List;
 public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataService, StoreModelDataService {
 
     protected StoreDataImpl() throws RemoteException, MalformedURLException {
-        Naming.rebind("StoreDataService", this);
+        LocateRegistry.createRegistry(1099);
+        Naming.rebind(R.string.StoreDataService, this);
     }
 
     public static void main(String[] args) throws MalformedURLException, RemoteException {
@@ -38,22 +41,22 @@ public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataS
         return new StoreOutPO();
     }
 
-    public List<StoreInPO> updateStoreInPOs(String staffID) {
+    public LinkedList<StoreInPO> updateStoreInPOs(String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<StoreInPO>();
     }
 
-    public List<StoreInPO> downloadAllStoreInPOs(String centerID) {
+    public LinkedList<StoreInPO> downloadAllStoreInPOs(String centerID) {
         // TODO Auto-generated method stub
         return new LinkedList<StoreInPO>();
     }
 
-    public List<StoreOutPO> updateStoreOutPOs(String centerID) {
+    public LinkedList<StoreOutPO> updateStoreOutPOs(String centerID) {
         // TODO Auto-generated method stub
         return new LinkedList<StoreOutPO>();
     }
 
-    public List<StoreOutPO> downloadAllStoreOutPOs(String staffID) {
+    public LinkedList<StoreOutPO> downloadAllStoreOutPOs(String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<StoreOutPO>();
     }
@@ -64,7 +67,7 @@ public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataS
         return new OperationMessage();
     }
 
-    public List<StoreModelOperation> updateModelOperations(String centerID, String staffID) {
+    public LinkedList<StoreModelOperation> updateModelOperations(String centerID, String staffID) {
         // TODO Auto-generated method stub
         return new LinkedList<StoreModelOperation>();
     }

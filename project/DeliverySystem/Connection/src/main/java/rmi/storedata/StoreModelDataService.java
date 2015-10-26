@@ -6,6 +6,7 @@ import model.store.StoreModelOperation;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public interface StoreModelDataService extends Remote {
     public OperationMessage uploadModelOperations
             (String centerID, String staffID, List<StoreModelOperation> operations) throws RemoteException;
 
-    public List<StoreModelOperation> updateModelOperations
+    public LinkedList<StoreModelOperation> updateModelOperations
             (String centerID, String staffID) throws RemoteException;
 
     public StoreModel downloadStoreModel (String centerID) throws RemoteException;

@@ -5,9 +5,15 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
+import rmi.storedata.StoreFormDataService;
+import util.R;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,5 +59,20 @@ public class StoreInBLImpl implements StoreInBLService {
 
     public OperationMessage submit(StoreInVO form) {
         return new OperationMessage();
+    }
+
+    public static void drive(StoreFormDataService sfds) throws RemoteException {
+        if(sfds.downloadAllStoreInPOs("222333") != null)
+            System.out.println("downloadAllStoreInPOs tested");
+        if(sfds.getStoreInPO("222333") != null)
+            System.out.println("getStoreInPO tested");
+        if(sfds.updateStoreInPOs("222333") != null)
+            System.out.println("updateStoreInPOs tested");
+    }
+
+    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
+        StoreFormDataService sfds = (StoreFormDataService) Naming.lookup
+                ("rmi://" + R.string.LocalHost + "/" + R.string.StoreDataService);
+        drive(sfds);
     }
 }

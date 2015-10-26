@@ -6,6 +6,7 @@ import po.financedata.BankAccountPO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,11 +20,11 @@ public interface BankAccountDataService extends Remote {
 
     public BankAccountPO getBankAccount(String bankID) throws RemoteException;
 
-    public List<BankAccountOperation> updateAccountOperations(String staffID) throws RemoteException;
+    public LinkedList<BankAccountOperation> updateAccountOperations(String staffID) throws RemoteException;
 
     public OperationMessage uploadAccountOperations
             (String staffID, List<BankAccountOperation> operations) throws RemoteException;
 
-    public List<BankAccountPO> downloadAllAccounts() throws RemoteException;
+    public LinkedList<BankAccountPO> downloadAllAccounts() throws RemoteException;
 
 }

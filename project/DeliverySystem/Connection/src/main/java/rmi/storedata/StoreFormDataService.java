@@ -5,6 +5,7 @@ import po.storedata.StoreOutPO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,12 +17,12 @@ public interface StoreFormDataService extends Remote{
 
     public StoreOutPO getStoreOutPO(String id) throws RemoteException;
 
-    public List<StoreInPO> updateStoreInPOs(String staffID) throws RemoteException;
+    public LinkedList<StoreInPO> updateStoreInPOs(String staffID) throws RemoteException;
 
-    public List<StoreInPO> downloadAllStoreInPOs (String centerID) throws RemoteException;
+    public LinkedList<StoreInPO> downloadAllStoreInPOs (String centerID) throws RemoteException;
 
-    public List<StoreOutPO> updateStoreOutPOs (String centerID) throws RemoteException;
+    public LinkedList<StoreOutPO> updateStoreOutPOs (String centerID) throws RemoteException;
 
-    public List<StoreOutPO> downloadAllStoreOutPOs (String staffID) throws RemoteException;
+    public LinkedList<StoreOutPO> downloadAllStoreOutPOs (String staffID) throws RemoteException;
 
 }

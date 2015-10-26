@@ -3,8 +3,14 @@ package blImpl.financebl;
 import blService.financeblService.PaymentBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import rmi.financedata.FinanceFormDataService;
+import util.R;
 import vo.financevo.PaymentVO;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,5 +48,22 @@ public class PaymentBLImpl implements PaymentBLService {
 
     public OperationMessage submit(PaymentVO form) {
         return new OperationMessage();
+    }
+
+    public static void drive(FinanceFormDataService ffds) throws RemoteException {
+        if(ffds.downloadAllPaymentPOs() != null)
+            System.out.println("downloadAllPaymentPOs tested");
+        if(ffds.getNewPaymentID("222333") != null)
+            System.out.println("getNewPaymentID tested");
+        if(ffds.getPaymentPO("222333") != null)
+            System.out.println("getPaymentPO tested");
+        if(ffds.updatePaymentPOs("222333") != null)
+            System.out.println("updatePaymentPOs tested");
+    }
+
+    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
+        FinanceFormDataService ffds = (FinanceFormDataService) Naming.lookup
+                ("rmi://" + R.string.LocalHost + "/" + R.string.FinanceDataService);
+        drive(ffds);
     }
 }
