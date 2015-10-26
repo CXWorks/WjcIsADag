@@ -50,19 +50,13 @@ public interface AccountDataService extends Remote {
 	 */
 	public OperationMessage update(AccountPO po)throws RemoteException;
 	
-	/**
-	 * 检查账户名是否存在
-	 * @param accountID 需检查的账户名
-	 * @return 返回是否存在，是，返回true，否，返回false
-	 */
-	public Boolean checkID(String accountID)throws RemoteException;
 
 	/**
-	 * 检查账户名和密码是否匹配
+	 * 检查账户名是否存在以及和密码是否匹配
 	 * @param id 账户名    ；  password 密码
 	 * @return 返回是否匹配，是，返回true，否，返回false
 	 */
-	public Boolean checkAccount(String id , String password)throws RemoteException;
+	public OperationMessage checkAccount(String id , String password)throws RemoteException;
 	
 	/**
 	 * 返回一个新的账户名

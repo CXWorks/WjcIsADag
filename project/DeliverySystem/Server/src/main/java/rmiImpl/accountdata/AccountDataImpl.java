@@ -51,14 +51,9 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 		return new OperationMessage();
 	}
 
-	public Boolean checkID(String accountID) {
+	public OperationMessage checkAccount(String id, String password) {
 		// TODO Auto-generated method stub
-		return true;
-	}
-
-	public Boolean checkAccount(String id, String password) {
-		// TODO Auto-generated method stub
-		return true;
+		return new OperationMessage();
 	}
 
 	public String newAccountID() {

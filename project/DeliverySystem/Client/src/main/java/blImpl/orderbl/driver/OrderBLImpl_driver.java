@@ -27,6 +27,7 @@ public class OrderBLImpl_driver{
 			System.out.println(OrderDataService.getOrderPO(null) instanceof OrderPO);
 			System.out.println(OrderDataService.insert(new OrderPO()) instanceof OperationMessage);
 			System.out.println(OrderDataService.delete(null) instanceof OperationMessage);
+			System.out.println(OrderDataService.clear() instanceof OperationMessage);
 			System.out.println(OrderDataService.update(new OrderPO()) instanceof OperationMessage);
 			System.out.println(OrderDataService.newID() instanceof String);
 			

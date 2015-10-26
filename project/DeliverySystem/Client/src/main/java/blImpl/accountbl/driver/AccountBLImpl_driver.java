@@ -25,7 +25,7 @@ public class AccountBLImpl_driver {
 			System.out.println(AccountDataService.insert(new AccountPO()) instanceof OperationMessage);
 			System.out.println(AccountDataService.delete(null) instanceof OperationMessage);
 			System.out.println(AccountDataService.update(new AccountPO()) instanceof OperationMessage);
-			System.out.println(AccountDataService.checkAccount(null,null) instanceof Boolean);
+			System.out.println(AccountDataService.checkAccount(null,null) instanceof OperationMessage);
 			System.out.println(AccountDataService.newAccountID() instanceof String);
 			
 			
