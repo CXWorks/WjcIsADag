@@ -16,6 +16,4 @@ public interface PaymentBLService extends FormBLService<PaymentVO>{
 
     public List<PaymentVO> getPaymentVOs(String startDate, String endDate);
 
-
-
 }

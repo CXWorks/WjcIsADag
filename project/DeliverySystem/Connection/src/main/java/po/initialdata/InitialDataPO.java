@@ -7,12 +7,13 @@ import po.companydata.HallPO;
 import po.financedata.BankAccountPO;
 import po.memberdata.StaffPO;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Sissel on 2015/10/26.
  */
-public class InitialDataPO {
+public class InitialDataPO implements Serializable{
     String version;
     String dbName;
 
