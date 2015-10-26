@@ -9,4 +9,15 @@ public class SalaryStrategyVO {
 	private int base;
 	private int commission;
 	private int bonus;
+	public int getBase() {
+		return base;
+	}
+	public int getCommission() {
+		return commission;
+	}
+	public int getBonus() {
+		return bonus;
+	}
+	
+	
 }
