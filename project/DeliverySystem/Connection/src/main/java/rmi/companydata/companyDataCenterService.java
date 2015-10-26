@@ -10,7 +10,7 @@ import po.companydata.*;
  * @author cxworks
  *2015/10/24
  */
-public interface companyDataCenterService extends Remote{
+public interface CompanyDataCenterService extends Remote{
 	/**
 	 * 
 	 * @return
@@ -26,7 +26,7 @@ public interface companyDataCenterService extends Remote{
 	 * @param center
 	 * @return
 	 */
-	public OperationMessage addHall(CenterPO center) throws RemoteException;
+	public OperationMessage addCenter(CenterPO center) throws RemoteException;
 	/**
 	 * 
 	 * @param center

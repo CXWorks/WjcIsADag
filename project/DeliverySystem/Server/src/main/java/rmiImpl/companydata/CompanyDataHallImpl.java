@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.HallPO;
-import rmi.companydata.companyDataHallService;
+import rmi.companydata.CompanyDataHallService;
 
-public class CompanyDataHallImpl extends UnicastRemoteObject implements companyDataHallService {
+public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyDataHallService {
 	private static final long serialVersionUID = 1L;
 	public CompanyDataHallImpl() throws RemoteException{
 		super();

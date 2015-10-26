@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
-import rmi.memberdata.memberDataService;
+import rmi.memberdata.MemberDataService;
 
-public class MemberDataImpl extends UnicastRemoteObject implements memberDataService {
+public class MemberDataImpl extends UnicastRemoteObject implements MemberDataService {
 	private static final long serialVersionUID = 1L;
 	public MemberDataImpl() throws RemoteException{
 		super();

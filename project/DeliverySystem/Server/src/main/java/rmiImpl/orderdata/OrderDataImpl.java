@@ -6,7 +6,7 @@ import message.OperationMessage;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
-import rmi.memberdata.memberDataService;
+import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 
 /**

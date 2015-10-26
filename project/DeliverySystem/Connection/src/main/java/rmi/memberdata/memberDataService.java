@@ -12,7 +12,7 @@ import po.memberdata.StaffTypeEnum;
  * @author cxworks
  * 2015/10/24
  */
-	public interface memberDataService extends Remote{
+	public interface MemberDataService extends Remote{
 	/**
 	 * 获取所有员工信息
 	 * @param staffTypeEnum 员工类型

@@ -24,6 +24,7 @@ public class ExamineblManageImpl_driver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
+			//创建的是data层的接口
 			ExamineManageService examineManageService=(ExamineManageService)Naming.lookup("rmi://localhost:2333/examineManageService");
 			System.out.println(examineManageService.getForms() instanceof ArrayList<?>);
 			System.out.println(examineManageService.modifyForm(new FormPO()) instanceof OperationMessage);

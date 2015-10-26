@@ -10,7 +10,7 @@ import po.companydata.HallPO;
  * @author cxworks
  *2015/10/24
  */
-public interface companyDataHallService extends Remote{
+public interface CompanyDataHallService extends Remote{
 	/**
 	 * 获取营业厅
 	 * @return

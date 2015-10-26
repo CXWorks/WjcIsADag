@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
-import rmi.companydata.companyDataCenterService;
+import rmi.companydata.CompanyDataCenterService;
 
-public class CompanyDataCenterImpl extends UnicastRemoteObject implements companyDataCenterService {
+public class CompanyDataCenterImpl extends UnicastRemoteObject implements CompanyDataCenterService {
 	private static final long serialVersionUID = 1L;
 	public CompanyDataCenterImpl() throws RemoteException{
 		super();
@@ -26,7 +26,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements compan
 		return "1111111";
 	}
 
-	public OperationMessage addHall(CenterPO center) {
+	public OperationMessage addCenter(CenterPO center) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
