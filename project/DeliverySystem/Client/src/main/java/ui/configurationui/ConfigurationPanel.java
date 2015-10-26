@@ -82,7 +82,7 @@ public class ConfigurationPanel extends MyPanel implements ActionListener{
 		}else if(e.getActionCommand()=="search_pack"){
 			this.removeAll();
 			cbls.getPack();
-			//在这里把收到的信息表现出来
+			
 			this.repaint();
 		}
 	}

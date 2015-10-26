@@ -7,6 +7,7 @@ import blService.manageblService.ManageblCenterService;
 import blService.manageblService.ManageblHallService;
 import blService.manageblService.ManageblStaffService;
 import blService.storeblService.StoreModelBLService;
+import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreModel;
@@ -17,6 +18,7 @@ import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.staff.StaffVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,130 +37,163 @@ public class InitializationBLImpl implements InitializationBLService {
     ManageblHallService hallService;
 
     public List<BankAccountVO> getAllAccounts() {
-        return null;
+    	List<BankAccountVO> result =new ArrayList<BankAccountVO>();
+    	BankAccountVO stub=new BankAccountVO();
+		result.add(stub);
+		return result;
     }
 
     public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
-        return null;
+    	List<BankAccountVO> result =new ArrayList<BankAccountVO>();
+    	BankAccountVO stub=new BankAccountVO();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteAccount(BankAccountVO avo) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage editAccount(BankAccountVO avo, String newName) {
-        return null;
+        return new OperationMessage();
     }
 
     public List<StoreModel> getAllStoreModels() {
-        return null;
+    	List<StoreModel> result =new ArrayList<StoreModel>();
+    	StoreModel stub=new StoreModel();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage selectStoreModel(StoreModel model) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage reducePartition(StoreAreaCode area, int number) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage expandPartition(StoreAreaCode area, int number) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteRow(StoreAreaCode area, int rowNum, boolean confirmed) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage addRow(StoreAreaCode area, int initCapacity) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage adjustRow(StoreAreaCode area, int rowNum, int newCapacity, boolean confirmed) {
-        return null;
+        return new OperationMessage();
     }
 
     public List<CarVO> getAllCars() {
-        return null;
+    	List<CarVO> result =new ArrayList<CarVO>();
+    	CarVO stub=new CarVO();
+		result.add(stub);
+		return result;
     }
 
     public List<CarVO> filterCarsByHall(String hallID) {
-        return null;
+    	List<CarVO> result =new ArrayList<CarVO>();
+    	CarVO stub=new CarVO();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage addCar(CarVO car) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage modifyCar(CarVO car) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteCar(CarVO car) {
-        return null;
+        return new OperationMessage();
     }
 
     public List<StaffVO> getAllStaffs() {
-        return null;
+    	List<StaffVO> result =new ArrayList<StaffVO>();
+    	StaffVO stub=new StaffVO();
+		result.add(stub);
+		return result;
     }
 
     public List<StaffVO> filterStaffsByHall(String hallID) {
-        return null;
+    	List<StaffVO> result =new ArrayList<StaffVO>();
+    	StaffVO stub=new StaffVO();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage modifyStaff(StaffVO after) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage addStaff(StaffVO staff) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteStaff(StaffVO staff) {
-        return null;
+        return new OperationMessage();
     }
 
     public List<CenterVO> getAllCenters() {
-        return null;
+    	List<CenterVO> result =new ArrayList<CenterVO>();
+    	CenterVO stub=new CenterVO();
+		result.add(stub);
+		return result;
     }
 
     public List<CenterVO> filterCentersByNumber(String number) {
-        return null;
+    	List<CenterVO> result =new ArrayList<CenterVO>();
+    	CenterVO stub=new CenterVO();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage addCenter(CenterVO center) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteCenter(CenterVO center) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage modifyCenter(CenterVO center) {
-        return null;
+        return new OperationMessage();
     }
 
     public List<HallVO> getAllHalls() {
-        return null;
+    	List<HallVO> result =new ArrayList<HallVO>();
+    	HallVO stub=new HallVO();
+		result.add(stub);
+		return result;
     }
 
     public List<HallVO> filterHallsByNumber(String number) {
-        return null;
+    	List<HallVO> result =new ArrayList<HallVO>();
+    	HallVO stub=new HallVO();
+		result.add(stub);
+		return result;
     }
 
     public OperationMessage addHall(HallVO center) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage deleteHall(HallVO center) {
-        return null;
+        return new OperationMessage();
     }
 
     public OperationMessage modifyHall(HallVO center) {
-        return null;
+        return new OperationMessage();
     }
 }
