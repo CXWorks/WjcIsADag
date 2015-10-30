@@ -1,7 +1,7 @@
 package ui.storeui;
 
-import blImpl.storebl.*;
-import blService.storeblService.*;
+import bl.blImpl.storebl.*;
+import bl.blService.storeblService.*;
 import model.store.StoreAreaCode;
 
 /**

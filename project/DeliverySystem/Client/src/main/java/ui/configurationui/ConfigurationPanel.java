@@ -14,8 +14,8 @@ import javax.swing.JButton;
 
 import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
-import blImpl.configurationbl.ConfigurationblImpl;
-import blService.configurationblService.ConfigurationblService;
+import bl.blImpl.configurationbl.ConfigurationblImpl;
+import bl.blService.configurationblService.ConfigurationblService;
 import ui.selfdefined.MyButton;
 import ui.selfdefined.MyPanel;
 import vo.configurationvo.CityDistanceVO;
