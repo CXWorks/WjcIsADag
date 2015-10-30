@@ -25,6 +25,6 @@ public interface SearchBLService {
 	 * @param orderID 订单号
 	 * @return 返回整理之后的物流信息
 	 */
-	public LogisticsVO  integrate (String orderID);
+	public LogisticsVO  searchOrder (String orderID);
 
 }
