@@ -23,14 +23,13 @@ public class DeliverblImpl_driver {
 		
 		try{
 			DeliverDataService DeliverDataService=(DeliverDataService)Naming.lookup("rmi://localhost:2333/DeliverDataService");
-			System.out.println(DeliverDataService.getDeliverPO(null) instanceof DeliverPO);
+			System.out.println(DeliverDataService.getFormPO(null) instanceof DeliverPO);
 			System.out.println(DeliverDataService.insert(new DeliverPO()) instanceof OperationMessage);
 			System.out.println(DeliverDataService.delete(null) instanceof OperationMessage);
 			System.out.println(DeliverDataService.update(new DeliverPO()) instanceof OperationMessage);
 			System.out.println(DeliverDataService.newID() instanceof String);
-			System.out.println(DeliverDataService.init(null) instanceof OperationMessage);
 			System.out.println(DeliverDataService.clear() instanceof OperationMessage);
-			System.out.println(DeliverDataService.show() instanceof ArrayList<?>);
+			System.out.println(DeliverDataService.getAll() instanceof ArrayList<?>);
 			
 			
 		}catch (MalformedURLException e) {

@@ -11,6 +11,10 @@ import po.companydata.HallPO;
  *2015/10/24
  */
 public interface CompanyDataHallService extends Remote{
+	
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "CompanyDataHall";
+	
 	/**
 	 * 获取营业厅
 	 * @return

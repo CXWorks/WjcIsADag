@@ -15,6 +15,9 @@ import message.OperationMessage;
 
 public interface chatRemindService extends Remote{
 
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "ChatRemind";
+	
 	/**
 	 * 检查数据接口是否存在未读的系统通知
 	 * @param ID 员工的ID

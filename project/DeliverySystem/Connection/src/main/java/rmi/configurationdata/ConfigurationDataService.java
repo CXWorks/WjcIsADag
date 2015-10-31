@@ -12,6 +12,9 @@ import po.configurationdata.*;
  */
 public interface ConfigurationDataService extends Remote{
 	
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "ConfigurationData";
+	
 	public ArrayList<CityDistancePO> getCityDistance() throws RemoteException;
 	
 	public OperationMessage modifyCityDistance(CityDistancePO after) throws RemoteException;

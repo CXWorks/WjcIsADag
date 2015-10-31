@@ -11,6 +11,9 @@ import java.rmi.RemoteException;
  */
 public interface InitialDataService extends Remote {
 
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "InitialData";
+	
     public InitialDataPO getInitialDataPO(String version) throws RemoteException;
 
     /**

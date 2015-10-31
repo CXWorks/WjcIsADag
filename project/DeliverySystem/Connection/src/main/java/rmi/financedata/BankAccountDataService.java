@@ -14,6 +14,9 @@ import java.util.List;
  */
 public interface BankAccountDataService extends Remote {
 
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "BankAccountData";
+	
     public String getNewBankID() throws RemoteException;
 
     public OperationMessage checkIsNameUsed(String name) throws RemoteException;

@@ -22,14 +22,13 @@ public class ReceiveblImpl_driver {
 	public static void main(String [] args){
 		try{
 			ReceiveDataService ReceiveDataService=(ReceiveDataService)Naming.lookup("rmi://localhost:2333/ReceiveDataService");
-			System.out.println(ReceiveDataService.getReceivePO(null) instanceof ReceivePO);
+			System.out.println(ReceiveDataService.getFormPO(null) instanceof ReceivePO);
 			System.out.println(ReceiveDataService.insert(new ReceivePO()) instanceof OperationMessage);
 			System.out.println(ReceiveDataService.delete(null) instanceof OperationMessage);
 			System.out.println(ReceiveDataService.update(new ReceivePO()) instanceof OperationMessage);
 			System.out.println(ReceiveDataService.newID() instanceof String);
-			System.out.println(ReceiveDataService.init(null) instanceof OperationMessage);
 			System.out.println(ReceiveDataService.clear() instanceof OperationMessage);
-			System.out.println(ReceiveDataService.show() instanceof ArrayList<?>);
+			System.out.println(ReceiveDataService.getAll() instanceof ArrayList<?>);
 			
 			
 		}catch (MalformedURLException e) {

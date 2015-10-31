@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.orderdata.OrderPO;
@@ -20,12 +21,13 @@ public class TransportBLImpl_driver {
 		
 		try{
 			TransportDataService TransportDataService=(TransportDataService)Naming.lookup("rmi://localhost:2333/TransportDataService");
-			System.out.println(TransportDataService.getTransportPO(null) instanceof TransportPO);
+			System.out.println(TransportDataService.getFormPO(null) instanceof TransportPO);
 			System.out.println(TransportDataService.insert(new LoadPO()) instanceof OperationMessage);
 			System.out.println(TransportDataService.delete(null) instanceof OperationMessage);
 			System.out.println(TransportDataService.update(new LoadPO()) instanceof OperationMessage);
 			System.out.println(TransportDataService.clear() instanceof OperationMessage);
 			System.out.println(TransportDataService.newID() instanceof String);
+			System.out.println(TransportDataService.getAll() instanceof ArrayList<?>);
 			
 			
 		}catch (MalformedURLException e) {

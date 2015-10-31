@@ -8,6 +8,9 @@ import po.FormPO;
 
 public interface ExamineManageService extends Remote{
 	
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "ExamineManage";
+	
 	public ArrayList<FormPO> getForms() throws RemoteException;
 	
 	public OperationMessage modifyForm(FormPO form) throws RemoteException;

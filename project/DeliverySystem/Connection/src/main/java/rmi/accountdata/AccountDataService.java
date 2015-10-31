@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
+
 import message.OperationMessage;
 import po.accountdata.AccountPO;
 
@@ -15,6 +16,10 @@ import po.accountdata.AccountPO;
  */
 
 public interface AccountDataService extends Remote {
+	
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "AccountData";
+	
 	/**
 	 * 按照账户名查找到账户信息
 	 * @param accountID 账户名
@@ -59,11 +64,8 @@ public interface AccountDataService extends Remote {
 	public OperationMessage checkAccount(String id , String password)throws RemoteException;
 	
 	/**
-	 * 返回一个新的账户名
-	 * @return 返回操作结果
+	 * 获得新的编号
+	 * @return 返回新编号
 	 */
-	public String newAccountID()throws RemoteException;
-	
-	
-	
+	public String newAccountID();
 }

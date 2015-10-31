@@ -24,7 +24,7 @@ public class OrderBLImpl_driver{
 		
 		try{
 			OrderDataService OrderDataService=(OrderDataService)Naming.lookup("rmi://localhost:2333/OrderDataService");
-			System.out.println(OrderDataService.getOrderPO(null) instanceof OrderPO);
+			System.out.println(OrderDataService.getFormPO(null) instanceof OrderPO);
 			System.out.println(OrderDataService.insert(new OrderPO()) instanceof OperationMessage);
 			System.out.println(OrderDataService.delete(null) instanceof OperationMessage);
 			System.out.println(OrderDataService.clear() instanceof OperationMessage);

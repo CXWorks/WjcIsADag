@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface FinanceFormDataService extends Remote{
 
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "FinanceFormData";
+	
     public String getNewRevenueID(String date, String hallID) throws RemoteException;
 
     public String getNewPaymentID(String date) throws RemoteException;

@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface StoreFormDataService extends Remote{
 
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "StoreFormData";
+	
     public StoreInPO getStoreInPO (String id) throws RemoteException;
 
     public StoreOutPO getStoreOutPO(String id) throws RemoteException;
