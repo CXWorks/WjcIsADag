@@ -37,11 +37,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return new OperationMessage();
 	}
 
-	public OperationMessage init(String id) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
-	}
-
 	public String newID() {
 		// TODO Auto-generated method stub
 		return "1000101";
