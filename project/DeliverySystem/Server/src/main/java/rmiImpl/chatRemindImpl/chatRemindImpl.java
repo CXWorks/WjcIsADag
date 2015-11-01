@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import message.ChatMessage;
 import message.OperationMessage;
-import rmi.chatRemindService.chatRemindService;
+import rmi.chatRemindService.ChatRemindService;
 
 /**
  * 
@@ -14,9 +14,9 @@ import rmi.chatRemindService.chatRemindService;
  *2015/10/24
  */
 
-public class chatRemindImpl extends UnicastRemoteObject implements chatRemindService {
+public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindService {
 
-	protected chatRemindImpl() throws RemoteException {
+	public ChatRemindImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

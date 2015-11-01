@@ -13,7 +13,7 @@ import message.OperationMessage;
  *2015/10/24
  */
 
-public interface chatRemindService extends Remote{
+public interface ChatRemindService extends Remote{
 
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "ChatRemind";
