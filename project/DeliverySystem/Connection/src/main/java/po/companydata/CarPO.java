@@ -5,7 +5,9 @@ import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
-public class CarPO implements Serializable{
+import po.CommonPO;
+
+public class CarPO extends CommonPO implements Serializable{
 	private boolean free;
 	private int carID;
 	private Calendar useTime;

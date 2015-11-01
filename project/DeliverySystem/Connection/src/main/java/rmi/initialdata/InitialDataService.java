@@ -2,6 +2,7 @@ package rmi.initialdata;
 
 import message.OperationMessage;
 import po.initialdata.InitialDataPO;
+import rmi.DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -9,7 +10,7 @@ import java.rmi.RemoteException;
 /**
  * Created by Sissel on 2015/10/26.
  */
-public interface InitialDataService extends Remote {
+public interface InitialDataService extends DataService<InitialDataPO> {
 
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "InitialData";

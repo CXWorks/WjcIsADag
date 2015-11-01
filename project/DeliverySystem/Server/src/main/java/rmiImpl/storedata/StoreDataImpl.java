@@ -22,7 +22,10 @@ import java.util.List;
  */
 public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataService, StoreModelDataService {
 
-    protected StoreDataImpl() throws RemoteException, MalformedURLException {
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "StoreData";
+	
+    public StoreDataImpl() throws RemoteException, MalformedURLException {
         LocateRegistry.createRegistry(1099);
         Naming.rebind(R.string.StoreDataService, this);
     }

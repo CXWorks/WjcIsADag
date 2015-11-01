@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import po.CommonPO;
 import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.PackEnum;
 
-public class PackPO implements Serializable{
+public class PackPO extends CommonPO implements Serializable{
 	private ConfigurationEnum ID;
 	private Map<PackEnum,Double> packPrice;
 	

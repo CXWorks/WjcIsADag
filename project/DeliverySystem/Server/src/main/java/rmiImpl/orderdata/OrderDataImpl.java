@@ -10,6 +10,7 @@ import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
 import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
+import rmiImpl.CommonData;
 
 /**
  * 
@@ -17,41 +18,48 @@ import rmi.orderdata.OrderDataService;
  *2015/10/25
  */
 
-public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService {
+public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataService {
 
 	public OrderDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderPO getOrderPO(String id) {
-		// TODO Auto-generated method stub
-		return new OrderPO();
-	}
-
-	public OperationMessage insert(OrderPO po) {
+	public OperationMessage insert(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public OperationMessage delete(String id) {
+	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public OperationMessage update(OrderPO po) {
+	public OperationMessage update(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public OperationMessage clear() {
+	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public String newID() {
+	public String newID() throws RemoteException {
 		// TODO Auto-generated method stub
 		return "1010101010";
+	}
+
+	@Override
+	public OrderPO getFormPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<OrderPO> getAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

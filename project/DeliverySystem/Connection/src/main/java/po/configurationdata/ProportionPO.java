@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import po.CommonPO;
 import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.DeliveryTypeEnum;
 
-public class ProportionPO implements Serializable{
+public class ProportionPO extends CommonPO implements Serializable{
 	private ConfigurationEnum ID;
 	private Map<DeliveryTypeEnum,Integer> proportion;
 	public ProportionPO(){

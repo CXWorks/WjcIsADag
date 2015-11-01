@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import po.receivedata.ReceivePO;
 import rmi.receivedata.ReceiveDataService;
+import rmiImpl.CommonData;
 
 /**
  * 
@@ -14,7 +15,7 @@ import rmi.receivedata.ReceiveDataService;
  *2015/10/24
  */
 
-public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataService {
+public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDataService {
 
 	public ReceiveDataImpl() throws RemoteException {
 		super();
@@ -24,11 +25,6 @@ public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataS
 	public OperationMessage insert(ReceivePO po) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
-	}
-
-	public ReceivePO getReceivePO(String id) {
-		// TODO Auto-generated method stub
-		return new ReceivePO();
 	}
 
 	public OperationMessage delete(String id) {
@@ -56,12 +52,16 @@ public class ReceiveDataImpl extends UnicastRemoteObject implements ReceiveDataS
 		return new OperationMessage();
 	}
 
-	public ArrayList<ReceivePO> show() {
+	@Override
+	public ReceivePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<ReceivePO> result =new ArrayList<ReceivePO>();
-		ReceivePO stub=new ReceivePO();
-		result.add(stub);
-		return result;
+		return null;
+	}
+
+	@Override
+	public ArrayList<ReceivePO> getAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

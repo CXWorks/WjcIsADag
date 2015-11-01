@@ -12,7 +12,7 @@ import po.receivedata.ReceivePO;
  * @author wjc
  * @version 2014.10.31
  */
-public interface CommonDataService<PO extends FormPO> extends Remote{
+public interface CommonDataService<PO extends FormPO> extends DataService<PO>{
 	/**
 	 * 插入新的信息
 	 * @param po 新的信息

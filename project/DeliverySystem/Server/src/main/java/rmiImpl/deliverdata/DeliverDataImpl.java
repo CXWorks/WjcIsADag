@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import po.deliverdata.DeliverPO;
 import rmi.deliverdata.DeliverDataService;
+import rmiImpl.CommonData;
 
 /**
  * 
@@ -14,7 +15,7 @@ import rmi.deliverdata.DeliverDataService;
  *2015/10/24
  */
 
-public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataService {
+public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDataService {
 
 	public DeliverDataImpl() throws RemoteException {
 		super();
@@ -24,14 +25,6 @@ public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataS
 	public OperationMessage insert(DeliverPO po) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
-	}
-
-	/* (non-Javadoc)
-	 * @see rmi.deliverdata.DeliverDataService#getDeliverPO(java.lang.String)
-	 */
-	public DeliverPO getDeliverPO(String id) {
-		// TODO Auto-generated method stub
-		return new DeliverPO();
 	}
 
 	public OperationMessage delete(String id) {
@@ -59,11 +52,15 @@ public class DeliverDataImpl extends UnicastRemoteObject implements DeliverDataS
 		return new OperationMessage();
 	}
 
-	public ArrayList<DeliverPO> show() {
+	@Override
+	public DeliverPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<DeliverPO> result =new ArrayList<DeliverPO>();
-		DeliverPO stub=new DeliverPO();
-		result.add(stub);
-		return result;
+		return null;
+	}
+
+	@Override
+	public ArrayList<DeliverPO> getAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

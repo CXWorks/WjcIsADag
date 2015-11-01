@@ -2,7 +2,9 @@ package po.memberdata;
 
 import java.io.Serializable;
 
-public class StaffPO implements Serializable{
+import po.CommonPO;
+
+public class StaffPO extends CommonPO implements Serializable{
 	private StaffTypeEnum staff;
 	private String ID;
 	private String name;

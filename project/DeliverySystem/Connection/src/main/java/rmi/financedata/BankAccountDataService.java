@@ -2,7 +2,9 @@ package rmi.financedata;
 
 import message.OperationMessage;
 import model.bankAccount.BankAccountOperation;
+import po.CommonPO;
 import po.financedata.BankAccountPO;
+import rmi.DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -12,10 +14,7 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/23.
  */
-public interface BankAccountDataService extends Remote {
-
-	/** 接口的名称，RMI绑定时候的名称 */
-	public static final String NAME = "BankAccountData";
+public interface BankAccountDataService extends DataService<CommonPO>{
 	
     public String getNewBankID() throws RemoteException;
 

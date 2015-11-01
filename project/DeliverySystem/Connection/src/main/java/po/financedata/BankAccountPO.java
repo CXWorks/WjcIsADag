@@ -2,10 +2,12 @@ package po.financedata;
 
 import java.io.Serializable;
 
+import po.CommonPO;
+
 /**
  * Created by Sissel on 2015/10/23.
  */
-public class BankAccountPO implements Serializable {
+public class BankAccountPO extends CommonPO implements Serializable {
     private String bankID;
     private String accountName;
     private String balance;

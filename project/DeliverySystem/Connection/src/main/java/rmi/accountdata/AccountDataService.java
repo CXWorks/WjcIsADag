@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 
 
+
 import message.OperationMessage;
 import po.accountdata.AccountPO;
+import rmi.DataService;
 
 /**
  * 
@@ -15,7 +17,7 @@ import po.accountdata.AccountPO;
  *2015/10/25
  */
 
-public interface AccountDataService extends Remote {
+public interface AccountDataService extends DataService<AccountPO> {
 	
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "AccountData";

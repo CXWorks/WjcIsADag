@@ -9,13 +9,13 @@ import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
 
+import po.CommonPO;
+import rmi.DataService;
+
 /**
  * Created by Sissel on 2015/10/23.
  */
-public interface StoreModelDataService extends Remote {
-	
-	/** 接口的名称，RMI绑定时候的名称 */
-	public static final String NAME = "StoreModelData";
+public interface StoreModelDataService extends DataService<CommonPO> {
 	
     public OperationMessage uploadModelOperations
             (String centerID, String staffID, List<StoreModelOperation> operations) throws RemoteException;

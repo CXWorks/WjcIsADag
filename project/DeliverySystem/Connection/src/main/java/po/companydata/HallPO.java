@@ -2,9 +2,10 @@ package po.companydata;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import po.CommonPO;
 import po.memberdata.StaffPO;
 
-public class HallPO implements Serializable{
+public class HallPO extends CommonPO implements Serializable{
 	private String hallID;
 	private String city;
 	private String area;

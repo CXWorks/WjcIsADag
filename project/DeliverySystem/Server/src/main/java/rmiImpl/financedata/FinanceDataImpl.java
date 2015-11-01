@@ -19,7 +19,10 @@ import java.util.List;
 
 public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountDataService, FinanceFormDataService{
 
-    protected FinanceDataImpl() throws RemoteException, MalformedURLException {
+	/** 接口的名称，RMI绑定时候的名称 */
+	public static final String NAME = "FinanceData";
+	
+    public FinanceDataImpl() throws RemoteException, MalformedURLException {
         Naming.rebind(R.string.FinanceDataService, this);
     }
 

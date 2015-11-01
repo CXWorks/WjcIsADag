@@ -4,13 +4,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.CommonPO;
 import po.configurationdata.*;
+import rmi.DataService;
 /**
  * 
  * @author cxworks
  *2015/10/25
  */
-public interface ConfigurationDataService extends Remote{
+public interface ConfigurationDataService extends DataService<CommonPO>{
 	
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "ConfigurationData";

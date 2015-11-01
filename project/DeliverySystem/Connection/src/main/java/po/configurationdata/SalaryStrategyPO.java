@@ -2,10 +2,11 @@ package po.configurationdata;
 
 import java.io.Serializable;
 
+import po.CommonPO;
 import po.configurationdata.enums.ConfigurationEnum;
 import po.memberdata.StaffTypeEnum;
 
-public class SalaryStrategyPO implements Serializable{
+public class SalaryStrategyPO extends CommonPO implements Serializable{
 	private ConfigurationEnum ID;
 	private StaffTypeEnum staff;
 	private int base;
