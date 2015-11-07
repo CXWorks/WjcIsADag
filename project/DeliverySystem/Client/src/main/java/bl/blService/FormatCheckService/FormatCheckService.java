@@ -33,7 +33,7 @@ public interface FormatCheckService{
 	public  CheckFormMessage checkPreDate(String data);
 	
 	/**
-	 * 检查位置
+	 * 查重
 	 * @param from 出发地,to 到达地
 	 * @return 返回检查结果
 	 */
