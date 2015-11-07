@@ -1,0 +1,19 @@
+1. orderPO加上放各种单据的id的list
+2. transportBL加上newID，getOrders
+3. 单号不允许修改，提交即生成，经理
+4. 装车单BL加入获取location（城市各区）列表的方法，可用车辆代号的列表
+5. 装车单DATA加入返回可用车辆代号的列表
+6. passHelper要分成各个子类，负责各种单据处理之后的任务
+7. BL和DATA中要加个逻辑检查的环节
+8. 占用车辆是提交的时候（不管经理审批通不通过）都在服务端占用
+9. 填单界面里，显示单号但是不能改
+10.派件单左边两个列表合成一个
+11.orderPO里面要加上派送营业厅的编号（orderVO不加）
+12.orderPO的地址要拆开几个，填order的界面也要改变（市和区要下拉框），BL
+13.deliverData要加返回可派送订单的方法
+14.stocktackBLService里面删掉filtlocation
+15.分区的BL修改（wjr
+16.智能提示（账户名）
+17.查看收款单BL那里加合计
+18.查看经营情况BL那里加总收入，总支出，净利润
+19.ManageBLStaffService，getStaff加参数；
