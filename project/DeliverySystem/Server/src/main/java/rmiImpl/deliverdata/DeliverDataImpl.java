@@ -47,13 +47,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return new OperationMessage();
 	}
 
-	@Override
 	public DeliverPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public ArrayList<DeliverPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

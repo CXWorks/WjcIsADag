@@ -44,13 +44,11 @@ public class TransportDataImpl extends CommonData<TransportPO> implements Transp
 		return "025000201510250000001";
 	}
 
-	@Override
 	public TransportPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<TransportPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

@@ -50,13 +50,11 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		return "1010101010";
 	}
 
-	@Override
 	public OrderPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<OrderPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

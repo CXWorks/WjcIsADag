@@ -47,13 +47,11 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 		return new OperationMessage();
 	}
 
-	@Override
 	public ReceivePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
