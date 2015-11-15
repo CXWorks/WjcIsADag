@@ -16,6 +16,11 @@ import rmi.chatRemindService.ChatRemindService;
 
 public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ChatRemindImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
