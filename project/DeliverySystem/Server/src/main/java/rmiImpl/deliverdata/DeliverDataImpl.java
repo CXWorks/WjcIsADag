@@ -57,4 +57,10 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<DeliverPO> available(String HallID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

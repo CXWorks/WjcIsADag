@@ -28,4 +28,6 @@ public interface CompanyDataCarService extends DataService<CarPO>{
 	public OperationMessage deleteCar(CarPO car) throws RemoteException;
 	
 	public OperationMessage modifyCar(CarPO car) throws RemoteException;
+	
+	public ArrayList<CarPO> availableCar() throws RemoteException;
 }

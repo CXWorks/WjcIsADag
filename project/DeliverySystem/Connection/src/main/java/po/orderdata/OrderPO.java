@@ -1,6 +1,7 @@
 package po.orderdata;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import po.FormPO;
 
@@ -22,4 +23,7 @@ public class OrderPO extends FormPO implements Serializable{
   private String volume;
   private String money;
   private TypeEnum type;
+  
+  private ArrayList<String> FormIDs;
+  private String targetHallID;;
 }
