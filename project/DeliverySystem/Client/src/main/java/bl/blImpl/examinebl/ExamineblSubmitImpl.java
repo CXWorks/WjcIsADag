@@ -10,7 +10,7 @@ import bl.blService.examineblService.ExamineblSubmitService;
  * @date 2015年10月26日 上午8:28:03
  * @version 1.0 
  */
-public class ExamineblSubmitImpl implements ExamineblSubmitService {
+public class ExamineBLSubmitImpl implements ExamineblSubmitService {
 
 	/* (non-Javadoc)
 	 * @see blService.examineblService.ExamineblSubmitService#submit(vo.FormVO)

@@ -12,7 +12,7 @@ import bl.blService.examineblService.ExamineblManageService;
  * @date 2015年10月26日 上午8:29:04
  * @version 1.0 
  */
-public class ExamineblManageImpl implements ExamineblManageService {
+public class ExamineBLManageImpl implements ExamineblManageService {
 
 	/* (non-Javadoc)
 	 * @see blService.examineblService.ExamineblManageService#getForms()

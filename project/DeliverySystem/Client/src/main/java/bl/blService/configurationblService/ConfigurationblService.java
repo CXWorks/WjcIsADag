@@ -2,31 +2,27 @@ package bl.blService.configurationblService;
 
 import java.util.ArrayList;
 
-import po.configurationdata.PackPO;
-import po.configurationdata.PricePO;
 import message.OperationMessage;
-import vo.configurationvo.*;
+import po.configurationdata.enums.ConfigurationEnum;
+import vo.configurationvo.ConfigurationVO;
 
-public interface ConfigurationblService {
-	
-	public ArrayList<CityDistanceVO> getCityDistance();
-	
-	public OperationMessage	modifyCityDistance(CityDistanceVO after);
-	
-	public ArrayList<SalaryStrategyVO> getSalaryStrategy();
-	
-	public OperationMessage modifySalaryStrategy(ArrayList<SalaryStrategyVO> after);
-	
-	public PackVO getPack();
-	
-	public OperationMessage modifyPack(PackVO after);
-	
-	public PriceVO getPrice();
-	
-	public OperationMessage modifyPrice(PriceVO after);
-	
-	public ProportionVO getProportion();
-	
-	public OperationMessage modifyProportion(ProportionVO after);
-	
+/** 
+ * Client//bl.blService.configurationblService//ConfigurationBLServicet.java
+ * @author CXWorks
+ * @date 2015年11月15日 下午4:21:53
+ * @version 1.0 
+ */
+public interface ConfigurationBLService {
+	/**
+	 * 获取信息
+	 * @param type
+	 * @return
+	 */
+	public ArrayList<ConfigurationVO> get(ConfigurationEnum type);
+	/**
+	 * 修改信息
+	 * @param after
+	 * @return
+	 */
+	public OperationMessage modify(ConfigurationVO after);
 }
