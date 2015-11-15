@@ -66,4 +66,12 @@ public class PaymentBLImpl implements PaymentBLService {
                 ("rmi://" + R.string.LocalHost + "/" + R.string.FinanceDataService);
         drive(ffds);
     }
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

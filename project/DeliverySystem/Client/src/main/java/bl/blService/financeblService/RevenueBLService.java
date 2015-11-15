@@ -23,5 +23,7 @@ public interface RevenueBLService extends FormBLService<RevenueVO> {
     public RevenueVO getRevenueVO(String date, String hallID);
 
     public List<RevenueVO> getRevenueVOs(String startDate, String endDate);
+    
+    public double sum(String revenueID);
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
  * Created by Sissel on 2015/10/25.
  */
 public interface FormBLService<T extends FormVO> {
+	public String newID();
 
     public T loadDraft();
 

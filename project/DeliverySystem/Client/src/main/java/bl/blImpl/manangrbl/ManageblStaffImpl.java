@@ -2,6 +2,7 @@ package bl.blImpl.manangrbl;
 
 import java.util.ArrayList;
 
+import po.memberdata.StaffTypeEnum;
 import message.OperationMessage;
 import vo.FormVO;
 import vo.managevo.staff.StaffVO;
@@ -64,6 +65,14 @@ public class ManageblStaffImpl implements ManageblStaffService {
 	public String newStaffID() {
 		// TODO Auto-generated method stub
 		return "11111111";
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblStaffService#getStaff(po.memberdata.StaffTypeEnum)
+	 */
+	public ArrayList<StaffVO> getStaff(StaffTypeEnum staffType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

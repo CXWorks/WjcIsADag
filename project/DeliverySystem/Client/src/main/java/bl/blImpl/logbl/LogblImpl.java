@@ -1,6 +1,7 @@
 package bl.blImpl.logbl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import vo.FormVO;
 import bl.blService.logblService.LogblService;
@@ -22,6 +23,22 @@ public class LogblImpl implements LogblService {
 		FormVO stub=new FormVO();
 		result.add(stub);
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.logblService.LogblService#fuzzyQuery(java.lang.String)
+	 */
+	public ArrayList<FormVO> fuzzyQuery(String info) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.logblService.LogblService#dateSearch(java.util.Calendar)
+	 */
+	public ArrayList<FormVO> dateSearch(Calendar date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

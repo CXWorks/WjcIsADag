@@ -13,8 +13,6 @@ public interface StockTackBLService {
 
     public StockTackVO getStockTack();
 
-    public StockTackVO filtLocation(StoreAreaCode area, int row, int shelf, int position);
-
     public OrderVO getOrder(String orderNumber);
 
     public StoreInVO getStoreInVO(String orderNumber);

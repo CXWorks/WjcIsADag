@@ -50,5 +50,13 @@ public class DeliverblImpl implements DeliverBLService {
 		// TODO Auto-generated method stub
 		return new OrderVO();
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

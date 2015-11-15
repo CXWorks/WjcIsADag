@@ -39,4 +39,12 @@ public class OrderBLImpl implements OrderBLService{
 		return new PredictVO();
 	}
 
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -75,4 +75,12 @@ public class StoreInBLImpl implements StoreInBLService {
                 ("rmi://" + R.string.LocalHost + "/" + R.string.StoreDataService);
         drive(sfds);
     }
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

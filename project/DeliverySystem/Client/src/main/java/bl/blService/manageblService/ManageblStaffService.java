@@ -2,6 +2,7 @@ package bl.blService.manageblService;
 
 import java.util.ArrayList;
 
+import po.memberdata.StaffTypeEnum;
 import message.OperationMessage;
 import vo.managevo.staff.StaffVO;
 
@@ -13,7 +14,7 @@ import vo.managevo.staff.StaffVO;
  */
 public interface ManageblStaffService {
 	
-	public ArrayList<StaffVO> getStaff();
+	public ArrayList<StaffVO> getStaff(StaffTypeEnum staffType);
 	
 	public OperationMessage modifyStaff(StaffVO after);
 	

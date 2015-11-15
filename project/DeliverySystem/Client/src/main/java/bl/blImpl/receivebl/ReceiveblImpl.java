@@ -60,5 +60,13 @@ public class ReceiveblImpl implements ReceiveBLService {
 //		return new LoadVO();
 	}
 
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

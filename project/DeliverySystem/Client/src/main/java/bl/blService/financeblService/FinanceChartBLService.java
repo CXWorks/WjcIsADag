@@ -1,6 +1,7 @@
 package bl.blService.financeblService;
 
 import vo.financevo.BaseChartVO;
+import vo.financevo.CalculateVO;
 import vo.financevo.PieChartVO;
 
 /**
@@ -13,4 +14,6 @@ public interface FinanceChartBLService {
     public PieChartVO getPieChart();
 
     public BaseChartVO getLineChart();
+    
+    public CalculateVO getCompanyState();
 }

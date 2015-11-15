@@ -79,4 +79,20 @@ public class RevenueBLImpl implements RevenueBLService {
                 ("rmi://" + R.string.LocalHost + "/" + R.string.FinanceDataService);
         drive(ffds);
     }
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#newID()
+	 */
+	public String newID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.RevenueBLService#sum(java.lang.String)
+	 */
+	public double sum(String revenueID) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

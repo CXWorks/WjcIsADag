@@ -14,6 +14,4 @@ public interface ExamineblManageService {
 	public OperationMessage deleteForm(ArrayList<FormVO> form);
 	
 	public FormVO getForm(FormVO form);
-	
-	public ArrayList<FormVO> getFormHistory();
 }

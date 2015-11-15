@@ -2,6 +2,7 @@ package bl.blImpl.financebl;
 
 import bl.blService.financeblService.FinanceChartBLService;
 import vo.financevo.BaseChartVO;
+import vo.financevo.CalculateVO;
 import vo.financevo.PieChartVO;
 
 /**
@@ -19,4 +20,12 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     public BaseChartVO getLineChart() {
         return new BaseChartVO();
     }
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.FinanceChartBLService#getCompanyState()
+	 */
+	public CalculateVO getCompanyState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

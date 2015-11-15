@@ -25,8 +25,6 @@ public class StoreBLDriver {
             System.out.println("getStoreInVO tested");
         if(stbls.makeExcel("hello") != null)
             System.out.println("makeExcel tested");
-        if(stbls.filtLocation(StoreAreaCode.AIR, 1 , 2, 3) != null)
-            System.out.println("filtLocation tested");
         System.out.println();
 
         // StoreInBLService Test
