@@ -13,7 +13,7 @@ import bl.blService.manageblService.ManageblCarService;
  * @date 2015年10月26日 上午8:37:34
  * @version 1.0 
  */
-public class ManageblCarImpl implements ManageblCarService {
+public class CarManage implements ManageblCarService {
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#getCar(vo.managevo.institution.HallVO)

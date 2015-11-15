@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 import rmi.examineService.ExamineSubmitService;
 import message.OperationMessage;
-import bl.blImpl.examinebl.ExamineblSubmitImpl;
+import bl.blImpl.examinebl.ExamineBLSubmitImpl;
 import bl.blService.examineblService.ExamineblSubmitService;
 
 /** 

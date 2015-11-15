@@ -7,8 +7,7 @@ import po.configurationdata.PackPO;
 import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.PackEnum;
 
-public class PackVO {
-	private ConfigurationEnum ID=ConfigurationEnum.PACK;
+public class PackVO extends ConfigurationVO{
 	private Map<PackEnum,Double> packPrice;
 	
 	public PackVO(PackPO po){

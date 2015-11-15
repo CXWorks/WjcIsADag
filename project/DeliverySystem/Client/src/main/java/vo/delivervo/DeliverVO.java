@@ -1,5 +1,7 @@
 package vo.delivervo;
 
+import java.util.Calendar;
+
 import vo.FormVO;
 
 /**
@@ -11,7 +13,7 @@ import vo.FormVO;
 public class DeliverVO extends FormVO{
 	
 	private String orderID;
-	private String data;
+	private Calendar date;
 	private String postman;
 	
 	public String getOrderID() {
@@ -19,12 +21,6 @@ public class DeliverVO extends FormVO{
 	}
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
-	}
-	public String getData() {
-		return data;
-	}
-	public void setData(String data) {
-		this.data = data;
 	}
 	public String getPostman() {
 		return postman;

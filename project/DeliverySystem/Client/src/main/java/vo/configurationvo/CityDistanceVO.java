@@ -4,8 +4,7 @@ package vo.configurationvo;
 import po.configurationdata.CityDistancePO;
 import po.configurationdata.enums.ConfigurationEnum;
 
-public class CityDistanceVO {
-	private ConfigurationEnum ID;
+public class CityDistanceVO extends ConfigurationVO{
 	private String city1;
 	private String city2;
 	private int distance;

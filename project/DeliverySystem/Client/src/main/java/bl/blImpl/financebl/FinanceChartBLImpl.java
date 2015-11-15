@@ -9,6 +9,7 @@ import vo.financevo.PieChartVO;
  * Created by Sissel on 2015/10/26.
  */
 public class FinanceChartBLImpl implements FinanceChartBLService {
+	ChartMaker chartMaker;
     public BaseChartVO getHistogram() {
         return new BaseChartVO();
     }

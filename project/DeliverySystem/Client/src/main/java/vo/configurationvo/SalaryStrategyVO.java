@@ -5,8 +5,7 @@ import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.PackEnum;
 import po.memberdata.StaffTypeEnum;
 
-public class SalaryStrategyVO {
-	private ConfigurationEnum ID=ConfigurationEnum.SALARY_STRATEGY;;
+public class SalaryStrategyVO extends ConfigurationVO{
 	private StaffTypeEnum staff;
 	private int base;
 	private int commission;

@@ -6,8 +6,7 @@ import po.configurationdata.PricePO;
 import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.DeliveryTypeEnum;
 
-public class PriceVO {
-	private ConfigurationEnum ID=ConfigurationEnum.PRICE;
+public class PriceVO extends ConfigurationVO{
 	private Map<DeliveryTypeEnum,Integer> price;
 	public int getByType(DeliveryTypeEnum type){
 		return price.get(type);

@@ -9,8 +9,8 @@ import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import bl.blService.orderblService.OrderBLService;
 
-public class OrderBLImpl implements OrderBLService{
-
+public class OrderBLController implements OrderBLService{
+	Predicter predicter;
 	public OrderVO loadDraft() {
 		// TODO Auto-generated method stub
 		return new OrderVO();

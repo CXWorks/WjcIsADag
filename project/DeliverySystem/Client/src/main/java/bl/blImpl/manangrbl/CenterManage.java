@@ -13,7 +13,7 @@ import bl.blService.manageblService.ManageblCenterService;
  * @date 2015年10月26日 上午8:35:57
  * @version 1.0 
  */
-public class ManageblCenterImpl implements ManageblCenterService{
+public class CenterManage implements ManageblCenterService{
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCenterService#getCenter()

@@ -11,7 +11,7 @@ import vo.accountvo.AccountVO;
  * @author mx
  *2015/10/25
  */
-public interface AccountBLService {
+public interface AccountBLManageService {
 	
 	/**
 	 * 显示账户信息
@@ -47,12 +47,7 @@ public interface AccountBLService {
 	 */
 	public OperationMessage modifyAccount(AccountPO po);
 	
-	/**
-	 * 检查用户名是否存在以及和密码是否匹配
-	 * @param id 输入的用户名  password 输入的密码
-	 * @return 返回操作结果
-	 */
-	public OperationMessage checkAccountat(String id,String password);
+	
 	
 
 }

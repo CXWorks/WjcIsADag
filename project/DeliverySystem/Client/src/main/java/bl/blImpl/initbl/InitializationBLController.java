@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/26.
  */
-public class InitializationBLImpl implements InitializationBLService {
+public class InitializationBLController implements InitializationBLService {
     // models
     InitialDataVO dataVO;
 

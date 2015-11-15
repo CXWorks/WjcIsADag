@@ -15,10 +15,6 @@ public class StockTackBLImpl implements StockTackBLService {
         return new StockTackVO();
     }
 
-    public StockTackVO filtLocation(StoreAreaCode area, int row, int shelf, int position) {
-        return new StockTackVO();
-    }
-
     public OrderVO getOrder(String orderNumber) {
         return new OrderVO();
     }

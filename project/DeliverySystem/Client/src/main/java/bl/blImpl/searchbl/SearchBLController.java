@@ -4,8 +4,8 @@ import message.CheckFormMessage;
 import vo.logisticsvo.LogisticsVO;
 import bl.blService.searchblService.SearchBLService;
 
-public class SearchBLImpl implements SearchBLService{
-	
+public class SearchBLController implements SearchBLService{
+	OrderHelper orderHelper;
 
 	public CheckFormMessage checkFormat(String orderID) {
 		// TODO Auto-generated method stub

@@ -21,10 +21,6 @@ public class StoreModelBLImpl implements StoreModelBLService {
         return new OperationMessage();
     }
 
-    public void addObserver(Observer o) {
-
-    }
-
     public OperationMessage reducePartition(StoreAreaCode area, int number) {
         return new OperationMessage();
     }

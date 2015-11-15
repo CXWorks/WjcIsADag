@@ -12,8 +12,6 @@ public interface StoreModelBLService {
 
     public OperationMessage setWarningLine(double percent);
 
-    public void addObserver(Observer o);
-
     public OperationMessage reducePartition(StoreAreaCode area, int number);
 
     public OperationMessage expandPartition(StoreAreaCode area, int number);

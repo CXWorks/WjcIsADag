@@ -14,7 +14,7 @@ import bl.blService.manageblService.ManageblStaffService;
  * @date 2015年10月26日 上午8:32:19
  * @version 1.0 
  */
-public class ManageblStaffImpl implements ManageblStaffService {
+public class StaffManage implements ManageblStaffService {
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblStaffService#getStaff()

@@ -14,7 +14,7 @@ import bl.blService.manageblService.ManageblHallService;
  * @date 2015年10月26日 上午8:34:07
  * @version 1.0 
  */
-public class ManageblHallImpl implements ManageblHallService {
+public class HallManage implements ManageblHallService {
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#getHall()
