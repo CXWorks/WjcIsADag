@@ -1,7 +1,10 @@
 package ui.reflection;
 
+/*
 import java.util.ArrayList;
 
+import bl.blImpl.deliverbl.DeliverBLController;
+import bl.blImpl.examinebl.ExamineBLManageImpl;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import rmi.examineService.ExamineManageService;
@@ -56,6 +59,7 @@ import bl.blService.transportblService.TransportCenterBLService;
 import bl.blService.transportblService.TransportHallBLService;
 import ui.configurationui.ConfigurationPanel;
 import ui.mainui.MainFrame;
+*/
 
 /** 
  * Client//ui.reflection//Main.java
@@ -69,11 +73,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		//inite our classes
-		ExamineblManageService c1=new ExamineblManageImpl();
-		AccountBLService c2=new AccountBLImpl();
-		DeliverBLService c3=new DeliverblImpl();
+		ExamineblManageService c1=new ExamineBLManageImpl();
+		AccountBLService c2=new ;
+		DeliverBLService c3=new DeliverBLController();
 		ExamineblSubmitService c4=new ExamineblSubmitImpl();
 		BankAccountBLService c5=new BankAccountBLImpl();
 		FinanceChartBLImpl c6=new FinanceChartBLImpl();
@@ -152,7 +156,7 @@ public class Main {
 		a.addClass(t,to);
 		
 		a.setVisible(true);
-		new MainFrame(a);
+		new MainFrame(a);*/
 	}
 
 }

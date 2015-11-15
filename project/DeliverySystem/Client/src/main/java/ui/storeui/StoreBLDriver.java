@@ -69,7 +69,6 @@ public class StoreBLDriver {
         System.out.println("StoreModelBLService Begin:");
         if(smbls.clearLocalBuffer() != null)
             System.out.println("clearLocalBuffer");
-        smbls.addObserver(null);
         if(smbls.setWarningLine(23.33) != null)
             System.out.println("setWarningLine tested");
         if(smbls.addRow(StoreAreaCode.AIR, 123) != null)

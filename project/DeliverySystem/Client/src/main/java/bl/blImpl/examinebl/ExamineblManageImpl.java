@@ -7,7 +7,7 @@ import vo.FormVO;
 import bl.blService.examineblService.ExamineblManageService;
 
 /** 
- * Client//blImpl.examinebl//ExamineblManageImpl.java
+ * Client//blImpl.examinebl//ExamineBLManageImpl.java
  * @author CXWorks
  * @date 2015年10月26日 上午8:29:04
  * @version 1.0 

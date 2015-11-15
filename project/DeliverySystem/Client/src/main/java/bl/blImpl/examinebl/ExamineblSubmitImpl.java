@@ -5,7 +5,7 @@ import vo.FormVO;
 import bl.blService.examineblService.ExamineblSubmitService;
 
 /** 
- * Client//blImpl.examinebl//ExamineblSubmitImpl.java
+ * Client//blImpl.examinebl//ExamineBLSubmitImpl.java
  * @author CXWorks
  * @date 2015年10月26日 上午8:28:03
  * @version 1.0 

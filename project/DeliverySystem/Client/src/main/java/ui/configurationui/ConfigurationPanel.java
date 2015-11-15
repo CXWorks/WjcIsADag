@@ -14,8 +14,8 @@ import javax.swing.JButton;
 
 import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
-import bl.blImpl.configurationbl.ConfigurationblImpl;
-import bl.blService.configurationblService.ConfigurationblService;
+//import bl.blImpl.configurationbl.ConfigurationblImpl;
+//import bl.blService.configurationblService.ConfigurationblService;
 import ui.selfdefined.MyButton;
 import ui.selfdefined.MyPanel;
 import vo.configurationvo.CityDistanceVO;
@@ -43,10 +43,10 @@ public class ConfigurationPanel extends MyPanel implements ActionListener{
 	private ArrayList<CityDistanceVO> cityDistanceVO;
 	private ArrayList<SalaryStrategyVO> salaryStrategyVO;
 	
-	private ConfigurationblService cbls;
+//	private ConfigurationblService cbls;
 	
 	public ConfigurationPanel(){
-		super();
+		/*super();
 		//
 		try {
 			cbls = new ConfigurationblImpl();
@@ -72,7 +72,7 @@ public class ConfigurationPanel extends MyPanel implements ActionListener{
 		b2.setBounds(300, 350, 100, 100);
 		b2.addActionListener(this);
 		this.add(b2);
-		
+		*/
 	}
 	
 	@Override
@@ -110,7 +110,7 @@ public class ConfigurationPanel extends MyPanel implements ActionListener{
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		if(e.getActionCommand()=="search"){
 			this.removeAll();
 			state = 1;
@@ -120,6 +120,6 @@ public class ConfigurationPanel extends MyPanel implements ActionListener{
 //			cbls.getCityDistance();
 //			cbls.getSalaryStrategy();
 			this.repaint();
-		}
+		}*/
 	}
 }
