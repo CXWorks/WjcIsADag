@@ -1,7 +1,10 @@
 package bl.blImpl.accountbl;
 
+import java.rmi.RemoteException;
+
 import message.OperationMessage;
 import bl.blService.accountblService.AccountBLLoginService;
+import bl.clientNetCache.CacheHelper;
 
 /** 
  * Client//bl.blImpl.accountbl//AccountBLLoginServiceImpl.java
@@ -16,8 +19,14 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLLoginService#checkAccountat(java.lang.String, java.lang.String)
 	 */
-	public OperationMessage checkAccountat(String id, String password) {
+	public OperationMessage checkAccount(String id, String password) {
 		// TODO Auto-generated method stub
+		try {
+			return CacheHelper.getAccountDataService().checkAccount(id, password);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 

@@ -7,5 +7,5 @@ package bl.blImpl.orderbl;
  * @version 1.0 
  */
 public class Predicter {
-
+	
 }

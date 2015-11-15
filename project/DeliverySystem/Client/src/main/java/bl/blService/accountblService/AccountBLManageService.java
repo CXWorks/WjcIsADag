@@ -31,21 +31,21 @@ public interface AccountBLManageService {
 	 * @param po 新增账户信息
 	 * @return 返回操作结果
 	 */
-	public OperationMessage addAccount(AccountPO po);
+	public OperationMessage addAccount(AccountVO vo);
 	
 	/**
 	 * 删除账户
 	 * @param po 需删除账户信息
 	 * @return 返回操作结果
 	 */
-	public OperationMessage deleteAccount(AccountPO po);
+	public OperationMessage deleteAccount(AccountVO vo);
 	
 	/**
 	 * 修改账户
 	 * @param po 已修改账户信息
 	 * @return 返回操作结果
 	 */
-	public OperationMessage modifyAccount(AccountPO po);
+	public OperationMessage modifyAccount(AccountVO vo);
 	
 	
 	

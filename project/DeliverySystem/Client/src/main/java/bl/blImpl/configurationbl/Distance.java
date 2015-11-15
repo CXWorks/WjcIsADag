@@ -7,5 +7,5 @@ package bl.blImpl.configurationbl;
  * @version 1.0 
  */
 public class Distance {
-
+	
 }

@@ -6,6 +6,7 @@ import message.OperationMessage;
 import po.accountdata.AccountPO;
 import vo.accountvo.AccountVO;
 import bl.blService.accountblService.AccountBLManageService;
+import bl.clientNetCache.CacheHelper;
 
 /** 
  * Client//bl.blImpl.accountbl//AccountBLManageImpl.java
@@ -34,7 +35,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLManageService#addAccount(po.accountdata.AccountPO)
 	 */
-	public OperationMessage addAccount(AccountPO po) {
+	public OperationMessage addAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,7 +43,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLManageService#deleteAccount(po.accountdata.AccountPO)
 	 */
-	public OperationMessage deleteAccount(AccountPO po) {
+	public OperationMessage deleteAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -50,7 +51,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLManageService#modifyAccount(po.accountdata.AccountPO)
 	 */
-	public OperationMessage modifyAccount(AccountPO po) {
+	public OperationMessage modifyAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

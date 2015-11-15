@@ -14,6 +14,6 @@ public interface AccountBLLoginService {
 	 * @param id 输入的用户名  password 输入的密码
 	 * @return 返回操作结果
 	 */
-	public OperationMessage checkAccountat(String id,String password);
+	public OperationMessage checkAccount(String id,String password);
 
 }
