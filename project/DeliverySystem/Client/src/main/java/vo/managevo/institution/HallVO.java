@@ -11,4 +11,10 @@ public class HallVO {
 	private ArrayList<StaffPO> deliver;
 	private ArrayList<StaffPO> counterman;
 	private String nearCenterID;
+	public HallVO(){}
+	//
+	public HallVO(String hallID){
+		super();
+		this.hallID=hallID;
+	}
 }

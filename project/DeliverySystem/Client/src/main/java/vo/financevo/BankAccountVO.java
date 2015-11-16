@@ -19,4 +19,19 @@ public class BankAccountVO {
     public String getBalance() {
         return balance;
     }
+    public BankAccountVO(){}
+    //
+
+	/**
+	 * @param bankID
+	 * @param accountName
+	 * @param balance
+	 */
+	public BankAccountVO(String bankID, String accountName, String balance) {
+		super();
+		this.bankID = bankID;
+		this.accountName = accountName;
+		this.balance = balance;
+	}
+    
 }

@@ -28,5 +28,18 @@ public class DeliverVO extends FormVO{
 	public void setPostman(String postman) {
 		this.postman = postman;
 	}
-
+	public DeliverVO(){}
+	//
+	/**
+	 * @param orderID
+	 * @param date
+	 * @param postman
+	 */
+	public DeliverVO(String orderID, Calendar date, String postman) {
+		super();
+		this.orderID = orderID;
+		this.date = date;
+		this.postman = postman;
+	}
+	
 }

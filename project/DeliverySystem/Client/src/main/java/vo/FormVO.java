@@ -10,4 +10,10 @@ public class FormVO {
     private FormEnum formType;
     private FormStateEnum state;
     private String formID;
+    public FormVO(){}
+    public FormVO(FormEnum type,FormStateEnum state,String formID){
+    	this.formType=type;
+    	this.state=state;
+    	this.formID=formID;
+    }
 }

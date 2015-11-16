@@ -27,6 +27,6 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 	 */
 	public CalculateVO getCompanyState() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CalculateVO();
 	}
 }

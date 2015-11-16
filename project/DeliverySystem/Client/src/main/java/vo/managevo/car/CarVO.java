@@ -14,4 +14,29 @@ public class CarVO {
 	private int nameID;
 	private int chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
+	public CarVO(){}
+	//
+	/**
+	 * @param free
+	 * @param carID
+	 * @param useTime
+	 * @param imag
+	 * @param engineID
+	 * @param nameID
+	 * @param chassisID
+	 * @param buyTime
+	 */
+	public CarVO(boolean free, int carID, Calendar useTime, ImageIcon imag,
+			int engineID, int nameID, int chassisID, Calendar buyTime) {
+		super();
+		this.free = free;
+		this.carID = carID;
+		this.useTime = useTime;
+		this.imag = imag;
+		this.engineID = engineID;
+		this.nameID = nameID;
+		this.chassisID = chassisID;
+		this.buyTime = buyTime;
+	}
+	
 }

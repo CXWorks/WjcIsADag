@@ -72,6 +72,6 @@ public class PaymentBLImpl implements PaymentBLService {
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return null;
+		return "543533";
 	}
 }
