@@ -1,8 +1,13 @@
 package bl;
 
+import bl.blImpl.accountbl.AccountBLManageImpl;
+import bl.blService.accountblService.AccountBLManageService;
+import bl.clientRMI.RMIHelper;
+import mock.AccountDataMock;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import rmi.accountdata.AccountDataService;
 
 /**
  * AccountBLManageImpl Tester.
@@ -13,8 +18,13 @@ import org.junit.After;
  */
 public class AccountBLManageImplTest {
 
+    AccountBLManageService bl;
+    AccountDataService data;
+
     @Before
     public void before() throws Exception {
+        bl = new AccountBLManageImpl();
+        data = new AccountDataMock();
     }
 
     @After
