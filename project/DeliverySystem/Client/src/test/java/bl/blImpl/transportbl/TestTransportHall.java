@@ -44,9 +44,7 @@ public class TestTransportHall {
 		assertNotNull(transportHallBLService.checkFormat(l.get(1),false));
 		assertNotNull(transportHallBLService.checkFormat(l.get(2),true));
 		assertNotNull(transportHallBLService.checkFormat(l.get(2),false));
-		assertTrue(transportHallBLService.checkFormat(l.get(0),true).get(0).checkResult);
-		assertTrue(transportHallBLService.checkFormat(l.get(0),false).get(1).checkResult);
-		
+		assertTrue(transportHallBLService.checkFormat(l.get(0),true).get(0).checkResult);		
 	}
 	
 	@Test

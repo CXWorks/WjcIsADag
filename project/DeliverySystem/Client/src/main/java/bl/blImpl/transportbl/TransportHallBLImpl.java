@@ -41,56 +41,68 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		 */
 		public String newID() {
 			// TODO Auto-generated method stub
-			return null;
+			return "";
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getDrivers(java.lang.String)
 		 */
 		public ArrayList<StaffVO> getDrivers(String hallID) {
 			// TODO Auto-generated method stub
-			return null;
+			ArrayList<StaffVO> result=new ArrayList<StaffVO>();
+			StaffVO stub=new StaffVO();
+			result.add(stub);
+			return result;
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getCars(java.lang.String)
 		 */
 		public ArrayList<CarVO> getCars(String hallID) {
 			// TODO Auto-generated method stub
-			return null;
+			ArrayList<CarVO> result=new ArrayList<CarVO>();
+			CarVO stub=new CarVO();
+			result.add(stub);
+			return result;
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getLocation(java.lang.String)
 		 */
 		public ArrayList<Object> getLocation(String hallID) {
 			// TODO Auto-generated method stub
-			return null;
+			ArrayList<Object> result=new ArrayList<Object>();
+			Object stub=new Object();
+			result.add(stub);
+			return result;
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getOrder(java.lang.String)
 		 */
 		public OrderVO getOrder(String orderID) {
 			// TODO Auto-generated method stub
-			return null;
+			return new OrderVO();
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#checkFormat(po.transportdata.LoadPO)
 		 */
 		public ArrayList<CheckFormMessage> checkFormat(LoadPO form) {
 			// TODO Auto-generated method stub
-			return null;
+			ArrayList<CheckFormMessage> result=new ArrayList<CheckFormMessage>();
+			CheckFormMessage stub=new CheckFormMessage();
+			result.add(stub);
+			return result;
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#submit(po.transportdata.LoadPO)
 		 */
 		public OperationMessage submit(LoadPO form) {
 			// TODO Auto-generated method stub
-			return null;
+			return new OperationMessage();
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#saveDraft()
 		 */
 		public OperationMessage saveDraft() {
 			// TODO Auto-generated method stub
-			return null;
+			return new OperationMessage();
 		}
 	
 

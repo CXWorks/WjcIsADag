@@ -8,6 +8,10 @@ import vo.FormVO;
  */
 public class StoreInVO extends FormVO {
 	
+	public StoreInVO(){
+		
+	}
+	
     public StoreInVO(String orderID, String date, String destination,
 			StoreLocation location) {
 		super();

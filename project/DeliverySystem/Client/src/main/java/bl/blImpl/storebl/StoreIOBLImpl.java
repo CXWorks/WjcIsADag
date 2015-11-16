@@ -20,6 +20,9 @@ public class StoreIOBLImpl implements StoreIOBLService {
     }
 
     public List<CheckFormMessage> checkFormat(String inDate, String inTime, String outDate, String outTime) {
-        return new LinkedList<CheckFormMessage>();
+    	CheckFormMessage tmp = new CheckFormMessage();
+    	LinkedList<CheckFormMessage> result = new LinkedList<CheckFormMessage>();
+    	result.add(tmp);
+    	return result;
     }
 }

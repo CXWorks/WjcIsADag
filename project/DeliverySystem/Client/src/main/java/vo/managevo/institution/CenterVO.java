@@ -6,6 +6,10 @@ import po.memberdata.StaffPO;
 
 public class CenterVO {
 	
+	public CenterVO(){
+		
+	}
+	
 	public CenterVO(String centerID, String city, ArrayList<StaffPO> storeman,
 			ArrayList<StaffPO> counterman) {
 		super();

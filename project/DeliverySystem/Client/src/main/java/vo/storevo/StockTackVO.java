@@ -9,6 +9,10 @@ import java.util.List;
  */
 public class StockTackVO {
 
+	public StockTackVO(){
+		
+	}
+	
     public StockTackVO(String date, List<StoreLocation> locations,
 			List<String> filters) {
 		super();

@@ -63,7 +63,7 @@ public class CenterManage implements ManageblCenterService{
 	 */
 	public OperationMessage newInstitutionDistance(String ID, Object ob) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 }

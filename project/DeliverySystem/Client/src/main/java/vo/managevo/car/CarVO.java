@@ -25,6 +25,10 @@ public class CarVO {
 	 * @param chassisID
 	 * @param buyTime
 	 */
+	public CarVO(){
+		
+	}
+	
 	public CarVO(boolean free, int carID, Calendar useTime, ImageIcon imag,
 			int engineID, int nameID, int chassisID, Calendar buyTime) {
 		super();

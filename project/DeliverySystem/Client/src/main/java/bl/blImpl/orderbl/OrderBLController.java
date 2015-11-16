@@ -45,7 +45,7 @@ public class OrderBLController implements OrderBLService{
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 

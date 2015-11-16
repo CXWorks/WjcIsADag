@@ -5,6 +5,9 @@ import po.memberdata.StaffTypeEnum;
 
 public class StaffVO {
 	
+	public StaffVO(){
+		
+	}
 	public StaffVO(StaffTypeEnum staff, String iD, String name, int age,
 			String personID, SexEnum sex, String love) {
 		super();

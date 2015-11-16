@@ -72,7 +72,10 @@ public class StaffManage implements ManageblStaffService {
 	 */
 	public ArrayList<StaffVO> getStaff(StaffTypeEnum staffType) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StaffVO> result=new ArrayList<StaffVO>();
+		StaffVO stub=new StaffVO();
+		result.add(stub);
+		return result;
 	}
 
 }
