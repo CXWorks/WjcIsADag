@@ -24,7 +24,7 @@ public class TestHallManage {
 	@Before
 	public void setUp() throws Exception {
 		hall = new HallManage();
-		h = new HallVO();
+		h = new HallVO("111111","上海","上海普陀区",null,null,null,"111111");
 	}
 	
 	@Test

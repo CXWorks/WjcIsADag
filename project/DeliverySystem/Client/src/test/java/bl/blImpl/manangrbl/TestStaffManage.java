@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import vo.managevo.staff.StaffVO;
 import bl.blService.manageblService.ManageblStaffService;
@@ -25,7 +26,7 @@ public class TestStaffManage {
 	@Before
 	public void setUp() throws Exception {
 		staff = new StaffManage();
-		s = new StaffVO();
+		s = new StaffVO(StaffTypeEnum.CENTER_COUNTERMAN,"111111","孟鑫",26,"111111",SexEnum.MAN,"无");
 	}
 	
 	@Test
