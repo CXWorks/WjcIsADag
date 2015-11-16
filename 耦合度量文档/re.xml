@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metrics scope="Server" type="Project" date="2015-11-15" xmlns="http://metrics.sourceforge.net/2003/Metrics-First-Flat">
+   <Cycle name="rmiImpl.transportdata et al" nodes="5" diameter="2">
+      <Package>rmiImpl.transportdata</Package>
+      <Package>rmiImpl</Package>
+      <Package>rmiImpl.receivedata</Package>
+      <Package>rmiImpl.orderdata</Package>
+      <Package>rmiImpl.deliverdata</Package>
+   </Cycle>
+   <Metric id = "PAR" description ="Number of Parameters" max ="5" hint ="Move invoked method or pass an object">
+      <Values per = "method" avg = "0.773" stddev = "0.704" max = "3">
+         <Value name="recoverSystem" source ="SqlHelper.java" package ="database" value ="3"/>
+         <Value name="setUpSystem" source ="SqlHelper.java" package ="database" value ="3"/>
+         <Value name="uploadModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="3"/>
+         <Value name="recoverSystem" source ="ServerMain.java" package ="serverMain" value ="3"/>
+         <Value name="setUpSystem" source ="ServerMain.java" package ="serverMain" value ="3"/>
+         <Value name="checkAccount" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="2"/>
+         <Value name="transfer" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="2"/>
+         <Value name="modifyInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="2"/>
+         <Value name="newInstitutionDistanceInsert" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="2"/>
+         <Value name="getNewRevenueID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="2"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="2"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="2"/>
+         <Value name="uploadInitialData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="2"/>
+         <Value name="updateModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="2"/>
+         <Value name="main" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="delete" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPO" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="insert" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="update" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="checkMessage" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="receive" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="main" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="main" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="main" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="addCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newHallID" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="main" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="modifyCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifySalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceSearch" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="main" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="available" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="delete" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getFormPO" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="insert" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="update" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="main" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="main" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="deleteForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="modifyForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="passForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="submit" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="checkIsNameUsed" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getBankAccount" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewPaymentID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getPaymentPO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getRevenuePO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="main" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updatePaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="main" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="abortInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="getInitialDataPO" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="requestInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="main" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="addStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="dismissStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="getStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="modifyStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="newStaffID" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="main" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="delete" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getFormPO" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="insert" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="update" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="main" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="delete" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getFormPO" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="insert" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="update" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="downloadAllStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadStoreModel" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreInPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreOutPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="main" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="main" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="delete" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getFormPO" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="insert" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="update" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="createDataService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="main" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="getInstance" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="getAccountPOs" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="newAccountID" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="availableCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="getCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="newCarID" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="getCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="newCenterID" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="getHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="getSalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="clear" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="getAll" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="newID" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="getForms" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="downloadAllAccounts" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="downloadAllPaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="downloadAllRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="getNewBankID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="clear" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="getAll" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="newID" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="clear" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="getAll" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="newID" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="clear" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="getAll" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="newID" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="creatChatRemindService" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="creatExamineManageService" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="creatExamineSubmitService" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSF" description ="Number of Static Attributes">
+      <Values per = "type" total = "12" avg = "0.364" stddev = "0.54" max = "2">
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="2"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "CE" description ="Efferent Coupling">
+      <Values per = "packageFragment" avg = "1.269" stddev = "0.592" max = "3">
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="3"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="rmiImpl" package ="rmiImpl" value ="2"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="2"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="2"/>
+         <Value name="database" package ="database" value ="1"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="serverMain" package ="serverMain" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "SIX" description ="Specialization Index">
+      <Values per = "type" avg = "0" stddev = "0" max = "0">
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOC" description ="Number of Classes">
+      <Values per = "packageFragment" total = "33" avg = "1.269" stddev = "0.592" max = "3">
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="3"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="rmiImpl" package ="rmiImpl" value ="2"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="2"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="2"/>
+         <Value name="database" package ="database" value ="1"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="serverMain" package ="serverMain" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOF" description ="Number of Attributes">
+      <Values per = "type" total = "3" avg = "0.091" stddev = "0.378" max = "2">
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="2"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMA" description ="Abstractness">
+      <Values per = "packageFragment" avg = "0.019" stddev = "0.096" max = "0.5">
+         <Value name="rmiImpl" package ="rmiImpl" value ="0.5"/>
+         <Value name="database" package ="database" value ="0"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="serverMain" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMD" description ="Normalized Distance">
+      <Values per = "packageFragment" avg = "0.334" stddev = "0.302" max = "0.667">
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="0.667"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="0.667"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="0.667"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="0.667"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="0.667"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="0.667"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="0.667"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="0.667"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="0.6"/>
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="0.571"/>
+         <Value name="database" package ="database" value ="0.5"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="0.5"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="0.5"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="0.5"/>
+         <Value name="rmiImpl" package ="rmiImpl" value ="0.167"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="serverMain" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSM" description ="Number of Static Methods">
+      <Values per = "type" total = "16" avg = "0.485" stddev = "0.5" max = "1">
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOI" description ="Number of Interfaces">
+      <Values per = "packageFragment" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="database" package ="database" value ="0"/>
+         <Value name="rmiImpl" package ="rmiImpl" value ="0"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="serverMain" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "TLOC" description ="Total Lines of Code">
+      <Value value="986"/>
+   </Metric>
+   <Metric id = "WMC" description ="Weighted methods per Class">
+      <Values per = "type" total = "191" avg = "5.788" stddev = "4.255" max = "19">
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="19"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="17"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="15"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="11"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="9"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="8"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="8"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="8"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="8"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="7"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="6"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="6"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="6"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="5"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="5"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="4"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="4"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="3"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="3"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="3"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="3"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="3"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="3"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="3"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="3"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="3"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="3"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="3"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="2"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOM" description ="Number of Methods">
+      <Values per = "type" total = "134" avg = "4.061" stddev = "4.397" max = "16">
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="16"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="15"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="10"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="9"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="8"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="8"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="8"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="8"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="7"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="6"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="6"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="6"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="5"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="5"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="4"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="4"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="4"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="2"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="2"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="1"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "DIT" description ="Depth of Inheritance Tree">
+      <Values per = "type" avg = "2.667" stddev = "1.645" max = "5">
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="5"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="5"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="5"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="5"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="4"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="4"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="4"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="4"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="4"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="4"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="4"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="4"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="4"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="4"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOP" description ="Number of Packages">
+      <Value value="26"/>
+   </Metric>
+   <Metric id = "RMI" description ="Instability">
+      <Values per = "packageFragment" avg = "0.647" stddev = "0.307" max = "1">
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="1"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="1"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="1"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="1"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="1"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="1"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="1"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="1"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="1"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="1"/>
+         <Value name="serverMain" package ="serverMain" value ="1"/>
+         <Value name="database" package ="database" value ="0.5"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="0.5"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="0.5"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="0.5"/>
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="0.429"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="0.4"/>
+         <Value name="rmiImpl" package ="rmiImpl" value ="0.333"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="0.333"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="0.333"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="0.333"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="0.333"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="0.333"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="0.333"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="0.333"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="0.333"/>
+      </Values>
+   </Metric>
+   <Metric id = "VG" description ="McCabe Cyclomatic Complexity" max ="10" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "1.273" stddev = "1.331" max = "16" maxinrange="false">
+         <Value name="createDataService" source ="DataFactory.java" package ="rmiImpl" value ="16" inrange="false"/>
+         <Value name="main" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="3"/>
+         <Value name="main" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="main" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="main" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="3"/>
+         <Value name="main" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="3"/>
+         <Value name="main" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="3"/>
+         <Value name="main" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="3"/>
+         <Value name="main" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="3"/>
+         <Value name="main" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="3"/>
+         <Value name="main" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="3"/>
+         <Value name="main" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="3"/>
+         <Value name="main" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="3"/>
+         <Value name="main" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="3"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="getInstance" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="recoverSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="setUpSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="checkAccount" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="delete" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPOs" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPO" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="insert" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="newAccountID" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="update" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="checkMessage" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="receive" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="transfer" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="availableCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCarID" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCenterID" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newHallID" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getSalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifySalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceInsert" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceSearch" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="available" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="clear" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="delete" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getAll" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getFormPO" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="insert" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="newID" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="update" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="deleteForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="getForms" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="modifyForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="passForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="submit" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="checkIsNameUsed" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllAccounts" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllPaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getBankAccount" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewBankID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewPaymentID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewRevenueID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getPaymentPO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getRevenuePO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="main" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updatePaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="abortInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="getInitialDataPO" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="requestInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="uploadInitialData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="addStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="dismissStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="getStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="modifyStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="newStaffID" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="clear" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="delete" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getAll" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getFormPO" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="insert" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="newID" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="update" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="clear" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="delete" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getAll" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getFormPO" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="insert" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="newID" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="update" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadStoreModel" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreInPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreOutPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="main" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="uploadModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="clear" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="delete" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getAll" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getFormPO" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="insert" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="newID" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="update" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatChatRemindService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineManageService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineSubmitService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="main" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="recoverSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="setUpSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NBD" description ="Nested Block Depth" max ="5" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "1.093" stddev = "0.291" max = "2">
+         <Value name="main" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="2"/>
+         <Value name="main" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="2"/>
+         <Value name="main" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="2"/>
+         <Value name="main" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="2"/>
+         <Value name="main" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="2"/>
+         <Value name="main" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="2"/>
+         <Value name="main" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="2"/>
+         <Value name="main" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="2"/>
+         <Value name="main" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="2"/>
+         <Value name="main" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="2"/>
+         <Value name="main" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="2"/>
+         <Value name="main" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="2"/>
+         <Value name="main" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="2"/>
+         <Value name="createDataService" source ="DataFactory.java" package ="rmiImpl" value ="2"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="getInstance" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="recoverSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="setUpSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="checkAccount" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="delete" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPOs" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPO" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="insert" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="newAccountID" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="update" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="checkMessage" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="receive" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="transfer" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="availableCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCarID" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCenterID" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="getHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newHallID" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getSalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifySalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceInsert" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceSearch" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="available" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="clear" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="delete" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getAll" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getFormPO" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="insert" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="newID" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="update" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="deleteForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="getForms" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="modifyForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="passForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="submit" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="checkIsNameUsed" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllAccounts" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllPaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getBankAccount" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewBankID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewPaymentID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewRevenueID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getPaymentPO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getRevenuePO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="main" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updatePaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="abortInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="getInitialDataPO" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="requestInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="uploadInitialData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="addStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="dismissStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="getStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="modifyStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="newStaffID" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="clear" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="delete" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getAll" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getFormPO" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="insert" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="newID" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="update" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="clear" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="delete" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getAll" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getFormPO" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="insert" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="newID" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="update" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadStoreModel" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreInPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreOutPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="main" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="uploadModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="clear" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="delete" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getAll" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getFormPO" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="insert" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="newID" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="update" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatChatRemindService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineManageService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineSubmitService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="main" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="recoverSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="setUpSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "LCOM" description ="Lack of Cohesion of Methods">
+      <Values per = "type" avg = "0" stddev = "0" max = "0">
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "MLOC" description ="Method Lines of Code">
+      <Values per = "method" total = "318" avg = "2.12" stddev = "3.742" max = "38">
+         <Value name="createDataService" source ="DataFactory.java" package ="rmiImpl" value ="38"/>
+         <Value name="main" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="9"/>
+         <Value name="main" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="9"/>
+         <Value name="main" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="9"/>
+         <Value name="main" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="9"/>
+         <Value name="main" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="9"/>
+         <Value name="main" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="9"/>
+         <Value name="main" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="9"/>
+         <Value name="main" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="9"/>
+         <Value name="main" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="9"/>
+         <Value name="main" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="9"/>
+         <Value name="main" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="9"/>
+         <Value name="main" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="9"/>
+         <Value name="main" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="9"/>
+         <Value name="getAccountPOs" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="4"/>
+         <Value name="receive" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="4"/>
+         <Value name="getCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="getCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="getHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="getCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="4"/>
+         <Value name="getSalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="4"/>
+         <Value name="getForms" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="4"/>
+         <Value name="getStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="4"/>
+         <Value name="newInstitutionDistanceSearch" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="2"/>
+         <Value name="main" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="2"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="2"/>
+         <Value name="getInstance" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="recoverSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="setUpSystem" source ="SqlHelper.java" package ="database" value ="1"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="checkAccount" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="delete" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="getAccountPO" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="insert" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="newAccountID" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="update" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="1"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="checkMessage" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="transfer" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="availableCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCar" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCarID" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyCenter" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newCenterID" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="addHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="deleteHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="modifyHall" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="newHallID" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="1"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="getProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyCityDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyInstitutionDistance" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPack" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyPrice" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifyProportion" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="modifySalaryStrategy" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="newInstitutionDistanceInsert" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="1"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="available" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="clear" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="delete" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getAll" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="getFormPO" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="insert" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="newID" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="update" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="1"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="deleteForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="modifyForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="passForm" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="submit" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="1"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="checkIsNameUsed" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllAccounts" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllPaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="downloadAllRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getBankAccount" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewBankID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewPaymentID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getNewRevenueID" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getPaymentPO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="getRevenuePO" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updatePaymentPOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="updateRevenuePOs" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="uploadAccountOperations" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="abortInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="getInitialDataPO" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="requestInitData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="uploadInitialData" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="1"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="addStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="dismissStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="modifyStaff" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="newStaffID" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="1"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="clear" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="delete" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getAll" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="getFormPO" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="insert" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="newID" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="update" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="1"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="clear" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="delete" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getAll" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="getFormPO" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="insert" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="newID" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="update" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="1"/>
+         <Value name="downloadAllStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadAllStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="downloadStoreModel" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreInPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="getStoreOutPO" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="main" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreInPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="updateStoreOutPOs" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="uploadModelOperations" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="clear" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="delete" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getAll" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="getFormPO" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="insert" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="newID" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="update" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="1"/>
+         <Value name="creatChatRemindService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineManageService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="creatExamineSubmitService" source ="DataFactory.java" package ="rmiImpl" value ="1"/>
+         <Value name="recoverSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="setUpSystem" source ="ServerMain.java" package ="serverMain" value ="1"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="main" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NORM" description ="Number of Overridden Methods">
+      <Values per = "type" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "CA" description ="Afferent Coupling">
+      <Values per = "packageFragment" avg = "1.192" stddev = "1.241" max = "4">
+         <Value name="rmiImpl" package ="rmiImpl" value ="4"/>
+         <Value name="rmiImpl.companydata" package ="rmiImpl.companydata" value ="4"/>
+         <Value name="rmiImpl.examineImpl" package ="rmiImpl.examineImpl" value ="3"/>
+         <Value name="rmiImpl.accountdata" package ="rmiImpl.accountdata" value ="2"/>
+         <Value name="rmiImpl.configurationdata" package ="rmiImpl.configurationdata" value ="2"/>
+         <Value name="rmiImpl.deliverdata" package ="rmiImpl.deliverdata" value ="2"/>
+         <Value name="rmiImpl.initaldata" package ="rmiImpl.initaldata" value ="2"/>
+         <Value name="rmiImpl.memberdata" package ="rmiImpl.memberdata" value ="2"/>
+         <Value name="rmiImpl.orderdata" package ="rmiImpl.orderdata" value ="2"/>
+         <Value name="rmiImpl.receivedata" package ="rmiImpl.receivedata" value ="2"/>
+         <Value name="rmiImpl.transportdata" package ="rmiImpl.transportdata" value ="2"/>
+         <Value name="database" package ="database" value ="1"/>
+         <Value name="rmiImpl.chatRemindImpl" package ="rmiImpl.chatRemindImpl" value ="1"/>
+         <Value name="rmiImpl.financedata" package ="rmiImpl.financedata" value ="1"/>
+         <Value name="rmiImpl.storedata" package ="rmiImpl.storedata" value ="1"/>
+         <Value name="rmiImpl.accountdata.accpter" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="rmiImpl.companydata.accpter" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="rmiImpl.configurationdata.accpter" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="rmiImpl.deliverdata.accpter" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="rmiImpl.examineImpl.accepter" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="rmiImpl.initaldata.accpter" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="rmiImpl.memberdata.accpter" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="rmiImpl.orderdata.accpter" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="rmiImpl.receivedata.accpter" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="rmiImpl.transportdata.accpter" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="serverMain" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSC" description ="Number of Children">
+      <Values per = "type" total = "4" avg = "0.121" stddev = "0.686" max = "4">
+         <Value name="CommonData" source ="CommonData.java" package ="rmiImpl" value ="4"/>
+         <Value name="SqlHelper" source ="SqlHelper.java" package ="database" value ="0"/>
+         <Value name="AccountDataImpl_accpter" source ="AccountDataImpl_accpter.java" package ="rmiImpl.accountdata.accpter" value ="0"/>
+         <Value name="AccountDataImpl" source ="AccountDataImpl.java" package ="rmiImpl.accountdata" value ="0"/>
+         <Value name="ChatRemindImpl" source ="ChatRemindImpl.java" package ="rmiImpl.chatRemindImpl" value ="0"/>
+         <Value name="CompanyDataCarImpl_accpter" source ="CompanyDataCarImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCenterImpl_accpter" source ="CompanyDataCenterImpl_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataHallService_accpter" source ="CompanyDataHallService_accpter.java" package ="rmiImpl.companydata.accpter" value ="0"/>
+         <Value name="CompanyDataCarImpl" source ="CompanyDataCarImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataCenterImpl" source ="CompanyDataCenterImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="CompanyDataHallImpl" source ="CompanyDataHallImpl.java" package ="rmiImpl.companydata" value ="0"/>
+         <Value name="ConfigurationDataImpl_accpter" source ="ConfigurationDataImpl_accpter.java" package ="rmiImpl.configurationdata.accpter" value ="0"/>
+         <Value name="ConfigurationDataImpl" source ="ConfigurationDataImpl.java" package ="rmiImpl.configurationdata" value ="0"/>
+         <Value name="DeliverDataImpl_accpter" source ="DeliverDataImpl_accpter.java" package ="rmiImpl.deliverdata.accpter" value ="0"/>
+         <Value name="DeliverDataImpl" source ="DeliverDataImpl.java" package ="rmiImpl.deliverdata" value ="0"/>
+         <Value name="ExamineManageImpl_accepter" source ="ExamineManageImpl_accepter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineSubmitImpl_accpter" source ="ExamineSubmitImpl_accpter.java" package ="rmiImpl.examineImpl.accepter" value ="0"/>
+         <Value name="ExamineManageImpl" source ="ExamineManageImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="ExamineSubmitImpl" source ="ExamineSubmitImpl.java" package ="rmiImpl.examineImpl" value ="0"/>
+         <Value name="FinanceDataImpl" source ="FinanceDataImpl.java" package ="rmiImpl.financedata" value ="0"/>
+         <Value name="InitialDataImpl_accpter" source ="InitialDataImpl_accpter.java" package ="rmiImpl.initaldata.accpter" value ="0"/>
+         <Value name="InitialDataImpl" source ="InitialDataImpl.java" package ="rmiImpl.initaldata" value ="0"/>
+         <Value name="MemberDataImpl_accpter" source ="MemberDataImpl_accpter.java" package ="rmiImpl.memberdata.accpter" value ="0"/>
+         <Value name="MemberDataImpl" source ="MemberDataImpl.java" package ="rmiImpl.memberdata" value ="0"/>
+         <Value name="OrderDataImpl_accpter" source ="OrderDataImpl_accpter.java" package ="rmiImpl.orderdata.accpter" value ="0"/>
+         <Value name="OrderDataImpl" source ="OrderDataImpl.java" package ="rmiImpl.orderdata" value ="0"/>
+         <Value name="ReceiveDataImpl_accpter" source ="ReceiveDataImpl_accpter.java" package ="rmiImpl.receivedata.accpter" value ="0"/>
+         <Value name="ReceiveDataImpl" source ="ReceiveDataImpl.java" package ="rmiImpl.receivedata" value ="0"/>
+         <Value name="StoreDataImpl" source ="StoreDataImpl.java" package ="rmiImpl.storedata" value ="0"/>
+         <Value name="TransportDataImpl_accpter" source ="TransportDataImpl_accpter.java" package ="rmiImpl.transportdata.accpter" value ="0"/>
+         <Value name="TransportDataImpl" source ="TransportDataImpl.java" package ="rmiImpl.transportdata" value ="0"/>
+         <Value name="DataFactory" source ="DataFactory.java" package ="rmiImpl" value ="0"/>
+         <Value name="ServerMain" source ="ServerMain.java" package ="serverMain" value ="0"/>
+      </Values>
+   </Metric>
+   </Metrics>
