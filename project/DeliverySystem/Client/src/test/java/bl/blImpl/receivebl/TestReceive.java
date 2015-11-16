@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import po.receivedata.StateEnum;
 import vo.receivevo.ReceiveVO;
 import bl.blService.receiveblService.ReceiveBLService;
 
@@ -26,6 +27,7 @@ public class TestReceive {
 	@Before
 	public void setUp() throws Exception {
 		receiveBLService = new ReceiveblImpl();
+		r = new ReceiveVO("1111111","1111111","2015-11-16","南京仙林",StateEnum.Complete);
 	}
 	
 	@Test

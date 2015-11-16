@@ -4,6 +4,20 @@ import java.util.ArrayList;
 import po.memberdata.StaffPO;
 
 public class HallVO {
+	
+	public HallVO(String hallID, String city, String area,
+			ArrayList<StaffPO> driver, ArrayList<StaffPO> deliver,
+			ArrayList<StaffPO> counterman, String nearCenterID) {
+		super();
+		this.hallID = hallID;
+		this.city = city;
+		this.area = area;
+		this.driver = driver;
+		this.deliver = deliver;
+		this.counterman = counterman;
+		this.nearCenterID = nearCenterID;
+	}
+	
 	private String hallID;
 	private String city;
 	private String area;

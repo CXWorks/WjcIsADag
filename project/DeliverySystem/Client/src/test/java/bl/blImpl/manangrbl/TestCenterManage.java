@@ -23,7 +23,7 @@ public class TestCenterManage {
 	@Before
 	public void setUp() throws Exception {
 		center = new CenterManage();
-		c = new CenterVO();
+		c = new CenterVO("111111","上海",null,null);
 	}
 	
 	@Test

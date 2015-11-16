@@ -7,6 +7,7 @@ import model.store.StoreAreaCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import po.transportdata.TransportationEnum;
 import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 import bl.blService.storeblService.StoreInBLService;
@@ -27,7 +28,7 @@ public class TestStoreOut {
 	@Before
 	public void setUp() throws Exception {
 		storeOutBLService = new StoreOutBLImpl();
-		so = new StoreOutVO();
+		so = new StoreOutVO("111111","2015-11-16","南京仙林",TransportationEnum.CAR,"111111");
 	}
 	
 	@Test

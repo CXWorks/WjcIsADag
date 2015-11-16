@@ -9,7 +9,15 @@ import java.util.List;
  */
 public class StockTackVO {
 
-    // 日期
+    public StockTackVO(String date, List<StoreLocation> locations,
+			List<String> filters) {
+		super();
+		this.date = date;
+		this.locations = locations;
+		this.filters = filters;
+	}
+
+	// 日期
     String date;
 
     // 该日期的序号

@@ -4,6 +4,19 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 
 public class StaffVO {
+	
+	public StaffVO(StaffTypeEnum staff, String iD, String name, int age,
+			String personID, SexEnum sex, String love) {
+		super();
+		this.staff = staff;
+		ID = iD;
+		this.name = name;
+		this.age = age;
+		this.personID = personID;
+		this.sex = sex;
+		this.love = love;
+	}
+	
 	private StaffTypeEnum staff;
 	private String ID;
 	private String name;

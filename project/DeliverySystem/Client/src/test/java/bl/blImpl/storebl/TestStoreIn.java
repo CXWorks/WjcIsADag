@@ -3,10 +3,12 @@ package bl.blImpl.storebl;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import model.store.StoreAreaCode;
+import model.store.StoreLocation;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import po.transportdata.TransportationEnum;
 import vo.storevo.StoreInVO;
 import bl.blService.storeblService.StoreInBLService;
 
@@ -25,7 +27,7 @@ public class TestStoreIn {
 	@Before
 	public void setUp() throws Exception {
 		storeInBLService = new StoreInBLImpl();
-		si = new StoreInVO();
+		si = new StoreInVO("111111","2015-11-16","南京仙林",new StoreLocation());
 	}
 	
 	@Test

@@ -18,7 +18,6 @@ import bl.blService.storeblService.StoreInBLService;
  */
 public class TestStoreIO {
 	StoreIOBLService storeIOBLService;
-	StoreInVO si;
 	
 	/**
 	 * @throws java.lang.Exception

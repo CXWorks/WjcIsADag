@@ -14,7 +14,6 @@ public class CarVO {
 	private int nameID;
 	private int chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
-	public CarVO(){}
 	//
 	/**
 	 * @param free

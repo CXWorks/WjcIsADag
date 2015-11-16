@@ -11,6 +11,16 @@ import vo.FormVO;
 
 public class ReceiveVO extends FormVO{
 	
+	public ReceiveVO(String orderID, String transitID, String data,
+			String depature, StateEnum state) {
+		super();
+		this.orderID = orderID;
+		this.transitID = transitID;
+		this.data = data;
+		this.depature = depature;
+		this.state = state;
+	}
+	
 	private String orderID;
 	private String transitID;
 	private String data;
