@@ -80,32 +80,4 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			// TODO Auto-generated method stub
 			return new OrderVO();
 		}
-		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportHallBLService#checkFormat(po.transportdata.LoadPO)
-		 */
-		public ArrayList<CheckFormMessage> checkFormat(LoadPO form) {
-			// TODO Auto-generated method stub
-			ArrayList<CheckFormMessage> result=new ArrayList<CheckFormMessage>();
-			CheckFormMessage stub=new CheckFormMessage();
-			result.add(stub);
-			return result;
-		}
-		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportHallBLService#submit(po.transportdata.LoadPO)
-		 */
-		public OperationMessage submit(LoadPO form) {
-			// TODO Auto-generated method stub
-			return new OperationMessage();
-		}
-		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportHallBLService#saveDraft()
-		 */
-		public OperationMessage saveDraft() {
-			// TODO Auto-generated method stub
-			return new OperationMessage();
-		}
-	
-
-	
-
 }

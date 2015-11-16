@@ -22,5 +22,5 @@ public interface OrderBLService extends FormBLService<OrderVO>{
 	 * @param po 新订单中的信息
 	 * @return 运费和预计到达日期
 	 */
-	public PredictVO predict(OrderVO po);
+	public PredictVO predict(OrderVO vo);
 }

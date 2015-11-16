@@ -10,6 +10,7 @@ import vo.FormVO;
  */
 
 public class ReceiveVO extends FormVO{
+	public ReceiveVO(){}
 	
 	public ReceiveVO(String orderID, String transitID, String data,
 			String depature, StateEnum state) {

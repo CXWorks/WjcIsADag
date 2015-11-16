@@ -37,20 +37,6 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 			return new OperationMessage();
 		}
 		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportCenterBLService#checkFormat(po.transportdata.CenterOutPO)
-		 */
-		public ArrayList<CheckFormMessage> checkFormat(CenterOutPO form) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportCenterBLService#submit(po.transportdata.CenterOutPO)
-		 */
-		public OperationMessage submit(CenterOutPO form) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportCenterBLService#saveDraft()
 		 */
 		public OperationMessage saveDraft() {

@@ -35,7 +35,7 @@ public class OrderBLController implements OrderBLService{
 		return new  OperationMessage();
 	}
 
-	public PredictVO predict(OrderVO po) {
+	public PredictVO predict(OrderVO vo) {
 		// TODO Auto-generated method stub
 		return new PredictVO();
 	}

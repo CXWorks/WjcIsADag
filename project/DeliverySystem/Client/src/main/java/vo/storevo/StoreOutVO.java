@@ -7,6 +7,7 @@ import vo.FormVO;
  * Created by Sissel on 2015/10/24.
  */
 public class StoreOutVO extends FormVO {
+	public StoreOutVO(){}
 	
     public StoreOutVO(String orderID, String date, String destination,
 			TransportationEnum transportation, String transID) {

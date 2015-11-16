@@ -35,30 +35,4 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	public ArrayList<Object> getLocation(String hallID);
 	
 	public OrderVO getOrder(String orderID);
-
-	/**
-	 * 检查装车单
-	 * @param form 装车单信息
-	 * @return 返回检查结果列表
-	 */
-	public ArrayList<CheckFormMessage> checkFormat(LoadPO form);
-	
-	/**
-	 * 提交装车单
-	 * @param form 装车单信息
-	 * @return 返回操作结果
-	 */
-	public OperationMessage submit(LoadPO form);
-	
-	/**
-	 * 保存装车单草稿
-	 * @return 返回操作结果
-	 */
-	public OperationMessage saveDraft();
-	
-	/**
-	 * 载入装车单草稿
-	 * @return 装车单信息
-	 */
-	public LoadVO loadDraft();
 }
