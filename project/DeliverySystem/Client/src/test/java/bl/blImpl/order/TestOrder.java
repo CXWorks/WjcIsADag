@@ -6,14 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import po.orderdata.OrderPO;
 import vo.ordervo.OrderVO;
-import vo.receivevo.ReceiveVO;
 import bl.blImpl.orderbl.OrderBLController;
-import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.orderblService.OrderBLService;
-import bl.blService.receiveblService.ReceiveBLService;
 
+/** 
+ * @author Wjc
+ * @date 2015年11月16日
+ * @version 1.0 
+ */
 public class TestOrder {
 	OrderBLService orderBLService;
 	OrderVO o;

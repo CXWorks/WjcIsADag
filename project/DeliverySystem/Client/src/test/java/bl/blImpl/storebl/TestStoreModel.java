@@ -8,6 +8,11 @@ import org.junit.Test;
 
 import bl.blService.storeblService.StoreModelBLService;
 
+/** 
+ * @author Wjc
+ * @date 2015年11月16日
+ * @version 1.0 
+ */
 public class TestStoreModel {
 	StoreModelBLService storeModelBLService;
 	

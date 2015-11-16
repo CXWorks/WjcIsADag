@@ -10,6 +10,11 @@ import org.junit.Test;
 import vo.storevo.StoreInVO;
 import bl.blService.storeblService.StoreInBLService;
 
+/** 
+ * @author Wjc
+ * @date 2015年11月16日
+ * @version 1.0 
+ */
 public class TestStoreIn {
 	StoreInBLService storeInBLService;
 	StoreInVO si;

@@ -10,5 +10,7 @@ public class CenterVO {
 	private ArrayList<StaffPO> storeman;
 	private ArrayList<StaffPO> counterman;
 	
-	
+	public CenterVO(){
+		
+	}
 }

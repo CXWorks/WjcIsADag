@@ -46,7 +46,7 @@ public class HallManage implements ManageblHallService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#deleteHall(po.companydata.HallPO)
 	 */
-	public OperationMessage deleteHall(HallPO hall) {
+	public OperationMessage deleteHall(HallVO hall) {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}

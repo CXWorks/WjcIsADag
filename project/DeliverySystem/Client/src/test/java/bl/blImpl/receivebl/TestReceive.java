@@ -11,6 +11,11 @@ import org.junit.Test;
 import vo.receivevo.ReceiveVO;
 import bl.blService.receiveblService.ReceiveBLService;
 
+/** 
+ * @author Wjc
+ * @date 2015年11月16日
+ * @version 1.0 
+ */
 public class TestReceive {
 	ReceiveBLService receiveBLService;
 	ReceiveVO r;

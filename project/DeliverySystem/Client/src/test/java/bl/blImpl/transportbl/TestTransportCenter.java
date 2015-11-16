@@ -13,9 +13,8 @@ import vo.transitvo.CenterOutVO;
 import bl.blService.transportblService.TransportCenterBLService;
 
 /** 
- * Client//bl.blImpl.transport//TestTransportCenter.java
  * @author Wjc
- * @date 2015年11月16日 
+ * @date 2015年11月16日
  * @version 1.0 
  */
 public class TestTransportCenter {

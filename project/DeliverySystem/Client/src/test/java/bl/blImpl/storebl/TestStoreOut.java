@@ -12,6 +12,11 @@ import vo.storevo.StoreOutVO;
 import bl.blService.storeblService.StoreInBLService;
 import bl.blService.storeblService.StoreOutBLService;
 
+/** 
+ * @author Wjc
+ * @date 2015年11月16日
+ * @version 1.0 
+ */
 public class TestStoreOut {
 	StoreOutBLService storeOutBLService;
 	StoreOutVO so;

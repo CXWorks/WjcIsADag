@@ -20,7 +20,7 @@ public interface ManageblHallService {
 	
 	public OperationMessage modifyHall(HallVO hall);
 	
-	public OperationMessage deleteHall(HallPO hall);
+	public OperationMessage deleteHall(HallVO hall);
 	
 	public HallVO searchHall(HallVO hall);
 	
