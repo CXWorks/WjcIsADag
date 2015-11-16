@@ -23,7 +23,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	public ArrayList<ConfigurationVO> get(ConfigurationEnum type) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<ConfigurationVO>();
 	}
 
 	/* (non-Javadoc)
@@ -31,7 +31,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	public OperationMessage modify(ConfigurationVO after) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 }

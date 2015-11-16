@@ -21,7 +21,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return null;
+		return "2333";
 	}
 
 	/* (non-Javadoc)
@@ -30,7 +30,7 @@ public class DeliverBLController implements DeliverBLService {
 	public ArrayList<CheckFormMessage> checkFormat(DeliverVO form,
 			boolean isFinal) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<CheckFormMessage>();
 	}
 
 	/* (non-Javadoc)
@@ -38,7 +38,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public OperationMessage submit(DeliverVO form) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -46,7 +46,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public OperationMessage saveDraft(DeliverVO form) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -54,7 +54,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public DeliverVO loadDraft() {
 		// TODO Auto-generated method stub
-		return null;
+		return new DeliverVO();
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +62,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public OrderVO getOrderVO(String orderID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OrderVO();
 	}
 
 }

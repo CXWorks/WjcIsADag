@@ -19,7 +19,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 	 */
 	public OperationMessage checkMessage(String ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -27,7 +27,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 	 */
 	public ArrayList<ChatMessage> receive(String ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<ChatMessage>();
 	}
 
 }

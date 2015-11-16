@@ -30,7 +30,7 @@ public class LogblImpl implements LogblService {
 	 */
 	public ArrayList<FormVO> fuzzyQuery(String info) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<FormVO>();
 	}
 
 	/* (non-Javadoc)
@@ -38,7 +38,7 @@ public class LogblImpl implements LogblService {
 	 */
 	public ArrayList<FormVO> dateSearch(Calendar date) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<FormVO>();
 	}
 
 }

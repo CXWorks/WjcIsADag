@@ -9,6 +9,7 @@ import po.configurationdata.enums.PackEnum;
 
 public class PackVO extends ConfigurationVO{
 	private Map<PackEnum,Double> packPrice;
+	public PackVO(){}
 	
 	public PackVO(PackPO po){
 		this.packPrice=po.getPackPrice();
@@ -17,5 +18,6 @@ public class PackVO extends ConfigurationVO{
 	public double getByType(PackEnum type){
 		return packPrice.get(type);
 	}
+	
 	
 }

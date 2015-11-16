@@ -21,7 +21,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	 */
 	public ArrayList<AccountVO> getAccountVOs() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<AccountVO>();
 	}
 
 	/* (non-Javadoc)
@@ -29,7 +29,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	 */
 	public AccountVO getAccountVO(String accountID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new AccountVO();
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +37,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	 */
 	public OperationMessage addAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +45,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	 */
 	public OperationMessage deleteAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -53,7 +53,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	 */
 	public OperationMessage modifyAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 }

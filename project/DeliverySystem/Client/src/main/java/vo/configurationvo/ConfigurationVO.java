@@ -8,6 +8,6 @@ import po.configurationdata.enums.ConfigurationEnum;
  * @date 2015年11月15日 下午4:25:56
  * @version 1.0 
  */
-public class ConfigurationVO {
+public abstract class ConfigurationVO {
 	protected ConfigurationEnum ID;
 }

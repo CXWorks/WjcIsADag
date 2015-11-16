@@ -19,7 +19,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	 */
 	public ArrayList<DeliverVO> getDeliverForms(String postmanID) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<DeliverVO>();
 	}
 
 	/* (non-Javadoc)
@@ -27,7 +27,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	 */
 	public OperationMessage finishDelivery(ArrayList<DeliverVO> finfished) {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 
 }

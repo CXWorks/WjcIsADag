@@ -21,13 +21,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	 */
 	public OperationMessage checkAccount(String id, String password) {
 		// TODO Auto-generated method stub
-		try {
-			return CacheHelper.getAccountDataService().checkAccount(id, password);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return new OperationMessage();
 	}
 
 }
