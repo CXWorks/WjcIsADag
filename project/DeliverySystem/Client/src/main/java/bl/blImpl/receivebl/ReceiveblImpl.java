@@ -65,7 +65,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return null;
+		return "111111";
 	}
 
 

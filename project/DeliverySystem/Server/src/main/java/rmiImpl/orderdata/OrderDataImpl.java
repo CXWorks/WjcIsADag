@@ -52,12 +52,15 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	public OrderPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new OrderPO();
 	}
 
 	public ArrayList<OrderPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderPO> result=new ArrayList<OrderPO>();
+		OrderPO stub=new OrderPO();
+		result.add(stub);
+		return result;
 	}
 
 

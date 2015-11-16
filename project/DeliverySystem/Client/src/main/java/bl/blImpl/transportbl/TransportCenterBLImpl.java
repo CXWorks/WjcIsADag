@@ -62,14 +62,14 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		 */
 		public String newID() {
 			// TODO Auto-generated method stub
-			return null;
+			return "321111";
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportCenterBLService#getOrder(java.lang.String)
 		 */
 		public OrderVO getOrder(String orderID) {
 			// TODO Auto-generated method stub
-			return null;
+			return new OrderVO();
 		}
 		
 

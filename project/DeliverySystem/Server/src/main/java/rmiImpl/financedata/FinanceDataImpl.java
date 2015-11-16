@@ -111,6 +111,6 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
 	public OperationMessage uploadAccountOperations(String staffID,
 			LinkedList<BankAccountOperation> operations) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new OperationMessage();
 	}
 }

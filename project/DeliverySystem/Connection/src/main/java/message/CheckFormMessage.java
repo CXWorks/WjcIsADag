@@ -9,5 +9,9 @@ import java.io.Serializable;
  */
 
 public class CheckFormMessage implements Serializable{
-
+	public boolean checkResult;
+	private Exception reason;
+	public CheckFormMessage(){
+		checkResult=true;
+	}
 }

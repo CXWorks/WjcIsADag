@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.deliverdata.DeliverPO;
 import po.orderdata.OrderPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
@@ -46,12 +47,18 @@ public class TransportDataImpl extends CommonData<TransportPO> implements Transp
 
 	public TransportPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new CenterOutPO();
+//		return new LoadPO();
 	}
 
 	public ArrayList<TransportPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<TransportPO> result=new ArrayList<TransportPO>();
+		LoadPO stub1=new LoadPO();
+		CenterOutPO stub2=new CenterOutPO();
+		result.add(stub1);
+		result.add(stub2);
+		return result;
 	}
 
 }

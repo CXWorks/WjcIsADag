@@ -49,12 +49,15 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 	public ReceivePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new ReceivePO();
 	}
 
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ReceivePO> result=new ArrayList<ReceivePO>();
+		ReceivePO stub=new ReceivePO();
+		result.add(stub);
+		return result;
 	}
 
 }

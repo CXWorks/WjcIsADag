@@ -65,7 +65,10 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	@Override
 	public ArrayList<CarPO> availableCar() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CarPO> result=new ArrayList<CarPO>();
+		CarPO stub=new CarPO();
+		result.add(stub);
+		return result;
 	}
 
 }

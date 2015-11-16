@@ -49,18 +49,24 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public DeliverPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new DeliverPO();
 	}
 
 	
 	public ArrayList<DeliverPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DeliverPO> result=new ArrayList<DeliverPO>();
+		DeliverPO stub=new DeliverPO();
+		result.add(stub);
+		return result;
 	}
 
 	@Override
 	public ArrayList<DeliverPO> available(String HallID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DeliverPO> result=new ArrayList<DeliverPO>();
+		DeliverPO stub=new DeliverPO();
+		result.add(stub);
+		return result;
 	}
 }
