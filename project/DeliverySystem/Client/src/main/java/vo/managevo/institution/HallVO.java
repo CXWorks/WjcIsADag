@@ -2,8 +2,9 @@ package vo.managevo.institution;
 import java.util.ArrayList;
 
 import po.memberdata.StaffPO;
+import vo.InfoVO;
 
-public class HallVO {
+public class HallVO extends InfoVO{
 	
 	public HallVO(String hallID, String city, String area,
 			ArrayList<StaffPO> driver, ArrayList<StaffPO> deliver,

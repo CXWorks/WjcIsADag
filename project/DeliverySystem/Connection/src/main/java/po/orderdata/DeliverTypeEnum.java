@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 import po.FormPO;
 
-public enum TypeEnum implements Serializable{
+public enum DeliverTypeEnum implements Serializable{
 	SLOW,NORMAL,FAST
 }

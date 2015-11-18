@@ -2,6 +2,7 @@ package po.initialdata;
 
 import model.store.StoreModel;
 import po.CommonPO;
+import po.InfoPO;
 import po.companydata.CarPO;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/26.
  */
-public class InitialDataPO extends CommonPO implements Serializable{
+public class InitialDataPO extends InfoPO implements Serializable{
     String version;
     String dbName;
 

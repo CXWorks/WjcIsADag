@@ -5,16 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import po.CommonPO;
-import po.configurationdata.enums.ConfigurationEnum;
+import po.InfoPO;
 import po.configurationdata.enums.PackEnum;
 
-public class PackPO extends CommonPO implements Serializable{
-	private ConfigurationEnum ID;
+public class PackPO extends InfoPO implements Serializable{
 	private Map<PackEnum,Double> packPrice;
 	
 	public PackPO() {
 		// TODO Auto-generated constructor stub
-		this.ID=ConfigurationEnum.PACK;
 		this.packPrice=new HashMap();
 		this.packPrice.put(PackEnum.WOOD, (double) 10);
 		this.packPrice.put(PackEnum.PAPER, (double) 5);

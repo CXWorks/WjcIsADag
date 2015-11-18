@@ -2,10 +2,13 @@ package po.accountdata;
 
 import java.io.Serializable;
 
+import javax.sound.midi.MidiDevice.Info;
+
 import po.CommonPO;
 import po.FormPO;
+import po.InfoPO;
 
-public class AccountPO extends CommonPO implements Serializable{
+public class AccountPO extends InfoPO implements Serializable{
 
 	private String ID;
 	private String password;

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
+import po.FormPO;
 import po.orderdata.OrderPO;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import bl.blService.orderblService.OrderBLService;
+import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.RMIHelper;
+import bl.tool.vopo.VOPOFactory;
 
 public class OrderBLController implements OrderBLService{
 	Predicter predicter;
@@ -32,7 +35,14 @@ public class OrderBLController implements OrderBLService{
 
 	public OperationMessage submit(OrderVO form) {
 		// TODO Auto-generated method stub
-		return new  OperationMessage();
+		try {
+			FormPO ready=VOPOFactory.transVOtoPO(form);
+			return CacheHelper.getExamineSubmitService().submit(ready);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new OperationMessage();
+		}
+		//return new OperationMessage(false, "Unknown reason");
 	}
 
 	public PredictVO predict(OrderVO vo) {
@@ -45,6 +55,12 @@ public class OrderBLController implements OrderBLService{
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
+		try {
+			String id=CacheHelper.getOrderDataService().newID();
+			return id;
+		} catch (Exception e) {
+			
+		}
 		return "";
 	}
 

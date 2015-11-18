@@ -2,9 +2,10 @@ package vo.managevo.institution;
 import java.util.ArrayList;
 
 import po.memberdata.StaffPO;
+import vo.InfoVO;
 
 
-public class CenterVO {
+public class CenterVO extends InfoVO{
 	
 	public CenterVO(){
 		

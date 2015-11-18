@@ -1,6 +1,8 @@
 package vo.ordervo;
 
-public class PredictVO {
+import vo.InfoVO;
+
+public class PredictVO extends InfoVO{
 private String expense;
 private String predictDate;
 }

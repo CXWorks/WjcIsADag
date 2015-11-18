@@ -1,5 +1,7 @@
 package vo.financevo;
 
+import vo.InfoVO;
+
 /** 
  * Client//vo.financevo//CalculateVO.java
  * @author CXWorks
@@ -7,7 +9,7 @@ package vo.financevo;
  * @version 1.0 
  * 显示公司当前收入、支出、毛利润
  */
-public class CalculateVO {
+public class CalculateVO extends InfoVO{
 	//income
 	private double companyRevenue;
 	//outcome

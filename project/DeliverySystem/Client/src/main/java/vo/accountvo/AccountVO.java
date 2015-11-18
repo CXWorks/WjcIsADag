@@ -1,6 +1,9 @@
 package vo.accountvo;
 
+import po.FormEnum;
+import po.accountdata.AccountPO;
 import po.accountdata.AuthorityEnum;
+import vo.InfoVO;
 
 
 /**
@@ -9,7 +12,7 @@ import po.accountdata.AuthorityEnum;
  *2015/10/25
  */
 
-public class AccountVO {
+public class AccountVO extends InfoVO{
 	private String ID;
 	private String password;
 	private AuthorityEnum authority;
@@ -21,10 +24,13 @@ public class AccountVO {
 	 * @param authority
 	 */
 	public AccountVO(String iD, String password, AuthorityEnum authority) {
-		super();
+		//super(FormEnum);
 		ID = iD;
 		this.password = password;
 		this.authority = authority;
 	}
-	
+	//
+	public AccountVO(AccountPO po){
+		
+	}
 }

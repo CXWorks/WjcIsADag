@@ -1,10 +1,12 @@
 package vo.financevo;
 
+import vo.InfoVO;
+
 /**
  * Created by Sissel on 2015/10/24.
  * 此类为直方图和折线图的共用数据集合类
  */
-public class BaseChartVO {
+public class BaseChartVO extends InfoVO{
     String	title;
     String	mainXType;
     String	mainYType;

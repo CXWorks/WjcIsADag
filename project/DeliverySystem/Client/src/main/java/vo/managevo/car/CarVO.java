@@ -4,7 +4,9 @@ import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
-public class CarVO {
+import vo.InfoVO;
+
+public class CarVO extends InfoVO{
 	private boolean free;
 	private int carID;
 	private Calendar useTime;

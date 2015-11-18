@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import po.orderdata.TypeEnum;
+import po.orderdata.DeliverTypeEnum;
 import vo.ordervo.OrderVO;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blService.orderblService.OrderBLService;
@@ -27,7 +27,7 @@ public class TestOrder {
 	public void setUp() throws Exception {
 		orderBLService = new OrderBLController();
 		o = new OrderVO("程翔","孟鑫","南京仙林","南京鼓楼","南京仙林厅","南京鼓楼厅","0411-87620011","025-84561234",
-				"186999988888","15699998888","2","iPhone 6s","1","2","15",TypeEnum.NORMAL);
+				"186999988888","15699998888","2","iPhone 6s","1","2","15",DeliverTypeEnum.NORMAL);
 	}
 	
 	@Test

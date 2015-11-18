@@ -11,6 +11,9 @@ public class FormVO {
     private FormStateEnum state;
     private String formID;
     public FormVO(){}
+    public FormVO(FormEnum type){
+    	this.formType=type;
+    }
     public FormVO(FormEnum type,FormStateEnum state,String formID){
     	this.formType=type;
     	this.state=state;

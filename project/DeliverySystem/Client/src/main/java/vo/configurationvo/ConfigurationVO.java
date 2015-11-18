@@ -1,13 +1,13 @@
 package vo.configurationvo;
 
-import po.configurationdata.enums.ConfigurationEnum;
+import vo.InfoVO;
 
 /** 
  * Client//vo.configurationvo//ConfigurationVO.java
  * @author CXWorks
- * @date 2015年11月15日 下午4:25:56
+ * @date 2015年11月18日 下午3:32:36
  * @version 1.0 
  */
-public abstract class ConfigurationVO {
-	protected ConfigurationEnum ID;
+public abstract class ConfigurationVO extends InfoVO{
+
 }

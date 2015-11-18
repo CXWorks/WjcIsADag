@@ -3,17 +3,15 @@ package po.configurationdata;
 import java.io.Serializable;
 
 import po.CommonPO;
-import po.configurationdata.enums.ConfigurationEnum;
+import po.InfoPO;
 import po.memberdata.StaffTypeEnum;
 
-public class SalaryStrategyPO extends CommonPO implements Serializable{
-	private ConfigurationEnum ID;
+public class SalaryStrategyPO extends InfoPO implements Serializable{
 	private StaffTypeEnum staff;
 	private int base;
 	private int commission;
 	private int bonus;
 	public SalaryStrategyPO(){
-		this.ID=ConfigurationEnum.SALARY_STRATEGY;
 		this.staff=StaffTypeEnum.ADMINISTRATOR;
 		this.base=1000;
 		this.commission=100;

@@ -1,7 +1,6 @@
 package vo.configurationvo;
 
 import po.configurationdata.SalaryStrategyPO;
-import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.PackEnum;
 import po.memberdata.StaffTypeEnum;
 

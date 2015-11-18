@@ -2,7 +2,9 @@ package po.configurationdata;
 
 import java.util.ArrayList;
 
-public class City2DPO {
+import po.InfoPO;
+
+public class City2DPO extends InfoPO {
 	
 	private double x;
 

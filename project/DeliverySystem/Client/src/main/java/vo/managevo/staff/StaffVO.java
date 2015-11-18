@@ -2,8 +2,9 @@ package vo.managevo.staff;
 
 import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
+import vo.InfoVO;
 
-public class StaffVO {
+public class StaffVO extends InfoVO{
 	
 	public StaffVO(){
 		

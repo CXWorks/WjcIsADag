@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import po.FormEnum;
 import po.FormStateEnum;
-import po.orderdata.TypeEnum;
+import po.orderdata.DeliverTypeEnum;
 import rmi.examineService.ExamineManageService;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
@@ -40,9 +40,9 @@ public class TestExamineManage {
 		d=new ArrayList<FormVO>();
 		//object
 		OrderVO[] order=new OrderVO[3];
-		order[0]=new OrderVO("程翔", "王嘉琛", "南京", "北京", "", "", "18351890356", "13724456739", "3", "图书", "", "", "", "20", "", TypeEnum.NORMAL);
-		order[1]=new OrderVO("刘钦", "丁二玉", "南京", "南京", "", "", "18351436356", "13724456739", "3", "图书", "", "", "", "30", "", TypeEnum.FAST);
-		order[2]=new OrderVO("邵栋", "郑滔", "广州", "北京", "", "", "18351630356", "13724456739", "3", "图书", "", "", "", "15", "", TypeEnum.SLOW);
+		order[0]=new OrderVO("程翔", "王嘉琛", "南京", "北京", "", "", "18351890356", "13724456739", "3", "图书", "", "", "", "20", "", DeliverTypeEnum.NORMAL);
+		order[1]=new OrderVO("刘钦", "丁二玉", "南京", "南京", "", "", "18351436356", "13724456739", "3", "图书", "", "", "", "30", "", DeliverTypeEnum.FAST);
+		order[2]=new OrderVO("邵栋", "郑滔", "广州", "北京", "", "", "18351630356", "13724456739", "3", "图书", "", "", "", "15", "", DeliverTypeEnum.SLOW);
 		for (int i = 0; i < order.length; i++) {
 			o.add(order[i]);
 		}

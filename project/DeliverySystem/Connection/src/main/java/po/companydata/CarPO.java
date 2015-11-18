@@ -3,11 +3,13 @@ package po.companydata;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.sound.midi.MidiDevice.Info;
 import javax.swing.ImageIcon;
 
 import po.CommonPO;
+import po.InfoPO;
 
-public class CarPO extends CommonPO implements Serializable{
+public class CarPO extends InfoPO implements Serializable{
 	private boolean free;
 	private int carID;
 	private Calendar useTime;

@@ -31,7 +31,7 @@ public class TestExamineSubmit {
 	public void testSubmit() {
 		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.DELIVER,FormStateEnum.SUBMIT,"0001")).operationResult);
 		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.DELIVER,FormStateEnum.SUBMIT,"0043")).operationResult);
-		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.MONEY_IN,FormStateEnum.SUBMIT,"5323")).operationResult);
+		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.PAYMENT,FormStateEnum.SUBMIT,"5323")).operationResult);
 		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.STORE_IN,FormStateEnum.SUBMIT,"6521")).operationResult);
 		assertTrue(examineblSubmitService.submit(new FormVO(FormEnum.TRANSPORT_CENTER,FormStateEnum.SUBMIT,"6423")).operationResult);
 		

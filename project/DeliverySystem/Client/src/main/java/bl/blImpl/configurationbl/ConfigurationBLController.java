@@ -3,7 +3,7 @@ package bl.blImpl.configurationbl;
 import java.util.ArrayList;
 
 import message.OperationMessage;
-import po.configurationdata.enums.ConfigurationEnum;
+import po.InfoEnum;
 import vo.configurationvo.ConfigurationVO;
 import bl.blService.configurationblService.ConfigurationBLService;
 
@@ -21,7 +21,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	/* (non-Javadoc)
 	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.configurationdata.enums.ConfigurationEnum)
 	 */
-	public ArrayList<ConfigurationVO> get(ConfigurationEnum type) {
+	public ArrayList<ConfigurationVO> get(InfoEnum type) {
 		// TODO Auto-generated method stub
 		return new ArrayList<ConfigurationVO>();
 	}

@@ -4,10 +4,12 @@ import model.store.StoreLocation;
 
 import java.util.List;
 
+import vo.InfoVO;
+
 /**
  * Created by Sissel on 2015/10/25.
  */
-public class StockTackVO {
+public class StockTackVO extends InfoVO{
 
 	public StockTackVO(){
 		

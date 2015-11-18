@@ -1,6 +1,7 @@
 package vo.ordervo;
 
-import po.orderdata.TypeEnum;
+import po.orderdata.DeliverTypeEnum;
+import po.orderdata.OrderPO;
 import vo.FormVO;
 
 /**
@@ -25,7 +26,7 @@ public class OrderVO extends FormVO{
 	  private String weight;
 	  private String volume;
 	  private String money;
-	  private TypeEnum type;
+	  private DeliverTypeEnum type;
 	  public OrderVO(){}
 	  
 	  /**
@@ -50,7 +51,7 @@ public class OrderVO extends FormVO{
 			String loacal, String unitFrom, String unitTo, String phoneNumFrom,
 			String phoneNumTo, String telNumFrom, String telNumTo,
 			String goodsNum, String goodsName, String weight, String volume,
-			String money, TypeEnum type) {
+			String money, DeliverTypeEnum type) {
 		super();
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
@@ -68,5 +69,11 @@ public class OrderVO extends FormVO{
 		this.volume = volume;
 		this.money = money;
 		this.type = type;
+	}
+	//
+	public OrderVO(OrderPO po){
+		//deep clone
+		this(po.getNameFrom(), po.getNameTo(), po.getLocation(), po.getLoacal(), po.getUnitFrom(), po.getUnitTo(), po.getPhoneNumFrom(), po.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(), po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po.getVolume(), po.getMoney(), po.getType());
+		
 	}
 }

@@ -2,8 +2,8 @@ package bl.blService.configurationblService;
 
 import java.util.ArrayList;
 
+import po.InfoEnum;
 import message.OperationMessage;
-import po.configurationdata.enums.ConfigurationEnum;
 import vo.configurationvo.ConfigurationVO;
 
 /** 
@@ -18,7 +18,7 @@ public interface ConfigurationBLService {
 	 * @param type
 	 * @return
 	 */
-	public ArrayList<ConfigurationVO> get(ConfigurationEnum type);
+	public ArrayList<ConfigurationVO> get(InfoEnum type);
 	/**
 	 * 修改信息
 	 * @param after

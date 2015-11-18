@@ -1,6 +1,7 @@
 package vo.initialdata;
 
 import model.store.StoreModel;
+import vo.InfoVO;
 import vo.financevo.BankAccountVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/26.
  */
-public class InitialDataVO {
+public class InitialDataVO extends InfoVO{
     String version;
     String dbName;
 

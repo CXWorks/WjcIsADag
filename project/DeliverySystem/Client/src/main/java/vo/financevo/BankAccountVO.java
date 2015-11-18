@@ -1,9 +1,11 @@
 package vo.financevo;
 
+import vo.InfoVO;
+
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class BankAccountVO {
+public class BankAccountVO extends InfoVO{
     private String bankID;
     private String accountName;
     private String balance;

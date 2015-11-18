@@ -3,7 +3,6 @@ package vo.configurationvo;
 import java.util.Map;
 
 import po.configurationdata.ProportionPO;
-import po.configurationdata.enums.ConfigurationEnum;
 import po.configurationdata.enums.DeliveryTypeEnum;
 
 public class ProportionVO extends ConfigurationVO{
