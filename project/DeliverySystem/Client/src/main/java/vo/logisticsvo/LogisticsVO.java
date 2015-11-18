@@ -2,6 +2,7 @@ package vo.logisticsvo;
 
 import java.util.ArrayList;
 
+import po.InfoEnum;
 import po.orderdata.DeliverTypeEnum;
 import vo.InfoVO;
 
@@ -21,4 +22,7 @@ public class LogisticsVO extends InfoVO{
 	  private String goodsNum;
 	  private String goodsName;
 	  private DeliverTypeEnum type;
+	  public LogisticsVO(){
+		  super(InfoEnum.LOGISTICS);
+	  }
 }

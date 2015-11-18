@@ -1,5 +1,6 @@
 package vo.managevo.staff;
 
+import po.InfoEnum;
 import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import vo.InfoVO;
@@ -7,11 +8,11 @@ import vo.InfoVO;
 public class StaffVO extends InfoVO{
 	
 	public StaffVO(){
-		
+		super(InfoEnum.STAFF);
 	}
 	public StaffVO(StaffTypeEnum staff, String iD, String name, int age,
 			String personID, SexEnum sex, String love) {
-		super();
+		this();
 		this.staff = staff;
 		ID = iD;
 		this.name = name;

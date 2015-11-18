@@ -1,5 +1,6 @@
 package vo.financevo;
 
+import po.InfoEnum;
 import vo.InfoVO;
 
 /** 
@@ -16,5 +17,7 @@ public class CalculateVO extends InfoVO{
 	private double companyPayment;
 	//毛利润
 	private double companyProfit;
-
+	public CalculateVO(){
+		super(InfoEnum.CALCULATE);
+	}
 }

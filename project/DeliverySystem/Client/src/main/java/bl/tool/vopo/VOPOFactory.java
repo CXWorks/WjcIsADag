@@ -1,6 +1,8 @@
 package bl.tool.vopo;
 
 import po.FormPO;
+import util.DataType;
+import vo.CommonVO;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
@@ -14,21 +16,26 @@ import po.orderdata.OrderPO;
  */
 public class VOPOFactory {
 
-	public static FormVO transPOtoVO(FormPO po) {
+	public static CommonVO transPOtoVO(CommonPO po) {
 		// TODO Auto-generated method stub
-		switch (po.getFormType()) {
-		case ORDER:
-			return new OrderVO((OrderPO)po);
-		case DELIVER:
-			return new DeliverVO();
+		if (po.dataType==DataType.DATA) {
+			InfoPO info=(InfoPO)po;
+			switch (info.getInfoEnum()) {
+			case ACCOUNT:
+				
+				break;
 
-		default:
+			default:
+				break;
+			}
+			return null;
+		} else {
 			return null;
 		}
 		
 	}
 
-	public static FormPO transVOtoPO(FormVO vo) {
+	public static CommonPO transVOtoPO(CommonVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

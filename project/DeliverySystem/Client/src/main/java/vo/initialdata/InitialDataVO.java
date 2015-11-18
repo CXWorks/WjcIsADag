@@ -10,6 +10,8 @@ import vo.managevo.staff.StaffVO;
 
 import java.util.List;
 
+import po.InfoEnum;
+
 /**
  * Created by Sissel on 2015/10/26.
  */
@@ -23,4 +25,7 @@ public class InitialDataVO extends InfoVO{
     List<StaffVO> staffs;
     List<HallVO> halls;
     List<CenterVO> centers;
+    public InitialDataVO(){
+    	super(InfoEnum.INITIAL_DATA);
+    }
 }

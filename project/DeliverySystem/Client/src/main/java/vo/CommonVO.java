@@ -10,4 +10,7 @@ import util.DataType;
  */
 public	abstract class CommonVO {
 	public DataType dataType;
+	public CommonVO(DataType dataType){
+		this.dataType=dataType;
+	}
 }

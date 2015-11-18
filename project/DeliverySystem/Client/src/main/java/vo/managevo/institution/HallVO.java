@@ -1,6 +1,7 @@
 package vo.managevo.institution;
 import java.util.ArrayList;
 
+import po.InfoEnum;
 import po.memberdata.StaffPO;
 import vo.InfoVO;
 
@@ -9,7 +10,7 @@ public class HallVO extends InfoVO{
 	public HallVO(String hallID, String city, String area,
 			ArrayList<StaffPO> driver, ArrayList<StaffPO> deliver,
 			ArrayList<StaffPO> counterman, String nearCenterID) {
-		super();
+		this();
 		this.hallID = hallID;
 		this.city = city;
 		this.area = area;
@@ -26,10 +27,12 @@ public class HallVO extends InfoVO{
 	private ArrayList<StaffPO> deliver;
 	private ArrayList<StaffPO> counterman;
 	private String nearCenterID;
-	public HallVO(){}
+	public HallVO(){
+		super(InfoEnum.HALL);
+	}
 	//
 	public HallVO(String hallID){
-		super();
+		this();
 		this.hallID=hallID;
 	}
 }

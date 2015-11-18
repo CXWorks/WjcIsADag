@@ -2,20 +2,24 @@ package vo;
 
 import po.FormEnum;
 import po.FormStateEnum;
+import util.DataType;
 
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class FormVO {
+public class FormVO extends CommonVO{
     private FormEnum formType;
     private FormStateEnum state;
     private String formID;
-    public FormVO(){}
+    public FormVO(){
+    	super(DataType.FORM);
+    }
     public FormVO(FormEnum type){
+    	super(DataType.FORM);
     	this.formType=type;
     }
     public FormVO(FormEnum type,FormStateEnum state,String formID){
-    	this.formType=type;
+    	this(type);
     	this.state=state;
     	this.formID=formID;
     }

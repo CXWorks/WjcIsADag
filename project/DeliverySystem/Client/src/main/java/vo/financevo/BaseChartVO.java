@@ -1,5 +1,6 @@
 package vo.financevo;
 
+import po.InfoEnum;
 import vo.InfoVO;
 
 /**
@@ -20,5 +21,7 @@ public class BaseChartVO extends InfoVO{
 
     double[][]	values;
 
-
+    public BaseChartVO(){
+    	super(InfoEnum.BASE_CHART);
+    }
 }

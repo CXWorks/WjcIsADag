@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
+import po.InfoEnum;
 import vo.InfoVO;
 
 public class CarVO extends InfoVO{
@@ -28,12 +29,12 @@ public class CarVO extends InfoVO{
 	 * @param buyTime
 	 */
 	public CarVO(){
-		
+		super(InfoEnum.CAR);
 	}
 	
 	public CarVO(boolean free, int carID, Calendar useTime, ImageIcon imag,
 			int engineID, int nameID, int chassisID, Calendar buyTime) {
-		super();
+		this();
 		this.free = free;
 		this.carID = carID;
 		this.useTime = useTime;

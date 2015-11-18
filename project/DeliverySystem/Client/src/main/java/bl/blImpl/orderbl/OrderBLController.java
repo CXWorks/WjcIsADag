@@ -36,7 +36,7 @@ public class OrderBLController implements OrderBLService{
 	public OperationMessage submit(OrderVO form) {
 		// TODO Auto-generated method stub
 		try {
-			FormPO ready=VOPOFactory.transVOtoPO(form);
+			FormPO ready=(FormPO)VOPOFactory.transVOtoPO(form);
 			return CacheHelper.getExamineSubmitService().submit(ready);
 		} catch (Exception e) {
 			// TODO: handle exception

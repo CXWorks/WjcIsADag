@@ -3,14 +3,18 @@ package vo.configurationvo;
 import java.util.HashMap;
 import java.util.Map;
 
+import po.InfoEnum;
 import po.configurationdata.PackPO;
 import po.configurationdata.enums.PackEnum;
 
 public class PackVO extends ConfigurationVO{
 	private Map<PackEnum,Double> packPrice;
-	public PackVO(){}
+	public PackVO(){
+		super(InfoEnum.PACK);
+	}
 	
 	public PackVO(PackPO po){
+		this();
 		this.packPrice=po.getPackPrice();
 	}
 	

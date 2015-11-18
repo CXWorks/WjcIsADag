@@ -5,6 +5,8 @@ import vo.InfoVO;
 
 import java.util.Map;
 
+import po.InfoEnum;
+
 /**
  * Created by Sissel on 2015/10/24.
  */
@@ -17,5 +19,7 @@ public class PieChartVO extends InfoVO {
     Map<String, Double>	originMap;
     // 饼状图的每个项的名字及最终比例
     Map<String,Double> ratioMap;
-
+    public PieChartVO(){
+    	super(InfoEnum.PIE_CHART);
+    }
 }

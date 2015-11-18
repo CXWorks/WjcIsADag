@@ -4,6 +4,7 @@ import model.store.StoreLocation;
 
 import java.util.List;
 
+import po.InfoEnum;
 import vo.InfoVO;
 
 /**
@@ -12,12 +13,12 @@ import vo.InfoVO;
 public class StockTackVO extends InfoVO{
 
 	public StockTackVO(){
-		
+		super(InfoEnum.STOCK_TACK);
 	}
 	
     public StockTackVO(String date, List<StoreLocation> locations,
 			List<String> filters) {
-		super();
+		this();
 		this.date = date;
 		this.locations = locations;
 		this.filters = filters;

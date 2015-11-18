@@ -1,5 +1,6 @@
 package vo.configurationvo;
 
+import po.InfoEnum;
 import vo.InfoVO;
 
 /** 
@@ -9,5 +10,8 @@ import vo.InfoVO;
  * @version 1.0 
  */
 public abstract class ConfigurationVO extends InfoVO{
+	protected ConfigurationVO(InfoEnum infoEnum){
+		super(infoEnum);
+	}
 
 }

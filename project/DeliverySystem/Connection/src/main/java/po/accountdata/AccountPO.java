@@ -20,4 +20,18 @@ public class AccountPO extends InfoPO implements Serializable{
 		this.authority = authority;
 		this.password = password;
 	}
+	//
+
+	public String getID() {
+		return ID;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public AuthorityEnum getAuthority() {
+		return authority;
+	}
+	
 }
