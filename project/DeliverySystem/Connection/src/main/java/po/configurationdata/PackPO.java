@@ -9,7 +9,7 @@ import po.InfoPO;
 import po.configurationdata.enums.PackEnum;
 
 public class PackPO extends InfoPO implements Serializable{
-	private Map<PackEnum,Double> packPrice;
+	private HashMap<PackEnum,Double> packPrice;
 	
 	public PackPO() {
 		// TODO Auto-generated constructor stub
@@ -22,8 +22,12 @@ public class PackPO extends InfoPO implements Serializable{
 	public double getByType(PackEnum type){
 		return this.packPrice.get(type);
 	}
-	public Map<PackEnum, Double> getPackPrice() {
+	public HashMap<PackEnum, Double> getPackPrice() {
 		return packPrice;
 	}
-	
+	public HashMap<PackEnum, Double> getClonedPackPrice(){
+		HashMap<PackEnum, Double> ans=new HashMap<PackEnum, Double>();
+		ans.putAll(packPrice);
+		return ans;
+	}
 }

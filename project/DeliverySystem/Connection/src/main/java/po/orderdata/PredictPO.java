@@ -7,6 +7,6 @@ import po.FormPO;
 import po.InfoPO;
 
 public class PredictPO extends InfoPO implements Serializable{
-private String expense;
-private String predictDate;
+	private String expense;
+	private String predictDate;
 }

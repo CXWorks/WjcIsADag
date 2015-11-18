@@ -1,6 +1,7 @@
 package vo.financevo;
 
 import po.InfoEnum;
+import po.financedata.BankAccountPO;
 import vo.InfoVO;
 
 /**
@@ -38,5 +39,7 @@ public class BankAccountVO extends InfoVO{
 		this.accountName = accountName;
 		this.balance = balance;
 	}
-    
+    public BankAccountVO(BankAccountPO po){
+    	this(po.getBankID(), po.getAccountName(),po.getBalance() );
+    }
 }

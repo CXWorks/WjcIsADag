@@ -19,4 +19,32 @@ public class CarPO extends InfoPO implements Serializable{
 	private int nameID;
 	private int chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
+	//
+	public boolean isFree() {
+		return free;
+	}
+	public int getCarID() {
+		return carID;
+	}
+	public Calendar getUseTime() {
+		return useTime;
+	}
+	public ImageIcon getImg() {
+		return img;
+	}
+	public int getEngineID() {
+		return engineID;
+	}
+	public int getNameID() {
+		return nameID;
+	}
+	public int getChassisID() {
+		return chassisID;
+	}
+	public Calendar getBuyTime() {
+		return buyTime;
+	}
+	
+	//
+	
 }

@@ -2,6 +2,7 @@ package bl.blImpl.financebl;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import org.junit.Before;
@@ -27,11 +28,11 @@ public class TestPaymentBLImpl {
 	public void setUp() throws Exception {
 		pay=new PaymentBLImpl();
 		list=new LinkedList<PaymentVO>();
-		p=new PaymentVO("2015.11.16", "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", "monry", "no");
+		p=new PaymentVO(Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", "monry", "no");
 		PaymentVO[] a=new PaymentVO[3];
-		a[0]=new PaymentVO("2015.11.16", "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", "monry", "no");
-		a[1]=new PaymentVO("2015.11.11", "3432", "4333", "王嘉琛", "43242", "43243", "吴嘉荣", "3223", "monry", "no");
-		a[2]=new PaymentVO("2015.11.16", "3432", "487933", "孟鑫", "43242", "43243", "丁二玉", "3223", "monry", "no");
+		a[0]=new PaymentVO(Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", "monry", "no");
+		a[1]=new PaymentVO(Calendar.getInstance(), "3432", "4333", "王嘉琛", "43242", "43243", "吴嘉荣", "3223", "monry", "no");
+		a[2]=new PaymentVO(Calendar.getInstance(), "3432", "487933", "孟鑫", "43242", "43243", "丁二玉", "3223", "monry", "no");
 		for (int i = 0; i < a.length; i++) {
 			list.add(a[i]);
 		}

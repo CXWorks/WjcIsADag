@@ -8,14 +8,14 @@ import po.configurationdata.PackPO;
 import po.configurationdata.enums.PackEnum;
 
 public class PackVO extends ConfigurationVO{
-	private Map<PackEnum,Double> packPrice;
+	private HashMap<PackEnum,Double> packPrice;
 	public PackVO(){
 		super(InfoEnum.PACK);
 	}
 	
 	public PackVO(PackPO po){
 		this();
-		this.packPrice=po.getPackPrice();
+		this.packPrice=po.getClonedPackPrice();
 	}
 	
 	public double getByType(PackEnum type){

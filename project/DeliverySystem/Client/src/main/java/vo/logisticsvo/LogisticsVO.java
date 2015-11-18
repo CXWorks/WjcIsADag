@@ -25,4 +25,6 @@ public class LogisticsVO extends InfoVO{
 	  public LogisticsVO(){
 		  super(InfoEnum.LOGISTICS);
 	  }
+	  //
+	  
 }

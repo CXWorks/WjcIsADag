@@ -14,6 +14,18 @@ public class CenterPO extends InfoPO implements Serializable{
 	private String city;
 	private ArrayList<StaffPO> storeman;
 	private ArrayList<StaffPO> counterman;
+	public String getCenterID() {
+		return centerID;
+	}
+	public String getCity() {
+		return city;
+	}
+	public ArrayList<StaffPO> getStoreman() {
+		return storeman;
+	}
+	public ArrayList<StaffPO> getCounterman() {
+		return counterman;
+	}
 	
 	
 }

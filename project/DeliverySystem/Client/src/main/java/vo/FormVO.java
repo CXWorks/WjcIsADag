@@ -8,9 +8,9 @@ import util.DataType;
  * Created by Sissel on 2015/10/24.
  */
 public class FormVO extends CommonVO{
-    private FormEnum formType;
-    private FormStateEnum state;
-    private String formID;
+    protected FormEnum formType;
+    protected FormStateEnum state;
+    protected String formID;
     public FormVO(){
     	super(DataType.FORM);
     }

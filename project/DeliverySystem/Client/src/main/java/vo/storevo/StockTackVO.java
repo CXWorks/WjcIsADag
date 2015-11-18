@@ -2,6 +2,7 @@ package vo.storevo;
 
 import model.store.StoreLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import po.InfoEnum;
@@ -16,8 +17,8 @@ public class StockTackVO extends InfoVO{
 		super(InfoEnum.STOCK_TACK);
 	}
 	
-    public StockTackVO(String date, List<StoreLocation> locations,
-			List<String> filters) {
+    public StockTackVO(String date, ArrayList<StoreLocation> locations,
+			ArrayList<String> filters) {
 		this();
 		this.date = date;
 		this.locations = locations;
@@ -31,9 +32,9 @@ public class StockTackVO extends InfoVO{
     static String id;
 
     // 筛选出的符合的货架位置
-    List<StoreLocation> locations;
+    ArrayList<StoreLocation> locations;
 
     // 已经添加的筛选条件
-    List<String> filters;
+    ArrayList<String> filters;
 
 }

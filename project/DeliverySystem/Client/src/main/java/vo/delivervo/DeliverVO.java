@@ -2,6 +2,7 @@ package vo.delivervo;
 
 import java.util.Calendar;
 
+import po.deliverdata.DeliverPO;
 import vo.FormVO;
 
 /**
@@ -41,5 +42,7 @@ public class DeliverVO extends FormVO{
 		this.date = date;
 		this.postman = postman;
 	}
-	
+	public DeliverVO(DeliverPO po){
+		this(po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
+	}
 }

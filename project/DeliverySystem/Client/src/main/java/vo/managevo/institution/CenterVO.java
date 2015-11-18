@@ -2,8 +2,10 @@ package vo.managevo.institution;
 import java.util.ArrayList;
 
 import po.InfoEnum;
+import po.companydata.CenterPO;
 import po.memberdata.StaffPO;
 import vo.InfoVO;
+import vo.managevo.staff.StaffVO;
 
 
 public class CenterVO extends InfoVO{
@@ -12,8 +14,8 @@ public class CenterVO extends InfoVO{
 		super(InfoEnum.CENTER);
 	}
 	
-	public CenterVO(String centerID, String city, ArrayList<StaffPO> storeman,
-			ArrayList<StaffPO> counterman) {
+	public CenterVO(String centerID, String city, ArrayList<StaffVO> storeman,
+			ArrayList<StaffVO> counterman) {
 		this();
 		this.centerID = centerID;
 		this.city = city;
@@ -23,7 +25,17 @@ public class CenterVO extends InfoVO{
 
 	private String centerID;
 	private String city;
-	private ArrayList<StaffPO> storeman;
-	private ArrayList<StaffPO> counterman;
+	private ArrayList<StaffVO> storeman;
+	private ArrayList<StaffVO> counterman;
+	//
+	
+	//
+	private ArrayList<StaffVO> selfDeepClonePOtoVO(ArrayList<StaffPO> po){
+		ArrayList<StaffVO> ans=new ArrayList<StaffVO>(po.size());
+		for(int i=0;i<po.size();i++){
+			ans.add(new StaffVO(po.get(i)));
+		}
+		return ans;
+	}
 	
 }

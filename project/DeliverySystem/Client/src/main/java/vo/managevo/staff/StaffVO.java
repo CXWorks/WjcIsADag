@@ -2,6 +2,7 @@ package vo.managevo.staff;
 
 import po.InfoEnum;
 import po.memberdata.SexEnum;
+import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import vo.InfoVO;
 
@@ -29,4 +30,8 @@ public class StaffVO extends InfoVO{
 	private String personID;
 	private SexEnum sex;
 	private String love;
+	//
+	public StaffVO(StaffPO po){
+		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove());
+	}
 }

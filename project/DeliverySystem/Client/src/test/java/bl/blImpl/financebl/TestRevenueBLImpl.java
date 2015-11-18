@@ -2,6 +2,8 @@ package bl.blImpl.financebl;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +27,7 @@ public class TestRevenueBLImpl {
 	@Before
 	public void setUp() throws Exception {
 		re=new RevenueBLImpl();
-		revenue=new RevenueVO("2015.11.16", "300", "plane", "5839", "0034");
+		revenue=new RevenueVO(Calendar.getInstance(), "300", "plane", "5839", "0034");
 	}
 
 	@Test

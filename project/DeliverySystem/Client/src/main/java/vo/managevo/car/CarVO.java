@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 
 import po.InfoEnum;
+import po.companydata.CarPO;
 import vo.InfoVO;
 
 public class CarVO extends InfoVO{
@@ -44,5 +45,8 @@ public class CarVO extends InfoVO{
 		this.chassisID = chassisID;
 		this.buyTime = buyTime;
 	}
-	
+	public CarVO(CarPO po){
+		this(po.isFree(), po.getCarID(), po.getUseTime(), po.getImg(), po.getEngineID(), po.getNameID(), po.getChassisID(), po.getBuyTime());
+		
+	}
 }
