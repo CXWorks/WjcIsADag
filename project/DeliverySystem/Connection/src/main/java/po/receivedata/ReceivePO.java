@@ -61,11 +61,11 @@ public class ReceivePO extends FormPO implements Serializable{
 		return state;
 	}
 	public void setState(String state) {
-		if(state=="Complete")
+		if(state.equalsIgnoreCase("Complete"))
 			this.state = StateEnum.Complete;
-		else if(state=="Damage")
+		else if(state.equalsIgnoreCase("Damage"))
 			this.state = StateEnum.Damage;
-		else if(state=="Lose")
+		else if(state.equalsIgnoreCase("Lose"))
 			this.state = StateEnum.Lose;
 	}
 }
