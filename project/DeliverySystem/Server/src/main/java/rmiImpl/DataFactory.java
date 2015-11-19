@@ -2,6 +2,7 @@ package rmiImpl;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 import rmi.DataFactoryService;
 import rmi.DataService;
@@ -27,6 +28,7 @@ import rmiImpl.transportdata.TransportDataImpl;
 
 /**
  * 数据层，接口处理器
+ * 
  * @author wjc
  * @version 2014.10.31
  */
@@ -34,6 +36,7 @@ public class DataFactory implements DataFactoryService {
 
 	/**
 	 * 注意：在jdk1.7之后的版本才支持case String
+	 * 
 	 * @param name data的名字
 	 * @return DataService的子类实现
 	 * @throws RemoteException
@@ -42,7 +45,7 @@ public class DataFactory implements DataFactoryService {
 	 */
 	public DataService<?> createDataService(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		switch(name) {
+		switch (name) {
 		case AccountDataImpl.NAME:
 			return new AccountDataImpl();
 		case CompanyDataCarImpl.NAME:
@@ -92,11 +95,12 @@ public class DataFactory implements DataFactoryService {
 	}
 
 	@Override
-	public ExamineSubmitService creatExamineSubmitService() throws RemoteException {
+	public ExamineSubmitService creatExamineSubmitService()
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return new ExamineSubmitImpl();
 	}
-	
+
 	@Override
 	public ChatRemindService creatChatRemindService() throws RemoteException {
 		// TODO Auto-generated method stub
