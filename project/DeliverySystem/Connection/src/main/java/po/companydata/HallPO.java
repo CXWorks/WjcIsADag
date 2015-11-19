@@ -16,4 +16,26 @@ public class HallPO extends InfoPO implements Serializable{
 	private ArrayList<StaffPO> deliver;
 	private ArrayList<StaffPO> counterman;
 	private String nearCenterID;
+	public String getHallID() {
+		return hallID;
+	}
+	public String getCity() {
+		return city;
+	}
+	public String getArea() {
+		return area;
+	}
+	public ArrayList<StaffPO> getDriver() {
+		return driver;
+	}
+	public ArrayList<StaffPO> getDeliver() {
+		return deliver;
+	}
+	public ArrayList<StaffPO> getCounterman() {
+		return counterman;
+	}
+	public String getNearCenterID() {
+		return nearCenterID;
+	}
+	
 }

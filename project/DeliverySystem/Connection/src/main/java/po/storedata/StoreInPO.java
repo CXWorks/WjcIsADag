@@ -1,5 +1,7 @@
 package po.storedata;
 
+import java.util.Calendar;
+
 import model.store.StoreLocation;
 import po.FormPO;
 
@@ -9,8 +11,21 @@ import po.FormPO;
 public class StoreInPO extends FormPO {
 
     private String	orderID;
-    private String	date;
+    private Calendar	date;
     private String	destination;
     private StoreLocation location;
-
+	public String getOrderID() {
+		return orderID;
+	}
+	public Calendar getDate() {
+		return date;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public StoreLocation getLocation() {
+		return location;
+	}
+    
+    
 }

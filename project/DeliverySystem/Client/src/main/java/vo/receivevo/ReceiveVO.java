@@ -1,5 +1,9 @@
 package vo.receivevo;
 
+import java.util.Calendar;
+
+import po.FormEnum;
+import po.receivedata.ReceivePO;
 import po.receivedata.StateEnum;
 import vo.FormVO;
 
@@ -10,23 +14,28 @@ import vo.FormVO;
  */
 
 public class ReceiveVO extends FormVO{
-	public ReceiveVO(){}
-	
-	public ReceiveVO(String orderID, String transitID, String data,
+	public ReceiveVO(){
+		super(FormEnum.RECEIVE);
+	}
+	//
+	public ReceiveVO(ReceivePO po){
+		this(po.getOrderID(), po.getTransitID(), po.getDate(), po.getDepature(), po.getState());
+	}
+	public ReceiveVO(String orderID, String transitID, Calendar date,
 			String depature, StateEnum state) {
-		super();
+		this();
 		this.orderID = orderID;
 		this.transitID = transitID;
-		this.data = data;
+		this.date = date;
 		this.depature = depature;
-		this.state = state;
+		this.orderState = state;
 	}
 	
 	private String orderID;
 	private String transitID;
-	private String data;
+	private Calendar date;
 	private String depature;
-	private StateEnum state;
+	private StateEnum orderState;
 	
 	public String getOrderID() {
 		return orderID;
@@ -40,11 +49,12 @@ public class ReceiveVO extends FormVO{
 	public void setTransitID(String transitID) {
 		this.transitID = transitID;
 	}
-	public String getData() {
-		return data;
+	
+	public Calendar getDate() {
+		return date;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
 	public String getDepature() {
 		return depature;
@@ -52,10 +62,11 @@ public class ReceiveVO extends FormVO{
 	public void setDepature(String depature) {
 		this.depature = depature;
 	}
-	public StateEnum getState() {
-		return state;
+	
+	public StateEnum getOrderState() {
+		return orderState;
 	}
 	public void setState(StateEnum state) {
-		this.state = state;
+		this.orderState = state;
 	}
 }

@@ -2,6 +2,9 @@ package bl.blImpl.storebl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Calendar;
+
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
 
@@ -27,7 +30,7 @@ public class TestStoreIn {
 	@Before
 	public void setUp() throws Exception {
 		storeInBLService = new StoreInBLImpl();
-		si = new StoreInVO("111111","2015-11-16","南京仙林",new StoreLocation());
+		si = new StoreInVO("111111",Calendar.getInstance(),"南京仙林",new StoreLocation());
 	}
 	
 	@Test

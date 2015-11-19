@@ -8,7 +8,7 @@ import vo.InfoVO;
 import vo.managevo.staff.StaffVO;
 
 
-public class CenterVO extends InfoVO{
+public class CenterVO extends InstitutionVO{
 	
 	public CenterVO(){
 		super(InfoEnum.CENTER);
@@ -28,14 +28,19 @@ public class CenterVO extends InfoVO{
 	private ArrayList<StaffVO> storeman;
 	private ArrayList<StaffVO> counterman;
 	//
-	
+	public CenterVO(CenterPO po){
+		this(po.getCenterID(), po.getCity(), null, null);
+		this.setStoreman(selfDeepClonePOtoVO(po.getStoreman()));
+		this.setCounterman(selfDeepClonePOtoVO(po.getCounterman()));
+	}
 	//
-	private ArrayList<StaffVO> selfDeepClonePOtoVO(ArrayList<StaffPO> po){
-		ArrayList<StaffVO> ans=new ArrayList<StaffVO>(po.size());
-		for(int i=0;i<po.size();i++){
-			ans.add(new StaffVO(po.get(i)));
-		}
-		return ans;
+
+	private void setStoreman(ArrayList<StaffVO> storeman) {
+		this.storeman = storeman;
+	}
+
+	private void setCounterman(ArrayList<StaffVO> counterman) {
+		this.counterman = counterman;
 	}
 	
 }

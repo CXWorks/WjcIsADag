@@ -1,5 +1,9 @@
 package vo.storevo;
 
+import java.util.Calendar;
+
+import po.FormEnum;
+import po.storedata.StoreInPO;
 import model.store.StoreLocation;
 import vo.FormVO;
 
@@ -9,20 +13,24 @@ import vo.FormVO;
 public class StoreInVO extends FormVO {
 	
 	public StoreInVO(){
-		
+		super(FormEnum.STORE_IN);
 	}
 	
-    public StoreInVO(String orderID, String date, String destination,
+    public StoreInVO(String orderID, Calendar date, String destination,
 			StoreLocation location) {
-		super();
+		this();
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;
 		this.location = location;
 	}
     
+    public StoreInVO(StoreInPO po){
+    	this(po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation());
+    }
+    
 	private String	orderID;
-    private String	date;
+    private Calendar	date;
     private String	destination;
     private StoreLocation location;
 }

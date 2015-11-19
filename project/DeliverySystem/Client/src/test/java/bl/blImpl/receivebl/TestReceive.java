@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class TestReceive {
 	@Before
 	public void setUp() throws Exception {
 		receiveBLService = new ReceiveblImpl();
-		r = new ReceiveVO("1111111","1111111","2015-11-16","南京仙林",StateEnum.Complete);
+		r = new ReceiveVO("1111111","1111111",Calendar.getInstance(),"南京仙林",StateEnum.Complete);
 	}
 	
 	@Test
