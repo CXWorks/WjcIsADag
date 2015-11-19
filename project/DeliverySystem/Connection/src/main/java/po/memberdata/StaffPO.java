@@ -13,6 +13,7 @@ public class StaffPO extends InfoPO implements Serializable{
 	private String personID;
 	private SexEnum sex;
 	private String love;
+	public StaffPO(){}
 	//
 	public StaffTypeEnum getStaff() {
 		return staff;

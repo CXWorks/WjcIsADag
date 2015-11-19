@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,9 +30,9 @@ public class TestTransportCenter {
 		transportCenterBLService = new TransportCenterBLImpl();
 		co = new ArrayList<CenterOutVO>();
 		CenterOutVO[] centerout= new CenterOutVO[3];
-		centerout[0] = new CenterOutVO( "广州", "111111", "1", "12015-11-16", "111111", "北京", "人1");
-		centerout[1] = new CenterOutVO( "大连", "111111", "2", "12015-11-16", "111111", "北京", "人2");
-		centerout[2] = new CenterOutVO( "洛阳", "111111", "3", "12015-11-16", "111111", "北京", "人3");
+		centerout[0] = new CenterOutVO( "广州", "111111", "1", Calendar.getInstance(), "111111", "北京", "人1");
+		centerout[1] = new CenterOutVO( "大连", "111111", "2", Calendar.getInstance(), "111111", "北京", "人2");
+		centerout[2] = new CenterOutVO( "洛阳", "111111", "3", Calendar.getInstance(), "111111", "北京", "人3");
 		for (int i = 0; i < centerout.length; i++) {
 			co.add(centerout[i]);
 		}
