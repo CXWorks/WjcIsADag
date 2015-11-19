@@ -12,6 +12,21 @@ import po.receivedata.StateEnum;
  */
 
 public class ReceivePO extends FormPO implements Serializable{
+	
+	public ReceivePO(){
+		
+	}
+	
+	public ReceivePO(String orderID, String transitID, String data,
+			String depature, String state) {
+		super();
+		this.orderID = orderID;
+		this.transitID = transitID;
+		this.data = data;
+		this.depature = depature;
+		this.setState(state);
+	}
+	
 	private String orderID;
 	private String transitID;
 	private String data;
@@ -45,7 +60,12 @@ public class ReceivePO extends FormPO implements Serializable{
 	public StateEnum getState() {
 		return state;
 	}
-	public void setState(StateEnum state) {
-		this.state = state;
+	public void setState(String state) {
+		if(state=="Complete")
+			this.state = StateEnum.Complete;
+		else if(state=="Damage")
+			this.state = StateEnum.Damage;
+		else if(state=="Lose")
+			this.state = StateEnum.Lose;
 	}
 }

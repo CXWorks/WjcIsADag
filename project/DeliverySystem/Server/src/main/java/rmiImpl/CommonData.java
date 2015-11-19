@@ -3,6 +3,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import message.OperationMessage;
 import po.FormPO;
 import rmi.CommonDataService;
 
