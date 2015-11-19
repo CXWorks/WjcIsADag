@@ -1,5 +1,6 @@
 package bl.tool.draft;
 
+import po.FormEnum;
 import vo.FormVO;
 import message.OperationMessage;
 
@@ -15,6 +16,6 @@ public interface DraftService {
 	 * 应该有一个枚举参数来寻找的
 	 * @return
 	 */
-	public FormVO getDraft();
+	public FormVO getDraft(FormEnum formEnum);
 
 }

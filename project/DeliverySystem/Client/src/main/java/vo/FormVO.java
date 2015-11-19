@@ -23,4 +23,14 @@ public class FormVO extends CommonVO{
     	this.state=state;
     	this.formID=formID;
     }
+	public FormEnum getFormType() {
+		return formType;
+	}
+	public FormStateEnum getState() {
+		return state;
+	}
+	public String getFormID() {
+		return formID;
+	}
+    
 }

@@ -28,14 +28,14 @@ public class ReceiveVO extends FormVO{
 		this.transitID = transitID;
 		this.date = date;
 		this.depature = depature;
-		this.state = state;
+		this.orderState = state;
 	}
 	
 	private String orderID;
 	private String transitID;
 	private Calendar date;
 	private String depature;
-	private StateEnum state;
+	private StateEnum orderState;
 	
 	public String getOrderID() {
 		return orderID;
@@ -62,10 +62,11 @@ public class ReceiveVO extends FormVO{
 	public void setDepature(String depature) {
 		this.depature = depature;
 	}
-	public StateEnum getState() {
-		return state;
+	
+	public StateEnum getOrderState() {
+		return orderState;
 	}
 	public void setState(StateEnum state) {
-		this.state = state;
+		this.orderState = state;
 	}
 }

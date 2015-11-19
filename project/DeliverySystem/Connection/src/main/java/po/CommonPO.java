@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import util.DataType;
 
 /**
@@ -7,6 +9,6 @@ import util.DataType;
  * @author wjc
  * @version 2014.10.31
  */
-public abstract class CommonPO {
+public abstract class CommonPO implements Serializable{
 	public DataType dataType;
 }

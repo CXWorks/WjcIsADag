@@ -3,9 +3,9 @@ package po;
 import java.io.Serializable;
 
 public class FormPO extends CommonPO implements Serializable{
-	private FormEnum formType;
-	private FormStateEnum state;
-	private String formID;
+	protected FormEnum formType;
+	protected FormStateEnum state;
+	protected String formID;
 	public FormEnum getFormType() {
 		return this.formType;
 	}
