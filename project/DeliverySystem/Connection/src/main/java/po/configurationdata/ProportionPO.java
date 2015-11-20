@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.configurationdata.enums.DeliveryTypeEnum;
 
 public class ProportionPO extends InfoPO implements Serializable{
 	private HashMap<DeliveryTypeEnum,Integer> proportion;
 	public ProportionPO(){
+		super(InfoEnum.PROPORTION);
 		this.proportion=new HashMap<DeliveryTypeEnum, Integer>();
 		this.proportion.put(DeliveryTypeEnum.USUAL, 23);
 		proportion.put(DeliveryTypeEnum.ECONOMIC, 15);

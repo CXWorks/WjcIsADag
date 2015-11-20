@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.configurationdata.enums.DeliveryTypeEnum;
 
 public class PricePO extends InfoPO implements Serializable{
 	private HashMap<DeliveryTypeEnum,Integer> price;
 	public PricePO(){
+		super(InfoEnum.PRICE);
 		this.price=new HashMap<DeliveryTypeEnum, Integer>();
 		price.put(DeliveryTypeEnum.USUAL, 23);
 		price.put(DeliveryTypeEnum.ECONOMIC, 15);

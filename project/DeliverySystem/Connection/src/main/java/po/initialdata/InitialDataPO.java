@@ -2,6 +2,7 @@ package po.initialdata;
 
 import model.store.StoreModel;
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.companydata.CarPO;
 import po.companydata.CenterPO;
@@ -25,4 +26,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<StaffPO> staffs;
     List<HallPO> halls;
     List<CenterPO> centers;
+    public InitialDataPO(){
+    	super(InfoEnum.INITIAL_DATA);
+    }
 }

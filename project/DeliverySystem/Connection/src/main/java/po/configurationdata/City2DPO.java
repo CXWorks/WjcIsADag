@@ -2,6 +2,7 @@ package po.configurationdata;
 
 import java.util.ArrayList;
 
+import po.InfoEnum;
 import po.InfoPO;
 
 public class City2DPO extends InfoPO {
@@ -9,6 +10,9 @@ public class City2DPO extends InfoPO {
 	private double x;
 
 	private double y;
+	private City2DPO(){
+		super(InfoEnum.CITY_2D);
+	}
 	
 	//误差
 	private static final double ERROR = 0.05;
@@ -16,6 +20,7 @@ public class City2DPO extends InfoPO {
 	private static final double SCALE = 100;
 	
 	public City2DPO(double x,double y){
+		this();
 		this.x = x;
 		this.y = y;
 	}

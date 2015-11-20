@@ -3,6 +3,7 @@ package po.configurationdata;
 import java.io.Serializable;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.memberdata.StaffTypeEnum;
 
@@ -12,6 +13,7 @@ public class SalaryStrategyPO extends InfoPO implements Serializable{
 	private int commission;
 	private int bonus;
 	public SalaryStrategyPO(){
+		super(InfoEnum.SALARY);
 		this.staff=StaffTypeEnum.ADMINISTRATOR;
 		this.base=1000;
 		this.commission=100;

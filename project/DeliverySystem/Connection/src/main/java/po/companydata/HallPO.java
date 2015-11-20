@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.sound.midi.MidiDevice.Info;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.memberdata.StaffPO;
 
@@ -37,5 +38,7 @@ public class HallPO extends InfoPO implements Serializable{
 	public String getNearCenterID() {
 		return nearCenterID;
 	}
-	
+	public HallPO(){
+		super(InfoEnum.HALL);
+	}
 }

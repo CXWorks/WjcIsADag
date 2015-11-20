@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 import po.CommonPO;
 import po.FormPO;
+import po.InfoEnum;
 import po.InfoPO;
 
 public class PredictPO extends InfoPO implements Serializable{
 	private String expense;
 	private String predictDate;
+	public PredictPO(){
+		super(InfoEnum.PREDICT);
+	}
 }

@@ -3,6 +3,7 @@ package po.memberdata;
 import java.io.Serializable;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 
 public class StaffPO extends InfoPO implements Serializable{
@@ -13,7 +14,9 @@ public class StaffPO extends InfoPO implements Serializable{
 	private String personID;
 	private SexEnum sex;
 	private String love;
-	public StaffPO(){}
+	public StaffPO(){
+		super(InfoEnum.STAFF);
+	}
 	//
 	public StaffTypeEnum getStaff() {
 		return staff;
@@ -47,7 +50,7 @@ public class StaffPO extends InfoPO implements Serializable{
 	 */
 	public StaffPO(StaffTypeEnum staff, String iD, String name, int age,
 			String personID, SexEnum sex, String love) {
-		super();
+		this();
 		this.staff = staff;
 		ID = iD;
 		this.name = name;
