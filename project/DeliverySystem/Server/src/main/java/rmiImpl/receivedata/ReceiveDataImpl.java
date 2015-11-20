@@ -44,7 +44,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 				+ "(formID,formState,orderID,transitID,data,depature,state) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
-				+ "','" + po.getTransitID() + "','" + po.getData() + "','"
+				+ "','" + po.getTransitID() + "','" + po.getData().toString() + "','"
 				+ po.getDepature() + "','" + po.getState() + "')";
 
 		try {
@@ -61,8 +61,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
-		String delete = "delete from "+Table_Name+" where formID= '"+id+"'";
-		System.out.println(delete);
+		String delete = "delete from " + Table_Name + " where formID= '" + id
+				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -92,7 +92,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 				operations.add("update " + Table_Name + " set transitID ="
 						+ po.getTransitID() + " where formID= '"
 						+ po.getFormID() + "'");
-			if (!old.getData().equalsIgnoreCase(po.getData()))
+			if (!old.getData().equals(po.getData()))
 				operations.add("update " + Table_Name + " set data ="
 						+ po.getData() + " where formID= '" + po.getFormID()
 						+ "'");
@@ -141,7 +141,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new ReceivePO(rs.getString("orderID"),
-					rs.getString("transitID"), rs.getString("data"),
+					rs.getString("transitID"), rs.getTimestamp("data"),
 					rs.getString("depature"), rs.getString("state"));
 			result.setFormType(FormEnum.RECEIVE);
 			result.setFormID(rs.getString("formID"));
@@ -164,7 +164,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new ReceivePO(rs.getString("orderID"),
-						rs.getString("transitID"), rs.getString("data"),
+						rs.getString("transitID"), rs.getTimestamp("data"),
 						rs.getString("depature"), rs.getString("state"));
 				temp.setFormType(FormEnum.RECEIVE);
 				temp.setFormID(rs.getString("formID"));
