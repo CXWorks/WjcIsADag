@@ -1,18 +1,19 @@
 package po.transportdata;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.FormPO;
 
 public abstract class TransportPO extends FormPO implements Serializable{
-	Calendar	LoadDate;
+	Timestamp	LoadDate;
 	String	LoadID;
 	String	placeTo;
 	String	peopleSee;
 	ArrayList<String>	IDs;
-	public Calendar getLoadDate() {
+	public Timestamp getLoadDate() {
 		return LoadDate;
 	}
 	public String getLoadID() {
@@ -28,4 +29,7 @@ public abstract class TransportPO extends FormPO implements Serializable{
 		return IDs;
 	}
 	
+	public void setData(Timestamp LoadDate) {
+		this.LoadDate = LoadDate;
+	}
 }

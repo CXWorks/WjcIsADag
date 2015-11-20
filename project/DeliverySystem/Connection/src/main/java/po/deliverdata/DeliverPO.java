@@ -1,6 +1,7 @@
 package po.deliverdata;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import po.FormPO;
@@ -14,7 +15,7 @@ import po.FormPO;
 public class DeliverPO extends FormPO implements Serializable{
 	
 	private String orderID;
-	private Calendar date;
+	private Timestamp date;
 	private String postman;
 	
 	public String getOrderID() {
@@ -29,8 +30,11 @@ public class DeliverPO extends FormPO implements Serializable{
 	public void setPostman(String postman) {
 		this.postman = postman;
 	}
-	public Calendar getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 	
+	public void setData(Timestamp data) {
+		this.date = data;
+	}
 }
