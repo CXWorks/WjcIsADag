@@ -3,11 +3,19 @@ package po;
 import java.io.Serializable;
 
 import po.receivedata.StateEnum;
+import util.DataType;
 
 public class FormPO extends CommonPO implements Serializable{
 	private FormEnum formType;
 	private FormStateEnum formState;
 	private String formID;
+	public FormPO(){
+		super(DataType.FORM);
+	}
+	public FormPO(FormEnum formEnum){
+		super(DataType.FORM);
+		this.formType=formEnum;
+	}
 	
 	public FormEnum getFormType() {
 		return this.formType;

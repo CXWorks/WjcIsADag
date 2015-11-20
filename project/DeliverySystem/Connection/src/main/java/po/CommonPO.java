@@ -10,7 +10,9 @@ import util.DataType;
  */
 public abstract class CommonPO {
 	protected DataType dataType;
-
+	protected CommonPO(DataType dataType) {
+		this.dataType=dataType;
+	}
 	public DataType getDataType() {
 		return dataType;
 	}

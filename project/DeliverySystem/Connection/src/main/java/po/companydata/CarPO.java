@@ -7,6 +7,7 @@ import javax.sound.midi.MidiDevice.Info;
 import javax.swing.ImageIcon;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 
 public class CarPO extends InfoPO implements Serializable{
@@ -46,5 +47,32 @@ public class CarPO extends InfoPO implements Serializable{
 	}
 	
 	//
+	public CarPO(){
+		super(InfoEnum.CAR);
+	}
+	/**
+	 * @param infoEnum
+	 * @param free
+	 * @param carID
+	 * @param useTime
+	 * @param img
+	 * @param engineID
+	 * @param nameID
+	 * @param chassisID
+	 * @param buyTime
+	 */
+	public CarPO(boolean free, int carID, Calendar useTime,
+			ImageIcon img, int engineID, int nameID, int chassisID,
+			Calendar buyTime) {
+		this();
+		this.free = free;
+		this.carID = carID;
+		this.useTime = useTime;
+		this.img = img;
+		this.engineID = engineID;
+		this.nameID = nameID;
+		this.chassisID = chassisID;
+		this.buyTime = buyTime;
+	}
 	
 }

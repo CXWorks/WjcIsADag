@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.sound.midi.MidiDevice.Info;
 
 import po.CommonPO;
+import po.InfoEnum;
 import po.InfoPO;
 import po.memberdata.StaffPO;
 
@@ -26,6 +27,23 @@ public class CenterPO extends InfoPO implements Serializable{
 	public ArrayList<StaffPO> getCounterman() {
 		return counterman;
 	}
-	
+	public CenterPO(){
+		super(InfoEnum.CENTER);
+	}
+	/**
+	 * @param infoEnum
+	 * @param centerID
+	 * @param city
+	 * @param storeman
+	 * @param counterman
+	 */
+	public CenterPO(String centerID, String city,
+			ArrayList<StaffPO> storeman, ArrayList<StaffPO> counterman) {
+		this();
+		this.centerID = centerID;
+		this.city = city;
+		this.storeman = storeman;
+		this.counterman = counterman;
+	}
 	
 }
