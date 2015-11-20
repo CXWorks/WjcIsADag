@@ -59,7 +59,7 @@ public class VOPOFactory {
 	 * 实现的不是很完美，，因为没有想到更好的方法
 	 */
 	public static CommonVO transPOtoVO(CommonPO po) {
-		if (po.dataType==DataType.DATA) {
+		if (po.getDataType()==DataType.DATA) {
 			InfoPO info=(InfoPO)po;
 			switch (info.getInfoEnum()) {
 			case ACCOUNT:

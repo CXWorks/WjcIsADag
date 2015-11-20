@@ -20,10 +20,11 @@ public class ReceivePO extends FormPO implements Serializable{
 	
 	public ReceivePO(String orderID, String transitID, String data,
 			String depature, String state) {
+		//TODO calender and string
 		super();
 		this.orderID = orderID;
 		this.transitID = transitID;
-		this.data = data;
+		this.date = null;
 		this.depature = depature;
 		this.setState(state);
 	}
@@ -69,7 +70,10 @@ public class ReceivePO extends FormPO implements Serializable{
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
-	
+	public String getData(){
+		//TODO unknown
+		return "2015.11.20";
+	}
 	//
 	
 }
