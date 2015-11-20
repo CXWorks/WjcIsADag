@@ -28,7 +28,8 @@ public class CenterOutVO extends TransitVO  {
 		this.peopleSee = peopleSee;
 	}
 	public CenterOutVO(CenterOutPO po){
-		this(po.getPlaceFrom(), po.getTransID(), po.getShelfNum(), po.getLoadDate(), po.getLoadID(), po.getPlaceTo(), po.getPeopleSee());
+		this(po.getPlaceFrom(), po.getTransID(), po.getShelfNum(),po.getLoadDate(), po.getLoadID(), po.getPlaceTo(), po.getPeopleSee());
 	}
-
+	
+	
 }

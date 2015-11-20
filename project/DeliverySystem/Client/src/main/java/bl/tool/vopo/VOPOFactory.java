@@ -100,9 +100,9 @@ public class VOPOFactory {
 				return new RevenueVO((RevenuePO)form);
 			case RECEIVE:
 				return new ReceiveVO((ReceivePO)form);
-			case TRANSPORT_HALL:
-				return new CenterOutVO((CenterOutPO)form);
 			case TRANSPORT_CENTER:
+				return new CenterOutVO((CenterOutPO)form);
+			case TRANSPORT_HALL:
 				return new LoadVO((LoadPO)form);
 			case STORE_IN:
 				return new StoreInVO((StoreInPO)form);

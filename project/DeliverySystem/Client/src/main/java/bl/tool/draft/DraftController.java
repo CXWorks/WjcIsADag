@@ -29,12 +29,17 @@ public class DraftController implements DraftService {
 	@Override
 	public OperationMessage saveDraft(FormVO vo) {
 		try {
-			writer=new ObjectOutputStream(new FileOutputStream(new File(ROOT+vo.getFormType().toString()+"/.2333")));
+			File file=new File(ROOT+vo.getFormType().toString()+"/.2333");
+			writer=new ObjectOutputStream(new FileOutputStream(file));
 			writer.writeObject(vo);
 			writer.close();
 			return new OperationMessage();
 		} catch (IOException e) {
 			return new OperationMessage(false,e.getMessage());
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
 		}
 	}
 
@@ -49,9 +54,10 @@ public class DraftController implements DraftService {
 			reader.close();
 			return ans;
 		} catch (IOException e) {
+			e.printStackTrace();
 			return null;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 		

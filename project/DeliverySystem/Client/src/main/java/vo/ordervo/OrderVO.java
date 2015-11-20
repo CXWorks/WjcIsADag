@@ -1,5 +1,6 @@
 package vo.ordervo;
 
+import po.FormEnum;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.OrderPO;
 import vo.FormVO;
@@ -27,7 +28,9 @@ public class OrderVO extends FormVO{
 	  private String volume;
 	  private String money;
 	  private DeliverTypeEnum type;
-	  public OrderVO(){}
+	  public OrderVO(){
+		  super(FormEnum.ORDER);
+	  }
 	  
 	  /**
 	 * @param nameFrom
@@ -52,7 +55,7 @@ public class OrderVO extends FormVO{
 			String phoneNumTo, String telNumFrom, String telNumTo,
 			String goodsNum, String goodsName, String weight, String volume,
 			String money, DeliverTypeEnum type) {
-		super();
+		this();
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.location = location;

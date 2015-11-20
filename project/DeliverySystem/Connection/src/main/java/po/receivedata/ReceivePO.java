@@ -2,6 +2,7 @@ package po.receivedata;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 import po.FormPO;
 import po.receivedata.StateEnum;
@@ -20,19 +21,19 @@ public class ReceivePO extends FormPO implements Serializable{
 		
 	}
 	
-	public ReceivePO(String orderID, String transitID, Timestamp data,
+	public ReceivePO(String orderID, String transitID, Calendar date,
 			String depature, String state) {
 		super();
 		this.orderID = orderID;
 		this.transitID = transitID;
-		this.data = data;
+		this.date = date;
 		this.depature = depature;
 		this.setState(state);
 	}
 	
 	private String orderID;
 	private String transitID;
-	private Timestamp data;
+	private Calendar date;
 	private String depature;
 	private StateEnum state;
 	
@@ -65,13 +66,11 @@ public class ReceivePO extends FormPO implements Serializable{
 		else if(state.equalsIgnoreCase("Lose"))
 			this.state = StateEnum.Lose;
 	}
-	
-	public Timestamp getData() {
-		return data;
-	}
 
-	public void setData(Timestamp data) {
-		this.data = data;
+	public Calendar getDate() {
+		return date;
 	}
+	
+	
 
 }

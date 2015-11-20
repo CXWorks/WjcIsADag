@@ -2,6 +2,7 @@ package vo.financevo;
 
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.financedata.RevenuePO;
 import vo.FormVO;
 
@@ -15,7 +16,9 @@ public class RevenueVO extends FormVO {
     private String hallID;
     private String orderID;
     //
-    public RevenueVO(){}
+    public RevenueVO(){
+    	super(FormEnum.REVENUE);
+    }
     //
 	/**
 	 * @param date
@@ -26,7 +29,7 @@ public class RevenueVO extends FormVO {
 	 */
 	public RevenueVO(Calendar date, String amount, String deliverName,
 			String hallID, String orderID) {
-		super();
+		this();
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;

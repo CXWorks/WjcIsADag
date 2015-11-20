@@ -19,7 +19,7 @@ public class ReceiveVO extends FormVO{
 	}
 	//
 	public ReceiveVO(ReceivePO po){
-		this(po.getOrderID(), po.getTransitID(), po.getDate(), po.getDepature(), po.getState());
+		this(po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState());
 	}
 	public ReceiveVO(String orderID, String transitID, Calendar date,
 			String depature, StateEnum state) {

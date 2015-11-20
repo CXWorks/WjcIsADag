@@ -8,12 +8,13 @@ import java.util.Calendar;
 import po.FormPO;
 
 public abstract class TransportPO extends FormPO implements Serializable{
-	Timestamp	LoadDate;
+	Calendar	LoadDate;
 	String	LoadID;
 	String	placeTo;
 	String	peopleSee;
 	ArrayList<String>	IDs;
-	public Timestamp getLoadDate() {
+	
+	public Calendar getLoadDate() {
 		return LoadDate;
 	}
 	public String getLoadID() {
@@ -27,9 +28,5 @@ public abstract class TransportPO extends FormPO implements Serializable{
 	}
 	public ArrayList<String> getIDs() {
 		return IDs;
-	}
-	
-	public void setData(Timestamp LoadDate) {
-		this.LoadDate = LoadDate;
 	}
 }
