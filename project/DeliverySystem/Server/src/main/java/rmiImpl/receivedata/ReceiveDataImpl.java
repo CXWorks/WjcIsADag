@@ -44,7 +44,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 				+ "(formID,formState,orderID,transitID,data,depature,state) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
-				+ "','" + po.getTransitID() + "','" + po.getData().toString() + "','"
+				+ "','" + po.getTransitID() + "','" + po.getDateForSQL().toString() + "','"
 				+ po.getDepature() + "','" + po.getState() + "')";
 
 		try {
@@ -92,9 +92,9 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 				operations.add("update " + Table_Name + " set transitID ="
 						+ po.getTransitID() + " where formID= '"
 						+ po.getFormID() + "'");
-			if (!old.getData().equals(po.getData()))
+			if (!old.getDateForSQL().equals(po.getDateForSQL()))
 				operations.add("update " + Table_Name + " set data ="
-						+ po.getData() + " where formID= '" + po.getFormID()
+						+ po.getDateForSQL() + " where formID= '" + po.getFormID()
 						+ "'");
 			if (!old.getDepature().equalsIgnoreCase(po.getDepature()))
 				operations.add("update " + Table_Name + " set depature ="

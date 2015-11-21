@@ -10,7 +10,7 @@ public class CityDistancePO extends InfoPO implements Serializable{
 	private String city1;
 	private String city2;
 	private int distance;
-	private CityDistancePO(){
+	public CityDistancePO(){
 		super(InfoEnum.CITY_DISTANCE);
 	}
 	//

@@ -20,6 +20,17 @@ public class ReceivePO extends FormPO implements Serializable{
 	public ReceivePO(){
 		
 	}
+	public ReceivePO(String orderID, String transitID, Timestamp date,
+			String depature, String state){
+		this();
+		this.orderID = orderID;
+		this.transitID = transitID;
+		Calendar temp=Calendar.getInstance();
+		temp.setTime(date);
+		this.date = temp;
+		this.depature = depature;
+		this.setState(state);
+	}
 	
 	public ReceivePO(String orderID, String transitID, Calendar date,
 			String depature, String state) {
@@ -70,7 +81,9 @@ public class ReceivePO extends FormPO implements Serializable{
 	public Calendar getDate() {
 		return date;
 	}
-	
+	public Timestamp getDateForSQL(){
+		return new Timestamp(this.date.getTimeInMillis());
+	}
 	
 
 }
