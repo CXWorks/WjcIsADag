@@ -70,6 +70,7 @@ public class RMIHelper {
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
 		String url="rmi://"+IP+"/";
 		orderDataService=(OrderDataService)Naming.lookup(url+OrderDataService.class.getName());
+		receiveDataService=(ReceiveDataService)Naming.lookup(url+ReceiveDataService.class.getName());
 	}
 	//
 	public static OrderDataService getOrderDataService(){

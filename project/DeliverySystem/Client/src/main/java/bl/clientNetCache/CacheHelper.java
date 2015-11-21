@@ -72,6 +72,7 @@ public class CacheHelper {
 	//
 	private static void initCacheService(){
 		orderDataService=RMIHelper.getOrderDataService();
+		receiveDataService=rmiHelper.getReceiveDataService();
 	}
 	//
 	public static OrderDataService getOrderDataService() {

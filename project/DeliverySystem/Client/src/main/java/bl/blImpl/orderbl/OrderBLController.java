@@ -15,6 +15,7 @@ import bl.tool.vopo.VOPOFactory;
 
 public class OrderBLController implements OrderBLService{
 	Predicter predicter;
+	VOPOFactory vopoFactory;
 	public OrderVO loadDraft() {
 		// TODO Auto-generated method stub
 		return new OrderVO();
@@ -36,7 +37,7 @@ public class OrderBLController implements OrderBLService{
 	public OperationMessage submit(OrderVO form) {
 		// TODO Auto-generated method stub
 		try {
-			FormPO ready=(FormPO)VOPOFactory.transVOtoPO(form);
+			FormPO ready=(FormPO)vopoFactory.transVOtoPO(form);
 			return CacheHelper.getExamineSubmitService().submit(ready);
 		} catch (Exception e) {
 			// TODO: handle exception

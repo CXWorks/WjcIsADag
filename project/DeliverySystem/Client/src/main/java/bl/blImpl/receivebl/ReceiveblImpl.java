@@ -17,7 +17,9 @@ import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 import vo.transitvo.TransitVO;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.clientNetCache.CacheHelper;
 import bl.tool.draft.DraftService;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//blImpl.receivebl//ReceiveblImpl.java
@@ -27,6 +29,8 @@ import bl.tool.draft.DraftService;
  */
 public class ReceiveblImpl implements ReceiveBLService {
 	DraftService draftService;
+	VOPOFactory vopoFactory;
+	
 
 	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
 			boolean isFinal) {
@@ -39,7 +43,12 @@ public class ReceiveblImpl implements ReceiveBLService {
 
 	public OperationMessage submit(ReceiveVO form) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		try {
+			return CacheHelper.getReceiveDataService().insert((ReceivePO)vopoFactory.transVOtoPO(form));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			return new OperationMessage(false,"net error");
+		}
 	}
 
 	public OperationMessage saveDraft(ReceiveVO form) {
