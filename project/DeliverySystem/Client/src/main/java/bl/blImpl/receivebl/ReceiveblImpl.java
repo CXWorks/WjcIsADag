@@ -7,6 +7,7 @@ import java.util.List;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
+import po.FormEnum;
 import po.receivedata.ReceivePO;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
@@ -16,6 +17,7 @@ import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 import vo.transitvo.TransitVO;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.tool.draft.DraftService;
 
 /** 
  * Client//blImpl.receivebl//ReceiveblImpl.java
@@ -24,6 +26,7 @@ import bl.blService.receiveblService.ReceiveBLService;
  * @version 1.0 
  */
 public class ReceiveblImpl implements ReceiveBLService {
+	DraftService draftService;
 
 	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
 			boolean isFinal) {
@@ -40,13 +43,11 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 	public OperationMessage saveDraft(ReceiveVO form) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		return draftService.saveDraft(form);
 	}
 
 	public ReceiveVO loadDraft() {
-		// TODO Auto-generated method stub
-		return new ReceiveVO();
+		return (ReceiveVO) draftService.getDraft(FormEnum.RECEIVE);
 	}
 
 	public OrderVO getOrderVO(String orderID) {
@@ -57,7 +58,6 @@ public class ReceiveblImpl implements ReceiveBLService {
 	public TransitVO getTransitVO() {
 		// TODO Auto-generated method stub
 		return new CenterOutVO();
-//		return new LoadVO();
 	}
 
 	/* (non-Javadoc)

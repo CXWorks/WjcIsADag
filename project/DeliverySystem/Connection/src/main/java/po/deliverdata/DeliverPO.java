@@ -17,6 +17,7 @@ public class DeliverPO extends FormPO implements Serializable{
 	private String orderID;
 	private Calendar date;
 	private String postman;
+	public DeliverPO(){}
 	
 	public DeliverPO(String orderID, Calendar date, String postman) {
 		super();

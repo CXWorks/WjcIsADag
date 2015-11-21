@@ -23,6 +23,7 @@ public class OrderPO extends FormPO implements Serializable {
 
 	private ArrayList<String> FormIDs;
 	private String targetHallID;
+	public OrderPO(){}
 	
 	public OrderPO(String nameFrom, String nameTo, String unitFrom,
 			String unitTo, String phoneNumFrom, String phoneNumTo,

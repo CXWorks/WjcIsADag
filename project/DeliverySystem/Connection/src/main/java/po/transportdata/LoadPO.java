@@ -10,6 +10,7 @@ import po.FormPO;
 public class LoadPO extends TransportPO implements Serializable {
 
 	String peopleTransport; // 押运员
+	public LoadPO(){}
 
 	public LoadPO(String peopleTransport, Calendar LoadDate,
 			String TransportID, String placeTo, String peopleSee,

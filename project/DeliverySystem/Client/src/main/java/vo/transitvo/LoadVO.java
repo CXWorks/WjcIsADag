@@ -29,7 +29,7 @@ public class LoadVO extends TransitVO {
 	}
 	
 	public LoadVO(LoadPO po){
-		this(po.getTransportID(), po.getPeopletransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
+		this(po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
 				,po.getIDs());
 	}
 }
