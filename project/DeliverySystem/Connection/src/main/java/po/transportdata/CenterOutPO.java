@@ -6,19 +6,18 @@ import java.util.ArrayList;
 import po.FormPO;
 
 public class CenterOutPO extends TransportPO implements Serializable{
-
-	String	placeFrom;
-	String	TransID;
-	String	shelfNum;
+	
+	private String	placeFrom;//出发地
+	private String	shelfNum;//货柜号
+	private TransportationEnum transitState;//转运类型
 	public String getPlaceFrom() {
 		return placeFrom;
-	}
-	public String getTransID() {
-		return TransID;
 	}
 	public String getShelfNum() {
 		return shelfNum;
 	}
-	
+	public TransportationEnum getTransitState() {
+		return transitState;
+	}
 	
 }

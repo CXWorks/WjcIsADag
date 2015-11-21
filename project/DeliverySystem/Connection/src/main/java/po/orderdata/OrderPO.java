@@ -8,8 +8,6 @@ import po.FormPO;
 public class OrderPO extends FormPO implements Serializable {
 	private String nameFrom;
 	private String nameTo;
-	private String location;
-	private String loacal;
 	private String unitFrom;
 	private String unitTo;
 	private String phoneNumFrom;
@@ -33,14 +31,6 @@ public class OrderPO extends FormPO implements Serializable {
 
 	public String getNameTo() {
 		return nameTo;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public String getLoacal() {
-		return loacal;
 	}
 
 	public String getUnitFrom() {

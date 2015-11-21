@@ -7,12 +7,9 @@ import po.FormPO;
 
 public class LoadPO extends TransportPO  implements Serializable {
 
-	String	truckID;
-	String	peopletransport;
-	String	expense;
-	public String getTruckID() {
-		return truckID;
-	}
+	String	peopletransport; //押运员
+	String	expense;//运费
+
 	public String getPeopletransport() {
 		return peopletransport;
 	}

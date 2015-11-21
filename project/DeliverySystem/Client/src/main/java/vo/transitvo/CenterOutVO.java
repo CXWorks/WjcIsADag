@@ -5,30 +5,33 @@ import java.util.Calendar;
 
 import po.FormEnum;
 import po.transportdata.CenterOutPO;
+import po.transportdata.TransportationEnum;
 
 public class CenterOutVO extends TransitVO  {
 
-	String	placeFrom;
-	String	TransID;
-	String	shelfNum;
-	
+	private String	placeFrom;//出发地
+	private String	shelfNum;//货柜号
+	private TransportationEnum transitState;//转运类型
 	public CenterOutVO(){
 		super(FormEnum.TRANSPORT_CENTER);
 	}
 	
-	public CenterOutVO(String placeFrom,String TransID,String shelfNum,
-			Calendar LoadDate,String LoadID,String placeTo,String	peopleSee){
+	public CenterOutVO(String placeFrom,String TransportID,String shelfNum,
+			Calendar LoadDate,String expense,String placeTo,String	peopleSee,ArrayList<String> IDs,TransportationEnum transitState){
 		this();
 		this.placeFrom = placeFrom;
-		this.TransID = TransID;
+		this.TransportID = TransportID;
 		this.shelfNum = shelfNum;
 		this.LoadDate = LoadDate;
-		this.LoadID = LoadID;
 		this.placeTo = placeTo;
 		this.peopleSee = peopleSee;
+		this.transitState =transitState;
+		this.expense = expense;
+		this.IDs=IDs;
 	}
 	public CenterOutVO(CenterOutPO po){
-		this(po.getPlaceFrom(), po.getTransID(), po.getShelfNum(),po.getLoadDate(), po.getLoadID(), po.getPlaceTo(), po.getPeopleSee());
+		this(po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),po.getIDs()
+				,po.getTransitState());
 	}
 	
 	

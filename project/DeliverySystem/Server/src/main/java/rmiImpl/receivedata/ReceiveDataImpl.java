@@ -127,6 +127,15 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public OperationMessage clear() {
 		// TODO Auto-generated method stub
+		String clear = "delete from " + Table_Name;
+		try {
+			statement = conn.prepareStatement(clear);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("清空数据库时出错：");
+			e.printStackTrace();
+		}
 		return new OperationMessage();
 	}
 
