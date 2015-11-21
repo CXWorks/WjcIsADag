@@ -11,7 +11,7 @@ import po.orderdata.OrderPO;
 import po.transportdata.LoadPO;
 import po.transportdata.TransportPO;
 import rmi.orderdata.OrderDataService;
-import rmi.transportdata.TransportDataService;
+import rmi.transportdata.CenterOutDataService;
 
 public class TransportBLImpl_driver {
 	/**
@@ -20,7 +20,7 @@ public class TransportBLImpl_driver {
 	public static void main(String [] args){
 		
 		try{
-			TransportDataService TransportDataService=(TransportDataService)Naming.lookup("rmi://localhost:2333/TransportDataService");
+			CenterOutDataService TransportDataService=(CenterOutDataService)Naming.lookup("rmi://localhost:2333/TransportDataService");
 			System.out.println(TransportDataService.getFormPO(null) instanceof TransportPO);
 			System.out.println(TransportDataService.insert(new LoadPO()) instanceof OperationMessage);
 			System.out.println(TransportDataService.delete(null) instanceof OperationMessage);

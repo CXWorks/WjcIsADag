@@ -15,8 +15,24 @@ import po.FormPO;
 public class DeliverPO extends FormPO implements Serializable{
 	
 	private String orderID;
-	private Timestamp date;
+	private Calendar date;
 	private String postman;
+	
+	public DeliverPO(String orderID, Calendar date, String postman) {
+		super();
+		this.orderID = orderID;
+		this.date = date;
+		this.postman = postman;
+	}
+	
+	public DeliverPO(String orderID, Timestamp date, String postman) {
+		super();
+		this.orderID = orderID;
+		Calendar temp=Calendar.getInstance();
+		temp.setTime(date);
+		this.date = temp;
+		this.postman = postman;
+	}
 	
 	public String getOrderID() {
 		return orderID;
@@ -30,11 +46,11 @@ public class DeliverPO extends FormPO implements Serializable{
 	public void setPostman(String postman) {
 		this.postman = postman;
 	}
-	public Timestamp getDate() {
+	public Calendar getDate() {
 		return date;
 	}
-	
-	public void setData(Timestamp data) {
-		this.date = data;
+	public Timestamp getDateForSQL(){
+		return new Timestamp(this.date.getTimeInMillis());
 	}
+	
 }

@@ -23,6 +23,30 @@ public class OrderPO extends FormPO implements Serializable {
 
 	private ArrayList<String> FormIDs;
 	private String targetHallID;
+	
+	public OrderPO(String nameFrom, String nameTo, String unitFrom,
+			String unitTo, String phoneNumFrom, String phoneNumTo,
+			String telNumFrom, String telNumTo, String goodsNum,
+			String goodsName, String weight, String volume, String money,
+			String type, ArrayList<String> formIDs, String targetHallID) {
+		super();
+		this.nameFrom = nameFrom;
+		this.nameTo = nameTo;
+		this.unitFrom = unitFrom;
+		this.unitTo = unitTo;
+		this.phoneNumFrom = phoneNumFrom;
+		this.phoneNumTo = phoneNumTo;
+		this.telNumFrom = telNumFrom;
+		this.telNumTo = telNumTo;
+		this.goodsNum = goodsNum;
+		this.goodsName = goodsName;
+		this.weight = weight;
+		this.volume = volume;
+		this.money = money;
+		this.setType(type);
+		FormIDs = formIDs;
+		this.targetHallID = targetHallID;
+	}
 
 	//
 	public String getNameFrom() {

@@ -22,7 +22,7 @@ import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmi.systemdata.SystemDataService;
-import rmi.transportdata.TransportDataService;
+import rmi.transportdata.CenterOutDataService;
 
 /** 
  * Client//bl.clientRMI//RMIHelper.java
@@ -53,7 +53,7 @@ public class RMIHelper {
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
 	private static SystemDataService systemDataService;
-	private static TransportDataService transportDataService;
+	private static CenterOutDataService transportDataService;
 	
 	
 	
@@ -129,7 +129,7 @@ public class RMIHelper {
 	public static SystemDataService getSystemDataService() {
 		return systemDataService;
 	}
-	public static TransportDataService getTransportDataService() {
+	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}
 	

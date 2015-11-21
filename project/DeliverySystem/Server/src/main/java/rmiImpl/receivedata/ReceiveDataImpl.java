@@ -40,27 +40,31 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public OperationMessage insert(ReceivePO po) {
 		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
 		String insert = "insert into " + Table_Name
-				+ "(formID,formState,orderID,transitID,data,depature,state) "
+				+ "(formID,formState,orderID,transitID,date,depature,state) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
-				+ "','" + po.getTransitID() + "','" + po.getDateForSQL().toString() + "','"
-				+ po.getDepature() + "','" + po.getState() + "')";
+				+ "','" + po.getTransitID() + "','"
+				+ po.getDateForSQL().toString() + "','" + po.getDepature()
+				+ "','" + po.getState() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
 		}
 
-		return new OperationMessage();
+		return result;
 	}
 
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
 		String delete = "delete from " + Table_Name + " where formID= '" + id
 				+ "'";
 		try {
@@ -68,75 +72,58 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-		return new OperationMessage();
+		return result;
 	}
 
 	public OperationMessage update(ReceivePO po) {
 		// TODO Auto-generated method stub
-		ArrayList<String> operations = new ArrayList<String>();
-		try {
-			ReceivePO old = getFormPO(po.getFormID());
-
-			if (old.getFormState() != po.getFormState())
-				operations.add("update " + Table_Name + " set formState ="
-						+ po.getFormState().toString() + " where formID= '"
-						+ po.getFormID() + "'");
-			if (!old.getOrderID().equalsIgnoreCase(po.getOrderID()))
-				operations.add("update " + Table_Name + " set orderID ="
-						+ po.getOrderID() + " where formID= '" + po.getFormID()
-						+ "'");
-			if (!old.getTransitID().equalsIgnoreCase(po.getTransitID()))
-				operations.add("update " + Table_Name + " set transitID ="
-						+ po.getTransitID() + " where formID= '"
-						+ po.getFormID() + "'");
-			if (!old.getDateForSQL().equals(po.getDateForSQL()))
-				operations.add("update " + Table_Name + " set data ="
-						+ po.getDateForSQL() + " where formID= '" + po.getFormID()
-						+ "'");
-			if (!old.getDepature().equalsIgnoreCase(po.getDepature()))
-				operations.add("update " + Table_Name + " set depature ="
-						+ po.getDepature() + " where formID= '"
-						+ po.getFormID() + "'");
-			if (old.getState() != po.getState())
-				operations.add("update " + Table_Name + " set state ="
-						+ po.getState().toString() + " where formID= '"
-						+ po.getFormID() + "'");
-			// System.out.println(operations.size());
-
-			for (String tmp : operations) {
-				statement = conn.prepareStatement(tmp);
-				statement.executeUpdate();
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.err.println("修改数据库时出错：");
-			e.printStackTrace();
-		}
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		if(!this.delete(po.getFormID()).operationResult)
+			return result = new OperationMessage(false,"数据库中没有对应表单");
+		if(!this.insert(po).operationResult)
+			return result = new OperationMessage(false,"更新失败");
+		else
+			return result;
+		
 	}
 
-	public String newID() {
+	public String newID() {// 返回最大值
 		// TODO Auto-generated method stub
-		return "1000101";
+		String selectAll = "select * from " + Table_Name;
+		ResultSet rs = null;
+		String ID_MAX = "";
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				ID_MAX = rs.getString("formID");
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return ID_MAX;
 	}
 
 	public OperationMessage clear() {
 		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
 		String clear = "delete from " + Table_Name;
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
 		}
-		return new OperationMessage();
+		return result;
 	}
 
 	public ReceivePO getFormPO(String id) throws RemoteException {
@@ -150,7 +137,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new ReceivePO(rs.getString("orderID"),
-					rs.getString("transitID"), rs.getTimestamp("data"),
+					rs.getString("transitID"), rs.getTimestamp("date"),
 					rs.getString("depature"), rs.getString("state"));
 			result.setFormType(FormEnum.RECEIVE);
 			result.setFormID(rs.getString("formID"));
@@ -173,7 +160,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new ReceivePO(rs.getString("orderID"),
-						rs.getString("transitID"), rs.getTimestamp("data"),
+						rs.getString("transitID"), rs.getTimestamp("date"),
 						rs.getString("depature"), rs.getString("state"));
 				temp.setFormType(FormEnum.RECEIVE);
 				temp.setFormID(rs.getString("formID"));

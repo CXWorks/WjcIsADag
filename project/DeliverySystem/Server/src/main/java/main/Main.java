@@ -32,9 +32,9 @@ public class Main {
 	public static void main(String args[]) throws SQLException {
 		try {
 			ReceiveDataImpl test = new ReceiveDataImpl();
-			ReceivePO t1 = test.getFormPO("10000004");
-			t1.setFormID("10000000");
-			test.insert(t1);
+			ReceivePO t1 = test.getFormPO("10000001");
+			t1.setOrderID("0");
+			test.update(t1);
 			ConnecterHelper.deconnSQL(test.getConn());
 			System.exit(0);
 		} catch (RemoteException e) {

@@ -9,6 +9,7 @@ public class FormPO extends CommonPO implements Serializable{
 	private FormEnum formType;
 	private FormStateEnum formState;
 	private String formID;
+	
 	public FormPO(){
 		super(DataType.FORM);
 	}
