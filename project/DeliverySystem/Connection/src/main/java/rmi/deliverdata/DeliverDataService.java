@@ -20,8 +20,8 @@ public interface DeliverDataService extends CommonDataService<DeliverPO>{
 	/**
 	 * 查找可以被派送的派件清单
 	 * @param 营业厅ID
-	 * @return 可以被派送的派件清单
+	 * @return 可以被派送的派件清单(订单号列表)
 	 */
-	public ArrayList<DeliverPO> available(String HallID) throws RemoteException;
+	public ArrayList<String> available(String HallID) throws RemoteException;
 	
 }

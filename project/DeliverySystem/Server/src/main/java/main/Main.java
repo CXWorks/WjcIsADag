@@ -32,16 +32,14 @@ public class Main {
 	public static void main(String args[]) throws SQLException {
 		try {
 			ReceiveDataImpl test = new ReceiveDataImpl();
-			ReceivePO t1 = test.getFormPO("10000001");
-			t1.setOrderID("0");
-			test.update(t1);
+			ReceivePO t1 = test.getFormPO("031234567201511220000001");
+			System.out.println(test.newID("1234567"));
 			ConnecterHelper.deconnSQL(test.getConn());
 			System.exit(0);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// String delete = "delete from ju_users where ju_userName= 'mm'";
 	}
 
 }

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -103,10 +104,10 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 	public OperationMessage update(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		if(!this.delete(po.getFormID()).operationResult)
-			return result = new OperationMessage(false,"数据库中没有对应表单");
-		if(!this.insert(po).operationResult)
-			return result = new OperationMessage(false,"更新失败");
+		if (!this.delete(po.getFormID()).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应表单");
+		if (!this.insert(po).operationResult)
+			return result = new OperationMessage(false, "更新失败");
 		else
 			return result;
 	}
@@ -127,23 +128,34 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		return result;
 	}
 
-	public String newID() throws RemoteException {// 返回最大值
+	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
-		String ID_MAX = "";
+		int ID_MAX = 0;
+		String temp = new Timestamp(System.currentTimeMillis()).toString()
+				.substring(0, 10);
+		String date = temp.substring(5, 7) + temp.substring(8);// 当天日期
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				ID_MAX = rs.getString("formID");
+				temp = rs.getString("formID").substring(0, 4);
+				if (date.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
+							"formID").substring(4)));// 最后6位编号
 			}
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
+			System.err.println("访问数据库时出错：");
 			e.printStackTrace();
 		}
 
-		return ID_MAX;
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 999999)
+			return null;
+		String added = String.format("%06d", ID_MAX);
+
+		return date + added;
 	}
 
 	public OrderPO getFormPO(String id) throws RemoteException {
