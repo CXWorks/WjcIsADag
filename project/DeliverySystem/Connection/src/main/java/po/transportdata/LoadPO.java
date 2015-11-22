@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 
 public class LoadPO extends TransportPO implements Serializable {
@@ -24,6 +25,7 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
+		this.formType = FormEnum.TRANSPORT_HALL;
 	}
 	
 	public LoadPO(String peopleTransport, Timestamp LoadDate,
@@ -40,6 +42,7 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
+		this.formType = FormEnum.TRANSPORT_HALL;
 	}
 	
 	public String getPeopleTransport() {

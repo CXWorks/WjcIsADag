@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 import po.receivedata.StateEnum;
+import util.DataType;
 
 /**
  * 
@@ -22,7 +24,7 @@ public class ReceivePO extends FormPO implements Serializable{
 	private StateEnum state;
 
 	public ReceivePO(){
-		
+		super();
 	}
 	public ReceivePO(String orderID, String transitID, Timestamp date,
 			String depature, String state){
@@ -34,6 +36,7 @@ public class ReceivePO extends FormPO implements Serializable{
 		this.date = temp;
 		this.depature = depature;
 		this.setState(state);
+		this.formType = FormEnum.RECEIVE;
 	}
 	
 	public ReceivePO(String orderID, String transitID, Calendar date,
@@ -44,6 +47,7 @@ public class ReceivePO extends FormPO implements Serializable{
 		this.date = date;
 		this.depature = depature;
 		this.setState(state);
+		this.formType = FormEnum.RECEIVE;
 	}
 
 	public String getOrderID() {

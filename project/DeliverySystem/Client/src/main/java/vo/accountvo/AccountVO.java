@@ -5,6 +5,7 @@ import po.InfoEnum;
 import po.accountdata.AccountPO;
 import po.accountdata.AuthorityEnum;
 import vo.InfoVO;
+import java.time.*;
 
 
 /**
@@ -35,5 +36,9 @@ public class AccountVO extends InfoVO{
 	//
 	public AccountVO(AccountPO po){
 		this(po.getID()	, po.getPassword(), po.getAuthority());
+	}
+	//
+	public AccountPO toPO(){
+		return new AccountPO(ID, authority, password);
 	}
 }

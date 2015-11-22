@@ -14,6 +14,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,10 +27,18 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "FinanceData";
 	
+	private String Table_Name;
+	private Connection conn = null;
+	private PreparedStatement statement = null;
+	
     public FinanceDataImpl() throws RemoteException, MalformedURLException {
         Naming.rebind(R.string.FinanceDataService, this);
     }
-
+    
+	public Connection getConn() {
+		return conn;
+	}
+	
     public static void main(String[] args) throws MalformedURLException, RemoteException {
         LocateRegistry.createRegistry(1099);
         new FinanceDataImpl();

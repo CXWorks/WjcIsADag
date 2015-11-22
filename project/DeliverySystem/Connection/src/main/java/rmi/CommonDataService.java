@@ -43,9 +43,10 @@ public interface CommonDataService<PO extends FormPO> extends DataService<PO>{
 	
 	/**
 	 * 获得新的单编号
+	 * @param unitID 开具单据的营业厅或者中转中心编号（无则填null）
 	 * @return 新的单编号
 	 */
-	public String newID() throws RemoteException;
+	public String newID(String unitID) throws RemoteException;
 	
 	/**
 	 * 清空数据

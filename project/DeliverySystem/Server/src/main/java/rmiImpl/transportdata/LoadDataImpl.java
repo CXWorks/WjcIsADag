@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -87,12 +88,12 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 					rs.getString("placeTo"), rs.getString("peopleSee"),
 					rs.getString("expense"), IDs);
-			result.setFormType(FormEnum.TRANSPORT_HALL);
 			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
@@ -128,23 +129,36 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	}
 
 	@Override
-	public String newID() throws RemoteException {// 返回最大值
+	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
-		String ID_MAX = "";
+		int ID_MAX = 0;
+		String temp = new Timestamp(System.currentTimeMillis()).toString()
+				.substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7)
+				+ temp.substring(8);
+		target = unitID + target;// 开具单位编号+当天日期
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				ID_MAX = rs.getString("formID");
+				temp = rs.getString("formID").substring(2, 17);
+				if (target.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
+							"formID").substring(17)));// 最后6位编号
 			}
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
+			System.err.println("访问数据库时出错：");
 			e.printStackTrace();
 		}
 
-		return ID_MAX;
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 9999999)
+			return null;
+		String added = String.format("%07d", ID_MAX);
+
+		return "08" + target + added;
 	}
 
 	@Override
@@ -182,7 +196,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 						rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"),
 						rs.getString("peopleSee"), rs.getString("expense"), IDs);
-				temp.setFormType(FormEnum.TRANSPORT_HALL);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

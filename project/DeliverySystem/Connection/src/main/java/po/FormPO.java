@@ -6,7 +6,7 @@ import po.receivedata.StateEnum;
 import util.DataType;
 
 public class FormPO extends CommonPO implements Serializable{
-	private FormEnum formType;
+	protected FormEnum formType;
 	private FormStateEnum formState;
 	private String formID;
 	

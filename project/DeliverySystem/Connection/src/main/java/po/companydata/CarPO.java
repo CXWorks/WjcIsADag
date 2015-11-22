@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
+import util.DataType;
 
 public class CarPO extends InfoPO implements Serializable{
 	private boolean free;

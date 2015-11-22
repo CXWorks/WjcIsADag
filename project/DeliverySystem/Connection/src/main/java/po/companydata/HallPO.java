@@ -8,6 +8,7 @@ import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
 import po.memberdata.StaffPO;
+import util.DataType;
 
 public class HallPO extends InfoPO implements Serializable{
 	private String hallID;
