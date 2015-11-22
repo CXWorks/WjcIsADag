@@ -117,4 +117,10 @@ public interface FormatCheckService{
 	 * @return 返回检查结果
 	 */
 	public CheckFormMessage checkIsNull(String in);
+	/**
+	 * 检查接收单ID
+	 * @param ID
+	 * @return
+	 */
+	public CheckFormMessage checkReceiveID(String ID);
 }

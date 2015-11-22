@@ -38,8 +38,8 @@ public class TestStoreOut {
 	public void testCheckFormat(){
 		assertNotNull(storeOutBLService.checkFormat(so, true));
 		assertNotNull(storeOutBLService.checkFormat(so, false));
-		assertTrue(storeOutBLService.checkFormat(so, true).get(0).checkResult);
-		assertTrue(storeOutBLService.checkFormat(so, false).get(0).checkResult);
+		assertTrue(storeOutBLService.checkFormat(so, true).get(0).getCheckResult());
+		assertTrue(storeOutBLService.checkFormat(so, false).get(0).getCheckResult());
 	}
 	
 	@Test

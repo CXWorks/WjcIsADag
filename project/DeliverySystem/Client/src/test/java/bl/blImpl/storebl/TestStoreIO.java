@@ -30,7 +30,7 @@ public class TestStoreIO {
 	@Test
 	public void testCheckFormat(){
 		assertNotNull(storeIOBLService.checkFormat("","","",""));
-		assertTrue(storeIOBLService.checkFormat("","","","").get(0).checkResult);
+		assertTrue(storeIOBLService.checkFormat("","","","").get(0).getCheckResult());
 	}
 	
 	@Test

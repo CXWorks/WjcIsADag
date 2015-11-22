@@ -37,8 +37,8 @@ public class TestStoreIn {
 	public void testCheckFormat(){
 		assertNotNull(storeInBLService.checkFormat(si, true));
 		assertNotNull(storeInBLService.checkFormat(si, false));
-		assertTrue(storeInBLService.checkFormat(si, true).get(0).checkResult);
-		assertTrue(storeInBLService.checkFormat(si, false).get(0).checkResult);
+		assertTrue(storeInBLService.checkFormat(si, true).get(0).getCheckResult());
+		assertTrue(storeInBLService.checkFormat(si, false).get(0).getCheckResult());
 	}
 	
 	@Test

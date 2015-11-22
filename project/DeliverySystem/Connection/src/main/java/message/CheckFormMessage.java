@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 
 public class CheckFormMessage implements Serializable{
-	public boolean checkResult;
+	private boolean checkResult;
 	private String reason;
 	public CheckFormMessage(){
 		checkResult=true;
@@ -18,4 +18,12 @@ public class CheckFormMessage implements Serializable{
 		this.checkResult=result;
 		this.reason=reason;
 	}
+	public boolean getCheckResult() {
+		return checkResult;
+	}
+	public String getReason() {
+		return reason;
+	}
+	
+	
 }

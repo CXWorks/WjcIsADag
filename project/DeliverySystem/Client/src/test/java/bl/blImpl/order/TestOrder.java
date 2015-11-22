@@ -33,7 +33,7 @@ public class TestOrder {
 	@Test
 	public void testCheckFormat(){
 		assertNotNull(orderBLService.checkFormat(o,true));
-		assertTrue(orderBLService.checkFormat(o,true).get(0).checkResult);
+		assertTrue(orderBLService.checkFormat(o,true).get(0).getCheckResult());
 	}
 	
 	@Test

@@ -16,6 +16,7 @@ import vo.receivevo.ReceiveVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 import vo.transitvo.TransitVO;
+import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.receiveblService.ReceiveBLService;
 import bl.clientNetCache.CacheHelper;
 import bl.tool.draft.DraftService;
@@ -30,23 +31,56 @@ import bl.tool.vopo.VOPOFactory;
 public class ReceiveblImpl implements ReceiveBLService {
 	DraftService draftService;
 	VOPOFactory vopoFactory;
+	FormatCheckService formatCheckService;
+	//
+	public ReceiveblImpl(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
+		this.draftService=draftService;
+		this.vopoFactory=vopoFactory;
+		this.formatCheckService=formatCheckService;
+	}
+	
 	
 
 	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
 			boolean isFinal) {
-		// TODO Auto-generated method stub
 		ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
-		CheckFormMessage stub=new CheckFormMessage();
-		result.add(stub);
+		//orderID
+		if (form.getOrderID()!=null) {
+			result.add(formatCheckService.checkOrderID(form.getOrderID()));
+		} else {
+			if (isFinal) {
+				result.add(new CheckFormMessage(false, "订单号为空"));
+			} else {
+				result.add(new CheckFormMessage());
+			}
+		}
+		//transitID
+		if (form.getTransitID()!=null) {
+			result.add(formatCheckService.checkTransitID(form.getTransitID()));
+		} else {
+			if (isFinal) {
+				result.add(new CheckFormMessage(false, "中转单号为空"));
+			} else {
+				result.add(new CheckFormMessage());
+			}
+		}
+		//date
+		if (form.getDate()!=null) {
+			result.add(formatCheckService.checkPreDate(form.getDate()));
+		} else {
+			if (isFinal) {
+				result.add(new CheckFormMessage(false, "到达日期为空"));
+			} else {
+				result.add(new CheckFormMessage());
+			}
+		}
 		return result;
 	}
 
 	public OperationMessage submit(ReceiveVO form) {
-		// TODO Auto-generated method stub
 		try {
 			return CacheHelper.getReceiveDataService().insert((ReceivePO)vopoFactory.transVOtoPO(form));
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -60,12 +94,13 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 	public OrderVO getOrderVO(String orderID) {
-		// TODO Auto-generated method stub
+		if (formatCheckService.checkOrderID(orderID).getCheckResult()) {
+			return new OrderVO();
+		}
 		return new OrderVO();
 	}
 
 	public TransitVO getTransitVO() {
-		// TODO Auto-generated method stub
 		return new CenterOutVO();
 	}
 
@@ -73,8 +108,11 @@ public class ReceiveblImpl implements ReceiveBLService {
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
-		// TODO Auto-generated method stub
-		return "111111";
+		try {
+			return CacheHelper.getReceiveDataService().newID();
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 

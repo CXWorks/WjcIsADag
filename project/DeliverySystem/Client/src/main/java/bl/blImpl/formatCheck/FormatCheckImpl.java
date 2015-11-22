@@ -12,14 +12,28 @@ import bl.blService.FormatCheckService.FormatCheckService;
  * @version 1.0 
  */
 public class FormatCheckImpl implements FormatCheckService {
+	/*
+	 * @warning true代表错误
+	 */
+	private boolean checkFormIDLength(String ID){
+		if (ID.length()!=24) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.FormatCheckService.FormatCheckService#checkOrderID(java.lang.String)
 	 */
 	@Override
 	public CheckFormMessage checkOrderID(String ID) {
-		
-		return new CheckFormMessage();
+		if (ID.length()!=10) {
+			return new CheckFormMessage(false, "位数错误");
+		} else {
+			return new CheckFormMessage();
+		}
 	}
 
 	/* (non-Javadoc)
@@ -28,7 +42,7 @@ public class FormatCheckImpl implements FormatCheckService {
 	@Override
 	public CheckFormMessage checkPostDate(Calendar date) {
 		Calendar now=Calendar.getInstance();
-		if (now.before(date)) {
+		if (!now.after(date)) {
 			return new CheckFormMessage();
 		}
 		else {
@@ -42,7 +56,7 @@ public class FormatCheckImpl implements FormatCheckService {
 	@Override
 	public CheckFormMessage checkPreDate(Calendar date) {
 		Calendar now=Calendar.getInstance();
-		if (now.after(date)) {
+		if (!now.before(date)) {
 			return new CheckFormMessage();
 		}
 		else {
@@ -67,8 +81,15 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTransitID(String ID) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (this.checkFormIDLength(ID)) {
+			return new CheckFormMessage(false, "位数错误");
+		} else {
+			if (ID.charAt(1)=='7'||ID.charAt(1)=='8') {
+				return new CheckFormMessage();
+			} else {
+				return new CheckFormMessage(false, "单据类型错误，应为07或08");
+			}
+		}
 	}
 
 	/* (non-Javadoc)
@@ -76,8 +97,15 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTransportHallID(String ID) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (this.checkFormIDLength(ID)) {
+			return new CheckFormMessage(false, "位数错误");
+		} else {
+			if (ID.charAt(2)=='8') {
+				return new CheckFormMessage();
+			} else {
+				return new CheckFormMessage(false, "单据类型错误，应为08");
+			}
+		}
 	}
 
 	/* (non-Javadoc)
@@ -85,8 +113,15 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTransportCenterID(String ID) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (this.checkFormIDLength(ID)) {
+			return new CheckFormMessage(false, "位数错误，应为24位");
+		} else {
+			if (ID.charAt(2)=='7') {
+				return new CheckFormMessage();
+			} else {
+				return new CheckFormMessage(false, "单据类型错误，应为07");
+			}
+		}
 	}
 
 	/* (non-Javadoc)
@@ -112,8 +147,13 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkMoney(String money) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		double m=Double.parseDouble(money);
+		if (m>=0) {
+			return new CheckFormMessage();
+		} else {
+			return new CheckFormMessage(false, "输入金额小于0");
+		}
+		
 	}
 
 	/* (non-Javadoc)
@@ -121,8 +161,11 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkPhone(String num) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (num.length()==11) {
+			return new CheckFormMessage();
+		} else {
+			return new CheckFormMessage(false, "号码位数不对，应为11位");
+		}
 	}
 
 	/* (non-Javadoc)
@@ -130,8 +173,12 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkIsInt(String num) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		try {
+			int temp=Integer.parseInt(num);
+			return new CheckFormMessage();
+		} catch (NumberFormatException e) {
+			return new CheckFormMessage(false, "不是整数");
+		}
 	}
 
 	/* (non-Javadoc)
@@ -157,8 +204,27 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkIsNull(String in) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (in==null) {
+			return new CheckFormMessage();
+		} else {
+			return new CheckFormMessage(false, "不是空");
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormatCheckService.FormatCheckService#checkReceiveID(java.lang.String)
+	 */
+	@Override
+	public CheckFormMessage checkReceiveID(String ID) {
+		if (this.checkFormIDLength(ID)) {
+			return new CheckFormMessage(false, "位数错误，应为24位");
+		} else {
+			if (ID.charAt(2)=='3') {
+				return new CheckFormMessage();
+			} else {
+				return new CheckFormMessage(false, "单据类型错误，应为03");
+			}
+		}
 	}
 
 }
