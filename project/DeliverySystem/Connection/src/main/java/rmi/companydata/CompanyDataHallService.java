@@ -1,6 +1,7 @@
 package rmi.companydata;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -15,7 +16,7 @@ public interface CompanyDataHallService extends DataService<HallPO>{
 	
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "CompanyDataHall";
-	
+
 	/**
 	 * 获取营业厅
 	 * @return

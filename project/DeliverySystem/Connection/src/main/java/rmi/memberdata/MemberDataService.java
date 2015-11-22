@@ -2,6 +2,7 @@ package rmi.memberdata;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -18,7 +19,7 @@ public interface MemberDataService extends DataService<StaffPO>{
 		
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "MemberData";
-		
+
 	/**
 	 * 获取所有员工信息
 	 * @param staffTypeEnum 员工类型
@@ -44,7 +45,8 @@ public interface MemberDataService extends DataService<StaffPO>{
 	 */
 	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException;
 	/**
-	 * 
+	 * 获得新的员工ID
+	 * @param staffType 工种
 	 * @return
 	 */
 	public String newStaffID(StaffTypeEnum staffType) throws RemoteException;

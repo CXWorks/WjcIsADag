@@ -6,6 +6,7 @@ import rmi.DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 
 /**
  * Created by Sissel on 2015/10/26.

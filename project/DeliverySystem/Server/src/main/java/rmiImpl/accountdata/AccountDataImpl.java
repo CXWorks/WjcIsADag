@@ -145,34 +145,34 @@ public class AccountDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	public String newAccountID(String type,String city) {
-		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
-		ResultSet rs = null;
-		int ID_MAX = 0;
-		String target = type + city;// 工种+城市
-		try {
-			statement = conn.prepareStatement(selectAll);
-			rs = statement.executeQuery(selectAll);
-			while (rs.next()) {
-				String temp = rs.getString("ID").substring(0, 5);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(
-							ID_MAX,
-							Integer.parseInt(rs.getString("formID").substring(
-									5)));// 最后5位编号
-			}
-		} catch (SQLException e) {
-			System.err.println("访问数据库时出错：");
-			e.printStackTrace();
-		}
-
-		ID_MAX++;// 将该数字加一
-		if (ID_MAX > 99999)
-			return null;
-		String added = String.format("%05d", ID_MAX);
-
-		return target + added;
-	}
+//	public String newAccountID(String type,String city) {
+//		// TODO Auto-generated method stub
+//		String selectAll = "select * from " + Table_Name;
+//		ResultSet rs = null;
+//		int ID_MAX = 0;
+//		String target = type + city;// 工种+城市
+//		try {
+//			statement = conn.prepareStatement(selectAll);
+//			rs = statement.executeQuery(selectAll);
+//			while (rs.next()) {
+//				String temp = rs.getString("ID").substring(0, 5);
+//				if (target.equalsIgnoreCase(temp))
+//					ID_MAX = Math.max(
+//							ID_MAX,
+//							Integer.parseInt(rs.getString("formID").substring(
+//									5)));// 最后5位编号
+//			}
+//		} catch (SQLException e) {
+//			System.err.println("访问数据库时出错：");
+//			e.printStackTrace();
+//		}
+//
+//		ID_MAX++;// 将该数字加一
+//		if (ID_MAX > 99999)
+//			return null;
+//		String added = String.format("%05d", ID_MAX);
+//
+//		return target + added;
+//	}
 
 }

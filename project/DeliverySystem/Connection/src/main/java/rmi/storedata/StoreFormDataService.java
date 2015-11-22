@@ -7,6 +7,7 @@ import rmi.DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.LinkedList;
 import java.util.List;
 

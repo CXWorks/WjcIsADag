@@ -1,6 +1,7 @@
 package rmi.receivedata;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -18,5 +19,5 @@ public interface ReceiveDataService extends CommonDataService<ReceivePO>{
 	
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "ReceiveData";
-	
+
 }

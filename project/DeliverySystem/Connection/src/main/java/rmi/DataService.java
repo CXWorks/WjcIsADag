@@ -1,6 +1,7 @@
 package rmi;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 
 import po.CommonPO;
@@ -13,4 +14,7 @@ import po.FormPO;
  */
 public interface DataService<PO extends CommonPO > extends Remote {
 	
+	/** 获得SQL 的  Connection*/
+	public Connection getConn() throws RemoteException;
+
 }

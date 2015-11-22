@@ -2,7 +2,9 @@ package rmi.accountdata;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.ArrayList;
+
 
 
 
@@ -70,5 +72,5 @@ public interface AccountDataService extends DataService<AccountPO> {
 	 * @param type 工种    ； city 城市
 	 * @return 返回新编号
 	 */
-	public String newAccountID(String type,String city);
+//	public String newAccountID(String type,String city);
 }

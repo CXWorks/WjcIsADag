@@ -7,6 +7,7 @@ import rmi.DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by Sissel on 2015/10/23.
  */
 public interface FinanceFormDataService extends DataService<CommonPO>{
-	
+
     public String getNewRevenueID(String date, String hallID) throws RemoteException;
 
     public String getNewPaymentID(String date) throws RemoteException;
