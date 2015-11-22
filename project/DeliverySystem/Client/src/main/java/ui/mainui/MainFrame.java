@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.configurationui.ConfigurationPanel;
-import ui.selfdefined.MyFrame;
-import ui.selfdefined.MyPanel;
 
 /** 
  * Client//ui.mainui//MainFrame.java
@@ -15,7 +13,7 @@ import ui.selfdefined.MyPanel;
  * @date 2015年10月25日 下午11:57:23
  * @version 1.0 
  */
-public class MainFrame extends MyFrame {
+public class MainFrame extends JFrame {
 	public MainFrame(JPanel jPanel){
 		super();
 		//

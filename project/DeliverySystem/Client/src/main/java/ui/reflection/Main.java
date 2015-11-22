@@ -62,7 +62,7 @@ import ui.mainui.MainFrame;
 */
 
 /** 
- * Client//ui.reflection//Main.java
+ *
  * @author CXWorks
  * @date 2015年10月26日 下午12:09:46
  * @version 1.0 

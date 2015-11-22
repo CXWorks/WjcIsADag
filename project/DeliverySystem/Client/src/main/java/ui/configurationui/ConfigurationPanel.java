@@ -4,20 +4,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Map;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
 //import bl.blImpl.configurationbl.ConfigurationblImpl;
 //import bl.blService.configurationblService.ConfigurationblService;
-import ui.selfdefined.MyButton;
-import ui.selfdefined.MyPanel;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
@@ -30,7 +24,7 @@ import vo.configurationvo.SalaryStrategyVO;
  * @date 2015年10月26日 上午12:11:35
  * @version 1.0 
  */
-public class ConfigurationPanel extends MyPanel implements ActionListener{
+public class ConfigurationPanel extends JPanel implements ActionListener{
 	
 	private int state = 0;
 	

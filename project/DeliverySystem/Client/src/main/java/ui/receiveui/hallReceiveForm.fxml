@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane
+        fx:controller="ui.receiveui.HallReceiveFormController"
+        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="28.0" layoutY="28.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="295.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="56.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="到达日期">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="中转单编号" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="出发地" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="货物到达状态" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <DatePicker
+                    fx:id="arrive_DatePicker"
+                    GridPane.columnIndex="1" />
+            <TextField
+                    fx:id="transitID_Field"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField
+                    fx:id="departure_Field"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox
+                    fx:id="arriveState_Box"
+                    prefHeight="23.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ChoiceBox>
+         </children>
+      </GridPane>
+      <Label layoutX="14.0" layoutY="14.0" text="到达单信息" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="14.0" text="货物基本信息" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="49.0" text="订单编号" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="49.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField
+              fx:id="order_Field"
+              layoutX="464.0" layoutY="46.0" AnchorPane.leftAnchor="464.0" AnchorPane.topAnchor="49.0" />
+      <TableView
+              fx:id="order_Table"
+              layoutX="372.0" layoutY="88.0" prefHeight="200.0" prefWidth="357.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="88.0">
+        <columns>
+          <TableColumn prefWidth="172.0" text="条目" />
+          <TableColumn prefWidth="240.0" text="值" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

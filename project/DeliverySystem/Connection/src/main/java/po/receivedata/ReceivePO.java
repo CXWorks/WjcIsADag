@@ -14,8 +14,6 @@ import po.receivedata.StateEnum;
  */
 
 public class ReceivePO extends FormPO implements Serializable{
-	
-
 
 	public ReceivePO(){
 		
