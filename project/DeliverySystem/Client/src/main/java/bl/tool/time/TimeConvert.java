@@ -12,6 +12,9 @@ import java.util.Date;
 public class TimeConvert {
 
     public static Calendar convertDate(LocalDate localDate){
+        if(localDate == null)
+            return null;
+
         ZoneId zone = ZoneId.systemDefault();
         Instant instant = localDate.atStartOfDay().atZone(zone).toInstant();
         Date date = Date.from(instant);

@@ -38,8 +38,6 @@ public class ReceiveblImpl implements ReceiveBLService {
 		this.vopoFactory=vopoFactory;
 		this.formatCheckService=formatCheckService;
 	}
-	
-	
 
 	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
 			boolean isFinal) {

@@ -13,7 +13,11 @@ import factory.FormFactory;
  */
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.receiveui.HallReceiveFormController;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -30,6 +34,12 @@ public class Main extends Application {
         primaryStage.setTitle("Receive Demo");
         primaryStage.setX(150);
         primaryStage.setY(150);
+
+        try {
+            primaryStage.setScene(new Scene(HallReceiveFormController.launch()));
+        } catch (IOException e) {
+            System.out.println("can't find the fxml file");
+        }
         primaryStage.show();
     }
 }
