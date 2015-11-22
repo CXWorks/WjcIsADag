@@ -25,6 +25,7 @@ import rmiImpl.orderdata.OrderDataImpl;
 import rmiImpl.receivedata.ReceiveDataImpl;
 import rmiImpl.storedata.StoreDataImpl;
 import rmiImpl.transportdata.CenterOutDataImpl;
+import rmiImpl.transportdata.LoadDataImpl;
 
 /**
  * 数据层，接口处理器
@@ -82,6 +83,8 @@ public class DataFactory implements DataFactoryService {
 			}
 		case CenterOutDataImpl.NAME:
 			return new CenterOutDataImpl();
+		case LoadDataImpl.NAME:
+			return new LoadDataImpl();
 		default:
 			return null;
 		}
