@@ -28,6 +28,7 @@ public class DraftController implements DraftService {
 	 */
 	@Override
 	public OperationMessage saveDraft(FormVO vo) {
+		System.out.println("hhhhhhhh");
 		try {
 			File file=new File(ROOT+vo.getFormType().toString()+"/.2333");
 			writer=new ObjectOutputStream(new FileOutputStream(file));

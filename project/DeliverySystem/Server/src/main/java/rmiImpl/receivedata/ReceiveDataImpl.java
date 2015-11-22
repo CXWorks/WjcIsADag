@@ -40,6 +40,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 	}
 
 	public OperationMessage insert(ReceivePO po) {
+		System.out.println(po.getTransitID());
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into " + Table_Name

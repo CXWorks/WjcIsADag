@@ -13,9 +13,9 @@ import po.FormPO;
  */
 public interface DataService<PO extends CommonPO > extends Remote {
 	
-	/**
-	 * 获得Connection
-	 * @return Connection
-	 */
-	public Connection getConn();
+//	/**
+//	 * 获得Connection
+//	 * @return Connection
+//	 */
+//	public Connection getConn();
 }

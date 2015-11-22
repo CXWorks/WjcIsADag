@@ -31,7 +31,7 @@ import rmi.transportdata.CenterOutDataService;
  * @version 1.0 
  */
 public class RMIHelper {
-	private static final String IP="localhost";
+	private static final String IP="localhost:2333";
 	
 	private static boolean initialized=false;
 	
@@ -69,8 +69,8 @@ public class RMIHelper {
 	//
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
 		String url="rmi://"+IP+"/";
-		orderDataService=(OrderDataService)Naming.lookup(url+OrderDataService.class.getName());
-		receiveDataService=(ReceiveDataService)Naming.lookup(url+ReceiveDataService.class.getName());
+		//orderDataService=(OrderDataService)Naming.lookup(url+OrderDataService.class.getName());
+		receiveDataService=(ReceiveDataService)Naming.lookup("rmi://localhost:2336/ReceiveDataService");
 	}
 	//
 	public static OrderDataService getOrderDataService(){
@@ -119,6 +119,7 @@ public class RMIHelper {
 		return memberDataService;
 	}
 	public static ReceiveDataService getReceiveDataService() {
+		System.out.println("fuck");
 		return receiveDataService;
 	}
 	public static StoreFormDataService getStoreFormDataService() {

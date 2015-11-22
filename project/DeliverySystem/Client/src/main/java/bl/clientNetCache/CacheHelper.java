@@ -1,5 +1,6 @@
 package bl.clientNetCache;
 
+import bl.clientRMI.NetInitException;
 import bl.clientRMI.RMIHelper;
 
 import com.sun.jndi.url.rmi.rmiURLContext;
@@ -55,11 +56,13 @@ public class CacheHelper {
 	private static SystemDataService systemDataService;
 	private static CenterOutDataService transportDataService;
 	//
-	public static void  initializeCache(){
+	public static void  initializeCache() throws NetInitException{
+		RMIHelper.init();
 		if(initStoredData()){
 			updateCache();
 		}
 		initCacheService();
+		
 	}
 	//
 	private static boolean initStoredData(){
@@ -72,7 +75,7 @@ public class CacheHelper {
 	//
 	private static void initCacheService(){
 		orderDataService=RMIHelper.getOrderDataService();
-		receiveDataService=rmiHelper.getReceiveDataService();
+		receiveDataService=RMIHelper.getReceiveDataService();
 	}
 	//
 	public static OrderDataService getOrderDataService() {

@@ -14,6 +14,10 @@ import vo.FormVO;
  */
 
 public class ReceiveVO extends FormVO{
+	public ReceivePO toPO(){
+		System.out.println("vo"+transitID);
+		return new ReceivePO(orderID, transitID, date, depature, orderState.toString());
+	}
 	public ReceiveVO(){
 		super(FormEnum.RECEIVE);
 	}

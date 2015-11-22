@@ -12,10 +12,13 @@ public class FormPO extends CommonPO implements Serializable{
 	
 	public FormPO(){
 		super(DataType.FORM);
+		this.formState=FormStateEnum.SUBMIT;
+		formID="555555555";
 	}
 	public FormPO(FormEnum formEnum){
 		super(DataType.FORM);
 		this.formType=formEnum;
+		
 	}
 	
 	public FormEnum getFormType() {

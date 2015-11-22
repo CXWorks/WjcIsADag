@@ -19,6 +19,7 @@ import vo.transitvo.TransitVO;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.receiveblService.ReceiveBLService;
 import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.RMIHelper;
 import bl.tool.draft.DraftService;
 import bl.tool.vopo.VOPOFactory;
 
@@ -77,7 +78,10 @@ public class ReceiveblImpl implements ReceiveBLService {
 
 	public OperationMessage submit(ReceiveVO form) {
 		try {
-			return CacheHelper.getReceiveDataService().insert((ReceivePO)vopoFactory.transVOtoPO(form));
+			ReceivePO temp=(ReceivePO)vopoFactory.transVOtoPO(form);
+			System.out.println(temp.getOrderID());
+			return RMIHelper.getReceiveDataService()
+					.insert(temp);
 		} catch (RemoteException e) {
 			return new OperationMessage(false,"net error");
 		}

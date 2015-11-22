@@ -12,7 +12,7 @@ import rmi.CommonDataService;
  * @author wjc
  * @version 2015.10.31
  */
-public abstract class CommonData<PO extends FormPO> extends UnicastRemoteObject implements CommonDataService<PO> {
+public abstract class CommonData<PO extends FormPO> extends UnicastRemoteObject{
 	
 	public CommonData() throws RemoteException {
 		

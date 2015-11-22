@@ -117,7 +117,7 @@ public class VOPOFactory {
 
 	public CommonPO transVOtoPO(CommonVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ((ReceiveVO)vo).toPO();
 	}
 
 }

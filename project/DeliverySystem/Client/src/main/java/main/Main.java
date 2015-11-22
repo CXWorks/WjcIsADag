@@ -19,11 +19,16 @@ import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
 
+import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.NetInitException;
+import bl.clientRMI.RMIHelper;
+
 public class Main extends Application {
 
     Stage primaryStage;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NetInitException {
+    	RMIHelper.init();
         launch(args);
     }
 
