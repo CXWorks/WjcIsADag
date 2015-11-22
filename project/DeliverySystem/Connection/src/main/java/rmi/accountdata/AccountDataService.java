@@ -67,7 +67,8 @@ public interface AccountDataService extends DataService<AccountPO> {
 	
 	/**
 	 * 获得新的编号
+	 * @param type 工种    ； city 城市
 	 * @return 返回新编号
 	 */
-	public String newAccountID();
+	public String newAccountID(String type,String city);
 }

@@ -155,12 +155,12 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			result = new ReceivePO(rs.getString("orderID"),
 					rs.getString("transitID"), rs.getTimestamp("date"),
 					rs.getString("depature"), rs.getString("state"));
-			result.setFormType(FormEnum.RECEIVE);
 			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
@@ -178,7 +178,6 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 				temp = new ReceivePO(rs.getString("orderID"),
 						rs.getString("transitID"), rs.getTimestamp("date"),
 						rs.getString("depature"), rs.getString("state"));
-				temp.setFormType(FormEnum.RECEIVE);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

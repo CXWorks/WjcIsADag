@@ -14,6 +14,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,11 +27,19 @@ public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataS
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "StoreData";
 	
+	private String Table_Name;
+	private Connection conn = null;
+	private PreparedStatement statement = null;
+	
     public StoreDataImpl() throws RemoteException, MalformedURLException {
         LocateRegistry.createRegistry(1099);
         Naming.rebind(R.string.StoreDataService, this);
     }
-
+    
+	public Connection getConn() {
+		return conn;
+	}
+	
     public static void main(String[] args) throws MalformedURLException, RemoteException {
         new StoreDataImpl();
     }

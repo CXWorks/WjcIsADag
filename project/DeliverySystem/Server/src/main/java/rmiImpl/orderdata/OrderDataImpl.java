@@ -180,12 +180,12 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 					rs.getString("goodsName"), rs.getString("weight"),
 					rs.getString("volume"), rs.getString("money"),
 					rs.getString("type"), FormIDs, rs.getString("targetHallID"));
-			result.setFormType(FormEnum.ORDER);
 			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
@@ -212,7 +212,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 						rs.getString("volume"), rs.getString("money"),
 						rs.getString("type"), FormIDs,
 						rs.getString("targetHallID"));
-				temp.setFormType(FormEnum.ORDER);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

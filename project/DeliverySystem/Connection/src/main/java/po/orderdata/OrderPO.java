@@ -3,6 +3,7 @@ package po.orderdata;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import po.FormEnum;
 import po.FormPO;
 
 public class OrderPO extends FormPO implements Serializable {
@@ -47,6 +48,7 @@ public class OrderPO extends FormPO implements Serializable {
 		this.setType(type);
 		FormIDs = formIDs;
 		this.targetHallID = targetHallID;
+		this.formType = FormEnum.ORDER;
 	}
 
 	//

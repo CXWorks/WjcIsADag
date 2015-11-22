@@ -8,6 +8,7 @@ import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
 import po.memberdata.StaffPO;
+import util.DataType;
 
 
 public class CenterPO extends InfoPO implements Serializable{

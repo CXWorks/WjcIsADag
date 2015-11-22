@@ -154,12 +154,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			rs.next();
 			result = new DeliverPO(rs.getString("orderID"),
 					rs.getTimestamp("date"), rs.getString("postman"));
-			result.setFormType(FormEnum.DELIVER);
 			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
@@ -176,7 +176,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			while (rs.next()) {
 				temp = new DeliverPO(rs.getString("orderID"),
 						rs.getTimestamp("date"), rs.getString("postman"));
-				temp.setFormType(FormEnum.DELIVER);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

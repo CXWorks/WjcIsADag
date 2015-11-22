@@ -88,12 +88,12 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 					rs.getString("placeTo"), rs.getString("peopleSee"),
 					rs.getString("expense"), IDs);
-			result.setFormType(FormEnum.TRANSPORT_HALL);
 			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
@@ -196,7 +196,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 						rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"),
 						rs.getString("peopleSee"), rs.getString("expense"), IDs);
-				temp.setFormType(FormEnum.TRANSPORT_HALL);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

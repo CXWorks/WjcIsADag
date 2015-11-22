@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 import po.receivedata.StateEnum;
 
@@ -28,6 +29,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
+		this.formType = FormEnum.TRANSPORT_CENTER;
 	}
 
 	public CenterOutPO(String placeFrom, String shelfNum, String transitState,
@@ -46,6 +48,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
+		this.formType = FormEnum.TRANSPORT_CENTER;
 	}
 
 	public String getPlaceFrom() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 
 /**
@@ -24,6 +25,7 @@ public class DeliverPO extends FormPO implements Serializable{
 		this.orderID = orderID;
 		this.date = date;
 		this.postman = postman;
+		this.formType = FormEnum.DELIVER;
 	}
 	
 	public DeliverPO(String orderID, Timestamp date, String postman) {
@@ -33,6 +35,7 @@ public class DeliverPO extends FormPO implements Serializable{
 		temp.setTime(date);
 		this.date = temp;
 		this.postman = postman;
+		this.formType = FormEnum.DELIVER;
 	}
 	
 	public String getOrderID() {

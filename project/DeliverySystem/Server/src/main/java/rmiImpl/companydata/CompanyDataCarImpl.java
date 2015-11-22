@@ -2,6 +2,8 @@ package rmiImpl.companydata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -16,9 +18,19 @@ import rmi.companydata.CompanyDataCarService;
  */
 public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDataCarService {
 	private static final long serialVersionUID = 1L;
+	
+	private String Table_Name;
+	private Connection conn = null;
+	private PreparedStatement statement = null;
+	
 	public CompanyDataCarImpl() throws RemoteException{
 		super();
 	}
+
+	public Connection getConn() {
+		return conn;
+	}
+
 	/* (non-Javadoc)
 	 * @see rmi.companydata.CompanyDataCarService#getCar()
 	 */

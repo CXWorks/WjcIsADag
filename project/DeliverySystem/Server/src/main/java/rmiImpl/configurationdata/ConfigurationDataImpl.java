@@ -2,6 +2,8 @@ package rmiImpl.configurationdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -24,10 +26,19 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private String Table_Name;
+	private Connection conn = null;
+	private PreparedStatement statement = null;
+	
 	public ConfigurationDataImpl() throws RemoteException{
 		super();
 	}
-
+	
+	public Connection getConn() {
+		return conn;
+	}
+	
 	public ArrayList<CityDistancePO> getCityDistance()  throws RemoteException{
 		// TODO Auto-generated method stub
 		ArrayList<CityDistancePO> result=new ArrayList<CityDistancePO>();

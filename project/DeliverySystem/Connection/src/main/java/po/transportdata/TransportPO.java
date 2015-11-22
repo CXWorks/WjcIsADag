@@ -16,6 +16,10 @@ public abstract class TransportPO extends FormPO implements Serializable {
 	protected String expense;// 运费
 	protected ArrayList<String> IDs;// 本次装箱所有托运单号
 
+	public TransportPO(){
+		super();
+	}
+	
 	public Calendar getLoadDate() {
 		return LoadDate;
 	}

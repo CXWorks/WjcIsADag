@@ -8,6 +8,8 @@ import po.CommonPO;
 import po.FormPO;
 import po.InfoEnum;
 import po.InfoPO;
+import po.receivedata.StateEnum;
+import util.DataType;
 
 public class AccountPO extends InfoPO implements Serializable{
 
@@ -18,11 +20,12 @@ public class AccountPO extends InfoPO implements Serializable{
 		super(InfoEnum.ACCOUNT);
 	}
 
-	public AccountPO(String ID, AuthorityEnum authority, String password) {
+	public AccountPO(String ID, String authority, String password) {
 		this();
 		this.ID = ID;
-		this.authority = authority;
+		this.setAuthority(authority);
 		this.password = password;
+		this.dataType = DataType.DATA;
 	}
 	//
 
@@ -38,4 +41,10 @@ public class AccountPO extends InfoPO implements Serializable{
 		return authority;
 	}
 	
+	public void setAuthority(String authority) {
+		if(authority.equalsIgnoreCase("DONT_HAVE"))
+			this.authority = AuthorityEnum.DONT_HAVE;
+		else if(authority.equalsIgnoreCase("HAVE"))
+			this.authority = AuthorityEnum.HAVE;
+	}
 }
