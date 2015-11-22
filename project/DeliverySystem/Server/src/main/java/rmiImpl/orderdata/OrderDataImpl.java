@@ -33,12 +33,18 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public OrderDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "order";
 		conn = ConnecterHelper.connSQL(conn);
+		
+		//为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	public Connection getConn() {
@@ -128,14 +134,23 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		return result;
 	}
 
-	public String newID(String unitID) throws RemoteException {
+	public String newID(String unitID) throws RemoteException {//成员变量成员持有ID信息
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
 				.substring(0, 10);
 		String date = temp.substring(5, 7) + temp.substring(8);// 当天日期
+		
+		//当前日期与缓存日期一致
+		if(temp.equalsIgnoreCase(today)){
+			this.ID_MAX++;
+			String added = String.format("%06d", ID_MAX);
+			return date + added;
+		}
+			
+		//当前日期与缓存日期不一致
+		today = temp;
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);

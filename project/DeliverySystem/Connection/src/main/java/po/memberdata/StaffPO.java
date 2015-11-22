@@ -5,6 +5,7 @@ import java.io.Serializable;
 import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
+import po.transportdata.TransportationEnum;
 
 public class StaffPO extends InfoPO implements Serializable{
 	private StaffTypeEnum staff;
@@ -39,6 +40,45 @@ public class StaffPO extends InfoPO implements Serializable{
 	public String getLove() {
 		return love;
 	}
+	
+	public void setStaff(String staff) {
+		switch (staff) {
+		case "ADMINISTRATOR":
+			this.staff = StaffTypeEnum.ADMINISTRATOR;
+			break;
+		case "BURSAR":
+			this.staff = StaffTypeEnum.BURSAR;
+			break;
+		case "CENTER_COUNTERMAN":
+			this.staff = StaffTypeEnum.CENTER_COUNTERMAN;
+			break;
+		case "DELIVER":
+			this.staff = StaffTypeEnum.DELIVER;
+			break;
+		case "HALL_COUNTERMAN":
+			this.staff = StaffTypeEnum.HALL_COUNTERMAN;
+			break;
+		case "MANAGER":
+			this.staff = StaffTypeEnum.MANAGER;
+		case "STOREMAN":
+			this.staff = StaffTypeEnum.STOREMAN;
+			break;
+			
+		}
+	}
+	public void setSex(String sex) {
+		switch (sex) {
+		case "MAN":
+			this.sex = SexEnum.MAN;
+			break;
+		case "WOMAN":
+			this.sex = SexEnum.WOMAN;
+			break;
+		case "OTHERS":
+			this.sex = SexEnum.OTHERS;
+			break;
+		}
+	}
 	/**
 	 * @param staff
 	 * @param iD
@@ -57,6 +97,18 @@ public class StaffPO extends InfoPO implements Serializable{
 		this.age = age;
 		this.personID = personID;
 		this.sex = sex;
+		this.love = love;
+	}
+	
+	public StaffPO(String staff, String iD, String name, int age,
+			String personID, String sex, String love) {
+		this();
+		this.setStaff(staff);
+		ID = iD;
+		this.name = name;
+		this.age = age;
+		this.personID = personID;
+		this.setSex(sex);
 		this.love = love;
 	}
 }

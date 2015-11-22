@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import po.FormEnum;
 import po.FormPO;
+import po.receivedata.StateEnum;
 
 public class OrderPO extends FormPO implements Serializable {
 	private String nameFrom;
@@ -109,12 +110,17 @@ public class OrderPO extends FormPO implements Serializable {
 	}
 	
 	public void setType(String type) {
-		if (type.equalsIgnoreCase("SLOW"))
+		switch (type) {
+		case "SLOW":
 			this.type = DeliverTypeEnum.SLOW;
-		else if (type.equalsIgnoreCase("NORMAL"))
+			break;
+		case "NORMAL":
 			this.type = DeliverTypeEnum.NORMAL;
-		else if (type.equalsIgnoreCase("FAST"))
+			break;
+		case "FAST":
 			this.type = DeliverTypeEnum.FAST;
+			break;
+		}
 	}
 	
 	public ArrayList<String> getFormIDs() {

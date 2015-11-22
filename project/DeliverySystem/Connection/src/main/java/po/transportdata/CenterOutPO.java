@@ -64,12 +64,17 @@ public class CenterOutPO extends TransportPO implements Serializable {
 	}
 
 	public void setTransitState(String state) {
-		if (state.equalsIgnoreCase("CAR"))
+		switch (state) {
+		case "CAR":
 			this.transitState = TransportationEnum.CAR;
-		else if (state.equalsIgnoreCase("PLANE"))
+			break;
+		case "PLANE":
 			this.transitState = TransportationEnum.PLANE;
-		else if (state.equalsIgnoreCase("TRAIN"))
+			break;
+		case "TRAIN":
 			this.transitState = TransportationEnum.TRAIN;
+			break;
+		}
 	}
 
 }

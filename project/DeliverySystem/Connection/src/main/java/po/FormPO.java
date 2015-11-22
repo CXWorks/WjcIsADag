@@ -28,12 +28,17 @@ public class FormPO extends CommonPO implements Serializable{
 		return formState;
 	}
 	public void setFormState(String formState) {
-		if(formState.equalsIgnoreCase("DRAFT"))
+		switch (formState) {
+		case "DRAFT":
 			this.formState = FormStateEnum.DRAFT;
-		else if(formState.equalsIgnoreCase("PASS"))
+			break;
+		case "PASS":
 			this.formState = FormStateEnum.PASS;
-		else if(formState.equalsIgnoreCase("SUBMIT"))
+			break;
+		case "SUBMIT":
 			this.formState = FormStateEnum.SUBMIT;
+			break;
+		}
 	}
 	public String getFormID() {
 		return formID;
