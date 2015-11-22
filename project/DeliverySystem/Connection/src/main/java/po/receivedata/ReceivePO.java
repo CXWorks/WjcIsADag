@@ -14,6 +14,12 @@ import po.receivedata.StateEnum;
  */
 
 public class ReceivePO extends FormPO implements Serializable{
+	
+	private String orderID;
+	private String transitID;
+	private Calendar date;
+	private String depature;
+	private StateEnum state;
 
 	public ReceivePO(){
 		
@@ -39,13 +45,7 @@ public class ReceivePO extends FormPO implements Serializable{
 		this.depature = depature;
 		this.setState(state);
 	}
-	
-	private String orderID;
-	private String transitID;
-	private Calendar date;
-	private String depature;
-	private StateEnum state;
-	
+
 	public String getOrderID() {
 		return orderID;
 	}

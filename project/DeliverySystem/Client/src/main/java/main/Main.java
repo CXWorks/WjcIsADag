@@ -1,5 +1,15 @@
-package main;/**
+/*
  * Created by Sissel on 2015/11/21.
+ */
+package main;
+
+import factory.FormFactory;
+
+/** 
+ * Client//main//Main.java
+ * @author CXWorks
+ * @date 2015年10月25日 下午11:58:09
+ * @version 1.0
  */
 
 import javafx.application.Application;
@@ -15,7 +25,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
 
         // TODO demo
         primaryStage.setTitle("Receive Demo");

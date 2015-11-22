@@ -11,7 +11,10 @@ import org.junit.Test;
 
 import po.receivedata.StateEnum;
 import vo.receivevo.ReceiveVO;
+import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.tool.draft.DraftController;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc
@@ -27,14 +30,14 @@ public class TestReceive {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		receiveBLService = new ReceiveblImpl();
+		receiveBLService = new ReceiveblImpl(new VOPOFactory(), new DraftController(), new FormatCheckImpl());
 		r = new ReceiveVO("1111111","1111111",Calendar.getInstance(),"南京仙林",StateEnum.Complete);
 	}
 	
 	@Test
 	public void testCheckFormat(){
 		assertNotNull(receiveBLService.checkFormat(r,true));
-		assertTrue(receiveBLService.checkFormat(r,true).get(0).checkResult);
+		assertTrue(receiveBLService.checkFormat(r,true).get(0).getCheckResult());
 	}
 	
 	@Test

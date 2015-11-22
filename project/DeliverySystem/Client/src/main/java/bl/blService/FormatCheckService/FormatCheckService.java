@@ -1,5 +1,7 @@
 package bl.blService.FormatCheckService;
 
+import java.util.Calendar;
+
 import message.CheckFormMessage;
 
 
@@ -20,17 +22,17 @@ public interface FormatCheckService{
 	
 	/**
 	 * 检查日期（系统时间之前）
-	 * @param data 日期
+	 * @param date 日期
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkDate(String data);
+	public  CheckFormMessage checkPostDate(Calendar date);
 	
-	/**
+	/*
 	 * 检查日期（系统时间之hou）
 	 * @param data 日期
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkPreDate(String data);
+	public  CheckFormMessage checkPreDate(Calendar date);
 	
 	/**
 	 * 查重
@@ -115,4 +117,10 @@ public interface FormatCheckService{
 	 * @return 返回检查结果
 	 */
 	public CheckFormMessage checkIsNull(String in);
+	/**
+	 * 检查接收单ID
+	 * @param ID
+	 * @return
+	 */
+	public CheckFormMessage checkReceiveID(String ID);
 }

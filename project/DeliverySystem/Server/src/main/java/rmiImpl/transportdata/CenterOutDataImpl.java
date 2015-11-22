@@ -1,4 +1,4 @@
-package rmiImpl.deliverdata;
+package rmiImpl.transportdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -7,31 +7,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import message.OperationMessage;
 import po.FormEnum;
 import po.deliverdata.DeliverPO;
+import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
-import rmi.deliverdata.DeliverDataService;
+import po.transportdata.CenterOutPO;
+import po.transportdata.LoadPO;
+import po.transportdata.TransportPO;
+import rmi.transportdata.CenterOutDataService;
 import rmiImpl.CommonData;
 import rmiImpl.ConnecterHelper;
 
-/**
- * 
- * @author wjc 2015/10/24
- */
-
-public class DeliverDataImpl extends CommonData<DeliverPO> implements
-		DeliverDataService {
+public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
+		CenterOutDataService {
 
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
-	public DeliverDataImpl() throws RemoteException {
+	public CenterOutDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
-		Table_Name = "deliver";
+		Table_Name = "centerout";
 		conn = ConnecterHelper.connSQL(conn);
 	}
 
@@ -39,14 +39,29 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		return conn;
 	}
 
-	public OperationMessage insert(DeliverPO po) {
+	@Override
+	public OperationMessage insert(CenterOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
+		String IDs = "";
+		ArrayList<String> list = po.getIDs();
+		for (int i = 0; i < list.size(); i++)
+			if (i == list.size() - 1)
+				IDs += list.get(i);
+			else
+				IDs += list.get(i) + " ";
+		;
+
 		String insert = "insert into " + Table_Name
-				+ "(formID,formState,orderID,postman,date) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','"
-				+ po.getOrderID() + "','" + po.getPostman() + "','"
-				+ po.getDateForSQL().toString() + "')";
+				+ "(formID,formState,LoadDate,TransportID,placeTo,"
+				+ "peopleSee,expense,IDs,placeFrom,shelfNum,transitState) "
+				+ "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','"
+				+ po.getLoadDateForSQL().toString() + "','"
+				+ po.getTransportID() + "','" + po.getPlaceTo() + "','"
+				+ po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs
+				+ "','" + po.getPlaceFrom() + "','" + po.getShelfNum() + "','"
+				+ po.getTransitState().toString() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -61,7 +76,38 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		return result;
 	}
 
-	public OperationMessage delete(String id) {
+	@Override
+	public CenterOutPO getFormPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Table_Name + " where formID= '" + id
+				+ "'";
+		ResultSet rs = null;
+		CenterOutPO result = null;
+		ArrayList<String> IDs = null;
+
+		try {
+			IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs").split(
+					" "));
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = new CenterOutPO(rs.getString("placeFrom"),
+					rs.getString("shelfNum"), rs.getString("transitState"),
+					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
+					rs.getString("placeTo"), rs.getString("peopleSee"),
+					rs.getString("expense"), IDs);
+			result.setFormType(FormEnum.TRANSPORT_CENTER);
+			result.setFormID(rs.getString("formID"));
+			result.setFormState(rs.getString("formState"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from " + Table_Name + " where formID= '" + id
@@ -78,7 +124,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		return result;
 	}
 
-	public OperationMessage update(DeliverPO po) {
+	@Override
+	public OperationMessage update(CenterOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if(!this.delete(po.getFormID()).operationResult)
@@ -89,7 +136,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			return result;
 	}
 
-	public String newID() {// 返回最大值
+	@Override
+	public String newID() throws RemoteException {// 返回最大值
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
@@ -108,7 +156,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		return ID_MAX;
 	}
 
-	public OperationMessage clear() {
+	@Override
+	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from " + Table_Name;
@@ -124,60 +173,35 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		return result;
 	}
 
-	public DeliverPO getFormPO(String id) throws RemoteException {
+	@Override
+	public ArrayList<CenterOutPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
-				+ "'";
+		String select = "select * from " + Table_Name;
 		ResultSet rs = null;
-		DeliverPO result = null;
+		CenterOutPO temp = null;
+		ArrayList<String> IDs = null;
+		ArrayList<CenterOutPO> result = new ArrayList<CenterOutPO>();
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
-			rs.next();
-			result = new DeliverPO(rs.getString("orderID"),
-					rs.getTimestamp("date"), rs.getString("postman"));
-			result.setFormType(FormEnum.DELIVER);
-			result.setFormID(rs.getString("formID"));
-			result.setFormState(rs.getString("formState"));
-		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	public ArrayList<DeliverPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
-		ResultSet rs = null;
-		DeliverPO temp = null;
-		ArrayList<DeliverPO> result = new ArrayList<DeliverPO>();
-		try {
-			statement = conn.prepareStatement(selectAll);
-			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new DeliverPO(rs.getString("orderID"),
-						rs.getTimestamp("date"), rs.getString("postman"));
-				temp.setFormType(FormEnum.DELIVER);
+				IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs")
+						.split(" "));
+				temp = new CenterOutPO(rs.getString("placeFrom"),
+						rs.getString("shelfNum"), rs.getString("transitState"),
+						rs.getTimestamp("LoadDate"),
+						rs.getString("TransportID"), rs.getString("placeTo"),
+						rs.getString("peopleSee"), rs.getString("expense"), IDs);
+				temp.setFormType(FormEnum.TRANSPORT_CENTER);
 				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
-
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 
-	@Override
-	public ArrayList<DeliverPO> available(String HallID) throws RemoteException {
-		// TODO Auto-generated method stub
-		ArrayList<DeliverPO> result = new ArrayList<DeliverPO>();
-		//需要规范好表单号才能写
-		//遍历order表，查其中FromIDs中最后一张到达单是否为targetHallID
-		return null;
-	}
 }

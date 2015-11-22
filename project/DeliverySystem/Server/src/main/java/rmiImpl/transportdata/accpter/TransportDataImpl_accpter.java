@@ -6,9 +6,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 
-import rmi.transportdata.TransportDataService;
+import rmi.transportdata.CenterOutDataService;
 
-import rmiImpl.transportdata.TransportDataImpl;
+import rmiImpl.transportdata.CenterOutDataImpl;
 
 public class TransportDataImpl_accpter {
 	/**
@@ -18,7 +18,7 @@ public class TransportDataImpl_accpter {
 		// TODO Auto-generated method stub
 		try {
 			LocateRegistry.createRegistry(2333);
-			TransportDataService TransportDataServiceImpl=new TransportDataImpl();
+			CenterOutDataService TransportDataServiceImpl=new CenterOutDataImpl();
 			Naming.rebind("rmi://localhost:2333/TransportDataService", TransportDataServiceImpl);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

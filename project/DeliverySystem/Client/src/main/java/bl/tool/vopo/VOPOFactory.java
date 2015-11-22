@@ -58,7 +58,7 @@ public class VOPOFactory {
 	 * @return
 	 * 实现的不是很完美，，因为没有想到更好的方法
 	 */
-	public static CommonVO transPOtoVO(CommonPO po) {
+	public CommonVO transPOtoVO(CommonPO po) {
 		if (po.getDataType()==DataType.DATA) {
 			InfoPO info=(InfoPO)po;
 			switch (info.getInfoEnum()) {
@@ -115,7 +115,7 @@ public class VOPOFactory {
 		
 	}
 
-	public static CommonPO transVOtoPO(CommonVO vo) {
+	public CommonPO transVOtoPO(CommonVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

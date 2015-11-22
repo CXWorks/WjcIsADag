@@ -37,6 +37,7 @@ public class ReceiveVO extends FormVO{
 	private String depature;
 	private StateEnum orderState;
 	
+	
 	public String getOrderID() {
 		return orderID;
 	}

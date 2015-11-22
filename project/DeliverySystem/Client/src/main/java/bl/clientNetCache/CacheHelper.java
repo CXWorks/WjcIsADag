@@ -23,7 +23,7 @@ import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmi.systemdata.SystemDataService;
-import rmi.transportdata.TransportDataService;
+import rmi.transportdata.CenterOutDataService;
 
 /** 
  * Client//bl.clientNetCache//CacheHelper.java
@@ -53,7 +53,7 @@ public class CacheHelper {
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
 	private static SystemDataService systemDataService;
-	private static TransportDataService transportDataService;
+	private static CenterOutDataService transportDataService;
 	//
 	public static void  initializeCache(){
 		if(initStoredData()){
@@ -72,6 +72,7 @@ public class CacheHelper {
 	//
 	private static void initCacheService(){
 		orderDataService=RMIHelper.getOrderDataService();
+		receiveDataService=rmiHelper.getReceiveDataService();
 	}
 	//
 	public static OrderDataService getOrderDataService() {
@@ -128,7 +129,7 @@ public class CacheHelper {
 	public static SystemDataService getSystemDataService() {
 		return systemDataService;
 	}
-	public static TransportDataService getTransportDataService() {
+	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}
 	

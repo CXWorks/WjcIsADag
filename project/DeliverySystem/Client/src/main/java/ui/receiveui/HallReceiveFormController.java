@@ -3,6 +3,8 @@ package ui.receiveui;
 import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.receiveblService.ReceiveBLService;
 import bl.tool.time.TimeConvert;
+import factory.BLFactory;
+import factory.FormFactory;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +41,7 @@ public class HallReceiveFormController extends BasicFormController{
 
     private StateEnum stateEnum = StateEnum.Complete;
 
-    ReceiveBLService rbl = new ReceiveblImpl();
+    ReceiveBLService rbl = new FormFactory().getReceiveBLService();
 
     @FXML
     public void initialize(){

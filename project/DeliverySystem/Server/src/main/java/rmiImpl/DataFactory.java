@@ -24,7 +24,8 @@ import rmiImpl.memberdata.MemberDataImpl;
 import rmiImpl.orderdata.OrderDataImpl;
 import rmiImpl.receivedata.ReceiveDataImpl;
 import rmiImpl.storedata.StoreDataImpl;
-import rmiImpl.transportdata.TransportDataImpl;
+import rmiImpl.transportdata.CenterOutDataImpl;
+import rmiImpl.transportdata.LoadDataImpl;
 
 /**
  * 数据层，接口处理器
@@ -80,8 +81,10 @@ public class DataFactory implements DataFactoryService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		case TransportDataImpl.NAME:
-			return new TransportDataImpl();
+		case CenterOutDataImpl.NAME:
+			return new CenterOutDataImpl();
+		case LoadDataImpl.NAME:
+			return new LoadDataImpl();
 		default:
 			return null;
 		}

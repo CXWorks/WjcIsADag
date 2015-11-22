@@ -8,7 +8,6 @@ import po.transportdata.LoadPO;
 
 public class LoadVO extends TransitVO {
 
-	String	truckID;
 	String	peopletransport;
 	String	expense;
 
@@ -17,18 +16,20 @@ public class LoadVO extends TransitVO {
 	}
 	
 	public LoadVO(String truckID,String peopletransport,String expense,
-			Calendar LoadDate,String LoadID,String placeTo,String	peopleSee){
+			Calendar LoadDate,String TransportID,String placeTo,String	peopleSee,ArrayList<String> IDs){
 		this();
-		this.truckID = truckID;
+
 		this.peopletransport = peopletransport;
 		this.expense = expense;
 		this.LoadDate = LoadDate;
-		this.LoadID = LoadID;
+		this.TransportID = TransportID;
 		this.placeTo = placeTo;
 		this.peopleSee = peopleSee;
+		this.IDs=IDs;
 	}
 	
 	public LoadVO(LoadPO po){
-		this(po.getTruckID(), po.getPeopletransport(), po.getExpense(),po.getLoadDate(), po.getLoadID(), po.getPlaceTo(), po.getPeopleSee());
+		this(po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
+				,po.getIDs());
 	}
 }
