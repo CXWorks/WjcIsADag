@@ -9,7 +9,10 @@ import org.junit.Test;
 
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
+import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blService.deliverblService.DeliverBLService;
+import bl.tool.draft.DraftController;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.deliverbl//TestDeliverBLController.java
@@ -26,7 +29,7 @@ public class TestDeliverBLController {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		deliverBLService=new DeliverBLController();
+		deliverBLService=new DeliverBLController(new VOPOFactory(),new DraftController(),new FormatCheckImpl());
 		d=new DeliverVO("34", Calendar.getInstance(), "4322");
 		o=new OrderVO();
 	}
