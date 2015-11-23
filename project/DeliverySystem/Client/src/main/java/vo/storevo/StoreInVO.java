@@ -13,7 +13,7 @@ import vo.FormVO;
  */
 public class StoreInVO extends FormVO {
 	
-	public StoreInVO(String formID){
+	private StoreInVO(String formID){
 		super(FormEnum.STORE_IN,FormStateEnum.CONSTRUCTED,formID);
 	}
 	
@@ -34,4 +34,8 @@ public class StoreInVO extends FormVO {
     private Calendar	date;
     private String	destination;
     private StoreLocation location;
+    //
+    public StoreInPO toPO(){
+    	return new StoreInPO(destination, orderID, (Calendar)date.clone(), destination, location);
+    }
 }

@@ -74,4 +74,5 @@ public class ReceiveVO extends FormVO{
 	public void setState(StateEnum state) {
 		this.orderState = state;
 	}
+	
 }

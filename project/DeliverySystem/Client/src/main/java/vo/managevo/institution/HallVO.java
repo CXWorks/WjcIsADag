@@ -54,5 +54,25 @@ public class HallVO extends InstitutionVO{
 	private void setCounterman(ArrayList<StaffVO> counterman) {
 		this.counterman = counterman;
 	}
-	
+	//toPO
+	public HallPO toPO(){
+		ArrayList<StaffPO> driverPO=new ArrayList<StaffPO>(this.driver.size());
+		ArrayList<StaffPO> deliverPO=new ArrayList<StaffPO>(deliver.size());
+		ArrayList<StaffPO> countermanPO=new ArrayList<StaffPO>(this.counterman.size());
+		//
+		for (int i = 0; i < this.driver.size(); i++) {
+			StaffPO temp=this.driver.get(i).toPO();
+			driverPO.add(temp);
+		}
+		for (int i = 0; i < this.deliver.size(); i++) {
+			StaffPO temp=this.deliver.get(i).toPO();
+			deliverPO.add(temp);
+		}
+		for (int i = 0; i < this.counterman.size(); i++) {
+			StaffPO temp=this.counterman.get(i).toPO();
+			countermanPO.add(temp);
+		}
+		//
+		return new HallPO(hallID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
+	}
 }

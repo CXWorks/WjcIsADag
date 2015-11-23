@@ -14,9 +14,9 @@ import bl.blService.configurationblService.ConfigurationBLService;
  * @version 1.0 
  */
 public class ConfigurationBLController implements ConfigurationBLService {
-	Distance distance;
-	Money money;
-	Salary salary;
+	private Distance distance;
+	private Money money;
+	private Salary salary;
 
 	/* (non-Javadoc)
 	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.configurationdata.enums.ConfigurationEnum)

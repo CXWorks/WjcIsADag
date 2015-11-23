@@ -51,5 +51,4 @@ public class LoadPO extends TransportPO implements Serializable {
 	public String getExpense() {
 		return expense;
 	}
-
 }

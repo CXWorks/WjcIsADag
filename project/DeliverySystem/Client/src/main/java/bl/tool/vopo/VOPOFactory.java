@@ -4,6 +4,7 @@ import po.FormPO;
 import util.DataType;
 import vo.CommonVO;
 import vo.FormVO;
+import vo.InfoVO;
 import vo.accountvo.AccountVO;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.PackVO;
@@ -116,8 +117,59 @@ public class VOPOFactory {
 	}
 
 	public CommonPO transVOtoPO(CommonVO vo) {
-		// TODO Auto-generated method stub
-		return ((ReceiveVO)vo).toPO();
+		if (vo.getDataType()==DataType.DATA) {
+			InfoVO info=(InfoVO)vo;
+			switch (info.getInfoEnum()) {
+			case ACCOUNT:
+				return ((AccountVO)vo).toPO();
+			case CAR:
+				return ((CarVO)vo).toPO();
+			case CENTER:
+				return ((CenterVO)vo).toPO();
+			case HALL:
+				return ((HallVO)vo).toPO();
+			case CITY_DISTANCE:
+				return ((CityDistanceVO)vo).toPO();
+			case PACK:
+				return ((PackVO)vo).toPO();
+			case PRICE:
+				return ((PriceVO)vo).toPO();
+			case PROPORTION:
+				return ((ProportionVO)vo).toPO();
+			case SALARY:
+				return ((SalaryStrategyVO)vo).toPO();
+			case BANK_ACCOUNT:
+				return ((BankAccountVO)vo).toPO();
+			case STAFF:
+				return ((StaffVO)vo).toPO();
+			default:
+				return null;
+			}
+		} else {
+			FormVO form=(FormVO)vo;
+			switch (form.getFormType()) {
+			case ORDER:
+				return ((OrderVO)vo).toPO();
+			case DELIVER:
+				return ((DeliverVO)vo).toPO();
+			case PAYMENT:
+				return ((PaymentVO)vo).toPO();
+			case REVENUE:
+				return ((RevenueVO)vo).toPO();
+			case RECEIVE:
+				return ((ReceiveVO)vo).toPO();
+			case TRANSPORT_CENTER:
+				return ((CenterOutVO)vo).toPO();
+			case TRANSPORT_HALL:
+				return ((LoadVO)vo).toPO();
+			case STORE_IN:
+				return ((StoreInVO)vo).toPO();
+			case STORE_OUT:
+				return ((StoreOutVO)vo).toPO();
+			default:
+				return null;
+			}
+		}
 	}
 
 }

@@ -81,4 +81,8 @@ public class OrderVO extends FormVO {
 						.getMoney(), po.getType());
 
 	}
+	//
+	public OrderPO toPO(){
+		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo, phoneNumFrom, phoneNumTo, telNumFrom, telNumTo, goodsNum, goodsName, weight, volume, money, type.name(), null, null);
+	}
 }

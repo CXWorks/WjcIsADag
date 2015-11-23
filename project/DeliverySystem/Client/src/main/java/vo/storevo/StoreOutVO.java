@@ -12,7 +12,7 @@ import vo.FormVO;
  * Created by Sissel on 2015/10/24.
  */
 public class StoreOutVO extends FormVO {
-	public StoreOutVO(String formID){
+	private StoreOutVO(String formID){
 		super(FormEnum.STORE_OUT,FormStateEnum.CONSTRUCTED,formID);
 	}
 	
@@ -33,6 +33,10 @@ public class StoreOutVO extends FormVO {
 	private String	orderID;
     private Calendar	date;
     private String	destination;
-    TransportationEnum transportation;
+    private TransportationEnum transportation;
     private String	transID;
+    //
+    public StoreOutPO toPO(){
+    	return new StoreOutPO(destination, orderID, date, destination, transportation, transID);
+    }
 }

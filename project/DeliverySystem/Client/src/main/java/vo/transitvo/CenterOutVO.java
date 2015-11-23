@@ -34,5 +34,9 @@ public class CenterOutVO extends TransitVO  {
 				,po.getTransitState());
 	}
 	
-	
+	public CenterOutPO toPO(){
+		ArrayList<String> idPO=this.selfDeepClone(IDs);
+		
+		return new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO);
+	}
 }

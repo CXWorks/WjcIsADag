@@ -32,4 +32,9 @@ public class LoadVO extends TransitVO {
 		this(po.getFormID(),po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
 				,po.getIDs());
 	}
+	public LoadPO toPO(){
+		ArrayList<String> idPO=this.selfDeepClone(IDs);
+		
+		return new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO);
+	}
 }

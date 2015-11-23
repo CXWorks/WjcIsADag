@@ -29,7 +29,7 @@ public class TestCarManage {
 	public void setUp() throws Exception {
 		car=new CarManage();
 		h=new HallVO("1103");
-		c=new CarVO(true, 0013, Calendar.getInstance(), null, 0, 0, 0, Calendar.getInstance());
+		c=new CarVO(true, "0013", Calendar.getInstance(), null, "0", "0", "0", Calendar.getInstance());
 		
 	}
 

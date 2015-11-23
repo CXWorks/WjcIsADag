@@ -42,5 +42,19 @@ public class CenterVO extends InstitutionVO{
 	private void setCounterman(ArrayList<StaffVO> counterman) {
 		this.counterman = counterman;
 	}
-	
+	public CenterPO toPO(){
+		ArrayList<StaffPO> storemanPO=new ArrayList<StaffPO>(this.storeman.size());
+		ArrayList<StaffPO> countermanPO=new ArrayList<StaffPO>(this.counterman.size());
+		//
+		for(int i=0;i<this.storeman.size();i++){
+			StaffPO temp=this.storeman.get(i).toPO();
+			storemanPO.add(temp);
+		}
+		for(int i=0;i<this.counterman.size();i++){
+			StaffPO temp=this.counterman.get(i).toPO();
+			countermanPO.add(temp);
+		}
+		//
+		return new CenterPO(centerID, city, storemanPO, countermanPO);
+	}
 }

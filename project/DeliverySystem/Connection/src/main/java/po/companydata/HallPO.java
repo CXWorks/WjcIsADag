@@ -39,7 +39,27 @@ public class HallPO extends InfoPO implements Serializable{
 	public String getNearCenterID() {
 		return nearCenterID;
 	}
-	public HallPO(){
+	/**
+	 * @param infoEnum
+	 * @param hallID
+	 * @param city
+	 * @param area
+	 * @param driver
+	 * @param deliver
+	 * @param counterman
+	 * @param nearCenterID
+	 */
+	public HallPO(String hallID, String city, String area,
+			ArrayList<StaffPO> driver, ArrayList<StaffPO> deliver,
+			ArrayList<StaffPO> counterman, String nearCenterID) {
 		super(InfoEnum.HALL);
+		this.hallID = hallID;
+		this.city = city;
+		this.area = area;
+		this.driver = driver;
+		this.deliver = deliver;
+		this.counterman = counterman;
+		this.nearCenterID = nearCenterID;
 	}
+	
 }

@@ -14,6 +14,8 @@ import org.junit.Test;
 import po.transportdata.TransportationEnum;
 import vo.storevo.StoreInVO;
 import bl.blService.storeblService.StoreInBLService;
+import bl.tool.draft.DraftController;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc
@@ -29,7 +31,7 @@ public class TestStoreIn {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		storeInBLService = new StoreInBLImpl();
+		storeInBLService = new StoreInBLImpl(new DraftController(),new VOPOFactory());
 		si = new StoreInVO("11","111111",Calendar.getInstance(),"南京仙林",new StoreLocation());
 	}
 

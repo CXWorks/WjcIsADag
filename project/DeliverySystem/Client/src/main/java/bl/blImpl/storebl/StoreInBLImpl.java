@@ -1,6 +1,9 @@
 package bl.blImpl.storebl;
 
 import bl.blService.storeblService.StoreInBLService;
+import bl.clientNetCache.CacheHelper;
+import bl.tool.draft.DraftService;
+import bl.tool.vopo.VOPOFactory;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
@@ -22,12 +25,20 @@ import java.util.List;
  * Created by Sissel on 2015/10/26.
  */
 public class StoreInBLImpl implements StoreInBLService {
+	private StoreFormDataService storeFormDataService;
+	private DraftService draftService;
+	private VOPOFactory vopoFactory;
+	public StoreInBLImpl(DraftService draftService,VOPOFactory vopoFactory){
+		this.storeFormDataService=CacheHelper.getStoreFormDataService();
+		this.draftService=draftService;
+		this.vopoFactory=vopoFactory;
+	}
     public StoreLocation getAvailableLocation(StoreAreaCode area) {
         return new StoreLocation();
     }
 
     public String getNewStoreInID(String date) {
-        return "222333";
+       return null;
     }
 
     public OperationMessage loadOrder(String orderNumber) {
@@ -43,7 +54,7 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public StoreInVO loadDraft() {
-        return new StoreInVO("050010001201511230000002");
+        return null;
     }
 
     public OperationMessage saveDraft(StoreInVO form) {
@@ -59,21 +70,6 @@ public class StoreInBLImpl implements StoreInBLService {
 
     public OperationMessage submit(StoreInVO form) {
         return new OperationMessage();
-    }
-
-    public static void drive(StoreFormDataService sfds) throws RemoteException {
-        if(sfds.downloadAllStoreInPOs("222333") != null)
-            System.out.println("downloadAllStoreInPOs tested");
-        if(sfds.getStoreInPO("222333") != null)
-            System.out.println("getStoreInPO tested");
-        if(sfds.updateStoreInPOs("222333") != null)
-            System.out.println("updateStoreInPOs tested");
-    }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        StoreFormDataService sfds = (StoreFormDataService) Naming.lookup
-                ("rmi://" + R.string.LocalHost + "/" + R.string.StoreDataService);
-        drive(sfds);
     }
 
 	/* (non-Javadoc)

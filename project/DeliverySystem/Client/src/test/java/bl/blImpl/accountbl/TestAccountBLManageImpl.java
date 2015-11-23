@@ -8,6 +8,7 @@ import org.junit.Test;
 import po.accountdata.AuthorityEnum;
 import vo.accountvo.AccountVO;
 import bl.blService.accountblService.AccountBLManageService;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.accountbl//TestAccountBLManageImpl.java
@@ -23,7 +24,7 @@ public class TestAccountBLManageImpl {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		accountBLManageService=new AccountBLManageImpl();
+		accountBLManageService=new AccountBLManageImpl(new VOPOFactory());
 		vo=new AccountVO[3];
 		vo[0]=new AccountVO("141250018", "141250018", AuthorityEnum.DONT_HAVE);
 		vo[1]=new AccountVO("admin", "141250018", AuthorityEnum.HAVE);

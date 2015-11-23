@@ -15,6 +15,9 @@ public abstract class TransitVO extends FormVO{
 	protected String	peopleSee;//监装员
 	protected String  expense;//运费
 	protected ArrayList<String> IDs;//本次装箱所有托运单号
+	//
+	
+	//
 	protected ArrayList<String> selfDeepClone(ArrayList<String> po){
 		ArrayList<String> ans=new ArrayList<String>(po.size());
 		for(int i=0;i<po.size();i++){

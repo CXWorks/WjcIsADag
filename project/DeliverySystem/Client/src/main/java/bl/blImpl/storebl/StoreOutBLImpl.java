@@ -43,7 +43,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
     }
 
     public StoreOutVO loadDraft() {
-        return new StoreOutVO("050010001201511230000002");
+        return null;
     }
 
     public OperationMessage saveDraft(StoreOutVO form) {

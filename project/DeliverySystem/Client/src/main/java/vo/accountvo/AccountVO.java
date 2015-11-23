@@ -41,4 +41,9 @@ public class AccountVO extends InfoVO{
 	public AccountPO toPO(){
 		return new AccountPO(ID, authority.name(), password);
 	}
+	//
+	public String getID() {
+		return ID;
+	}
+	
 }
