@@ -22,13 +22,14 @@ import java.io.IOException;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import bl.clientRMI.RMIHelper;
+import ui.transportui.LoadCarController;
 
 public class Main extends Application {
 
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	CacheHelper.initializeCache();
+    	//CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -41,7 +42,10 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         try {
-            primaryStage.setScene(new Scene(HallReceiveFormController.launch()));
+            primaryStage.setScene(new Scene(
+            //        HallReceiveFormController.launch()
+                    LoadCarController.launch()
+            ));
         } catch (IOException e) {
             System.out.println("can't find the fxml file");
         }

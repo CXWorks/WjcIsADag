@@ -98,10 +98,9 @@ public class HallReceiveFormController extends BasicFormController{
     @Override
     public void commit(ActionEvent actionEvent) {
         Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
-        ReceiveVO rvo = new ReceiveVO
-                (order_Field.getText(), transitID_Field.getText(), calendar, departure_Field.getText(), stateEnum);
 
-        OperationMessage msg = rbl.submit(rvo);
+
+        //OperationMessage msg = rbl.submit(rvo);
 
     }
 
@@ -118,9 +117,8 @@ public class HallReceiveFormController extends BasicFormController{
     @Override
     public void saveDraft(ActionEvent actionEvent) {
         Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
-        ReceiveVO rvo = new ReceiveVO
-                (order_Field.getText(), transitID_Field.getText(), calendar, departure_Field.getText(), stateEnum);
-        rbl.saveDraft(rvo);
+
+        //rbl.saveDraft(rvo);
     }
 
 
