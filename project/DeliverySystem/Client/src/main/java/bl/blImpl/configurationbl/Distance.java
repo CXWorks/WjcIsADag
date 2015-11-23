@@ -1,5 +1,8 @@
 package bl.blImpl.configurationbl;
 
+import bl.tool.vopo.VOPOFactory;
+import rmi.configurationdata.ConfigurationDataService;
+
 /** 
  * Client//bl.blImpl.configurationbl//Distance.java
  * @author CXWorks
@@ -7,5 +10,10 @@ package bl.blImpl.configurationbl;
  * @version 1.0 
  */
 public class Distance {
-	
+	private ConfigurationDataService configurationDataService;
+	private VOPOFactory vopoFactory;
+	public Distance(ConfigurationDataService configurationDataService,VOPOFactory vopoFactory){
+		this.configurationDataService=configurationDataService;
+		this.vopoFactory=vopoFactory;
+	}
 }
