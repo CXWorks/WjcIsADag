@@ -4,54 +4,192 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import message.OperationMessage;
+import po.companydata.CenterPO;
 import po.companydata.HallPO;
+import po.memberdata.DriverPO;
+import po.memberdata.StaffPO;
 import rmi.companydata.CompanyDataHallService;
+import rmi.memberdata.MemberDataService;
+import rmiImpl.ConnecterHelper;
+import rmiImpl.memberdata.DriverDataImpl;
+import rmiImpl.memberdata.StaffDataImpl;
 
-public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyDataHallService {
+public class CompanyDataHallImpl extends UnicastRemoteObject implements
+		CompanyDataHallService {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
-	
-	public CompanyDataHallImpl() throws RemoteException{
+
+	public CompanyDataHallImpl() throws RemoteException {
 		super();
+		Table_Name = "hall";
+		conn = ConnecterHelper.connSQL(conn);
 	}
-	
+
 	public Connection getConn() {
 		return conn;
 	}
-	
+
 	public ArrayList<HallPO> getHall() {
 		// TODO Auto-generated method stub
-		ArrayList<HallPO> result =new ArrayList<HallPO>();
-		HallPO stub=new HallPO();
-		result.add(stub);
+		String select = "select * from " + Table_Name;
+		ResultSet rs = null;
+		HallPO temp = null;
+		ArrayList<String> t1 = null;
+		ArrayList<String> t2 = null;
+		ArrayList<String> t3 = null;
+		ArrayList<HallPO> result = new ArrayList<HallPO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
+				ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
+				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
+				t1 = (ArrayList<String>) Arrays.asList(rs.getString("driver")
+						.split(" "));
+				t2 = (ArrayList<String>) Arrays.asList(rs.getString("deliver")
+						.split(" "));
+				t3 = (ArrayList<String>) Arrays.asList(rs.getString(
+						"counterman").split(" "));
+				MemberDataService s1 = new StaffDataImpl();
+				MemberDataService s2 = new DriverDataImpl();
+				for (String tmp : t1) {
+					driver.add((DriverPO) s2.getPerson(tmp));
+				}
+				for (String tmp : t2) {
+					deliver.add(s1.getPerson(tmp));
+				}
+				for (String tmp : t3) {
+					counterman.add(s1.getPerson(tmp));
+				}
+				temp = new HallPO(rs.getString("hallID"), rs.getString("city"),
+						rs.getString("area"), driver, deliver, counterman,
+						rs.getString("nearCenterID"));
+				result.add(temp);
+				ConnecterHelper.deconnSQL(s1.getConn());
+				ConnecterHelper.deconnSQL(s2.getConn());
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 
-	public OperationMessage addHall(HallPO hall) {
+	public OperationMessage addHall(HallPO po) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		String dr = "";
+		String de = "";
+		String co = "";
+		ArrayList<DriverPO> driver = po.getDriver();
+		ArrayList<StaffPO> deliver = po.getDeliver();
+		ArrayList<StaffPO> counterman = po.getCounterman();
+		for (int i = 0; i < driver.size(); i++) {
+			DriverPO tmp = driver.get(i);
+			if (i != driver.size() - 1)
+				dr += tmp.getID() + " ";
+			else
+				dr += tmp.getID();
+		}
+		for (int i = 0; i < deliver.size(); i++) {
+			StaffPO tmp = deliver.get(i);
+			if (i != deliver.size() - 1)
+				de += tmp.getID() + " ";
+			else
+				de += tmp.getID();
+		}
+		for (int i = 0; i < counterman.size(); i++) {
+			StaffPO tmp = counterman.get(i);
+			if (i != counterman.size() - 1)
+				co += tmp.getID() + " ";
+			else
+				co += tmp.getID();
+		}
+		String insert = "insert into " + Table_Name
+				+ "(hallID,city,area,driver,deliver,counterman,nearCenterID) "
+				+ "values('" + po.getHallID() + "','" + po.getCity() + "','"
+				+ po.getArea() + "','" + dr + "','" + de + "','" + co + "','"
+				+ po.getNearCenterID() + "')";
+
+		try {
+			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	public OperationMessage deleteHall(HallPO hall) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		String delete = "delete from " + Table_Name + " where hallID= '"
+				+ hall.getHallID() + "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
+			System.err.println("删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public OperationMessage modifyHall(HallPO hall) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		if (!this.deleteHall(hall).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应营业厅");
+		if (!this.addHall(hall).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
 	}
 
-
-	public String newHallID(String centerID) {
+	public String newHallID(String city) {
 		// TODO Auto-generated method stub
-		return "111111";
+		String selectAll = "select * from " + Table_Name;
+		ResultSet rs = null;
+		int ID_MAX = 0;
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				String temp = rs.getString("hallID").substring(0, 3);
+				if (city.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
+							"hallID").substring(4)));// 最后3位编号
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 999)
+			return null;
+		String added = String.format("%03d", ID_MAX);
+
+		return city + "1" + added;
 	}
 
 }

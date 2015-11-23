@@ -42,7 +42,8 @@ public interface CompanyDataHallService extends DataService<HallPO>{
 	public OperationMessage modifyHall(HallPO hall) throws RemoteException;
 	/**
 	 * 获取新营业厅ID
+	 * @param 城市编号
 	 * @return 返回合法ID
 	 */
-	public String newHallID(String centerID) throws RemoteException;
+	public String newHallID(String city) throws RemoteException;
 }
