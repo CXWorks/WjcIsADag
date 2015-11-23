@@ -20,7 +20,7 @@ import rmiImpl.examineImpl.ExamineManageImpl;
 import rmiImpl.examineImpl.ExamineSubmitImpl;
 import rmiImpl.financedata.FinanceDataImpl;
 import rmiImpl.initaldata.InitialDataImpl;
-import rmiImpl.memberdata.MemberDataImpl;
+import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.orderdata.OrderDataImpl;
 import rmiImpl.receivedata.ReceiveDataImpl;
 import rmiImpl.storedata.StoreDataImpl;
@@ -68,8 +68,8 @@ public class DataFactory implements DataFactoryService {
 			}
 		case InitialDataImpl.NAME:
 			return new InitialDataImpl();
-		case MemberDataImpl.NAME:
-			return new MemberDataImpl();
+		case StaffDataImpl.NAME:
+			return new StaffDataImpl();
 		case OrderDataImpl.NAME:
 			return new OrderDataImpl();
 		case ReceiveDataImpl.NAME:

@@ -11,7 +11,7 @@ import po.memberdata.StaffTypeEnum;
 import rmi.memberdata.MemberDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmiImpl.ConnecterHelper;
-import rmiImpl.memberdata.MemberDataImpl;
+import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.receivedata.ReceiveDataImpl;
 import database.SqlHelper;
 import message.OperationMessage;
@@ -44,7 +44,7 @@ public class ServerMain {
 //			e.printStackTrace();
 //		}
 		try {
-			MemberDataService test = new MemberDataImpl();
+			MemberDataService test = new StaffDataImpl();
 			ArrayList<StaffPO> tmp = test.getStaff(StaffTypeEnum.DELIVER);
 			test.dismissStaff(tmp.get(0));
 			ConnecterHelper.deconnSQL(test.getConn());

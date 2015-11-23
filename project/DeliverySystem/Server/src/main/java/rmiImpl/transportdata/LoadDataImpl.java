@@ -84,11 +84,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new LoadPO(rs.getString("peopleTransport"),
+			result = new LoadPO(rs.getString("formID"),
+					rs.getString("peopleTransport"),
 					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 					rs.getString("placeTo"), rs.getString("peopleSee"),
 					rs.getString("expense"), IDs);
-			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -145,8 +145,10 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			while (rs.next()) {
 				temp = rs.getString("formID").substring(2, 17);
 				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"formID").substring(17)));// 最后6位编号
+					ID_MAX = Math.max(
+							ID_MAX,
+							Integer.parseInt(rs.getString("formID").substring(
+									17)));// 最后6位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -192,11 +194,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			while (rs.next()) {
 				IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs")
 						.split(" "));
-				temp = new LoadPO(rs.getString("peopleTransport"),
+				temp = new LoadPO(rs.getString("formID"),
+						rs.getString("peopleTransport"),
 						rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"),
 						rs.getString("peopleSee"), rs.getString("expense"), IDs);
-				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

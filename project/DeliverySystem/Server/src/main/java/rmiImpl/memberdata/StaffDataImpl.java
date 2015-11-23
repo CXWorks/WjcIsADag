@@ -10,21 +10,22 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.receivedata.ReceivePO;
 import rmi.memberdata.MemberDataService;
 import rmiImpl.ConnecterHelper;
 
-public class MemberDataImpl extends UnicastRemoteObject implements
-		MemberDataService {
+public class StaffDataImpl extends UnicastRemoteObject implements
+		MemberDataService<StaffPO> {
 	private static final long serialVersionUID = 1L;
 
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
-	public MemberDataImpl() throws RemoteException {
+	public StaffDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "staff";
@@ -115,7 +116,8 @@ public class MemberDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public String newStaffID(StaffTypeEnum staffType) throws RemoteException {
+	public String newStaffID(StaffTypeEnum staffType, String unitID)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
@@ -148,8 +150,8 @@ public class MemberDataImpl extends UnicastRemoteObject implements
 			while (rs.next()) {
 				String temp = rs.getString("ID").substring(0, 2);
 				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"formID").substring(2)));// 最后6位编号
+					ID_MAX = Math.max(ID_MAX,
+							Integer.parseInt(rs.getString("ID").substring(2)));// 最后6位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -162,6 +164,29 @@ public class MemberDataImpl extends UnicastRemoteObject implements
 		String added = String.format("%06d", ID_MAX);
 
 		return target + added;
+	}
+
+	@Override
+	public StaffPO getPerson(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Table_Name + " where ID= '" + ID
+				+ "'";
+		ResultSet rs = null;
+		StaffPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = new StaffPO(rs.getString("staff"), rs.getString("ID"),
+					rs.getString("name"), rs.getInt("age"),
+					rs.getString("personID"), rs.getString("sex"),
+					rs.getString("love"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
+		return result;
 	}
 
 }

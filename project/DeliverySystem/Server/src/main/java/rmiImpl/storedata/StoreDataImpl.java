@@ -46,12 +46,12 @@ public class StoreDataImpl extends UnicastRemoteObject implements StoreFormDataS
 
     public StoreInPO getStoreInPO(String id) {
         // TODO Auto-generated method stub
-        return new StoreInPO();
+        return null;
     }
 
     public StoreOutPO getStoreOutPO(String id) {
         // TODO Auto-generated method stub
-        return new StoreOutPO();
+        return null;
     }
 
     public LinkedList<StoreInPO> updateStoreInPOs(String staffID) {

@@ -152,10 +152,10 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new ReceivePO(rs.getString("orderID"),
-					rs.getString("transitID"), rs.getTimestamp("date"),
-					rs.getString("depature"), rs.getString("state"));
-			result.setFormID(rs.getString("formID"));
+			result = new ReceivePO(rs.getString("formID"),
+					rs.getString("orderID"), rs.getString("transitID"),
+					rs.getTimestamp("date"), rs.getString("depature"),
+					rs.getString("state"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -175,10 +175,10 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new ReceivePO(rs.getString("orderID"),
-						rs.getString("transitID"), rs.getTimestamp("date"),
-						rs.getString("depature"), rs.getString("state"));
-				temp.setFormID(rs.getString("formID"));
+				temp = new ReceivePO(rs.getString("formID"),
+						rs.getString("orderID"), rs.getString("transitID"),
+						rs.getTimestamp("date"), rs.getString("depature"),
+						rs.getString("state"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 

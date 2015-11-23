@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import rmi.memberdata.MemberDataService;
-import rmiImpl.memberdata.MemberDataImpl;
+import rmiImpl.memberdata.StaffDataImpl;
 
 /** 
  * Server//rmiImpl.memberdata.accpter//MemberDataImpl_accpter.java
@@ -23,7 +23,7 @@ public class MemberDataImpl_accpter {
 		// TODO Auto-generated method stub
 		try {
 			LocateRegistry.createRegistry(2333);
-			MemberDataService memberDataService=new MemberDataImpl();
+			MemberDataService memberDataService=new StaffDataImpl();
 			Naming.rebind("rmi://localhost:2333/memberDataService", memberDataService);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

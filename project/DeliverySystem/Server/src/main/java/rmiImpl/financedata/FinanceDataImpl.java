@@ -71,7 +71,7 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
 
 	public BankAccountPO getBankAccount(String bankID) {
 		// TODO Auto-generated method stub
-		return new BankAccountPO();
+		return null; 
 	}
 
 
@@ -87,12 +87,12 @@ public class FinanceDataImpl extends UnicastRemoteObject implements BankAccountD
 
     public RevenuePO getRevenuePO(String formID) {
         // TODO Auto-generated method stub
-        return new RevenuePO();
+        return null;
     }
 
     public PaymentPO getPaymentPO(String formID) {
         // TODO Auto-generated method stub
-        return new PaymentPO();
+        return null;
     }
 
     public LinkedList<RevenuePO> updateRevenuePOs(String staffID) {
