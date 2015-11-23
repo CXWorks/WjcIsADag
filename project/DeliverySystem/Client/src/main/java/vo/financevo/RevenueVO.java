@@ -44,4 +44,44 @@ public class RevenueVO extends FormVO {
     public RevenuePO toPO(){
     	return new RevenuePO(amount, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
     }
+
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public String getDeliverName() {
+		return deliverName;
+	}
+
+	public void setDeliverName(String deliverName) {
+		this.deliverName = deliverName;
+	}
+
+	public String getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(String hallID) {
+		this.hallID = hallID;
+	}
+
+	public String getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
 }

@@ -15,6 +15,7 @@ import factory.FormFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.financeui.CheckRevenueFormController;
 import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
@@ -44,7 +45,8 @@ public class Main extends Application {
         try {
             primaryStage.setScene(new Scene(
             //        HallReceiveFormController.launch()
-                    LoadCarController.launch()
+                   // LoadCarController.launch()
+                    CheckRevenueFormController.launch()
             ));
         } catch (IOException e) {
             System.out.println("can't find the fxml file");

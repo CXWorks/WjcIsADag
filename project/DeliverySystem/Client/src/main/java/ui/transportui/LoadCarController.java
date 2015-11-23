@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import vo.managevo.car.CarVO;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Sissel on 2015/11/23.
@@ -33,6 +35,7 @@ public class LoadCarController {
         // TODO init arrival_ChoiceBox
 
 
+        List<CarVO> cars;
     }
 
 
