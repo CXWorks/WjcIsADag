@@ -1,11 +1,11 @@
 package bl.blService.receiveblService;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import bl.blService.FormBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
-
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 import vo.transitvo.TransitVO;
@@ -16,12 +16,11 @@ import vo.transitvo.TransitVO;
  *2015/10/24
  */
 public interface ReceiveBLService extends FormBLService<ReceiveVO>{
-	/**
-	 * 检查到达单
-	 * @param form 到达单信息
-	 * @return 返回检查结果列表
-	 */
-	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form, boolean isFinal);
+	
+	
+	public CheckFormMessage checkOrderID(String orderID,boolean isFinal);
+	public CheckFormMessage checkTransitID(String transitID,boolean isFinal);
+	public CheckFormMessage checkDate(Calendar date,boolean isFinal);
 	
 	/**
 	 * 提交到达单

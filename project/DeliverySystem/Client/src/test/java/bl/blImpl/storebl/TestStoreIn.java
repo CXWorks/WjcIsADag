@@ -32,14 +32,7 @@ public class TestStoreIn {
 		storeInBLService = new StoreInBLImpl();
 		si = new StoreInVO("111111",Calendar.getInstance(),"南京仙林",new StoreLocation());
 	}
-	
-	@Test
-	public void testCheckFormat(){
-		assertNotNull(storeInBLService.checkFormat(si, true));
-		assertNotNull(storeInBLService.checkFormat(si, false));
-		assertTrue(storeInBLService.checkFormat(si, true).get(0).getCheckResult());
-		assertTrue(storeInBLService.checkFormat(si, false).get(0).getCheckResult());
-	}
+
 	
 	@Test
 	public void testSubmit(){

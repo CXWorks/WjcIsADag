@@ -34,8 +34,6 @@ import rmi.transportdata.CenterOutDataService;
  */
 public class CacheHelper {
 	//
-	private static RMIHelper rmiHelper;
-	//
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;

@@ -39,17 +39,6 @@ public class TestTransportCenter {
 		}
 	}
 	
-	@Test
-	public void testCheckFormat(){
-		assertNotNull(transportCenterBLService.checkFormat(co.get(0),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(0),false));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(1),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(1),false));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(2),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(2),false));
-		assertTrue(transportCenterBLService.checkFormat(co.get(0),true).get(0).getCheckResult());
-		
-	}
 	
 	@Test
 	public void testSubmit(){

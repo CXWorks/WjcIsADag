@@ -7,6 +7,8 @@ import message.OperationMessage;
 import po.FormEnum;
 import po.FormPO;
 import po.orderdata.OrderPO;
+import rmi.examineService.ExamineSubmitService;
+import rmi.orderdata.OrderDataService;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import bl.blService.FormatCheckService.FormatCheckService;
@@ -45,7 +47,8 @@ public class OrderBLController implements OrderBLService{
 	public OperationMessage submit(OrderVO form) {
 		try {
 			FormPO ready=(FormPO)vopoFactory.transVOtoPO(form);
-			return CacheHelper.getExamineSubmitService().submit(ready);
+			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+			return examineSubmitService.submit(ready);
 		} catch (Exception e) {
 			//TODO handle the exception
 			return new OperationMessage(false,"");
@@ -63,7 +66,8 @@ public class OrderBLController implements OrderBLService{
 	public String newID() {
 		// TODO Auto-generated method stub
 		try {
-			String id=CacheHelper.getOrderDataService().newID("");
+			OrderDataService orderDataService=CacheHelper.getOrderDataService();
+			String id=orderDataService.newID("");
 			return id;
 		} catch (Exception e) {
 			return null;

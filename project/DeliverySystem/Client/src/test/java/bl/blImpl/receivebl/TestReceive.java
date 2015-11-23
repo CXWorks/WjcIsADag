@@ -35,12 +35,6 @@ public class TestReceive {
 	}
 	
 	@Test
-	public void testCheckFormat(){
-		assertNotNull(receiveBLService.checkFormat(r,true));
-		assertTrue(receiveBLService.checkFormat(r,true).get(0).getCheckResult());
-	}
-	
-	@Test
 	public void testSubmit(){
 		assertTrue(receiveBLService.submit(r).operationResult);
 	}

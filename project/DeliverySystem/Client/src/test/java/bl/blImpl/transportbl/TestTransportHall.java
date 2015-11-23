@@ -37,16 +37,6 @@ public class TestTransportHall {
 		}
 	}
 	
-	@Test
-	public void testCheckFormat(){
-		assertNotNull(transportHallBLService.checkFormat(l.get(0),true));
-		assertNotNull(transportHallBLService.checkFormat(l.get(0),false));
-		assertNotNull(transportHallBLService.checkFormat(l.get(1),true));
-		assertNotNull(transportHallBLService.checkFormat(l.get(1),false));
-		assertNotNull(transportHallBLService.checkFormat(l.get(2),true));
-		assertNotNull(transportHallBLService.checkFormat(l.get(2),false));
-		assertTrue(transportHallBLService.checkFormat(l.get(0),true).get(0).getCheckResult());		
-	}
 	
 	@Test
 	public void testSubmit(){
