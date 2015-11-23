@@ -42,4 +42,7 @@ public class BankAccountVO extends InfoVO{
     public BankAccountVO(BankAccountPO po){
     	this(po.getBankID(), po.getAccountName(),po.getBalance() );
     }
+    public BankAccountPO toPO(){
+    	return new BankAccountPO(bankID, accountName, balance);
+    }
 }

@@ -49,4 +49,8 @@ public class CarVO extends InfoVO{
 		this(po.isFree(), po.getCarID(), po.getUseTime(), po.getImg(), po.getEngineID(), po.getNameID(), po.getChassisID(), po.getBuyTime());
 		
 	}
+	//
+	public CarPO toPO(){
+		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
+	}
 }

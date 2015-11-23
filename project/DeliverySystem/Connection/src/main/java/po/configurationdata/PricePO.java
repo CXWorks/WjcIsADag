@@ -14,9 +14,6 @@ public class PricePO extends InfoPO implements Serializable{
 	public PricePO(){
 		super(InfoEnum.PRICE);
 		this.price=new HashMap<DeliveryTypeEnum, Integer>();
-		price.put(DeliveryTypeEnum.USUAL, 23);
-		price.put(DeliveryTypeEnum.ECONOMIC, 15);
-		price.put(DeliveryTypeEnum.FAST, 30);
 	}
 	public HashMap<DeliveryTypeEnum, Integer> getPrice() {
 		return price;
@@ -26,5 +23,7 @@ public class PricePO extends InfoPO implements Serializable{
 		ans.putAll(price);
 		return ans;
 	}
-	
+	public void setPrice(HashMap<DeliveryTypeEnum, Integer> toSet){
+		this.price.putAll(toSet);
+	}
 }

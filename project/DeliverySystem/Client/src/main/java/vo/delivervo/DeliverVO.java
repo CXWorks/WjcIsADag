@@ -49,4 +49,7 @@ public class DeliverVO extends FormVO{
 	public DeliverVO(DeliverPO po){
 		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
 	}
+	public DeliverPO toPO(){
+		return new DeliverPO(orderID, orderID, date, postman);
+	}
 }

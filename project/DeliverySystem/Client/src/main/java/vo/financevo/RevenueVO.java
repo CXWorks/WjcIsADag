@@ -40,4 +40,8 @@ public class RevenueVO extends FormVO {
     public RevenueVO(RevenuePO po){
     	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderID());
     }
+    //
+    public RevenuePO toPO(){
+    	return new RevenuePO(amount, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
+    }
 }

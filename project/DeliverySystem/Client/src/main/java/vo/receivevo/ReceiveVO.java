@@ -16,7 +16,7 @@ import vo.FormVO;
 
 public class ReceiveVO extends FormVO{
 	public ReceivePO toPO(){
-		return new ReceivePO(formID,orderID, transitID, date, depature, orderState.toString());
+		return new ReceivePO(formID,orderID, transitID, (Calendar)date.clone(), depature, orderState.toString());
 	}
 	public ReceiveVO(String formID){
 		super(FormEnum.RECEIVE,FormStateEnum.CONSTRUCTED,formID);

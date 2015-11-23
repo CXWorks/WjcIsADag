@@ -60,4 +60,8 @@ public class PaymentVO extends FormVO {
     	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote());
     	
     }
+    //
+    public PaymentPO toPO(){
+    	return new PaymentPO(amount, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
+    }
 }
