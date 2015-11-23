@@ -162,9 +162,9 @@ public class NewOrderController extends BasicFormController {
 	                		goods_Type.getText(),deliverType,packing);
 
 	        OperationMessage msg = obl.submit(ovo);
-	        
-	        PredictVO pvo= new PredictVO
-	        		(predict_Expense.getText(),predict_Date.getText());
+//	        
+//	        PredictVO pvo= new PredictVO
+//	        		(predict_Expense.getText(),predict_Date.getText());
 	        
 	        
 
