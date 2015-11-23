@@ -3,7 +3,6 @@ package po.companydata;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import javax.sound.midi.MidiDevice.Info;
 import javax.swing.ImageIcon;
 
 import po.CommonPO;
@@ -13,36 +12,26 @@ import util.DataType;
 
 public class CarPO extends InfoPO implements Serializable{
 	private boolean free;
-	private int carID;
+	private String carID;
 	private Calendar useTime;
 	private ImageIcon img;
 	//以下为无用内容，67脑洞真大
-	private int engineID;
-	private int nameID;
-	private int chassisID;//chassis是车辆底盘的意思
+	private String engineID;
+	private String nameID;
+	private String chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
 	//
 	public boolean isFree() {
 		return free;
 	}
-	public int getCarID() {
-		return carID;
-	}
+	
 	public Calendar getUseTime() {
 		return useTime;
 	}
 	public ImageIcon getImg() {
 		return img;
 	}
-	public int getEngineID() {
-		return engineID;
-	}
-	public int getNameID() {
-		return nameID;
-	}
-	public int getChassisID() {
-		return chassisID;
-	}
+	
 	public Calendar getBuyTime() {
 		return buyTime;
 	}
@@ -51,6 +40,23 @@ public class CarPO extends InfoPO implements Serializable{
 	public CarPO(){
 		super(InfoEnum.CAR);
 	}
+
+	public String getCarID() {
+		return carID;
+	}
+
+	public String getEngineID() {
+		return engineID;
+	}
+
+	public String getNameID() {
+		return nameID;
+	}
+
+	public String getChassisID() {
+		return chassisID;
+	}
+
 	/**
 	 * @param infoEnum
 	 * @param free
@@ -62,10 +68,10 @@ public class CarPO extends InfoPO implements Serializable{
 	 * @param chassisID
 	 * @param buyTime
 	 */
-	public CarPO(boolean free, int carID, Calendar useTime,
-			ImageIcon img, int engineID, int nameID, int chassisID,
-			Calendar buyTime) {
-		this();
+	public CarPO(boolean free, String carID,
+			Calendar useTime, ImageIcon img, String engineID, String nameID,
+			String chassisID, Calendar buyTime) {
+		super(InfoEnum.CAR);
 		this.free = free;
 		this.carID = carID;
 		this.useTime = useTime;
@@ -75,5 +81,6 @@ public class CarPO extends InfoPO implements Serializable{
 		this.chassisID = chassisID;
 		this.buyTime = buyTime;
 	}
+	
 	
 }
