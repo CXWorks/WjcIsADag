@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.NewOrderController">
+   <children>
+      <GridPane layoutX="64.0" layoutY="101.0" prefHeight="341.0" prefWidth="200.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="姓名">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="住址" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="name_From" GridPane.columnIndex="1" />
+            <TextField fx:id="address_From" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="date_ErrLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="transit_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="departure_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="单位" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="电话" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="手机" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="unit_From" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tel_From" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="phone_From" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Label layoutX="64.0" layoutY="50.0" text="寄件人信息" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="52.0" text="收件人信息" AnchorPane.leftAnchor="298.0" AnchorPane.topAnchor="52.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="50.0" text="货物信息" AnchorPane.leftAnchor="528.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="298.0" layoutY="101.0" prefHeight="341.0" prefWidth="200.0">
+         <children>
+            <Label text="姓名">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="住址" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="name_To" GridPane.columnIndex="1" />
+            <TextField fx:id="address_To" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="date_ErrLabel1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="transit_errLabel1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="departure_errLabel1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="单位" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="电话" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="手机" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="unit_To" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tel_To" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="phone_To" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <GridPane layoutX="528.0" layoutY="101.0" prefHeight="300.0" prefWidth="200.0">
+         <children>
+            <Label text="原件数" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="重量" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="goods_Number" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="goods_Weight" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="date_ErrLabel2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="transit_errLabel2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="departure_errLabel2" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="体积" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="快递类型" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="goods_Volume" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="goods_Name" GridPane.columnIndex="1" />
+            <Label text="包装类型" GridPane.rowIndex="6">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="type_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="pack_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="预计运费" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="predict_Expense" text="     Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="预计到达日期" GridPane.rowIndex="8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="predict_Date" text="     Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label text="内件名">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="货物类型" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="goods_Type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="85.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="115.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="413.0" prefWidth="600.0" spacing="8.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#clear" prefWidth="72.0" text="清空" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#saveDraft" prefWidth="72.0" text="保存草稿" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#commit" prefWidth="72.0" text="确认" />
+         </children>
+      </HBox>
+      <Label layoutX="64.0" layoutY="24.0" text="订单编号">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="OrderID" layoutX="129.0" layoutY="26.0" text="Label" />
+   </children>
+</AnchorPane>
