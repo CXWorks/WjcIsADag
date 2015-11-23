@@ -31,8 +31,8 @@ public class DriverPO extends StaffPO {
 	
 	public DriverPO(Timestamp birth, String tel, Timestamp licence_period,
 			String iD, String name, int age, String personID, String sex,
-			String love) {
-		super("DRIVER", iD, name, age, personID, sex, love);
+			String love,String institutionID) {
+		super("DRIVER", iD, name, age, personID, sex, love,institutionID);
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(birth);
 		this.birth = temp;

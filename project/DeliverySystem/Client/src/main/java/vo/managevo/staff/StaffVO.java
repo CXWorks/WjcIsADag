@@ -12,7 +12,7 @@ public class StaffVO extends InfoVO{
 		super(InfoEnum.STAFF);
 	}
 	public StaffVO(StaffTypeEnum staff, String iD, String name, int age,
-			String personID, SexEnum sex, String love) {
+			String personID, SexEnum sex, String love,String institutionID) {
 		this();
 		this.staff = staff;
 		ID = iD;
@@ -21,6 +21,7 @@ public class StaffVO extends InfoVO{
 		this.personID = personID;
 		this.sex = sex;
 		this.love = love;
+		this.institutionID=institutionID;
 	}
 	
 	private StaffTypeEnum staff;
@@ -30,11 +31,12 @@ public class StaffVO extends InfoVO{
 	private String personID;
 	private SexEnum sex;
 	private String love;
+	private String institutionID;
 	//
 	public StaffVO(StaffPO po){
-		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove());
+		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove(),po.getInititutionID());
 	}
 	public StaffPO toPO(){
-		return new StaffPO(staff, ID, name, age, personID, sex, love);
+		return new StaffPO(staff, ID, name, age, personID, sex, love,institutionID);
 	}
 }

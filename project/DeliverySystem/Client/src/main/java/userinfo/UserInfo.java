@@ -12,6 +12,12 @@ public class UserInfo {
 	private static String userID;
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
+	public UserInfo(String userID,StaffTypeEnum staffTypeEnum,String institutionID){
+		this.userID=userID;
+		this.staffType=staffTypeEnum;
+		this.institutionID=institutionID;
+		this.logined=true;
+	}
 	//
 	private static boolean logined=false;
 	public static String getUserID() {

@@ -15,13 +15,19 @@ public class StaffPO extends InfoPO implements Serializable{
 	private String personID;
 	private SexEnum sex;
 	private String love;
+	private String inititutionID;
 	public StaffPO(){
 		super(InfoEnum.STAFF);
 	}
 	//
+	
 	public StaffTypeEnum getStaff() {
 		return staff;
 	}
+	public String getInititutionID() {
+		return inititutionID;
+	}
+
 	public String getID() {
 		return ID;
 	}
@@ -88,7 +94,7 @@ public class StaffPO extends InfoPO implements Serializable{
 	 * @param love
 	 */
 	public StaffPO(StaffTypeEnum staff, String iD, String name, int age,
-			String personID, SexEnum sex, String love) {
+			String personID, SexEnum sex, String love,String institutionID) {
 		this();
 		this.staff = staff;
 		ID = iD;
@@ -97,10 +103,11 @@ public class StaffPO extends InfoPO implements Serializable{
 		this.personID = personID;
 		this.sex = sex;
 		this.love = love;
+		this.inititutionID=institutionID;
 	}
 	
 	public StaffPO(String staff, String iD, String name, int age,
-			String personID, String sex, String love) {
+			String personID, String sex, String love,String institutionID) {
 		this();
 		this.setStaff(staff);
 		ID = iD;
@@ -109,5 +116,6 @@ public class StaffPO extends InfoPO implements Serializable{
 		this.personID = personID;
 		this.setSex(sex);
 		this.love = love;
+		this.inititutionID=institutionID;
 	}
 }

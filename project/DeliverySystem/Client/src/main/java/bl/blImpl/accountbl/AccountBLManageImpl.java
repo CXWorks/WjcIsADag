@@ -75,7 +75,6 @@ public class AccountBLManageImpl implements AccountBLManageService{
 		try {
 			return accountDataService.delete(ID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return new OperationMessage(false, "net error");
 		}
 	}
