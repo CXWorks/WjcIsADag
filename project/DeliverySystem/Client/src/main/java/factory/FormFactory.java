@@ -1,8 +1,10 @@
 package factory;
 
 import bl.blImpl.formatCheck.FormatCheckImpl;
+import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.FormatCheckService.FormatCheckService;
+import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
 import bl.tool.draft.DraftController;
 import bl.tool.draft.DraftService;
@@ -21,6 +23,7 @@ public class FormFactory extends BLFactory {
 	private FormatCheckService formatCheckService;
 	//
 	private ReceiveBLService receiveBLService;
+	private OrderBLService orderBLService;
 	public FormFactory(){
 		draftService=new DraftController();
 		vopoFactory=new VOPOFactory();
@@ -28,9 +31,12 @@ public class FormFactory extends BLFactory {
 		//
 		
 		receiveBLService=new ReceiveblImpl(vopoFactory, draftService, formatCheckService);
+		orderBLService=new OrderBLController(vopoFactory, draftService, formatCheckService);
 	}
 	public ReceiveBLService getReceiveBLService() {
 		return receiveBLService;
 	}
-	
+	public OrderBLService getOrderBLService() {
+		return orderBLService;
+	}
 }

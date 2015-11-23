@@ -10,6 +10,8 @@ import po.receivedata.StateEnum;
 public class OrderPO extends FormPO implements Serializable {
 	private String nameFrom;
 	private String nameTo;
+	private String addressFrom;
+	private String addressTo;
 	private String unitFrom;
 	private String unitTo;
 	private String phoneNumFrom;
@@ -20,20 +22,22 @@ public class OrderPO extends FormPO implements Serializable {
 	private String goodsName;
 	private String weight;
 	private String volume;
-	private String money;
+	private String goodsType;
 	private DeliverTypeEnum type;
-
+	private PackingEnum pack;
 	private ArrayList<String> FormIDs;
 	private String targetHallID;
 	
 	public OrderPO(String formID,String nameFrom, String nameTo, String unitFrom,
-			String unitTo, String phoneNumFrom, String phoneNumTo,
+			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume, String money,
-			String type, ArrayList<String> formIDs, String targetHallID) {
+			String goodsName, String weight, String volume, String goodsType,
+			String type, String pack,ArrayList<String> formIDs, String targetHallID) {
 		super(FormEnum.ORDER,formID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
+		this.addressFrom=addressFrom;
+		this.addressTo=addressTo;
 		this.unitFrom = unitFrom;
 		this.unitTo = unitTo;
 		this.phoneNumFrom = phoneNumFrom;
@@ -44,8 +48,9 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
-		this.money = money;
+		this.goodsType = goodsType;
 		this.setType(type);
+		this.setPack(pack);
 		FormIDs = formIDs;
 		this.targetHallID = targetHallID;
 		this.formType = FormEnum.ORDER;
@@ -68,6 +73,14 @@ public class OrderPO extends FormPO implements Serializable {
 		return unitTo;
 	}
 
+	public String getAddressFrom(){
+		return addressFrom;
+	}
+	
+	public String getAddressTo(){
+		return addressTo;
+	}
+	
 	public String getPhoneNumFrom() {
 		return phoneNumFrom;
 	}
@@ -100,12 +113,16 @@ public class OrderPO extends FormPO implements Serializable {
 		return volume;
 	}
 
-	public String getMoney() {
-		return money;
+	public String getGoodsType() {
+		return goodsType;
 	}
 
 	public DeliverTypeEnum getType() {
 		return type;
+	}
+	
+	public PackingEnum getPack(){
+		return pack;
 	}
 	
 	public void setType(String type) {
@@ -118,6 +135,23 @@ public class OrderPO extends FormPO implements Serializable {
 			break;
 		case "FAST":
 			this.type = DeliverTypeEnum.FAST;
+			break;
+		}
+	}
+	
+	public void setPack(String pack) {
+		switch (pack) {
+		case "PAPER":
+			this.pack=PackingEnum.PAPER;
+			break;
+		case "WOOD":
+			this.pack=PackingEnum.WOOD;
+			break;
+		case "BAG":
+			this.pack=PackingEnum.BAG;
+			break;
+		case "OTHER":
+			this.pack=PackingEnum.OTHER;
 			break;
 		}
 	}

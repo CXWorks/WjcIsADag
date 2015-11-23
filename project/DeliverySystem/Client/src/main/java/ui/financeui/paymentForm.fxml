@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="39.0" layoutY="50.0" text="付款人信息" />
+      <Label layoutX="39.0" layoutY="85.0" prefHeight="15.0" prefWidth="24.0" text="姓名" />
+      <Label layoutX="39.0" layoutY="128.0" text="账户" />
+      <TextField layoutX="110.0" layoutY="81.0" />
+      <TextField layoutX="110.0" layoutY="124.0" />
+      <TextField layoutX="110.0" layoutY="312.0" />
+      <TextField layoutX="110.0" layoutY="269.0" />
+      <Label layoutX="39.0" layoutY="316.0" text="账户" />
+      <Label layoutX="39.0" layoutY="273.0" prefHeight="15.0" prefWidth="24.0" text="姓名" />
+      <Label layoutX="39.0" layoutY="238.0" text="收款人信息" />
+      <Label layoutX="359.0" layoutY="50.0" text="款项信息" />
+      <Label layoutX="359.0" layoutY="85.0" text="金额" />
+      <Label layoutX="572.0" layoutY="85.0" text="付款日期" />
+      <TextField layoutX="390.0" layoutY="81.0" prefHeight="23.0" prefWidth="132.0" />
+      <DatePicker layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
+      <Label layoutX="359.0" layoutY="128.0" text="条目" />
+      <Label layoutX="359.0" layoutY="171.0" text="备注" />
+      <TextArea layoutX="359.0" layoutY="199.0" prefHeight="199.0" prefWidth="425.0" />
+      <ChoiceBox layoutX="390.0" layoutY="124.0" prefHeight="23.0" prefWidth="132.0" />
+      <HBox layoutX="577.0" layoutY="407.0" spacing="16.0">
+         <children>
+            <Button layoutX="577.0" layoutY="407.0" mnemonicParsing="false" text="保存草稿" />
+            <Button layoutX="645.0" layoutY="407.0" mnemonicParsing="false" text="清空" />
+            <Button layoutX="715.0" layoutY="407.0" mnemonicParsing="false" text="确认" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

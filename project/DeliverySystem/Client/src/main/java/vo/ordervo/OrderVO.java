@@ -4,6 +4,7 @@ import po.FormEnum;
 import po.FormStateEnum;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.OrderPO;
+import po.orderdata.PackingEnum;
 import vo.FormVO;
 
 /**
@@ -14,6 +15,8 @@ import vo.FormVO;
 public class OrderVO extends FormVO {
 	private String nameFrom;
 	private String nameTo;
+	private String addressFrom;
+	private String addressTo;
 	private String unitFrom;
 	private String unitTo;
 	private String phoneNumFrom;
@@ -24,9 +27,9 @@ public class OrderVO extends FormVO {
 	private String goodsName;
 	private String weight;
 	private String volume;
-	private String money;
+	private String goodsType;
 	private DeliverTypeEnum type;
-
+	private PackingEnum pack;
 	public OrderVO(String formID) {
 		super(FormEnum.ORDER,FormStateEnum.CONSTRUCTED,formID);
 	}
@@ -50,13 +53,15 @@ public class OrderVO extends FormVO {
 	 * @param type
 	 */
 	public OrderVO(String formID,String nameFrom, String nameTo, String unitFrom,
-			String unitTo, String phoneNumFrom, String phoneNumTo,
+			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume, String money,
-			DeliverTypeEnum type) {
+			String goodsName, String weight, String volume, String goodsType,
+			DeliverTypeEnum type ,PackingEnum pack) {
 		this(formID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
+		this.addressFrom=addressFrom;
+		this.addressTo=addressTo;
 		this.unitFrom = unitFrom;
 		this.unitTo = unitTo;
 		this.phoneNumFrom = phoneNumFrom;
@@ -67,8 +72,9 @@ public class OrderVO extends FormVO {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
-		this.money = money;
+		this.goodsType = goodsType;
 		this.type = type;
+		this.pack=pack;
 	}
 
 	//
@@ -77,8 +83,8 @@ public class OrderVO extends FormVO {
 		this(po.getFormID(),po.getNameFrom(), po.getNameTo(), po.getUnitFrom(),
 				po.getUnitTo(), po.getPhoneNumFrom(), po.getPhoneNumTo(), po
 						.getTelNumFrom(), po.getTelNumTo(), po.getGoodsNum(),
-				po.getGoodsName(), po.getWeight(), po.getVolume(), po
-						.getMoney(), po.getType());
+				po.getGoodsName(), po.getWeight(), po.getVolume(), po.getAddressFrom(),po.getAddressTo(),
+						po.getGoodsType(), po.getType(),po.getPack());
 
 	}
 	//
