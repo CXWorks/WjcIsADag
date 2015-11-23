@@ -3,6 +3,7 @@ package po.storedata;
 import java.util.Calendar;
 
 import model.store.StoreLocation;
+import po.FormEnum;
 import po.FormPO;
 
 /**
@@ -25,6 +26,22 @@ public class StoreInPO extends FormPO {
 	}
 	public StoreLocation getLocation() {
 		return location;
+	}
+	/**
+	 * @param formEnum
+	 * @param formID
+	 * @param orderID
+	 * @param date
+	 * @param destination
+	 * @param location
+	 */
+	public StoreInPO(String formID, String orderID,
+			Calendar date, String destination, StoreLocation location) {
+		super(FormEnum.STORE_IN, formID);
+		this.orderID = orderID;
+		this.date = date;
+		this.destination = destination;
+		this.location = location;
 	}
     
     

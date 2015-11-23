@@ -65,13 +65,13 @@ public class ReceiveblImpl implements ReceiveBLService {
 	public OrderVO getOrderVO(String orderID) {
 		CheckFormMessage check=formatCheckService.checkOrderID(orderID);
 		if (check.getCheckResult()) {
-			return new OrderVO();
+			return new OrderVO("1123000001");
 		}
-		return new OrderVO();
+		return new OrderVO("1123000001");
 	}
 
 	public TransitVO getTransitVO() {
-		return new CenterOutVO();
+		return new CenterOutVO("070010001201511230000001");
 	}
 
 	/* (non-Javadoc)

@@ -11,8 +11,12 @@ import util.DataType;
  * @version 1.0 
  */
 public	abstract class CommonVO implements Serializable {
-	public DataType dataType;
+	protected DataType dataType;
 	public CommonVO(DataType dataType){
 		this.dataType=dataType;
 	}
+	public DataType getDataType() {
+		return dataType;
+	}
+	
 }

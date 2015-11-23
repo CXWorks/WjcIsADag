@@ -3,6 +3,7 @@ package vo.financevo;
 import java.util.Calendar;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import po.financedata.PaymentPO;
 import vo.FormVO;
 
@@ -10,7 +11,7 @@ import vo.FormVO;
  * Created by Sissel on 2015/10/24.
  */
 public class PaymentVO extends FormVO {
-    private Calendar	date;
+    private Calendar date;
     private String	amount;
     private String	payerAccID;
     private String	payerName;
@@ -23,8 +24,8 @@ public class PaymentVO extends FormVO {
     // 备注
     private String	note;
     //
-    public PaymentVO(){
-    	super(FormEnum.PAYMENT);
+    public PaymentVO(String formID){
+    	super(FormEnum.PAYMENT,FormStateEnum.CONSTRUCTED,formID);
     }
     //
 	/**
@@ -39,11 +40,11 @@ public class PaymentVO extends FormVO {
 	 * @param item
 	 * @param note
 	 */
-	public PaymentVO(Calendar date, String amount, String payerAccID,
+	public PaymentVO(String formID,Calendar date, String amount, String payerAccID,
 			String payerName, String payerAccount, String receiverAccID,
 			String receiverName, String receiverAccount, String item,
 			String note) {
-		this();
+		this(formID);
 		this.date = date;
 		this.amount = amount;
 		this.payerAccID = payerAccID;
@@ -56,7 +57,7 @@ public class PaymentVO extends FormVO {
 		this.note = note;
 	}
     public PaymentVO(PaymentPO po){
-    	this(po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote());
     	
     }
 }

@@ -15,10 +15,10 @@ public class CenterOutPO extends TransportPO implements Serializable {
 	private String shelfNum;// 货柜号
 	private TransportationEnum transitState;// 转运类型
 
-	public CenterOutPO(String placeFrom, String shelfNum, String transitState,
+	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Calendar LoadDate, String TransportID, String placeTo,
 			String peopleSee, String expense, ArrayList<String> IDs) {
-		super();
+		super(FormEnum.TRANSPORT_CENTER,formID);
 
 		this.placeFrom = placeFrom;
 		this.shelfNum = shelfNum;
@@ -32,10 +32,10 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.formType = FormEnum.TRANSPORT_CENTER;
 	}
 
-	public CenterOutPO(String placeFrom, String shelfNum, String transitState,
+	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Timestamp LoadDate, String TransportID, String placeTo,
 			String peopleSee, String expense, ArrayList<String> IDs) {
-		super();
+		super(FormEnum.TRANSPORT_CENTER,formID);
 
 		this.placeFrom = placeFrom;
 		this.shelfNum = shelfNum;

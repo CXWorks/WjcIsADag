@@ -16,11 +16,11 @@ public class StockTackBLImpl implements StockTackBLService {
     }
 
     public OrderVO getOrder(String orderNumber) {
-        return new OrderVO();
+        return new OrderVO("1123000001");
     }
 
     public StoreInVO getStoreInVO(String orderNumber) {
-        return new StoreInVO();
+        return new StoreInVO("050010001201511230000002");
     }
 
     public OperationMessage makeExcel(String path) {

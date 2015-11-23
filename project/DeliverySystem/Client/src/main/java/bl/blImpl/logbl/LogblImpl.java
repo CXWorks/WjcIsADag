@@ -20,8 +20,6 @@ public class LogblImpl implements LogblService {
 	public ArrayList<FormVO> getHistory() {
 		// TODO Auto-generated method stub
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
-		FormVO stub=new FormVO();
-		result.add(stub);
 		return result;
 	}
 

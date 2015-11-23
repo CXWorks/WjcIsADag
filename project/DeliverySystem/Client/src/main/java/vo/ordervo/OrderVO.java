@@ -1,6 +1,7 @@
 package vo.ordervo;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.OrderPO;
 import vo.FormVO;
@@ -26,8 +27,8 @@ public class OrderVO extends FormVO {
 	private String money;
 	private DeliverTypeEnum type;
 
-	public OrderVO() {
-		super(FormEnum.ORDER);
+	public OrderVO(String formID) {
+		super(FormEnum.ORDER,FormStateEnum.CONSTRUCTED,formID);
 	}
 
 	/**
@@ -48,12 +49,12 @@ public class OrderVO extends FormVO {
 	 * @param money
 	 * @param type
 	 */
-	public OrderVO(String nameFrom, String nameTo, String unitFrom,
+	public OrderVO(String formID,String nameFrom, String nameTo, String unitFrom,
 			String unitTo, String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
 			String goodsName, String weight, String volume, String money,
 			DeliverTypeEnum type) {
-		this();
+		this(formID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.unitFrom = unitFrom;
@@ -73,7 +74,7 @@ public class OrderVO extends FormVO {
 	//
 	public OrderVO(OrderPO po) {
 		// deep clone
-		this(po.getNameFrom(), po.getNameTo(), po.getUnitFrom(),
+		this(po.getFormID(),po.getNameFrom(), po.getNameTo(), po.getUnitFrom(),
 				po.getUnitTo(), po.getPhoneNumFrom(), po.getPhoneNumTo(), po
 						.getTelNumFrom(), po.getTelNumTo(), po.getGoodsNum(),
 				po.getGoodsName(), po.getWeight(), po.getVolume(), po

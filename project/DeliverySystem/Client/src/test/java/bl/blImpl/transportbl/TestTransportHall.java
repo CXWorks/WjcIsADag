@@ -29,9 +29,9 @@ public class TestTransportHall {
 		transportHallBLService = new TransportHallBLImpl();
 		l = new ArrayList<LoadVO>();
 		LoadVO[] centerout= new LoadVO[3];
-		centerout[0] = new LoadVO( "111111", "吴平", "20", Calendar.getInstance(), "111111", "北京", "人1",null);
-		centerout[1] = new LoadVO( "111111", "孟平", "30", Calendar.getInstance(), "111111", "北京", "人2",null);
-		centerout[2] = new LoadVO( "111111", "王平", "25", Calendar.getInstance(), "111111", "北京", "人3",null);
+		centerout[0] = new LoadVO("11", "111111", "吴平", "20", Calendar.getInstance(), "111111", "北京", "人1",null);
+		centerout[1] = new LoadVO("11", "111111", "孟平", "30", Calendar.getInstance(), "111111", "北京", "人2",null);
+		centerout[2] = new LoadVO("11", "111111", "王平", "25", Calendar.getInstance(), "111111", "北京", "人3",null);
 		for (int i = 0; i < centerout.length; i++) {
 			l.add(centerout[i]);
 		}

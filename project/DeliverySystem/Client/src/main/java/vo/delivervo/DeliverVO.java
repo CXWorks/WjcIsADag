@@ -3,6 +3,7 @@ package vo.delivervo;
 import java.util.Calendar;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import po.deliverdata.DeliverPO;
 import vo.FormVO;
 
@@ -30,8 +31,8 @@ public class DeliverVO extends FormVO{
 	public void setPostman(String postman) {
 		this.postman = postman;
 	}
-	public DeliverVO(){
-		super(FormEnum.DELIVER);
+	public DeliverVO(String formID){
+		super(FormEnum.DELIVER,FormStateEnum.CONSTRUCTED,formID);
 	}
 	//
 	/**
@@ -39,13 +40,13 @@ public class DeliverVO extends FormVO{
 	 * @param date
 	 * @param postman
 	 */
-	public DeliverVO(String orderID, Calendar date, String postman) {
-		this();
+	public DeliverVO(String formID,String orderID, Calendar date, String postman) {
+		this(formID);
 		this.orderID = orderID;
 		this.date = date;
 		this.postman = postman;
 	}
 	public DeliverVO(DeliverPO po){
-		this(po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
+		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
 	}
 }

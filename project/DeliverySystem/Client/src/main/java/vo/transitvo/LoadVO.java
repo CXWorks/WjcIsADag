@@ -11,13 +11,13 @@ public class LoadVO extends TransitVO {
 	String	peopletransport;
 	String	expense;
 
-	public LoadVO(){
-		super(FormEnum.TRANSPORT_HALL);
+	public LoadVO(String formID){
+		super(FormEnum.TRANSPORT_HALL,formID);
 	}
 	
-	public LoadVO(String truckID,String peopletransport,String expense,
+	public LoadVO(String formID,String truckID,String peopletransport,String expense,
 			Calendar LoadDate,String TransportID,String placeTo,String	peopleSee,ArrayList<String> IDs){
-		this();
+		this(formID);
 
 		this.peopletransport = peopletransport;
 		this.expense = expense;
@@ -29,7 +29,7 @@ public class LoadVO extends TransitVO {
 	}
 	
 	public LoadVO(LoadPO po){
-		this(po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
+		this(po.getFormID(),po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
 				,po.getIDs());
 	}
 }

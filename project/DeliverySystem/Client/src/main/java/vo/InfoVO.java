@@ -10,7 +10,7 @@ import util.DataType;
  * @version 1.0 
  */
 public class InfoVO extends CommonVO {
-	private InfoEnum infoEnum;
+	protected InfoEnum infoEnum;
 
 	public InfoEnum getInfoEnum() {
 		return infoEnum;

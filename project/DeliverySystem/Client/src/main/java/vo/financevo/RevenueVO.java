@@ -3,6 +3,7 @@ package vo.financevo;
 import java.util.Calendar;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import po.financedata.RevenuePO;
 import vo.FormVO;
 
@@ -16,8 +17,8 @@ public class RevenueVO extends FormVO {
     private String hallID;
     private String orderID;
     //
-    public RevenueVO(){
-    	super(FormEnum.REVENUE);
+    public RevenueVO(String formID){
+    	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID);
     }
     //
 	/**
@@ -27,9 +28,9 @@ public class RevenueVO extends FormVO {
 	 * @param hallID
 	 * @param orderID
 	 */
-	public RevenueVO(Calendar date, String amount, String deliverName,
+	public RevenueVO(String formID,Calendar date, String amount, String deliverName,
 			String hallID, String orderID) {
-		this();
+		this(formID);
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;
@@ -37,6 +38,6 @@ public class RevenueVO extends FormVO {
 		this.orderID = orderID;
 	}
     public RevenueVO(RevenuePO po){
-    	this(po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderID());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderID());
     }
 }

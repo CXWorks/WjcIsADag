@@ -11,15 +11,9 @@ public class FormVO extends CommonVO{
     protected FormEnum formType;
     protected FormStateEnum state;
     protected String formID;
-    public FormVO(){
-    	super(DataType.FORM);
-    }
-    public FormVO(FormEnum type){
+    public FormVO(FormEnum type,FormStateEnum state,String formID){
     	super(DataType.FORM);
     	this.formType=type;
-    }
-    public FormVO(FormEnum type,FormStateEnum state,String formID){
-    	this(type);
     	this.state=state;
     	this.formID=formID;
     }

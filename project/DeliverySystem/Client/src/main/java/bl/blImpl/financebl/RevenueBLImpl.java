@@ -29,15 +29,15 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public OrderVO getOrderVO() {
-        return new OrderVO();
+        return new OrderVO("1123000001");
     }
 
     public RevenueVO getRevenueVO(String revenueID) {
-        return new RevenueVO();
+        return new RevenueVO("020011002201511230000001");
     }
 
     public RevenueVO getRevenueVO(String date, String hallID) {
-        return new RevenueVO();
+        return new RevenueVO("020011002201511230000001");
     }
 
     public List<RevenueVO> getRevenueVOs(String startDate, String endDate) {
@@ -45,7 +45,7 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public RevenueVO loadDraft() {
-        return new RevenueVO();
+        return new RevenueVO("020011002201511230000001");
     }
 
     public OperationMessage saveDraft(RevenueVO form) {

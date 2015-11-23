@@ -40,16 +40,16 @@ public class TestExamineManage {
 		d=new ArrayList<FormVO>();
 		//object
 		OrderVO[] order=new OrderVO[3];
-		order[0]=new OrderVO("程翔", "王嘉琛", "南京", "北京", "", "", "18351890356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.NORMAL);
-		order[1]=new OrderVO("刘钦", "丁二玉", "南京", "南京", "", "", "18351436356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.FAST);
-		order[2]=new OrderVO("邵栋", "郑滔", "广州", "北京", "", "", "18351630356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.SLOW);
+		order[0]=new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "", "18351890356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.NORMAL);
+		order[1]=new OrderVO("11","刘钦", "丁二玉", "南京", "南京", "", "", "18351436356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.FAST);
+		order[2]=new OrderVO("11","邵栋", "郑滔", "广州", "北京", "", "", "18351630356", "13724456739", "3", "图书", "", "", "", DeliverTypeEnum.SLOW);
 		for (int i = 0; i < order.length; i++) {
 			o.add(order[i]);
 		}
 		DeliverVO[] deliver=new DeliverVO[3];
-		deliver[0]=new DeliverVO("0001", Calendar.getInstance(), "快递哥1");
-		deliver[1]=new DeliverVO("0002", Calendar.getInstance(), "快递哥46");
-		deliver[2]=new DeliverVO("0309", Calendar.getInstance(), "快递哥24");
+		deliver[0]=new DeliverVO("11","0001", Calendar.getInstance(), "快递哥1");
+		deliver[1]=new DeliverVO("11","0002", Calendar.getInstance(), "快递哥46");
+		deliver[2]=new DeliverVO("11","0309", Calendar.getInstance(), "快递哥24");
 		for (int i = 0; i < deliver.length; i++) {
 			d.add(deliver[i]);
 		}

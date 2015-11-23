@@ -9,10 +9,7 @@ import util.DataType;
  * @version 1.0 
  */
 public abstract class InfoPO extends CommonPO {
-	private InfoEnum infoEnum;
-	public void setInfoEnum(InfoEnum infoEnum) {
-		this.infoEnum = infoEnum;
-	}
+	protected InfoEnum infoEnum;
 	protected InfoPO(InfoEnum infoEnum){
 		super(DataType.DATA);
 		this.infoEnum=infoEnum;

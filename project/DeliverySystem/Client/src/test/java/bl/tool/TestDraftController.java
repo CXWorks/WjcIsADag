@@ -41,15 +41,15 @@ public class TestDraftController {
 	@Before
 	public void setUp() throws Exception {
 		draftService=new DraftController();
-		order=new OrderVO();
-		deliver=new DeliverVO();
-		payment=new PaymentVO();
-		receive=new ReceiveVO();
-		revenue=new RevenueVO();
-		store_in=new StoreInVO();
-		store_out=new StoreOutVO();
-		load=new LoadVO();
-		center_out=new CenterOutVO();
+		order=new OrderVO("11");
+		deliver=new DeliverVO("11");
+		payment=new PaymentVO("11");
+		receive=new ReceiveVO("11");
+		revenue=new RevenueVO("11");
+		store_in=new StoreInVO("11");
+		store_out=new StoreOutVO("11");
+		load=new LoadVO("11");
+		center_out=new CenterOutVO("11");
 	}
 
 	/**

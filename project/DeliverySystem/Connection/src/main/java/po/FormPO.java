@@ -9,16 +9,11 @@ public class FormPO extends CommonPO implements Serializable{
 	protected FormEnum formType;
 	private FormStateEnum formState;
 	private String formID;
-	
-	public FormPO(){
-		super(DataType.FORM);
-		this.formState=FormStateEnum.SUBMIT;
-		formID="555555555";
-	}
-	public FormPO(FormEnum formEnum){
+	public FormPO(FormEnum formEnum,String formID){
 		super(DataType.FORM);
 		this.formType=formEnum;
-		
+		this.formState=FormStateEnum.CONSTRUCTED;
+		this.formID=formID;
 	}
 	
 	public FormEnum getFormType() {
@@ -37,6 +32,9 @@ public class FormPO extends CommonPO implements Serializable{
 			break;
 		case "SUBMIT":
 			this.formState = FormStateEnum.SUBMIT;
+			break;
+		case "CONSTRUCTED":
+			this.formState = FormStateEnum.CONSTRUCTED;
 			break;
 		}
 	}

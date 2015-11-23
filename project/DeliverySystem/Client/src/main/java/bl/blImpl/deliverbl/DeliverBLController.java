@@ -80,7 +80,7 @@ public class DeliverBLController implements DeliverBLService {
 	 */
 	public OrderVO getOrderVO(String orderID) {
 		// TODO Auto-generated method stub
-		return new OrderVO();
+		return new OrderVO("1123000001");
 	}
 
 }

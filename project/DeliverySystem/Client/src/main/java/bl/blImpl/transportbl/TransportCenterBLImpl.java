@@ -17,7 +17,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		
 		public CenterOutVO loadDraft() {
 			// TODO Auto-generated method stub
-			return new CenterOutVO();
+			return new CenterOutVO("050010001201511230000002");
 		}
 		public OperationMessage saveDraft(CenterOutVO form) {
 			// TODO Auto-generated method stub
@@ -55,7 +55,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		 */
 		public OrderVO getOrder(String orderID) {
 			// TODO Auto-generated method stub
-			return new OrderVO();
+			return new OrderVO("1123000001");
 		}
 		
 

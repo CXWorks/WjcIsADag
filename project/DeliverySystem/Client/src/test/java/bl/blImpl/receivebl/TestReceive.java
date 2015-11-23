@@ -31,7 +31,7 @@ public class TestReceive {
 	@Before
 	public void setUp() throws Exception {
 		receiveBLService = new ReceiveblImpl(new VOPOFactory(), new DraftController(), new FormatCheckImpl());
-		r = new ReceiveVO("1111111","1111111",Calendar.getInstance(),"南京仙林",StateEnum.Complete);
+		r = new ReceiveVO("11","1111111","1111111",Calendar.getInstance(),"南京仙林",StateEnum.Complete);
 	}
 	
 	@Test

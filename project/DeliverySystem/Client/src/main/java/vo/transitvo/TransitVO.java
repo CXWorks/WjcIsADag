@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import util.R.string;
 import vo.FormVO;
 
@@ -21,7 +22,7 @@ public abstract class TransitVO extends FormVO{
 		}
 		return ans;
 	}
-	protected TransitVO(FormEnum formEnum){
-		super(formEnum);
+	protected TransitVO(FormEnum formEnum,String formID){
+		super(formEnum,FormStateEnum.CONSTRUCTED,formID);
 	}
 }

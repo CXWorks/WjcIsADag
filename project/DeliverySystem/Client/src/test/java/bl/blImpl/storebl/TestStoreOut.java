@@ -31,7 +31,7 @@ public class TestStoreOut {
 	@Before
 	public void setUp() throws Exception {
 		storeOutBLService = new StoreOutBLImpl();
-		so = new StoreOutVO("111111",Calendar.getInstance(),"南京仙林",TransportationEnum.CAR,"111111");
+		so = new StoreOutVO("11","111111",Calendar.getInstance(),"南京仙林",TransportationEnum.CAR,"111111");
 	}
 
 	

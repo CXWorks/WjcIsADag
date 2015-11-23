@@ -17,7 +17,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		
 		public LoadVO loadDraft() {
 			// TODO Auto-generated method stub
-			return new LoadVO();
+			return new LoadVO("050010001201511230000002");
 		}
 		public OperationMessage saveDraft(LoadVO form) {
 			// TODO Auto-generated method stub
@@ -78,6 +78,6 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		 */
 		public OrderVO getOrder(String orderID) {
 			// TODO Auto-generated method stub
-			return new OrderVO();
+			return new OrderVO("1123000001");
 		}
 }

@@ -3,6 +3,7 @@ package vo.receivevo;
 import java.util.Calendar;
 
 import po.FormEnum;
+import po.FormStateEnum;
 import po.receivedata.ReceivePO;
 import po.receivedata.StateEnum;
 import vo.FormVO;
@@ -15,19 +16,18 @@ import vo.FormVO;
 
 public class ReceiveVO extends FormVO{
 	public ReceivePO toPO(){
-		System.out.println("vo"+transitID);
-		return new ReceivePO(orderID, transitID, date, depature, orderState.toString());
+		return new ReceivePO(formID,orderID, transitID, date, depature, orderState.toString());
 	}
-	public ReceiveVO(){
-		super(FormEnum.RECEIVE);
+	public ReceiveVO(String formID){
+		super(FormEnum.RECEIVE,FormStateEnum.CONSTRUCTED,formID);
 	}
 	//
 	public ReceiveVO(ReceivePO po){
-		this(po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState());
+		this(po.getFormID(),po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState());
 	}
-	public ReceiveVO(String orderID, String transitID, Calendar date,
+	public ReceiveVO(String formID,String orderID, String transitID, Calendar date,
 			String depature, StateEnum state) {
-		this();
+		this(formID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		this.date = date;
