@@ -41,8 +41,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		super();
 		Table_Name = "order";
 		conn = ConnecterHelper.connSQL(conn);
-		
-		//为today和ID_MAX初始化
+
+		// 为today和ID_MAX初始化
 		this.newID(null);
 		ID_MAX--;
 	}
@@ -134,22 +134,22 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		return result;
 	}
 
-	public String newID(String unitID) throws RemoteException {//成员变量成员持有ID信息
+	public String newID(String unitID) throws RemoteException {// 成员变量成员持有ID信息
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
 				.substring(0, 10);
 		String date = temp.substring(5, 7) + temp.substring(8);// 当天日期
-		
-		//当前日期与缓存日期一致
-		if(temp.equalsIgnoreCase(today)){
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
 			this.ID_MAX++;
 			String added = String.format("%06d", ID_MAX);
 			return date + added;
 		}
-			
-		//当前日期与缓存日期不一致
+
+		// 当前日期与缓存日期不一致
 		today = temp;
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -187,15 +187,15 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new OrderPO(rs.getString("nameFrom"),
-					rs.getString("nameTo"), rs.getString("unitFrom"),
-					rs.getString("unitTo"), rs.getString("phoneNumFrom"),
-					rs.getString("phoneNumTo"), rs.getString("telNumFrom"),
-					rs.getString("telNumTo"), rs.getString("goodsNum"),
-					rs.getString("goodsName"), rs.getString("weight"),
-					rs.getString("volume"), rs.getString("money"),
-					rs.getString("type"), FormIDs, rs.getString("targetHallID"));
-			result.setFormID(rs.getString("formID"));
+			result = new OrderPO(rs.getString("formID"),
+					rs.getString("nameFrom"), rs.getString("nameTo"),
+					rs.getString("unitFrom"), rs.getString("unitTo"),
+					rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
+					rs.getString("telNumFrom"), rs.getString("telNumTo"),
+					rs.getString("goodsNum"), rs.getString("goodsName"),
+					rs.getString("weight"), rs.getString("volume"),
+					rs.getString("money"), rs.getString("type"), FormIDs,
+					rs.getString("targetHallID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -218,16 +218,16 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			while (rs.next()) {
 				FormIDs = (ArrayList<String>) Arrays.asList(rs.getString(
 						"FormIDs").split(" "));
-				temp = new OrderPO(rs.getString("nameFrom"),
-						rs.getString("nameTo"), rs.getString("unitFrom"),
-						rs.getString("unitTo"), rs.getString("phoneNumFrom"),
+				temp = new OrderPO(rs.getString("formID"),
+						rs.getString("nameFrom"), rs.getString("nameTo"),
+						rs.getString("unitFrom"), rs.getString("unitTo"),
+						rs.getString("phoneNumFrom"),
 						rs.getString("phoneNumTo"), rs.getString("telNumFrom"),
 						rs.getString("telNumTo"), rs.getString("goodsNum"),
 						rs.getString("goodsName"), rs.getString("weight"),
 						rs.getString("volume"), rs.getString("money"),
 						rs.getString("type"), FormIDs,
 						rs.getString("targetHallID"));
-				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

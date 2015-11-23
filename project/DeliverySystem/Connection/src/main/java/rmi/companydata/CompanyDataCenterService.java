@@ -41,4 +41,11 @@ public interface CompanyDataCenterService extends DataService<CenterPO>{
 	 */
 	public OperationMessage modifyCenter(CenterPO center) throws RemoteException;
 	
+	/**
+	 * 新建中转中心
+	 * @param city 城市
+	 * @return 新的中转中心编号
+	 */
+	public String newCenterID(String city) throws RemoteException;
+	
 }
