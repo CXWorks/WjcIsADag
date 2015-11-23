@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="69.0" layoutY="132.0" prefHeight="295.0" prefWidth="663.0">
+        <columns>
+          <TableColumn prefWidth="131.0" text="时间" />
+          <TableColumn prefWidth="126.0" text="地点" />
+            <TableColumn prefWidth="405.0" text="状态" />
+        </columns>
+      </TableView>
+      <TextField layoutX="262.0" layoutY="57.0" />
+      <Text layoutX="269.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="快递单号输入框" />
+      <Button layoutX="442.0" layoutY="57.0" mnemonicParsing="false" text="搜索" />
+   </children>
+</AnchorPane>
