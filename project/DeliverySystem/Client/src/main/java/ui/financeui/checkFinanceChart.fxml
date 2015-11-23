@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="26.0" layoutY="36.0" text="开始日期" />
+      <Label layoutX="269.0" layoutY="36.0" text="结束日期" />
+      <Button layoutX="495.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
+      <DatePicker layoutX="86.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
+      <DatePicker layoutX="327.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
+      <Label layoutX="302.0" layoutY="393.0" text="总支出" />
+      <Label layoutX="351.0" layoutY="393.0" text="Label" />
+      <Label layoutX="449.0" layoutY="393.0" text="总收入" />
+      <Label layoutX="498.0" layoutY="393.0" text="Label" />
+      <Label layoutX="607.0" layoutY="393.0" text="净利润" />
+      <Label layoutX="658.0" layoutY="393.0" text="Label" />
+      <PieChart layoutX="51.0" layoutY="110.0" prefHeight="196.0" prefWidth="140.0" />
+      <BarChart layoutX="267.0" layoutY="110.0" prefHeight="196.0" prefWidth="249.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <LineChart layoutX="534.0" layoutY="110.0" prefHeight="196.0" prefWidth="249.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

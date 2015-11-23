@@ -15,7 +15,7 @@
                     mnemonicParsing="false" prefWidth="72.0" text="清空" textAlignment="CENTER" />
             <Button onAction="#saveDraft"
                     mnemonicParsing="false" prefWidth="72.0" text="保存草稿" />
-            <Button onAction="#commit"
+            <Button onAction="#commit" fx:id="ok_Btn"
                     defaultButton="true" mnemonicParsing="false" prefWidth="72.0" text="确认" />
          </children>
          <BorderPane.margin>
