@@ -31,25 +31,14 @@ public class TestTransportCenter {
 		transportCenterBLService = new TransportCenterBLImpl();
 		co = new ArrayList<CenterOutVO>();
 		CenterOutVO[] centerout= new CenterOutVO[3];
-		centerout[0] = new CenterOutVO( "广州", "111111", "1", Calendar.getInstance(), "111111", "北京", "人1",null,TransportationEnum.PLANE);
-		centerout[1] = new CenterOutVO( "大连", "111111", "2", Calendar.getInstance(), "111111", "北京", "人2",null,TransportationEnum.CAR);
-		centerout[2] = new CenterOutVO( "洛阳", "111111", "3", Calendar.getInstance(), "111111", "北京", "人3",null,TransportationEnum.TRAIN);
+		centerout[0] = new CenterOutVO("11", "广州", "111111", "1", Calendar.getInstance(), "111111", "北京", "人1",null,TransportationEnum.PLANE);
+		centerout[1] = new CenterOutVO("11", "大连", "111111", "2", Calendar.getInstance(), "111111", "北京", "人2",null,TransportationEnum.CAR);
+		centerout[2] = new CenterOutVO("11", "洛阳", "111111", "3", Calendar.getInstance(), "111111", "北京", "人3",null,TransportationEnum.TRAIN);
 		for (int i = 0; i < centerout.length; i++) {
 			co.add(centerout[i]);
 		}
 	}
 	
-	@Test
-	public void testCheckFormat(){
-		assertNotNull(transportCenterBLService.checkFormat(co.get(0),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(0),false));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(1),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(1),false));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(2),true));
-		assertNotNull(transportCenterBLService.checkFormat(co.get(2),false));
-		assertTrue(transportCenterBLService.checkFormat(co.get(0),true).get(0).getCheckResult());
-		
-	}
 	
 	@Test
 	public void testSubmit(){

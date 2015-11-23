@@ -11,12 +11,11 @@ import po.FormPO;
 public class LoadPO extends TransportPO implements Serializable {
 
 	String peopleTransport; // 押运员
-	public LoadPO(){}
 
-	public LoadPO(String peopleTransport, Calendar LoadDate,
+	public LoadPO(String formID,String peopleTransport, Calendar LoadDate,
 			String TransportID, String placeTo, String peopleSee,
 			String expense, ArrayList<String> IDs) {
-		super();
+		super(FormEnum.TRANSPORT_HALL,formID);
 
 		this.peopleTransport = peopleTransport;
 		this.LoadDate = LoadDate;
@@ -28,10 +27,10 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.formType = FormEnum.TRANSPORT_HALL;
 	}
 	
-	public LoadPO(String peopleTransport, Timestamp LoadDate,
+	public LoadPO(String formID,String peopleTransport, Timestamp LoadDate,
 			String TransportID, String placeTo, String peopleSee,
 			String expense, ArrayList<String> IDs) {
-		super();
+		super(FormEnum.TRANSPORT_HALL,formID);
 
 		this.peopleTransport = peopleTransport;
 		Calendar temp=Calendar.getInstance();

@@ -14,9 +14,6 @@ public class ProportionPO extends InfoPO implements Serializable{
 	public ProportionPO(){
 		super(InfoEnum.PROPORTION);
 		this.proportion=new HashMap<DeliveryTypeEnum, Integer>();
-		this.proportion.put(DeliveryTypeEnum.USUAL, 23);
-		proportion.put(DeliveryTypeEnum.ECONOMIC, 15);
-		proportion.put(DeliveryTypeEnum.FAST, 30);
 	}
 	public HashMap<DeliveryTypeEnum, Integer> getProportion() {
 		return proportion;
@@ -25,5 +22,8 @@ public class ProportionPO extends InfoPO implements Serializable{
 		HashMap<DeliveryTypeEnum, Integer> ans=new HashMap<DeliveryTypeEnum, Integer>();
 		ans.putAll(proportion);
 		return ans;
+	}
+	public void setProportion(HashMap<DeliveryTypeEnum, Integer> toSet){
+		this.proportion.putAll(toSet);
 	}
 }

@@ -15,6 +15,7 @@ import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import rmi.configurationdata.ConfigurationDataService;
+import rmiImpl.ConnecterHelper;
 /**
  * 目前全是stub
  * @author cxworks
@@ -26,13 +27,16 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	 
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	
 	public ConfigurationDataImpl() throws RemoteException{
+		// TODO Auto-generated constructor stub
 		super();
+		Table_Name = "configuration";
+		conn = ConnecterHelper.connSQL(conn);
 	}
 	
 	public Connection getConn() {
@@ -54,10 +58,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy()  throws RemoteException{
 		// TODO Auto-generated method stub
-		ArrayList<SalaryStrategyPO> result=new ArrayList<SalaryStrategyPO>();
-		SalaryStrategyPO stub=new SalaryStrategyPO();
-		result.add(stub);
-		return result;
+		return null;
 	}
 
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy)  throws RemoteException{

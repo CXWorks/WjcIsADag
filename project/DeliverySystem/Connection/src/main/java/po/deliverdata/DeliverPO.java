@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import po.FormEnum;
 import po.FormPO;
+import po.FormStateEnum;
 
 /**
  * 
@@ -18,18 +19,17 @@ public class DeliverPO extends FormPO implements Serializable{
 	private String orderID;
 	private Calendar date;
 	private String postman;
-	public DeliverPO(){}
 	
-	public DeliverPO(String orderID, Calendar date, String postman) {
-		super();
+	public DeliverPO(String formID,String orderID, Calendar date, String postman) {
+		super(FormEnum.DELIVER,formID);
 		this.orderID = orderID;
 		this.date = date;
 		this.postman = postman;
 		this.formType = FormEnum.DELIVER;
 	}
 	
-	public DeliverPO(String orderID, Timestamp date, String postman) {
-		super();
+	public DeliverPO(String formID,String orderID, Timestamp date, String postman) {
+		super(FormEnum.DELIVER,formID);
 		this.orderID = orderID;
 		Calendar temp=Calendar.getInstance();
 		temp.setTime(date);

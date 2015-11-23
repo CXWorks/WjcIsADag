@@ -19,4 +19,10 @@ public class ProportionVO extends ConfigurationVO{
 		this();
 		this.proportion=po.getClonedProportion();
 	}
+	//
+	public ProportionPO toPO(){
+		ProportionPO temp=new ProportionPO();
+		temp.setProportion(proportion);
+		return temp;
+	}
 }

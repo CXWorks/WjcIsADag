@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 
 public abstract class TransportPO extends FormPO implements Serializable {
@@ -15,9 +16,9 @@ public abstract class TransportPO extends FormPO implements Serializable {
 	protected String peopleSee;// 监装员
 	protected String expense;// 运费
 	protected ArrayList<String> IDs;// 本次装箱所有托运单号
-
-	public TransportPO(){
-		super();
+	//
+	protected TransportPO(FormEnum formEnum,String formID){
+		super(formEnum, formID);
 	}
 	
 	public Calendar getLoadDate() {

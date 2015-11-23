@@ -2,6 +2,7 @@ package po.storedata;
 
 import java.util.Calendar;
 
+import po.FormEnum;
 import po.FormPO;
 import po.transportdata.TransportationEnum;
 
@@ -29,6 +30,25 @@ public class StoreOutPO extends FormPO {
 	}
 	public String getTransID() {
 		return transID;
+	}
+	/**
+	 * @param formEnum
+	 * @param formID
+	 * @param orderID
+	 * @param date
+	 * @param destination
+	 * @param transportation
+	 * @param transID
+	 */
+	public StoreOutPO(String formID, String orderID,
+			Calendar date, String destination,
+			TransportationEnum transportation, String transID) {
+		super(FormEnum.STORE_OUT, formID);
+		this.orderID = orderID;
+		this.date = date;
+		this.destination = destination;
+		this.transportation = transportation;
+		this.transID = transID;
 	}
     
 

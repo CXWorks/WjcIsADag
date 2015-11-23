@@ -39,6 +39,6 @@ public class AccountVO extends InfoVO{
 	}
 	//
 	public AccountPO toPO(){
-		return null;
+		return new AccountPO(ID, authority.name(), password);
 	}
 }

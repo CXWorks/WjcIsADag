@@ -92,12 +92,11 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new CenterOutPO(rs.getString("placeFrom"),
-					rs.getString("shelfNum"), rs.getString("transitState"),
-					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
-					rs.getString("placeTo"), rs.getString("peopleSee"),
-					rs.getString("expense"), IDs);
-			result.setFormID(rs.getString("formID"));
+			result = new CenterOutPO(rs.getString("formID"),
+					rs.getString("placeFrom"), rs.getString("shelfNum"),
+					rs.getString("transitState"), rs.getTimestamp("LoadDate"),
+					rs.getString("TransportID"), rs.getString("placeTo"),
+					rs.getString("peopleSee"), rs.getString("expense"), IDs);
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -129,10 +128,10 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 	public OperationMessage update(CenterOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		if(!this.delete(po.getFormID()).operationResult)
-			return result = new OperationMessage(false,"数据库中没有对应表单");
-		if(!this.insert(po).operationResult)
-			return result = new OperationMessage(false,"更新失败");
+		if (!this.delete(po.getFormID()).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应表单");
+		if (!this.insert(po).operationResult)
+			return result = new OperationMessage(false, "更新失败");
 		else
 			return result;
 	}
@@ -154,8 +153,10 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 			while (rs.next()) {
 				temp = rs.getString("formID").substring(2, 17);
 				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"formID").substring(17)));// 最后6位编号
+					ID_MAX = Math.max(
+							ID_MAX,
+							Integer.parseInt(rs.getString("formID").substring(
+									17)));// 最后6位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -201,12 +202,12 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 			while (rs.next()) {
 				IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs")
 						.split(" "));
-				temp = new CenterOutPO(rs.getString("placeFrom"),
-						rs.getString("shelfNum"), rs.getString("transitState"),
+				temp = new CenterOutPO(rs.getString("formID"),
+						rs.getString("placeFrom"), rs.getString("shelfNum"),
+						rs.getString("transitState"),
 						rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"),
 						rs.getString("peopleSee"), rs.getString("expense"), IDs);
-				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

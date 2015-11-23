@@ -15,10 +15,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 	}
 	public ArrayList<FormPO> getForms() {
 		// TODO Auto-generated method stub
-		ArrayList<FormPO> result =new ArrayList<FormPO>();
-		FormPO stub=new FormPO();
-		result.add(stub);
-		return result;
+		return null;
 	}
 
 	public OperationMessage modifyForm(FormPO form) {

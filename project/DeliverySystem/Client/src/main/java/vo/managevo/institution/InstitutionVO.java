@@ -17,7 +17,7 @@ public abstract class InstitutionVO extends InfoVO {
 	/**
 	 * 
 	 */
-	public InstitutionVO(InfoEnum infoEnum) {
+	protected InstitutionVO(InfoEnum infoEnum) {
 		// TODO Auto-generated constructor stub
 		super(infoEnum);
 	}

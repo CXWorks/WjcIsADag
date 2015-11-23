@@ -31,11 +31,11 @@ public class StoreOutBLImpl implements StoreOutBLService {
     }
 
     public OrderVO getOrderVO() {
-        return new OrderVO();
+        return new OrderVO("1123000001");
     }
 
     public TransitVO getTransportVO() {
-        return new CenterOutVO();
+        return new CenterOutVO("050010001201511230000002");
     }
 
     public OperationMessage clearLocalBuffer() {
@@ -43,7 +43,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
     }
 
     public StoreOutVO loadDraft() {
-        return new StoreOutVO();
+        return new StoreOutVO("050010001201511230000002");
     }
 
     public OperationMessage saveDraft(StoreOutVO form) {

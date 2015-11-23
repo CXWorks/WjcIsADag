@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import vo.FormVO;
+import vo.ordervo.OrderVO;
 import bl.blService.examineblService.ExamineblManageService;
 
 /** 
@@ -20,9 +21,6 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	public ArrayList<FormVO> getForms() {
 		// TODO Auto-generated method stub
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
-		FormVO stub=new FormVO();
-		result.add(stub);
-		System.out.println("used");
 		return result;
 	}
 
@@ -50,7 +48,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	public FormVO getForm(FormVO form) {
 		// TODO Auto-generated method stub
 		System.out.println("used");
-		return new FormVO();
+		return new OrderVO("1123000001");
 	}
 
 	/* (non-Javadoc)
@@ -59,9 +57,6 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	public ArrayList<FormVO> getFormHistory() {
 		// TODO Auto-generated method stub
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
-		FormVO stub=new FormVO();
-		result.add(stub);
-		System.out.println("used");
 		return result;
 	}
 

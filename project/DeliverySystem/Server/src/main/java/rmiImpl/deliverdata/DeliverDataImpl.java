@@ -26,7 +26,7 @@ import rmiImpl.ConnecterHelper;
 
 public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		DeliverDataService {
-
+ 
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
@@ -152,9 +152,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new DeliverPO(rs.getString("orderID"),
+			result = new DeliverPO(rs.getString("formID"),rs.getString("orderID"),
 					rs.getTimestamp("date"), rs.getString("postman"));
-			result.setFormID(rs.getString("formID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -174,9 +173,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new DeliverPO(rs.getString("orderID"),
+				temp = new DeliverPO(rs.getString("formID"),rs.getString("orderID"),
 						rs.getTimestamp("date"), rs.getString("postman"));
-				temp.setFormID(rs.getString("formID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 

@@ -22,5 +22,9 @@ public class PackVO extends ConfigurationVO{
 		return packPrice.get(type);
 	}
 	
-	
+	public PackPO toPO(){
+		PackPO temp=new PackPO();
+		temp.setPackPrice(packPrice);
+		return temp;
+	}
 }

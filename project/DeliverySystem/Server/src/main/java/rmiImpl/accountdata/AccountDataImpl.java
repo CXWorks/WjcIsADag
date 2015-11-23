@@ -135,7 +135,7 @@ public class AccountDataImpl extends UnicastRemoteObject implements
 	}
 
 	public OperationMessage checkAccount(String id, String password) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		OperationMessage result = new OperationMessage();
 		AccountPO a = this.getAccountPO(id);
 		if(a==null)

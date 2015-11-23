@@ -31,6 +31,8 @@ public class SalaryStrategyVO extends ConfigurationVO{
 	public StaffTypeEnum getStaff() {
 		return staff;
 	}
-	
+	public SalaryStrategyPO toPO(){
+		return new SalaryStrategyPO(base, commission, bonus, staff);
+	}
 	
 }

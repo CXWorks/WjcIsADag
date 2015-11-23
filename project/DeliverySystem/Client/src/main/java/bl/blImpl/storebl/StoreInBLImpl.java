@@ -35,7 +35,7 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public OrderVO getOrderVO() {
-        return new OrderVO();
+        return new OrderVO("1123000001");
     }
 
     public OperationMessage clearLocalBuffer() {
@@ -43,7 +43,7 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public StoreInVO loadDraft() {
-        return new StoreInVO();
+        return new StoreInVO("050010001201511230000002");
     }
 
     public OperationMessage saveDraft(StoreInVO form) {

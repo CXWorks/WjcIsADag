@@ -3,12 +3,14 @@ package bl.blImpl.receivebl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
 import po.FormEnum;
 import po.receivedata.ReceivePO;
+import rmi.receivedata.ReceiveDataService;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
@@ -40,48 +42,13 @@ public class ReceiveblImpl implements ReceiveBLService {
 		this.formatCheckService=formatCheckService;
 	}
 
-	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
-			boolean isFinal) {
-		ArrayList<CheckFormMessage> result =new ArrayList<CheckFormMessage>();
-		//orderID
-		if (form.getOrderID()!=null) {
-			result.add(formatCheckService.checkOrderID(form.getOrderID()));
-		} else {
-			if (isFinal) {
-				result.add(new CheckFormMessage(false, "订单号为空"));
-			} else {
-				result.add(new CheckFormMessage());
-			}
-		}
-		//transitID
-		if (form.getTransitID()!=null) {
-			result.add(formatCheckService.checkTransitID(form.getTransitID()));
-		} else {
-			if (isFinal) {
-				result.add(new CheckFormMessage(false, "中转单号为空"));
-			} else {
-				result.add(new CheckFormMessage());
-			}
-		}
-		//date
-		if (form.getDate()!=null) {
-			result.add(formatCheckService.checkPreDate(form.getDate()));
-		} else {
-			if (isFinal) {
-				result.add(new CheckFormMessage(false, "到达日期为空"));
-			} else {
-				result.add(new CheckFormMessage());
-			}
-		}
-		return result;
-	}
+	
 
 	public OperationMessage submit(ReceiveVO form) {
 		try {
 			ReceivePO temp=(ReceivePO)vopoFactory.transVOtoPO(form);
-			System.out.println(temp.getOrderID());
-			return RMIHelper.getReceiveDataService()
-					.insert(temp);
+			ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
+			return receiveDataService.insert(temp);
 		} catch (RemoteException e) {
 			return new OperationMessage(false,"net error");
 		}
@@ -96,14 +63,15 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 	public OrderVO getOrderVO(String orderID) {
-		if (formatCheckService.checkOrderID(orderID).getCheckResult()) {
-			return new OrderVO();
+		CheckFormMessage check=formatCheckService.checkOrderID(orderID);
+		if (check.getCheckResult()) {
+			return new OrderVO("1123000001");
 		}
-		return new OrderVO();
+		return new OrderVO("1123000001");
 	}
 
 	public TransitVO getTransitVO() {
-		return new CenterOutVO();
+		return new CenterOutVO("070010001201511230000001");
 	}
 
 	/* (non-Javadoc)
@@ -115,6 +83,35 @@ public class ReceiveblImpl implements ReceiveBLService {
 		} catch (RemoteException e) {
 			return null;
 		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.receiveblService.ReceiveBLService#checkOrderID(java.lang.String, boolean)
+	 */
+	@Override
+	public CheckFormMessage checkOrderID(String orderID, boolean isFinal) {
+		return null;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see bl.blService.receiveblService.ReceiveBLService#checkTransitID(java.lang.String, boolean)
+	 */
+	@Override
+	public CheckFormMessage checkTransitID(String transitID, boolean isFinal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see bl.blService.receiveblService.ReceiveBLService#checkDate(java.util.Calendar, boolean)
+	 */
+	@Override
+	public CheckFormMessage checkDate(Calendar date, boolean isFinal) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

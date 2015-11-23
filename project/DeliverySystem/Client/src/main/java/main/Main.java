@@ -28,7 +28,7 @@ public class Main extends Application {
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//RMIHelper.init();
+    	CacheHelper.initializeCache();
         launch(args);
     }
 

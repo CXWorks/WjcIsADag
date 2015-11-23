@@ -13,11 +13,23 @@ public class BankAccountPO extends InfoPO implements Serializable {
     private String bankID;
     private String accountName;
     private String balance;
-    public BankAccountPO(){
-    	super(InfoEnum.BANK_ACCOUNT);
-    }
+    
 
-    public String getBankID() {
+    /**
+	 * @param infoEnum
+	 * @param bankID
+	 * @param accountName
+	 * @param balance
+	 */
+	public BankAccountPO(String bankID, String accountName,
+			String balance) {
+		super(InfoEnum.BANK_ACCOUNT);
+		this.bankID = bankID;
+		this.accountName = accountName;
+		this.balance = balance;
+	}
+
+	public String getBankID() {
         return bankID;
     }
 

@@ -12,13 +12,13 @@ public class CenterOutVO extends TransitVO  {
 	private String	placeFrom;//出发地
 	private String	shelfNum;//货柜号
 	private TransportationEnum transitState;//转运类型
-	public CenterOutVO(){
-		super(FormEnum.TRANSPORT_CENTER);
+	public CenterOutVO(String formID){
+		super(FormEnum.TRANSPORT_CENTER,formID);
 	}
 	
-	public CenterOutVO(String placeFrom,String TransportID,String shelfNum,
+	public CenterOutVO(String formID,String placeFrom,String TransportID,String shelfNum,
 			Calendar LoadDate,String expense,String placeTo,String	peopleSee,ArrayList<String> IDs,TransportationEnum transitState){
-		this();
+		this(formID);
 		this.placeFrom = placeFrom;
 		this.TransportID = TransportID;
 		this.shelfNum = shelfNum;
@@ -30,7 +30,7 @@ public class CenterOutVO extends TransitVO  {
 		this.IDs=IDs;
 	}
 	public CenterOutVO(CenterOutPO po){
-		this(po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),po.getIDs()
+		this(po.getFormID(),po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),po.getIDs()
 				,po.getTransitState());
 	}
 	

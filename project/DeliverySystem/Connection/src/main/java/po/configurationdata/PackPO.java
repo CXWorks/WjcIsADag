@@ -14,13 +14,8 @@ public class PackPO extends InfoPO implements Serializable{
 	
 	
 	public PackPO() {
-		// TODO Auto-generated constructor stub
 		super(InfoEnum.PACK);
 		this.packPrice=new HashMap();
-		this.packPrice.put(PackEnum.WOOD, (double) 10);
-		this.packPrice.put(PackEnum.PAPER, (double) 5);
-		this.packPrice.put(PackEnum.PACKAGE, (double) 1);
-		this.packPrice.put(PackEnum.OTHER, (double)0);
 	}
 	public double getByType(PackEnum type){
 		return this.packPrice.get(type);
@@ -32,5 +27,9 @@ public class PackPO extends InfoPO implements Serializable{
 		HashMap<PackEnum, Double> ans=new HashMap<PackEnum, Double>();
 		ans.putAll(packPrice);
 		return ans;
+	}
+	//
+	public void setPackPrice(HashMap<PackEnum, Double> toSet){
+		this.packPrice.putAll(toSet);
 	}
 }

@@ -20,11 +20,11 @@ import java.util.List;
  */
 public class PaymentBLImpl implements PaymentBLService {
     public String getNewPaymentID(String date) {
-        return "222333";
+        return "010011001201511230000001";
     }
 
     public PaymentVO getPaymentVO(String paymentID) {
-        return new PaymentVO();
+        return new PaymentVO("010011001201511230000001");
     }
 
     public List<PaymentVO> getPaymentVOs(String startDate, String endDate) {
@@ -32,7 +32,7 @@ public class PaymentBLImpl implements PaymentBLService {
     }
 
     public PaymentVO loadDraft() {
-        return new PaymentVO();
+        return new PaymentVO("010011001201511230000001");
     }
 
     public OperationMessage saveDraft(PaymentVO form) {
@@ -72,6 +72,6 @@ public class PaymentBLImpl implements PaymentBLService {
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return "543533";
+		return "010011001201511230000001";
 	}
 }

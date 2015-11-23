@@ -22,13 +22,9 @@ public class ReceivePO extends FormPO implements Serializable {
 	private String depature;
 	private StateEnum state;
 
-	public ReceivePO() {
-		super();
-	}
-
-	public ReceivePO(String orderID, String transitID, Timestamp date,
+	public ReceivePO(String formID,String orderID, String transitID, Timestamp date,
 			String depature, String state) {
-		this();
+		super(FormEnum.RECEIVE, formID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		Calendar temp = Calendar.getInstance();
@@ -39,9 +35,9 @@ public class ReceivePO extends FormPO implements Serializable {
 		this.formType = FormEnum.RECEIVE;
 	}
 
-	public ReceivePO(String orderID, String transitID, Calendar date,
+	public ReceivePO(String formID,String orderID, String transitID, Calendar date,
 			String depature, String state) {
-		super();
+		super(FormEnum.RECEIVE,formID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		this.date = date;

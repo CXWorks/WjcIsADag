@@ -12,12 +12,12 @@ public class SalaryStrategyPO extends InfoPO implements Serializable{
 	private int base;
 	private int commission;
 	private int bonus;
-	public SalaryStrategyPO(){
+	public SalaryStrategyPO(int base,int commission,int bonus,StaffTypeEnum staff){
 		super(InfoEnum.SALARY);
-		this.staff=StaffTypeEnum.ADMINISTRATOR;
-		this.base=1000;
-		this.commission=100;
-		this.bonus=1000;
+		this.base=base;
+		this.commission=commission;
+		this.bonus=bonus;
+		this.staff=staff;
 	}
 	public int getBase() {
 		return base;
