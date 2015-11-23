@@ -15,6 +15,8 @@
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
@@ -24,37 +26,44 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="到达日期">
+            <Label text="到达日期" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="中转单编号" GridPane.rowIndex="2">
+            <Label text="中转单编号" GridPane.rowIndex="4">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="出发地" GridPane.rowIndex="4">
+            <Label text="出发地" GridPane.rowIndex="6">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="货物到达状态" GridPane.rowIndex="6">
+            <Label text="货物到达状态" GridPane.rowIndex="8">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <DatePicker fx:id="arrive_DatePicker" GridPane.columnIndex="1" />
-            <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="arriveState_Box" prefHeight="23.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <DatePicker fx:id="arrive_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="arriveState_Box" prefHeight="23.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </ChoiceBox>
-            <Label fx:id="date_ErrLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="transit_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="departure_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="date_ErrLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="transit_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="departure_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="中转中心编号">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="centerID_errLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="centerID_Field" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="14.0" layoutY="14.0" text="到达单信息" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
