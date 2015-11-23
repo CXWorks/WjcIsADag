@@ -22,6 +22,7 @@ public class OrderPO extends FormPO implements Serializable {
 	private String goodsName;
 	private String weight;
 	private String volume;
+	private String money;
 	private String goodsType;
 	private DeliverTypeEnum type;
 	private PackingEnum pack;
@@ -31,7 +32,7 @@ public class OrderPO extends FormPO implements Serializable {
 	public OrderPO(String formID,String nameFrom, String nameTo, String unitFrom,
 			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume, String goodsType,
+			String goodsName, String weight, String volume,String money, String goodsType,
 			String type, String pack,ArrayList<String> formIDs, String targetHallID) {
 		super(FormEnum.ORDER,formID);
 		this.nameFrom = nameFrom;
@@ -48,6 +49,7 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
+		this.money=money;
 		this.goodsType = goodsType;
 		this.setType(type);
 		this.setPack(pack);
@@ -125,6 +127,11 @@ public class OrderPO extends FormPO implements Serializable {
 		return pack;
 	}
 	
+	
+	public String getMoney() {
+		return money;
+	}
+
 	public void setType(String type) {
 		switch (type) {
 		case "SLOW":

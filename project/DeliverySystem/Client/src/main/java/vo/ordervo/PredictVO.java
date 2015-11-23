@@ -1,13 +1,17 @@
 package vo.ordervo;
 
-import po.InfoEnum;
-import vo.InfoVO;
-
-public class PredictVO extends InfoVO{
+public class PredictVO {
 	private String expense;
 	private String predictDate;
 	//
 	public PredictVO(){
-		super(InfoEnum.PREDICT);
+		
 	}
+	public String getExpense() {
+		return expense;
+	}
+	public String getPredictDate() {
+		return predictDate;
+	}
+	
 }

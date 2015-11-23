@@ -1,5 +1,7 @@
 package vo.ordervo;
 
+import java.util.ArrayList;
+
 import po.FormEnum;
 import po.FormStateEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -28,6 +30,7 @@ public class OrderVO extends FormVO {
 	private String weight;
 	private String volume;
 	private String goodsType;
+	private String money;
 	private DeliverTypeEnum type;
 	private PackingEnum pack;
 	public OrderVO(String formID) {
@@ -50,12 +53,13 @@ public class OrderVO extends FormVO {
 	 * @param weight
 	 * @param volume
 	 * @param money
+	 * @param goodstype
 	 * @param type
 	 */
 	public OrderVO(String formID,String nameFrom, String nameTo, String unitFrom,
 			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume, String goodsType,
+			String goodsName, String weight, String volume,String money, String goodsType,
 			DeliverTypeEnum type ,PackingEnum pack) {
 		this(formID);
 		this.nameFrom = nameFrom;
@@ -72,6 +76,7 @@ public class OrderVO extends FormVO {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
+		this.money=money;
 		this.goodsType = goodsType;
 		this.type = type;
 		this.pack=pack;
@@ -84,11 +89,11 @@ public class OrderVO extends FormVO {
 				po.getUnitTo(), po.getPhoneNumFrom(), po.getPhoneNumTo(), po
 						.getTelNumFrom(), po.getTelNumTo(), po.getGoodsNum(),
 				po.getGoodsName(), po.getWeight(), po.getVolume(), po.getAddressFrom(),po.getAddressTo(),
-						po.getGoodsType(), po.getType(),po.getPack());
+						po.getMoney(),po.getGoodsType(), po.getType(),po.getPack());
 
 	}
 	//
 	public OrderPO toPO(){
-		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo, phoneNumFrom, phoneNumTo, telNumFrom, telNumTo, goodsNum, goodsName, weight, volume, money, type.name(), null, null);
+		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo, addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom, telNumTo, goodsNum, goodsName, weight, volume, money, goodsType, type.name(), pack.name(), null, null);
 	}
 }
