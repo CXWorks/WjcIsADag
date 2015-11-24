@@ -25,7 +25,7 @@ public class TestConfigurationBLController {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		configurationBLService=new ConfigurationBLController();
+		configurationBLService = new ConfigurationBLController();
 	}
 
 	/**

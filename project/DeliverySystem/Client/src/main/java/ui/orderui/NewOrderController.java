@@ -100,108 +100,109 @@ public class NewOrderController extends BasicFormController {
 
 	        return borderPane;
 	 }
-	 
-	    @FXML
-	    public void initialize(){
-	        // initialize the choice box
-	        type_Box.setItems(FXCollections.observableArrayList(type));
-	        type_Box.getSelectionModel().selectedItemProperty().addListener(
-	                (observable, oldValue, newValue) -> {
-	                    switch (newValue) {
-	                        case "标准快递":
-	                        	deliverType = deliverType.NORMAL;
-	                        	
-	                            break;
-	                        case "经济快递":
-	                        	deliverType = deliverType.SLOW;
-	                            break;
-	                        case "特快专递":
-	                        	deliverType = deliverType.FAST;
-	                            break;
-	                    }
-	                }
-	        );
-	        
-	       pack_Box.setItems(FXCollections.observableArrayList(pack));
-	       pack_Box.getSelectionModel().selectedItemProperty().addListener(
-	                (observable, oldValue, newValue) -> {
-	                    switch (newValue) {
-	                        case "快递袋":
-	                        	packing = packing.BAG;
-	                            break;
-	                        case "纸箱":
-	                        	packing = packing.PAPER;
-	                            break;
-	                        case "木箱":
-	                        	packing = packing.WOOD;
-	                            break;
-	                    }
-	                }
-	        );
-	        
-	        clear(null);
 
-	    }
-	 
-	    public void predictDate(int day){
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日");
-			Calendar cal=Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_YEAR, day);
-			long date= cal.getTimeInMillis();
-			predictDate=sdf.format(new Date(date));
-	    }
-	    
-	    @Override
-	    public void commit(ActionEvent actionEvent) {
-	
-	       OrderVO ovo = new OrderVO
-	                (orderID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
-	                		address_From.getText(),address_To.getText(),
-	                		tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
-	                		goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),
-	                		goods_Type.getText(),deliverType,packing);
+	@FXML
+	public void initialize(){
+		// initialize the choice box
+		type_Box.setItems(FXCollections.observableArrayList(type));
+		type_Box.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					switch (newValue) {
+						case "标准快递":
+							deliverType = deliverType.NORMAL;
 
-	        OperationMessage msg = obl.submit(ovo);
+							break;
+						case "经济快递":
+							deliverType = deliverType.SLOW;
+							break;
+						case "特快专递":
+							deliverType = deliverType.FAST;
+							break;
+					}
+				}
+		);
+
+		pack_Box.setItems(FXCollections.observableArrayList(pack));
+		pack_Box.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					switch (newValue) {
+						case "快递袋":
+							packing = packing.BAG;
+							break;
+						case "纸箱":
+							packing = packing.PAPER;
+							break;
+						case "木箱":
+							packing = packing.WOOD;
+							break;
+					}
+				}
+		);
+
+		clear(null);
+
+	}
+
+	private OrderVO generateOrderVO(){
+		return new OrderVO
+				(orderID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
+						address_From.getText(),address_To.getText(),
+						tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
+						goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),predict_Expense.getText(),
+						goods_Type.getText(),deliverType,packing);
+	}
+
+	public void predictDate(int day){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日");
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		long date= cal.getTimeInMillis();
+		predictDate=sdf.format(new Date(date));
+	}
+
+
+
+	@Override
+	public void commit(ActionEvent actionEvent) {
+
+		OrderVO ovo = generateOrderVO();
+
+		OperationMessage msg = obl.submit(ovo);
 //	        
 //	        PredictVO pvo= new PredictVO
 //	        		(predict_Expense.getText(),predict_Date.getText());
-	        
-	        
 
-	    }
 
-	    @Override
-	    public void clear(ActionEvent actionEvent) {
-	        name_From.clear();
-	        address_From.clear();
-	        unit_From.clear();
-	        tel_From.clear();
-	        phone_From.clear();
-	        
-	        name_To.clear();
-	        address_To.clear();
-	        unit_To.clear();
-	        tel_To.clear();
-	        phone_To.clear();
-	        
-	    	goods_Number.clear();
-	    	goods_Weight.clear();
-	    	goods_Volume.clear();
-	    	goods_Name.clear();
-	        pack_Box.setValue("纸箱");
-	        type_Box.setValue("标准快递");
-	    }
 
-	    @Override
-	    public void saveDraft(ActionEvent actionEvent) {
-	       
-	        OrderVO ovo = new OrderVO
-	                (orderID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
-	                		address_From.getText(),address_To.getText(),
-	                		tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
-	                		goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),
-	                		goods_Type.getText(),deliverType,packing);
-	        obl.saveDraft(ovo);
-	    }
+	}
+
+	@Override
+	public void clear(ActionEvent actionEvent) {
+		name_From.clear();
+		address_From.clear();
+		unit_From.clear();
+		tel_From.clear();
+		phone_From.clear();
+
+		name_To.clear();
+		address_To.clear();
+		unit_To.clear();
+		tel_To.clear();
+		phone_To.clear();
+
+		goods_Number.clear();
+		goods_Weight.clear();
+		goods_Volume.clear();
+		goods_Name.clear();
+		pack_Box.setValue("纸箱");
+		type_Box.setValue("标准快递");
+	}
+
+	@Override
+	public void saveDraft(ActionEvent actionEvent) {
+
+		OrderVO ovo = generateOrderVO();
+		obl.saveDraft(ovo);
+	}
 
 }
