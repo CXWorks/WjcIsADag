@@ -4,8 +4,10 @@ import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.FormatCheckService.FormatCheckService;
+import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import rmi.deliverdata.DeliverDataService;
 import tool.draft.DraftController;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
@@ -24,6 +26,7 @@ public class FormFactory extends BLFactory {
 	//
 	private static ReceiveBLService receiveBLService;
 	private static OrderBLService orderBLService;
+	private static DeliverBLService deliverBlService;
 
 	private FormFactory(){
 
@@ -42,4 +45,5 @@ public class FormFactory extends BLFactory {
 		}
 		return orderBLService;
 	}
+	
 }

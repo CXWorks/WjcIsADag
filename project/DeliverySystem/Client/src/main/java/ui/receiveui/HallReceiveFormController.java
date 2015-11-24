@@ -96,7 +96,7 @@ public class HallReceiveFormController extends BasicFormController{
                 }
         );
 
-        OrderVO2ColumnHelper.setKeyColumn(key_Column);
+        OrderVO2ColumnHelper.setKeyColumn(key_Column); 
         OrderVO2ColumnHelper.setValueColumn(value_Column);
     }
 
