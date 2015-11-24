@@ -17,6 +17,10 @@ public class PackPO extends InfoPO implements Serializable{
 		super(InfoEnum.PACK);
 		this.packPrice=new HashMap();
 	}
+	public PackPO(HashMap<PackEnum,Double> packPrice) {
+		super(InfoEnum.PACK);
+		this.packPrice = packPrice;
+	}
 	public double getByType(PackEnum type){
 		return this.packPrice.get(type);
 	}
