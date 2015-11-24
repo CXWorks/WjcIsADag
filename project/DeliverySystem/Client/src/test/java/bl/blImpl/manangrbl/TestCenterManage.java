@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.vopo.VOPOFactory;
 import vo.managevo.institution.CenterVO;
 import bl.blService.manageblService.ManageblCenterService;
 
@@ -22,7 +23,7 @@ public class TestCenterManage {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		center = new CenterManage();
+		center = new CenterManage(new VOPOFactory());
 		c = new CenterVO("111111","上海",null,null);
 	}
 	

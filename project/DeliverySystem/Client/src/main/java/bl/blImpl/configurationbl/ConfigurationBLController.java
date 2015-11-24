@@ -45,8 +45,6 @@ public class ConfigurationBLController implements ConfigurationBLService {
 			return money.getPrice();
 		case SALARY:
 			return salary.getSalary();
-		case CITY_DISTANCE:
-			return distance.getCityDistance();
 
 		default:
 			return null;
@@ -70,9 +68,6 @@ public class ConfigurationBLController implements ConfigurationBLService {
 		case SALARY:
 			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
 			return salary.modify(salaryStrategyVO);
-		case CITY_DISTANCE:
-			CityDistanceVO cityDistanceVO=(CityDistanceVO)after;
-			return distance.modifyCityDistance(cityDistanceVO);
 		default:
 			return new OperationMessage(false, "unknown type");
 		}

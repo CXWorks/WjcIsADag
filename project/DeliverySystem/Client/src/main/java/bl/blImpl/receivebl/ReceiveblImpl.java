@@ -7,7 +7,9 @@ import java.util.Calendar;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import po.FormEnum;
+import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
+import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
@@ -58,8 +60,18 @@ public class ReceiveblImpl implements ReceiveBLService {
 
 	public OrderVO getOrderVO(String orderID) {
 		CheckFormMessage check=formatCheckService.checkOrderID(orderID);
-		if (check.getCheckResult()) {
-			return new OrderVO("1123000001");
+		if (true) {
+			OrderDataService orderDataService=CacheHelper.getOrderDataService();
+			OrderPO po;
+			try {
+				po = orderDataService.getFormPO(orderID);
+				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
+				return vo;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return new OrderVO("1123000001");
 	}

@@ -110,7 +110,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see blService.examineblService.ExamineblManageService#getFormHistory()
 	 */
 	public ArrayList<FormVO> getFormHistory() {
-		// TODO Auto-generated method stub
+		// TODO discuss with JC
 		ArrayList<FormVO> result=new ArrayList<FormVO>();
 		return result;
 	}

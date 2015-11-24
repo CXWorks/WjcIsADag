@@ -57,4 +57,9 @@ public class CenterVO extends InstitutionVO{
 		//
 		return new CenterPO(centerID, city, storemanPO, countermanPO);
 	}
+
+	public String getCenterID() {
+		return centerID;
+	}
+	
 }

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.vopo.VOPOFactory;
 import vo.managevo.institution.HallVO;
 import bl.blService.manageblService.ManageblHallService;
 
@@ -23,7 +24,7 @@ public class TestHallManage {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		hall = new HallManage();
+		hall = new HallManage(new VOPOFactory());
 		h = new HallVO("111111","上海","上海普陀区",null,null,null,"111111");
 	}
 	

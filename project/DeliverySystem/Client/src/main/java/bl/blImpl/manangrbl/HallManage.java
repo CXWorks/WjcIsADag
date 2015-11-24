@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.HallPO;
+import rmi.companydata.CompanyDataHallService;
+import tool.vopo.VOPOFactory;
 import vo.FormVO;
 import vo.managevo.institution.HallVO;
 import bl.blService.manageblService.ManageblHallService;
+import bl.clientNetCache.CacheHelper;
 
 /** 
  * Client//blImpl.manangrbl//ManageblHallImpl.java
@@ -15,6 +18,12 @@ import bl.blService.manageblService.ManageblHallService;
  * @version 1.0 
  */
 public class HallManage implements ManageblHallService {
+	private CompanyDataHallService hallService;
+	private VOPOFactory vopoFactory;
+	public HallManage(VOPOFactory vopoFactory){
+		this.vopoFactory=vopoFactory;
+		this.hallService=CacheHelper.getCompanyDataHallService();
+	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#getHall()
