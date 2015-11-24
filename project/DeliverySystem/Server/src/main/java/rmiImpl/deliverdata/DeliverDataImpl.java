@@ -26,7 +26,7 @@ import rmiImpl.ConnecterHelper;
 
 public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		DeliverDataService {
- 
+
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
@@ -46,10 +46,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into " + Table_Name
-				+ "(formID,formState,orderID,postman,date) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','"
-				+ po.getOrderID() + "','" + po.getPostman() + "','"
-				+ po.getDateForSQL().toString() + "')";
+				+ "(formID,formState,orderID,postman,date,finished) "
+				+ "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getOrderID()
+				+ "','" + po.getPostman() + "','"
+				+ po.getDateForSQL().toString() + "','" + po.isFinished()
+				+ "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -152,9 +154,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new DeliverPO(rs.getString("formID"),rs.getString("orderID"),
-					rs.getTimestamp("date"), rs.getString("postman"));
+			result = new DeliverPO(rs.getString("formID"),
+					rs.getString("orderID"), rs.getTimestamp("date"),
+					rs.getString("postman"));
 			result.setFormState(rs.getString("formState"));
+			result.setFinished(rs.getBoolean("finished"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -173,9 +177,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new DeliverPO(rs.getString("formID"),rs.getString("orderID"),
-						rs.getTimestamp("date"), rs.getString("postman"));
+				temp = new DeliverPO(rs.getString("formID"),
+						rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("postman"));
 				temp.setFormState(rs.getString("formState"));
+				temp.setFinished(rs.getBoolean("finished"));
 				result.add(temp);
 
 			}
@@ -208,6 +214,28 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 						result.add(rs.getString("formID"));
 					}
 				}
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public ArrayList<String> searchAsPerson(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		ArrayList<String> result = new ArrayList<String>();
+		String select = "select * from " + Table_Name;
+		ResultSet rs = null;
+
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				if (ID.equalsIgnoreCase(rs.getString("postman"))||!rs.getBoolean("finished"))
+					result.add(rs.getString("formID"));
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");

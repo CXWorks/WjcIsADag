@@ -25,4 +25,11 @@ public interface DeliverDataService extends CommonDataService<DeliverPO>{
 	 */
 	public ArrayList<String> available(String HallID) throws RemoteException;
 	
+	/**
+	 * 按派件员查看派件清单
+	 * @param 快递员ID
+	 * @return 可以被派送的派件清单(订单号列表)
+	 */
+	public ArrayList<String> searchAsPerson(String ID) throws RemoteException;
+	
 }
