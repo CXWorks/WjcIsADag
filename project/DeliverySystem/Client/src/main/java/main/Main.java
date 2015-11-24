@@ -16,6 +16,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.financeui.CheckRevenueFormController;
+import ui.financeui.ManageBankAccountController;
 import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
@@ -35,22 +36,20 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
         // TODO demo
         primaryStage.setTitle("Receive Demo");
         primaryStage.setX(150);
         primaryStage.setY(150);
 
-        try {
-            primaryStage.setScene(new Scene(
-            //        HallReceiveFormController.launch()
-                   // LoadCarController.launch()
-                    CheckRevenueFormController.launch()
-            ));
-        } catch (IOException e) {
-            System.out.println("can't find the fxml file");
-        }
+        primaryStage.setScene(new Scene(
+                //HallReceiveFormController.launch()
+                // LoadCarController.launch()
+                CheckRevenueFormController.launch()
+                //ManageBankAccountController.launch()
+        ));
+
         primaryStage.show();
     }
 }

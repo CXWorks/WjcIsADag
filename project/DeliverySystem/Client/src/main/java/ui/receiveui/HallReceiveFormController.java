@@ -51,7 +51,7 @@ public class HallReceiveFormController extends BasicFormController{
 
     private StateEnum stateEnum = StateEnum.Complete;
 
-    ReceiveBLService rbl = new FormFactory().getReceiveBLService();
+    ReceiveBLService rbl = FormFactory.getReceiveBLService();
 
     public static Parent launch() throws IOException {
 

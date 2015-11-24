@@ -80,7 +80,7 @@ public class NewOrderController extends BasicFormController {
 	int day=0;
 	String predictDate;//预计送达日期
 	
-	OrderBLService obl = new FormFactory().getOrderBLService();
+	OrderBLService obl = FormFactory.getOrderBLService();
 	
 	 public static Parent launch() throws IOException {
 

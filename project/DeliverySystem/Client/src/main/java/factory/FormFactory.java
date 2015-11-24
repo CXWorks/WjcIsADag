@@ -18,25 +18,28 @@ import bl.tool.vopo.VOPOFactory;
  */
 public class FormFactory extends BLFactory {
 	//
-	private DraftService draftService;
-	private VOPOFactory vopoFactory;
-	private FormatCheckService formatCheckService;
+	private static DraftService draftService = new DraftController();
+	private static VOPOFactory vopoFactory = new VOPOFactory();
+	private static FormatCheckService formatCheckService = new FormatCheckImpl();
 	//
-	private ReceiveBLService receiveBLService;
-	private OrderBLService orderBLService;
-	public FormFactory(){
-		draftService=new DraftController();
-		vopoFactory=new VOPOFactory();
-		formatCheckService=new FormatCheckImpl();
-		//
-		
-		receiveBLService=new ReceiveblImpl(vopoFactory, draftService, formatCheckService);
-		orderBLService=new OrderBLController(vopoFactory, draftService, formatCheckService);
+	private static ReceiveBLService receiveBLService;
+	private static OrderBLService orderBLService;
+
+	private FormFactory(){
+
 	}
-	public ReceiveBLService getReceiveBLService() {
+
+	public static ReceiveBLService getReceiveBLService() {
+		if(receiveBLService == null){
+			receiveBLService = new ReceiveblImpl(vopoFactory, draftService, formatCheckService);
+		}
 		return receiveBLService;
 	}
-	public OrderBLService getOrderBLService() {
+
+	public static OrderBLService getOrderBLService() {
+		if(orderBLService == null){
+			orderBLService = new OrderBLController(vopoFactory, draftService, formatCheckService);
+		}
 		return orderBLService;
 	}
 }
