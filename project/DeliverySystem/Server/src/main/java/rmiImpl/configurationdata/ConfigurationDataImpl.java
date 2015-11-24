@@ -131,6 +131,12 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
+	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
@@ -405,15 +411,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
-	}
-
-	/* (non-Javadoc)
-	 * @see rmi.configurationdata.ConfigurationDataService#getAllCity2D()
-	 */
-	@Override
-	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
