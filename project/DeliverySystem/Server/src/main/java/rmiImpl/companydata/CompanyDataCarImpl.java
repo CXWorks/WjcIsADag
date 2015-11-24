@@ -4,10 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.CarPO;
+import po.receivedata.ReceivePO;
 import rmi.companydata.CompanyDataCarService;
 import rmiImpl.ConnecterHelper;
 
@@ -37,70 +40,140 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 		return conn;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see rmi.companydata.CompanyDataCarService#getCar()
-	 */
-	public ArrayList<CarPO> getCar() throws RemoteException {
+	public ArrayList<CarPO> getCar(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Table_Name;
+		ResultSet rs = null;
+		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
-		CarPO stub = new CarPO();
-		result.add(stub);
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				String target = rs.getString("carID").substring(0, 7);
+				if (unitID.equalsIgnoreCase(target)) {
+					temp = new CarPO(rs.getBoolean("free"),
+							rs.getString("carID"), rs.getTimestamp("useTime"),
+							null, rs.getString("engineID"),
+							rs.getString("nameID"), rs.getString("chassisID"),
+							rs.getTimestamp("buyTime"));
+					result.add(temp);
+				}
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see rmi.companydata.CompanyDataCarService#newCarID()
-	 */
-	public String newCarID() {
+	public String newCarID(String unitID) {
 		// TODO Auto-generated method stub
-		return "11111";
+		String selectAll = "select * from " + Table_Name;
+		ResultSet rs = null;
+		int ID_MAX = 0;
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				String temp = rs.getString("carID").substring(0, 7);
+				if (unitID.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
+							"carID").substring(7)));// 最后3位编号
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 999)
+			return null;
+		String added = String.format("%03d", ID_MAX);
+
+		return unitID + added;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.companydata.CompanyDataCarService#addCar(po.configurationdata.CarPO)
-	 */
-	public OperationMessage addCar(CarPO car) {
+	public OperationMessage addCar(CarPO po) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		String insert = "insert into " + Table_Name
+				+ "(carID,free,useTime,nameID,chassisID,buyTime) " + "values('"
+				+ po.getCarID() + "','" + po.isFree() + "','"
+				+ po.getUseTimeForSQL() + "','" + po.getNameID() + "','"
+				+ po.getChassisID() + "','" + po.getBuyTimeForSQL() + "')";
+
+		try {
+			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.companydata.CompanyDataCarService#deleteCar(po.configurationdata.
-	 * CarPO)
-	 */
 	public OperationMessage deleteCar(CarPO car) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		String delete = "delete from " + Table_Name + " where carID= '"
+				+ car.getCarID() + "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
+			System.err.println("删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.companydata.CompanyDataCarService#modifyCar(po.configurationdata.
-	 * CarPO)
-	 */
 	public OperationMessage modifyCar(CarPO car) {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		if (!this.deleteCar(car).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应车辆");
+		if (!this.addCar(car).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
 	}
 
 	@Override
-	public ArrayList<CarPO> availableCar() throws RemoteException {
+	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Table_Name;
+		ResultSet rs = null;
+		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
-		CarPO stub = new CarPO();
-		result.add(stub);
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				String target = rs.getString("carID").substring(0, 7);
+				if (unitID.equalsIgnoreCase(target)
+						|| rs.getBoolean("free") == true) {
+					temp = new CarPO(true, rs.getString("carID"),
+							rs.getTimestamp("useTime"), null,
+							rs.getString("engineID"), rs.getString("nameID"),
+							rs.getString("chassisID"),
+							rs.getTimestamp("buyTime"));
+					result.add(temp);
+				}
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 

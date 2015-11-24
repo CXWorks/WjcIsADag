@@ -1,6 +1,7 @@
 package po.companydata;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
@@ -28,12 +29,18 @@ public class CarPO extends InfoPO implements Serializable{
 	public Calendar getUseTime() {
 		return useTime;
 	}
+	public Timestamp getUseTimeForSQL() {
+		return new Timestamp(this.useTime.getTimeInMillis());
+	}
 	public ImageIcon getImg() {
 		return img;
 	}
 	
 	public Calendar getBuyTime() {
 		return buyTime;
+	}
+	public Timestamp getBuyTimeForSQL() {
+		return new Timestamp(this.buyTime.getTimeInMillis());
 	}
 	
 	//
@@ -80,6 +87,22 @@ public class CarPO extends InfoPO implements Serializable{
 		this.nameID = nameID;
 		this.chassisID = chassisID;
 		this.buyTime = buyTime;
+	}
+	public CarPO(boolean free, String carID,
+			Timestamp useTime, ImageIcon img, String engineID, String nameID,
+			String chassisID, Timestamp buyTime) {
+		super(InfoEnum.CAR);
+		this.free = free;
+		this.carID = carID;
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(useTime);
+		this.useTime = temp;
+		this.img = img;
+		this.engineID = engineID;
+		this.nameID = nameID;
+		this.chassisID = chassisID;
+		temp.setTime(buyTime);
+		this.buyTime = temp;
 	}
 	
 	

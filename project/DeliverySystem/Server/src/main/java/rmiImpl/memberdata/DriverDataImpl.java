@@ -54,7 +54,8 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 						rs.getString("tel"), rs.getTimestamp("licence_period"),
 						rs.getString("ID"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("personID"),
-						rs.getString("sex"), rs.getString("love"),rs.getString("institutionID"));
+						rs.getString("sex"), rs.getString("love"),
+						rs.getString("institutionID"));
 				result.add((DriverPO) temp);
 
 			}
@@ -82,12 +83,14 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	public OperationMessage addStaff(DriverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String add = "insert into " + Table_Name
-				+ "(ID,name,age,personID,sex,love,birth,tel,licence_period) "
+		String add = "insert into "
+				+ Table_Name
+				+ "(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) "
 				+ "values('" + po.getID() + "','" + po.getName() + "','"
 				+ po.getAge() + "','" + po.getPersonID() + "','" + po.getSex()
-				+ "','" + po.getLove() + "','" + po.getBirthForSQL() + "','"
-				+ po.getTel() + "','" + po.getLicence_periodForSQL() + "')";
+				+ "','" + po.getLove() + "','" + po.getInititutionID() + "','"
+				+ po.getBirthForSQL() + "','" + po.getTel() + "','"
+				+ po.getLicence_periodForSQL() + "')";
 
 		try {
 			statement = conn.prepareStatement(add);
@@ -133,8 +136,8 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 			while (rs.next()) {
 				String temp = rs.getString("ID").substring(0, 7);
 				if (unitID.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"ID").substring(7)));// 最后3位编号
+					ID_MAX = Math.max(ID_MAX,
+							Integer.parseInt(rs.getString("ID").substring(7)));// 最后3位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -162,9 +165,9 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 			rs.next();
 			result = new DriverPO(rs.getTimestamp("birth"),
 					rs.getString("tel"), rs.getTimestamp("licence_period"),
-					rs.getString("ID"), rs.getString("name"),
-					rs.getInt("age"), rs.getString("personID"),
-					rs.getString("sex"), rs.getString("love"),rs.getString("institutionID"));
+					rs.getString("ID"), rs.getString("name"), rs.getInt("age"),
+					rs.getString("personID"), rs.getString("sex"),
+					rs.getString("love"), rs.getString("institutionID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
