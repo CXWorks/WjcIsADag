@@ -1,5 +1,6 @@
 package bl.blImpl.manangrbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -29,51 +30,95 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#getHall()
 	 */
 	public ArrayList<HallVO> getHall() {
-		// TODO Auto-generated method stub
-		ArrayList<HallVO> result=new ArrayList<HallVO>();
-		HallVO stub=new HallVO();
-		result.add(stub);
-		return result;
+		try {
+			ArrayList<HallPO> po=hallService.getHall();
+			ArrayList<HallVO> result=new ArrayList<HallVO>(po.size());
+			for(int i=0;i<po.size();i++){
+				HallPO each=po.get(i);
+				HallVO temp=(HallVO)vopoFactory.transPOtoVO(each);
+				result.add(temp);
+			}
+			return result;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#addHall(vo.managevo.institution.HallVO)
 	 */
 	public OperationMessage addHall(HallVO hall) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
+		try {
+			return hallService.addHall(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#modifyHall(vo.managevo.institution.HallVO)
 	 */
 	public OperationMessage modifyHall(HallVO hall) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
+		try {
+			return hallService.modifyHall(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#deleteHall(po.companydata.HallPO)
 	 */
 	public OperationMessage deleteHall(HallVO hall) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
+		try {
+			return hallService.deleteHall(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#searchHall(vo.managevo.institution.HallVO)
 	 */
 	public HallVO searchHall(HallVO hall) {
-		// TODO Auto-generated method stub
-		return new HallVO();
+		String ID=hall.getHallID();
+		ArrayList<HallPO> po;
+		try {
+			po = hallService.getHall();
+			HallPO each=null;
+			boolean found=false;
+			for(int i=0;i<po.size();i++){
+				each=po.get(i);
+				if (each.getHallID().equalsIgnoreCase(ID)) {
+					found=true;
+					break;
+				}
+			}
+			if (found) {
+				HallVO vo=(HallVO)vopoFactory.transPOtoVO(each);
+				return vo;
+			} else {
+				return null;
+			}
+		} catch (RemoteException e) {
+			return null;
+		}
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#newHallID()
 	 */
 	public String newHallID(String centerID) {
-		// TODO Auto-generated method stub
-		return "11111";
+		try {
+			String ID=hallService.newHallID(centerID.substring(0, 3));
+			return ID;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)

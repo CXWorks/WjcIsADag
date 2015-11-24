@@ -20,6 +20,7 @@ public class OrderBLController implements OrderBLService{
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 	private FormatCheckService formatCheckService;
+	private Predicter predicter;
 	//
 	public OrderBLController(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
 		this.vopoFactory=vopoFactory;

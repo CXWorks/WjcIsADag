@@ -11,6 +11,7 @@ import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
 import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 import vo.transitvo.CenterOutVO;
@@ -59,8 +60,6 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 	public OrderVO getOrderVO(String orderID) {
-		CheckFormMessage check=formatCheckService.checkOrderID(orderID);
-		if (true) {
 			OrderDataService orderDataService=CacheHelper.getOrderDataService();
 			OrderPO po;
 			try {
@@ -68,12 +67,10 @@ public class ReceiveblImpl implements ReceiveBLService {
 				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 				return vo;
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return null;
 			}
 			
-		}
-		return new OrderVO("1123000001");
+		
 	}
 
 	public TransitVO getTransitVO() {
@@ -85,7 +82,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 	 */
 	public String newID() {
 		try {
-			return CacheHelper.getReceiveDataService().newID("0001001");
+			return CacheHelper.getReceiveDataService().newID(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
 			return null;
 		}

@@ -1,5 +1,7 @@
 package bl.blImpl.orderbl;
 
+import rmi.configurationdata.ConfigurationDataService;
+
 /** 
  * Client//bl.blImpl.orderbl//Predicter.java
  * @author CXWorks
@@ -7,5 +9,5 @@ package bl.blImpl.orderbl;
  * @version 1.0 
  */
 public class Predicter {
-	
+	private ConfigurationDataService configurationDataService;
 }
