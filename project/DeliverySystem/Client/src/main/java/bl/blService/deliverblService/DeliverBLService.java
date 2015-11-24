@@ -49,15 +49,9 @@ public interface DeliverBLService extends FormBLService<DeliverVO>{
 	 */
 	public OrderVO getOrderVO(String orderID);
 	/**
-	 * 获得空闲的快递员
-	 * @param hallID
-	 * @return
-	 */
-	public ArrayList<StaffVO> getAvaliableDeliver(String hallID);
-	/**
 	 * 获得营业厅的未派送订单
 	 * @param hallID
 	 * @return
 	 */
-	public ArrayList<OrderVO> getUnhandledOrders(String hallID);
+	public ArrayList<String> getUnhandledOrderID(String hallID);
 }

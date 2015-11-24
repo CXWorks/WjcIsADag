@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import po.FormEnum;
 import po.deliverdata.DeliverPO;
+import po.memberdata.StaffPO;
 import po.orderdata.OrderPO;
 import rmi.deliverdata.DeliverDataService;
+import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import message.CheckFormMessage;
 import message.OperationMessage;
@@ -27,7 +29,6 @@ import bl.tool.vopo.VOPOFactory;
  * @version 1.0 
  */
 public class DeliverBLImpl implements DeliverBLService {
-	private Deliver deliver;
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 	private FormatCheckService formatCheckService;
@@ -67,7 +68,7 @@ public class DeliverBLImpl implements DeliverBLService {
 	public OperationMessage submit(DeliverVO form) {
 		try {
 			DeliverPO po=(DeliverPO)vopoFactory.transVOtoPO(form);
-			return CacheHelper.getDeliverDataService().insert(po);
+			return CacheHelper.getExamineSubmitService().submit(po);
 		} catch (Exception e) {
 			return new OperationMessage(false, "net error");
 		}
@@ -101,20 +102,16 @@ public class DeliverBLImpl implements DeliverBLService {
 		}
 	}
 	/* (non-Javadoc)
-	 * @see bl.blService.deliverblService.DeliverBLService#getAvaliableDeliver(java.lang.String)
-	 */
-	@Override
-	public ArrayList<StaffVO> getAvaliableDeliver(String hallID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	/* (non-Javadoc)
 	 * @see bl.blService.deliverblService.DeliverBLService#getUnhandledOrders(java.lang.String)
 	 */
 	@Override
-	public ArrayList<OrderVO> getUnhandledOrders(String hallID) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<String> getUnhandledOrderID(String hallID) {
+		try {
+			ArrayList<String> order=deliverDataService.available(hallID);
+			return order;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 }

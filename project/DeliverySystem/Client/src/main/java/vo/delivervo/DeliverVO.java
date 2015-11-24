@@ -18,6 +18,7 @@ public class DeliverVO extends FormVO{
 	private String orderID;
 	private Calendar date;
 	private String postman;
+	private boolean finished;
 	
 	public String getOrderID() {
 		return orderID;
@@ -33,6 +34,7 @@ public class DeliverVO extends FormVO{
 	}
 	public DeliverVO(String formID){
 		super(FormEnum.DELIVER,FormStateEnum.CONSTRUCTED,formID);
+		this.finished=false;
 	}
 	//
 	/**
@@ -48,8 +50,11 @@ public class DeliverVO extends FormVO{
 	}
 	public DeliverVO(DeliverPO po){
 		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
+		this.finished=po.isFinished();
 	}
 	public DeliverPO toPO(){
-		return new DeliverPO(orderID, orderID, date, postman);
+		DeliverPO po= new DeliverPO(orderID, orderID, date, postman);
+		po.setFinished(finished);
+		return po;
 	}
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import vo.delivervo.DeliverVO;
 import bl.blService.deliverblService.CheckDeliverForm;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.deliverbl//TestCheckDeliverImpl.java
@@ -25,7 +26,7 @@ public class TestCheckDeliverImpl {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		checkDeliverForm=new CheckDeliverImpl();
+		checkDeliverForm=new CheckDeliverImpl(new VOPOFactory());
 		list=new ArrayList<DeliverVO>();
 		list.add(new DeliverVO("11","321432", Calendar.getInstance(), "43232"));
 		list.add(new DeliverVO("11","3232", Calendar.getInstance(), "887232"));

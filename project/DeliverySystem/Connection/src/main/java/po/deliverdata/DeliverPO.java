@@ -19,6 +19,8 @@ public class DeliverPO extends FormPO implements Serializable{
 	private String orderID;
 	private Calendar date;
 	private String postman;
+	private boolean finished;
+	
 	
 	public DeliverPO(String formID,String orderID, Calendar date, String postman) {
 		super(FormEnum.DELIVER,formID);
@@ -26,6 +28,7 @@ public class DeliverPO extends FormPO implements Serializable{
 		this.date = date;
 		this.postman = postman;
 		this.formType = FormEnum.DELIVER;
+		this.finished=false;
 	}
 	
 	public DeliverPO(String formID,String orderID, Timestamp date, String postman) {
@@ -36,6 +39,7 @@ public class DeliverPO extends FormPO implements Serializable{
 		this.date = temp;
 		this.postman = postman;
 		this.formType = FormEnum.DELIVER;
+		this.finished=false;
 	}
 	
 	public String getOrderID() {
@@ -56,5 +60,14 @@ public class DeliverPO extends FormPO implements Serializable{
 	public Timestamp getDateForSQL(){
 		return new Timestamp(this.date.getTimeInMillis());
 	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+	
 	
 }
