@@ -3,6 +3,7 @@
  */
 package main;
 
+import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class Main extends Application {
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//CacheHelper.initializeCache();
+    	CacheHelper.initializeCache();
         launch(args);
     }
 
