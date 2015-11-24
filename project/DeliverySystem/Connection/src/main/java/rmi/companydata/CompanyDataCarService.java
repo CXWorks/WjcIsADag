@@ -20,7 +20,9 @@ public interface CompanyDataCarService extends DataService<CarPO>{
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "CompanyDataCar";
 
-	public ArrayList<CarPO> getCar(String unitID) throws RemoteException;
+	public ArrayList<CarPO> getCars(String unitID) throws RemoteException;
+	
+	public CarPO getCar(String carID) throws RemoteException;
 	
 	public String newCarID(String unitID) throws RemoteException;
 	

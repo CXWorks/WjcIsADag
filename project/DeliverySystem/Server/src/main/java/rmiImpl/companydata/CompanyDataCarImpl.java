@@ -40,7 +40,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 		return conn;
 	}
 
-	public ArrayList<CarPO> getCar(String unitID) throws RemoteException {
+	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
 		String selectAll = "select * from " + Table_Name;
 		ResultSet rs = null;
@@ -174,6 +174,31 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+
+	
+	@Override
+	public CarPO getCar(String carID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Table_Name + " where carID= '" + carID
+				+ "'";
+		ResultSet rs = null;
+		CarPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result  = new CarPO(rs.getBoolean("free"),
+					rs.getString("carID"), rs.getTimestamp("useTime"),
+					null, rs.getString("engineID"),
+					rs.getString("nameID"), rs.getString("chassisID"),
+					rs.getTimestamp("buyTime"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
 		return result;
 	}
 
