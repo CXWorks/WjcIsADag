@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import message.OperationMessage;
 import po.companydata.CarPO;
+import po.configurationdata.City2DPO;
 import po.configurationdata.CityDistancePO;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
@@ -20,6 +21,7 @@ import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
+import po.financedata.PaymentPO;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.ConnecterHelper;
 
@@ -59,18 +61,90 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return conn;
 	}
 
-	public ArrayList<CityDistancePO> getCityDistance() throws RemoteException {
+	@Override
+	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<CityDistancePO> result = new ArrayList<CityDistancePO>();
-		CityDistancePO stub = new CityDistancePO();
-		result.add(stub);
+		OperationMessage result = new OperationMessage();
+		String insert = "insert into " + City2D + "(name,x,data,y) "
+				+ "values('" + po.getName() + "','" + po.getX() + "','"
+				+ po.getY() + "')";
+		try {
+			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 
-	public OperationMessage modifyCityDistance(CityDistancePO after)
-			throws RemoteException {
+	@Override
+	public OperationMessage deleteCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		String delete = "delete from " + City2D + " where name= '" + name + "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
+			System.err.println("删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		if (!this.deleteCity2D(po.getName()).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应城市");
+		if (!this.newCity2D(po).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
+	}
+
+	@Override
+	public City2DPO getCity2D(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + City2D + " where name= '" + name
+				+ "'";
+		ResultSet rs = null;
+		City2DPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = new City2DPO(rs.getString("name"), rs.getDouble("x"),
+					rs.getDouble("y"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage clearCity2D() throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String clear = "delete from " + City2D;
+		try {
+			statement = conn.prepareStatement(clear);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "清空数据库时出错：");
+			System.err.println("清空数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy()
@@ -168,10 +242,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Pack + "set money='" + pack.getByType(PackEnum.OTHER) + "' where name= 'OTHER'");
-		operations.add("update " + Pack + "set money='" + pack.getByType(PackEnum.PACKAGE) + "' where name= 'PACKAGE'");
-		operations.add("update " + Pack + "set money='" + pack.getByType(PackEnum.PAPER) + "' where name= 'PAPER'");
-		operations.add("update " + Pack + "set money='" + pack.getByType(PackEnum.WOOD) + "' where name= 'WOOD'");
+		operations.add("update " + Pack + "set money='"
+				+ pack.getByType(PackEnum.OTHER) + "' where name= 'OTHER'");
+		operations.add("update " + Pack + "set money='"
+				+ pack.getByType(PackEnum.PACKAGE) + "' where name= 'PACKAGE'");
+		operations.add("update " + Pack + "set money='"
+				+ pack.getByType(PackEnum.PAPER) + "' where name= 'PAPER'");
+		operations.add("update " + Pack + "set money='"
+				+ pack.getByType(PackEnum.WOOD) + "' where name= 'WOOD'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -222,9 +300,15 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.ECONOMIC) + "' where name= 'ECONOMIC'");
-		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.USUAL) + "' where name= 'USUAL'");
-		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.FAST) + "' where name= 'FAST'");
+		operations.add("update " + Price + "set money='"
+				+ price.getByType(DeliveryTypeEnum.ECONOMIC)
+				+ "' where name= 'ECONOMIC'");
+		operations.add("update " + Price + "set money='"
+				+ price.getByType(DeliveryTypeEnum.USUAL)
+				+ "' where name= 'USUAL'");
+		operations.add("update " + Price + "set money='"
+				+ price.getByType(DeliveryTypeEnum.FAST)
+				+ "' where name= 'FAST'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -276,9 +360,15 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.ECONOMIC) + "' where name= 'ECONOMIC'");
-		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.USUAL) + "' where name= 'USUAL'");
-		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.FAST) + "' where name= 'FAST'");
+		operations.add("update " + Proportion + "set num='"
+				+ proportion.getByType(DeliveryTypeEnum.ECONOMIC)
+				+ "' where name= 'ECONOMIC'");
+		operations.add("update " + Proportion + "set num='"
+				+ proportion.getByType(DeliveryTypeEnum.USUAL)
+				+ "' where name= 'USUAL'");
+		operations.add("update " + Proportion + "set num='"
+				+ proportion.getByType(DeliveryTypeEnum.FAST)
+				+ "' where name= 'FAST'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
