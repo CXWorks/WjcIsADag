@@ -19,5 +19,7 @@ public interface FormBLService<T extends FormVO> {
     public OperationMessage saveDraft(T form);
 
     public OperationMessage submit(T form);
+    
+    public ArrayList<CheckFormMessage> checkFormat(T form,boolean isFinal);
 
 }

@@ -36,7 +36,7 @@ public class OrderVO extends FormVO {
 	public OrderVO(String formID) {
 		super(FormEnum.ORDER,FormStateEnum.CONSTRUCTED,formID);
 	}
-
+	
 	/**
 	 * @param nameFrom
 	 * @param nameTo

@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.InfoEnum;
+import po.configurationdata.PackPO;
 import rmi.configurationdata.ConfigurationDataService;
+import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.ConfigurationVO;
+import vo.configurationvo.PackVO;
+import vo.configurationvo.PriceVO;
+import vo.configurationvo.ProportionVO;
+import vo.configurationvo.SalaryStrategyVO;
 import bl.blService.configurationblService.ConfigurationBLService;
 import bl.clientNetCache.CacheHelper;
 import bl.tool.vopo.VOPOFactory;
@@ -31,16 +37,46 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.configurationdata.enums.ConfigurationEnum)
 	 */
 	public ArrayList<ConfigurationVO> get(InfoEnum type) {
-		// TODO Auto-generated method stub
-		return new ArrayList<ConfigurationVO>();
+		switch (type) {
+		case PACK:
+			return money.getPack();
+		case PROPORTION:
+			return money.getProportion();
+		case PRICE:
+			return money.getPrice();
+		case SALARY:
+			return salary.getSalary();
+		case CITY_DISTANCE:
+			return distance.getCityDistance();
+
+		default:
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.configurationblService.ConfigurationBLService#modify(vo.configurationvo.ConfigurationVO)
 	 */
 	public OperationMessage modify(ConfigurationVO after) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		switch (after.getInfoEnum()) {
+		case PRICE:
+			PriceVO priceVO=(PriceVO)after;
+			return money.modifyPrice(priceVO);
+		case PROPORTION:
+			ProportionVO proportionVO=(ProportionVO)after;
+			return money.modifyProportion(proportionVO);
+		case PACK:
+			PackVO packVO=(PackVO)after;
+			return money.modifyPack(packVO);
+		case SALARY:
+			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
+			return salary.modify(salaryStrategyVO);
+		case CITY_DISTANCE:
+			CityDistanceVO cityDistanceVO=(CityDistanceVO)after;
+			return distance.modifyCityDistance(cityDistanceVO);
+		default:
+			return new OperationMessage(false, "unknown type");
+		}
 	}
 
 }

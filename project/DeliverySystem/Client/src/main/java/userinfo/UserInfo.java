@@ -12,11 +12,7 @@ public class UserInfo {
 	private static String userID;
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
-	public UserInfo(String userID,StaffTypeEnum staffTypeEnum,String institutionID){
-		this.userID=userID;
-		this.staffType=staffTypeEnum;
-		this.institutionID=institutionID;
-		this.logined=true;
+	private UserInfo(){	
 	}
 	//
 	private static boolean logined=false;
@@ -42,5 +38,10 @@ public class UserInfo {
 		}
 	}
 	
-	
+	public static void setInfo(String userID,StaffTypeEnum staffTypeEnum,String institutionID){
+		UserInfo.userID=userID;
+		UserInfo.staffType=staffTypeEnum;
+		UserInfo.institutionID=institutionID;
+		UserInfo.logined=true;
+	}
 }

@@ -3,9 +3,11 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import message.OperationMessage;
 import po.configurationdata.SalaryStrategyPO;
 import bl.tool.vopo.VOPOFactory;
 import rmi.configurationdata.ConfigurationDataService;
+import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.SalaryStrategyVO;
 
 /** 
@@ -21,19 +23,28 @@ public class Salary {
 		this.configurationDataService=configurationDataService;
 		this.vopoFactory=vopoFactory;
 	}
-	public ArrayList<SalaryStrategyVO> get(){
+	public ArrayList<ConfigurationVO> getSalary(){
 		try {
 			ArrayList<SalaryStrategyPO> po= this.configurationDataService.getSalaryStrategy();
-			ArrayList<SalaryStrategyVO> vo=new ArrayList<SalaryStrategyVO>(po.size());
+			ArrayList<ConfigurationVO> vo=new ArrayList<ConfigurationVO>(po.size());
 			for (int i = 0; i < po.size(); i++) {
-				SalaryStrategyVO temp=new SalaryStrategyVO(po.get(i));
+				SalaryStrategyPO each=po.get(i);
+				SalaryStrategyVO temp=(SalaryStrategyVO)vopoFactory.transPOtoVO(each);
 				vo.add(temp);
 			}
 			//
 			return vo;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return null;
+		}
+	}
+	//
+	public OperationMessage modify(SalaryStrategyVO vo){
+		SalaryStrategyPO po=(SalaryStrategyPO)vopoFactory.transVOtoPO(vo);
+		try {
+			return configurationDataService.modifySalaryStrategy(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
 		}
 	}
 }

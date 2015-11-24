@@ -1,12 +1,18 @@
 package bl.blImpl.deliverbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.FormEnum;
 import po.deliverdata.DeliverPO;
+import po.orderdata.OrderPO;
+import rmi.deliverdata.DeliverDataService;
+import rmi.orderdata.OrderDataService;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
+import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
@@ -20,23 +26,30 @@ import bl.tool.vopo.VOPOFactory;
  * @date 2015年11月15日 下午4:45:57
  * @version 1.0 
  */
-public class DeliverBLController implements DeliverBLService {
+public class DeliverBLImpl implements DeliverBLService {
 	private Deliver deliver;
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 	private FormatCheckService formatCheckService;
+	private DeliverDataService deliverDataService;
 	//
-	public DeliverBLController(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
+	public DeliverBLImpl(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
 		this.formatCheckService=formatCheckService;
+		this.deliverDataService=CacheHelper.getDeliverDataService();
 	}
 	/* (non-Javadoc)
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
-		// TODO Auto-generated method stub
-		return "2333";
+		String unitID=UserInfo.getInstitutionID();
+		try {
+			String ID=deliverDataService.newID(unitID);
+			return ID;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
@@ -56,8 +69,7 @@ public class DeliverBLController implements DeliverBLService {
 			DeliverPO po=(DeliverPO)vopoFactory.transVOtoPO(form);
 			return CacheHelper.getDeliverDataService().insert(po);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return new OperationMessage(false, "");
+			return new OperationMessage(false, "net error");
 		}
 	}
 
@@ -79,8 +91,30 @@ public class DeliverBLController implements DeliverBLService {
 	 * @see bl.blService.deliverblService.DeliverBLService#getOrderVO(java.lang.String)
 	 */
 	public OrderVO getOrderVO(String orderID) {
+		OrderDataService orderDataService=CacheHelper.getOrderDataService();
+		try {
+			OrderPO po=orderDataService.getFormPO(orderID);
+			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.deliverblService.DeliverBLService#getAvaliableDeliver(java.lang.String)
+	 */
+	@Override
+	public ArrayList<StaffVO> getAvaliableDeliver(String hallID) {
 		// TODO Auto-generated method stub
-		return new OrderVO("1123000001");
+		return null;
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.deliverblService.DeliverBLService#getUnhandledOrders(java.lang.String)
+	 */
+	@Override
+	public ArrayList<OrderVO> getUnhandledOrders(String hallID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

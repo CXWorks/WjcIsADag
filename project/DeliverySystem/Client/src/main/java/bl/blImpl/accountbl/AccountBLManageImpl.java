@@ -33,7 +33,8 @@ public class AccountBLManageImpl implements AccountBLManageService{
 			ArrayList<AccountPO> po=accountDataService.getAccountPOs();
 			ArrayList<AccountVO> vo=new ArrayList<AccountVO>(po.size());
 			for (int i = 0; i < po.size(); i++) {
-				AccountVO temp=new AccountVO(po.get(i));
+				AccountPO each=po.get(i);
+				AccountVO temp=(AccountVO)vopoFactory.transPOtoVO(each);
 				vo.add(temp);
 			}
 			return vo;
@@ -48,7 +49,7 @@ public class AccountBLManageImpl implements AccountBLManageService{
 	public AccountVO getAccountVO(String accountID) {
 		try {
 			AccountPO po=accountDataService.getAccountPO(accountID);
-			AccountVO vo=new AccountVO(po);
+			AccountVO vo=(AccountVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
 			return null;

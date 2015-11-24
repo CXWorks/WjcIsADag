@@ -115,4 +115,16 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#checkFormat(vo.FormVO, boolean)
+	 */
+	@Override
+	public ArrayList<CheckFormMessage> checkFormat(ReceiveVO form,
+			boolean isFinal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
