@@ -18,6 +18,7 @@ import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
+import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.ConnecterHelper;
@@ -38,6 +39,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	private String City2D;
 	private String SalaryStrategy;
 	private String Pack;
+	private String Price;
+	private String Proportion;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
@@ -47,6 +50,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		City2D = "city2d";
 		SalaryStrategy = "salary_strategy";
 		Pack = "pack";
+		Price = "price";
+		Proportion = "proportion";
 		conn = ConnecterHelper.connSQL(conn);
 	}
 
@@ -126,7 +131,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 
 	public PackPO getPack() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + SalaryStrategy;
+		String selectAll = "select * from " + Pack;
 		ResultSet rs = null;
 		PackPO result = null;
 		HashMap<PackEnum, Double> packPrice = new HashMap();
@@ -183,57 +188,122 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 
 	public PricePO getPrice() throws RemoteException {
 		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Price;
+		ResultSet rs = null;
+		PricePO result = null;
+		HashMap<DeliveryTypeEnum, Integer> price = new HashMap();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				switch (rs.getString("name")) {
+				case "ECONOMIC":
+					price.put(DeliveryTypeEnum.ECONOMIC, rs.getInt("money"));
+					break;
+				case "USUAL":
+					price.put(DeliveryTypeEnum.USUAL, rs.getInt("money"));
+					break;
+				case "FAST":
+					price.put(DeliveryTypeEnum.FAST, rs.getInt("money"));
+					break;
+				}
 
-		return new PricePO();
+			}
+			result = new PricePO(price);
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		ArrayList<String> operations = new ArrayList<String>();
+		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.ECONOMIC) + "' where name= 'ECONOMIC'");
+		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.USUAL) + "' where name= 'USUAL'");
+		operations.add("update " + Price + "set money='" + price.getByType(DeliveryTypeEnum.FAST) + "' where name= 'FAST'");
+		try {
+			for (String tmp : operations) {
+				statement = conn.prepareStatement(tmp);
+				statement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "更新时出错：");
+			System.err.println("更新时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public ProportionPO getProportion() throws RemoteException {
 		// TODO Auto-generated method stub
-		return new ProportionPO();
+		String selectAll = "select * from " + Proportion;
+		ResultSet rs = null;
+		ProportionPO result = null;
+		HashMap<DeliveryTypeEnum, Integer> target = new HashMap();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				switch (rs.getString("name")) {
+				case "ECONOMIC":
+					target.put(DeliveryTypeEnum.ECONOMIC, rs.getInt("num"));
+					break;
+				case "USUAL":
+					target.put(DeliveryTypeEnum.USUAL, rs.getInt("num"));
+					break;
+				case "FAST":
+					target.put(DeliveryTypeEnum.FAST, rs.getInt("num"));
+					break;
+				}
+
+			}
+			result = new ProportionPO(target);
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	public OperationMessage modifyProportion(ProportionPO proportion)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		OperationMessage result = new OperationMessage();
+		ArrayList<String> operations = new ArrayList<String>();
+		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.ECONOMIC) + "' where name= 'ECONOMIC'");
+		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.USUAL) + "' where name= 'USUAL'");
+		operations.add("update " + Proportion + "set num='" + proportion.getByType(DeliveryTypeEnum.FAST) + "' where name= 'FAST'");
+		try {
+			for (String tmp : operations) {
+				statement = conn.prepareStatement(tmp);
+				statement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "更新时出错：");
+			System.err.println("更新时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.configurationdata.ConfigurationDataService#getInstitutionDistance()
-	 */
 	public Object getInstitutionDistance() throws RemoteException {
 		// TODO Auto-generated method stub
 		return new Object();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.configurationdata.ConfigurationDataService#modifyInstitutionDistance
-	 * (java.lang.String, java.lang.Object)
-	 */
 	public OperationMessage modifyInstitutionDistance(String ID, Object ob)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.configurationdata.ConfigurationDataService#newInstitutionDistanceSearch
-	 * (java.lang.String)
-	 */
 	public Object[] newInstitutionDistanceSearch(String ID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -241,13 +311,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return stub;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * rmi.configurationdata.ConfigurationDataService#newInstitutionDistanceInsert
-	 * (java.lang.String, java.lang.Object[])
-	 */
 	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob)
 			throws RemoteException {
 		// TODO Auto-generated method stub

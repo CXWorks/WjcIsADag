@@ -18,7 +18,7 @@ import rmiImpl.configurationdata.ConfigurationDataImpl;
 import rmiImpl.deliverdata.DeliverDataImpl;
 import rmiImpl.examineImpl.ExamineManageImpl;
 import rmiImpl.examineImpl.ExamineSubmitImpl;
-import rmiImpl.financedata.FinanceDataImpl;
+import rmiImpl.financedata.BankAccountDataImpl;
 import rmiImpl.initaldata.InitialDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.orderdata.OrderDataImpl;
@@ -59,13 +59,8 @@ public class DataFactory implements DataFactoryService {
 			return new ConfigurationDataImpl();
 		case DeliverDataImpl.NAME:
 			return new DeliverDataImpl();
-		case FinanceDataImpl.NAME:
-			try {
-				return new FinanceDataImpl();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		case BankAccountDataImpl.NAME:
+				return new BankAccountDataImpl();
 		case InitialDataImpl.NAME:
 			return new InitialDataImpl();
 		case StaffDataImpl.NAME:

@@ -1,5 +1,6 @@
 package po.financedata;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import po.CommonPO;
@@ -18,6 +19,9 @@ public class RevenuePO extends FormPO{
     //
 	public Calendar getDate() {
 		return date;
+	}
+	public Timestamp getDateForSQL() {
+		return new Timestamp(this.date.getTimeInMillis());
 	}
 	public String getAmount() {
 		return amount;
@@ -49,7 +53,16 @@ public class RevenuePO extends FormPO{
 		this.hallID = hallID;
 		this.orderID = orderID;
 	}
-    
-    //
+	public RevenuePO(String formID, Timestamp date,
+			String amount, String deliverName, String hallID, String orderID) {
+		super(FormEnum.REVENUE, formID);
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date);
+		this.date = temp;
+		this.amount = amount;
+		this.deliverName = deliverName;
+		this.hallID = hallID;
+		this.orderID = orderID;
+	}
     
 }
