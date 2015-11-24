@@ -54,7 +54,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 						rs.getString("tel"), rs.getTimestamp("licence_period"),
 						rs.getString("ID"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("personID"),
-						rs.getString("sex"), rs.getString("love"));
+						rs.getString("sex"), rs.getString("love"),rs.getString("institutionID"));
 				result.add((DriverPO) temp);
 
 			}
@@ -164,7 +164,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 					rs.getString("tel"), rs.getTimestamp("licence_period"),
 					rs.getString("ID"), rs.getString("name"),
 					rs.getInt("age"), rs.getString("personID"),
-					rs.getString("sex"), rs.getString("love"));
+					rs.getString("sex"), rs.getString("love"),rs.getString("institutionID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();

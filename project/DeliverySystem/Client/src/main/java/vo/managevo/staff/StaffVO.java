@@ -24,14 +24,14 @@ public class StaffVO extends InfoVO{
 		this.institutionID=institutionID;
 	}
 	
-	private StaffTypeEnum staff;
-	private String ID;
-	private String name;
-	private int age;
-	private String personID;
-	private SexEnum sex;
-	private String love;
-	private String institutionID;
+	protected StaffTypeEnum staff;
+	protected String ID;
+	protected String name;
+	protected int age;
+	protected String personID;
+	protected SexEnum sex;
+	protected String love;
+	protected String institutionID;
 	//
 	public StaffVO(StaffPO po){
 		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove(),po.getInititutionID());

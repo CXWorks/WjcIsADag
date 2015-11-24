@@ -52,7 +52,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 				temp = new StaffPO(rs.getString("staff"), rs.getString("ID"),
 						rs.getString("name"), rs.getInt("age"),
 						rs.getString("personID"), rs.getString("sex"),
-						rs.getString("love"));
+						rs.getString("love"),rs.getString("institutionID"));
 				result.add(temp);
 
 			}
@@ -180,7 +180,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 			result = new StaffPO(rs.getString("staff"), rs.getString("ID"),
 					rs.getString("name"), rs.getInt("age"),
 					rs.getString("personID"), rs.getString("sex"),
-					rs.getString("love"));
+					rs.getString("love"),rs.getString("institutionID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();

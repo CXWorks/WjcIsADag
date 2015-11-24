@@ -1,48 +1,32 @@
-package po.memberdata;
+package vo.managevo.staff;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
 
 import po.InfoEnum;
+import po.memberdata.DriverPO;
+import po.memberdata.SexEnum;
+import po.memberdata.StaffTypeEnum;
 
-public class DriverPO extends StaffPO {
-
+/** 
+ * Client//vo.managevo.staff//DriverVO.java
+ * @author CXWorks
+ * @date 2015年11月24日 下午12:54:58
+ * @version 1.0 
+ */
+public class DriverVO extends StaffVO {
 	private Calendar birth;
 	private String tel;
 	private Calendar licence_period;
-
 	public Calendar getBirth() {
 		return birth;
 	}
-
 	public String getTel() {
 		return tel;
 	}
-
 	public Calendar getLicence_period() {
 		return licence_period;
 	}
-
-	public Timestamp getBirthForSQL() {
-		return new Timestamp(this.birth.getTimeInMillis());
-	}
-	
-	public Timestamp getLicence_periodForSQL() {
-		return new Timestamp(this.licence_period.getTimeInMillis());
-	}
-	
-	public DriverPO(Timestamp birth, String tel, Timestamp licence_period,
-			String iD, String name, int age, String personID, String sex,
-			String love,String institutionID) {
-		super("DRIVER", iD, name, age, personID, sex, love,institutionID);
-		Calendar temp = Calendar.getInstance();
-		temp.setTime(birth);
-		this.birth = temp;
-		this.tel = tel;
-		temp.setTime(licence_period);
-		this.licence_period = temp;
-	}
-
+	//
 	/**
 	 * @param staff
 	 * @param iD
@@ -56,7 +40,7 @@ public class DriverPO extends StaffPO {
 	 * @param tel
 	 * @param licence_period
 	 */
-	public DriverPO(StaffTypeEnum staff, String iD, String name, int age,
+	public DriverVO(StaffTypeEnum staff, String iD, String name, int age,
 			String personID, SexEnum sex, String love, String institutionID,
 			Calendar birth, String tel, Calendar licence_period) {
 		super(staff, iD, name, age, personID, sex, love, institutionID);
@@ -65,7 +49,11 @@ public class DriverPO extends StaffPO {
 		this.tel = tel;
 		this.licence_period = licence_period;
 	}
-	
-	
-
+	public DriverVO(DriverPO po){
+		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove(), po.getInititutionID(), po.getBirth(), po.getTel(), po.getLicence_period());
+	}
+	//
+	public DriverPO toPO(){
+		return new DriverPO(staff, ID, name, age, personID, sex, love, institutionID, birth, tel, licence_period);
+	}
 }

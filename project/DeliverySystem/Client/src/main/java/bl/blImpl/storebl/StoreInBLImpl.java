@@ -34,7 +34,7 @@ public class StoreInBLImpl implements StoreInBLService {
 		this.vopoFactory=vopoFactory;
 	}
     public StoreLocation getAvailableLocation(StoreAreaCode area) {
-        return new StoreLocation();
+        return null;
     }
 
     public String getNewStoreInID(String date) {

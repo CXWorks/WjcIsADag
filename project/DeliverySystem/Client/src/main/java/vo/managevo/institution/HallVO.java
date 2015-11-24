@@ -3,14 +3,16 @@ import java.util.ArrayList;
 
 import po.InfoEnum;
 import po.companydata.HallPO;
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import vo.InfoVO;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 
 public class HallVO extends InstitutionVO{
 	
 	public HallVO(String hallID, String city, String area,
-			ArrayList<StaffVO> driver, ArrayList<StaffVO> deliver,
+			ArrayList<DriverVO> driver, ArrayList<StaffVO> deliver,
 			ArrayList<StaffVO> counterman, String nearCenterID) {
 		this();
 		this.hallID = hallID;
@@ -25,7 +27,7 @@ public class HallVO extends InstitutionVO{
 	private String hallID;
 	private String city;
 	private String area;
-	private ArrayList<StaffVO> driver;
+	private ArrayList<DriverVO> driver;
 	private ArrayList<StaffVO> deliver;
 	private ArrayList<StaffVO> counterman;
 	private String nearCenterID;
@@ -42,10 +44,18 @@ public class HallVO extends InstitutionVO{
 		this(po.getHallID(), po.getCity(), po.getArea(), null, null, null, po.getNearCenterID());
 		this.setCounterman(selfDeepClonePOtoVO(po.getCounterman()));
 		this.setDeliver(selfDeepClonePOtoVO(po.getDeliver()));
-		this.setDriver(selfDeepClonePOtoVO(po.getDriver()));
+		//
+		ArrayList<DriverPO> driverPO=po.getDriver();
+		ArrayList<DriverVO> driverVO=new ArrayList<DriverVO>(driverPO.size());
+		for (int i = 0; i < driverPO.size(); i++) {
+			DriverPO each=driverPO.get(i);
+			DriverVO temp=new DriverVO(each);
+			driverVO.add(temp);
+		}
+		this.setDriver(driverVO);
 	}
 	//
-	private void setDriver(ArrayList<StaffVO> driver) {
+	private void setDriver(ArrayList<DriverVO> driver) {
 		this.driver = driver;
 	}
 	private void setDeliver(ArrayList<StaffVO> deliver) {
@@ -56,12 +66,12 @@ public class HallVO extends InstitutionVO{
 	}
 	//toPO
 	public HallPO toPO(){
-		ArrayList<StaffPO> driverPO=new ArrayList<StaffPO>(this.driver.size());
+		ArrayList<DriverPO> driverPO=new ArrayList<DriverPO>(this.driver.size());
 		ArrayList<StaffPO> deliverPO=new ArrayList<StaffPO>(deliver.size());
 		ArrayList<StaffPO> countermanPO=new ArrayList<StaffPO>(this.counterman.size());
 		//
 		for (int i = 0; i < this.driver.size(); i++) {
-			StaffPO temp=this.driver.get(i).toPO();
+			DriverPO temp=this.driver.get(i).toPO();
 			driverPO.add(temp);
 		}
 		for (int i = 0; i < this.deliver.size(); i++) {

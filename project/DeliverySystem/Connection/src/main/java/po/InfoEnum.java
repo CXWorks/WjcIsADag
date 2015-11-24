@@ -24,5 +24,6 @@ public enum InfoEnum {
     PIE_CHART,
     LOGISTICS,
     GOODS,
-    STOCK_TACK;
+    STOCK_TACK,
+    DRIVER;
 }

@@ -10,6 +10,7 @@ import po.configurationdata.PricePO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
 import bl.blService.configurationblService.ConfigurationBLService;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.configurationbl//TestConfigurationBLController.java
@@ -25,7 +26,7 @@ public class TestConfigurationBLController {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		configurationBLService = new ConfigurationBLController();
+		configurationBLService = new ConfigurationBLController(new VOPOFactory());
 	}
 
 	/**

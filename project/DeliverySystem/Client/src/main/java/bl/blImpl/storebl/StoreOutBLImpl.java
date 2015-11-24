@@ -61,20 +61,6 @@ public class StoreOutBLImpl implements StoreOutBLService {
         return new OperationMessage();
     }
 
-    public static void drive(StoreFormDataService sfds) throws RemoteException {
-        if(sfds.downloadAllStoreOutPOs("222333") != null)
-            System.out.println("downloadAllStoreOutPOs tested");
-        if(sfds.getStoreOutPO("222333") != null)
-            System.out.println("getStoreOutPO tested");
-        if(sfds.updateStoreOutPOs("222333") != null)
-            System.out.println("updateStoreOutPOs tested");
-    }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        StoreFormDataService sfds = (StoreFormDataService) Naming.lookup
-                ("rmi://" + R.string.LocalHost + "/" + R.string.StoreDataService);
-        drive(sfds);
-    }
 
 	/* (non-Javadoc)
 	 * @see bl.blService.FormBLService#newID()
