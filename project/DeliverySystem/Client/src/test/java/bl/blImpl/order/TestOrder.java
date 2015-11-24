@@ -12,8 +12,8 @@ import vo.ordervo.OrderVO;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blService.orderblService.OrderBLService;
-import bl.tool.draft.DraftController;
-import bl.tool.vopo.VOPOFactory;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc

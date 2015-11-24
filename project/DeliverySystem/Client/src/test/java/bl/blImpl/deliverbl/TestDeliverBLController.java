@@ -11,8 +11,8 @@ import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blService.deliverblService.DeliverBLService;
-import bl.tool.draft.DraftController;
-import bl.tool.vopo.VOPOFactory;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.deliverbl//TestDeliverBLController.java

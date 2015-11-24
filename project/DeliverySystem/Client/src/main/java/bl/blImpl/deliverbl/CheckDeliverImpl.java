@@ -9,7 +9,7 @@ import message.OperationMessage;
 import vo.delivervo.DeliverVO;
 import bl.blService.deliverblService.CheckDeliverForm;
 import bl.clientNetCache.CacheHelper;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.deliverbl//CheckDeliverImpl.java

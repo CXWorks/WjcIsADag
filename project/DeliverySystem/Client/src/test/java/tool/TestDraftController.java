@@ -1,4 +1,4 @@
-package bl.tool;
+package tool;
 
 import static org.junit.Assert.*;
 
@@ -15,11 +15,11 @@ import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
-import bl.tool.draft.DraftController;
-import bl.tool.draft.DraftService;
+import tool.draft.DraftController;
+import tool.draft.DraftService;
 
 /** 
- * Client//bl.tool//TestDraftController.java
+ * Client//tool//TestDraftController.java
  * @author CXWorks
  * @date 2015年11月20日 下午7:01:08
  * @version 1.0 
@@ -51,7 +51,7 @@ public class TestDraftController {
 	}
 
 	/**
-	 * Test method for {@link bl.tool.draft.DraftController#saveDraft(vo.FormVO)}.
+	 * Test method for {@link tool.draft.DraftController#saveDraft(vo.FormVO)}.
 	 */
 	@Test
 	public void testSaveDraft() {
@@ -68,7 +68,7 @@ public class TestDraftController {
 	}
 
 	/**
-	 * Test method for {@link bl.tool.draft.DraftController#getDraft(po.FormEnum)}.
+	 * Test method for {@link tool.draft.DraftController#getDraft(po.FormEnum)}.
 	 */
 	@Test
 	public void testGetDraft() {

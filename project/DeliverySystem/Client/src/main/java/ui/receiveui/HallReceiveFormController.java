@@ -1,35 +1,30 @@
 package ui.receiveui;
 
-import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.receiveblService.ReceiveBLService;
-import bl.tool.time.TimeConvert;
-import factory.BLFactory;
+import po.orderdata.DeliverTypeEnum;
+import po.orderdata.PackingEnum;
+import tool.time.TimeConvert;
 import factory.FormFactory;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import message.CheckFormMessage;
 import message.OperationMessage;
 import po.receivedata.StateEnum;
+import tool.ui.OrderVO2ColumnHelper;
 import ui.common.BasicFormController;
 import ui.common.FormBridge;
+import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Sissel on 2015/11/21.
@@ -43,15 +38,17 @@ public class HallReceiveFormController extends BasicFormController{
     public TextField transitID_Field;
     public TextField departure_Field;
     public ChoiceBox<String> arriveState_Box;
-    public TableView order_Table;
+    public TableView<Map.Entry<String, String>> order_Table;
     public TextField order_Field;
     public Label date_ErrLabel;
     public Label transit_errLabel;
     public Label departure_errLabel;
+    public TableColumn<Map.Entry<String, String>, String> key_Column;
+    public TableColumn<Map.Entry<String, String>, String> value_Column;
 
     private StateEnum stateEnum = StateEnum.Complete;
 
-    ReceiveBLService rbl = FormFactory.getReceiveBLService();
+    ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
     public static Parent launch() throws IOException {
 
@@ -93,20 +90,31 @@ public class HallReceiveFormController extends BasicFormController{
         );
         clear(null);
 
+        order_Field.setOnAction(
+                uselessParam->{
+                    fillOrderTable();
+                }
+        );
+
+        OrderVO2ColumnHelper.setKeyColumn(key_Column);
+        OrderVO2ColumnHelper.setValueColumn(value_Column);
     }
 
     @Override
     public void commit(ActionEvent actionEvent) {
-        Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
+        OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
 
-
-        //OperationMessage msg = rbl.submit(rvo);
-
+        if(msg.operationResult){
+            System.out.println("commit successfully");
+            clear(null);
+        }else{
+            System.out.println("commit fail: " + msg.getReason());
+        }
     }
 
     @Override
     public void clear(ActionEvent actionEvent) {
-        arrive_DatePicker.setValue(null);
+        arrive_DatePicker.setValue(LocalDate.now());
         transitID_Field.clear();
         departure_Field.clear();
         order_Field.clear();
@@ -116,10 +124,23 @@ public class HallReceiveFormController extends BasicFormController{
 
     @Override
     public void saveDraft(ActionEvent actionEvent) {
-        Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
-
-        //rbl.saveDraft(rvo);
+        receiveBLService.saveDraft(generateVO(null));
     }
 
+    private ReceiveVO generateVO(String formID){
+        Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
+        return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(),
+                calendar, departure_Field.getText(), stateEnum);
+    }
+
+    private void fillOrderTable(){
+        //OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
+        OrderVO orderVO =
+                new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
+                        "18351890356", "13724456739", "3", "图书", "", "", "", null, null, null,
+                        DeliverTypeEnum.NORMAL, PackingEnum.BAG);
+
+        order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+    }
 
 }

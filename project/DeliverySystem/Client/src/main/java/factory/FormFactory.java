@@ -6,9 +6,9 @@ import bl.blImpl.receivebl.ReceiveblImpl;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
-import bl.tool.draft.DraftController;
-import bl.tool.draft.DraftService;
-import bl.tool.vopo.VOPOFactory;
+import tool.draft.DraftController;
+import tool.draft.DraftService;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//factory//FormFactory.java

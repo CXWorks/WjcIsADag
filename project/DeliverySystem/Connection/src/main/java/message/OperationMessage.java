@@ -8,11 +8,16 @@ import java.io.Serializable;
 public class OperationMessage implements Serializable{
 	public boolean operationResult;
 	private String reason;
+
 	public OperationMessage(){
 		operationResult=true;
 	}
 	public OperationMessage(boolean result,String reason){
 		this.operationResult=result;
 		this.reason=reason;
+	}
+
+	public String getReason(){
+		return reason;
 	}
 }

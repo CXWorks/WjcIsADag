@@ -8,7 +8,7 @@ import org.junit.Test;
 import po.accountdata.AuthorityEnum;
 import vo.accountvo.AccountVO;
 import bl.blService.accountblService.AccountBLManageService;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.accountbl//TestAccountBLManageImpl.java

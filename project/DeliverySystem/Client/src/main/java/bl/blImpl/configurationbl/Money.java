@@ -7,7 +7,7 @@ import message.OperationMessage;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 import rmi.configurationdata.ConfigurationDataService;
 import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.PackVO;

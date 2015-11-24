@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import vo.delivervo.DeliverVO;
 import bl.blService.deliverblService.CheckDeliverForm;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.deliverbl//TestCheckDeliverImpl.java

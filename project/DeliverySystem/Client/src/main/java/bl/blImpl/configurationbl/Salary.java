@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.configurationdata.SalaryStrategyPO;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 import rmi.configurationdata.ConfigurationDataService;
 import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.SalaryStrategyVO;

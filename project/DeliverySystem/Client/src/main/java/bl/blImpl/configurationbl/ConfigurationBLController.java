@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.InfoEnum;
-import po.configurationdata.PackPO;
 import rmi.configurationdata.ConfigurationDataService;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.ConfigurationVO;
@@ -14,7 +13,7 @@ import vo.configurationvo.ProportionVO;
 import vo.configurationvo.SalaryStrategyVO;
 import bl.blService.configurationblService.ConfigurationBLService;
 import bl.clientNetCache.CacheHelper;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.configurationbl//ConfigurationBLController.java
