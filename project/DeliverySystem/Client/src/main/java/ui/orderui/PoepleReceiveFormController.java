@@ -78,9 +78,7 @@ public class PoepleReceiveFormController {
 	}
 
 	public DeliverVO generateDeliverVO() {
-		
-		return new DeliverVO
-				();
+		return null;
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -89,7 +87,5 @@ public class PoepleReceiveFormController {
 
 	public void saveDraft(ActionEvent actionEvent) {
 
-		ReceiveVO ovo = generateOrderVO();
-		obl.saveDraft(ovo);
 	}
 }

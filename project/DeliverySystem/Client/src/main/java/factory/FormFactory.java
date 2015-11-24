@@ -1,5 +1,6 @@
 package factory;
 
+import bl.blImpl.deliverbl.DeliverBLImpl;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
@@ -45,5 +46,10 @@ public class FormFactory extends BLFactory {
 		}
 		return orderBLService;
 	}
-	
+	public static DeliverBLService getDeliverBLService() {
+		if(deliverBlService == null){
+			deliverBlService = new DeliverBLImpl(vopoFactory, draftService, formatCheckService);
+		}
+		return deliverBlService;
+	}
 }

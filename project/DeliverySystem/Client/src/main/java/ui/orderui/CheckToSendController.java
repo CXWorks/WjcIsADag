@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import vo.delivervo.DeliverVO;
+import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +24,8 @@ public class CheckToSendController {
 
 	
 	public TableColumn<DeliverVO, Date> time_Column;
-	public TableColumn<DeliverVO,String> ID_Column;
-	public TableColumn<DeliverVO,String> address_Column;
+	public TableColumn<OrderVO,String> ID_Column;
+	public TableColumn<OrderVO,String> address_Column;
 	
     private ObservableList<DeliverVO> deliverVOs ;
     
@@ -36,8 +37,8 @@ public class CheckToSendController {
     @FXML
     public void initialize(){
        // time_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getDate()));
-        ID_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getOrderID()));
-        address_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddress_To()));
+        ID_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getFormID()));
+        address_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddressTo()));
 
     }
     
