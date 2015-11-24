@@ -39,4 +39,13 @@ public class StaffVO extends InfoVO{
 	public StaffPO toPO(){
 		return new StaffPO(staff, ID, name, age, personID, sex, love,institutionID);
 	}
+	public StaffTypeEnum getStaff() {
+		return staff;
+	}
+	public String getID(){
+		return ID;
+	}
+
+	
 }
+

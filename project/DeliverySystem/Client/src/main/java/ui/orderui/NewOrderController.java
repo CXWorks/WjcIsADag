@@ -152,13 +152,7 @@ public class NewOrderController extends BasicFormController {
 						goods_Type.getText(),deliverType,packing);
 	}
 
-	public void predictDate(int day){
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日");
-		Calendar cal=Calendar.getInstance();
-		cal.add(Calendar.DAY_OF_YEAR, day);
-		long date= cal.getTimeInMillis();
-		predictDate=sdf.format(new Date(date));
-	}
+
 
 
 
