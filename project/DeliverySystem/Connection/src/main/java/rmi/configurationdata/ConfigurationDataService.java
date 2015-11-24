@@ -32,6 +32,8 @@ public interface ConfigurationDataService extends DataService<CommonPO> {
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException;
 
 	public City2DPO getCity2D(String name) throws RemoteException;
+	
+	public ArrayList<City2DPO> getAllCity2D() throws RemoteException;
 
 	public OperationMessage clearCity2D() throws RemoteException;
 

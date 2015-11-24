@@ -407,4 +407,13 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return new OperationMessage();
 	}
 
+	/* (non-Javadoc)
+	 * @see rmi.configurationdata.ConfigurationDataService#getAllCity2D()
+	 */
+	@Override
+	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

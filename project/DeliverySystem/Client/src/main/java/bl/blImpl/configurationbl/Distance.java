@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.configurationdata.City2DPO;
 import po.configurationdata.CityDistancePO;
 import bl.tool.vopo.VOPOFactory;
 import rmi.configurationdata.ConfigurationDataService;
@@ -27,28 +28,12 @@ public class Distance {
 	 * get methods
 	 */
 	public ArrayList<ConfigurationVO> getCityDistance(){
-		try {
-			ArrayList<CityDistancePO> po=configurationDataService.getCityDistance();
-			ArrayList<ConfigurationVO> vo=new ArrayList<ConfigurationVO>(po.size());
-			for(int i=0;i<po.size();i++){
-				CityDistancePO each=po.get(i);
-				CityDistanceVO temp=(CityDistanceVO)vopoFactory.transPOtoVO(each);
-				vo.add(temp);
-			}
-			return vo;
-		} catch (RemoteException e) {
-			return null;
-		}
+		return null;
 	}
 	/*
 	 * modify methods
 	 */
 	public OperationMessage modifyCityDistance(CityDistanceVO vo){
-		CityDistancePO po=(CityDistancePO)vopoFactory.transVOtoPO(vo);
-		try {
-			return configurationDataService.modifyCityDistance(po);
-		} catch (RemoteException e) {
-			return new OperationMessage(false, "net error");
-		}
+		return null;
 	}
 }
