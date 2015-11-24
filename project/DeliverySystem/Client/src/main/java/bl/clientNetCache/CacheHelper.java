@@ -2,10 +2,6 @@ package bl.clientNetCache;
 
 import bl.clientRMI.NetInitException;
 import bl.clientRMI.RMIHelper;
-
-import com.sun.jndi.url.rmi.rmiURLContext;
-import com.sun.jndi.url.rmi.rmiURLContextFactory;
-
 import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
 import rmi.companydata.CompanyDataCarService;
@@ -16,7 +12,8 @@ import rmi.deliverdata.DeliverDataService;
 import rmi.examineService.ExamineManageService;
 import rmi.examineService.ExamineSubmitService;
 import rmi.financedata.BankAccountDataService;
-import rmi.financedata.FinanceFormDataService;
+import rmi.financedata.PaymentDataService;
+import rmi.financedata.RevenueDataService;
 import rmi.initialdata.InitialDataService;
 import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
@@ -45,7 +42,8 @@ public class CacheHelper {
 	private static ExamineManageService examineManageService;
 	private static ExamineSubmitService examineSubmitService;
 	private static BankAccountDataService bankAccountDataService;
-	private static FinanceFormDataService financeFormDataService;
+	private static PaymentDataService paymentDataService;
+	private static RevenueDataService revenueDataService;
 	private static InitialDataService initialDataService;
 	private static MemberDataService memberDataService;
 	private static ReceiveDataService receiveDataService;
@@ -109,8 +107,12 @@ public class CacheHelper {
 	public static BankAccountDataService getBankAccountDataService() {
 		return bankAccountDataService;
 	}
-	public static FinanceFormDataService getFinanceFormDataService() {
-		return financeFormDataService;
+	
+	public static PaymentDataService getPaymentDataService() {
+		return paymentDataService;
+	}
+	public static RevenueDataService getRevenueDataService() {
+		return revenueDataService;
 	}
 	public static InitialDataService getInitialDataService() {
 		return initialDataService;
