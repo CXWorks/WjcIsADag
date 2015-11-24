@@ -23,6 +23,9 @@ public interface ManageblStaffService {
 	public OperationMessage dismissStaff(StaffVO staff);
 	
 	public StaffVO searchStaff(StaffVO staff);
-	
-	public String newStaffID();
+	/**
+	 * 员工类型和所属机构编号（没有就传null）
+	 * @return
+	 */
+	public String newStaffID(StaffTypeEnum staffType,String unitID);
 }

@@ -1,11 +1,17 @@
 package bl.blImpl.manangrbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.companydata.CarPO;
+import rmi.companydata.CompanyDataCarService;
 import message.OperationMessage;
+import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.HallVO;
 import bl.blService.manageblService.ManageblCarService;
+import bl.clientNetCache.CacheHelper;
+import bl.tool.vopo.VOPOFactory;
 
 /** 
  * Client//blImpl.manangrbl//ManageblCarImpl.java
@@ -14,56 +20,91 @@ import bl.blService.manageblService.ManageblCarService;
  * @version 1.0 
  */
 public class CarManage implements ManageblCarService {
+	private CompanyDataCarService companyDataCarService;
+	private VOPOFactory vopoFactory;
+	public CarManage(VOPOFactory vopoFactory){
+		this.vopoFactory=vopoFactory;
+		this.companyDataCarService=CacheHelper.getCompanyDataCarService();
+	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#getCar(vo.managevo.institution.HallVO)
 	 */
 	public ArrayList<CarVO> getCar(HallVO itself) {
-		// TODO Auto-generated method stub
-		ArrayList<CarVO> result=new ArrayList<CarVO>();
-		CarVO stub=new CarVO();
-		result.add(stub);
-		return result;
+		try {
+			ArrayList<CarPO> po=companyDataCarService.getCars(itself.getHallID());
+			ArrayList<CarVO> vo=new ArrayList<CarVO>(po.size());
+			for(int i=0;i<po.size();i++){
+				CarPO each=po.get(i);
+				CarVO temp=(CarVO)vopoFactory.transPOtoVO(each);
+				vo.add(temp);
+			}
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#addCar(vo.managevo.car.CarVO)
 	 */
 	public OperationMessage addCar(CarVO car) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		CarPO po=(CarPO)vopoFactory.transVOtoPO(car);
+		try {
+			return companyDataCarService.addCar(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#modifyCar(vo.managevo.car.CarVO)
 	 */
 	public OperationMessage modifyCar(CarVO car) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		CarPO po=(CarPO)vopoFactory.transVOtoPO(car);
+		try {
+			return companyDataCarService.modifyCar(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#deleteCar(vo.managevo.car.CarVO)
 	 */
 	public OperationMessage deleteCar(CarVO car) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
+		CarPO po=(CarPO)vopoFactory.transVOtoPO(car);
+		try {
+			return companyDataCarService.deleteCar(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#searchCar(vo.managevo.car.CarVO)
 	 */
 	public CarVO searchCar(CarVO car) {
-		// TODO Auto-generated method stub
-		return new CarVO();
+		String ID=car.getCarID();
+		try {
+			CarPO po= companyDataCarService.getCar(ID);
+			CarVO ans=(CarVO)vopoFactory.transPOtoVO(po);
+			return ans;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#newCarID()
 	 */
 	public String newCarID() {
-		// TODO Auto-generated method stub
-		return "1111";
+		try {
+			String carID=companyDataCarService.newCarID(UserInfo.getInstitutionID());
+			return carID;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 }
