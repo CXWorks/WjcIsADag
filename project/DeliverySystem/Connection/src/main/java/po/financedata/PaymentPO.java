@@ -5,6 +5,7 @@ import po.FormEnum;
 import po.FormPO;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
@@ -26,6 +27,9 @@ public class PaymentPO extends FormPO {
     //
 	public Calendar getDate() {
 		return date;
+	}
+	public Timestamp getDateForSQL() {
+		return new Timestamp(this.date.getTimeInMillis());
 	}
 	public String getAmount() {
 		return amount;
@@ -74,6 +78,24 @@ public class PaymentPO extends FormPO {
 			String receiverAccount, String item, String note) {
 		super(FormEnum.PAYMENT, formID);
 		this.date = date;
+		this.amount = amount;
+		this.payerAccID = payerAccID;
+		this.payerName = payerName;
+		this.payerAccount = payerAccount;
+		this.receiverAccID = receiverAccID;
+		this.receiverName = receiverName;
+		this.receiverAccount = receiverAccount;
+		this.item = item;
+		this.note = note;
+	}
+	public PaymentPO(String formID, Timestamp date,
+			String amount, String payerAccID, String payerName,
+			String payerAccount, String receiverAccID, String receiverName,
+			String receiverAccount, String item, String note) {
+		super(FormEnum.PAYMENT, formID);
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date);
+		this.date = temp;
 		this.amount = amount;
 		this.payerAccID = payerAccID;
 		this.payerName = payerName;

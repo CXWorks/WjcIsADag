@@ -96,4 +96,76 @@ public class OrderVO extends FormVO {
 	public OrderPO toPO(){
 		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo, addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom, telNumTo, goodsNum, goodsName, weight, volume, money, goodsType, type.name(), pack.name(), null, null);
 	}
+
+	public String getAddressFrom() {
+		return addressFrom;
+	}
+
+	public String getAddressTo() {
+		return addressTo;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public String getGoodsNum() {
+		return goodsNum;
+	}
+
+	public String getGoodsType() {
+		return goodsType;
+	}
+
+	public String getMoney() {
+		return money;
+	}
+
+	public String getNameFrom() {
+		return nameFrom;
+	}
+
+	public String getNameTo() {
+		return nameTo;
+	}
+
+	public PackingEnum getPack() {
+		return pack;
+	}
+
+	public String getPhoneNumFrom() {
+		return phoneNumFrom;
+	}
+
+	public String getPhoneNumTo() {
+		return phoneNumTo;
+	}
+
+	public String getTelNumFrom() {
+		return telNumFrom;
+	}
+
+	public String getTelNumTo() {
+		return telNumTo;
+	}
+
+	public DeliverTypeEnum getType() {
+		return type;
+	}
+
+	public String getUnitFrom() {
+		return unitFrom;
+	}
+
+	public String getUnitTo() {
+		return unitTo;
+	}
+
+	public String getVolume() {
+		return volume;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
 }

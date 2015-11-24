@@ -11,11 +11,10 @@ import model.store.StoreLocation;
 import org.junit.Before;
 import org.junit.Test;
 
-import po.transportdata.TransportationEnum;
 import vo.storevo.StoreInVO;
 import bl.blService.storeblService.StoreInBLService;
-import bl.tool.draft.DraftController;
-import bl.tool.vopo.VOPOFactory;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc

@@ -10,6 +10,7 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import vo.managevo.staff.StaffVO;
 import bl.blService.manageblService.ManageblStaffService;
+import tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc
@@ -25,7 +26,7 @@ public class TestStaffManage {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		staff = new StaffManage();
+		staff = new StaffManage(new VOPOFactory());
 		s = new StaffVO(StaffTypeEnum.CENTER_COUNTERMAN,"111111","孟鑫",26,"111111",SexEnum.MAN,"无", null);
 	}
 	
@@ -62,7 +63,7 @@ public class TestStaffManage {
 	
 	@Test
 	public void testNewStaffID(){
-		assertNotNull(staff.newStaffID());
+		assertNotNull(staff.newStaffID(StaffTypeEnum.BURSAR,""));
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.HallVO;
 import bl.blService.manageblService.ManageblCarService;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.manangrbl//TestCarManage.java
@@ -27,7 +28,7 @@ public class TestCarManage {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		car=new CarManage();
+		car=new CarManage(new VOPOFactory());
 		h=new HallVO("1103");
 		c=new CarVO(true, "0013", Calendar.getInstance(), null, "0", "0", "0", Calendar.getInstance());
 		

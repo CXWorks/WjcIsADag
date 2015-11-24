@@ -3,7 +3,6 @@ package bl.blImpl.receivebl;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.junit.Before;
@@ -13,8 +12,8 @@ import po.receivedata.StateEnum;
 import vo.receivevo.ReceiveVO;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blService.receiveblService.ReceiveBLService;
-import bl.tool.draft.DraftController;
-import bl.tool.vopo.VOPOFactory;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 
 /** 
  * @author Wjc

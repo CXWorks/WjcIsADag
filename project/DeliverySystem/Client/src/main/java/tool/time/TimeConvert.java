@@ -1,4 +1,4 @@
-package bl.tool.time;
+package tool.time;
 
 import java.time.Instant;
 import java.time.LocalDate;

@@ -3,35 +3,29 @@
  */
 package main;
 
-import factory.FormFactory;
-
-/** 
- * Client//main//Main.java
- * @author CXWorks
- * @date 2015年10月25日 下午11:58:09
- * @version 1.0
- */
-
+import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ui.financeui.CheckRevenueFormController;
-import ui.financeui.ManageBankAccountController;
 import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
 
-import bl.clientNetCache.CacheHelper;
-import bl.clientRMI.NetInitException;
-import bl.clientRMI.RMIHelper;
-import ui.transportui.LoadCarController;
+/**
+ * Client//main//Main.java
+ *
+ * @author CXWorks
+ * @date 2015年10月25日 下午11:58:09
+ * @version 1.0
+ */
 
 public class Main extends Application {
 
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//CacheHelper.initializeCache();
+    	CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -44,9 +38,9 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-                //HallReceiveFormController.launch()
-                // LoadCarController.launch()
-                CheckRevenueFormController.launch()
+                HallReceiveFormController.launch()
+                //LoadCarController.launch()
+                //CheckRevenueFormController.launch()
                 //ManageBankAccountController.launch()
         ));
 

@@ -17,7 +17,7 @@ import vo.FormVO;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import bl.blService.examineblService.ExamineblManageService;
-import bl.blService.examineblService.ExamineblSubmitService;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.examinebl//TestExamineManage.java
@@ -36,7 +36,7 @@ public class TestExamineManage {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		examineblManageService=new ExamineBLManageImpl();
+		examineblManageService=new ExamineBLManageImpl(new VOPOFactory());
 		o=new ArrayList<FormVO>();
 		d=new ArrayList<FormVO>();
 		//object
@@ -70,8 +70,8 @@ public class TestExamineManage {
 	@Test
 	public void testGet(){
 		for (int i = 0; i < o.size(); i++) {
-			assertNotNull(examineblManageService.getForm(o.get(i)));
-			assertNotNull(examineblManageService.getForm(d.get(i)));
+			assertNotNull(examineblManageService.getForm(""));
+			assertNotNull(examineblManageService.getForm(""));
 		}
 		//
 		assertNotNull(examineblManageService.getForms());

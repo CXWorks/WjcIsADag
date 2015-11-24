@@ -3,7 +3,6 @@ package bl.blImpl.financebl;
 import bl.blService.financeblService.RevenueBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
-import rmi.financedata.FinanceFormDataService;
 import util.R;
 import vo.financevo.RevenueVO;
 import vo.ordervo.OrderVO;
@@ -61,23 +60,6 @@ public class RevenueBLImpl implements RevenueBLService {
 
     public OperationMessage submit(RevenueVO form) {
         return new OperationMessage();
-    }
-
-    public static void drive(FinanceFormDataService ffds) throws RemoteException {
-        if(ffds.downloadAllRevenuePOs() != null)
-            System.out.println("downloadAllRevenuePOs tested");
-        if(ffds.getNewRevenueID("222333", "222") != null)
-            System.out.println("getNewRevenueID tested");
-        if(ffds.getRevenuePO("222333") != null)
-            System.out.println("getRevenuePO tested");
-        if(ffds.updateRevenuePOs("222333") != null)
-            System.out.println("updateRevenuePOs tested");
-    }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        FinanceFormDataService ffds = (FinanceFormDataService) Naming.lookup
-                ("rmi://" + R.string.LocalHost + "/" + R.string.FinanceDataService);
-        drive(ffds);
     }
 
 	/* (non-Javadoc)

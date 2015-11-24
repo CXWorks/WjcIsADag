@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import vo.financevo.PaymentVO;
 import bl.blService.financeblService.PaymentBLService;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.financebl//TestPaymentBLImpl.java
@@ -26,7 +28,7 @@ public class TestPaymentBLImpl {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		pay=new PaymentBLImpl();
+		pay=new PaymentBLImpl(new VOPOFactory(),new DraftController());
 		list=new LinkedList<PaymentVO>();
 		p=new PaymentVO("11",Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", "monry", "no");
 		PaymentVO[] a=new PaymentVO[3];

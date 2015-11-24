@@ -1,11 +1,11 @@
-package bl.tool.draft;
+package tool.draft;
 
 import po.FormEnum;
 import vo.FormVO;
 import message.OperationMessage;
 
 /** 
- * Client//bl.tool.draft//DraftService.java
+ * Client//tool.draft//DraftService.java
  * @author CXWorks
  * @date 2015年11月15日 下午8:10:36
  * @version 1.0 

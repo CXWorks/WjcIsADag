@@ -68,4 +68,11 @@ public class CarVO extends InfoVO{
 	public CarPO toPO(){
 		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
 	}
+	//
+
+
+	public String getCarID() {
+		return carID;
+	}
+	
 }

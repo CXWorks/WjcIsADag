@@ -49,25 +49,4 @@ public class BankAccountBLImpl implements BankAccountBLService {
     public OperationMessage receive(String bankAccID, String amount) {
         return new OperationMessage();
     }
-
-    public static void drive(BankAccountDataService bads) throws RemoteException{
-        if(bads.checkIsNameUsed("345") != null)
-            System.out.println("test checkIsNameUsed");
-        if(bads.downloadAllAccounts() != null)
-            System.out.println("test downloadAllAccounts");
-        if(bads.getBankAccount("20150730") != null)
-            System.out.println("test getBankAccount");
-        if(bads.getNewBankID() != null)
-            System.out.println("test getNewBankID");
-        if(bads.updateAccountOperations("9527") != null)
-            System.out.println("test updateAccountOperations");
-        if(bads.uploadAccountOperations("ddd" , null) != null)
-            System.out.println("test uploadAccountOperations");
-    }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        BankAccountDataService bads = (BankAccountDataService)Naming.lookup
-                ("rmi://" + R.string.LocalHost + "/" + R.string.FinanceDataService);
-        drive(bads);
-    }
 }

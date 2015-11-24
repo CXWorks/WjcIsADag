@@ -1,4 +1,4 @@
-package bl.tool.vopo;
+package tool.vopo;
 
 import po.FormPO;
 import util.DataType;
@@ -49,7 +49,7 @@ import po.storedata.StoreOutPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 /** 
- * Client//bl.tool.vopo//VOPOFactory.java
+ * Client//tool.vopo//VOPOFactory.java
  * @author CXWorks
  * @date 2015年11月18日 下午2:19:31
  * @version 1.0 

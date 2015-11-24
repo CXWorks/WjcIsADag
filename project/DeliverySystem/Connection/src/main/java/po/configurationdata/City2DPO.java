@@ -7,9 +7,12 @@ import po.InfoPO;
 
 public class City2DPO extends InfoPO {
 	
+	private String name;
+	
 	private double x;
 
 	private double y;
+	
 	private City2DPO(){
 		super(InfoEnum.CITY_2D);
 	}
@@ -19,8 +22,9 @@ public class City2DPO extends InfoPO {
 	//比例尺 1：100
 	private static final double SCALE = 100;
 	
-	public City2DPO(double x,double y){
+	public City2DPO(String name,double x,double y){
 		this();
+		this.name = name;
 		this.x = x;
 		this.y = y;
 	}
@@ -30,20 +34,16 @@ public class City2DPO extends InfoPO {
 		
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public double getX() {
 		return x;
 	}
 
-	public void setX(double x) {
-		this.x = x;
-	}
-
 	public double getY() {
 		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
 	}
 
 }

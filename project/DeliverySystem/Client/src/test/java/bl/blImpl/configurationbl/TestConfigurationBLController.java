@@ -5,12 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import po.configurationdata.PackPO;
-import po.configurationdata.PricePO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
 import bl.blService.configurationblService.ConfigurationBLService;
-import bl.tool.vopo.VOPOFactory;
+import tool.vopo.VOPOFactory;
 
 /** 
  * Client//bl.blImpl.configurationbl//TestConfigurationBLController.java

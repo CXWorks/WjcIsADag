@@ -2,6 +2,8 @@ package bl.blImpl.formatCheck;
 
 import java.util.Calendar;
 
+import javax.management.openmbean.OpenDataException;
+
 import message.CheckFormMessage;
 import bl.blService.FormatCheckService.FormatCheckService;
 
@@ -97,13 +99,13 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTransportHallID(String ID) {
-		if (this.checkFormIDLength(ID)) {
-			return new CheckFormMessage(false, "位数错误");
+		if (ID.length()!=7) {
+			return new CheckFormMessage(false, "位数错误，应为7位");
 		} else {
-			if (ID.charAt(2)=='8') {
+			if (ID.charAt(3)=='1') {
 				return new CheckFormMessage();
 			} else {
-				return new CheckFormMessage(false, "单据类型错误，应为08");
+				return new CheckFormMessage(false, "编号逻辑错误，不是营业厅");
 			}
 		}
 	}
@@ -113,13 +115,13 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTransportCenterID(String ID) {
-		if (this.checkFormIDLength(ID)) {
-			return new CheckFormMessage(false, "位数错误，应为24位");
+		if (ID.length()!=7) {
+			return new CheckFormMessage(false, "位数错误，应为7位");
 		} else {
-			if (ID.charAt(2)=='7') {
+			if (ID.charAt(3)=='0') {
 				return new CheckFormMessage();
 			} else {
-				return new CheckFormMessage(false, "单据类型错误，应为07");
+				return new CheckFormMessage(false, "编号逻辑错误，不是中转中心");
 			}
 		}
 	}
@@ -129,8 +131,11 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkTruckLoadID(String ID) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		if (ID.length()==13) {
+			return new CheckFormMessage();
+		} else {
+			return new CheckFormMessage(false, "位数错误，应为13位");
+		}
 	}
 
 	/* (non-Javadoc)
@@ -186,8 +191,12 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkWeight(String weight) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		try {
+			double vol=Double.parseDouble(weight);
+			return new CheckFormMessage();
+		} catch (Exception e) {
+			return new CheckFormMessage(false, "不是数字");
+		}
 	}
 
 	/* (non-Javadoc)
@@ -195,8 +204,13 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkVolume(String volume) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
+		try {
+			double vol=Double.parseDouble(volume);
+			return new CheckFormMessage();
+		} catch (Exception e) {
+			return new CheckFormMessage(false, "不是数字");
+		}
+		
 	}
 
 	/* (non-Javadoc)

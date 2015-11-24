@@ -130,8 +130,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "删除时出错：");
-			System.err.println("删除时出错：");
+			result = new OperationMessage(false, "清空时出错：");
+			System.err.println("清空时出错：");
 			e.printStackTrace();
 		}
 		return result;
