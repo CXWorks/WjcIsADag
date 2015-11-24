@@ -4,16 +4,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.ManageBankAccountController">
    <children>
-      <TextField layoutX="103.0" layoutY="29.0" />
+      <TextField fx:id="name_Field" layoutX="103.0" layoutY="29.0" />
       <Label layoutX="36.0" layoutY="33.0" text="账户名" />
-      <Button layoutX="345.0" layoutY="29.0" mnemonicParsing="false" text="Search" />
-      <TableView layoutX="36.0" layoutY="66.0" prefHeight="354.0" prefWidth="365.0">
+      <Button layoutX="345.0" layoutY="29.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <TableView fx:id="accounts_TableView" layoutX="36.0" layoutY="66.0" prefHeight="354.0" prefWidth="365.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="name_Column" prefWidth="75.0" text="账户名" />
+          <TableColumn fx:id="balance_Column" prefWidth="75.0" text="余额" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -21,10 +20,10 @@
       </TableView>
       <VBox layoutX="565.0" layoutY="108.0" minWidth="-Infinity" spacing="30.0">
          <children>
-            <Button layoutX="565.0" layoutY="108.0" mnemonicParsing="false" text="新建账户" />
-            <Button layoutX="565.0" layoutY="202.0" mnemonicParsing="false" text="删除账户" />
-            <Button layoutX="565.0" layoutY="289.0" mnemonicParsing="false" text="修改名字" />
-            <Button layoutX="565.0" layoutY="353.0" mnemonicParsing="false" text="查看交易记录" />
+            <Button layoutX="565.0" layoutY="108.0" mnemonicParsing="false" onAction="#newAccount" text="新建账户" />
+            <Button layoutX="565.0" layoutY="202.0" mnemonicParsing="false" onAction="#deleteAccount" text="删除账户" />
+            <Button layoutX="565.0" layoutY="289.0" mnemonicParsing="false" onAction="#editAccount" text="修改名字" />
+            <Button layoutX="565.0" layoutY="353.0" mnemonicParsing="false" onAction="#checkHistory" text="查看交易记录" />
          </children>
       </VBox>
    </children>
