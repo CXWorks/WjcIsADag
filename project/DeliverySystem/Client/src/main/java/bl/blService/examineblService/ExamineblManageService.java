@@ -7,11 +7,13 @@ import vo.FormVO;
 
 public interface ExamineblManageService {
 	
+	public OperationMessage modifyForm(FormVO form);
+	
 	public ArrayList<FormVO> getForms();
 	
 	public OperationMessage passForm(ArrayList<FormVO> form);
 	
 	public OperationMessage deleteForm(ArrayList<FormVO> form);
 	
-	public FormVO getForm(FormVO form);
+	public FormVO getForm(String formID);
 }

@@ -29,8 +29,18 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	 * @see bl.blService.deliverblService.CheckDeliverForm#getDeliverForms(java.lang.String)
 	 */
 	public ArrayList<DeliverVO> getDeliverForms(String postmanID) {
-		//TODO waitting for JC thx
-		return null;
+		try {
+			ArrayList<String> ID=deliverDataService.searchAsPerson(postmanID);
+			ArrayList<DeliverVO> vo=new ArrayList<DeliverVO>(ID.size());
+			for(int i=0;i<ID.size();i++){
+				DeliverPO po=deliverDataService.getFormPO(ID.get(i));
+				DeliverVO temp=(DeliverVO)vopoFactory.transPOtoVO(po);
+				vo.add(temp);
+			}
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)

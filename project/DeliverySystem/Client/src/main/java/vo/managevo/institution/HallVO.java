@@ -85,4 +85,9 @@ public class HallVO extends InstitutionVO{
 		//
 		return new HallPO(hallID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
 	}
+	//
+	public String getHallID() {
+		return hallID;
+	}
+	
 }
