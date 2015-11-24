@@ -21,7 +21,7 @@ public interface CommonDataService<PO extends FormPO> extends DataService<PO>{
 	public OperationMessage insert(PO po) throws RemoteException;
 
 	/**
-	 * 按到达单号查找信息
+	 * 按单号查找信息
 	 * @param id 单编号
 	 * @return 返回目标信息
 	 */

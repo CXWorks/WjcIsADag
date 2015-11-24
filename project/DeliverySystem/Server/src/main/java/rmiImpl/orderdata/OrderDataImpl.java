@@ -64,18 +64,21 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		;
 		String insert = "insert into "
 				+ Table_Name
-				+ "(formID,formState,nameFrom,nameTo,unitFrom,unitTo,phoneNumFrom,"
-				+ "phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
-				+ "money,type,targetHallID,FormIDs) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','"
-				+ po.getNameFrom() + "','" + po.getNameTo() + "','"
-				+ po.getUnitFrom() + "','" + po.getUnitTo() + "','"
-				+ po.getPhoneNumFrom() + "','" + po.getPhoneNumTo() + "','"
-				+ po.getTelNumFrom() + "','" + po.getTelNumTo() + "','"
-				+ po.getGoodsNum() + "','" + po.getGoodsName() + "','"
-				+ po.getWeight() + "','" + po.getVolume() + "','"
-				+ po.getMoney() + "','" + po.getType().toString() + "','"
-				+ po.getTargetHallID() + "','" + formIDs;
+				+ "(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
+				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
+				+ "money,type,targetHallID,FormIDs,goodsType,pack) "
+				+ "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getNameFrom()
+				+ "','" + po.getNameTo() + "','" + po.getUnitFrom() + "','"
+				+ po.getUnitTo() + "','" + po.getAddressFrom() + "','"
+				+ po.getAddressTo() + "','" + po.getPhoneNumFrom() + "','"
+				+ po.getPhoneNumTo() + "','" + po.getTelNumFrom() + "','"
+				+ po.getTelNumTo() + "','" + po.getGoodsNum() + "','"
+				+ po.getGoodsName() + "','" + po.getWeight() + "','"
+				+ po.getVolume() + "','" + po.getMoney() + "','"
+				+ po.getType().toString() + "','" + po.getTargetHallID()
+				+ "','" + formIDs + "','" + po.getGoodsType() + "','"
+				+ po.getPack().toString() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -190,11 +193,13 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			result = new OrderPO(rs.getString("formID"),
 					rs.getString("nameFrom"), rs.getString("nameTo"),
 					rs.getString("unitFrom"), rs.getString("unitTo"),
+					rs.getString("addressFrom"), rs.getString("addressTo"),
 					rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
 					rs.getString("telNumFrom"), rs.getString("telNumTo"),
 					rs.getString("goodsNum"), rs.getString("goodsName"),
 					rs.getString("weight"), rs.getString("volume"),
-					rs.getString("money"), rs.getString("type"), FormIDs,
+					rs.getString("money"), rs.getString("goodsType"),
+					rs.getString("type"), rs.getString("pack"), FormIDs,
 					rs.getString("targetHallID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
@@ -221,13 +226,16 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 				temp = new OrderPO(rs.getString("formID"),
 						rs.getString("nameFrom"), rs.getString("nameTo"),
 						rs.getString("unitFrom"), rs.getString("unitTo"),
+						rs.getString("addressFrom"), rs.getString("addressTo"),
 						rs.getString("phoneNumFrom"),
 						rs.getString("phoneNumTo"), rs.getString("telNumFrom"),
 						rs.getString("telNumTo"), rs.getString("goodsNum"),
 						rs.getString("goodsName"), rs.getString("weight"),
 						rs.getString("volume"), rs.getString("money"),
-						rs.getString("type"), FormIDs,
+						rs.getString("goodsType"), rs.getString("type"),
+						rs.getString("pack"), FormIDs,
 						rs.getString("targetHallID"));
+				;
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

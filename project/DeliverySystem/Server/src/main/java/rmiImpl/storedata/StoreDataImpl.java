@@ -3,6 +3,7 @@ package rmiImpl.storedata;
 import message.OperationMessage;
 import model.store.StoreModel;
 import model.store.StoreModelOperation;
+import po.receivedata.ReceivePO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
 import rmi.storedata.StoreFormDataService;
@@ -17,6 +18,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,55 +51,345 @@ public class StoreDataImpl extends UnicastRemoteObject implements
 		return conn;
 	}
 
-	public static void main(String[] args) throws MalformedURLException,
-			RemoteException {
-		new StoreDataImpl();
-	}
-
-	public StoreInPO getStoreInPO(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public StoreOutPO getStoreOutPO(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public LinkedList<StoreInPO> updateStoreInPOs(String staffID) {
-		// TODO Auto-generated method stub
-		return new LinkedList<StoreInPO>();
-	}
-
-	public LinkedList<StoreInPO> downloadAllStoreInPOs(String centerID) {
-		// TODO Auto-generated method stub
-		return new LinkedList<StoreInPO>();
-	}
-
-	public LinkedList<StoreOutPO> updateStoreOutPOs(String centerID) {
-		// TODO Auto-generated method stub
-		return new LinkedList<StoreOutPO>();
-	}
-
-	public LinkedList<StoreOutPO> downloadAllStoreOutPOs(String staffID) {
-		// TODO Auto-generated method stub
-		return new LinkedList<StoreOutPO>();
-	}
-
+	@Override
 	public OperationMessage uploadModelOperations(String centerID,
-			String staffID, List<StoreModelOperation> operations) {
+			String staffID, List<StoreModelOperation> operations)
+			throws RemoteException {
 		// TODO Auto-generated method stub
-		return new OperationMessage();
+		return null;
 	}
 
+	@Override
 	public LinkedList<StoreModelOperation> updateModelOperations(
-			String centerID, String staffID) {
+			String centerID, String staffID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new LinkedList<StoreModelOperation>();
+		return null;
 	}
 
-	public StoreModel downloadStoreModel(String centerID) {
+	@Override
+	public StoreModel downloadStoreModel(String centerID)
+			throws RemoteException {
 		// TODO Auto-generated method stub
-		return new StoreModel();
+		return null;
 	}
+
+	@Override
+	public OperationMessage insertStoreInPO(StoreInPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String insert = "insert into " + Store_In
+				+ "(formID,formState,orderID,date,destination,location) "
+				+ "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getOrderID()
+				+ "','" + po.getDateForSQL().toString() + "','"
+				+ po.getDestination() + "','" + po.getLocationForSQL() + "')";
+
+		try {
+			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public OperationMessage insertStoreOutPO(StoreOutPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String insert = "insert into "
+				+ Store_Out
+				+ "(formID,formState,orderID,date,destination,transportation,transID) "
+				+ "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getOrderID()
+				+ "','" + po.getDateForSQL().toString() + "','"
+				+ po.getDestination() + "','"
+				+ po.getTransportation().toString() + "','" + po.getTransID()
+				+ "')";
+
+		try {
+			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public OperationMessage deleteStoreInPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String delete = "delete from " + Store_In + " where formID= '" + id
+				+ "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
+			System.err.println("删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage deleteStoreOutPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String delete = "delete from " + Store_Out + " where formID= '" + id
+				+ "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "删除时出错：");
+			System.err.println("删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage updateStoreInPO(StoreInPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		if (!this.deleteStoreInPO(po.getFormID()).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应表单");
+		if (!this.insertStoreInPO(po).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
+	}
+
+	@Override
+	public OperationMessage updateStoreOutPO(StoreOutPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		if (!this.deleteStoreOutPO(po.getFormID()).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应表单");
+		if (!this.insertStoreOutPO(po).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
+	}
+
+	@Override
+	public OperationMessage clearStoreInPO() throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String clear = "delete from " + Store_In;
+		try {
+			statement = conn.prepareStatement(clear);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "清空数据库时出错：");
+			System.err.println("清空数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage clearStoreOutPO() throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String clear = "delete from " + Store_Out;
+		try {
+			statement = conn.prepareStatement(clear);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "清空数据库时出错：");
+			System.err.println("清空数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public String newIDStoreInPO(String unitID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Store_In;
+		ResultSet rs = null;
+		int ID_MAX = 0;
+		String temp = new Timestamp(System.currentTimeMillis()).toString()
+				.substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7)
+				+ temp.substring(8);
+		target = unitID + target;// 开具单位编号+当天日期
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = rs.getString("formID").substring(2, 17);
+				if (target.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(
+							ID_MAX,
+							Integer.parseInt(rs.getString("formID").substring(
+									17)));// 最后7位编号
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 9999999)
+			return null;
+		String added = String.format("%07d", ID_MAX);
+
+		return "05" + target + added;
+	}
+
+	@Override
+	public String newIDStoreOutPO(String unitID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Store_Out;
+		ResultSet rs = null;
+		int ID_MAX = 0;
+		String temp = new Timestamp(System.currentTimeMillis()).toString()
+				.substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7)
+				+ temp.substring(8);
+		target = unitID + target;// 开具单位编号+当天日期
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = rs.getString("formID").substring(2, 17);
+				if (target.equalsIgnoreCase(temp))
+					ID_MAX = Math.max(
+							ID_MAX,
+							Integer.parseInt(rs.getString("formID").substring(
+									17)));// 最后7位编号
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+
+		ID_MAX++;// 将该数字加一
+		if (ID_MAX > 9999999)
+			return null;
+		String added = String.format("%07d", ID_MAX);
+
+		return "06" + target + added;
+	}
+
+	@Override
+	public StoreInPO getStoreInPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Store_In + " where formID= '" + id
+				+ "'";
+		ResultSet rs = null;
+		StoreInPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = new StoreInPO(rs.getString("formID"),
+					rs.getString("orderID"), rs.getTimestamp("date"),
+					rs.getString("destination"), rs.getString("location"));
+			result.setFormState(rs.getString("formState"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
+		return result;
+	}
+
+	@Override
+	public StoreOutPO getStoreOutPO(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Store_Out + " where formID= '" + id
+				+ "'";
+		ResultSet rs = null;
+		StoreOutPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = new StoreOutPO(rs.getString("formID"),
+					rs.getString("orderID"), rs.getTimestamp("date"),
+					rs.getString("destination"),
+					rs.getString("transportation"), rs.getString("transID"));
+			result.setFormState(rs.getString("formState"));
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Store_In;
+		ResultSet rs = null;
+		StoreInPO temp = null;
+		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new StoreInPO(rs.getString("formID"),
+						rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"), rs.getString("location"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectAll = "select * from " + Store_Out;
+		ResultSet rs = null;
+		StoreOutPO temp = null;
+		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new StoreOutPO(rs.getString("formID"),
+						rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"),
+						rs.getString("transportation"), rs.getString("transID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 }

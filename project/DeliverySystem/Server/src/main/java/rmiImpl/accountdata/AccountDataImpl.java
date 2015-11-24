@@ -151,7 +151,7 @@ public class AccountDataImpl extends UnicastRemoteObject implements
 //		ResultSet rs = null;
 //		int ID_MAX = 0;
 //		String target = type + city;// 工种+城市
-//		try {
+//		try {+
 //			statement = conn.prepareStatement(selectAll);
 //			rs = statement.executeQuery(selectAll);
 //			while (rs.next()) {

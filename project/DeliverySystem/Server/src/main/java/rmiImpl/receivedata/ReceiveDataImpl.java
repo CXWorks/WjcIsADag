@@ -111,7 +111,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 					ID_MAX = Math.max(
 							ID_MAX,
 							Integer.parseInt(rs.getString("formID").substring(
-									17)));// 最后6位编号
+									17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
