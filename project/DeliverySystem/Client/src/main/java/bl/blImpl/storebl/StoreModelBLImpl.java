@@ -41,7 +41,4 @@ public class StoreModelBLImpl implements StoreModelBLService {
         return new OperationMessage();
     }
 
-    public OperationMessage clearLocalBuffer() {
-        return new OperationMessage();
-    }
 }

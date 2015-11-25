@@ -21,7 +21,6 @@ public interface StoreModelBLService {
     public OperationMessage addRow(StoreAreaCode area, int initCapacity);
 
     public OperationMessage adjustRow(StoreAreaCode area, int rowNum, int newCapacity, boolean confirmed);
-
-    public OperationMessage clearLocalBuffer();
+    
 
 }
