@@ -16,7 +16,7 @@ import javafx.scene.control.Tab;
 
 
 
-//快递费、收费比例、城市距离、包装费、薪资
+//快递费、收费比例、城市距离、包装费、薪资 
 
 public class ConfigurationController {
 

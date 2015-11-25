@@ -1,4 +1,4 @@
-package ui.manangeui;
+package ui.examineui;
 
 import java.io.IOException;
 import java.util.List;
