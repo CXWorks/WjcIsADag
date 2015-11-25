@@ -1,8 +1,15 @@
 package bl.blImpl.financebl;
 
 import bl.blService.financeblService.RevenueBLService;
+import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import rmi.examineService.ExamineSubmitService;
+import rmi.financedata.RevenueDataService;
+import rmi.orderdata.OrderDataService;
+import tool.draft.DraftService;
+import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import util.R;
 import vo.financevo.RevenueVO;
 import vo.ordervo.OrderVO;
@@ -15,24 +22,51 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import po.FormEnum;
+import po.financedata.RevenuePO;
+import po.orderdata.OrderPO;
+
 /**
  * Created by Sissel on 2015/10/26.
  */
 public class RevenueBLImpl implements RevenueBLService {
-    public OperationMessage loadOrder(String orderNumber) {
-        return new OperationMessage();
+	private RevenueDataService revenueDataService;
+	private VOPOFactory vopoFactory;
+	private DraftService draftService;
+	public RevenueBLImpl(VOPOFactory vopoFactory,DraftService draftService){
+		this.vopoFactory=vopoFactory;
+		this.draftService=draftService;
+		this.revenueDataService=CacheHelper.getRevenueDataService();
+	}
+    public OrderVO loadOrder(String orderNumber) {
+    	OrderDataService orderDataService=CacheHelper.getOrderDataService();
+        try {
+			OrderPO orderPO=orderDataService.getFormPO(orderNumber);
+			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(orderPO);
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
+        
     }
 
     public String getNewRevenueID(String date) {
-        return "222333";
-    }
-
-    public OrderVO getOrderVO() {
-        return new OrderVO("1123000001");
+        try {
+			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
+			return ID;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
     public RevenueVO getRevenueVO(String revenueID) {
-        return new RevenueVO("020011002201511230000001");
+        try {
+			RevenuePO revenuePO=revenueDataService.getFormPO(revenueID);
+			RevenueVO vo=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
     public RevenueVO getRevenueVO(String date, String hallID) {
@@ -44,11 +78,12 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public RevenueVO loadDraft() {
-        return new RevenueVO("020011002201511230000001");
+        RevenueVO vo=(RevenueVO)draftService.getDraft(FormEnum.REVENUE);
+        return vo;
     }
 
     public OperationMessage saveDraft(RevenueVO form) {
-        return new OperationMessage();
+        return draftService.saveDraft(form);
     }
 
     public ArrayList<CheckFormMessage> checkFormat(RevenueVO form, boolean isFinal) {
@@ -59,7 +94,13 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public OperationMessage submit(RevenueVO form) {
-        return new OperationMessage();
+    	RevenuePO po=(RevenuePO)vopoFactory.transVOtoPO(form);
+        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        try {
+			return examineSubmitService.submit(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
     }
 
 	/* (non-Javadoc)
@@ -74,7 +115,12 @@ public class RevenueBLImpl implements RevenueBLService {
 	 * @see bl.blService.financeblService.RevenueBLService#sum(java.lang.String)
 	 */
 	public double sum(String revenueID) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			RevenuePO po=revenueDataService.getFormPO(revenueID);
+			String num=po.getAmount();
+			return Double.parseDouble(num);
+		} catch (RemoteException e) {
+			return 0;
+		}
 	}
 }

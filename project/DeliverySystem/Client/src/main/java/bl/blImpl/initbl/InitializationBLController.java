@@ -65,8 +65,6 @@ public class InitializationBLController implements InitializationBLService {
 
     public List<StoreModel> getAllStoreModels() {
     	List<StoreModel> result =new ArrayList<StoreModel>();
-    	StoreModel stub=new StoreModel();
-		result.add(stub);
 		return result;
     }
 

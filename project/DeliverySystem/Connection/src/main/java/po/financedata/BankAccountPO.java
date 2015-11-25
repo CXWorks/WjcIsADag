@@ -13,8 +13,19 @@ public class BankAccountPO extends InfoPO implements Serializable {
     private String bankID;
     private String accountName;
     private String balance;
-    
-
+    public void balanceOut(String money){
+    	double m=Double.parseDouble(money);
+    	double b=Double.parseDouble(balance);
+    	b=b-m;
+    	this.balance=Double.toString(b);
+    }
+    //
+    public void balanceIn(String money){
+    	double m=Double.parseDouble(money);
+    	double b=Double.parseDouble(balance);
+    	b=b+m;
+    	this.balance=Double.toString(b);
+    }
     /**
 	 * @param infoEnum
 	 * @param bankID
@@ -40,4 +51,9 @@ public class BankAccountPO extends InfoPO implements Serializable {
     public String getBalance() {
         return balance;
     }
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+    
 }

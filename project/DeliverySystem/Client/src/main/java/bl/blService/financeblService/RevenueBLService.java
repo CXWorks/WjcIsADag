@@ -12,11 +12,9 @@ import java.util.List;
  */
 public interface RevenueBLService extends FormBLService<RevenueVO> {
 
-    public OperationMessage loadOrder(String orderNumber);
+    public OrderVO loadOrder(String orderNumber);
 
     public String getNewRevenueID(String date);
-
-    public OrderVO getOrderVO();
 
     public RevenueVO getRevenueVO(String revenueID);
 
