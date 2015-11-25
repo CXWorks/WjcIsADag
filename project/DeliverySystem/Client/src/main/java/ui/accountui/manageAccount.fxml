@@ -4,22 +4,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
    <children>
-      <TableView layoutX="33.0" layoutY="67.0" prefHeight="300.0" prefWidth="535.0">
-        <columns>
-          <TableColumn maxWidth="-1.0" prefWidth="30.0" />
-          <TableColumn prefWidth="75.0" text="ID" />
-            <TableColumn prefWidth="75.0" text="身份" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <CheckBox layoutX="33.0" layoutY="38.0" mnemonicParsing="false" text="全选" />
-      <Button layoutX="411.0" layoutY="35.0" mnemonicParsing="false" text="查找" />
-      <Button layoutX="97.0" layoutY="35.0" mnemonicParsing="false" text="删除" />
-      <TextField layoutX="210.0" layoutY="35.0" />
+      <CheckBox layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
+      <Button layoutX="528.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" text="查找" />
+      <Button layoutX="139.0" layoutY="35.0" mnemonicParsing="false" onAction="#delete" text="删除" />
+      <TextField fx:id="search_Field" layoutX="344.0" layoutY="35.0" />
+      <Button layoutX="236.0" layoutY="35.0" mnemonicParsing="false" onAction="#edit" text="修改" />
+      <BorderPane layoutX="33.0" layoutY="84.0" prefHeight="331.0" prefWidth="577.0">
+         <top>
+            <Pane prefHeight="27.0" prefWidth="537.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="146.0" layoutY="6.0" prefHeight="15.0" prefWidth="45.0" text="ID" />
+                  <Label layoutX="295.0" layoutY="6.0" prefHeight="15.0" prefWidth="24.0" text="身份" />
+                  <Label layoutX="453.0" layoutY="6.0" text="财务权限" />
+               </children>
+            </Pane>
+         </top>
+         <center>
+            <ListView fx:id="accounts_ListView" prefHeight="296.0" prefWidth="591.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

@@ -15,9 +15,12 @@ import message.OperationMessage;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
+import tool.ui.Enum2ObservableList;
+import tool.ui.SimpleEnumProperty;
 import ui.common.BasicFormController;
 import ui.common.FormBridge;
 import vo.ordervo.OrderVO;
+import vo.ordervo.PredictVO;
 import vo.receivevo.ReceiveVO;
 
 import java.io.IOException;
@@ -28,12 +31,7 @@ import java.util.Date;
 /**
  * Created by Charles_M on 2015/11/22.
  */
-public class NewOrderController extends BasicFormController {
-
-	private final static String[] type ={"经济快递","标准快递","特快专递"};
-	private final static String[] pack={"纸箱","木箱","快递袋"};
-	
-	
+public class NewOrderController {
 
 	public TextField name_From;
 	public TextField address_From;
@@ -52,13 +50,22 @@ public class NewOrderController extends BasicFormController {
 	public TextField goods_Volume;
 	public TextField goods_Name;
 	public TextField goods_Type;
-	public ChoiceBox<String> type_Box;
-	public ChoiceBox<String> pack_Box;
+	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
+	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
 	
 	public Label predict_Expense;
 	public Label predict_Date;
-	
-	private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
+    public Label date_ErrLabel;
+    public Label transit_errLabel;
+    public Label departure_errLabel;
+    public Label date_ErrLabel1;
+    public Label transit_errLabel1;
+    public Label departure_errLabel1;
+    public Label date_ErrLabel2;
+    public Label transit_errLabel2;
+    public Label departure_errLabel2;
+
+    private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
 	
 	int money=0;//预计运费
@@ -69,61 +76,32 @@ public class NewOrderController extends BasicFormController {
 	
 	 public static Parent launch() throws IOException {
 
-	        FXMLLoader btnsloader = new FXMLLoader();
-	        btnsloader.setLocation(FormBridge.class.getResource("baseForm.fxml"));
-	        BorderPane borderPane = btnsloader.load();
-	        FormBridge bridge = btnsloader.getController();
-
 	        FXMLLoader contentLoader = new FXMLLoader();
 	        contentLoader.setLocation(NewOrderController.class.getResource("NewOrder.fxml"));
 	        Pane pane = contentLoader.load();
-	        NewOrderController controller = contentLoader.getController();
 
-	        bridge.setController(controller);
-
-	        borderPane.setCenter(pane);
-
-	        return borderPane;
+	        return pane;
 	 }
 
 	@FXML
 	public void initialize(){
 		// initialize the choice box
-		type_Box.setItems(FXCollections.observableArrayList(type));
+		type_Box.setItems(
+                Enum2ObservableList.transit(DeliverTypeEnum.values())
+        );
 		type_Box.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
-					switch (newValue) {
-						case "标准快递":
-							deliverType = deliverType.NORMAL;
-							break;
-						case "经济快递":
-							deliverType = deliverType.SLOW;
-							break;
-						case "特快专递":
-							deliverType = deliverType.FAST;
-							break;
-					}
-				}
+                    deliverType = newValue.getEnum();
+                }
 		);
 
-		pack_Box.setItems(FXCollections.observableArrayList(pack));
+		pack_Box.setItems(
+                Enum2ObservableList.transit(PackingEnum.values())
+        );
 		pack_Box.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
-					switch (newValue) {
-						case "快递袋":
-							packing = packing.BAG;
-							break;
-						case "纸箱":
-							packing = packing.PAPER;
-							break;
-						case "木箱":
-							packing = packing.WOOD;
-							break;
-						case"其他":
-							packing = packing.OTHER;   //这个要手动填写包装费用还没有解决
-							break;
-					}
-				}
+                    packing = newValue.getEnum();
+                }
 		);
 
 		clear(null);
@@ -152,6 +130,13 @@ public class NewOrderController extends BasicFormController {
 						goods_Type.getText(),deliverType,packing);
 	}
 
+	@FXML
+    private void fillPrediction(){
+
+		PredictVO predictVO = obl.predict(generateVO(null));
+		predict_Date.setText(predictVO.getPredictDate());
+		predict_Expense.setText(predictVO.getExpense());
+	}
 
 	public void clear(ActionEvent actionEvent) {
 		name_From.clear();
@@ -170,11 +155,16 @@ public class NewOrderController extends BasicFormController {
 		goods_Weight.clear();
 		goods_Volume.clear();
 		goods_Name.clear();
-		pack_Box.setValue("纸箱");
-		type_Box.setValue("标准快递");
+
+        SimpleEnumProperty<PackingEnum> pe = pack_Box.getItems().get(0);
+		pack_Box.setValue(pe);
+        packing = pe.getEnum();
+
+        SimpleEnumProperty<DeliverTypeEnum> dte = type_Box.getItems().get(0);
+        type_Box.setValue(dte);
+		deliverType = dte.getEnum();
 	}
 
-	@Override
 	public void saveDraft(ActionEvent actionEvent) {
 
 		OrderVO ovo = generateVO(null);
