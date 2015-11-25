@@ -44,19 +44,4 @@ public class StoreModelBLImpl implements StoreModelBLService {
     public OperationMessage clearLocalBuffer() {
         return new OperationMessage();
     }
-
-    public static void drive(StoreModelDataService smds) throws RemoteException {
-        if(smds.downloadStoreModel("222333") != null)
-            System.out.println("downloadStoreModel tested");
-        if(smds.updateModelOperations("222333", "222333") != null)
-            System.out.println("updateModelOperations tested");
-        if(smds.uploadModelOperations("222", "333", null) != null)
-            System.out.println("uploadModelOperations tested");
-    }
-
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        StoreModelDataService smds = (StoreModelDataService) Naming.lookup
-                ("rmi://" + R.string.LocalHost + "/" + R.string.StoreDataService);
-        drive(smds);
-    }
 }
