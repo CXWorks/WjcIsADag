@@ -1,5 +1,6 @@
 package ui.orderui;
 
+import bl.blImpl.orderbl.OrderBLController;
 import bl.blService.orderblService.OrderBLService;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
@@ -13,9 +14,11 @@ import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.PackingEnum;
+import tool.time.TimeConvert;
 import ui.common.BasicFormController;
 import ui.common.FormBridge;
 import vo.ordervo.OrderVO;
+import vo.receivevo.ReceiveVO;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -31,9 +34,7 @@ public class NewOrderController extends BasicFormController {
 	private final static String[] pack={"纸箱","木箱","快递袋"};
 	
 	
-	public Label OrderID;
-	String orderID="1000000000";
-	
+
 	public TextField name_From;
 	public TextField address_From;
 	public TextField unit_From;
@@ -94,7 +95,6 @@ public class NewOrderController extends BasicFormController {
 					switch (newValue) {
 						case "标准快递":
 							deliverType = deliverType.NORMAL;
-
 							break;
 						case "经济快递":
 							deliverType = deliverType.SLOW;
@@ -119,6 +119,9 @@ public class NewOrderController extends BasicFormController {
 						case "木箱":
 							packing = packing.WOOD;
 							break;
+						case"其他":
+							packing = packing.OTHER;   //这个要手动填写包装费用还没有解决
+							break;
 					}
 				}
 		);
@@ -127,9 +130,22 @@ public class NewOrderController extends BasicFormController {
 
 	}
 
-	private OrderVO generateOrderVO(){
+	public void commit(ActionEvent actionEvent) {
+
+		OperationMessage msg = obl.submit(generateVO(obl.newID()));
+
+        if(msg.operationResult){
+            System.out.println("commit successfully");
+            clear(null);
+        }else{
+            System.out.println("commit fail: " + msg.getReason());
+        }
+
+	}
+	
+	private OrderVO generateVO(String FormID){
 		return new OrderVO
-				(orderID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
+				(FormID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
 						address_From.getText(),address_To.getText(),
 						tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
 						goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),predict_Expense.getText(),
@@ -137,24 +153,6 @@ public class NewOrderController extends BasicFormController {
 	}
 
 
-
-
-
-	@Override
-	public void commit(ActionEvent actionEvent) {
-
-		OrderVO ovo = generateOrderVO();
-
-		OperationMessage msg = obl.submit(ovo);
-//	        
-//	        PredictVO pvo= new PredictVO
-//	        		(predict_Expense.getText(),predict_Date.getText());
-
-
-
-	}
-
-	@Override
 	public void clear(ActionEvent actionEvent) {
 		name_From.clear();
 		address_From.clear();
@@ -179,7 +177,7 @@ public class NewOrderController extends BasicFormController {
 	@Override
 	public void saveDraft(ActionEvent actionEvent) {
 
-		OrderVO ovo = generateOrderVO();
+		OrderVO ovo = generateVO(null);
 		obl.saveDraft(ovo);
 	}
 

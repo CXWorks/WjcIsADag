@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.PoepleReceiveFormController">
    <children>
       <TextField layoutX="54.0" layoutY="59.0" />
-      <Text layoutX="61.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="快递单号输入框" />
+      <Text fx:id="id_Field" layoutX="61.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="快递单号输入框" />
       <Button layoutX="225.0" layoutY="59.0" mnemonicParsing="false" text="确认" />
       <GridPane layoutX="604.0" layoutY="152.0" prefHeight="147.0" prefWidth="161.0">
         <columnConstraints>
@@ -23,8 +23,8 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="收件人姓名" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="收件日期" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="name_Field" GridPane.columnIndex="1" />
+            <DatePicker fx:id="receive_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox alignment="BOTTOM_RIGHT" layoutX="186.0" layoutY="396.0" prefWidth="600.0" spacing="8.0">

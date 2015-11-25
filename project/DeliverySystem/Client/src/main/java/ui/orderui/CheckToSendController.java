@@ -8,8 +8,11 @@ import java.io.IOException;
 
 
 
-import java.util.Date;
 
+import java.util.Map;
+
+import tool.ui.DeliverVO2ColumnHelper;
+import tool.ui.OrderVO2ColumnHelper;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,27 +22,35 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.BorderPane;
 
 public class CheckToSendController {
 
 	
-	public TableColumn<DeliverVO, Date> time_Column;
-	public TableColumn<OrderVO,String> ID_Column;
-	public TableColumn<OrderVO,String> address_Column;
+	public TableColumn<Map.Entry<String, String>, String>  time_Column;
+	public TableColumn<Map.Entry<String, String>, String> id_Column;
+	public TableColumn<Map.Entry<String, String>, String> address_Column;
+	public TableColumn<Map.Entry<String, String>, String> people_Column;  //收件人姓名
 	
-    private ObservableList<DeliverVO> deliverVOs ;
     
     public static Parent launch() throws IOException {
-        return FXMLLoader.load(CheckToSendController.class.getResource("CheckToSend.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.load(CheckToSendController.class.getResource("CheckToSend.fxml"));
+        BorderPane borderPane = (BorderPane) loader.load();
+
+        return borderPane;
+        
     }
 	
     
     @FXML
     public void initialize(){
        // time_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getDate()));
-        ID_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getFormID()));
-        address_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddressTo()));
-
+      
+        DeliverVO2ColumnHelper.setKeyColumn(id_Column); 
+        DeliverVO2ColumnHelper.setKeyColumn(address_Column); 
+        DeliverVO2ColumnHelper.setKeyColumn(people_Column); 
+        
     }
     
 	public void checkDetails(ActionEvent aciontEvent){

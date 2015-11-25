@@ -26,6 +26,12 @@ public class DeliverVO extends FormVO{
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
+	public Calendar getDate() {
+		return date;
+	}
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 	public String getPostman() {
 		return postman;
 	}

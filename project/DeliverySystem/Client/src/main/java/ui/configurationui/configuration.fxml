@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.configurationui.ConfigurationController">
+   <children>
+      <TabPane layoutX="143.0" layoutY="90.0" prefHeight="319.0" prefWidth="624.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="城市距离">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="573.0" layoutY="255.0" mnemonicParsing="false" text="确认" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="快递费">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="261.0" prefWidth="624.0">
+                     <children>
+                        <Button layoutX="555.0" layoutY="253.0" mnemonicParsing="false" text="确认" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="收费比例">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="555.0" layoutY="253.0" mnemonicParsing="false" text="确认" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="包装费">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="555.0" layoutY="253.0" mnemonicParsing="false" text="确认" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
