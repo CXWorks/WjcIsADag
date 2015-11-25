@@ -15,7 +15,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import po.receivedata.StateEnum;
+import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
+import tool.ui.SimpleEnumProperty;
 import ui.common.BasicFormController;
 import ui.common.FormBridge;
 import vo.ordervo.OrderVO;
@@ -30,14 +32,11 @@ import java.util.Map;
  * Created by Sissel on 2015/11/21.
  */
 public class HallReceiveFormController extends BasicFormController{
-
-    //
-    private final static String[] states = {"完好", "损坏", "丢失"};
     
     public DatePicker arrive_DatePicker;
     public TextField transitID_Field;
     public TextField departure_Field;
-    public ChoiceBox<String> arriveState_Box;
+    public ChoiceBox<SimpleEnumProperty<StateEnum>> arriveState_Box;
     public TableView<Map.Entry<String, String>> order_Table;
     public TextField order_Field;
     public Label date_ErrLabel;
@@ -72,20 +71,10 @@ public class HallReceiveFormController extends BasicFormController{
     @FXML
     public void initialize(){
         // initialize the choice box
-        arriveState_Box.setItems(FXCollections.observableArrayList(states));
+        arriveState_Box.setItems(Enum2ObservableList.transit(StateEnum.values()));
         arriveState_Box.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    switch (newValue) {
-                        case "完好":
-                            stateEnum = StateEnum.Complete;
-                            break;
-                        case "损坏":
-                            stateEnum = StateEnum.Damage;
-                            break;
-                        case "丢失":
-                            stateEnum = StateEnum.Lose;
-                            break;
-                    }
+                    stateEnum = newValue.getEnum();
                 }
         );
         clear(null);
@@ -119,7 +108,7 @@ public class HallReceiveFormController extends BasicFormController{
         departure_Field.clear();
         order_Field.clear();
         order_Table.setItems(null);
-        arriveState_Box.setValue("完好");
+        arriveState_Box.setValue(arriveState_Box.getItems().get(0));
     }
 
     @Override
