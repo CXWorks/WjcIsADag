@@ -28,10 +28,10 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 	private String Table_Name = "";
 	private Connection conn = null;
 	private PreparedStatement statement = null;
-	/*一个架子中position的数量*/
+	/* 一个架子中position的数量 */
 	private final static int NUM = 50;
 
-	protected StoreModelDataImpl() throws RemoteException {
+	public StoreModelDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		conn = ConnecterHelper.connSQL(conn);
@@ -64,6 +64,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 		ResultSet rs = null;
 		StoreArea result = null;
 		StoreLocation tmp = null;
+		ArrayList<StoreLocation> list = new ArrayList<StoreLocation>();
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -71,7 +72,9 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 				tmp = new StoreLocation(code, rs.getInt("row"),
 						rs.getInt("shelf"), rs.getInt("position"),
 						rs.getString("orderID"));
+				list.add(tmp);
 			}
+			result = new StoreArea(code, list);
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -90,18 +93,61 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public OperationMessage newShelf(StoreAreaCode code, int row)
+	public OperationMessage newShelf(StoreAreaCode code, int row, int shelf)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		this.setTableName(code);
-		return null;
+		OperationMessage result = new OperationMessage();
+		try {
+			for (int i = 1; i <= NUM; i++) {
+				String insert = "insert into " + Table_Name
+						+ "(row,shelf,position,orderID) " + "values('" + row
+						+ "','" + shelf + "','" + i + "','" + "" + "')";
+				statement = conn.prepareStatement(insert);
+				statement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@Override
-	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
-			int shelf_now, StoreAreaCode code, int row,int shelf) throws RemoteException {
+	public OperationMessage removeShelf(StoreAreaCode code, int row, int shelf)
+			throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		OperationMessage result = new OperationMessage();
+		this.setTableName(code);
+		String delete = "delete from " + Table_Name + " where row= '" + row
+				+ "' and shelf= '" + shelf + "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("删除时出错：");
+			result = new OperationMessage(false, "删除时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+			int shelf_now, StoreAreaCode code, int row, int shelf)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		if (!this.removeShelf(code_now, row_now, shelf_now).operationResult)
+			return result = new OperationMessage(false, "数据库中没有对应表单");
+		if (!this.newShelf(code, row, shelf).operationResult)
+			return result = new OperationMessage(false, "更新失败");
+		else
+			return result;
 	}
 
 	@Override
@@ -110,19 +156,12 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		this.setTableName(location.getArea());
 		OperationMessage result = new OperationMessage();
-		String info = location.getRow() + "-" + location.getShelf() + "-"
-				+ location.getPosition();
-		String delete = "delete from " + Table_Name + " where store_info= '"
-				+ info + "'";
+		String updata = "update " + Table_Name + " set orderID= '"
+				+ location.getOrderID() + "' where row= '" + location.getRow()
+				+ "' AND shelf= '" + location.getShelf() + "' AND position= '"
+				+ location.getPosition() + "'";
 		try {
-			statement = conn.prepareStatement(delete);
-			statement.executeUpdate();
-			String search = "insert into " + Table_Name
-					+ "(store_info,row,shelf,position,orderID) " + "values('"
-					+ info + "','" + location.getRow() + "','"
-					+ location.getShelf() + "','" + location.getPosition()
-					+ "','" + location.getOrderID() + "')";
-			statement = conn.prepareStatement(search);
+			statement = conn.prepareStatement(updata);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -132,5 +171,28 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 		}
 		return result;
 	}
+
+	@Override
+	public String getLocation(StoreAreaCode code, int row, int shelf,
+			int position) throws RemoteException {
+		// TODO Auto-generated method stub
+		this.setTableName(code);
+		ResultSet rs = null;
+		String select = "select * from " + Table_Name + " where row= '" + row
+				+ "' AND shelf= '" + shelf + "' AND position= '" + position
+				+ "'";
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			return rs.getString("orderID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("查找时出错：");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }
