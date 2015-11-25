@@ -20,5 +20,4 @@ public class StoreArea {
 	public StoreAreaCode getAreaID() {
 		return areaID;
 	}
-
 }
