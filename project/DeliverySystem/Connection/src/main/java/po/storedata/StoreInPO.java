@@ -38,12 +38,6 @@ public class StoreInPO extends FormPO {
 		return location;
 	}
 
-	public String getLocationForSQL() {
-		return location.area.toString() + " " + location.row + " "
-				+ location.shelf + " " + location.position + " "
-				+ location.orderID;
-	}
-
 	/**
 	 * @param formEnum
 	 * @param formID

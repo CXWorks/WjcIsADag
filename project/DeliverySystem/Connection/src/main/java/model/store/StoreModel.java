@@ -6,17 +6,11 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class StoreModel implements Serializable{
-    class StoreShelf {
-        List<StoreLocation> locations;
-        int	shelfID;
-    }
-    class StoreRow {
-        List<StoreShelf> shelves;
-        int	rowID;
-    }
-    class StoreArea {
-        List<StoreRow> rows;
-        StoreAreaCode	areaID;
-    }
+public class StoreModel implements Serializable {
+	
+	private StoreArea air;
+	private StoreArea rail;
+	private StoreArea road;
+	private StoreArea flex;
+
 }

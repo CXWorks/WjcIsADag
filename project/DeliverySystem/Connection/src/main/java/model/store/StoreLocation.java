@@ -7,21 +7,26 @@ import po.receivedata.StateEnum;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class StoreLocation implements Serializable{
-    public StoreAreaCode area;
-    public int row;
-    public int shelf;
-    public int position;
-    public String orderID;
-    
-    public StoreLocation(String message){
-    	String[] list = message.split(" ");
-    	this.setArea(list[0]);
-    	this.row = Integer.parseInt(list[1]);
-    	this.shelf = Integer.parseInt(list[2]);
-    	this.position = Integer.parseInt(list[3]);
-    	this.orderID = list[4];
-    }
+public class StoreLocation implements Serializable {
+	private StoreAreaCode area;
+	private int row;
+	private int shelf;
+	private int position;
+	private String orderID;
+
+	public StoreLocation(String message) {
+		String[] list = message.split(" ");
+		this.setArea(list[0]);
+		this.row = Integer.parseInt(list[1]);
+		this.shelf = Integer.parseInt(list[2]);
+		this.position = Integer.parseInt(list[3]);
+		this.orderID = list[4];
+	}
+
+	public String getLocationForSQL() {
+		return area.toString() + " " + row + " " + shelf + " " + position + " "
+				+ orderID;
+	}
 
 	public void setArea(String area) {
 		switch (area) {
@@ -39,6 +44,5 @@ public class StoreLocation implements Serializable{
 			break;
 		}
 	}
-    
-    
+
 }

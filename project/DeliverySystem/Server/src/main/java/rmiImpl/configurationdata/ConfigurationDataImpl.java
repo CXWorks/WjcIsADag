@@ -22,6 +22,7 @@ import po.configurationdata.SalaryStrategyPO;
 import po.configurationdata.enums.PackEnum;
 import po.financedata.PaymentPO;
 import po.orderdata.DeliverTypeEnum;
+import po.receivedata.ReceivePO;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.ConnecterHelper;
 
@@ -133,9 +134,26 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		String selectAll = "select * from " + City2D;
+		ResultSet rs = null;
+		City2DPO temp = null;
+		ArrayList<City2DPO> result = new ArrayList<City2DPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"),
+						rs.getDouble("y"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
-	
+
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
 		// TODO Auto-generated method stub

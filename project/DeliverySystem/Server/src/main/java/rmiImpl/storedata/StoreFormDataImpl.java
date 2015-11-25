@@ -3,6 +3,7 @@ package rmiImpl.storedata;
 import message.OperationMessage;
 import model.store.StoreModel;
 import model.store.StoreModelOperation;
+import po.FormPO;
 import po.receivedata.ReceivePO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
@@ -28,8 +29,8 @@ import java.util.List;
 /**
  * Created by Sissel on 2015/10/25.
  */
-public class StoreDataImpl extends UnicastRemoteObject implements
-		StoreFormDataService, StoreModelDataService {
+public class StoreFormDataImpl extends UnicastRemoteObject implements
+		StoreFormDataService {
 
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "StoreData";
@@ -39,7 +40,7 @@ public class StoreDataImpl extends UnicastRemoteObject implements
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
-	public StoreDataImpl() throws RemoteException, MalformedURLException {
+	public StoreFormDataImpl() throws RemoteException, MalformedURLException {
 		// TODO Auto-generated constructor stub
 		super();
 		Store_In = "store_in";
@@ -52,28 +53,6 @@ public class StoreDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public OperationMessage uploadModelOperations(String centerID,
-			String staffID, List<StoreModelOperation> operations)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LinkedList<StoreModelOperation> updateModelOperations(
-			String centerID, String staffID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public StoreModel downloadStoreModel(String centerID)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public OperationMessage insertStoreInPO(StoreInPO po)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -83,7 +62,8 @@ public class StoreDataImpl extends UnicastRemoteObject implements
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getDateForSQL().toString() + "','"
-				+ po.getDestination() + "','" + po.getLocationForSQL() + "')";
+				+ po.getDestination() + "','"
+				+ po.getLocation().getLocationForSQL() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -392,4 +372,49 @@ public class StoreDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
+	@Override
+	public ArrayList<FormPO> getInOutInfo(Timestamp start, Timestamp end)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectIn = "select * from " + Store_In;
+		String selectOut = "select * from " + Store_Out;
+		ResultSet rs = null;
+		StoreInPO in = null;
+		StoreOutPO out = null;
+		ArrayList<FormPO> result = new ArrayList<FormPO>();
+		Timestamp tmp = null;
+		try {
+			statement = conn.prepareStatement(selectIn);
+			rs = statement.executeQuery(selectIn);
+			while (rs.next()) {
+				tmp = rs.getTimestamp("date");
+				if(!(tmp.getTime()>start.getTime()||tmp.getTime()<end.getTime()))
+					continue;
+				in = new StoreInPO(rs.getString("formID"),
+						rs.getString("orderID"), tmp,
+						rs.getString("destination"), rs.getString("location"));
+				in.setFormState(rs.getString("formState"));
+				result.add(in);
+			}
+			statement = conn.prepareStatement(selectOut);
+			rs = statement.executeQuery(selectOut);
+			while (rs.next()) {
+				tmp = rs.getTimestamp("date");
+				tmp = rs.getTimestamp("date");
+				if(!(tmp.getTime()>start.getTime()||tmp.getTime()<end.getTime()))
+					continue;
+				out = new StoreOutPO(rs.getString("formID"),
+						rs.getString("orderID"),tmp,
+						rs.getString("destination"),
+						rs.getString("transportation"), rs.getString("transID"));
+				out.setFormState(rs.getString("formState"));
+				result.add(out);
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

@@ -1,6 +1,7 @@
 package rmi.storedata;
 
 import po.CommonPO;
+import po.FormPO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
 import rmi.DataService;
@@ -8,6 +9,7 @@ import rmi.DataService;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -99,4 +101,9 @@ public interface StoreFormDataService extends DataService<CommonPO>{
 	 * @return 所有信息
 	 */
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException;
+	/**
+	 * 展示全部out信息
+	 * @return 所有信息
+	 */
+	public ArrayList<FormPO> getInOutInfo(Timestamp start,Timestamp end) throws RemoteException;
 }

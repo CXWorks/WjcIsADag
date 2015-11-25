@@ -23,7 +23,7 @@ import rmiImpl.initaldata.InitialDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.orderdata.OrderDataImpl;
 import rmiImpl.receivedata.ReceiveDataImpl;
-import rmiImpl.storedata.StoreDataImpl;
+import rmiImpl.storedata.StoreFormDataImpl;
 import rmiImpl.transportdata.CenterOutDataImpl;
 import rmiImpl.transportdata.LoadDataImpl;
 
@@ -69,9 +69,9 @@ public class DataFactory implements DataFactoryService {
 			return new OrderDataImpl();
 		case ReceiveDataImpl.NAME:
 			return new ReceiveDataImpl();
-		case StoreDataImpl.NAME:
+		case StoreFormDataImpl.NAME:
 			try {
-				return new StoreDataImpl();
+				return new StoreFormDataImpl();
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
