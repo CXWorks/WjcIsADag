@@ -1,6 +1,15 @@
 package bl.blImpl.orderbl;
 
+import java.rmi.RemoteException;
+import java.util.Calendar;
+import java.util.HashMap;
+
+import po.configurationdata.City2DPO;
+import po.configurationdata.PricePO;
 import rmi.configurationdata.ConfigurationDataService;
+import tool.vopo.VOPOFactory;
+import vo.ordervo.OrderVO;
+import vo.ordervo.PredictVO;
 
 /** 
  * Client//bl.blImpl.orderbl//Predicter.java
@@ -10,4 +19,28 @@ import rmi.configurationdata.ConfigurationDataService;
  */
 public class Predicter {
 	private ConfigurationDataService configurationDataService;
+	private VOPOFactory vopoFactory;
+	public Predicter(VOPOFactory vopoFactory){
+		this.configurationDataService=configurationDataService;
+		this.vopoFactory=vopoFactory;
+	}
+	//
+	public PredictVO calculatePredict(OrderVO orderVO){
+		try {
+			PricePO pricePO=configurationDataService.getPrice();
+			int priceKM=pricePO.getByType(orderVO.getType());
+			//
+			City2DPO city1=configurationDataService.getCity2D(orderVO.getAddressFrom());
+			City2DPO city2=configurationDataService.getCity2D(orderVO.getAddressTo());
+			double distance=city1.distance(city2);
+			double price=priceKM*distance;
+			Calendar date=Calendar.getInstance();
+			date.add(Calendar.DAY_OF_MONTH, (int) (distance/400+1));
+			//
+			PredictVO vo=new PredictVO(Double.toString(price), date.toString());
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
 }

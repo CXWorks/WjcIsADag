@@ -7,9 +7,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
-import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
+import po.orderdata.DeliverTypeEnum;
 //import bl.blImpl.configurationbl.ConfigurationblImpl;
 //import bl.blService.configurationblService.ConfigurationblService;
 import vo.configurationvo.CityDistanceVO;
@@ -81,9 +80,9 @@ public class ConfigurationPanel extends JPanel implements ActionListener{
 			g.drawString("标准",400,160);
 			g.drawString("特快",400,190);
 			
-			g.drawString(priceVO.getByType(DeliveryTypeEnum.ECONOMIC)+"",500,130);
-			g.drawString(priceVO.getByType(DeliveryTypeEnum.USUAL)+"",500,160);
-			g.drawString(priceVO.getByType(DeliveryTypeEnum.FAST)+"",500,190);
+			g.drawString(priceVO.getByType(DeliverTypeEnum.SLOW)+"",500,130);
+			g.drawString(priceVO.getByType(DeliverTypeEnum.NORMAL)+"",500,160);
+			g.drawString(priceVO.getByType(DeliverTypeEnum.FAST)+"",500,190);
 			
 			g.drawString("包装类型",100,100);
 			g.drawString("价格",200,100);

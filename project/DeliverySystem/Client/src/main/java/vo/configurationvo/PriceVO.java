@@ -5,15 +5,15 @@ import java.util.Map;
 
 import po.InfoEnum;
 import po.configurationdata.PricePO;
-import po.configurationdata.enums.DeliveryTypeEnum;
+import po.orderdata.DeliverTypeEnum;
 
 public class PriceVO extends ConfigurationVO{
 	//TODO discuss how to build this with JR
-	private HashMap<DeliveryTypeEnum,Integer> price;
+	private HashMap<DeliverTypeEnum,Integer> price;
 	public PriceVO(){
 		super(InfoEnum.PRICE);
 	}
-	public int getByType(DeliveryTypeEnum type){
+	public int getByType(DeliverTypeEnum type){
 		return price.get(type);
 	}
 	public PriceVO(PricePO po){

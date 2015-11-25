@@ -7,31 +7,31 @@ import java.util.Map;
 import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
-import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
+import po.orderdata.DeliverTypeEnum;
 
 public class PricePO extends InfoPO implements Serializable{
-	private HashMap<DeliveryTypeEnum,Integer> price;
+	private HashMap<DeliverTypeEnum,Integer> price;
 	public PricePO(){
 		super(InfoEnum.PRICE);
-		this.price=new HashMap<DeliveryTypeEnum, Integer>();
+		this.price=new HashMap<DeliverTypeEnum, Integer>();
 	}
-	public PricePO(HashMap<DeliveryTypeEnum,Integer> price){
+	public PricePO(HashMap<DeliverTypeEnum,Integer> price){
 		super(InfoEnum.PRICE);
 		this.price=price;
 	}
-	public HashMap<DeliveryTypeEnum, Integer> getPrice() {
+	public HashMap<DeliverTypeEnum, Integer> getPrice() {
 		return price;
 	}
-	public int getByType(DeliveryTypeEnum type){
-		return this.price.get(type);
+	public int getByType(DeliverTypeEnum deliverTypeEnum){
+		return this.price.get(deliverTypeEnum);
 	}
-	public HashMap<DeliveryTypeEnum, Integer> getClonedPrice(){
-		HashMap<DeliveryTypeEnum, Integer> ans=new HashMap<DeliveryTypeEnum, Integer>();
+	public HashMap<DeliverTypeEnum, Integer> getClonedPrice(){
+		HashMap<DeliverTypeEnum, Integer> ans=new HashMap<DeliverTypeEnum, Integer>();
 		ans.putAll(price);
 		return ans;
 	}
-	public void setPrice(HashMap<DeliveryTypeEnum, Integer> toSet){
+	public void setPrice(HashMap<DeliverTypeEnum, Integer> toSet){
 		this.price.putAll(toSet);
 	}
 }

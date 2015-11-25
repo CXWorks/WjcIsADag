@@ -19,9 +19,9 @@ import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
-import po.configurationdata.enums.DeliveryTypeEnum;
 import po.configurationdata.enums.PackEnum;
 import po.financedata.PaymentPO;
+import po.orderdata.DeliverTypeEnum;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.ConnecterHelper;
 
@@ -275,20 +275,20 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		String selectAll = "select * from " + Price;
 		ResultSet rs = null;
 		PricePO result = null;
-		HashMap<DeliveryTypeEnum, Integer> price = new HashMap();
+		HashMap<DeliverTypeEnum, Integer> price = new HashMap();
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				switch (rs.getString("name")) {
 				case "ECONOMIC":
-					price.put(DeliveryTypeEnum.ECONOMIC, rs.getInt("money"));
+					price.put(DeliverTypeEnum.SLOW, rs.getInt("money"));
 					break;
 				case "USUAL":
-					price.put(DeliveryTypeEnum.USUAL, rs.getInt("money"));
+					price.put(DeliverTypeEnum.NORMAL, rs.getInt("money"));
 					break;
 				case "FAST":
-					price.put(DeliveryTypeEnum.FAST, rs.getInt("money"));
+					price.put(DeliverTypeEnum.FAST, rs.getInt("money"));
 					break;
 				}
 
@@ -307,13 +307,13 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update " + Price + "set money='"
-				+ price.getByType(DeliveryTypeEnum.ECONOMIC)
+				+ price.getByType(DeliverTypeEnum.SLOW)
 				+ "' where name= 'ECONOMIC'");
 		operations.add("update " + Price + "set money='"
-				+ price.getByType(DeliveryTypeEnum.USUAL)
+				+ price.getByType(DeliverTypeEnum.NORMAL)
 				+ "' where name= 'USUAL'");
 		operations.add("update " + Price + "set money='"
-				+ price.getByType(DeliveryTypeEnum.FAST)
+				+ price.getByType(DeliverTypeEnum.FAST)
 				+ "' where name= 'FAST'");
 		try {
 			for (String tmp : operations) {
@@ -334,20 +334,20 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		String selectAll = "select * from " + Proportion;
 		ResultSet rs = null;
 		ProportionPO result = null;
-		HashMap<DeliveryTypeEnum, Integer> target = new HashMap();
+		HashMap<DeliverTypeEnum, Integer> target = new HashMap();
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				switch (rs.getString("name")) {
 				case "ECONOMIC":
-					target.put(DeliveryTypeEnum.ECONOMIC, rs.getInt("num"));
+					target.put(DeliverTypeEnum.SLOW, rs.getInt("num"));
 					break;
 				case "USUAL":
-					target.put(DeliveryTypeEnum.USUAL, rs.getInt("num"));
+					target.put(DeliverTypeEnum.NORMAL, rs.getInt("num"));
 					break;
 				case "FAST":
-					target.put(DeliveryTypeEnum.FAST, rs.getInt("num"));
+					target.put(DeliverTypeEnum.FAST, rs.getInt("num"));
 					break;
 				}
 
@@ -367,13 +367,13 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update " + Proportion + "set num='"
-				+ proportion.getByType(DeliveryTypeEnum.ECONOMIC)
+				+ proportion.getByType(DeliverTypeEnum.SLOW)
 				+ "' where name= 'ECONOMIC'");
 		operations.add("update " + Proportion + "set num='"
-				+ proportion.getByType(DeliveryTypeEnum.USUAL)
+				+ proportion.getByType(DeliverTypeEnum.NORMAL)
 				+ "' where name= 'USUAL'");
 		operations.add("update " + Proportion + "set num='"
-				+ proportion.getByType(DeliveryTypeEnum.FAST)
+				+ proportion.getByType(DeliverTypeEnum.FAST)
 				+ "' where name= 'FAST'");
 		try {
 			for (String tmp : operations) {

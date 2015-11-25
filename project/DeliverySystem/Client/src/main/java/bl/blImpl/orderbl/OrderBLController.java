@@ -26,6 +26,7 @@ public class OrderBLController implements OrderBLService{
 		this.vopoFactory=vopoFactory;
 		this.draftService=draftService;
 		this.formatCheckService=formatCheckService;
+		this.predicter=new Predicter(vopoFactory);
 	}
 	public OrderVO loadDraft() {
 		return (OrderVO)draftService.getDraft(FormEnum.ORDER);
@@ -55,8 +56,7 @@ public class OrderBLController implements OrderBLService{
 	}
 
 	public PredictVO predict(OrderVO vo) {
-		// TODO Auto-generated method stub
-		return new PredictVO();
+		return predicter.calculatePredict(vo);
 	}
 
 	/* (non-Javadoc)

@@ -5,14 +5,14 @@ import java.util.Map;
 
 import po.InfoEnum;
 import po.configurationdata.ProportionPO;
-import po.configurationdata.enums.DeliveryTypeEnum;
+import po.orderdata.DeliverTypeEnum;
 
 public class ProportionVO extends ConfigurationVO{
-	private HashMap<DeliveryTypeEnum,Integer> proportion;
+	private HashMap<DeliverTypeEnum,Integer> proportion;
 	public ProportionVO(){
 		super(InfoEnum.PROPORTION);
 	}
-	public int getByType(DeliveryTypeEnum type) {
+	public int getByType(DeliverTypeEnum type) {
 		return proportion.get(type);
 	}
 	public ProportionVO(ProportionPO po){
