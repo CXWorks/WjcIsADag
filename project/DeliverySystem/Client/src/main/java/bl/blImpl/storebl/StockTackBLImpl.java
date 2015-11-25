@@ -1,15 +1,18 @@
 package bl.blImpl.storebl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.orderdata.OrderPO;
 import po.storedata.StoreInPO;
 import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import tool.excel.Excel;
 import bl.blService.storeblService.StockTackBLService;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
+import model.store.StoreArea;
 import model.store.StoreAreaCode;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
@@ -52,6 +55,19 @@ public class StockTackBLImpl implements StockTackBLService {
     }
 
     public OperationMessage makeExcel(String path) {
-        return new OperationMessage();
+        try {
+        	ArrayList<StoreArea> storeArea=new ArrayList<StoreArea>(4);
+			StoreArea storeArea1=storeModelDataService.getArea(StoreAreaCode.AIR);
+			storeArea.add(storeArea1);
+			StoreArea storeArea2=storeModelDataService.getArea(StoreAreaCode.AIR);
+			storeArea.add(storeArea2);
+			StoreArea storeArea3=storeModelDataService.getArea(StoreAreaCode.AIR);
+			storeArea.add(storeArea3);
+			StoreArea storeArea4=storeModelDataService.getArea(StoreAreaCode.AIR);
+			storeArea.add(storeArea4);
+			return Excel.exportToExcel(path, storeArea);
+		} catch (RemoteException e) {
+			return new OperationMessage(false,"net error");
+		}
     }
 }
