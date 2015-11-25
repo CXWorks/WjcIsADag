@@ -10,13 +10,16 @@ import bl.blService.accountblService.AccountBLLoginService;;
  * @version 1.0 
  */
 public class LoginFactory extends BLFactory{
-	private AccountBLLoginService accountBLLoginService;
-	public LoginFactory(){
-		accountBLLoginService=new AccountBLLoginImpl();
-	}
-	public AccountBLLoginService getAccountBLLoginService() {
+
+	private static AccountBLLoginService accountBLLoginService;
+
+	private LoginFactory(){}
+
+	public static AccountBLLoginService getAccountBLLoginService() {
+		if(accountBLLoginService == null){
+			accountBLLoginService = new AccountBLLoginImpl();
+		}
 		return accountBLLoginService;
 	}
-	
-	
+
 }
