@@ -5,61 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.CheckFormController">
    <children>
-      <GridPane layoutX="73.0" layoutY="103.0" prefHeight="308.0" prefWidth="100.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="105.0" text="全部单据" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="104.0" text="新订单" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="109.0" text="装车单" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="中转中心到达单" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="118.0" text="营业厅到达单" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="125.0" text="中转单" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="123.0" text="入库单" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="132.0" text="出库单" GridPane.rowIndex="7" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="126.0" text="派件单" GridPane.rowIndex="8" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="130.0" text="收款单" GridPane.rowIndex="9" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="132.0" text="付款单" GridPane.rowIndex="10" />
-         </children>
-      </GridPane>
-      <TableView layoutX="173.0" layoutY="81.0" prefHeight="330.0" prefWidth="584.0">
-        <columns>
-          <TableColumn prefWidth="27.0" />
-          <TableColumn prefWidth="173.0" text="类型" />
-            <TableColumn prefWidth="383.0" text="信息摘要" />
-        </columns>
-      </TableView>
-      <CheckBox layoutX="181.0" layoutY="55.0" mnemonicParsing="false" text="全选" />
-      <GridPane layoutX="241.0" layoutY="48.0" prefHeight="30.0" prefWidth="380.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" text="标记为审批通过" />
-            <Button mnemonicParsing="false" text="标记为审批未通过" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" text="删除" GridPane.columnIndex="2" />
-         </children>
-      </GridPane>
+      <CheckBox fx:id="chooseAll_Box" layoutX="181.0" layoutY="55.0" mnemonicParsing="false" text="全选" />
+      <TabPane layoutX="69.0" layoutY="86.0" prefHeight="335.0" prefWidth="685.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="all_Tab" text="全部单据" />
+          <Tab fx:id="order_Tab" text="新订单" />
+            <Tab fx:id="hall_Arrive_Tab" text="营业厅到达单" />
+            <Tab fx:id="center_Arrive_Tab" text="中转中心到达单" />
+            <Tab fx:id="store_In_Tab" text="入库单" />
+            <Tab fx:id="store_Out_Tab" text="出库单" />
+            <Tab fx:id="deliver_Tab" text="派件单" />
+            <Tab fx:id="load_Tab" text="装车单" />
+            <Tab fx:id="transit_Tab" text="中转单" />
+            <Tab fx:id="payment_Tab" text="付款单" />
+            <Tab fx:id="Revenue_Tab" text="收款单" />
+        </tabs>
+      </TabPane>
+      <Button layoutX="257.0" layoutY="52.0" mnemonicParsing="false" onAction="#pass" text="标记为审批通过" />
+      <Button layoutX="380.0" layoutY="52.0" mnemonicParsing="false" onAction="#fail" text="标记为审批未通过" />
+      <Button layoutX="522.0" layoutY="52.0" mnemonicParsing="false" onAction="#delete" text="删除" />
    </children>
 </AnchorPane>

@@ -13,6 +13,7 @@ import java.util.Map;
 
 import tool.ui.DeliverVO2ColumnHelper;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.loginui.LoginController;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
@@ -34,11 +35,7 @@ public class CheckToSendController {
 	
     
     public static Parent launch() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.load(CheckToSendController.class.getResource("CheckToSend.fxml"));
-        BorderPane borderPane = (BorderPane) loader.load();
-
-        return borderPane;
+        return FXMLLoader.load(LoginController.class.getResource("checkToSend.fxml"));
         
     }
 	

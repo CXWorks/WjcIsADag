@@ -7,11 +7,13 @@ import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import model.store.StoreArea;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
 import rmi.examineService.ExamineSubmitService;
 import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
+import rmi.storedata.StoreModelDataService;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
@@ -35,7 +37,22 @@ public class StoreInBLImpl implements StoreInBLService {
 		this.vopoFactory=vopoFactory;
 	}
     public StoreLocation getAvailableLocation(StoreAreaCode area) {
-        return null;
+        StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
+        try {
+			StoreArea storeArea=storeModelDataService.getArea(area);
+			ArrayList<StoreLocation> storeLocation=storeArea.getList();
+			StoreLocation ans=null;
+			for (int i = 0; i < storeLocation.size(); i++) {
+				ans=storeLocation.get(i);
+				if (ans.getOrderID()==null) {
+					break;
+				}
+			}
+			//
+			return ans;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
     public String getNewStoreInID(String date) {

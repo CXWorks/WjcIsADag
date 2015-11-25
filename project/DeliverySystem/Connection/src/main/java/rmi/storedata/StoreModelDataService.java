@@ -67,17 +67,6 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 			int shelf_now, StoreAreaCode code, int row, int shelf)
 			throws RemoteException;
 	
-	/**
-	 * 修改货架位置
-	 * 
-	 * @param code
-	 *            所在区域
-	 * @param row
-	 *            所在row的编号
-	 * @param shelf
-	 *            要转移的货架的编号
-	 * @return 返回orderID(无则为null)
-	 */
 	public String getLocation(StoreAreaCode code, int row,
 			int shelf,int position) throws RemoteException;
 }

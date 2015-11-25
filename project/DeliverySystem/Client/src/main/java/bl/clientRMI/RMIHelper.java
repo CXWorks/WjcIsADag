@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.jar.Attributes.Name;
 
 import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
@@ -25,6 +26,7 @@ import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
+import rmi.transportdata.LoadDataService;
 
 /** 
  * Client//bl.clientRMI//RMIHelper.java
@@ -57,6 +59,7 @@ public class RMIHelper {
 	private static StoreModelDataService storeModelDataService;
 	private static SystemDataService systemDataService;
 	private static CenterOutDataService transportDataService;
+	private static LoadDataService loadDataService;
 	
 	
 	
@@ -72,8 +75,15 @@ public class RMIHelper {
 	//
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
 		String url="rmi://"+IP+"/";
-		orderDataService=(OrderDataService)Naming.lookup(url+OrderDataService.class.getName());
-		receiveDataService=(ReceiveDataService)Naming.lookup("rmi://localhost:2336/ReceiveDataService");
+//		orderDataService=(OrderDataService)Naming.lookup("rmi://localhost:2333/OrderDataService");
+//		receiveDataService=(ReceiveDataService)Naming.lookup("rmi://localhost:2333/ReceiveDataService");
+//		loadDataService=(LoadDataService)Naming.lookup("rmi://localhost:2333/LoadDataService");
+		accountDataService = (AccountDataService)Naming.lookup("rmi://localhost:2333/AccountDataService");
+		deliverDataService = (DeliverDataService)Naming.lookup("rmi://localhost:2333/DeliverDataService");
+	}
+	
+	public static LoadDataService getLoadDataService() {
+		return loadDataService;
 	}
 	//
 	public static OrderDataService getOrderDataService(){

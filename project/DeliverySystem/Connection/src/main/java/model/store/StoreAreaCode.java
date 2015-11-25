@@ -9,5 +9,5 @@ public enum StoreAreaCode implements Serializable{
     AIR,
     RAIL,
     ROAD,
-    FLEX
+    FLEX;
 }

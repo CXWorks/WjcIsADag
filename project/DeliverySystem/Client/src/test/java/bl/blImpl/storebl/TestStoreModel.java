@@ -37,13 +37,7 @@ public class TestStoreModel {
 		assertTrue(storeModelBLService.reducePartition(StoreAreaCode.ROAD, 1).operationResult);
 	}
 	
-	@Test
-	public void testDeleteRow(){
-		assertTrue(storeModelBLService.deleteRow(StoreAreaCode.AIR, 1, true).operationResult);
-		assertTrue(storeModelBLService.deleteRow(StoreAreaCode.FLEX, 1, true).operationResult);
-		assertTrue(storeModelBLService.deleteRow(StoreAreaCode.RAIL, 1, true).operationResult);
-		assertTrue(storeModelBLService.deleteRow(StoreAreaCode.ROAD, 1, true).operationResult);
-	}
+
 	
 	@Test
 	public void testExpandPartition(){
@@ -53,20 +47,5 @@ public class TestStoreModel {
 		assertTrue(storeModelBLService.expandPartition(StoreAreaCode.ROAD, 1).operationResult);
 	}
 	
-	@Test
-	public void testAddRow(){
-		assertTrue(storeModelBLService.addRow(StoreAreaCode.AIR, 1).operationResult);
-		assertTrue(storeModelBLService.addRow(StoreAreaCode.FLEX, 1).operationResult);
-		assertTrue(storeModelBLService.addRow(StoreAreaCode.RAIL, 1).operationResult);
-		assertTrue(storeModelBLService.addRow(StoreAreaCode.ROAD, 1).operationResult);
-	}
-	
-	@Test
-	public void testAdjustRow(){
-		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.AIR, 1, 1, true).operationResult);
-		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.FLEX, 1, 1, true).operationResult);
-		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.RAIL, 1, 1, true).operationResult);
-		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.ROAD, 1, 1, true).operationResult);
-	}
 
-}
+	}

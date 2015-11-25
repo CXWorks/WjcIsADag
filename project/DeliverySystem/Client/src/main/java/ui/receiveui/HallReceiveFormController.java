@@ -112,6 +112,12 @@ public class HallReceiveFormController extends BasicFormController{
 
     private void fillOrderTable(){
         OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
+
+//        OrderVO orderVO =
+//                new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
+//                        "18351890356", "13724456739", "3", "图书", "", "", "", null, null, null,
+//                        DeliverTypeEnum.NORMAL, PackingEnum.BAG);
+
         order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
     }
 

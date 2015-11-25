@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.accountui.NewAccountController;
 import ui.loginui.LoginController;
-import ui.orderui.NewOrderController;
 import ui.receiveui.HallReceiveFormController;
+import ui.transportui.LoadCarController;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class Main extends Application {
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//CacheHelper.initializeCache();
+    	CacheHelper.initializeCache();
         launch(args);
     }
 
