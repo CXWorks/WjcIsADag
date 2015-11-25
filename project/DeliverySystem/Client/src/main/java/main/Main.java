@@ -48,8 +48,8 @@ public class Main extends Application {
                 //ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
-                //ManageAccountController.launch()
-                NewOrderController.launch()
+                ManageAccountController.launch()
+                //NewOrderController.launch()
         ));
 
         primaryStage.show();

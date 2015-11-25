@@ -20,6 +20,6 @@ public enum StateEnum implements EnumObservable<StateEnum> {
 
 	@Override
 	public String getChinese() {
-		return null;
+		return chinese;
 	}
 }

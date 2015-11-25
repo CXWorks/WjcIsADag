@@ -45,5 +45,12 @@ public class AccountVO extends InfoVO{
 	public String getID() {
 		return ID;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public AuthorityEnum getAuthority() {
+		return authority;
+	}
 }
