@@ -7,6 +7,8 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 import vo.financevo.RevenueVO;
 import bl.blService.financeblService.RevenueBLService;
 
@@ -26,14 +28,13 @@ public class TestRevenueBLImpl {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		re=new RevenueBLImpl();
+		re=new RevenueBLImpl(new VOPOFactory(),new DraftController());
 		revenue=new RevenueVO("11",Calendar.getInstance(), "300", "plane", "5839", "0034");
 	}
 
 	@Test
 	public void testGet() {
 		assertNotNull(re.getNewRevenueID("2015.11.14"));
-		assertNotNull(re.getOrderVO());
 		assertNotNull(re.getRevenueVO("534222"));
 		assertNotNull(re.getRevenueVO("2014.11.14", "0302"));
 		assertNotNull(re.getRevenueVOs("2013.11.11", "2015.11.11"));
@@ -42,7 +43,6 @@ public class TestRevenueBLImpl {
 	
 	@Test
 	public void testManage(){
-		assertTrue(re.loadOrder("42422").operationResult);
 		assertTrue(re.saveDraft(revenue).operationResult);
 		assertTrue(re.submit(revenue).operationResult);
 	}
