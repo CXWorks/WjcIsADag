@@ -12,15 +12,12 @@ public interface StoreModelBLService {
 
     public OperationMessage setWarningLine(double percent);
 
-    public OperationMessage reducePartition(StoreAreaCode area, int number);
+    public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage expandPartition(StoreAreaCode area, int number);
+    public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage deleteRow(StoreAreaCode area, int rowNum, boolean confirmed);
-
-    public OperationMessage addRow(StoreAreaCode area, int initCapacity);
-
-    public OperationMessage adjustRow(StoreAreaCode area, int rowNum, int newCapacity, boolean confirmed);
+    public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+			int shelf_now, StoreAreaCode code, int row, int shelf);
     
 
 }

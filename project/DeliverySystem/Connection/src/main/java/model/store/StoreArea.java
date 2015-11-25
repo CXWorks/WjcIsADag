@@ -7,6 +7,7 @@ import java.util.List;
 public class StoreArea {
 	private StoreAreaCode areaType;
 	private ArrayList<StoreLocation> list;
+	private final int shelfForEachRow=50;
 
 	public StoreArea(StoreAreaCode areaID, ArrayList<StoreLocation> list) {
 		super();
@@ -43,5 +44,28 @@ public class StoreArea {
 				return tmp;
 		}
 		return null;
+	}
+	//
+	public boolean deleteLastShelf(){
+		if (list.size()<=0) {
+			return false;
+		}
+		StoreLocation last=list.get(list.size()-1);
+		int shelf=last.getShelf();
+		while(last.getShelf()==shelf){
+			list.remove(list.size()-1);
+			last=list.get(list.size()-1);
+		}
+		return true;
+	}
+	//
+	public int getRowNumber(){
+		StoreLocation last=list.get(list.size()-1);
+		return last.getRow();
+	}
+	public int getShelfNumber(){
+		StoreLocation last=list.get(list.size()-1);
+		int lastShelf=last.getShelf();
+		return lastShelf;
 	}
 }

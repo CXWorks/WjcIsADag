@@ -7,7 +7,7 @@ import po.receivedata.StateEnum;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class StoreLocation implements Serializable {
+public class StoreLocation implements Serializable,Cloneable {
 	private StoreAreaCode area;
 	private int row;
 	private int shelf;
