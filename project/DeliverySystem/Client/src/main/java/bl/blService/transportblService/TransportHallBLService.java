@@ -7,6 +7,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import po.transportdata.LoadPO;
 import vo.managevo.car.CarVO;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.CenterOutVO;
@@ -24,7 +25,7 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	 * @param hallID
 	 * @return
 	 */
-	public ArrayList<StaffVO> getDrivers(String hallID);
+	public ArrayList<DriverVO> getDrivers(String hallID);
 	/**
 	 * 获取当前可用车辆信息
 	 * @param hallID

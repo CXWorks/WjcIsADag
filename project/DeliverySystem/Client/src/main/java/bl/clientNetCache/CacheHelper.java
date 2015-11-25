@@ -22,6 +22,7 @@ import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
+import rmi.transportdata.LoadDataService;
 
 /** 
  * Client//bl.clientNetCache//CacheHelper.java
@@ -51,6 +52,7 @@ public class CacheHelper {
 	private static StoreModelDataService storeModelDataService;
 	private static SystemDataService systemDataService;
 	private static CenterOutDataService transportDataService;
+	private static LoadDataService loadDataService;
 	//
 	public static void  initializeCache() throws NetInitException{
 		RMIHelper.init();
@@ -134,6 +136,9 @@ public class CacheHelper {
 	}
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
+	}
+	public static LoadDataService getLoadDataService() {
+		return loadDataService;
 	}
 	
 	

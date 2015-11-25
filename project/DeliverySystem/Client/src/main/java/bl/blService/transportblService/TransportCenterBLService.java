@@ -22,16 +22,4 @@ public interface TransportCenterBLService extends FormBLService<CenterOutVO> {
 	 * @return
 	 */
 	public OrderVO getOrder(String orderID);
-	
-	/**
-	 * 保存中转单草稿
-	 * @return 返回操作结果
-	 */
-	public OperationMessage saveDraft();
-	
-	/**
-	 * 载入中转单草稿
-	 * @return 中转单信息
-	 */
-	public CenterOutVO loadDraft();
 }

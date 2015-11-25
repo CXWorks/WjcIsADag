@@ -32,11 +32,13 @@ public class ReceiveblImpl implements ReceiveBLService {
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 	private FormatCheckService formatCheckService;
+	private ReceiveDataService receiveDataService;
 	//
 	public ReceiveblImpl(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
 		this.formatCheckService=formatCheckService;
+		this.receiveDataService=CacheHelper.getReceiveDataService();
 	}
 
 	
@@ -44,7 +46,6 @@ public class ReceiveblImpl implements ReceiveBLService {
 	public OperationMessage submit(ReceiveVO form) {
 		try {
 			ReceivePO temp=(ReceivePO)vopoFactory.transVOtoPO(form);
-			ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
 			return receiveDataService.insert(temp);
 		} catch (RemoteException e) {
 			return new OperationMessage(false,"net error");
@@ -74,6 +75,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 	}
 
 	public TransitVO getTransitVO() {
+		//TODO discuss with jc
 		return new CenterOutVO("070010001201511230000001");
 	}
 
@@ -82,7 +84,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 	 */
 	public String newID() {
 		try {
-			return CacheHelper.getReceiveDataService().newID(UserInfo.getInstitutionID());
+			return receiveDataService.newID(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
 			return null;
 		}

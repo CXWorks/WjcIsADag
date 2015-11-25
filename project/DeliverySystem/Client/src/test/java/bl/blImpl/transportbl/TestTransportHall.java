@@ -9,6 +9,8 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 import vo.transitvo.LoadVO;
 import bl.blService.transportblService.TransportHallBLService;
 
@@ -26,7 +28,7 @@ public class TestTransportHall {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		transportHallBLService = new TransportHallBLImpl();
+		transportHallBLService = new TransportHallBLImpl(new VOPOFactory() ,new DraftController());
 		l = new ArrayList<LoadVO>();
 		LoadVO[] centerout= new LoadVO[3];
 		centerout[0] = new LoadVO("11", "111111", "吴平", "20", Calendar.getInstance(), "111111", "北京", "人1",null);

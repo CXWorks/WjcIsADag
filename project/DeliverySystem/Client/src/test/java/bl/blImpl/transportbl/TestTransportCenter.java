@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import po.transportdata.TransportationEnum;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 import vo.FormVO;
 import vo.transitvo.CenterOutVO;
 import bl.blService.transportblService.TransportCenterBLService;
@@ -28,7 +30,7 @@ public class TestTransportCenter {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		transportCenterBLService = new TransportCenterBLImpl();
+		transportCenterBLService = new TransportCenterBLImpl(new VOPOFactory(),new DraftController());
 		co = new ArrayList<CenterOutVO>();
 		CenterOutVO[] centerout= new CenterOutVO[3];
 		centerout[0] = new CenterOutVO("11", "广州", "111111", "1", Calendar.getInstance(), "111111", "北京", "人1",null,TransportationEnum.PLANE);
