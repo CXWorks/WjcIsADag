@@ -53,18 +53,6 @@ public class TestStoreIn {
 		assertNotNull(storeInBLService.getNewStoreInID("2015-11-16"));
 	}
 	
-	@Test
-	public void testLoadOrder(){
-		assertTrue(storeInBLService.loadOrder("111111").operationResult);
-	}
 	
-	@Test
-	public void testGetOrder(){
-		assertNotNull(storeInBLService.getOrderVO());
-	}
-	
-	@Test
-	public void testClearLocalBuffer(){
-		assertTrue(storeInBLService.clearLocalBuffer().operationResult);
-	}
+
 }

@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import po.transportdata.TransportationEnum;
+import tool.draft.DraftController;
+import tool.vopo.VOPOFactory;
 import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 import bl.blService.storeblService.StoreInBLService;
@@ -30,7 +32,7 @@ public class TestStoreOut {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		storeOutBLService = new StoreOutBLImpl();
+		storeOutBLService = new StoreOutBLImpl(new VOPOFactory(),new DraftController());
 		so = new StoreOutVO("11","111111",Calendar.getInstance(),"南京仙林",TransportationEnum.CAR,"111111");
 	}
 
@@ -47,21 +49,15 @@ public class TestStoreOut {
 	
 	@Test
 	public void testLoadOrder(){
-		assertTrue(storeOutBLService.loadOrder("111111").operationResult);
+		assertNotNull(storeOutBLService.loadOrder("111111"));
 	}
 	
-	@Test
-	public void testGetOrder(){
-		assertNotNull(storeOutBLService.getOrderVO());
-	}
+
 	
 	@Test
 	public void testGetTransportVO(){
 		assertNotNull(storeOutBLService.getTransportVO());
 	}
 	
-	@Test
-	public void testClearLocalBuffer(){
-		assertTrue(storeOutBLService.clearLocalBuffer().operationResult);
-	}
+
 }
