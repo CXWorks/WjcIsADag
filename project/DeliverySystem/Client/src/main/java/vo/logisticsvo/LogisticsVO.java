@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import po.InfoEnum;
 import po.orderdata.DeliverTypeEnum;
+import po.orderdata.OrderPO;
 import vo.InfoVO;
 
 /**
@@ -26,5 +27,35 @@ public class LogisticsVO extends InfoVO{
 		  super(InfoEnum.LOGISTICS);
 	  }
 	  //
-	  
+	/**
+	 * @param infoEnum
+	 * @param nameFrom
+	 * @param nameTo
+	 * @param location
+	 * @param time
+	 * @param local
+	 * @param phoneNumTo
+	 * @param goodsNum
+	 * @param goodsName
+	 * @param type
+	 */
+	public LogisticsVO(String nameFrom, String nameTo,
+			ArrayList<String> location, ArrayList<String> time, String local,
+			String phoneNumTo, String goodsNum, String goodsName,
+			DeliverTypeEnum type) {
+		super(InfoEnum.LOGISTICS);
+		this.nameFrom = nameFrom;
+		this.nameTo = nameTo;
+		this.location = location;
+		this.time = time;
+		this.local = local;
+		this.phoneNumTo = phoneNumTo;
+		this.goodsNum = goodsNum;
+		this.goodsName = goodsName;
+		this.type = type;
+	}
+	//
+	public LogisticsVO(OrderPO order,ArrayList<String> location, ArrayList<String> time){
+		this(order.getNameFrom(), order.getNameTo(), location, time, null, order.getPhoneNumTo(), order.getGoodsNum(), order.getGoodsName(), order.getType());
+	}
 }

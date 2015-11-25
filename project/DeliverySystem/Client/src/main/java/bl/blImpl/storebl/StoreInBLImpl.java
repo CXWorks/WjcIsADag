@@ -4,15 +4,23 @@ import bl.blService.storeblService.StoreInBLService;
 import bl.clientNetCache.CacheHelper;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
+import rmi.examineService.ExamineSubmitService;
+import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import po.FormEnum;
+import po.orderdata.OrderPO;
+import po.storedata.StoreInPO;
 
 /**
  * Created by Sissel on 2015/10/26.
@@ -31,27 +39,33 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public String getNewStoreInID(String date) {
-       return null;
+       try {
+		String ID=storeFormDataService.newIDStoreInPO(UserInfo.getInstitutionID());
+		return ID;
+	} catch (RemoteException e) {
+		return null;
+	}
     }
 
-    public OperationMessage loadOrder(String orderNumber) {
-        return new OperationMessage();
-    }
-
-    public OrderVO getOrderVO() {
-        return new OrderVO("1123000001");
-    }
-
-    public OperationMessage clearLocalBuffer() {
-        return new OperationMessage();
+    public OrderVO loadOrder(String orderNumber) {
+        OrderDataService orderDataService=CacheHelper.getOrderDataService();
+        try {
+			OrderPO po=orderDataService.getFormPO(orderNumber);
+			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
+        
     }
 
     public StoreInVO loadDraft() {
-        return null;
+        StoreInVO vo=(StoreInVO)draftService.getDraft(FormEnum.STORE_IN);
+        return vo;
     }
 
     public OperationMessage saveDraft(StoreInVO form) {
-        return new OperationMessage();
+        return draftService.saveDraft(form);
     }
 
     public ArrayList<CheckFormMessage> checkFormat(StoreInVO form, boolean isFinal) {
@@ -62,7 +76,13 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public OperationMessage submit(StoreInVO form) {
-        return new OperationMessage();
+        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        StoreInPO po=(StoreInPO)vopoFactory.transVOtoPO(form);
+        try {
+			return examineSubmitService.submit(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
     }
 
 	/* (non-Javadoc)

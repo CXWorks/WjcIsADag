@@ -6,13 +6,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.CheckToSendController">
    <children>
       <TableView layoutX="79.0" layoutY="80.0" prefHeight="330.0" prefWidth="642.0">
          <columns>
-            <TableColumn prefWidth="121.0" text="派件时间" />
-            <TableColumn minWidth="0.0" prefWidth="128.0" text="订单号" />
-            <TableColumn prefWidth="392.0" text="目的地" />
+            <TableColumn fx:id="time_Column" prefWidth="121.0" text="派件时间" />
+            <TableColumn fx:id="id_Column" minWidth="0.0" prefWidth="128.0" text="订单号" />
+            <TableColumn fx:id="address_Column" prefWidth="254.0" text="目的地" />
+            <TableColumn fx:id="people_Column" minWidth="0.0" prefWidth="138.0" text="收件人" />
          </columns>
       </TableView>
    </children>

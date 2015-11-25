@@ -8,6 +8,8 @@ import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.accountui.NewAccountController;
+import ui.loginui.LoginController;
 import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
@@ -38,10 +40,12 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-                HallReceiveFormController.launch()
+                //HallReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
                 //ManageBankAccountController.launch()
+                //LoginController.launch()
+                NewAccountController.launch()
         ));
 
         primaryStage.show();

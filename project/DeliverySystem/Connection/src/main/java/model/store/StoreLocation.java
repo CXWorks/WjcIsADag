@@ -14,6 +14,16 @@ public class StoreLocation implements Serializable {
 	private int position;
 	private String orderID;
 
+	public StoreLocation(StoreAreaCode area, int row, int shelf, int position,
+			String orderID) {
+		super();
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+		this.orderID = orderID;
+	}
+
 	public StoreLocation(String message) {
 		String[] list = message.split(" ");
 		this.setArea(list[0]);
@@ -43,6 +53,26 @@ public class StoreLocation implements Serializable {
 			this.area = StoreAreaCode.ROAD;
 			break;
 		}
+	}
+
+	public StoreAreaCode getArea() {
+		return area;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getShelf() {
+		return shelf;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public String getOrderID() {
+		return orderID;
 	}
 
 }

@@ -1,9 +1,15 @@
 package bl.blImpl.storebl;
 
 import bl.blService.storeblService.StoreOutBLService;
+import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import rmi.examineService.ExamineSubmitService;
+import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
+import tool.draft.DraftService;
+import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import util.R;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreOutVO;
@@ -18,36 +24,55 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import po.FormEnum;
+import po.orderdata.OrderPO;
+import po.storedata.StoreOutPO;
+
 /**
  * Created by Sissel on 2015/10/26.
  */
 public class StoreOutBLImpl implements StoreOutBLService {
+	private StoreFormDataService storeFormDataService;
+	private VOPOFactory vopoFactory;
+	private DraftService draftService;
+	public StoreOutBLImpl(VOPOFactory vopoFactory,DraftService draftService){
+		this.draftService=draftService;
+		this.vopoFactory=vopoFactory;
+		this.storeFormDataService=CacheHelper.getStoreFormDataService();
+	}
     public String getNewStoreOutID(String date) {
-        return "222333";
+        try {
+			String ID=storeFormDataService.newIDStoreOutPO(UserInfo.getInstitutionID());
+			return ID;
+		} catch (RemoteException e) {
+			return null;
+		}
+        
     }
 
-    public OperationMessage loadOrder(String orderNumber) {
-        return new OperationMessage();
+    public OrderVO loadOrder(String orderNumber) {
+        OrderDataService orderDataService=CacheHelper.getOrderDataService();
+        try {
+			OrderPO po=orderDataService.getFormPO(orderNumber);
+			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
-    public OrderVO getOrderVO() {
-        return new OrderVO("1123000001");
-    }
 
     public TransitVO getTransportVO() {
         return new CenterOutVO("050010001201511230000002");
     }
 
-    public OperationMessage clearLocalBuffer() {
-        return new OperationMessage();
-    }
-
     public StoreOutVO loadDraft() {
-        return null;
+        StoreOutVO vo=(StoreOutVO)draftService.getDraft(FormEnum.STORE_OUT);
+        return vo;
     }
 
     public OperationMessage saveDraft(StoreOutVO form) {
-        return new OperationMessage();
+        return draftService.saveDraft(form);
     }
 
     public ArrayList<CheckFormMessage> checkFormat(StoreOutVO form, boolean isFinal) {
@@ -58,7 +83,13 @@ public class StoreOutBLImpl implements StoreOutBLService {
     }
 
     public OperationMessage submit(StoreOutVO form) {
-        return new OperationMessage();
+        StoreOutPO po=(StoreOutPO)vopoFactory.transVOtoPO(form);
+        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        try {
+			return examineSubmitService.submit(po);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
     }
 
 

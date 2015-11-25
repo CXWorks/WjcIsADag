@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -373,9 +374,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public ArrayList<FormPO> getInOutInfo(Timestamp start, Timestamp end)
+	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end)
 			throws RemoteException {
 		// TODO Auto-generated method stub
+		Timestamp start_t = new Timestamp(start.getTimeInMillis());
+		Timestamp end_t = new Timestamp(end.getTimeInMillis());
 		String selectIn = "select * from " + Store_In;
 		String selectOut = "select * from " + Store_Out;
 		ResultSet rs = null;
@@ -388,7 +391,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 			rs = statement.executeQuery(selectIn);
 			while (rs.next()) {
 				tmp = rs.getTimestamp("date");
-				if(!(tmp.getTime()>start.getTime()||tmp.getTime()<end.getTime()))
+				if(!(tmp.getTime()>start_t.getTime()||tmp.getTime()<end_t.getTime()))
 					continue;
 				in = new StoreInPO(rs.getString("formID"),
 						rs.getString("orderID"), tmp,
@@ -401,7 +404,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 			while (rs.next()) {
 				tmp = rs.getTimestamp("date");
 				tmp = rs.getTimestamp("date");
-				if(!(tmp.getTime()>start.getTime()||tmp.getTime()<end.getTime()))
+				if(!(tmp.getTime()>start_t.getTime()||tmp.getTime()<end_t.getTime()))
 					continue;
 				out = new StoreOutPO(rs.getString("formID"),
 						rs.getString("orderID"),tmp,

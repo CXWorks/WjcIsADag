@@ -13,12 +13,8 @@ public interface StoreOutBLService extends FormBLService<StoreOutVO>{
 
     public String getNewStoreOutID (String date);
 
-    public OperationMessage loadOrder(String orderNumber);
-
-    public OrderVO getOrderVO();
+    public OrderVO loadOrder(String orderNumber);
 
     public TransitVO getTransportVO();
-
-    public OperationMessage clearLocalBuffer();
 
 }

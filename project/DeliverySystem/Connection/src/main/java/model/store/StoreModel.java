@@ -12,5 +12,15 @@ public class StoreModel implements Serializable {
 	private StoreArea rail;
 	private StoreArea road;
 	private StoreArea flex;
+	
+	public StoreModel(StoreArea air, StoreArea rail, StoreArea road,
+			StoreArea flex) {
+		super();
+		this.air = air;
+		this.rail = rail;
+		this.road = road;
+		this.flex = flex;
+	}
 
+	
 }

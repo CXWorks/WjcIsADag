@@ -6,6 +6,9 @@ import bl.blService.searchblService.SearchBLService;
 
 public class SearchBLController implements SearchBLService{
 	private OrderHelper orderHelper;
+	public SearchBLController(){
+		this.orderHelper=new OrderHelper();
+	}
 
 	public CheckFormMessage checkFormat(String orderID) {
 		// TODO Auto-generated method stub
@@ -13,8 +16,7 @@ public class SearchBLController implements SearchBLService{
 	}
 
 	public LogisticsVO searchOrder(String orderID) {
-		// TODO Auto-generated method stub
-		return new LogisticsVO();
+		return orderHelper.searchOrder(orderID);
 	}
 
 }

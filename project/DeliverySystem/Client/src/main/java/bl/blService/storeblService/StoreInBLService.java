@@ -19,10 +19,6 @@ public interface StoreInBLService extends FormBLService<StoreInVO> {
 
     public String getNewStoreInID (String date);
 
-    public OperationMessage loadOrder(String orderNumber);
-
-    public OrderVO getOrderVO();
-
-    public OperationMessage clearLocalBuffer();
+    public OrderVO loadOrder(String orderNumber);
 
 }

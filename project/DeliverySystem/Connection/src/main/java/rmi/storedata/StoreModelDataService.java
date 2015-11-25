@@ -3,6 +3,7 @@ package rmi.storedata;
 import message.OperationMessage;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
+import model.store.StoreLocation;
 import model.store.StoreModel;
 import model.store.StoreModelOperation;
 
@@ -30,8 +31,10 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 	// public StoreModel downloadStoreModel (String centerID) throws
 	// RemoteException;
 
-	public void setTableName(StoreAreaCode code) throws RemoteException;
+//	public void setTableName(StoreAreaCode code) throws RemoteException;
 
+	public OperationMessage setLocation(StoreLocation location) throws RemoteException;
+	
 	public StoreArea getArea(StoreAreaCode code) throws RemoteException;
 
 	public StoreModel getModel() throws RemoteException;
@@ -39,16 +42,15 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 	public OperationMessage newShelf(StoreAreaCode code, int row)
 			throws RemoteException;
 	/**
-	 * 插入新的信息
+	 * 修改货架位置
 	 * @param code_now 要转移的货架所在区域
 	 * @param row_now 要转移的货架所在row的编号
 	 * @param shelf_now 要转移的货架的编号
 	 * @param code 目标区域
 	 * @param row 目标row编号
+	 * @param shelf 目标shelf编号
 	 * @return 返回操作结果
 	 */
 	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
-			int shelf_now, StoreAreaCode code, int row) throws RemoteException;
-	
-	public OperationMessage checkStoreArea(StoreAreaCode code) throws RemoteException;
+			int shelf_now, StoreAreaCode code, int row,int shelf) throws RemoteException;
 }
