@@ -8,6 +8,7 @@ import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.accountui.ManageAccountController;
 import ui.accountui.NewAccountController;
 import ui.loginui.LoginController;
 import ui.receiveui.HallReceiveFormController;
@@ -45,7 +46,8 @@ public class Main extends Application {
                 //CheckRevenueFormController.launch()
                 //ManageBankAccountController.launch()
                 //LoginController.launch()
-                NewAccountController.launch()
+                //NewAccountController.launch()
+                ManageAccountController.launch()
         ));
 
         primaryStage.show();

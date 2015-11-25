@@ -33,6 +33,7 @@ public class RevenueBLImpl implements RevenueBLService {
 	private RevenueDataService revenueDataService;
 	private VOPOFactory vopoFactory;
 	private DraftService draftService;
+
 	public RevenueBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.vopoFactory=vopoFactory;
 		this.draftService=draftService;

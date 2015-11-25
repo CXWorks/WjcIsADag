@@ -1,11 +1,11 @@
 package ui.accountui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
-
-
-
+import javafx.scene.control.ListView;
 import po.memberdata.StaffTypeEnum;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -21,20 +21,23 @@ import vo.managevo.staff.StaffVO;
 
 public class ManageAccountController {
 
-	public TextField account_Search;
-	public TableColumn<StaffVO,String> id_Column;
-	public TableColumn<StaffVO,StaffTypeEnum> type_Column;
-	public CheckBox choose_All;
-	
-    public static Parent launch() throws IOException {
+    private List<AccountVO> accounts;
+
+	public TextField search_Field;
+	public ListView accounts_ListView;
+
+	public static Parent launch() throws IOException {
         return FXMLLoader.load(ManageAccountController.class.getResource("manageAccount.fxml"));
+    }
+
+	public void makeTest(){
+        accounts = new ArrayList<>();
+        accounts.add(new AccountVO());
     }
 	
     public void initialize(){
-    	 id_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getID()));
-    	// type_Column.setCellValueFactory(cellData->new SimpleEnumProperty(cellData.getValue().getType()));
+
     }
-	
 	
 	public void Delete(ActionEvent actionEvent){
 		
@@ -43,5 +46,16 @@ public class ManageAccountController {
 	public void Search(ActionEvent actionEvent){
 		
 	}
-	
+
+	public void selectAll(ActionEvent actionEvent) {
+	}
+
+	public void search(ActionEvent actionEvent) {
+	}
+
+	public void delete(ActionEvent actionEvent) {
+	}
+
+	public void edit(ActionEvent actionEvent) {
+	}
 }
