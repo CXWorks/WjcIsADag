@@ -29,7 +29,6 @@ public class OrderVO2ColumnHelper extends VO2ColumnHelper<OrderVO> {
         map.put("体积", vo.getVolume());
         map.put("重量", vo.getWeight());
         map.put("价格", vo.getMoney());
-
         return map.entrySet();
     }
 

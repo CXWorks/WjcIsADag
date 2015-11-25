@@ -43,8 +43,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		conn = ConnecterHelper.connSQL(conn);
 
 		// 为today和ID_MAX初始化
-		this.newID(null);
-		ID_MAX--;
+//		this.newID(null);
+//		ID_MAX--;
 	}
 
 	public Connection getConn() {
@@ -178,15 +178,16 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 
 	public OrderPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
+		System.out.println(select);
 		ResultSet rs = null;
 		OrderPO result = null;
 		ArrayList<String> FormIDs = null;
 
 		try {
-			FormIDs = (ArrayList<String>) Arrays.asList(rs.getString("FormIDs")
-					.split(" "));
+//			FormIDs = (ArrayList<String>) Arrays.asList(rs.getString("FormIDs")
+//					.split(" "));
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
@@ -199,7 +200,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 					rs.getString("goodsNum"), rs.getString("goodsName"),
 					rs.getString("weight"), rs.getString("volume"),
 					rs.getString("money"), rs.getString("goodsType"),
-					rs.getString("type"), rs.getString("pack"), FormIDs,
+//					rs.getString("type"), rs.getString("pack"), FormIDs,
+					rs.getString("type"), rs.getString("pack"), null,
 					rs.getString("targetHallID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {

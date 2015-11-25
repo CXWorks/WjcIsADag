@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ui.accountui.NewAccountController;
 import ui.loginui.LoginController;
 import ui.receiveui.HallReceiveFormController;
+import ui.transportui.LoadCarController;
 
 import java.io.IOException;
 
@@ -27,7 +28,7 @@ public class Main extends Application {
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//CacheHelper.initializeCache();
+    	CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -40,12 +41,12 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-                //HallReceiveFormController.launch()
-                //LoadCarController.launch()
-                //CheckRevenueFormController.launch()
-                //ManageBankAccountController.launch()
-                //LoginController.launch()
-                NewAccountController.launch()
+//                HallReceiveFormController.launch()
+//                LoadCarController.launch()
+//                CheckRevenueFormController.launch()
+//                ManageBankAccountController.launch()
+                LoginController.launch()
+//                NewAccountController.launch()
         ));
 
         primaryStage.show();

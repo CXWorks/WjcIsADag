@@ -33,10 +33,11 @@ public class OrderVO extends FormVO {
 	private String money;
 	private DeliverTypeEnum type;
 	private PackingEnum pack;
+
 	public OrderVO(String formID) {
-		super(FormEnum.ORDER,FormStateEnum.CONSTRUCTED,formID);
+		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID);
 	}
-	
+
 	/**
 	 * @param nameFrom
 	 * @param nameTo
@@ -56,16 +57,17 @@ public class OrderVO extends FormVO {
 	 * @param goodstype
 	 * @param type
 	 */
-	public OrderVO(String formID,String nameFrom, String nameTo, String unitFrom,
-			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
+	public OrderVO(String formID, String nameFrom, String nameTo,
+			String unitFrom, String unitTo, String addressFrom,
+			String addressTo, String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume,String money, String goodsType,
-			DeliverTypeEnum type ,PackingEnum pack) {
+			String goodsName, String weight, String volume, String money,
+			String goodsType, DeliverTypeEnum type, PackingEnum pack) {
 		this(formID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
-		this.addressFrom=addressFrom;
-		this.addressTo=addressTo;
+		this.addressFrom = addressFrom;
+		this.addressTo = addressTo;
 		this.unitFrom = unitFrom;
 		this.unitTo = unitTo;
 		this.phoneNumFrom = phoneNumFrom;
@@ -76,25 +78,32 @@ public class OrderVO extends FormVO {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
-		this.money=money;
+		this.money = money;
 		this.goodsType = goodsType;
 		this.type = type;
-		this.pack=pack;
+		this.pack = pack;
+		System.out.println("fff" + weight + this.weight);
 	}
 
 	//
 	public OrderVO(OrderPO po) {
 		// deep clone
-		this(po.getFormID(),po.getNameFrom(), po.getNameTo(), po.getUnitFrom(),
-				po.getUnitTo(), po.getPhoneNumFrom(), po.getPhoneNumTo(), po
-						.getTelNumFrom(), po.getTelNumTo(), po.getGoodsNum(),
-				po.getGoodsName(), po.getWeight(), po.getVolume(), po.getAddressFrom(),po.getAddressTo(),
-						po.getMoney(),po.getGoodsType(), po.getType(),po.getPack());
+		this(po.getFormID(), po.getNameFrom(), po.getNameTo(),
+				po.getUnitFrom(), po.getUnitTo(), po.getAddressFrom(), po
+						.getAddressTo(), po.getPhoneNumFrom(), po
+						.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(),
+				po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po
+						.getVolume(), po.getMoney(), po.getGoodsType(), po
+						.getType(), po.getPack());
 
 	}
+
 	//
-	public OrderPO toPO(){
-		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo, addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom, telNumTo, goodsNum, goodsName, weight, volume, money, goodsType, type.name(), pack.name(), null, null);
+	public OrderPO toPO() {
+		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
+				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
+				telNumTo, goodsNum, goodsName, weight, volume, money,
+				goodsType, type.name(), pack.name(), null, null);
 	}
 
 	public String getAddressFrom() {
