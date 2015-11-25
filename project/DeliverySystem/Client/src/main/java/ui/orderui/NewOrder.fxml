@@ -202,6 +202,7 @@
       </GridPane>
       <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="413.0" prefWidth="600.0" spacing="8.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#fillPrediction" text="计算运费日期" />
             <Button mnemonicParsing="false" onAction="#clear" prefWidth="72.0" text="清空" textAlignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#saveDraft" prefWidth="72.0" text="保存草稿" />
             <Button defaultButton="true" mnemonicParsing="false" onAction="#commit" prefWidth="72.0" text="确认" />

@@ -68,9 +68,5 @@ public class TestStoreModel {
 		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.RAIL, 1, 1, true).operationResult);
 		assertTrue(storeModelBLService.adjustRow(StoreAreaCode.ROAD, 1, 1, true).operationResult);
 	}
-	
-	@Test
-	public void testClearLocalBuffer(){
-		assertTrue(storeModelBLService.clearLocalBuffer().operationResult);
-	}
+
 }

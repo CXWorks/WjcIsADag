@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.accountui.NewAccountController;
 import ui.loginui.LoginController;
+import ui.orderui.NewOrderController;
 import ui.receiveui.HallReceiveFormController;
 
 import java.io.IOException;
@@ -47,7 +48,8 @@ public class Main extends Application {
                 //ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
-                ManageAccountController.launch()
+                //ManageAccountController.launch()
+                NewOrderController.launch()
         ));
 
         primaryStage.show();
