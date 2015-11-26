@@ -4,6 +4,7 @@ import bl.blService.financeblService.FinanceChartBLService;
 import vo.financevo.*;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  * Created by Sissel on 2015/10/26.
@@ -26,7 +27,13 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 
     @Override
     public PieChartVO getPieChart(Calendar begin, Calendar end, FinancePieChartType type) {
-        return new PieChartVO();
+        PieChartVO vo =  new PieChartVO();
+        vo.title = "支出类型比例饼状图";
+        vo.originMap = new HashMap<>();
+        vo.originMap.put("抽烟", 233.0);
+        vo.originMap.put("喝酒", 233.0);
+        vo.originMap.put("玩舰娘", 450.0);
+        return vo;
     }
 
     @Override

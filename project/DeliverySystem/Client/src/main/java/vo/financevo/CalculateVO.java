@@ -12,11 +12,11 @@ import vo.InfoVO;
  */
 public class CalculateVO extends InfoVO{
 	//income
-	private double companyRevenue;
+	public double companyRevenue;
 	//outcome
-	private double companyPayment;
+	public double companyPayment;
 	//毛利润
-	private double companyProfit;
+	public double companyProfit;
 	public CalculateVO(){
 		super(InfoEnum.CALCULATE);
 	}

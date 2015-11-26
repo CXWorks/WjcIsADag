@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 /**
  * Created by Sissel on 2015/11/24.
  */
-public class CheckFinanceSummary {
+public class CheckFinanceSummaryController {
     public Button search_Btn;
     public DatePicker start_DatePicker;
     public DatePicker end_DatePicker;
