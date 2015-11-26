@@ -9,6 +9,7 @@ import java.util.Set;
 
 import message.ChatMessage;
 import message.OperationMessage;
+import rmi.chatRemindService.ChatNewService;
 import rmi.chatRemindService.ChatRemindService;
 
 /**
@@ -17,7 +18,7 @@ import rmi.chatRemindService.ChatRemindService;
  */
 
 public class ChatRemindImpl extends UnicastRemoteObject implements
-		ChatRemindService {
+		ChatRemindService{
 
 	/**
 	 * 
@@ -25,7 +26,7 @@ public class ChatRemindImpl extends UnicastRemoteObject implements
 	private static final long serialVersionUID = 1L;
 
 	/* String 为员工ID,ArrayList<ChatMessage>为消息集合 */
-	Map<String, ArrayList<ChatMessage>> map;
+	static Map<String, ArrayList<ChatMessage>> map;
 
 	public ChatRemindImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
@@ -41,27 +42,13 @@ public class ChatRemindImpl extends UnicastRemoteObject implements
 		if (list.size() == 0)
 			return new OperationMessage(false, "没有消息");
 		return new OperationMessage();
-	}
+	} 
 
 	public ArrayList<ChatMessage> getMessage(String ID) {
 		// TODO Auto-generated method stub
 		ArrayList<ChatMessage> list = map.get(ID);
 		map.put(ID, new ArrayList<ChatMessage>());
 		return list;
-	}
-
-	@Override
-	public OperationMessage add(String ID, ChatMessage mes)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		OperationMessage result = new OperationMessage();
-		ArrayList<ChatMessage> list = map.get(ID);
-		if (list == null) {
-			list = new ArrayList<ChatMessage>();
-		}
-		list.add(mes);
-		map.put(ID, list);
-		return result;
 	}
 
 }
