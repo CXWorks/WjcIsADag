@@ -1,6 +1,7 @@
 package vo.ordervo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import po.FormEnum;
 import po.FormStateEnum;
@@ -33,6 +34,8 @@ public class OrderVO extends FormVO {
 	private String money;
 	private DeliverTypeEnum type;
 	private PackingEnum pack;
+	private String receivePeople;
+	private Calendar receiveDate;
 
 	public OrderVO(String formID) {
 		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID);
@@ -82,8 +85,9 @@ public class OrderVO extends FormVO {
 		this.goodsType = goodsType;
 		this.type = type;
 		this.pack = pack;
-		System.out.println("fff" + weight + this.weight);
 	}
+	//
+	
 
 	//
 	public OrderVO(OrderPO po) {
@@ -94,16 +98,74 @@ public class OrderVO extends FormVO {
 						.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(),
 				po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po
 						.getVolume(), po.getMoney(), po.getGoodsType(), po
-						.getType(), po.getPack());
+						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate());
 
 	}
+	//
+	
 
 	//
 	public OrderPO toPO() {
 		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
 				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
 				telNumTo, goodsNum, goodsName, weight, volume, money,
-				goodsType, type.name(), pack.name(), null, null);
+				goodsType, type.name(), pack.name(), null, null,receivePeople,receiveDate);
+	}
+
+	/**
+	 * @param type
+	 * @param state
+	 * @param formID
+	 * @param nameFrom
+	 * @param nameTo
+	 * @param addressFrom
+	 * @param addressTo
+	 * @param unitFrom
+	 * @param unitTo
+	 * @param phoneNumFrom
+	 * @param phoneNumTo
+	 * @param telNumFrom
+	 * @param telNumTo
+	 * @param goodsNum
+	 * @param goodsName
+	 * @param weight
+	 * @param volume
+	 * @param goodsType
+	 * @param money
+	 * @param type2
+	 * @param pack
+	 * @param receivePeople
+	 * @param receiveDate
+	 */
+	public OrderVO(String formID,
+			String nameFrom, String nameTo, String addressFrom,
+			String addressTo, String unitFrom, String unitTo,
+			String phoneNumFrom, String phoneNumTo, String telNumFrom,
+			String telNumTo, String goodsNum, String goodsName, String weight,
+			String volume, String goodsType, String money,
+			DeliverTypeEnum type2, PackingEnum pack, String receivePeople,
+			Calendar receiveDate) {
+		this(formID);
+		this.nameFrom = nameFrom;
+		this.nameTo = nameTo;
+		this.addressFrom = addressFrom;
+		this.addressTo = addressTo;
+		this.unitFrom = unitFrom;
+		this.unitTo = unitTo;
+		this.phoneNumFrom = phoneNumFrom;
+		this.phoneNumTo = phoneNumTo;
+		this.telNumFrom = telNumFrom;
+		this.telNumTo = telNumTo;
+		this.goodsNum = goodsNum;
+		this.goodsName = goodsName;
+		this.weight = weight;
+		this.volume = volume;
+		this.goodsType = goodsType;
+		this.money = money;
+		type = type2;
+		this.pack = pack;
+		this.receivePeople = receivePeople;
+		this.receiveDate = receiveDate;
 	}
 
 	public String getAddressFrom() {

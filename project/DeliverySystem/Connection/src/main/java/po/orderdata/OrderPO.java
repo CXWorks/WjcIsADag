@@ -2,6 +2,7 @@ package po.orderdata;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import po.FormEnum;
 import po.FormPO;
@@ -28,6 +29,8 @@ public class OrderPO extends FormPO implements Serializable {
 	private PackingEnum pack;
 	private ArrayList<String> FormIDs;
 	private String targetHallID;
+	private String receivePeople;
+	private Calendar receiveDate;
 	
 	public OrderPO(String formID,String nameFrom, String nameTo, String unitFrom,
 			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
@@ -57,12 +60,72 @@ public class OrderPO extends FormPO implements Serializable {
 		this.targetHallID = targetHallID;
 		this.formType = FormEnum.ORDER;
 	}
+	//
+	
 
 	//
 	public String getNameFrom() {
 		return nameFrom;
 	}
 
+	/**
+	 * @param formEnum
+	 * @param formID
+	 * @param nameFrom
+	 * @param nameTo
+	 * @param addressFrom
+	 * @param addressTo
+	 * @param unitFrom
+	 * @param unitTo
+	 * @param phoneNumFrom
+	 * @param phoneNumTo
+	 * @param telNumFrom
+	 * @param telNumTo
+	 * @param goodsNum
+	 * @param goodsName
+	 * @param weight
+	 * @param volume
+	 * @param money
+	 * @param goodsType
+	 * @param type
+	 * @param pack
+	 * @param formIDs
+	 * @param targetHallID
+	 * @param receivePeople
+	 * @param receiveDate
+	 */
+	public OrderPO(String formID, String nameFrom,
+			String nameTo, String addressFrom, String addressTo,
+			String unitFrom, String unitTo, String phoneNumFrom,
+			String phoneNumTo, String telNumFrom, String telNumTo,
+			String goodsNum, String goodsName, String weight, String volume,
+			String money, String goodsType, String type,
+			String pack, ArrayList<String> formIDs, String targetHallID,
+			String receivePeople, Calendar receiveDate) {
+		super(FormEnum.ORDER, formID);
+		this.nameFrom = nameFrom;
+		this.nameTo = nameTo;
+		this.addressFrom = addressFrom;
+		this.addressTo = addressTo;
+		this.unitFrom = unitFrom;
+		this.unitTo = unitTo;
+		this.phoneNumFrom = phoneNumFrom;
+		this.phoneNumTo = phoneNumTo;
+		this.telNumFrom = telNumFrom;
+		this.telNumTo = telNumTo;
+		this.goodsNum = goodsNum;
+		this.goodsName = goodsName;
+		this.weight = weight;
+		this.volume = volume;
+		this.money = money;
+		this.goodsType = goodsType;
+		this.setType(type);
+		this.setPack(pack);
+		FormIDs = formIDs;
+		this.targetHallID = targetHallID;
+		this.receivePeople = receivePeople;
+		this.receiveDate = receiveDate;
+	}
 	public String getNameTo() {
 		return nameTo;
 	}
@@ -170,5 +233,27 @@ public class OrderPO extends FormPO implements Serializable {
 	public String getTargetHallID() {
 		return targetHallID;
 	}
+	//
+
+
+	public String getReceivePeople() {
+		return receivePeople;
+	}
+
+
+	public void setReceivePeople(String receivePeople) {
+		this.receivePeople = receivePeople;
+	}
+
+
+	public Calendar getReceiveDate() {
+		return receiveDate;
+	}
+
+
+	public void setReceiveDate(Calendar receiveDate) {
+		this.receiveDate = receiveDate;
+	}
+	
 
 }
