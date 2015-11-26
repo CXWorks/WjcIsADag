@@ -89,7 +89,11 @@ public class DataFactory implements DataFactoryService {
 	public ExamineManageService creatExamineManageService()
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return new ExamineManageImpl();
+		try {
+			return new ExamineManageImpl();
+		} catch (MalformedURLException e) {
+			return null;
+		}
 	}
 
 	@Override

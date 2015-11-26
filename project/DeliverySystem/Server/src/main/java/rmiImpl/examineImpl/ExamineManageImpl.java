@@ -25,7 +25,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 		ExamineManageService {
 	private static final long serialVersionUID = 1L;
 	/* 表单队列在此类中产生，将引用赋给ExamineSubmitImpl */
-	private ExamineQueue queue;
+	private volatile ExamineQueue queue;
 	/*负责新建消息*/
 	private ChatNewService addMessage;
 	

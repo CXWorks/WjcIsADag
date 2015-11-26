@@ -23,7 +23,7 @@ public class ExamineSubmitImpl extends UnicastRemoteObject implements ExamineSub
 		this.queue = queue;
 		addMessage = new Reminder();
 	}
-	public OperationMessage submit(FormPO form) throws RemoteException {
+	public synchronized OperationMessage submit(FormPO form) throws RemoteException {
 		// TODO Auto-generated method stub
 		this.queue.addForm(form);
 		//少东西！！！！！！！！！
