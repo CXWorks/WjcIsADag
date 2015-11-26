@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="26.0" layoutY="65.0" prefHeight="359.0" prefWidth="324.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="Beijing_Tab" text="北京" />
+            <Tab fx:id="Nanjing_Tab" text="南京" />
+            <Tab fx:id="Shanghai_Tab" text="上海" />
+            <Tab fx:id="Guangzhou_Tab" text="广州" />
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.configurationui.ModifySaralyController">
    <children>
       <GridPane layoutX="52.0" layoutY="65.0" prefHeight="316.0" prefWidth="696.0">
         <columnConstraints>
@@ -24,6 +23,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="员工类别" />
@@ -33,29 +33,33 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="快递员" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="营业厅业务员" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="中转中心业务员" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="财务人员" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="总经理" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="财务人员" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="总经理" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="中转中心库存管理人员" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <TextField fx:id="postman_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="postman_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="postman_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="hall_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="hall_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="hall_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="center_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="center_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="center_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="store_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="store_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="store_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <TextField fx:id="finance_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="finance_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <TextField fx:id="finance_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <TextField fx:id="manager_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="manager_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <TextField fx:id="manager_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="司机" GridPane.rowIndex="5" />
+            <TextField fx:id="driver_Basic_Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="driver_Items_Field" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="driver_Awards_Field" GridPane.columnIndex="3" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button layoutX="708.0" layoutY="394.0" mnemonicParsing="false" text="确认" />
+      <Button layoutX="708.0" layoutY="394.0" mnemonicParsing="false" onAction="#commit" text="确认" />
    </children>
 </AnchorPane>

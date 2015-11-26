@@ -41,7 +41,7 @@ public class CheckToSendController {
     
     @FXML
     public void initialize(){
-    	
+    	//TODO
         
     }
     
