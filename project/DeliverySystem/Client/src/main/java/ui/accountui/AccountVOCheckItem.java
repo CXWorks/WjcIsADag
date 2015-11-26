@@ -1,5 +1,6 @@
 package ui.accountui;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import ui.common.VOCheckItem;
 import vo.accountvo.AccountVO;
@@ -11,6 +12,8 @@ public class AccountVOCheckItem extends VOCheckItem<AccountVO> {
 
     AccountVOCheckItem(AccountVO vo){
         this.vo = new SimpleObjectProperty<>(vo);
+        this.selected = new SimpleBooleanProperty(false);
+
     }
 
     @Override
