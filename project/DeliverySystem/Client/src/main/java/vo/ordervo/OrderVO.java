@@ -239,4 +239,22 @@ public class OrderVO extends FormVO {
 	public String getWeight() {
 		return weight;
 	}
+	//
+
+	public String getReceivePeople() {
+		return receivePeople;
+	}
+
+	public void setReceivePeople(String receivePeople) {
+		this.receivePeople = receivePeople;
+	}
+
+	public Calendar getReceiveDate() {
+		return receiveDate;
+	}
+
+	public void setReceiveDate(Calendar receiveDate) {
+		this.receiveDate = receiveDate;
+	}
+	
 }
