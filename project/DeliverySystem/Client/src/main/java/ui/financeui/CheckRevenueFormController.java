@@ -24,7 +24,7 @@ public class CheckRevenueFormController {
     public Label sum_Label;
     public DatePicker revenue_DatePicker;
     public TextField hall_textField;
-    public TableView revenue_TableView;
+    public TableView<RevenueVO> revenue_TableView;
     public TextField hall_Field;
     public Label hall_errLabel;
     public Label date_errLabel;
