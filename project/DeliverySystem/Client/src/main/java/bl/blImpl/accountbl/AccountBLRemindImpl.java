@@ -38,7 +38,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 	 */
 	public ArrayList<ChatMessage> receive(String ID) {
 		try {
-			return chatRemindService.receive(ID);
+			return chatRemindService.getMessage(ID);
 		} catch (RemoteException e) {
 			return null;
 		}
