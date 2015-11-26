@@ -49,4 +49,9 @@ public abstract class TransportPO extends FormPO implements Serializable {
 		return IDs;
 	}
 
+	public void setIDs(ArrayList<String> iDs) {
+		IDs = iDs;
+	}
+	
+
 }

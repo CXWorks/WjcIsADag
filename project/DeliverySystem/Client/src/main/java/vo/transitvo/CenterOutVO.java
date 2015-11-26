@@ -30,8 +30,11 @@ public class CenterOutVO extends TransitVO  {
 		this.IDs=IDs;
 	}
 	public CenterOutVO(CenterOutPO po){
-		this(po.getFormID(),po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),po.getIDs()
+		this(po.getFormID(),po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),null
 				,po.getTransitState());
+		ArrayList<String> idClone=this.selfDeepClone(po.getIDs());
+		this.IDs=idClone;
+		
 	}
 	
 	public CenterOutPO toPO(){

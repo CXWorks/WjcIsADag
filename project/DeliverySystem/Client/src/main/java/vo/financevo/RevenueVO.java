@@ -42,7 +42,7 @@ public class RevenueVO extends FormVO {
     }
     //
     public RevenuePO toPO(){
-    	return new RevenuePO(amount, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
+    	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
     }
 
 	public Calendar getDate() {

@@ -59,7 +59,7 @@ public class DeliverVO extends FormVO{
 		this.finished=po.isFinished();
 	}
 	public DeliverPO toPO(){
-		DeliverPO po= new DeliverPO(orderID, orderID, date, postman);
+		DeliverPO po= new DeliverPO(formID, orderID, date, postman);
 		po.setFinished(finished);
 		return po;
 	}

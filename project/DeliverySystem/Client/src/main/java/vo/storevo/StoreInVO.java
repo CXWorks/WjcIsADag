@@ -36,6 +36,6 @@ public class StoreInVO extends FormVO {
     private StoreLocation location;
     //
     public StoreInPO toPO(){
-    	return new StoreInPO(destination, orderID, (Calendar)date.clone(), destination, location);
+    	return new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);
     }
 }

@@ -37,6 +37,6 @@ public class StoreOutVO extends FormVO {
     private String	transID;
     //
     public StoreOutPO toPO(){
-    	return new StoreOutPO(destination, orderID, date, destination, transportation, transID);
+    	return new StoreOutPO(formID, orderID, date, destination, transportation, transID);
     }
 }
