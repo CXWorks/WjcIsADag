@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
    <children>
-      <CheckBox layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
+      <CheckBox fx:id="all_CheckBox" layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
       <Button layoutX="528.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" text="查找" />
       <Button layoutX="139.0" layoutY="35.0" mnemonicParsing="false" onAction="#delete" text="删除" />
       <TextField fx:id="search_Field" layoutX="344.0" layoutY="35.0" />
@@ -22,7 +22,11 @@
             </Pane>
          </top>
          <center>
-            <ListView fx:id="accounts_ListView" prefHeight="296.0" prefWidth="591.0" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="accounts_ListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
    </children>
