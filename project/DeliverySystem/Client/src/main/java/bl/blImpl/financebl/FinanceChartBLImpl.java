@@ -1,26 +1,15 @@
 package bl.blImpl.financebl;
 
 import bl.blService.financeblService.FinanceChartBLService;
-import vo.financevo.BaseChartVO;
-import vo.financevo.CalculateVO;
-import vo.financevo.PieChartVO;
+import vo.financevo.*;
+
+import java.util.Calendar;
 
 /**
  * Created by Sissel on 2015/10/26.
  */
 public class FinanceChartBLImpl implements FinanceChartBLService {
 	ChartMaker chartMaker;
-    public BaseChartVO getHistogram() {
-        return new BaseChartVO();
-    }
-
-    public PieChartVO getPieChart() {
-        return new PieChartVO();
-    }
-
-    public BaseChartVO getLineChart() {
-        return new BaseChartVO();
-    }
 
 	/* (non-Javadoc)
 	 * @see bl.blService.financeblService.FinanceChartBLService#getCompanyState()
@@ -29,4 +18,24 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 		// TODO Auto-generated method stub
 		return new CalculateVO();
 	}
+
+    @Override
+    public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
+        return new BaseChartVO();
+    }
+
+    @Override
+    public PieChartVO getPieChart(Calendar begin, Calendar end, FinancePieChartType type) {
+        return new PieChartVO();
+    }
+
+    @Override
+    public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
+        return new BaseChartVO();
+    }
+
+    @Override
+    public CalculateVO getCompanyState(Calendar begin, Calendar end) {
+        return new CalculateVO();
+    }
 }

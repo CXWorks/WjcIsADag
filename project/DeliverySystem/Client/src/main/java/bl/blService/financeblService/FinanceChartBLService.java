@@ -1,19 +1,19 @@
 package bl.blService.financeblService;
 
-import vo.financevo.BaseChartVO;
-import vo.financevo.CalculateVO;
-import vo.financevo.PieChartVO;
+import vo.financevo.*;
+
+import java.util.Calendar;
 
 /**
  * Created by Sissel on 2015/10/25.
  */
 public interface FinanceChartBLService {
 
-    public BaseChartVO getHistogram();
+    public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type);
 
-    public PieChartVO getPieChart();
+    public PieChartVO getPieChart(Calendar begin, Calendar end, FinancePieChartType type);
 
-    public BaseChartVO getLineChart();
+    public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type);
     
-    public CalculateVO getCompanyState();
+    public CalculateVO getCompanyState(Calendar begin, Calendar end);
 }

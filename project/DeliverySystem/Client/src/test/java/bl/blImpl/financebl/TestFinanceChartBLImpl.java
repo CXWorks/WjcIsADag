@@ -26,10 +26,10 @@ public class TestFinanceChartBLImpl {
 
 	@Test
 	public void testGet() {
-		assertNotNull(financeChartBLService.getCompanyState());
-		assertNotNull(financeChartBLService.getHistogram());
-		assertNotNull(financeChartBLService.getLineChart());
-		assertNotNull(financeChartBLService.getPieChart());
+		assertNotNull(financeChartBLService.getCompanyState(null,null));
+		assertNotNull(financeChartBLService.getBarChart(null,null,null));
+		assertNotNull(financeChartBLService.getLineChart(null,null,null));
+		assertNotNull(financeChartBLService.getPieChart(null,null,null));
 	}
 
 }
