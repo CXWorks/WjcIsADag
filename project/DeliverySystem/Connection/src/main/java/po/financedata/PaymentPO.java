@@ -21,7 +21,7 @@ public class PaymentPO extends FormPO {
     private String	receiverName;
     private String	receiverAccount;
     // 条目
-    private String	item;
+    private FinancePayEnum	item;
     // 备注
     private String	note;
     //
@@ -52,11 +52,14 @@ public class PaymentPO extends FormPO {
 	public String getReceiverAccount() {
 		return receiverAccount;
 	}
-	public String getItem() {
+	public FinancePayEnum getItem() {
 		return item;
 	}
 	public String getNote() {
 		return note;
+	}
+	public String getItemForSQL(){
+		return item.name();
 	}
 	/**
 	 * @param formEnum
@@ -75,7 +78,7 @@ public class PaymentPO extends FormPO {
 	public PaymentPO(String formID, Calendar date,
 			String amount, String payerAccID, String payerName,
 			String payerAccount, String receiverAccID, String receiverName,
-			String receiverAccount, String item, String note) {
+			String receiverAccount, FinancePayEnum item, String note) {
 		super(FormEnum.PAYMENT, formID);
 		this.date = date;
 		this.amount = amount;
@@ -103,8 +106,24 @@ public class PaymentPO extends FormPO {
 		this.receiverAccID = receiverAccID;
 		this.receiverName = receiverName;
 		this.receiverAccount = receiverAccount;
-		this.item = item;
+		this.item = this.setItem(item);
 		this.note = note;
+	}
+	//
+	private FinancePayEnum setItem(String item){
+		switch (item) {
+		case "RENT":
+			return FinancePayEnum.RENT;
+		case "TRANSPORTION":
+			return FinancePayEnum.TRANSPORTION;
+		case "SALARY":
+			return FinancePayEnum.SALARY;
+		case "REWARD":
+			return FinancePayEnum.REWARD;
+
+		default:
+			return null;
+		}
 	}
     
     //

@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import po.FormEnum;
 import po.FormStateEnum;
+import po.financedata.FinancePayEnum;
 import po.financedata.PaymentPO;
 import vo.FormVO;
 
@@ -20,7 +21,7 @@ public class PaymentVO extends FormVO {
     private String	receiverName;
     private String	receiverAccount;
     // 条目
-    private String	item;
+    private FinancePayEnum	item;
     // 备注
     private String	note;
     //
@@ -42,7 +43,7 @@ public class PaymentVO extends FormVO {
 	 */
 	public PaymentVO(String formID,Calendar date, String amount, String payerAccID,
 			String payerName, String payerAccount, String receiverAccID,
-			String receiverName, String receiverAccount, String item,
+			String receiverName, String receiverAccount, FinancePayEnum item,
 			String note) {
 		this(formID);
 		this.date = date;
