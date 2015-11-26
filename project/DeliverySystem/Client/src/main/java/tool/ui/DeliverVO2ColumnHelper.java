@@ -17,9 +17,9 @@ public class DeliverVO2ColumnHelper extends VO2ColumnHelper<OrderVO>{
 	       Map<String, String> map = new HashMap<>();
 
 	      //  map.put("派件时间", dvo.getDate().toString());
-	        map.put("订单号", vo.getFormID());
-	        map.put("目的地", vo.getAddressTo());
-	        map.put("收件人", vo.getNameTo());
+//	        map.put("订单号", vo.getFormID());
+//	        map.put("目的地", vo.getAddressTo());
+//	        map.put("收件人", vo.getNameTo());
 
 
 	        return map.entrySet();

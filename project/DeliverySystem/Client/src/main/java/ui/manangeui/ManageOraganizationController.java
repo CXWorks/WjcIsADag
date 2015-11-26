@@ -61,7 +61,7 @@ public class ManageOraganizationController {
 	    	
 	    	address_Field.clear();
 	    	stuff_Number_Field.clear();
-	    	
+	    	type_Box.setValue(type_Box.getItems().get(0));
 	    	
 	    	
 	    }

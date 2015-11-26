@@ -1,14 +1,18 @@
 package ui.orderui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Map;
 
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
+import bl.blService.receiveblService.ReceiveBLService;
 import factory.FormFactory;
 import message.OperationMessage;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.PackingEnum;
+import tool.ui.OrderVO2ColumnHelper;
 import ui.common.FormBridge;
 import ui.financeui.CheckRevenueFormController;
 import ui.receiveui.HallReceiveFormController;
@@ -24,68 +28,71 @@ import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class PoepleReceiveFormController {
 
-	public TextField id_Field;
+	public TextField order_Field;
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
-	
+	public TableView<Map.Entry<String, String>> order_Table;
+	public TableColumn<Map.Entry<String, String>, String> key_Column;
+	public TableColumn<Map.Entry<String, String>, String> value_Column;
 
-	public Label nameFrom;
-	public Label nameTo;
-	public Label addressFrom;
-	public Label addressTo;
-	public Label unitFrom;
-	public Label unitTo;
-	public Label phoneNumFrom;
-	public Label phoneNumTo;
-	public Label telNumFrom;
-	public Label telNumTo;
-	public Label goodsNum;
-	public Label goodsName;
-	public Label weight;
-	public Label volume;
-	public Label goodsType;
-	public Label money;
-	public Label type;
-	public Label pack;
-	
-	DeliverBLService dbl = FormFactory.getDeliverBLService();
-    public static Parent launch() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(CheckRevenueFormController.class.getResource("peopleReceiveForm.fxml"));
-        return loader.load();
-    }
+	OrderBLService obl = FormFactory.getOrderBLService();
+	 ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(CheckRevenueFormController.class.getResource("peopleReceiveForm.fxml"));
+		return loader.load();
+	}
 
-    public void initialize(){
+	public void initialize(){
+		order_Field.setOnAction(
+				uselessParam->{
+					fillOrderTable();
+				}
+				);
+		OrderVO2ColumnHelper.setKeyColumn(key_Column); 
+		OrderVO2ColumnHelper.setValueColumn(value_Column);
+	}
 
+	public void commit(ActionEvent actionEvent) {
 
-    }
-	
-    public void commit(ActionEvent actionEvent) {
-
-		DeliverVO dvo = generateDeliverVO();
-
-		OperationMessage msg = dbl.submit(dvo);
-
-
-
+		OrderVO ovo = generateOrderVO();
+		OperationMessage msg = obl.submit(ovo);
+        if(msg.operationResult){
+            System.out.println("commit successfully");
+            clear(null);
+        }else{
+            System.out.println("commit fail: " + msg.getReason());
+        }
 
 	}
 
-	public DeliverVO generateDeliverVO() {
+	public OrderVO generateOrderVO() {
+		//TODO
 		return null;
 	}
 
 	public void clear(ActionEvent actionEvent) {
-
+		receive_DatePicker.setValue(LocalDate.now());
+		order_Field.clear();
+		name_Field.clear();
+        order_Table.setItems(null);
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-
+		//TODO
 	}
+	
+	private void fillOrderTable(){
+		OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
+		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+	}
+
+
 }

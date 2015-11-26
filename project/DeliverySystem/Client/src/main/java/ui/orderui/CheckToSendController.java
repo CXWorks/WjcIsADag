@@ -36,22 +36,17 @@ public class CheckToSendController {
     
     public static Parent launch() throws IOException {
         return FXMLLoader.load(LoginController.class.getResource("checkToSend.fxml"));
-        
     }
 	
     
     @FXML
     public void initialize(){
-       // time_Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getDate()));
-      
-        DeliverVO2ColumnHelper.setKeyColumn(id_Column); 
-        DeliverVO2ColumnHelper.setKeyColumn(address_Column); 
-        DeliverVO2ColumnHelper.setKeyColumn(people_Column); 
+    	
         
     }
     
 	public void checkDetails(ActionEvent aciontEvent){
-		
+		//TODO
 	}
 	
 }
