@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import bl.blService.accountblService.AccountBLManageService;
+import factory.AccountFactory;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.control.cell.ComboBoxListCell;
@@ -26,6 +29,7 @@ import vo.managevo.staff.StaffVO;
 
 public class ManageAccountController {
 
+    private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
     private List<AccountVOCheckItem> accounts;
 
 	public TextField search_Field;
@@ -36,7 +40,7 @@ public class ManageAccountController {
         return FXMLLoader.load(ManageAccountController.class.getResource("manageAccount.fxml"));
     }
 
-	public void makeTest(){
+	private void makeTest(){
         accounts = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
             accounts.add(new AccountVOCheckItem(new AccountVO("dora", "1243", AuthorityEnum.HAVE)));
@@ -48,16 +52,48 @@ public class ManageAccountController {
         makeTest();
 
         accounts_ListView.setItems(FXCollections.observableArrayList(accounts));
-        accounts_ListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         accounts_ListView.setCellFactory(
                 (listView)->new MyCell()
         );
 
-
     }
 
-    static class MyCell extends ListCell<AccountVOCheckItem>{
+	public void selectAll(ActionEvent actionEvent) {
+        if((!all_CheckBox.isSelected()) && isAllSelected()){
+            setAllSelectedValue(false);
+        }else if(all_CheckBox.isSelected()){
+            setAllSelectedValue(true);
+        }else{
+            // do nothing
+        }
+    }
+
+    @FXML
+	public void search(ActionEvent actionEvent) {
+        String filter = search_Field.getText();
+        // TODO filter accountBLManageService
+	}
+
+    @FXML
+	public void delete(ActionEvent actionEvent) {
+        for (int i = 0; i < accounts.size(); i++) {
+            if(accounts.get(i).getSelected()){
+                accounts.remove(i);
+                accounts_ListView.getItems().remove(i);
+                //accountBLManageService.deleteAccount(account.getVo());
+            }
+        }
+    }
+
+    @FXML
+	public void edit(ActionEvent actionEvent) {
+        AccountVO selected = accounts_ListView.getSelectionModel().getSelectedItem().getVo();
+        // TODO POPUP EDIT WINDOW
+
+        accountBLManageService.modifyAccount(selected);
+	}
+
+    class MyCell extends ListCell<AccountVOCheckItem>{
         @Override
         protected void updateItem(AccountVOCheckItem item, boolean empty) {
             super.updateItem(item, empty);
@@ -68,40 +104,45 @@ public class ManageAccountController {
 
             CheckBox checkBox = new CheckBox();
             checkBox.selectedProperty().bindBidirectional(item.selectedProperty());
-            HBox hbox = new HBox();
+
+            double length = accounts_ListView.getWidth() - checkBox.getWidth();
 
             Label name_Label = new Label(item.getVo().getID());
+            name_Label.setAlignment(Pos.BASELINE_CENTER);
+            name_Label.setPrefWidth(length / 3);
             Label password_Label = new Label(item.getVo().getPassword());
+            password_Label.setAlignment(Pos.BASELINE_CENTER);
+            password_Label.setPrefWidth(length / 3);
 
-            hbox.setSpacing(12);
+            HBox hbox = new HBox();
             hbox.getChildren().addAll(checkBox, name_Label, password_Label);
 
             this.setGraphic(hbox);
         }
     }
-	
-	public void Delete(ActionEvent actionEvent){
-		
-	}
-	
-	public void Search(ActionEvent actionEvent){
-		
-	}
 
-	public void selectAll(ActionEvent actionEvent) {
-
+    private boolean isAllSelected(){
         for (AccountVOCheckItem account : accounts) {
-            account.setSelected(true);
+            if(!account.getSelected()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void setAllSelectedValue(boolean value){
+        for (AccountVOCheckItem account : accounts) {
+            account.setSelected(value);
         }
     }
 
-	public void search(ActionEvent actionEvent) {
-	}
-
-	public void delete(ActionEvent actionEvent) {
-	}
-
-	public void edit(ActionEvent actionEvent) {
-	}
-
+    private int getSelectedNumber(){
+        int sum = 0;
+        for (AccountVOCheckItem account : accounts) {
+            if(account.getSelected()){
+                ++sum;
+            }
+        }
+        return sum;
+    }
 }
