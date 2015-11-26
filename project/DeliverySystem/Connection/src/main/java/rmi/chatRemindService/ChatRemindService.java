@@ -31,11 +31,5 @@ public interface ChatRemindService extends Remote{
 	 * @return 返回消息列表
 	 */
 	public ArrayList<ChatMessage> getMessage(String ID) throws RemoteException;
-	/**
-	 * 服务器端消息缓存增加
-	 * @param ID 目标员工的ID
-	 * @param mes 消息
-	 * @return 返回消息列表
-	 */
-	public OperationMessage add(String ID,ChatMessage mes) throws RemoteException;
+	
 }

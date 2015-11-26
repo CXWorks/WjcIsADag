@@ -96,7 +96,7 @@ public class DataFactory implements DataFactoryService {
 	public ExamineSubmitService creatExamineSubmitService()
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return new ExamineSubmitImpl();
+		return null;
 	}
 
 	@Override

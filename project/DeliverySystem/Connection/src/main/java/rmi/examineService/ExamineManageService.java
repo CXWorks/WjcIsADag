@@ -15,7 +15,7 @@ public interface ExamineManageService extends Remote{
 	
 	public OperationMessage modifyForm(FormPO form) throws RemoteException;
 	
-	public OperationMessage passForm(ArrayList<FormPO> form) throws RemoteException;
+	public OperationMessage passForm(ArrayList<FormPO> forms) throws RemoteException;
 	
-	public OperationMessage deleteForm(ArrayList<FormPO> form) throws RemoteException;
+	public OperationMessage deleteForm(ArrayList<FormPO> forms) throws RemoteException;
 }

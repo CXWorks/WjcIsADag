@@ -22,7 +22,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
-	protected RevenueDataImpl() throws RemoteException {
+	public RevenueDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "revenue";

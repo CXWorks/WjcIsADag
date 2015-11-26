@@ -20,4 +20,8 @@ public class OperationMessage implements Serializable{
 	public String getReason(){
 		return reason;
 	}
+	public void addReason(String wrongID){
+		this.reason += " " + wrongID;
+		return;
+	}
 }
