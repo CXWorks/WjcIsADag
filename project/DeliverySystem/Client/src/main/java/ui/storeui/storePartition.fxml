@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StorePartitionController">
+   <children>
+      <Label layoutX="35.0" layoutY="32.0" text="分区选择" />
+      <VBox layoutX="35.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+         <children>
+            <RadioButton mnemonicParsing="false" onAction="#selectAir" text="航运区" />
+            <RadioButton mnemonicParsing="false" onAction="#selectRail" text="铁路区" />
+            <RadioButton mnemonicParsing="false" onAction="#selectRoad" text="公路区" />
+            <RadioButton mnemonicParsing="false" onAction="#selectFlex" text="机动区" />
+         </children>
+      </VBox>
+      <TableView fx:id="rows_TableView" layoutX="196.0" layoutY="32.0" prefHeight="339.0" prefWidth="322.0">
+        <columns>
+          <TableColumn fx:id="rowNum_TableColumn" prefWidth="75.0" text="排号" />
+          <TableColumn fx:id="shelfNum_TableColumn" prefWidth="75.0" text="架号" />
+            <TableColumn fx:id="rate_TableColumn" prefWidth="75.0" text="占用数" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TableView fx:id="area_TableView" layoutX="576.0" layoutY="32.0" prefHeight="339.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="key_TableColumn" prefWidth="75.0" text="项目" />
+          <TableColumn fx:id="value_TableColumn" prefWidth="75.0" text="信息" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="612.0" layoutY="406.0" mnemonicParsing="false" onAction="#expandArea" text="划入货架" />
+      <Button layoutX="712.0" layoutY="406.0" mnemonicParsing="false" onAction="#reduceArea" text="划出货架" />
+      <Label layoutX="239.0" layoutY="410.0" text="库存警戒比例" />
+      <TextField fx:id="warnLine_Field" layoutX="330.0" layoutY="406.0" prefHeight="23.0" prefWidth="100.0" />
+      <Button layoutX="454.0" layoutY="406.0" mnemonicParsing="false" onAction="#reajust" text="重新调整" />
+   </children>
+</AnchorPane>
