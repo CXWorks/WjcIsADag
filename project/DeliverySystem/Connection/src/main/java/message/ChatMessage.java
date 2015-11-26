@@ -10,4 +10,26 @@ import java.io.Serializable;
 
 public class ChatMessage implements Serializable{
 
+	String fromID;
+	String toID;
+	String message;
+	
+	public ChatMessage(String fromID, String toID, String message) {
+		super();
+		this.fromID = fromID;
+		this.toID = toID;
+		this.message = message;
+	}
+	
+	public String getFromID() {
+		return fromID;
+	}
+	public String getToID() {
+		return toID;
+	}
+	public String getMessage() {
+		return message;
+	}
+	
+	
 }
