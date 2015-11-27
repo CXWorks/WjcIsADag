@@ -57,13 +57,13 @@ public class CheckRevenueFormController {
         revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670","wjc" ,"233" , "1999"));
 
         orderID_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getOrderID())
+                cellData -> new SimpleStringProperty(cellData.getValue().orderID)
         );
         deliver_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getDeliverName())
+                cellData -> new SimpleStringProperty(cellData.getValue().deliverName)
         );
         money_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getAmount())
+                cellData -> new SimpleStringProperty(cellData.getValue().amount)
         );
 
         revenue_TableView.setItems(revenueVOs);

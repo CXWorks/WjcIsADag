@@ -1,7 +1,7 @@
 package ui.financeui;
 
 import bl.blService.financeblService.FinanceChartBLService;
-import factory.FinanceFactory;
+import factory.FinanceBLFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ import java.util.Set;
  */
 public class CheckFinanceChartController {
 
-    private FinanceChartBLService financeChartBLService = FinanceFactory.getFinanceChartBLService();
+    private FinanceChartBLService financeChartBLService = FinanceBLFactory.getFinanceChartBLService();
 
     // controls
     public DatePicker begin_DatePicker;

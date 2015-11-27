@@ -10,12 +10,12 @@ import vo.FormVO;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class RevenueVO extends FormVO {
-    private Calendar date;
-    private String amount;
-    private String deliverName;
-    private String hallID;
-    private String orderID;
+public class RevenueVO extends FinanceFormVO {
+    public Calendar date;
+    public String amount;
+    public String deliverName;
+    public String hallID;
+    public String orderID;
     //
     public RevenueVO(String formID){
     	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID);
@@ -45,43 +45,4 @@ public class RevenueVO extends FormVO {
     	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
     }
 
-	public Calendar getDate() {
-		return date;
-	}
-
-	public void setDate(Calendar date) {
-		this.date = date;
-	}
-
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-
-	public String getDeliverName() {
-		return deliverName;
-	}
-
-	public void setDeliverName(String deliverName) {
-		this.deliverName = deliverName;
-	}
-
-	public String getHallID() {
-		return hallID;
-	}
-
-	public void setHallID(String hallID) {
-		this.hallID = hallID;
-	}
-
-	public String getOrderID() {
-		return orderID;
-	}
-
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
-	}
 }

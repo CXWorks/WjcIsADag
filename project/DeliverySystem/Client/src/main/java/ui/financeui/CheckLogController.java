@@ -1,9 +1,13 @@
 package ui.financeui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -13,6 +17,10 @@ public class CheckLogController {
     public DatePicker begin_DatePicker;
     public DatePicker end_DatePicker;
     public TextField keyword_Field;
+
+    public static Parent launch() throws IOException {
+        return FXMLLoader.load(CheckLogController.class.getResource("checkLog.fxml"));
+    }
 
     public void exportTXT(ActionEvent actionEvent) {
     }

@@ -3,6 +3,7 @@ package bl.blService.financeblService;
 import bl.blService.FormBLService;
 import vo.financevo.PaymentVO;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -14,6 +15,6 @@ public interface PaymentBLService extends FormBLService<PaymentVO>{
 
     public PaymentVO getPaymentVO(String paymentID);
 
-    public List<PaymentVO> getPaymentVOs(String startDate, String endDate);
+    public List<PaymentVO> getPaymentVOs(Calendar startDate, Calendar endDate);
 
 }

@@ -11,15 +11,15 @@ import vo.FormVO;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class PaymentVO extends FormVO {
-    private Calendar date;
-    private String	amount;
-    private String	payerAccID;
-    private String	payerName;
-    private String	payerAccount;
-    private String	receiverAccID;
-    private String	receiverName;
-    private String	receiverAccount;
+public class PaymentVO extends FinanceFormVO {
+    public Calendar date;
+    public String	amount;
+    public String	payerAccID;
+    public String	payerName;
+    public String	payerAccount;
+    public String	receiverAccID;
+    public String	receiverName;
+    public String	receiverAccount;
     // 条目
     private FinancePayEnum	item;
     // 备注

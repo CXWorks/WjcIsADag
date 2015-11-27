@@ -11,6 +11,7 @@ import vo.financevo.PaymentVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class PaymentBLImpl implements PaymentBLService {
 		}
     }
 
-    public List<PaymentVO> getPaymentVOs(String startDate, String endDate) {
+    public List<PaymentVO> getPaymentVOs(Calendar startDate, Calendar endDate) {
     	//TODO talk with JC
         return new LinkedList<PaymentVO>();
     }

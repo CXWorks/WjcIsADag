@@ -19,6 +19,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class RevenueBLImpl implements RevenueBLService {
         return new RevenueVO("020011002201511230000001");
     }
 
-    public List<RevenueVO> getRevenueVOs(String startDate, String endDate) {
+    public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate) {
         return new LinkedList<RevenueVO>();
     }
 

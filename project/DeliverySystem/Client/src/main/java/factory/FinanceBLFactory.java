@@ -14,7 +14,7 @@ import tool.vopo.VOPOFactory;
 /**
  * Created by Sissel on 2015/11/27.
  */
-public class FinanceFactory {
+public class FinanceBLFactory {
     private static FinanceChartBLService financeChartBLService;
     private static RevenueBLService revenueBLService;
     private static PaymentBLService paymentBLService;

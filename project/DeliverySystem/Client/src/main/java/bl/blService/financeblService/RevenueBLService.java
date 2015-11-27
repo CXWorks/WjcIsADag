@@ -5,6 +5,7 @@ import message.OperationMessage;
 import vo.financevo.RevenueVO;
 import vo.ordervo.OrderVO;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public interface RevenueBLService extends FormBLService<RevenueVO> {
 
     public RevenueVO getRevenueVO(String date, String hallID);
 
-    public List<RevenueVO> getRevenueVOs(String startDate, String endDate);
+    public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate);
     
     public double sum(String revenueID);
 
