@@ -1,8 +1,6 @@
 package ui.receiveui;
 
 import bl.blService.receiveblService.ReceiveBLService;
-import po.orderdata.DeliverTypeEnum;
-import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
@@ -11,15 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
-import ui.common.BasicFormController;
-import ui.common.FormBridge;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
@@ -31,7 +25,7 @@ import java.util.Map;
 /**
  * Created by Sissel on 2015/11/21.
  */
-public class HallReceiveFormController extends BasicFormController{
+public class ReceiveFormController{
     
     public DatePicker arrive_DatePicker;
     public TextField transitID_Field;
@@ -52,7 +46,7 @@ public class HallReceiveFormController extends BasicFormController{
     public static Parent launch() throws IOException {
 
         FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(HallReceiveFormController.class.getResource("hallReceiveForm.fxml"));
+        contentLoader.setLocation(ReceiveFormController.class.getResource("ReceiveForm.fxml"));
         return contentLoader.load();
     }
 
@@ -77,7 +71,6 @@ public class HallReceiveFormController extends BasicFormController{
         OrderVO2ColumnHelper.setValueColumn(value_Column);
     }
 
-    @Override
     public void commit(ActionEvent actionEvent) {
         OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
 
@@ -89,7 +82,6 @@ public class HallReceiveFormController extends BasicFormController{
         }
     }
 
-    @Override
     public void clear(ActionEvent actionEvent) {
         arrive_DatePicker.setValue(LocalDate.now());
         transitID_Field.clear();
@@ -99,7 +91,6 @@ public class HallReceiveFormController extends BasicFormController{
         arriveState_Box.setValue(arriveState_Box.getItems().get(0));
     }
 
-    @Override
     public void saveDraft(ActionEvent actionEvent) {
         receiveBLService.saveDraft(generateVO(null));
     }

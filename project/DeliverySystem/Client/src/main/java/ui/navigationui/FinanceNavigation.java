@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.common.TabMaker;
 import ui.financeui.CheckFinanceChartController;
+import ui.financeui.CheckFinanceSummaryController;
 import ui.financeui.ManageBankAccountController;
 
 import java.io.IOException;

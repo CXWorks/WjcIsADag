@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.ManageCarDriver">
+   <children>
+      <TableView fx:id="car_TableView" layoutX="27.0" layoutY="65.0" prefHeight="358.0" prefWidth="426.0">
+        <columns>
+          <TableColumn fx:id="carCheck_TableColumn" prefWidth="75.0" text="勾选" />
+          <TableColumn fx:id="carID_TableColumn" prefWidth="75.0" text="车辆代号" />
+            <TableColumn fx:id="carLicense_TableColumn" prefWidth="75.0" text="车牌号" />
+            <TableColumn fx:id="serveTime_TableColumn" prefWidth="75.0" text="服役时间" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TableView layoutX="501.0" layoutY="65.0" prefHeight="358.0" prefWidth="275.0">
+        <columns>
+          <TableColumn fx:id="driverCheck_TableColumn" prefWidth="75.0" text="勾选" />
+          <TableColumn fx:id="driverID_TableColumn" prefWidth="75.0" text="司机编号" />
+            <TableColumn fx:id="driverName_TableColumn" prefWidth="75.0" text="姓名" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox layoutX="293.0" layoutY="27.0" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#addCar" text="新增" />
+            <Button mnemonicParsing="false" onAction="#editCar" text="修改" />
+            <Button mnemonicParsing="false" onAction="#deleteCar" text="删除" />
+         </children>
+      </HBox>
+      <HBox layoutX="616.0" layoutY="27.0" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#addDriver" text="新增" />
+            <Button mnemonicParsing="false" onAction="#editDriver" text="修改" />
+            <Button mnemonicParsing="false" onAction="#deleteDriver" text="删除" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

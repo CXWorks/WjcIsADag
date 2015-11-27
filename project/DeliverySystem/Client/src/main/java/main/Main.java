@@ -3,19 +3,11 @@
  */
 package main;
 
-import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ui.accountui.ManageAccountController;
-import ui.accountui.NewAccountController;
-import ui.financeui.CheckFinanceChartController;
-import ui.financeui.CheckRevenueFormController;
-import ui.loginui.LoginController;
 import ui.navigationui.FinanceNavigation;
-import ui.receiveui.HallReceiveFormController;
-import ui.transportui.LoadCarController;
 
 import java.io.IOException;
 
@@ -45,7 +37,7 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-                //HallReceiveFormController.launch()
+                //ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
                 //ManageBankAccountController.launch()

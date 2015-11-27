@@ -15,7 +15,7 @@ public class UserInfo {
 	private UserInfo(){	
 	}
 	//
-	private static boolean logined=false;
+	private static boolean logined = false;
 	public static String getUserID() {
 		if (logined) {
 			return userID;
@@ -38,10 +38,10 @@ public class UserInfo {
 		}
 	}
 	
-	public static void setInfo(String userID,StaffTypeEnum staffTypeEnum,String institutionID){
-		UserInfo.userID=userID;
-		UserInfo.staffType=staffTypeEnum;
-		UserInfo.institutionID=institutionID;
-		UserInfo.logined=true;
+	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID){
+		UserInfo.userID = userID;
+		UserInfo.staffType = staffTypeEnum;
+		UserInfo.institutionID = institutionID;
+		UserInfo.logined = true;
 	}
 }

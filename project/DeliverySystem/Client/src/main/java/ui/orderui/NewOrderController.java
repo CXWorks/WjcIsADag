@@ -17,8 +17,6 @@ import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
-import ui.common.BasicFormController;
-import ui.common.FormBridge;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import vo.receivevo.ReceiveVO;
