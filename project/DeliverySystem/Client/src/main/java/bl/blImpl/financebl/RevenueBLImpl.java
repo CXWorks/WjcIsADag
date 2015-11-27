@@ -52,7 +52,7 @@ public class RevenueBLImpl implements RevenueBLService {
         
     }
 
-    public String getNewRevenueID(String date) {
+    public String getNewRevenueID(Calendar date) {
         try {
 			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
 			return ID;
@@ -71,8 +71,8 @@ public class RevenueBLImpl implements RevenueBLService {
 		}
     }
 
-    public RevenueVO getRevenueVO(String date, String hallID) {
-        return new RevenueVO("020011002201511230000001");
+    public List<RevenueVO> getRevenueVOs(Calendar date, String hallID) {
+        return new ArrayList<>();
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate) {

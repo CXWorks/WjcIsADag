@@ -15,11 +15,11 @@ public interface RevenueBLService extends FormBLService<RevenueVO> {
 
     public OrderVO loadOrder(String orderNumber);
 
-    public String getNewRevenueID(String date);
+    public String getNewRevenueID(Calendar date);
 
     public RevenueVO getRevenueVO(String revenueID);
 
-    public RevenueVO getRevenueVO(String date, String hallID);
+    public List<RevenueVO> getRevenueVOs(Calendar date, String hallID);
 
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate);
     
