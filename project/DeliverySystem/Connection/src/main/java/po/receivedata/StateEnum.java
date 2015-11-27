@@ -18,7 +18,6 @@ public enum StateEnum implements EnumObservable<StateEnum> {
 		this.chinese = c;
 	}
 
-	@Override
 	public String getChinese() {
 		return chinese;
 	}

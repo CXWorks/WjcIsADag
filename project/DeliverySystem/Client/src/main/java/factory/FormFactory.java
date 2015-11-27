@@ -4,10 +4,14 @@ import bl.blImpl.deliverbl.DeliverBLImpl;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
+import bl.blImpl.transportbl.TransportCenterBLImpl;
+import bl.blImpl.transportbl.TransportHallBLImpl;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.blService.transportblService.TransportCenterBLService;
+import bl.blService.transportblService.TransportHallBLService;
 import rmi.deliverdata.DeliverDataService;
 import tool.draft.DraftController;
 import tool.draft.DraftService;
@@ -28,7 +32,9 @@ public class FormFactory extends BLFactory {
 	private static ReceiveBLService receiveBLService;
 	private static OrderBLService orderBLService;
 	private static DeliverBLService deliverBlService;
-
+	private static TransportCenterBLService transportCenterBLService;
+	private static TransportHallBLService transportHallBLService;
+	
 	private FormFactory(){
 
 	}
@@ -51,5 +57,19 @@ public class FormFactory extends BLFactory {
 			deliverBlService = new DeliverBLImpl(vopoFactory, draftService, formatCheckService);
 		}
 		return deliverBlService;
+	}
+	
+	public static TransportCenterBLService getTransportCenterBLService() {
+		if(transportCenterBLService == null){
+			transportCenterBLService = new TransportCenterBLImpl(vopoFactory, draftService);
+		}
+		return transportCenterBLService;
+	}
+	
+	public static TransportHallBLService getTransportHallBLService() {
+		if(transportHallBLService == null){
+			transportHallBLService = new TransportHallBLImpl(vopoFactory, draftService);
+		}
+		return transportHallBLService;
 	}
 }
