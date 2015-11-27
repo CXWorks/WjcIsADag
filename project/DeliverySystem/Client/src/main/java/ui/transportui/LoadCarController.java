@@ -5,10 +5,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import tool.time.TimeConvert;
 import vo.managevo.car.CarVO;
+import vo.transitvo.CenterOutVO;
+import vo.transitvo.LoadVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import message.OperationMessage;
+import bl.blService.transportblService.TransportCenterBLService;
+import bl.blService.transportblService.TransportHallBLService;
+import factory.FormFactory;
 
 /**
  * Created by Sissel on 2015/11/23.
@@ -26,6 +37,9 @@ public class LoadCarController {
     public ChoiceBox arrival_ChoiceBox;
     public ChoiceBox carID_ChoiceBox;
 
+    ArrayList<String> ids=null;//这只是权宜之计，，并不能，，就这样放着
+    
+    TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
     public static Parent launch() throws IOException {
         return FXMLLoader.load(LoadCarController.class.getResource("loadCarForm.fxml"));
     }
@@ -40,13 +54,36 @@ public class LoadCarController {
 
 
     public void saveDraft(ActionEvent actionEvent) {
+    	transportHallBLService.saveDraft(generateVO(null));
     }
 
     public void clear(ActionEvent actionEvent) {
-
+    	date_Picker.setValue(LocalDate.now());
+    	arrival_ChoiceBox.setValue(arrival_ChoiceBox.getItems().get(0));
+    	transitCarID_Field.clear();
+    	monitor_Field.clear();
+    	guard_Field.clear();
+    	orders_ListView.setItems(null);
     }
 
+    private LoadVO generateVO(String formID){
+        Calendar calendar = TimeConvert.convertDate(date_Picker.getValue());
+        return new LoadVO(formID,carID_ChoiceBox.getValue().toString(),guard_Field.getText(),fee_Label.getText(),
+        		calendar,transitCarID_Field.getText(),
+        		arrival_ChoiceBox.getValue().toString(),monitor_Field.getText(),ids);
+    }
+    
+    
     public void sure(ActionEvent actionEvent) {
 
+    	 OperationMessage msg = transportHallBLService.submit(generateVO(transportHallBLService.newID()));
+
+         if(msg.operationResult){
+             System.out.println("commit successfully");
+             clear(null);
+         }else{
+             System.out.println("commit fail: " + msg.getReason());
+         }
     }
-}
+    }
+

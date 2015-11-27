@@ -13,7 +13,7 @@ public class CarVO extends InfoVO{
 	private String carID;
 	private Calendar useTime;
 	private ImageIcon imag;
-	//以下为无用内容，67脑洞真大
+	//以下为无用内容
 	private String engineID;
 	private String nameID;
 	private String chassisID;//chassis是车辆底盘的意思
