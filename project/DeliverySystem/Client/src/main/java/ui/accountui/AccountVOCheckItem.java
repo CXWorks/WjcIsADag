@@ -13,7 +13,11 @@ public class AccountVOCheckItem extends VOCheckItem<AccountVO> {
     AccountVOCheckItem(AccountVO vo){
         this.vo = new SimpleObjectProperty<>(vo);
         this.selected = new SimpleBooleanProperty(false);
-
+        selected.addListener(
+                (observable, oldValue, newValue) -> {
+                    System.out.println(vo.getID() + " change to " + newValue.booleanValue());
+                }
+        );
     }
 
     @Override

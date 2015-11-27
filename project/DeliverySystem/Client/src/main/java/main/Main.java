@@ -7,6 +7,7 @@ import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.accountui.ManageAccountController;
 import ui.navigationui.FinanceNavigation;
 
 import java.io.IOException;
@@ -46,7 +47,8 @@ public class Main extends Application {
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
-                FinanceNavigation.launch()
+                //FinanceNavigation.launch()
+                ManageAccountController.launch()
 
         ));
 
