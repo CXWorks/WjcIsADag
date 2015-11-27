@@ -13,6 +13,7 @@ import ui.accountui.NewAccountController;
 import ui.financeui.CheckFinanceChartController;
 import ui.financeui.CheckRevenueFormController;
 import ui.loginui.LoginController;
+import ui.navigationui.FinanceNavigation;
 import ui.receiveui.HallReceiveFormController;
 import ui.transportui.LoadCarController;
 
@@ -52,7 +53,8 @@ public class Main extends Application {
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
-                CheckFinanceChartController.launch()
+                //CheckFinanceChartController.launch()
+                FinanceNavigation.launch()
         ));
 
         primaryStage.show();
