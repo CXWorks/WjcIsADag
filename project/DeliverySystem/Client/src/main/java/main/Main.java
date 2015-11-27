@@ -47,6 +47,7 @@ public class Main extends Application {
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
                 FinanceNavigation.launch()
+
         ));
 
         primaryStage.show();

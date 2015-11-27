@@ -13,9 +13,9 @@
       <DatePicker fx:id="begin_DatePicker" layoutX="86.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
       <DatePicker fx:id="end_DatePicker" layoutX="327.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
       <Label layoutX="368.0" layoutY="408.0" text="总支出" />
-      <Label fx:id="payment_Label" layoutX="417.0" layoutY="408.0" text="Label" />
+      <Label fx:id="outcome_Label" layoutX="417.0" layoutY="408.0" text="Label" />
       <Label layoutX="515.0" layoutY="408.0" text="总收入" />
-      <Label fx:id="revenue_Label" layoutX="564.0" layoutY="408.0" text="Label" />
+      <Label fx:id="income_Label" layoutX="564.0" layoutY="408.0" text="Label" />
       <Label layoutX="673.0" layoutY="408.0" text="净利润" />
       <Label fx:id="profit_Label" layoutX="724.0" layoutY="408.0" text="Label" />
       <TableView fx:id="finance_TableView" layoutX="26.0" layoutY="85.0" prefHeight="306.0" prefWidth="755.0">

@@ -37,7 +37,7 @@ public class TestRevenueBLImpl {
 		assertNotNull(re.getNewRevenueID("2015.11.14"));
 		assertNotNull(re.getRevenueVO("534222"));
 		assertNotNull(re.getRevenueVO("2014.11.14", "0302"));
-		assertNotNull(re.getRevenueVOs("2013.11.11", "2015.11.11"));
+		assertNotNull(re.getRevenueVOs(Calendar.getInstance(), Calendar.getInstance()));
 		assertNotNull(re.loadDraft());
 	}
 	

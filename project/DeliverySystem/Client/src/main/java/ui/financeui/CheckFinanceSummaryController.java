@@ -1,8 +1,10 @@
 package ui.financeui;
 
+import bl.blService.financeblService.FinanceChartBLService;
 import bl.blService.financeblService.PaymentBLService;
 import bl.blService.financeblService.RevenueBLService;
 import factory.FinanceBLFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,9 +13,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import tool.time.TimeConvert;
+import vo.financevo.CalculateVO;
 import vo.financevo.FinanceFormVO;
+import vo.financevo.PaymentVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Comparator;
 
@@ -24,12 +29,13 @@ public class CheckFinanceSummaryController {
 
     private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
     private RevenueBLService revenueBLService = FinanceBLFactory.getRevenueBLService();
+    private FinanceChartBLService financeChartBLService = FinanceBLFactory.getFinanceChartBLService();
 
     // controls
     public DatePicker begin_DatePicker;
     public DatePicker end_DatePicker;
-    public Label payment_Label;
-    public Label revenue_Label;
+    public Label outcome_Label;
+    public Label income_Label;
     public Label profit_Label;
     public TableView<FinanceFormVO> finance_TableView;
     public TableColumn<FinanceFormVO, String> date_Column;
@@ -42,7 +48,18 @@ public class CheckFinanceSummaryController {
 
     @FXML
     public void initialize(){
+        date_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().date.toString())
+        );
+        type_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getFormType().getChinese())
+        );
+        money_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().amount)
+        );
 
+        begin_DatePicker.setValue(LocalDate.now());
+        end_DatePicker.setValue(LocalDate.now());
     }
 
     public void search(ActionEvent actionEvent) {
@@ -56,10 +73,15 @@ public class CheckFinanceSummaryController {
         forms.addAll(paymentBLService.getPaymentVOs(begin, end));
 
         forms.sort(
-                (o1, o2) -> {
-                    return 10;
-                }
+                (o1, o2) -> o1.date.compareTo(o2.date)
         );
+
+        finance_TableView.setItems(forms);
+
+        CalculateVO calculateVO = financeChartBLService.getCompanyState(begin, end);
+        outcome_Label.setText(calculateVO.companyPayment + "元");
+        income_Label.setText(calculateVO.companyRevenue + "元");
+        profit_Label.setText(calculateVO.companyProfit + "元");
     }
 
 

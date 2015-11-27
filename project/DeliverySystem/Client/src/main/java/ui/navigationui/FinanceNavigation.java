@@ -6,6 +6,7 @@ import ui.common.TabMaker;
 import ui.financeui.CheckFinanceChartController;
 import ui.financeui.CheckFinanceSummaryController;
 import ui.financeui.ManageBankAccountController;
+import ui.financeui.PaymentFormController;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -18,7 +19,9 @@ public class FinanceNavigation {
     public static Parent launch() throws IOException {
         Parent node = TabMaker.makeTabs(Arrays.asList(
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
-                new Pair<String, Parent>("管理账户", ManageBankAccountController.launch())
+                new Pair<String, Parent>("管理账户", ManageBankAccountController.launch()),
+                new Pair<String, Parent>("成本收益表", CheckFinanceSummaryController.launch()),
+                new Pair<String, Parent>("新建付款单", PaymentFormController.launch())
         ));
 
         return node;

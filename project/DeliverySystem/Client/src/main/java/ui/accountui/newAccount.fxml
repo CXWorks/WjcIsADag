@@ -9,9 +9,8 @@
       <Label layoutX="14.0" layoutY="14.0" text="新建账户信息" />
       <HBox layoutX="421.0" layoutY="363.0">
          <children>
-            <Button layoutX="245.0" layoutY="209.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button layoutX="316.0" layoutY="209.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="384.0" layoutY="209.0" mnemonicParsing="false" onAction="#sure" text="确认" />
+            <Button layoutX="384.0" layoutY="209.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <Label layoutX="112.0" layoutY="138.0" text="账户名" />

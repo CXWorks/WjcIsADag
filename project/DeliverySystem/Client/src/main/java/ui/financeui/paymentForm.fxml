@@ -29,7 +29,7 @@
          <children>
             <Button layoutX="577.0" layoutY="407.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="715.0" layoutY="407.0" mnemonicParsing="false" onAction="#sure" text="确认" />
+            <Button layoutX="715.0" layoutY="407.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
    </children>

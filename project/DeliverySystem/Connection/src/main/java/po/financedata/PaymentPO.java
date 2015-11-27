@@ -1,10 +1,8 @@
 package po.financedata;
 
-import po.CommonPO;
 import po.FormEnum;
 import po.FormPO;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
@@ -118,8 +116,8 @@ public class PaymentPO extends FormPO {
 			return FinancePayEnum.TRANSPORTION;
 		case "SALARY":
 			return FinancePayEnum.SALARY;
-		case "REWARD":
-			return FinancePayEnum.REWARD;
+		case "AWARD":
+			return FinancePayEnum.AWARD;
 
 		default:
 			return null;

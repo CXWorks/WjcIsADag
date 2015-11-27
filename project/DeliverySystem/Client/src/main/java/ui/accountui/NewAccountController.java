@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import message.OperationMessage;
 import po.memberdata.StaffTypeEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
@@ -23,7 +24,6 @@ public class NewAccountController {
 	public TextField id_Field;
 	public ChoiceBox<SimpleEnumProperty<StaffTypeEnum>> type_ChoiceBox;
 	public TextField password_Field;
-
 	private StaffTypeEnum staffTypeEnum;
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
@@ -48,16 +48,24 @@ public class NewAccountController {
 		clear(null);
 	}
 
-	public void saveDraft(ActionEvent actionEvent) {
-	}
-
 	public void clear(ActionEvent actionEvent) {
 		id_Field.clear();
 		password_Field.clear();
-		type_ChoiceBox.setValue(new SimpleEnumProperty<>(StaffTypeEnum.DELIVER));
+		type_ChoiceBox.setValue(type_ChoiceBox.getItems().get(0));
 		staffTypeEnum = StaffTypeEnum.DELIVER;
 	}
 
-	public void sure(ActionEvent actionEvent) {
+	public void commit(ActionEvent actionEvent) {
+        OperationMessage msg = accountBLManageService.addAccount(generateAccountVO());
+        if(msg.operationResult){
+            System.out.println("add successfully");
+        }else{
+            System.out.println("fail: " + msg.getReason());
+        }
 	}
+
+    private AccountVO generateAccountVO(){
+        // TODO
+        return new AccountVO(id_Field.getText(), password_Field.getText(), null);
+    }
 }
