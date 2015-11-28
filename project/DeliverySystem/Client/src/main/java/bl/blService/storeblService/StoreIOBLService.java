@@ -3,6 +3,7 @@ package bl.blService.storeblService;
 import message.CheckFormMessage;
 import vo.storevo.GoodsVO;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface StoreIOBLService {
 
-    public List<GoodsVO> getGoodsInfo(String inDate, String inTime, String outDate, String outTime);
+    public List<GoodsVO> getGoodsInfo(Calendar startDate,Calendar endDate);
 
     public List<GoodsVO> filterGoods(String orderNumber);
 

@@ -2,11 +2,15 @@ package bl.blImpl.storebl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Calendar;
+
 import model.store.StoreAreaCode;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.vopo.VOPOFactory;
 import vo.storevo.StoreInVO;
 import bl.blService.storeblService.StoreIOBLService;
 import bl.blService.storeblService.StoreInBLService;
@@ -24,7 +28,7 @@ public class TestStoreIO {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		storeIOBLService = new StoreIOBLImpl();
+		storeIOBLService = new StoreIOBLImpl(new VOPOFactory());
 	}
 	
 	@Test
@@ -40,6 +44,6 @@ public class TestStoreIO {
 	
 	@Test
 	public void testGetGoodsInfo(){
-		assertNotNull(storeIOBLService.getGoodsInfo("","","",""));
+		assertNotNull(storeIOBLService.getGoodsInfo(Calendar.getInstance(),Calendar.getInstance()));
 	}
 }

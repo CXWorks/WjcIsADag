@@ -72,7 +72,8 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar date, String hallID) {
-        return new ArrayList<>();
+    	//waitting for JC
+        return null;
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate) {

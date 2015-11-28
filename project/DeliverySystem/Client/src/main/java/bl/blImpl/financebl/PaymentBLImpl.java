@@ -53,8 +53,20 @@ public class PaymentBLImpl implements PaymentBLService {
     }
 
     public List<PaymentVO> getPaymentVOs(Calendar startDate, Calendar endDate) {
-    	//TODO talk with JC
-        return new LinkedList<PaymentVO>();
+    	try {
+			ArrayList<PaymentPO> po=paymentDataService.getAll();
+			ArrayList<PaymentVO> vo=new ArrayList<PaymentVO>();
+			for (PaymentPO paymentPO : po) {
+				if (this.comp(startDate, endDate, paymentPO.getDate())) {
+					PaymentVO paymentVO=(PaymentVO)vopoFactory.transPOtoVO(paymentPO);
+					vo.add(paymentVO);
+				}
+			}
+			//
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
     public PaymentVO loadDraft() {
@@ -88,5 +100,11 @@ public class PaymentBLImpl implements PaymentBLService {
 	public String newID() {
 		// TODO Auto-generated method stub
 		return "010011001201511230000001";
+	}
+	//
+	private boolean comp(Calendar strat,Calendar end,Calendar target){
+		if(target.after(strat)&&target.before(end))
+			return true;
+		return false;
 	}
 }

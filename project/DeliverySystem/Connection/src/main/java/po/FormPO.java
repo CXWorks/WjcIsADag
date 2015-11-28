@@ -7,8 +7,8 @@ import util.DataType;
 
 public class FormPO extends CommonPO implements Serializable{
 	protected FormEnum formType;
-	private FormStateEnum formState;
-	private String formID;
+	protected  FormStateEnum formState;
+	protected  String formID;
 	public FormPO(FormEnum formEnum,String formID){
 		super(DataType.FORM);
 		this.formType=formEnum;

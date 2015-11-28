@@ -254,6 +254,13 @@ public class OrderPO extends FormPO implements Serializable {
 	public void setReceiveDate(Calendar receiveDate) {
 		this.receiveDate = receiveDate;
 	}
-	
+	public Calendar getOrderDate(){
+		Calendar ans=Calendar.getInstance();
+		int m=Integer.parseInt(formID.substring(0, 2));
+		int d=Integer.parseInt(formID.substring(2, 4));
+		ans.set(Calendar.MONTH, m);
+		ans.set(Calendar.DAY_OF_MONTH, d);
+		return ans;
+	}
 
 }
