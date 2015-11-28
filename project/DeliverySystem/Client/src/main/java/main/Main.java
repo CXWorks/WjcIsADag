@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Created by Sissel on 2015/11/21.
  */
 package main;
@@ -49,6 +49,7 @@ public class Main extends Application {
                 //CheckFinanceChartController.launch()
                 FinanceNavigation.launch()
                 //ManageAccountController.launch()
+
 
         ));
 
