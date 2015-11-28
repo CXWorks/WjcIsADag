@@ -7,7 +7,7 @@ import javafx.scene.control.TableView;
 /**
  * Created by Sissel on 2015/11/27.
  */
-public class ManageCarDriver {
+public class ManageCarDriverController {
     public TableView car_TableView;
     public TableColumn carCheck_TableColumn;
     public TableColumn carID_TableColumn;
