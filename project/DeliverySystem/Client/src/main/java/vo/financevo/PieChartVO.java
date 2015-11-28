@@ -3,9 +3,11 @@ package vo.financevo;
 import vo.FormVO;
 import vo.InfoVO;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import po.InfoEnum;
+import po.financedata.FinancePayEnum;
 
 /**
  * Created by Sissel on 2015/10/24.
@@ -22,5 +24,20 @@ public class PieChartVO extends InfoVO {
 
     public PieChartVO(){
     	super(InfoEnum.PIE_CHART);
+    }
+    //
+    public void initial(){
+    	originMap=new HashMap<String, Double>();
+    	originMap.put(FinancePayEnum.AWARD.getChinese(), 0.0);
+    	originMap.put(FinancePayEnum.RENT.getChinese(), 0.0);
+    	originMap.put(FinancePayEnum.SALARY.getChinese(), 0.0);
+    	originMap.put(FinancePayEnum.TRANSPORTION.getChinese(), 0.0);
+    	//
+    	
+    }
+    //
+    public void addOriginMapByType(FinancePayEnum financePayEnum,double value){
+    	double origin=originMap.get(financePayEnum.getChinese());
+    	origin+=value;
     }
 }

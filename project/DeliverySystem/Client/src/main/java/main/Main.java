@@ -47,8 +47,8 @@ public class Main extends Application {
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
-                //FinanceNavigation.launch()
-                ManageAccountController.launch()
+                FinanceNavigation.launch()
+//                ManageAccountController.launch()
 
         ));
 
