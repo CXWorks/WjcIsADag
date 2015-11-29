@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created by Sissel on 2015/11/21.
  */
 package main;
@@ -25,7 +25,7 @@ public class Main extends Application {
     Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-    	//CacheHelper.initializeCache();
+        //CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -47,9 +47,8 @@ public class Main extends Application {
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
-                FinanceNavigation.launch()
-                //ManageAccountController.launch()
-
+                //FinanceNavigation.launch()
+                ManageAccountController.launch()
 
         ));
 
