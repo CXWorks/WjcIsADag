@@ -8,9 +8,9 @@ import vo.InfoVO;
  * Created by Sissel on 2015/10/24.
  */
 public class BankAccountVO extends InfoVO{
-    private String bankID;
-    private String accountName;
-    private String balance;
+    public String bankID;
+    public String accountName;
+    public String balance;
 
     public String getBankID() {
         return bankID;

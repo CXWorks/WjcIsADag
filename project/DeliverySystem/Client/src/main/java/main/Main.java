@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    Stage primaryStage;
+    public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
         //CacheHelper.initializeCache();
@@ -31,8 +31,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Main.primaryStage = primaryStage;
 
-        // TODO demo
         primaryStage.setTitle("Receive Demo");
         primaryStage.setX(150);
         primaryStage.setY(150);
