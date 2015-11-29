@@ -2,6 +2,7 @@ package ui.financeui;
 
 import bl.blService.initblService.InitializationBLService;
 import factory.InitBLFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import po.systemdata.SystemState;
 import userinfo.UserInfo;
+import vo.financevo.BankAccountVO;
 
 import java.io.IOException;
 
@@ -67,16 +70,35 @@ public class CheckInitInfoController {
         initType_ChoiceBox.setValue(initType_ChoiceBox.getItems().get(0));
         showBankAccounts();
 
+        // TODO test to be removed
+        UserInfo.setSystemState(SystemState.NORMAL);
         systemState_Label.setText(UserInfo.getSystemState().getChinese());
     }
 
     public void applyForInitialization(ActionEvent actionEvent) {
         initBLService.requestInitData();
-
+        // TODO jump
     }
 
     private void showBankAccounts(){
+        TableColumn<BankAccountVO, String> name_TableColumn = new TableColumn("账户名");
+        TableColumn<BankAccountVO, String> balance_TableColumn = new TableColumn("余额");
 
+        name_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getAccountName())
+        );
+        balance_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getBalance())
+        );
+
+        info_TableView.getColumns().clear();
+        info_TableView.getItems().clear();
+        info_TableView.getColumns().addAll(name_TableColumn, balance_TableColumn);
+        //info_TableView.getItems().addAll(initBLService.getAllAccounts());
+        info_TableView.getItems().addAll(
+                new BankAccountVO("123", "soft", "450"),
+                new BankAccountVO("233", "hard", "99999")
+        );
     }
 
     private void showCars(){

@@ -3,10 +3,7 @@ package ui.navigationui;
 import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.common.TabMaker;
-import ui.financeui.CheckFinanceChartController;
-import ui.financeui.CheckFinanceSummaryController;
-import ui.financeui.ManageBankAccountController;
-import ui.financeui.PaymentFormController;
+import ui.financeui.*;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,7 +18,8 @@ public class FinanceNavigation {
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
                 new Pair<String, Parent>("管理账户", ManageBankAccountController.launch()),
                 new Pair<String, Parent>("成本收益表", CheckFinanceSummaryController.launch()),
-                new Pair<String, Parent>("新建付款单", PaymentFormController.launch())
+                new Pair<String, Parent>("新建付款单", PaymentFormController.launch()),
+                new Pair<String, Parent>("查看系统日志", CheckInitInfoController.launch())
         ));
 
         return node;

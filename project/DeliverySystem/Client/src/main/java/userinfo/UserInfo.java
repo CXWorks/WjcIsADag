@@ -50,4 +50,8 @@ public class UserInfo {
 		UserInfo.institutionID = institutionID;
 		UserInfo.logined = true;
 	}
+
+	public static void setSystemState(SystemState state){
+		systemState = state;
+	}
 }
