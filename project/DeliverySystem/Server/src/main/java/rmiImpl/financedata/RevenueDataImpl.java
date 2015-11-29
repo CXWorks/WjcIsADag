@@ -193,4 +193,31 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
+	@Override
+	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from " + Table_Name + "where hallID = '" + ID + "'";
+		ResultSet rs = null;
+		RevenuePO temp = null;
+		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				temp = new RevenuePO(rs.getString("formID"),
+						rs.getTimestamp("date"), rs.getString("amount"),
+						rs.getString("deliverName"), rs.getString("hallID"),
+						rs.getString("orderID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 }
