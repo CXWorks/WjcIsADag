@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import vo.FormVO;
+import vo.systemvo.LogVO;
 
 /** 
  * Client//blService.logblService//LogblService.java
@@ -12,17 +13,17 @@ import vo.FormVO;
  * @version 1.0 
  */
 public interface LogblService {
-	public ArrayList<FormVO> getHistory();
+	public ArrayList<LogVO> getHistory();
 	/**
 	 * 模糊查找，，，，真是要整死我啊
 	 * @param info
 	 * @return
 	 */
-	public ArrayList<FormVO> fuzzyQuery(String info);
+	public ArrayList<LogVO> fuzzyQuery(String info);
 	/**
 	 * 根据日期查找
 	 * @param date
 	 * @return
 	 */
-	public ArrayList<FormVO> dateSearch(Calendar date);
+	public ArrayList<LogVO> dateSearch(Calendar start,Calendar end);
 }

@@ -3,40 +3,42 @@ package bl.blImpl.logbl;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import vo.FormVO;
+import vo.systemvo.LogVO;
 import bl.blService.logblService.LogblService;
 
 /** 
- * Client//blImpl.logbl//LogblImpl.java
+ * Client//bl.blImpl.logbl//LogBLImpl.java
  * @author CXWorks
- * @date 2015年10月26日 上午8:31:30
+ * @date 2015年11月29日 下午5:13:26
  * @version 1.0 
  */
-public class LogblImpl implements LogblService {
+public class LogBLImpl implements LogblService {
 
 	/* (non-Javadoc)
-	 * @see blService.logblService.LogblService#getHistory()
+	 * @see bl.blService.logblService.LogblService#getHistory()
 	 */
-	public ArrayList<FormVO> getHistory() {
+	@Override
+	public ArrayList<LogVO> getHistory() {
 		// TODO Auto-generated method stub
-		ArrayList<FormVO> result=new ArrayList<FormVO>();
-		return result;
+		return null;
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.logblService.LogblService#fuzzyQuery(java.lang.String)
 	 */
-	public ArrayList<FormVO> fuzzyQuery(String info) {
+	@Override
+	public ArrayList<LogVO> fuzzyQuery(String info) {
 		// TODO Auto-generated method stub
-		return new ArrayList<FormVO>();
+		return null;
 	}
 
 	/* (non-Javadoc)
-	 * @see bl.blService.logblService.LogblService#dateSearch(java.util.Calendar)
+	 * @see bl.blService.logblService.LogblService#dateSearch(java.util.Calendar, java.util.Calendar)
 	 */
-	public ArrayList<FormVO> dateSearch(Calendar date) {
+	@Override
+	public ArrayList<LogVO> dateSearch(Calendar start, Calendar end) {
 		// TODO Auto-generated method stub
-		return new ArrayList<FormVO>();
+		return null;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import po.InfoEnum;
+import po.systemdata.LogPO;
 import vo.InfoVO;
 
 public class LogVO extends InfoVO implements Serializable{
@@ -23,6 +24,10 @@ public class LogVO extends InfoVO implements Serializable{
 		this.time = time;
 		this.info = info;
 	}
-	
-
+	public LogVO (LogPO po){
+		this(po.getInfoEnum(), po.getPersonID(), po.getTime(), po.getInfo());
+	}
+	public LogPO toPO(){
+		return new LogPO(infoEnum, personID, time, info);
+	}
 }

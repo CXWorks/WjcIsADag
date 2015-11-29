@@ -23,6 +23,18 @@ public class LogPO extends InfoPO implements Serializable{
 		this.time = time;
 		this.info = info;
 	}
+
+	public String getPersonID() {
+		return personID;
+	}
+
+	public Calendar getTime() {
+		return time;
+	}
+
+	public String getInfo() {
+		return info;
+	}
 	
 
 }

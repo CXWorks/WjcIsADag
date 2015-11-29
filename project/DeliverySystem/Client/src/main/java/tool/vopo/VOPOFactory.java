@@ -24,6 +24,7 @@ import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
+import vo.systemvo.LogVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 import po.*;
@@ -46,6 +47,7 @@ import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
+import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 /** 
@@ -89,6 +91,8 @@ public class VOPOFactory {
 				return new StaffVO((StaffPO)info);
 			case DRIVER:
 				return new DriverVO((DriverPO)info);
+			case LOG:
+				return new LogVO((LogPO)info);
 			default:
 				return null;
 			}
@@ -148,6 +152,8 @@ public class VOPOFactory {
 				return ((StaffVO)vo).toPO();
 			case DRIVER:
 				return ((DriverVO)vo).toPO();
+			case LOG:
+				return ((LogVO)vo).toPO();
 			default:
 				return null;
 			}
