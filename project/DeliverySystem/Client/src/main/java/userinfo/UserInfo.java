@@ -1,6 +1,7 @@
 package userinfo;
 
 import po.memberdata.StaffTypeEnum;
+import po.systemdata.SystemState;
 
 /** 
  * Client//userinfo//UserInfo.java
@@ -10,6 +11,7 @@ import po.memberdata.StaffTypeEnum;
  */
 public class UserInfo {
 	private static String userID;
+	private static SystemState systemState;
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
 	private UserInfo(){	
@@ -36,6 +38,10 @@ public class UserInfo {
 		} else {
 			return null;
 		}
+	}
+
+	public static SystemState getSystemState() {
+		return systemState;
 	}
 	
 	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID){
