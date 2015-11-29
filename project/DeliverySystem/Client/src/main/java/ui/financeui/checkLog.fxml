@@ -15,9 +15,9 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <columns>
-            <TableColumn prefWidth="75.0" text="时间" />
-            <TableColumn prefWidth="75.0" text="操作人" />
-            <TableColumn prefWidth="75.0" text="描述" />
+            <TableColumn fx:id="time_TableColumn" prefWidth="75.0" text="时间" />
+            <TableColumn fx:id="operator_TableColumn" prefWidth="75.0" text="操作人" />
+            <TableColumn fx:id="description_TableColumn" prefWidth="75.0" text="描述" />
          </columns>
       </TableView>
       <Label layoutX="214.0" layoutY="36.0" text="开始日期" />

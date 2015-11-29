@@ -15,7 +15,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label fx:id="systemstate_Label" layoutX="102.0" layoutY="36.0" text="正常运行" />
-      <ChoiceBox fx:id="InitType_ChoiceBox" layoutX="329.0" layoutY="32.0" prefHeight="23.0" prefWidth="112.0" />
+      <Label fx:id="systemState_Label" layoutX="102.0" layoutY="36.0" text="正常运行" />
+      <ChoiceBox fx:id="initType_ChoiceBox" layoutX="329.0" layoutY="32.0" prefHeight="23.0" prefWidth="112.0" />
    </children>
 </AnchorPane>
