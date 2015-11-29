@@ -29,7 +29,7 @@ public class DraftController implements DraftService {
 	public OperationMessage saveDraft(FormVO vo) {
 		try {
 			File file=new File(ROOT+vo.getFormType().toString()+"/.2333");
-			writer=new ObjectOutputStream(new FileOutputStream(file));
+			writer=new ObjectOutputStream(new FileOutputStream(file,false));
 			writer.writeObject(vo);
 			writer.close();
 			return new OperationMessage();
@@ -48,7 +48,7 @@ public class DraftController implements DraftService {
 	@Override
 	public FormVO getDraft(FormEnum formEnum) {
 		try {
-			reader=new ObjectInputStream(new FileInputStream(new File(ROOT+formEnum.toString()+"/.2333")));
+			reader=new ObjectInputStream(new FileInputStream(ROOT+formEnum.toString()+"/.2333"));
 			FormVO ans=(FormVO)reader.readObject();
 			reader.close();
 			return ans;

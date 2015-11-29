@@ -72,12 +72,36 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar date, String hallID) {
-    	//waitting for JC
-        return null;
+    	try {
+			ArrayList<RevenuePO> po=revenueDataService.getByHallID(hallID);
+			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
+			for (RevenuePO revenuePO : po) {
+				if (revenuePO.getDate().equals(date)) {
+					RevenueVO temp=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
+					vo.add(temp);
+				}
+			}
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
+        
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate) {
-        return new LinkedList<RevenueVO>();
+    	try {
+			ArrayList<RevenuePO> po=revenueDataService.getByHallID(UserInfo.getInstitutionID());
+			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
+			for (RevenuePO revenuePO : po) {
+				if (revenuePO.getDate().after(startDate)&&revenuePO.getDate().before(endDate)) {
+					RevenueVO temp=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
+					vo.add(temp);
+				}
+			}
+			return vo;
+		} catch (RemoteException e) {
+			return null;
+		}
     }
 
     public RevenueVO loadDraft() {
