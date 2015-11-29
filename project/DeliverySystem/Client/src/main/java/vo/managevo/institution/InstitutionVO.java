@@ -16,7 +16,7 @@ import vo.managevo.staff.StaffVO;
 public abstract class InstitutionVO extends InfoVO {
 	/**
 	 * 
-	 */
+	 */ 
 	protected InstitutionVO(InfoEnum infoEnum) {
 		// TODO Auto-generated constructor stub
 		super(infoEnum);

@@ -25,5 +25,6 @@ public enum InfoEnum {
     LOGISTICS,
     GOODS,
     STOCK_TACK,
+    LOG,
     DRIVER;
 }

@@ -14,7 +14,7 @@ public class InfoVO extends CommonVO {
 
 	public InfoEnum getInfoEnum() {
 		return infoEnum;
-	}
+	} 
 	protected InfoVO(InfoEnum infoEnum){
 		super(DataType.DATA);
 		this.infoEnum=infoEnum;

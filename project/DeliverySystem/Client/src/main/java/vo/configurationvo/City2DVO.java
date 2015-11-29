@@ -12,7 +12,7 @@ import po.configurationdata.City2DPO;
 public class City2DVO extends ConfigurationVO {
 	private City2DVO(){
 		super(InfoEnum.CITY_2D);
-	}
+	} 
 	//
 	private String name;
 	

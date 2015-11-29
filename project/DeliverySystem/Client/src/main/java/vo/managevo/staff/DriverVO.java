@@ -19,7 +19,7 @@ public class DriverVO extends StaffVO {
 	private Calendar licence_period;
 	public Calendar getBirth() {
 		return birth;
-	}
+	} 
 	public String getTel() {
 		return tel;
 	}
