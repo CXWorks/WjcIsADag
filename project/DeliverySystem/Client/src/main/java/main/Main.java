@@ -8,6 +8,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
+import ui.configurationui.ConfigurationController;
+import ui.manangeui.organization.ManageOrganizationController;
 import ui.navigationui.FinanceNavigation;
 
 import java.io.IOException;
@@ -47,7 +49,9 @@ public class Main extends Application {
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
-                FinanceNavigation.launch()
+//                FinanceNavigation.launch()
+        		ManageOrganizationController.launch()
+//        		ConfigurationController.launch()
                 //ManageAccountController.launch()
 
         ));

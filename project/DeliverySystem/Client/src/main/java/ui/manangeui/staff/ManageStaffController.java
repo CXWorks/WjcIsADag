@@ -1,4 +1,4 @@
-package ui.manangeui;
+package ui.manangeui.staff;
 
 import javafx.scene.control.Tab;
 
