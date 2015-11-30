@@ -45,7 +45,6 @@ public class RevenueFormController {
     	revenue_DatePicker.setValue(LocalDate.now());
     	money_Field.clear();
     	order_Field.clear();
-    	deliver_ChoiceBox
     	
     }
 }
