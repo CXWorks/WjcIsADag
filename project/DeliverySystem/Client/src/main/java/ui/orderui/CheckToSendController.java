@@ -35,7 +35,7 @@ public class CheckToSendController {
 	
     
     public static Parent launch() throws IOException {
-        return FXMLLoader.load(LoginController.class.getResource("checkToSend.fxml"));
+        return FXMLLoader.load(CheckToSendController.class.getResource("checkToSend.fxml"));
     }
 	
     

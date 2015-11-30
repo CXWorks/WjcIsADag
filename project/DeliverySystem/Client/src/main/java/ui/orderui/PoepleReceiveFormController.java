@@ -33,7 +33,7 @@ public class PoepleReceiveFormController {
 	 ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(CheckRevenueFormController.class.getResource("peopleReceiveForm.fxml"));
+		loader.setLocation(PoepleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
 		return loader.load();
 	}
 
