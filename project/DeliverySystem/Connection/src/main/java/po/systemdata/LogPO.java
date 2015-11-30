@@ -1,6 +1,7 @@
 package po.systemdata;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import po.InfoEnum;
@@ -17,10 +18,18 @@ public class LogPO extends InfoPO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public LogPO(InfoEnum infoEnum, String personID, Calendar time, String info) {
+	public LogPO( String personID, Calendar time, String info) {
 		this(InfoEnum.LOG);
 		this.personID = personID;
 		this.time = time;
+		this.info = info;
+	}
+	public LogPO( String personID, Timestamp time, String info) {
+		this(InfoEnum.LOG);
+		this.personID = personID;
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(time);
+		this.time = temp;
 		this.info = info;
 	}
 
@@ -31,7 +40,9 @@ public class LogPO extends InfoPO implements Serializable{
 	public Calendar getTime() {
 		return time;
 	}
-
+	public Timestamp getTimeForSQL() {
+		return new Timestamp(this.time.getTimeInMillis());
+	}
 	public String getInfo() {
 		return info;
 	}
