@@ -18,16 +18,16 @@ public class LogVO extends InfoVO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public LogVO(InfoEnum infoEnum, String personID, Calendar time, String info) {
+	public LogVO( String personID, Calendar time, String info) {
 		this(InfoEnum.LOG);
 		this.personID = personID;
 		this.time = time;
 		this.info = info;
 	}
 	public LogVO (LogPO po){
-		this(po.getInfoEnum(), po.getPersonID(), po.getTime(), po.getInfo());
+		this( po.getPersonID(), po.getTime(), po.getInfo());
 	}
 	public LogPO toPO(){
-		return new LogPO(infoEnum, personID, time, info);
+		return new LogPO( personID, time, info);
 	}
 }
