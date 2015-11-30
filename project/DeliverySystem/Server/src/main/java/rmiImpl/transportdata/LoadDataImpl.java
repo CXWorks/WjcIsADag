@@ -76,14 +76,13 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				+ "'";
 		ResultSet rs = null;
 		LoadPO result = null;
-		ArrayList<String> IDs = null;
 
 		try {
-			IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs").split(
-					" "));
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
+			ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
+					.getString("IDs").split(" ")));
 			result = new LoadPO(rs.getString("formID"),
 					rs.getString("peopleTransport"),
 					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
@@ -186,14 +185,13 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 		String select = "select * from " + Table_Name;
 		ResultSet rs = null;
 		LoadPO temp = null;
-		ArrayList<String> IDs = null;
 		ArrayList<LoadPO> result = new ArrayList<LoadPO>();
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs")
-						.split(" "));
+				ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
+						.getString("IDs").split(" ")));
 				temp = new LoadPO(rs.getString("formID"),
 						rs.getString("peopleTransport"),
 						rs.getTimestamp("LoadDate"),

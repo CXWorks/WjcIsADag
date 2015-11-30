@@ -84,14 +84,13 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 				+ "'";
 		ResultSet rs = null;
 		CenterOutPO result = null;
-		ArrayList<String> IDs = null;
 
 		try {
-			IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs").split(
-					" "));
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
+			ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
+					.getString("IDs").split(" ")));
 			result = new CenterOutPO(rs.getString("formID"),
 					rs.getString("placeFrom"), rs.getString("shelfNum"),
 					rs.getString("transitState"), rs.getTimestamp("LoadDate"),
@@ -194,14 +193,13 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements
 		String select = "select * from " + Table_Name;
 		ResultSet rs = null;
 		CenterOutPO temp = null;
-		ArrayList<String> IDs = null;
 		ArrayList<CenterOutPO> result = new ArrayList<CenterOutPO>();
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				IDs = (ArrayList<String>) Arrays.asList(rs.getString("IDs")
-						.split(" "));
+				ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
+						.getString("IDs").split(" ")));
 				temp = new CenterOutPO(rs.getString("formID"),
 						rs.getString("placeFrom"), rs.getString("shelfNum"),
 						rs.getString("transitState"),

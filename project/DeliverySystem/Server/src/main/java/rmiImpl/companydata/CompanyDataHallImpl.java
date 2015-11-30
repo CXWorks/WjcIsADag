@@ -43,9 +43,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 		String select = "select * from " + Table_Name;
 		ResultSet rs = null;
 		HallPO temp = null;
-		ArrayList<String> t1 = null;
-		ArrayList<String> t2 = null;
-		ArrayList<String> t3 = null;
 		ArrayList<HallPO> result = new ArrayList<HallPO>();
 		try {
 			statement = conn.prepareStatement(select);
@@ -54,12 +51,12 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 				ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
 				ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				t1 = (ArrayList<String>) Arrays.asList(rs.getString("driver")
-						.split(" "));
-				t2 = (ArrayList<String>) Arrays.asList(rs.getString("deliver")
-						.split(" "));
-				t3 = (ArrayList<String>) Arrays.asList(rs.getString(
-						"counterman").split(" "));
+				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs
+						.getString("driver").split(" ")));
+				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs
+						.getString("deliver").split(" ")));
+				ArrayList<String> t3 = new ArrayList<String>(Arrays.asList(rs
+						.getString("counterman").split(" ")));
 				MemberDataService s1 = new StaffDataImpl();
 				MemberDataService s2 = new DriverDataImpl();
 				for (String tmp : t1) {

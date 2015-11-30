@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import message.OperationMessage;
 import po.FormEnum;
@@ -43,8 +44,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		conn = ConnecterHelper.connSQL(conn);
 
 		// 为today和ID_MAX初始化
-//		this.newID(null);
-//		ID_MAX--;
+		// this.newID(null);
+		// ID_MAX--;
 	}
 
 	public Connection getConn() {
@@ -62,9 +63,9 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			else
 				formIDs += list.get(i) + " ";
 		;
-		String insert = "insert into "
+		String insert = "insert into `"
 				+ Table_Name
-				+ "(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
+				+ "`(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
 				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
 				+ "money,type,targetHallID,FormIDs,goodsType,pack) "
 				+ "values('" + po.getFormID() + "','"
@@ -96,8 +97,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where formID= '" + id
-				+ "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '"
+				+ id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -124,7 +125,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name;
+		String delete = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -139,7 +140,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 
 	public String newID(String unitID) throws RemoteException {// 成员变量成员持有ID信息
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
 				.substring(0, 10);
@@ -178,19 +179,17 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 
 	public OrderPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
-		System.out.println(select);
+		String select = "select * from `" + Table_Name + "` where `formID` = '"
+				+ id + "'";
 		ResultSet rs = null;
 		OrderPO result = null;
-		ArrayList<String> FormIDs = null;
 
 		try {
-//			FormIDs = (ArrayList<String>) Arrays.asList(rs.getString("FormIDs")
-//					.split(" "));
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
+			ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
+					.getString("FormIDs").split(" ")));
 			result = new OrderPO(rs.getString("formID"),
 					rs.getString("nameFrom"), rs.getString("nameTo"),
 					rs.getString("unitFrom"), rs.getString("unitTo"),
@@ -200,8 +199,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 					rs.getString("goodsNum"), rs.getString("goodsName"),
 					rs.getString("weight"), rs.getString("volume"),
 					rs.getString("money"), rs.getString("goodsType"),
-//					rs.getString("type"), rs.getString("pack"), FormIDs,
-					rs.getString("type"), rs.getString("pack"), null,
+					rs.getString("type"), rs.getString("pack"), FormIDs,
 					rs.getString("targetHallID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
@@ -214,17 +212,16 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 
 	public ArrayList<OrderPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name;
+		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		OrderPO temp = null;
-		ArrayList<String> FormIDs = null;
 		ArrayList<OrderPO> result = new ArrayList<OrderPO>();
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				FormIDs = (ArrayList<String>) Arrays.asList(rs.getString(
-						"FormIDs").split(" "));
+				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
+						.getString("FormIDs").split(" ")));
 				temp = new OrderPO(rs.getString("formID"),
 						rs.getString("nameFrom"), rs.getString("nameTo"),
 						rs.getString("unitFrom"), rs.getString("unitTo"),

@@ -44,8 +44,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 		String select = "select * from " + Table_Name;
 		ResultSet rs = null;
 		CenterPO temp = null;
-		ArrayList<String> t1 = null;
-		ArrayList<String> t2 = null;
 		ArrayList<CenterPO> result = new ArrayList<CenterPO>();
 		try {
 			statement = conn.prepareStatement(select);
@@ -53,10 +51,10 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 			while (rs.next()) {
 				ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				t1 = (ArrayList<String>) Arrays.asList(rs.getString("storeman")
-						.split(" "));
-				t2 = (ArrayList<String>) Arrays.asList(rs.getString(
-						"counterman").split(" "));
+				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs
+						.getString("storeman").split(" ")));
+				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs
+						.getString("counterman").split(" ")));
 				MemberDataService staff = new StaffDataImpl();
 				for (String tmp : t1) {
 					storeman.add(staff.getPerson(tmp));

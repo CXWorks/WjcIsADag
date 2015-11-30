@@ -199,14 +199,13 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		ArrayList<String> result = new ArrayList<String>();
 		String select = "select * from " + "`order`";
 		ResultSet rs = null;
-		ArrayList<String> FormIDs = null;
 
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
-				FormIDs = (ArrayList<String>) Arrays.asList(rs.getString(
-						"FormIDs").split(" "));
+				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
+						.getString("FormIDs").split(" ")));
 				String targetHallID = rs.getString("targetHallID");
 				for (String tmp : FormIDs) {
 					if (tmp.substring(0, 9).equalsIgnoreCase(

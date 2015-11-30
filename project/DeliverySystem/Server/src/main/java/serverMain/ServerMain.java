@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
+import po.orderdata.OrderPO;
 import rmi.accountdata.AccountDataService;
 import rmi.deliverdata.DeliverDataService;
 import rmi.memberdata.MemberDataService;
@@ -43,36 +44,39 @@ public class ServerMain {
     }
 
     public static void main(String[] args) {
-    	try {
-			LocateRegistry.createRegistry(2333);
+//    	try {
+//			LocateRegistry.createRegistry(2333);
 //			DeliverDataService test = new DeliverDataImpl();
 //			OrderDataService order= new OrderDataImpl();
 //			ReceiveDataService test = new ReceiveDataImpl();
 //			LoadDataService test = new LoadDataImpl();
-			AccountDataService t1 = new AccountDataImpl();
-			DeliverDataService t2 = new DeliverDataImpl();
+//			AccountDataService t1 = new AccountDataImpl();
+//			DeliverDataService t2 = new DeliverDataImpl();
 //			Naming.rebind("rmi://localhost:2333/ReceiveDataService", test);
 //			Naming.rebind("rmi://localhost:2333/OrderDataService", order);
 //			Naming.rebind("rmi://localhost:2333/LoadDataService", test);
-			Naming.rebind("rmi://localhost:2333/AccountDataService", t1);
-			Naming.rebind("rmi://localhost:2333/DeliverDataService", t2);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		try {
-//			OrderDataService test = new OrderDataImpl();
-////			ReceiveDataService t2 = new ReceiveDataImpl();
-//			test.getFormPO("10000001");
-//			ConnecterHelper.deconnSQL(test.getConn());
-//			System.exit(0);
+//			Naming.rebind("rmi://localhost:2333/AccountDataService", t1);
+//			Naming.rebind("rmi://localhost:2333/DeliverDataService", t2);
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 //		}
+		try {
+			OrderDataService test = new OrderDataImpl();
+//			ReceiveDataService t2 = new ReceiveDataImpl();
+			OrderPO t = test.getFormPO("10000001");
+			t.setFormID("10000002");
+			test.insert(t);
+//			test.delete("10000002");
+			ConnecterHelper.deconnSQL(test.getConn());
+			System.exit(0);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 
