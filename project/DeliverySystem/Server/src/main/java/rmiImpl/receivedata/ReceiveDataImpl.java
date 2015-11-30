@@ -42,8 +42,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 	public OperationMessage insert(ReceivePO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + Table_Name
-				+ "(formID,formState,orderID,transitID,date,depature,state) "
+		String insert = "insert into `" + Table_Name
+				+ "`(formID,formState,orderID,transitID,date,depature,state) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getTransitID() + "','"
@@ -66,7 +66,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where formID= '" + id
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -94,7 +94,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public String newID(String unitID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -129,7 +129,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 	public OperationMessage clear() {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Table_Name;
+		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -144,7 +144,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public ReceivePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		ReceivePO result = null;
@@ -167,7 +167,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		ReceivePO temp = null;
 		ArrayList<ReceivePO> result = new ArrayList<ReceivePO>();

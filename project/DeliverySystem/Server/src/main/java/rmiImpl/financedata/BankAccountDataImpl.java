@@ -42,7 +42,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String getNewBankID() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -67,7 +67,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	@Override
 	public OperationMessage checkIsNameUsed(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		OperationMessage result = new OperationMessage(false, "没有被使用");
 		try {
@@ -90,7 +90,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	@Override
 	public BankAccountPO getBankAccount(String bankID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '"
+		String select = "select * from `" + Table_Name + "` where `formID` = '"
 				+ bankID + "'";
 		ResultSet rs = null;
 		BankAccountPO result = null;
@@ -112,8 +112,8 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	public OperationMessage insert(BankAccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + Table_Name
-				+ "(bankID,accountName,balance) " + "values('" + po.getBankID()
+		String insert = "insert into `" + Table_Name
+				+ "`(bankID,accountName,balance) " + "values('" + po.getBankID()
 				+ "','" + po.getAccountName() + "','" + po.getBalance() + "')";
 		try {
 			statement = conn.prepareStatement(insert);
@@ -132,7 +132,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where bankID= '" + id
+		String delete = "delete from `" + Table_Name + "` where `bankID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -162,7 +162,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Table_Name;
+		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -178,7 +178,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		BankAccountPO temp = null;
 		ArrayList<BankAccountPO> result = new ArrayList<BankAccountPO>();

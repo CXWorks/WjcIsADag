@@ -38,7 +38,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 
 	public ArrayList<StaffPO> getStaff(StaffTypeEnum staffTypeEnum) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		StaffPO temp = null;
 		ArrayList<StaffPO> result = new ArrayList<StaffPO>();
@@ -78,8 +78,8 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	public OperationMessage addStaff(StaffPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String add = "insert into " + Table_Name
-				+ "(ID,staff,name,age,personID,sex,love,institutionID) "
+		String add = "insert into `" + Table_Name
+				+ "`(ID,staff,name,age,personID,sex,love,institutionID) "
 				+ "values('" + po.getID() + "','" + po.getStaff().toString()
 				+ "','" + po.getName() + "','" + po.getAge() + "','"
 				+ po.getPersonID().toString() + "','" + po.getSex() + "','"
@@ -101,7 +101,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	public OperationMessage dismissStaff(StaffPO staff) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String dismiss = "delete from " + Table_Name + " where ID= '"
+		String dismiss = "delete from `" + Table_Name + "` where `ID` = '"
 				+ staff.getID() + "'";
 		try {
 			statement = conn.prepareStatement(dismiss);
@@ -119,7 +119,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	public String newStaffID(StaffTypeEnum staffType, String unitID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String target = "";
@@ -169,7 +169,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	@Override
 	public StaffPO getPerson(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where ID= '" + ID
+		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID
 				+ "'";
 		ResultSet rs = null;
 		StaffPO result = null;

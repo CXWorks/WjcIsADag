@@ -39,8 +39,8 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	public OperationMessage insert(RevenuePO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + Table_Name
-				+ "(formID,formState,data,amount,deliverName,hallID,orderID) "
+		String insert = "insert into `" + Table_Name
+				+ "`(formID,formState,data,amount,deliverName,hallID,orderID) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','"
 				+ po.getDateForSQL().toString() + "','" + po.getAmount()
@@ -63,7 +63,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	@Override
 	public RevenuePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		RevenuePO result = null;
@@ -88,7 +88,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where formID= '" + id
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -117,7 +117,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -153,7 +153,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Table_Name;
+		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -169,7 +169,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<RevenuePO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
@@ -196,7 +196,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + "where hallID = '" + ID + "'";
+		String select = "select * from `" + Table_Name + "` where `hallID` = '" + ID + "'";
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();

@@ -42,7 +42,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		StaffPO temp = null;
 		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
@@ -83,9 +83,9 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	public OperationMessage addStaff(DriverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String add = "insert into "
+		String add = "insert into `"
 				+ Table_Name
-				+ "(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) "
+				+ "`(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) "
 				+ "values('" + po.getID() + "','" + po.getName() + "','"
 				+ po.getAge() + "','" + po.getPersonID() + "','" + po.getSex()
 				+ "','" + po.getLove() + "','" + po.getInititutionID() + "','"
@@ -109,7 +109,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	public OperationMessage dismissStaff(DriverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String dismiss = "delete from " + Table_Name + " where ID= '"
+		String dismiss = "delete from `" + Table_Name + "` where `ID` = '"
 				+ po.getID() + "'";
 		try {
 			statement = conn.prepareStatement(dismiss);
@@ -127,7 +127,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	public String newStaffID(StaffTypeEnum staffType, String unitID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -155,7 +155,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where ID= '" + ID
+		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID
 				+ "'";
 		ResultSet rs = null;
 		DriverPO result = null;

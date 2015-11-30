@@ -42,7 +42,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -71,7 +71,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 
 	public String newCarID(String unitID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -99,8 +99,8 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	public OperationMessage addCar(CarPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + Table_Name
-				+ "(carID,free,useTime,nameID,chassisID,buyTime) " + "values('"
+		String insert = "insert into `" + Table_Name
+				+ "`(carID,free,useTime,nameID,chassisID,buyTime) " + "values('"
 				+ po.getCarID() + "','" + po.isFree() + "','"
 				+ po.getUseTimeForSQL() + "','" + po.getNameID() + "','"
 				+ po.getChassisID() + "','" + po.getBuyTimeForSQL() + "')";
@@ -121,7 +121,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteCar(CarPO car) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where carID= '"
+		String delete = "delete from `" + Table_Name + "` where `carID` = '"
 				+ car.getCarID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -149,7 +149,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -181,7 +181,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	@Override
 	public CarPO getCar(String carID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where carID= '" + carID
+		String select = "select * from `" + Table_Name + "` where `carID` = '" + carID
 				+ "'";
 		ResultSet rs = null;
 		CarPO result = null;

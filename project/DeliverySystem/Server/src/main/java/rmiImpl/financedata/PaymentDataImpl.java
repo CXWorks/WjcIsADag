@@ -39,9 +39,9 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into "
+		String insert = "insert into `"
 				+ Table_Name
-				+ "(formID,formState,data,amount,payerAccID,payerName,"
+				+ "`(formID,formState,data,amount,payerAccID,payerName,"
 				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getDateForSQL()
@@ -67,7 +67,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	@Override
 	public PaymentPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		PaymentPO result = null;
@@ -96,7 +96,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where formID= '" + id
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -125,7 +125,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -161,7 +161,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Table_Name;
+		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -177,7 +177,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<PaymentPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		PaymentPO temp = null;
 		ArrayList<PaymentPO> result = new ArrayList<PaymentPO>();

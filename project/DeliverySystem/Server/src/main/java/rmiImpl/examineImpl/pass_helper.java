@@ -3,6 +3,18 @@ package rmiImpl.examineImpl;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
+import message.OperationMessage;
+import po.FormEnum;
+import po.deliverdata.DeliverPO;
+import po.financedata.PaymentPO;
+import po.financedata.RevenuePO;
+import po.orderdata.OrderPO;
+import po.receivedata.ReceivePO;
+import po.storedata.StoreInPO;
+import po.storedata.StoreOutPO;
+import po.transportdata.CenterOutPO;
+import po.transportdata.LoadPO;
+import rmi.DataService;
 import rmi.deliverdata.DeliverDataService;
 import rmi.financedata.PaymentDataService;
 import rmi.financedata.RevenueDataService;
@@ -20,7 +32,7 @@ import rmiImpl.storedata.StoreFormDataImpl;
 import rmiImpl.transportdata.CenterOutDataImpl;
 import rmiImpl.transportdata.LoadDataImpl;
 
-public class PassHelper {
+public class pass_helper {
 	private static OrderDataService orderDataService;
 	private static DeliverDataService deliverDataService;
 	private static PaymentDataService paymentDataService;
@@ -30,7 +42,7 @@ public class PassHelper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 	
-	public PassHelper() throws RemoteException, MalformedURLException{
+	public pass_helper() throws RemoteException, MalformedURLException{
 		orderDataService = new OrderDataImpl();
 		deliverDataService = new DeliverDataImpl();
 		paymentDataService = new PaymentDataImpl();
@@ -41,37 +53,36 @@ public class PassHelper {
 		loadDataService = new LoadDataImpl();
 	}
 
-	public static OrderDataService getOrderDataService() {
+	public OrderDataService getOrderDataService() {
 		return orderDataService;
 	}
 
-	public static DeliverDataService getDeliverDataService() {
+	public DeliverDataService getDeliverDataService() {
 		return deliverDataService;
 	}
 
-	public static PaymentDataService getPaymentDataService() {
+	public PaymentDataService getPaymentDataService() {
 		return paymentDataService;
 	}
 
-	public static RevenueDataService getRevenueDataService() {
+	public RevenueDataService getRevenueDataService() {
 		return revenueDataService;
 	}
 
-	public static ReceiveDataService getReceiveDataService() {
+	public ReceiveDataService getReceiveDataService() {
 		return receiveDataService;
 	}
 
-	public static StoreFormDataService getStoreFormDataService() {
+	public StoreFormDataService getStoreFormDataService() {
 		return storeFormDataService;
 	}
 
-	public static CenterOutDataService getTransportDataService() {
+	public CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}
 
-	public static LoadDataService getLoadDataService() {
+	public LoadDataService getLoadDataService() {
 		return loadDataService;
 	}
-	
 	
 }

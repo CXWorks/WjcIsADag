@@ -40,7 +40,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 
 	public ArrayList<HallPO> getHall() {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name;
+		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		HallPO temp = null;
 		ArrayList<HallPO> result = new ArrayList<HallPO>();
@@ -115,8 +115,8 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 			else
 				co += tmp.getID();
 		}
-		String insert = "insert into " + Table_Name
-				+ "(hallID,city,area,driver,deliver,counterman,nearCenterID) "
+		String insert = "insert into `" + Table_Name
+				+ "`(hallID,city,area,driver,deliver,counterman,nearCenterID) "
 				+ "values('" + po.getHallID() + "','" + po.getCity() + "','"
 				+ po.getArea() + "','" + dr + "','" + de + "','" + co + "','"
 				+ po.getNearCenterID() + "')";
@@ -137,7 +137,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteHall(HallPO hall) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where hallID= '"
+		String delete = "delete from `" + Table_Name + "` where `hallID` = '"
 				+ hall.getHallID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -164,7 +164,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 
 	public String newHallID(String city) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {

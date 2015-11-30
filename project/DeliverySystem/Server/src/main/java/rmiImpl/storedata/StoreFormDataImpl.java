@@ -58,8 +58,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + Store_In
-				+ "(formID,formState,orderID,date,destination,location) "
+		String insert = "insert into `" + Store_In
+				+ "`(formID,formState,orderID,date,destination,location) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getDateForSQL().toString() + "','"
@@ -84,9 +84,9 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into "
+		String insert = "insert into `"
 				+ Store_Out
-				+ "(formID,formState,orderID,date,destination,transportation,transID) "
+				+ "`(formID,formState,orderID,date,destination,transportation,transID) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getDateForSQL().toString() + "','"
@@ -111,7 +111,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteStoreInPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Store_In + " where formID= '" + id
+		String delete = "delete from `" + Store_In + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -129,7 +129,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteStoreOutPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Store_Out + " where formID= '" + id
+		String delete = "delete from `" + Store_Out + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -173,7 +173,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clearStoreInPO() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Store_In;
+		String clear = "delete from `" + Store_In + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -190,7 +190,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clearStoreOutPO() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Store_Out;
+		String clear = "delete from `" + Store_Out + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -206,7 +206,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String newIDStoreInPO(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Store_In;
+		String selectAll = "select * from `" + Store_In + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -241,7 +241,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String newIDStoreOutPO(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Store_Out;
+		String selectAll = "select * from `" + Store_Out + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -276,7 +276,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public StoreInPO getStoreInPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Store_In + " where formID= '" + id
+		String select = "select * from `" + Store_In + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		StoreInPO result = null;
@@ -299,7 +299,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public StoreOutPO getStoreOutPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Store_Out + " where formID= '" + id
+		String select = "select * from `" + Store_Out + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		StoreOutPO result = null;
@@ -323,7 +323,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Store_In;
+		String selectAll = "select * from `" + Store_In + "`";
 		ResultSet rs = null;
 		StoreInPO temp = null;
 		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
@@ -349,7 +349,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Store_Out;
+		String selectAll = "select * from `" + Store_Out + "`";
 		ResultSet rs = null;
 		StoreOutPO temp = null;
 		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
@@ -379,8 +379,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		Timestamp start_t = new Timestamp(start.getTimeInMillis());
 		Timestamp end_t = new Timestamp(end.getTimeInMillis());
-		String selectIn = "select * from " + Store_In;
-		String selectOut = "select * from " + Store_Out;
+		String selectIn = "select * from `" + Store_In + "`";
+		String selectOut = "select * from `" + Store_Out + "`";
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;

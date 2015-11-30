@@ -47,8 +47,8 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				IDs += list.get(i) + " ";
 		;
 
-		String insert = "insert into " + Table_Name
-				+ "(formID,formState,LoadDate,TransportID,placeTo,"
+		String insert = "insert into `" + Table_Name
+				+ "`(formID,formState,LoadDate,TransportID,placeTo,"
 				+ "peopleSee,expense,IDs,peopleTransport) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','"
 				+ po.getLoadDateForSQL().toString() + "','"
@@ -72,7 +72,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public LoadPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name + " where formID= '" + id
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		ResultSet rs = null;
 		LoadPO result = null;
@@ -101,7 +101,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where formID= '" + id
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
 				+ "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -130,7 +130,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString()
@@ -166,7 +166,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + Table_Name;
+		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -182,7 +182,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public ArrayList<LoadPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name;
+		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		LoadPO temp = null;
 		ArrayList<LoadPO> result = new ArrayList<LoadPO>();

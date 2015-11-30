@@ -41,7 +41,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 
 	public ArrayList<CenterPO> getCenter() {
 		// TODO Auto-generated method stub
-		String select = "select * from " + Table_Name;
+		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		CenterPO temp = null;
 		ArrayList<CenterPO> result = new ArrayList<CenterPO>();
@@ -79,7 +79,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 
 	public String newCenterID(String city) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Table_Name;
+		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -126,8 +126,8 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 				c += tmp.getID();
 		}
 
-		String insert = "insert into " + Table_Name
-				+ "(centerID,city,storeman,counterman) " + "values('"
+		String insert = "insert into `" + Table_Name
+				+ "`(centerID,city,storeman,counterman) " + "values('"
 				+ po.getCenterID() + "','" + po.getCity() + "','" + s + "','"
 				+ c + "')";
 
@@ -147,7 +147,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteCenter(CenterPO center) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + Table_Name + " where centerID= '"
+		String delete = "delete from `" + Table_Name + "` where `centerID` = '"
 				+ center.getCenterID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);

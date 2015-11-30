@@ -66,7 +66,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + City2D + "(name,x,data,y) "
+		String insert = "insert into `" + City2D + "`(name,x,data,y) "
 				+ "values('" + po.getName() + "','" + po.getX() + "','"
 				+ po.getY() + "')";
 		try {
@@ -85,7 +85,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + City2D + " where name= '" + name + "'";
+		String delete = "delete from `" + City2D + "` where `name` = '" + name + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -113,7 +113,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from " + City2D + " where name= '" + name
+		String select = "select * from `" + City2D + "` where `name` = '" + name
 				+ "'";
 		ResultSet rs = null;
 		City2DPO result = null;
@@ -134,7 +134,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + City2D;
+		String selectAll = "select * from `" + City2D + "`";
 		ResultSet rs = null;
 		City2DPO temp = null;
 		ArrayList<City2DPO> result = new ArrayList<City2DPO>();
@@ -158,7 +158,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	public OperationMessage clearCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from " + City2D;
+		String clear = "delete from `" + City2D + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -174,7 +174,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy()
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + SalaryStrategy;
+		String selectAll = "select * from `" + SalaryStrategy + "`";
 		ResultSet rs = null;
 		SalaryStrategyPO temp = null;
 		ArrayList<SalaryStrategyPO> result = new ArrayList<SalaryStrategyPO>();
@@ -199,7 +199,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from " + SalaryStrategy + " where staff= '"
+		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '"
 				+ po.getStaff().toString() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
@@ -229,7 +229,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 
 	public PackPO getPack() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Pack;
+		String selectAll = "select * from `" + Pack + "`";
 		ResultSet rs = null;
 		PackPO result = null;
 		HashMap<PackEnum, Double> packPrice = new HashMap();
@@ -266,14 +266,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Pack + "set money='"
-				+ pack.getByType(PackEnum.OTHER) + "' where name= 'OTHER'");
-		operations.add("update " + Pack + "set money='"
-				+ pack.getByType(PackEnum.PACKAGE) + "' where name= 'PACKAGE'");
-		operations.add("update " + Pack + "set money='"
-				+ pack.getByType(PackEnum.PAPER) + "' where name= 'PAPER'");
-		operations.add("update " + Pack + "set money='"
-				+ pack.getByType(PackEnum.WOOD) + "' where name= 'WOOD'");
+		operations.add("update `" + Pack + "` set `money` ='"
+				+ pack.getByType(PackEnum.OTHER) + "' where `name` = 'OTHER'");
+		operations.add("update `" + Pack + "` set `money` ='"
+				+ pack.getByType(PackEnum.PACKAGE) + "' where `name` = 'PACKAGE'");
+		operations.add("update `" + Pack + "` set `money` ='"
+				+ pack.getByType(PackEnum.PAPER) + "' where `name` = 'PAPER'");
+		operations.add("update `" + Pack + "` set `money` ='"
+				+ pack.getByType(PackEnum.WOOD) + "' where `name` = 'WOOD'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -290,7 +290,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 
 	public PricePO getPrice() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Price;
+		String selectAll = "select * from `" + Price + "`";
 		ResultSet rs = null;
 		PricePO result = null;
 		HashMap<DeliverTypeEnum, Integer> price = new HashMap();
@@ -324,15 +324,15 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Price + "set money='"
+		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.SLOW)
-				+ "' where name= 'ECONOMIC'");
-		operations.add("update " + Price + "set money='"
+				+ "' where `name` = 'ECONOMIC'");
+		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where name= 'USUAL'");
-		operations.add("update " + Price + "set money='"
+				+ "' where `name` = 'USUAL'");
+		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.FAST)
-				+ "' where name= 'FAST'");
+				+ "' where `name` = 'FAST'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -349,7 +349,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 
 	public ProportionPO getProportion() throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from " + Proportion;
+		String selectAll = "select * from `" + Proportion + "`";
 		ResultSet rs = null;
 		ProportionPO result = null;
 		HashMap<DeliverTypeEnum, Integer> target = new HashMap();
@@ -384,15 +384,15 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update " + Proportion + "set num='"
+		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.SLOW)
-				+ "' where name= 'ECONOMIC'");
-		operations.add("update " + Proportion + "set num='"
+				+ "' where `name` = 'ECONOMIC'");
+		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where name= 'USUAL'");
-		operations.add("update " + Proportion + "set num='"
+				+ "' where `name` = 'USUAL'");
+		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.FAST)
-				+ "' where name= 'FAST'");
+				+ "' where `name` = 'FAST'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
