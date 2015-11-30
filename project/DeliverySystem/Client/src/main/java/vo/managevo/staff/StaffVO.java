@@ -45,7 +45,9 @@ public class StaffVO extends InfoVO{
 	public String getID(){
 		return ID;
 	}
-
+	public String getName(){
+		return name;
+	}
 	
 }
 

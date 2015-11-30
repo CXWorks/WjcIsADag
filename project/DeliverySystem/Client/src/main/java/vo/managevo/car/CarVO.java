@@ -10,12 +10,12 @@ import vo.InfoVO;
 
 public class CarVO extends InfoVO{
 	private boolean free;
-	private String carID;
-	private Calendar useTime;
+	private String carID;    //车辆编号
+	private Calendar useTime; //服役时间
 	private ImageIcon imag;
 	//以下为无用内容
 	private String engineID;
-	private String nameID;
+	private String nameID;      //车牌号
 	private String chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
 	//
@@ -69,6 +69,26 @@ public class CarVO extends InfoVO{
 		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
 	}
 	//
+
+
+	public Calendar getUseTime() {
+		return useTime;
+	}
+
+
+	public String getNameID() {
+		return nameID;
+	}
+
+
+	public void setUseTime(Calendar useTime) {
+		this.useTime = useTime;
+	}
+
+
+	public void setNameID(String nameID) {
+		this.nameID = nameID;
+	}
 
 
 	public String getCarID() {
