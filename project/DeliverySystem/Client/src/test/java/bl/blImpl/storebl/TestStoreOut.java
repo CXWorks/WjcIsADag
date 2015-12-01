@@ -56,7 +56,7 @@ public class TestStoreOut {
 	
 	@Test
 	public void testGetTransportVO(){
-		assertNotNull(storeOutBLService.getTransportVO());
+		assertNotNull(storeOutBLService.getTransportVO(""));
 	}
 	
 

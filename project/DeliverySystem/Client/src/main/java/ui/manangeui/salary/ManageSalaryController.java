@@ -28,16 +28,12 @@ import factory.ConfigurationFactory;
 
 
 public class ManageSalaryController {
-	public Button closeButton;
-	public Button modifyButton;
-	public Button cancelButton;
-	public TextField staff_type;
-	public TextField base;
-	public TextField commission;
-	public TextField bonus;
 	public TabPane tabPane;
+	
 	private ArrayList<SalaryStrategyVO> vo;
 	private ObservableList<Tab> tabs;
+	//
+	private StaffTypeSalaryController staffTypeSalaryController;
 	//
 	private ConfigurationBLService configurationBLService=ConfigurationFactory.getConfigurationBLService();
 	//
@@ -52,36 +48,25 @@ public class ManageSalaryController {
 	public void initialize(){
 		//
 		tabs=tabPane.getTabs();
+		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
+		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
+		for (ConfigurationVO configurationVO : vo) {
+			this.vo.add((SalaryStrategyVO)configurationVO);
+		}
 		//
 		this.seletedChange();
-		//
-//		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
-//		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
-//		for (ConfigurationVO configurationVO : vo) {
-//			this.vo.add((SalaryStrategyVO)configurationVO);
-//		}
-		//
-		
-	}
-	//
-	@FXML
-	private void cancel(){
-		System.out.println("succeed");
-	}
-	@FXML
-	private void sure(){
-		
 	}
 	//
 	@FXML
 	private void seletedChange(){
-		tabs=tabPane.getTabs();
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
-				staff_type.setText(tab.getText());
-				base.setText("1000");
-				commission.setText("20");
-				bonus.setText("1500");
+				//
+				for (SalaryStrategyVO salaryStrategyVO : vo) {
+					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
+						staffTypeSalaryController.change(salaryStrategyVO);
+					}
+				}
 			}
 		}
 		

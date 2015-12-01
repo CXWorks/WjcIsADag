@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.salary.StaffTypeSalaryController">
+   <children>
+      <Label alignment="CENTER" layoutX="47.0" layoutY="67.0" prefHeight="28.0" prefWidth="66.0" text="员工类型" />
+      <Label layoutX="301.0" layoutY="223.0" prefHeight="28.0" prefWidth="45.0" text="元/月" />
+      <Label layoutX="301.0" layoutY="171.0" prefHeight="28.0" prefWidth="45.0" text="元/件" />
+      <Label layoutX="301.0" layoutY="117.0" prefHeight="28.0" prefWidth="45.0" text="元/月" />
+      <TextField fx:id="base" layoutX="113.0" layoutY="116.0" prefHeight="30.0" prefWidth="146.0" />
+      <TextField fx:id="commission" layoutX="113.0" layoutY="170.0" prefHeight="30.0" prefWidth="146.0" />
+      <TextField fx:id="bonus" layoutX="113.0" layoutY="222.0" prefHeight="30.0" prefWidth="146.0" />
+      <Label fx:id="type" layoutX="164.0" layoutY="67.0" prefHeight="28.0" prefWidth="45.0" />
+      <Label alignment="CENTER" layoutX="47.0" layoutY="117.0" prefHeight="28.0" prefWidth="66.0" text="基本工资" />
+      <Label alignment="CENTER" layoutX="47.0" layoutY="171.0" prefHeight="28.0" prefWidth="66.0" text="计件提成" />
+      <Label alignment="CENTER" layoutX="47.0" layoutY="223.0" prefHeight="28.0" prefWidth="66.0" text="特殊奖金" />
+      <Button layoutX="232.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#modify" text="确定" />
+      <Button layoutX="362.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#cancel" text="取消" />
+   </children>
+</AnchorPane>

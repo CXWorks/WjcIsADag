@@ -34,5 +34,14 @@ public class SalaryStrategyVO extends ConfigurationVO{
 	public SalaryStrategyPO toPO(){
 		return new SalaryStrategyPO(base, commission, bonus, staff);
 	}
+	public void setBase(int base) {
+		this.base = base;
+	}
+	public void setCommission(int commission) {
+		this.commission = commission;
+	}
+	public void setBonus(int bonus) {
+		this.bonus = bonus;
+	}
 	
 }

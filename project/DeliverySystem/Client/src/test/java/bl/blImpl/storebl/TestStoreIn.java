@@ -30,7 +30,7 @@ public class TestStoreIn {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		storeInBLService = new StoreInBLImpl(new DraftController(),new VOPOFactory());
+		storeInBLService = new StoreInBLImpl(new VOPOFactory(),new DraftController());
 		si = new StoreInVO("11","111111",Calendar.getInstance(),"南京仙林",new StoreLocation(""));
 	}
 

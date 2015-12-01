@@ -67,22 +67,25 @@ public class ConfigurationController {
 	
 	
 	//调整城市距离
-	public void submitDistance(ActionEvent e){
+	public void submitDistance(){
 		
 	}
 	
     //调整快递费
-	public void submitExpense(ActionEvent e){
+	public void submitExpense(){
 		
 	}
     //调整包装费
-	public void submitPack(ActionEvent e){
+	public void submitPack(){
 		
 	}
 	//调整收费比例
-	public void submitProportion(ActionEvent e){
+	public void submitProportion(){
 		
 	}
-	
+	//
+	public void selectedChanged(){
+		
+	}
 	
 }

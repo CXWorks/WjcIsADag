@@ -33,7 +33,7 @@ import rmiImpl.ConnecterHelper;
  */
 public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		ConfigurationDataService {
-
+	
 	/**
 	 * 
 	 */
