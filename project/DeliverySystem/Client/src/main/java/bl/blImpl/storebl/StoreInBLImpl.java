@@ -31,7 +31,7 @@ public class StoreInBLImpl implements StoreInBLService {
 	private StoreFormDataService storeFormDataService;
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
-	public StoreInBLImpl(DraftService draftService,VOPOFactory vopoFactory){
+	public StoreInBLImpl(VOPOFactory vopoFactory, DraftService draftService){
 		this.storeFormDataService=CacheHelper.getStoreFormDataService();
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
@@ -73,7 +73,7 @@ public class StoreInBLImpl implements StoreInBLService {
 		} catch (RemoteException e) {
 			return null;
 		}
-        
+
     }
 
     public StoreInVO loadDraft() {

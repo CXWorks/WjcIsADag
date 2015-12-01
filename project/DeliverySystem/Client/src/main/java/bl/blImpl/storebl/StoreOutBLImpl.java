@@ -47,7 +47,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
 		} catch (RemoteException e) {
 			return null;
 		}
-        
+
     }
 
     public OrderVO loadOrder(String orderNumber) {
@@ -62,7 +62,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
     }
 
 
-    public TransitVO getTransportVO() {
+    public TransitVO getTransportVO(String ID) {
         return new CenterOutVO("050010001201511230000002");
     }
 

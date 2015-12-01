@@ -4,12 +4,16 @@ import bl.blImpl.deliverbl.DeliverBLImpl;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
+import bl.blImpl.storebl.StoreInBLImpl;
+import bl.blImpl.storebl.StoreOutBLImpl;
 import bl.blImpl.transportbl.TransportCenterBLImpl;
 import bl.blImpl.transportbl.TransportHallBLImpl;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.blService.storeblService.StoreInBLService;
+import bl.blService.storeblService.StoreOutBLService;
 import bl.blService.transportblService.TransportCenterBLService;
 import bl.blService.transportblService.TransportHallBLService;
 import rmi.deliverdata.DeliverDataService;
@@ -17,11 +21,11 @@ import tool.draft.DraftController;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//factory//FormFactory.java
  * @author CXWorks
  * @date 2015年11月21日 下午11:25:51
- * @version 1.0 
+ * @version 1.0
  */
 public class FormFactory extends BLFactory {
 	//
@@ -34,7 +38,9 @@ public class FormFactory extends BLFactory {
 	private static DeliverBLService deliverBlService;
 	private static TransportCenterBLService transportCenterBLService;
 	private static TransportHallBLService transportHallBLService;
-	
+	private static StoreInBLService storeInBLService;
+	private static StoreOutBLService storeOutBLService;
+
 	private FormFactory(){
 
 	}
@@ -58,18 +64,30 @@ public class FormFactory extends BLFactory {
 		}
 		return deliverBlService;
 	}
-	
+
 	public static TransportCenterBLService getTransportCenterBLService() {
 		if(transportCenterBLService == null){
 			transportCenterBLService = new TransportCenterBLImpl(vopoFactory, draftService);
 		}
 		return transportCenterBLService;
 	}
-	
+
 	public static TransportHallBLService getTransportHallBLService() {
 		if(transportHallBLService == null){
 			transportHallBLService = new TransportHallBLImpl(vopoFactory, draftService);
 		}
 		return transportHallBLService;
+	}
+	public static StoreInBLService getStoreInBLService() {
+		if(storeInBLService == null){
+			storeInBLService = new StoreInBLImpl(vopoFactory, draftService);
+		}
+		return storeInBLService;
+	}
+	public static StoreOutBLService getStoreOutBLService() {
+		if(storeOutBLService == null){
+			storeOutBLService = new StoreOutBLImpl(vopoFactory, draftService);
+		}
+		return storeOutBLService;
 	}
 }

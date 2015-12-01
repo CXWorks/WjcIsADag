@@ -22,7 +22,7 @@
             <Label fx:id="storeout_DatePicker" text="出库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
             <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
+            <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
@@ -46,10 +46,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ChoiceBox fx:id="packType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="LoadType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
                   <Label text="装运方式" />
                   <Label text="运单编号" GridPane.rowIndex="1" />
-                  <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="transitID_Field" onAction="#fillTransitTable" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <TableView fx:id="transit_TableView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

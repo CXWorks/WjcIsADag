@@ -16,7 +16,7 @@ public abstract class TransitVO extends FormVO{
 	protected String  expense;//运费
 	protected ArrayList<String> IDs;//本次装箱所有托运单号
 	//
-	
+
 	//
 	protected ArrayList<String> selfDeepClone(ArrayList<String> po){
 		ArrayList<String> ans=new ArrayList<String>(po.size());
@@ -28,4 +28,24 @@ public abstract class TransitVO extends FormVO{
 	protected TransitVO(FormEnum formEnum,String formID){
 		super(formEnum,FormStateEnum.CONSTRUCTED,formID);
 	}
+	public Calendar getLoadDate() {
+		return LoadDate;
+	}
+	public String getTransportID() {
+		return TransportID;
+	}
+	public String getPlaceTo() {
+		return placeTo;
+	}
+	public String getPeopleSee() {
+		return peopleSee;
+	}
+	public String getExpense() {
+		return expense;
+	}
+	public ArrayList<String> getIDs() {
+		return IDs;
+	}
+
+
 }

@@ -22,7 +22,7 @@
             <Label fx:id="storeout_DatePicker" text="入库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
             <DatePicker fx:id="storeIn_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
+            <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

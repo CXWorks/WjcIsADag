@@ -7,9 +7,9 @@ import util.EnumObservable;
  * Created by Sissel on 2015/10/26.
  */
 public enum TransportationEnum  implements EnumObservable<TransportationEnum> {
-    PLANE("特快专递"),
-    TRAIN("标准快递"),
-    CAR("经济快递");
+    PLANE("飞机"),
+    TRAIN("火车"),
+    CAR("汽车");
 
     private String chinese;
 

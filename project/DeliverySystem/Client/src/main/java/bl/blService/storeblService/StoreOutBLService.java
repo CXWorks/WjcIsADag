@@ -15,6 +15,6 @@ public interface StoreOutBLService extends FormBLService<StoreOutVO>{
 
     public OrderVO loadOrder(String orderNumber);
 
-    public TransitVO getTransportVO();
+    public TransitVO getTransportVO(String ID);
 
 }
