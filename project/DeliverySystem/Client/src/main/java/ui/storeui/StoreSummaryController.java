@@ -70,11 +70,11 @@ public class StoreSummaryController {
 	}
 
 	public void search(ActionEvent actionEvent) {
-//		List<GoodsVO> list = storeIOBLService.getGoodsInfo(TimeConvert.convertDate(begin_DatePicker.getValue()),
-//				TimeConvert.convertDate(end_DatePicker.getValue()));
+		List<StoreFormVO> list = storeIOBLService.getGoodsInfo(TimeConvert.convertDate(begin_DatePicker.getValue()),
+				TimeConvert.convertDate(end_DatePicker.getValue()));
 		summary_TableView.setItems(
                 FXCollections.observableArrayList(
-                        new ArrayList<StoreFormVO>()
+                        new ArrayList<StoreFormVO>(list)
                 )
         );
 	}
