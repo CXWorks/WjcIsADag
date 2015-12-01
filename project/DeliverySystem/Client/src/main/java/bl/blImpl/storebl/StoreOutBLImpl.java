@@ -7,6 +7,8 @@ import message.OperationMessage;
 import rmi.examineService.ExamineSubmitService;
 import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
+import rmi.transportdata.CenterOutDataService;
+import rmi.transportdata.LoadDataService;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
@@ -14,6 +16,7 @@ import util.R;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreOutVO;
 import vo.transitvo.CenterOutVO;
+import vo.transitvo.LoadVO;
 import vo.transitvo.TransitVO;
 
 import java.net.MalformedURLException;
@@ -27,6 +30,8 @@ import java.util.List;
 import po.FormEnum;
 import po.orderdata.OrderPO;
 import po.storedata.StoreOutPO;
+import po.transportdata.CenterOutPO;
+import po.transportdata.LoadPO;
 
 /**
  * Created by Sissel on 2015/10/26.
@@ -63,7 +68,26 @@ public class StoreOutBLImpl implements StoreOutBLService {
 
 
     public TransitVO getTransportVO(String ID) {
-        return new CenterOutVO("050010001201511230000002");
+        if(ID.charAt(1)=='7'){
+        	CenterOutDataService centerOutDataService=CacheHelper.getTransportDataService();
+        	try {
+				CenterOutPO centerOutPO=centerOutDataService.getFormPO(ID);
+				CenterOutVO centerOutVO=(CenterOutVO)vopoFactory.transPOtoVO(centerOutPO);
+				return centerOutVO;
+			} catch (RemoteException e) {
+				return null;
+			}
+        }
+        else {
+			LoadDataService loadDataService=CacheHelper.getLoadDataService();
+			try {
+				LoadPO loadPO=loadDataService.getFormPO(ID);
+				LoadVO loadVO=(LoadVO)vopoFactory.transPOtoVO(loadPO);
+				return loadVO;
+			} catch (RemoteException e) {
+				return null;
+			}
+		}
     }
 
     public StoreOutVO loadDraft() {
