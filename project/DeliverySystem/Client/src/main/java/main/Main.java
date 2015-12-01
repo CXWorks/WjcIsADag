@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
 import ui.manangeui.organization.ManageOrganizationController;
+import ui.manangeui.salary.ManageSalaryController;
 import ui.navigationui.FinanceNavigation;
+import ui.receiveui.ReceiveFormController;
 
 import java.io.IOException;
 
@@ -40,7 +42,7 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-                //ReceiveFormController.launch()
+//                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
                 //ManageBankAccountController.launch()
@@ -50,7 +52,8 @@ public class Main extends Application {
                 //NewOrderController.launch()
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
-        		ManageOrganizationController.launch()
+//        		ManageOrganizationController.launch()
+        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
 

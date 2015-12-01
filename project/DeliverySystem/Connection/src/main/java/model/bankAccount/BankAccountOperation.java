@@ -11,7 +11,7 @@ public class BankAccountOperation implements Serializable{
         DELETE_ACC,
         EDIT_ACC_NAME,
         PAY,
-        RECEIVE
+        RECEIVE;
     }
 
     private BankAccountOperationType type;
