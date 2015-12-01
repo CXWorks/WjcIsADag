@@ -4,6 +4,7 @@ import bl.blImpl.deliverbl.DeliverBLImpl;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
+import bl.blImpl.storebl.StoreIOBLImpl;
 import bl.blImpl.storebl.StoreInBLImpl;
 import bl.blImpl.storebl.StoreOutBLImpl;
 import bl.blImpl.transportbl.TransportCenterBLImpl;
@@ -12,6 +13,7 @@ import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.blService.storeblService.StoreIOBLService;
 import bl.blService.storeblService.StoreInBLService;
 import bl.blService.storeblService.StoreOutBLService;
 import bl.blService.transportblService.TransportCenterBLService;
@@ -40,6 +42,7 @@ public class FormFactory extends BLFactory {
 	private static TransportHallBLService transportHallBLService;
 	private static StoreInBLService storeInBLService;
 	private static StoreOutBLService storeOutBLService;
+	private static StoreIOBLService storeIOBLService;
 
 	private FormFactory(){
 
@@ -89,5 +92,11 @@ public class FormFactory extends BLFactory {
 			storeOutBLService = new StoreOutBLImpl(vopoFactory, draftService);
 		}
 		return storeOutBLService;
+	}
+	public static StoreIOBLService getStoreIOBLService() {
+		if(storeIOBLService == null){
+			storeIOBLService = new StoreIOBLImpl(vopoFactory);
+		}
+		return storeIOBLService;
 	}
 }

@@ -59,12 +59,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Store_In
-				+ "`(formID,formState,orderID,date,destination,location) "
+				+ "`(formID,formState,orderID,date,destination,location,money) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getDateForSQL().toString() + "','"
 				+ po.getDestination() + "','"
-				+ po.getLocation().getLocationForSQL() + "')";
+				+ po.getLocation().getLocationForSQL() + po.getMoney() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -86,13 +86,13 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `"
 				+ Store_Out
-				+ "`(formID,formState,orderID,date,destination,transportation,transID) "
+				+ "`(formID,formState,orderID,date,destination,transportation,transID,money,location) "
 				+ "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getOrderID()
 				+ "','" + po.getDateForSQL().toString() + "','"
 				+ po.getDestination() + "','"
 				+ po.getTransportation().toString() + "','" + po.getTransID()
-				+ "')";
+				+ po.getMoney() + "','" + po.getLocation().getLocationForSQL() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -288,6 +288,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 					rs.getString("orderID"), rs.getTimestamp("date"),
 					rs.getString("destination"), rs.getString("location"));
 			result.setFormState(rs.getString("formState"));
+			result.setMoney(rs.getString("money"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -312,6 +313,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 					rs.getString("destination"),
 					rs.getString("transportation"), rs.getString("transID"));
 			result.setFormState(rs.getString("formState"));
+			result.setMoney(rs.getString("money"));
+			result.setLocation(rs.getString("location"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -335,6 +338,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 						rs.getString("orderID"), rs.getTimestamp("date"),
 						rs.getString("destination"), rs.getString("location"));
 				temp.setFormState(rs.getString("formState"));
+				temp.setMoney(rs.getString("money"));
 				result.add(temp);
 
 			}
@@ -362,6 +366,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 						rs.getString("destination"),
 						rs.getString("transportation"), rs.getString("transID"));
 				temp.setFormState(rs.getString("formState"));
+				temp.setMoney(rs.getString("money"));
+				temp.setLocation(rs.getString("location"));
 				result.add(temp);
 
 			}
@@ -397,6 +403,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 						rs.getString("orderID"), tmp,
 						rs.getString("destination"), rs.getString("location"));
 				in.setFormState(rs.getString("formState"));
+				in.setMoney(rs.getString("money"));
 				result.add(in);
 			}
 			statement = conn.prepareStatement(selectOut);
@@ -411,6 +418,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements
 						rs.getString("destination"),
 						rs.getString("transportation"), rs.getString("transID"));
 				out.setFormState(rs.getString("formState"));
+				out.setMoney(rs.getString("money"));
+				out.setLocation(rs.getString("location"));
 				result.add(out);
 			}
 		} catch (SQLException e) {

@@ -11,12 +11,12 @@ import vo.FormVO;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public class StoreInVO extends FormVO {
-	
+public class StoreInVO extends StoreFormVO {
+
 	private StoreInVO(String formID){
 		super(FormEnum.STORE_IN,FormStateEnum.CONSTRUCTED,formID);
 	}
-	
+
     public StoreInVO(String formID,String orderID, Calendar date, String destination,
 			StoreLocation location) {
 		this(formID);
@@ -25,15 +25,11 @@ public class StoreInVO extends FormVO {
 		this.destination = destination;
 		this.location = location;
 	}
-    
+
     public StoreInVO(StoreInPO po){
     	this(po.getFormID(),po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation());
+    	this.setMoney(po.getMoney());
     }
-    
-	private String	orderID;
-    private Calendar	date;
-    private String	destination;
-    private StoreLocation location;
     //
     public StoreInPO toPO(){
     	return new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);

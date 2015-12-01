@@ -42,7 +42,7 @@ public class StoreInFormController {
 
 	private StoreAreaCode area = StoreAreaCode.FLEX;
 
-	StoreInBLService storeInBLService = FormFactory.getStoreInBLService();
+	private StoreInBLService storeInBLService = FormFactory.getStoreInBLService();
 
 	public static Parent launch() throws IOException {
 

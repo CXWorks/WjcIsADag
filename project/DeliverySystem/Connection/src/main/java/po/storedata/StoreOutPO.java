@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 import model.store.StoreAreaCode;
+import model.store.StoreLocation;
 import po.FormEnum;
 import po.FormPO;
 import po.transportdata.TransportationEnum;
@@ -17,7 +18,29 @@ public class StoreOutPO extends FormPO {
     private String	destination;
     TransportationEnum transportation;
     private String	transID;
+    private String money;
+    private StoreLocation location;
     //
+
+	public String getMoney() {
+		return money;
+	}
+
+	public StoreLocation getLocation() {
+		return location;
+	}
+
+	public void setLocation(StoreLocation location) {
+		this.location = location;
+	}
+
+	public void setLocation(String location) {
+		this.location = new StoreLocation(location);
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
 	public String getOrderID() {
 		return orderID;
 	}
@@ -33,7 +56,7 @@ public class StoreOutPO extends FormPO {
 	public TransportationEnum getTransportation() {
 		return transportation;
 	}
-	
+
 	public void setTransportation(String transportation) {
 		switch (transportation) {
 		case "CAR":
@@ -69,7 +92,7 @@ public class StoreOutPO extends FormPO {
 		this.transportation = transportation;
 		this.transID = transID;
 	}
-	
+
 	public StoreOutPO(String formID, String orderID,
 			Timestamp date, String destination,
 			String transportation, String transID) {
@@ -82,6 +105,6 @@ public class StoreOutPO extends FormPO {
 		this.setTransportation(transportation);
 		this.transID = transID;
 	}
-    
+
 
 }

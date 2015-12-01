@@ -17,6 +17,15 @@ public class StoreInPO extends FormPO {
 	private Calendar date;
 	private String destination;
 	private StoreLocation location;
+	private String money;
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
 
 	public String getOrderID() {
 		return orderID;

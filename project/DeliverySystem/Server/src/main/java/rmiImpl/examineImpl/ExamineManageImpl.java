@@ -29,12 +29,12 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 	private volatile ExamineQueue queue;
 	/*负责新建消息*/
 	private ChatNewService addMessage;
-	
+
 	private pass_helper pass_helper;
 
 	/*总经理的ID*/
 	private String managerID = "01000001";
-	
+
 	public ExamineManageImpl() throws RemoteException, MalformedURLException {
 		super();
 		this.queue = new ExamineQueue();
@@ -76,12 +76,18 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 					.update((RevenuePO) form);
 			break;
 		case STORE_IN:
-			result = pass_helper.getStoreFormDataService().updateStoreInPO(
-					(StoreInPO) form);
+			StoreInPO sInPO = (StoreInPO) form;
+			sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
+			result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
 			break;
 		case STORE_OUT:
-			result = pass_helper.getStoreFormDataService().updateStoreOutPO(
-					(StoreOutPO) form);
+			StoreOutPO sOutPO = (StoreOutPO) form;
+			OrderPO orderPO = pass_helper.getOrderDataService().getFormPO(sOutPO.getOrderID());
+			sOutPO.setMoney(orderPO.getMoney());
+			ArrayList<String> IDs = orderPO.getFormIDs();
+			String inID = IDs.get(IDs.size()-1);
+			sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
+			result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
 			break;
 		case TRANSPORT_CENTER:
 			result = pass_helper.getTransportDataService().update(
