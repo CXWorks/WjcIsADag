@@ -6,6 +6,7 @@ import message.CheckFormMessage;
 import tool.vopo.VOPOFactory;
 import vo.ordervo.OrderVO;
 import vo.storevo.GoodsVO;
+import vo.storevo.StoreFormVO;
 import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 
@@ -33,19 +34,26 @@ public class StoreIOBLImpl implements StoreIOBLService {
 		this.orderDataService=CacheHelper.getOrderDataService();
 		this.storeFormDataService=CacheHelper.getStoreFormDataService();
 	}
-    public List<GoodsVO> getGoodsInfo(Calendar startDate,Calendar endDate) {
-        LinkedList<GoodsVO> goodsVOs=new LinkedList<GoodsVO>();
+    public List<StoreFormVO> getGoodsInfo(Calendar startDate,Calendar endDate) {
+        LinkedList<StoreFormVO> answer=new LinkedList<StoreFormVO>();
         try {
-			ArrayList<OrderPO> orderPOs=orderDataService.getAll();
 			ArrayList<StoreInPO> storeInPOs=storeFormDataService.getAllStoreInPO();
 			ArrayList<StoreOutPO> storeOutPOs=storeFormDataService.getAllStoreOutPO();
 			//
-			for (OrderPO orderPO : orderPOs) {
-				if (this.comp(startDate, endDate, orderPO.getOrderDate())) {
-					
+			for (StoreInPO storeInPO : storeInPOs) {
+				if (this.comp(startDate, endDate, storeInPO.getDate())) {
+					StoreInVO storeInVO=(StoreInVO)vopoFactory.transPOtoVO(storeInPO);
+					answer.add(storeInVO);
 				}
 			}
-			return null;
+			//
+			for (StoreOutPO storeOutPO : storeOutPOs) {
+				if (this.comp(startDate, endDate, storeOutPO.getDate())) {
+					StoreOutVO storeOutVO=(StoreOutVO)vopoFactory.transPOtoVO(storeOutPO);
+					answer.add(storeOutVO);
+				}
+			}
+			return answer;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,20 +61,21 @@ public class StoreIOBLImpl implements StoreIOBLService {
 		}
     }
 
-    public List<GoodsVO> filterGoods(String orderNumber) {
-        LinkedList<GoodsVO> answer=new LinkedList<GoodsVO>();
-        //
-        //
-        OrderPO orderPO;
+    public List<StoreFormVO> filterGoods(String orderNumber) {
+        LinkedList<StoreFormVO> answer=new LinkedList<StoreFormVO>();
 		try {
-			orderPO = orderDataService.getFormPO(orderNumber);
 			StoreInPO storeInPO=storeFormDataService.getStoreInPO(orderNumber);
 	        StoreOutPO storeOutPO=storeFormDataService.getStoreOutPO(orderNumber);
-	        OrderVO orderVO=(OrderVO)vopoFactory.transPOtoVO(orderPO);
-	        StoreInVO storeInVO=(StoreInVO)vopoFactory.transPOtoVO(storeInPO);
-	        StoreOutVO storeOutVO=(StoreOutVO)vopoFactory.transPOtoVO(storeOutPO);
-	        GoodsVO goodsVO=new GoodsVO(orderVO, storeInVO, storeOutVO);
-	        answer.add(goodsVO);
+	        if (storeInPO!=null) {
+	        	StoreInVO storeInVO=(StoreInVO)vopoFactory.transPOtoVO(storeInPO);
+	        	answer.add(storeInVO);
+			}
+	        if (storeOutPO!=null) {
+	        	StoreOutVO storeOutVO=(StoreOutVO)vopoFactory.transPOtoVO(storeOutPO);
+	        	answer.add(storeOutVO);
+			}
+	        
+	        
 	        return answer;
 		} catch (RemoteException e) {
 			return null;

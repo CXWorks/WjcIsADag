@@ -7,7 +7,7 @@ import po.FormEnum;
 import po.FormStateEnum;
 import vo.FormVO;
 
-public class StoreFormVO extends FormVO {
+public abstract class StoreFormVO extends FormVO {
 
 	protected String orderID;
 	protected Calendar date;
@@ -15,7 +15,7 @@ public class StoreFormVO extends FormVO {
 	protected StoreLocation location;
 	protected String money;
 
-	public StoreFormVO(FormEnum type, FormStateEnum state, String formID) {
+	protected StoreFormVO(FormEnum type, FormStateEnum state, String formID) {
 		super(type, state, formID);
 	}
 
