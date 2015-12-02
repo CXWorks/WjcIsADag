@@ -32,6 +32,7 @@ public class StockTackBLImpl implements StockTackBLService {
     public StockTackVO getStockTack() {
         return new StockTackVO();
     }
+    
 
     public OrderVO getOrder(String orderNumber) {
 		OrderDataService orderDataService = CacheHelper.getOrderDataService();

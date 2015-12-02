@@ -5,14 +5,18 @@ import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
+import model.store.StoreLocation;
 import model.store.StoreModel;
 import rmi.storedata.StoreModelDataService;
 import util.R;
+import vo.storevo.StoreAreaInfoVO;
+import vo.storevo.StoreShelfVO;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Observer;
 
 /**
@@ -83,6 +87,43 @@ public class StoreModelBLImpl implements StoreModelBLService {
 			return storeModelDataService.moveShelf(code_now, row_now, shelf_now, code, row, shelf);
 		} catch (RemoteException e) {
 			return new OperationMessage();
+		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StoreModelBLService#getShelfInfo(model.store.StoreAreaCode)
+	 */
+	@Override
+	public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode) {
+		try {
+			StoreArea area=storeModelDataService.getArea(storeAreaCode);
+			int totalShelf=area.getShelfNumber();
+			int totalRow=area.getRowNumber();
+			ArrayList<StoreShelfVO> storeShelfVOs=new ArrayList<StoreShelfVO>(totalShelf);
+			for(int i=1;i<=totalRow;i++){
+				for (int j = 0; j < totalShelf; j++) {
+					ArrayList<StoreLocation> storeLocations=area.getByShelf(i, j);
+					double usedProportion=storeLocations.size()/50;
+					StoreShelfVO storeShelfVO=new StoreShelfVO(i, j, usedProportion);
+					storeShelfVOs.add(storeShelfVO);
+				}
+			}
+			return storeShelfVOs;
+		} catch (RemoteException e) {
+			return null;
+		}
+		
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StoreModelBLService#getStoreAreaInfo(model.store.StoreAreaCode)
+	 */
+	@Override
+	public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode) {
+		try {
+			StoreArea storeArea=storeModelDataService.getArea(storeAreaCode);
+			StoreAreaInfoVO storeAreaInfoVO=new StoreAreaInfoVO(storeArea);
+			return storeAreaInfoVO;
+		} catch (RemoteException e) {
+			return null;
 		}
 	}
 

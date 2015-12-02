@@ -7,7 +7,13 @@ import java.util.List;
 public class StoreArea {
 	private StoreAreaCode areaType;
 	private ArrayList<StoreLocation> list;
+	private int rowNum=50;
 	private final int shelfForEachRow=50;
+	
+	public double getUsedProportion(){
+		int total=rowNum*shelfForEachRow;
+		return list.size()/(double)total;
+	}
 
 	public StoreArea(StoreAreaCode areaID, ArrayList<StoreLocation> list) {
 		super();

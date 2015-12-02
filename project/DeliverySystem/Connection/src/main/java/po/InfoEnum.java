@@ -7,6 +7,7 @@ package po;
  * @version 1.0 
  */
 public enum InfoEnum {
+	STORE_SHELF,
     ACCOUNT,
     CAR,
     CENTER,
