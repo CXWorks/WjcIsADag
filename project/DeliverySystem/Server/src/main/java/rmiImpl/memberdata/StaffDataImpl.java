@@ -176,4 +176,13 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see rmi.memberdata.MemberDataService#getStaffByInstitution(java.lang.String)
+	 */
+	@Override
+	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

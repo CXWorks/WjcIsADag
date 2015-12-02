@@ -13,6 +13,7 @@ import vo.managevo.staff.StaffVO;
  * @version 1.0 
  */
 public interface ManageblStaffService {
+	public ArrayList<StaffVO> getStaffByInstitution();
 	
 	public ArrayList<StaffVO> getStaff(StaffTypeEnum staffType);
 	

@@ -104,4 +104,13 @@ public class StaffManage implements ManageblStaffService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblStaffService#getStaffByInstitution()
+	 */
+	@Override
+	public ArrayList<StaffVO> getStaffByInstitution() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
