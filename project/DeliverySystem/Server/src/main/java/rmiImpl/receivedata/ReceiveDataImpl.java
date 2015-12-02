@@ -17,12 +17,11 @@ import rmiImpl.CommonData;
 import rmiImpl.ConnecterHelper;
 
 /**
- * 
+ *
  * @author wjc 2015/10/24
  */
 
-public class ReceiveDataImpl extends CommonData<ReceivePO> implements
-		ReceiveDataService {
+public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDataService {
 
 	private String Table_Name;
 	private Connection conn = null;
@@ -43,12 +42,10 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,orderID,transitID,date,depature,state) "
-				+ "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getOrderID()
-				+ "','" + po.getTransitID() + "','"
-				+ po.getDateForSQL().toString() + "','" + po.getDepature()
-				+ "','" + po.getState() + "')";
+				+ "`(formID,formState,orderID,transitID,date,depature,state,date_and_unit) " + "values('"
+				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
+				+ po.getTransitID() + "','" + po.getDateForSQL().toString() + "','" + po.getDepature() + "','"
+				+ po.getState() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -66,8 +63,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -94,24 +90,17 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public String newID(String unitID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
-		String temp = new Timestamp(System.currentTimeMillis()).toString()
-				.substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7)
-				+ temp.substring(8);
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = rs.getString("formID").substring(2, 17);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(
-							ID_MAX,
-							Integer.parseInt(rs.getString("formID").substring(
-									17)));// 最后7位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -144,18 +133,15 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 
 	public ReceivePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		ReceivePO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new ReceivePO(rs.getString("formID"),
-					rs.getString("orderID"), rs.getString("transitID"),
-					rs.getTimestamp("date"), rs.getString("depature"),
-					rs.getString("state"));
+			result = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
+					rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -175,10 +161,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new ReceivePO(rs.getString("formID"),
-						rs.getString("orderID"), rs.getString("transitID"),
-						rs.getTimestamp("date"), rs.getString("depature"),
-						rs.getString("state"));
+				temp = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
+						rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 

@@ -16,13 +16,12 @@ import rmiImpl.ConnecterHelper;
 
 /**
  * Server//rmiImpl.companydata//CompanyDataCarImpl.java
- * 
+ *
  * @author CXWorks
  * @date 2015年10月25日 下午2:56:26
  * @version 1.0
  */
-public class CompanyDataCarImpl extends UnicastRemoteObject implements
-		CompanyDataCarService {
+public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDataCarService {
 	private static final long serialVersionUID = 1L;
 
 	private String Table_Name;
@@ -42,7 +41,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -50,16 +49,10 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String target = rs.getString("carID").substring(0, 7);
-				if (unitID.equalsIgnoreCase(target)) {
-					temp = new CarPO(rs.getBoolean("free"),
-							rs.getString("carID"), rs.getTimestamp("useTime"),
-							null, rs.getString("engineID"),
-							rs.getString("nameID"), rs.getString("chassisID"),
-							rs.getTimestamp("buyTime"));
-					result.add(temp);
-				}
-
+				temp = new CarPO(rs.getBoolean("free"), rs.getString("carID"), rs.getTimestamp("useTime"), null,
+						rs.getString("engineID"), rs.getString("nameID"), rs.getString("chassisID"),
+						rs.getTimestamp("buyTime"));
+				result.add(temp);
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -71,17 +64,14 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 
 	public String newCarID(String unitID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String temp = rs.getString("carID").substring(0, 7);
-				if (unitID.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"carID").substring(7)));// 最后3位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("carID").substring(7)));// 最后3位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -99,11 +89,10 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	public OperationMessage addCar(CarPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name
-				+ "`(carID,free,useTime,nameID,chassisID,buyTime) " + "values('"
-				+ po.getCarID() + "','" + po.isFree() + "','"
-				+ po.getUseTimeForSQL() + "','" + po.getNameID() + "','"
-				+ po.getChassisID() + "','" + po.getBuyTimeForSQL() + "')";
+		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID) "
+				+ "values('" + po.getCarID() + "','" + po.isFree() + "','" + po.getUseTimeForSQL() + "','"
+				+ po.getNameID() + "','" + po.getChassisID() + "','" + po.getBuyTimeForSQL() + "','"
+				+ po.getCarID().substring(0, 7) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -121,8 +110,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteCar(CarPO car) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `carID` = '"
-				+ car.getCarID() + "'";
+		String delete = "delete from `" + Table_Name + "` where `carID` = '" + car.getCarID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -149,7 +137,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -157,13 +145,9 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String target = rs.getString("carID").substring(0, 7);
-				if (unitID.equalsIgnoreCase(target)
-						|| rs.getBoolean("free") == true) {
-					temp = new CarPO(true, rs.getString("carID"),
-							rs.getTimestamp("useTime"), null,
-							rs.getString("engineID"), rs.getString("nameID"),
-							rs.getString("chassisID"),
+				if (rs.getBoolean("free") == true) {
+					temp = new CarPO(true, rs.getString("carID"), rs.getTimestamp("useTime"), null,
+							rs.getString("engineID"), rs.getString("nameID"), rs.getString("chassisID"),
 							rs.getTimestamp("buyTime"));
 					result.add(temp);
 				}
@@ -177,22 +161,18 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	
 	@Override
 	public CarPO getCar(String carID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `carID` = '" + carID
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `carID` = '" + carID + "'";
 		ResultSet rs = null;
 		CarPO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result  = new CarPO(rs.getBoolean("free"),
-					rs.getString("carID"), rs.getTimestamp("useTime"),
-					null, rs.getString("engineID"),
-					rs.getString("nameID"), rs.getString("chassisID"),
+			result = new CarPO(rs.getBoolean("free"), rs.getString("carID"), rs.getTimestamp("useTime"), null,
+					rs.getString("engineID"), rs.getString("nameID"), rs.getString("chassisID"),
 					rs.getTimestamp("buyTime"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");

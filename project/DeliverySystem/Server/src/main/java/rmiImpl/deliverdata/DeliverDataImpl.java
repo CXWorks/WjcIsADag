@@ -20,12 +20,11 @@ import rmiImpl.CommonData;
 import rmiImpl.ConnecterHelper;
 
 /**
- * 
+ *
  * @author wjc 2015/10/24
  */
 
-public class DeliverDataImpl extends CommonData<DeliverPO> implements
-		DeliverDataService {
+public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDataService {
 
 	private String Table_Name;
 	private Connection conn = null;
@@ -46,12 +45,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,orderID,postman,date,finished) "
-				+ "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getOrderID()
-				+ "','" + po.getPostman() + "','"
-				+ po.getDateForSQL().toString() + "','" + po.isFinished()
+				+ "`(formID,formState,orderID,postman,date,finished,date_and_unit) " + "values('" + po.getFormID()
+				+ "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','" + po.getPostman() + "','"
+				+ po.getDateForSQL().toString() + "','" + po.isFinished() + "','" + po.getFormID().substring(2, 17)
 				+ "')";
+
+		String setFinished = "updata `order` set `finished` = '1' where `formID` = '" + po.getOrderID() + "'";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -62,15 +61,22 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			System.err.println("新建时出错：");
 			e.printStackTrace();
 		}
-
+		try {
+			statement = conn.prepareStatement(setFinished);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "修改order时时出错：");
+			System.err.println("修改order时时出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 
 	public OperationMessage delete(String id) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -96,24 +102,17 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 
 	public String newID(String unitID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
-		String temp = new Timestamp(System.currentTimeMillis()).toString()
-				.substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7)
-				+ temp.substring(8);
+		String date = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String target = date.substring(0, 4) + date.substring(5, 7) + date.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = rs.getString("formID").substring(2, 17);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(
-							ID_MAX,
-							Integer.parseInt(rs.getString("formID").substring(
-									17)));// 最后7位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -146,16 +145,14 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 
 	public DeliverPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		DeliverPO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new DeliverPO(rs.getString("formID"),
-					rs.getString("orderID"), rs.getTimestamp("date"),
+			result = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
 					rs.getString("postman"));
 			result.setFormState(rs.getString("formState"));
 			result.setFinished(rs.getBoolean("finished"));
@@ -177,8 +174,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new DeliverPO(rs.getString("formID"),
-						rs.getString("orderID"), rs.getTimestamp("date"),
+				temp = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
 						rs.getString("postman"));
 				temp.setFormState(rs.getString("formState"));
 				temp.setFinished(rs.getBoolean("finished"));
@@ -197,21 +193,18 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 	public ArrayList<String> available(String HallID) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<String>();
-		String select = "select * from " + "`order`";
+		String select = "select * from " + "`order`" + " where `targetHallID` = '" + HallID + "' and `finished` = '" + 0
+				+ "'";
 		ResultSet rs = null;
 
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
-				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
-						.getString("FormIDs").split(" ")));
-				String targetHallID = rs.getString("targetHallID");
-				for (String tmp : FormIDs) {
-					if (tmp.substring(0, 9).equalsIgnoreCase(
-							"03" + targetHallID)) {
-						result.add(rs.getString("formID"));
-					}
+				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
+				String last = FormIDs.get(FormIDs.size() - 1);
+				if (last.substring(0, 9).equalsIgnoreCase("03" + HallID)) {
+					result.add(rs.getString("formID"));
 				}
 			}
 		} catch (SQLException e) {
@@ -226,15 +219,15 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements
 	public ArrayList<String> searchAsPerson(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<String>();
-		String select = "select * from `" + Table_Name + "`";
+		String select = "select * from `" + Table_Name + "` where `postman` = '" + ID + "' and `finished` = '" + 0
+				+ "'";
 		ResultSet rs = null;
 
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				if (ID.equalsIgnoreCase(rs.getString("postman"))||!rs.getBoolean("finished"))
-					result.add(rs.getString("formID"));
+				result.add(rs.getString("formID"));
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");

@@ -20,8 +20,7 @@ import rmiImpl.ConnecterHelper;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 
-public class CompanyDataCenterImpl extends UnicastRemoteObject implements
-		CompanyDataCenterService {
+public class CompanyDataCenterImpl extends UnicastRemoteObject implements CompanyDataCenterService {
 	private static final long serialVersionUID = 1L;
 
 	private String Table_Name;
@@ -51,10 +50,8 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 			while (rs.next()) {
 				ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs
-						.getString("storeman").split(" ")));
-				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs
-						.getString("counterman").split(" ")));
+				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
+				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
 				MemberDataService staff = new StaffDataImpl();
 				for (String tmp : t1) {
 					storeman.add(staff.getPerson(tmp));
@@ -62,8 +59,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 				for (String tmp : t2) {
 					counterman.add(staff.getPerson(tmp));
 				}
-				temp = new CenterPO(rs.getString("centerID"),
-						rs.getString("city"), storeman, counterman);
+				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), storeman, counterman);
 				result.add(temp);
 				ConnecterHelper.deconnSQL(staff.getConn());
 			}
@@ -77,19 +73,16 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	public String newCenterID(String city) {
+	public String newCenterID(String cityID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String temp = rs.getString("centerID").substring(0, 3);
-				if (city.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"centerID").substring(4)));// 最后3位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("centerID").substring(4)));// 最后3位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -101,7 +94,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 			return null;
 		String added = String.format("%03d", ID_MAX);
 
-		return city + "0" + added;
+		return cityID + "0" + added;
 	}
 
 	public OperationMessage addCenter(CenterPO po) {
@@ -126,10 +119,9 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 				c += tmp.getID();
 		}
 
-		String insert = "insert into `" + Table_Name
-				+ "`(centerID,city,storeman,counterman) " + "values('"
-				+ po.getCenterID() + "','" + po.getCity() + "','" + s + "','"
-				+ c + "')";
+		String insert = "insert into `" + Table_Name + "`(centerID,city,storeman,counterman,cityID) " + "values('"
+				+ po.getCenterID() + "','" + po.getCity() + "','" + s + "','" + c + "','"
+				+ po.getCenterID().substring(0, 3) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -147,8 +139,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteCenter(CenterPO center) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `centerID` = '"
-				+ center.getCenterID() + "'";
+		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + center.getCenterID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();

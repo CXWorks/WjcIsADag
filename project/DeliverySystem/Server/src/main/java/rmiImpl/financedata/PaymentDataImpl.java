@@ -15,8 +15,7 @@ import po.receivedata.ReceivePO;
 import rmi.financedata.PaymentDataService;
 import rmiImpl.ConnecterHelper;
 
-public class PaymentDataImpl extends UnicastRemoteObject implements
-		PaymentDataService {
+public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataService {
 
 	private String Table_Name;
 	private Connection conn = null;
@@ -39,17 +38,12 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `"
-				+ Table_Name
-				+ "`(formID,formState,data,amount,payerAccID,payerName,"
-				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note) "
-				+ "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getDateForSQL()
-				+ "','" + po.getAmount() + "','" + po.getPayerAccID() + "','"
-				+ po.getPayerName() + "','" + po.getPayerAccount()
-				+ po.getReceiverAccID() + "','" + po.getReceiverName() + "','"
-				+ po.getReceiverAccount() + "','" + po.getItem() + "','"
-				+ po.getNote() + "')";
+		String insert = "insert into `" + Table_Name + "`(formID,formState,data,amount,payerAccID,payerName,"
+				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note,date_and_unit) " + "values('"
+				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL() + "','"
+				+ po.getAmount() + "','" + po.getPayerAccID() + "','" + po.getPayerName() + "','" + po.getPayerAccount()
+				+ po.getReceiverAccID() + "','" + po.getReceiverName() + "','" + po.getReceiverAccount() + "','"
+				+ po.getItem() + "','" + po.getNote() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -67,22 +61,17 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	@Override
 	public PaymentPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		PaymentPO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new PaymentPO(rs.getString("formID"),
-					rs.getTimestamp("date"), rs.getString("amount"),
-					rs.getString("payerAccID"), rs.getString("payerName"),
-					rs.getString("payerAccount"),
-					rs.getString("receiverAccID"),
-					rs.getString("receiverName"),
-					rs.getString("receiverAccount"), rs.getString("item"),
-					rs.getString("note"));
+			result = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
+					rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
+					rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
+					rs.getString("item"), rs.getString("note"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -96,8 +85,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -125,24 +113,17 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
-		String temp = new Timestamp(System.currentTimeMillis()).toString()
-				.substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7)
-				+ temp.substring(8);
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 单位编号+当天日期
+		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = rs.getString("formID").substring(2, 17);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(
-							ID_MAX,
-							Integer.parseInt(rs.getString("formID").substring(
-									17)));// 最后7位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -185,14 +166,10 @@ public class PaymentDataImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp =new PaymentPO(rs.getString("formID"),
-						rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("payerAccID"), rs.getString("payerName"),
-						rs.getString("payerAccount"),
-						rs.getString("receiverAccID"),
-						rs.getString("receiverName"),
-						rs.getString("receiverAccount"), rs.getString("item"),
-						rs.getString("note"));
+				temp = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
+						rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
+						rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
+						rs.getString("item"), rs.getString("note"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 

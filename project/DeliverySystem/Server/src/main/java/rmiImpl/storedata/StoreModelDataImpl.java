@@ -122,8 +122,8 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		this.setTableName(code);
-		String delete = "delete from " + Table_Name + " where row= '" + row
-				+ "' and shelf= '" + shelf + "'";
+		String delete = "delete from `" + Table_Name + "` where `row` = '" + row
+				+ "' and `shelf` = '" + shelf + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -135,7 +135,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 		}
 		return result;
 	}
-	
+
 	@Override
 	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf)

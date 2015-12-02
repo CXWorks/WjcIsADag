@@ -47,14 +47,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				IDs += list.get(i) + " ";
 		;
 
-		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,LoadDate,TransportID,placeTo,"
-				+ "peopleSee,expense,IDs,peopleTransport) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','"
-				+ po.getLoadDateForSQL().toString() + "','"
-				+ po.getTransportID() + "','" + po.getPlaceTo() + "','"
-				+ po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs
-				+ "','" + po.getPeopleTransport() + "')";
+		String insert = "insert into `" + Table_Name + "`(formID,formState,LoadDate,TransportID,placeTo,"
+				+ "peopleSee,expense,IDs,peopleTransport,date_and_unit) " + "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getLoadDateForSQL().toString() + "','" + po.getTransportID()
+				+ "','" + po.getPlaceTo() + "','" + po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs + "','"
+				+ po.getPeopleTransport() + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -72,8 +69,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public LoadPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		LoadPO result = null;
 
@@ -81,12 +77,9 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
-					.getString("IDs").split(" ")));
-			result = new LoadPO(rs.getString("formID"),
-					rs.getString("peopleTransport"),
-					rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
-					rs.getString("placeTo"), rs.getString("peopleSee"),
+			ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+			result = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
+					rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
 					rs.getString("expense"), IDs);
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
@@ -101,8 +94,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id
-				+ "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -130,24 +122,17 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
-		String temp = new Timestamp(System.currentTimeMillis()).toString()
-				.substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7)
-				+ temp.substring(8);
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = rs.getString("formID").substring(2, 17);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(
-							ID_MAX,
-							Integer.parseInt(rs.getString("formID").substring(
-									17)));// 最后7位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -190,13 +175,10 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs
-						.getString("IDs").split(" ")));
-				temp = new LoadPO(rs.getString("formID"),
-						rs.getString("peopleTransport"),
-						rs.getTimestamp("LoadDate"),
-						rs.getString("TransportID"), rs.getString("placeTo"),
-						rs.getString("peopleSee"), rs.getString("expense"), IDs);
+				ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
+						rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
+						rs.getString("expense"), IDs);
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

@@ -4,8 +4,10 @@ import bl.blImpl.deliverbl.DeliverBLImpl;
 import bl.blImpl.formatCheck.FormatCheckImpl;
 import bl.blImpl.orderbl.OrderBLController;
 import bl.blImpl.receivebl.ReceiveblImpl;
+import bl.blImpl.storebl.StockTackBLImpl;
 import bl.blImpl.storebl.StoreIOBLImpl;
 import bl.blImpl.storebl.StoreInBLImpl;
+import bl.blImpl.storebl.StoreModelBLImpl;
 import bl.blImpl.storebl.StoreOutBLImpl;
 import bl.blImpl.transportbl.TransportCenterBLImpl;
 import bl.blImpl.transportbl.TransportHallBLImpl;
@@ -13,8 +15,10 @@ import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import bl.blService.storeblService.StockTackBLService;
 import bl.blService.storeblService.StoreIOBLService;
 import bl.blService.storeblService.StoreInBLService;
+import bl.blService.storeblService.StoreModelBLService;
 import bl.blService.storeblService.StoreOutBLService;
 import bl.blService.transportblService.TransportCenterBLService;
 import bl.blService.transportblService.TransportHallBLService;
@@ -43,6 +47,8 @@ public class FormFactory extends BLFactory {
 	private static StoreInBLService storeInBLService;
 	private static StoreOutBLService storeOutBLService;
 	private static StoreIOBLService storeIOBLService;
+	private static StoreModelBLService storeModelBLService;
+	private static StockTackBLService stockTackBLService;
 
 	private FormFactory(){
 
@@ -98,5 +104,17 @@ public class FormFactory extends BLFactory {
 			storeIOBLService = new StoreIOBLImpl(vopoFactory);
 		}
 		return storeIOBLService;
+	}
+	public static StoreModelBLService getStoreModelBLService() {
+		if(storeModelBLService == null){
+			storeModelBLService = new StoreModelBLImpl();
+		}
+		return storeModelBLService;
+	}
+	public static StockTackBLService getStockTackBLService() {
+		if(stockTackBLService == null){
+			stockTackBLService = new StockTackBLImpl();
+		}
+		return stockTackBLService;
 	}
 }

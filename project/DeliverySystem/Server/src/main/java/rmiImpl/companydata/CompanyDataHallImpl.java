@@ -20,8 +20,7 @@ import rmiImpl.ConnecterHelper;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 
-public class CompanyDataHallImpl extends UnicastRemoteObject implements
-		CompanyDataHallService {
+public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyDataHallService {
 	private static final long serialVersionUID = 1L;
 
 	private String Table_Name;
@@ -51,12 +50,9 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 				ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
 				ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs
-						.getString("driver").split(" ")));
-				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs
-						.getString("deliver").split(" ")));
-				ArrayList<String> t3 = new ArrayList<String>(Arrays.asList(rs
-						.getString("counterman").split(" ")));
+				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
+				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
+				ArrayList<String> t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
 				MemberDataService s1 = new StaffDataImpl();
 				MemberDataService s2 = new DriverDataImpl();
 				for (String tmp : t1) {
@@ -68,9 +64,8 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 				for (String tmp : t3) {
 					counterman.add(s1.getPerson(tmp));
 				}
-				temp = new HallPO(rs.getString("hallID"), rs.getString("city"),
-						rs.getString("area"), driver, deliver, counterman,
-						rs.getString("nearCenterID"));
+				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
+						counterman, rs.getString("nearCenterID"));
 				result.add(temp);
 				ConnecterHelper.deconnSQL(s1.getConn());
 				ConnecterHelper.deconnSQL(s2.getConn());
@@ -116,10 +111,9 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 				co += tmp.getID();
 		}
 		String insert = "insert into `" + Table_Name
-				+ "`(hallID,city,area,driver,deliver,counterman,nearCenterID) "
-				+ "values('" + po.getHallID() + "','" + po.getCity() + "','"
-				+ po.getArea() + "','" + dr + "','" + de + "','" + co + "','"
-				+ po.getNearCenterID() + "')";
+				+ "`(hallID,city,area,driver,deliver,counterman,nearCenterID,cityID) " + "values('" + po.getHallID()
+				+ "','" + po.getCity() + "','" + po.getArea() + "','" + dr + "','" + de + "','" + co + "','"
+				+ po.getNearCenterID() + "','" + po.getCity().substring(0, 3) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -137,8 +131,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 	public OperationMessage deleteHall(HallPO hall) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `hallID` = '"
-				+ hall.getHallID() + "'";
+		String delete = "delete from `" + Table_Name + "` where `hallID` = '" + hall.getHallID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -162,19 +155,16 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 			return result;
 	}
 
-	public String newHallID(String city) {
+	public String newHallID(String cityID) {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String temp = rs.getString("hallID").substring(0, 3);
-				if (city.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"hallID").substring(4)));// 最后3位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("hallID").substring(4)));// 最后3位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -186,7 +176,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements
 			return null;
 		String added = String.format("%03d", ID_MAX);
 
-		return city + "1" + added;
+		return cityID + "1" + added;
 	}
 
 }

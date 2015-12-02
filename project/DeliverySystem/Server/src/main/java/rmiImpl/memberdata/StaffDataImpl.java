@@ -17,8 +17,7 @@ import po.receivedata.ReceivePO;
 import rmi.memberdata.MemberDataService;
 import rmiImpl.ConnecterHelper;
 
-public class StaffDataImpl extends UnicastRemoteObject implements
-		MemberDataService<StaffPO> {
+public class StaffDataImpl extends UnicastRemoteObject implements MemberDataService<StaffPO> {
 	private static final long serialVersionUID = 1L;
 
 	private String Table_Name;
@@ -46,13 +45,11 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				if (!rs.getString("staff").equalsIgnoreCase(
-						staffTypeEnum.toString()))
+				if (!rs.getString("staff").equalsIgnoreCase(staffTypeEnum.toString()))
 					continue;
-				temp = new StaffPO(rs.getString("staff"), rs.getString("ID"),
-						rs.getString("name"), rs.getInt("age"),
-						rs.getString("personID"), rs.getString("sex"),
-						rs.getString("love"), rs.getString("institutionID"));
+				temp = new StaffPO(rs.getString("staff"), rs.getString("ID"), rs.getString("name"), rs.getInt("age"),
+						rs.getString("personID"), rs.getString("sex"), rs.getString("love"),
+						rs.getString("institutionID"));
 				result.add(temp);
 
 			}
@@ -78,12 +75,10 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	public OperationMessage addStaff(StaffPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String add = "insert into `" + Table_Name
-				+ "`(ID,staff,name,age,personID,sex,love,institutionID) "
-				+ "values('" + po.getID() + "','" + po.getStaff().toString()
-				+ "','" + po.getName() + "','" + po.getAge() + "','"
-				+ po.getPersonID().toString() + "','" + po.getSex() + "','"
-				+ po.getLove() + "','" + po.getInititutionID() + "')";
+		String add = "insert into `" + Table_Name + "`(ID,staff,name,age,personID,sex,love,institutionID,typeID) "
+				+ "values('" + po.getID() + "','" + po.getStaff().toString() + "','" + po.getName() + "','"
+				+ po.getAge() + "','" + po.getPersonID().toString() + "','" + po.getSex() + "','" + po.getLove() + "','"
+				+ po.getInititutionID() + "','" + po.getID().substring(0, 2) + "')";
 
 		try {
 			statement = conn.prepareStatement(add);
@@ -101,8 +96,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	public OperationMessage dismissStaff(StaffPO staff) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String dismiss = "delete from `" + Table_Name + "` where `ID` = '"
-				+ staff.getID() + "'";
+		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + staff.getID() + "'";
 		try {
 			statement = conn.prepareStatement(dismiss);
 			statement.executeUpdate();
@@ -116,10 +110,8 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public String newStaffID(StaffTypeEnum staffType, String unitID)
-			throws RemoteException {
+	public String newStaffID(StaffTypeEnum staffType, String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String target = "";
@@ -144,14 +136,12 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 		default:
 			return null;
 		}
+		String selectAll = "select * from `" + Table_Name + "` where `typeID` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				String temp = rs.getString("ID").substring(0, 2);
-				if (target.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX,
-							Integer.parseInt(rs.getString("ID").substring(2)));// 最后6位编号
+				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("ID").substring(2)));// 最后6位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -169,18 +159,15 @@ public class StaffDataImpl extends UnicastRemoteObject implements
 	@Override
 	public StaffPO getPerson(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID
-				+ "'";
+		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID + "'";
 		ResultSet rs = null;
 		StaffPO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new StaffPO(rs.getString("staff"), rs.getString("ID"),
-					rs.getString("name"), rs.getInt("age"),
-					rs.getString("personID"), rs.getString("sex"),
-					rs.getString("love"), rs.getString("institutionID"));
+			result = new StaffPO(rs.getString("staff"), rs.getString("ID"), rs.getString("name"), rs.getInt("age"),
+					rs.getString("personID"), rs.getString("sex"), rs.getString("love"), rs.getString("institutionID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
