@@ -42,7 +42,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
-		StaffPO temp = null;
+		DriverPO temp = null;
 		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -51,7 +51,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 				temp = new DriverPO(rs.getTimestamp("birth"), rs.getString("tel"), rs.getTimestamp("licence_period"),
 						rs.getString("ID"), rs.getString("name"), rs.getInt("age"), rs.getString("personID"),
 						rs.getString("sex"), rs.getString("love"), rs.getString("institutionID"));
-				result.add((DriverPO) temp);
+				result.add(temp);
 
 			}
 		} catch (SQLException e) {
@@ -79,11 +79,10 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String add = "insert into `" + Table_Name
-				+ "`(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period,unitID) " + "values('"
-				+ po.getID() + "','" + po.getName() + "','" + po.getAge() + "','" + po.getPersonID() + "','"
-				+ po.getSex() + "','" + po.getLove() + "','" + po.getInititutionID() + "','" + po.getBirthForSQL()
-				+ "','" + po.getTel() + "','" + po.getLicence_periodForSQL() + "','" + po.getID().substring(0, 7)
-				+ "')";
+				+ "`(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) " + "values('" + po.getID()
+				+ "','" + po.getName() + "','" + po.getAge() + "','" + po.getPersonID() + "','" + po.getSex() + "','"
+				+ po.getLove() + "','" + po.getInititutionID() + "','" + po.getBirthForSQL() + "','" + po.getTel()
+				+ "','" + po.getLicence_periodForSQL() + "')";
 
 		try {
 			statement = conn.prepareStatement(add);
@@ -116,9 +115,9 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 
 	@Override
-	public String newStaffID(StaffTypeEnum staffType, String unitID) throws RemoteException {
+	public String newStaffID(StaffTypeEnum staffType, String institutionID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
+		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -137,7 +136,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			return null;
 		String added = String.format("%03d", ID_MAX);
 
-		return unitID + added;
+		return institutionID + added;
 	}
 
 	@Override
@@ -161,13 +160,32 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see rmi.memberdata.MemberDataService#getStaffByInstitution(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * rmi.memberdata.MemberDataService#getStaffByInstitution(java.lang.String)
 	 */
 	@Override
 	public ArrayList<DriverPO> getStaffByInstitution(String institutionID) {
-		// TODO Auto-generated method stub
-		return null;
+		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
+		ResultSet rs = null;
+		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
+		DriverPO temp = null;
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new DriverPO(rs.getTimestamp("birth"), rs.getString("tel"), rs.getTimestamp("licence_period"),
+						rs.getString("ID"), rs.getString("name"), rs.getInt("age"), rs.getString("personID"),
+						rs.getString("sex"), rs.getString("love"), rs.getString("institutionID"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

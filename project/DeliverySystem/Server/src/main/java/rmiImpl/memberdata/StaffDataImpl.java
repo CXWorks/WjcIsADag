@@ -181,8 +181,23 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	 */
 	@Override
 	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) {
-		// TODO Auto-generated method stub
-		return null;
+		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
+		ResultSet rs = null;
+		ArrayList<StaffPO> result = new ArrayList<StaffPO>();
+		StaffPO temp = null;
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new StaffPO(rs.getString("staff"), rs.getString("ID"), rs.getString("name"), rs.getInt("age"),
+						rs.getString("personID"), rs.getString("sex"), rs.getString("love"), rs.getString("institutionID"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
