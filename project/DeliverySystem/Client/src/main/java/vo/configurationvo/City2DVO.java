@@ -40,4 +40,9 @@ public class City2DVO extends ConfigurationVO {
 	public City2DPO toPO(){
 		return new City2DPO(name, x, y);
 	}
+	//
+	public double distance(City2DVO target){
+		return Math.sqrt(Math.pow((this.x-target.x), 2)+Math.pow((this.y-target.y), 2))*SCALE;
+		
+	}
 }
