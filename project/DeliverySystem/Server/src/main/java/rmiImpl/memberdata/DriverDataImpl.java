@@ -15,7 +15,7 @@ import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.transportdata.CenterOutPO;
 import rmi.memberdata.MemberDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 public class DriverDataImpl extends UnicastRemoteObject implements MemberDataService<DriverPO> {
 	private static final long serialVersionUID = 1L;

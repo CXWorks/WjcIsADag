@@ -16,7 +16,7 @@ import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
 import po.systemdata.LogPO;
 import rmi.systemdata.LogDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
  * Created by WJC on 2015/11/29.
@@ -28,7 +28,7 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	private PreparedStatement statement = null;
 	private int ID;
 
-	protected LogDataImpl() throws RemoteException {
+	public LogDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "log";

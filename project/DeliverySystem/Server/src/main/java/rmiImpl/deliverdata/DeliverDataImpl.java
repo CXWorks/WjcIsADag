@@ -17,7 +17,7 @@ import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
 import rmi.deliverdata.DeliverDataService;
 import rmiImpl.CommonData;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
  *
@@ -62,8 +62,10 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			e.printStackTrace();
 		}
 		try {
-			statement = conn.prepareStatement(setFinished);
-			statement.executeUpdate();
+			if (po.isFinished()) {
+				statement = conn.prepareStatement(setFinished);
+				statement.executeUpdate();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "修改order时时出错：");

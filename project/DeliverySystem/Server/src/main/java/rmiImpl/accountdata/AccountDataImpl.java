@@ -16,10 +16,10 @@ import po.accountdata.AccountPO;
 import po.companydata.CenterPO;
 import po.receivedata.ReceivePO;
 import rmi.accountdata.AccountDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
- * 
+ *
  * @author mx 2015/10/25
  */
 
@@ -135,7 +135,7 @@ public class AccountDataImpl extends UnicastRemoteObject implements
 	}
 
 	public OperationMessage checkAccount(String id, String password) {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		AccountPO a = this.getAccountPO(id);
 		if(a==null)

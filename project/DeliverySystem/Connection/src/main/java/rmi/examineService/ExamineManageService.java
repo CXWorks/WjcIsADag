@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import model.examine.ExamineQueue;
 import po.FormPO;
 
 public interface ExamineManageService extends Remote{
@@ -19,4 +20,5 @@ public interface ExamineManageService extends Remote{
 
 	public OperationMessage deleteForm(ArrayList<FormPO> forms) throws RemoteException;
 
+	public ExamineQueue getQueue() throws RemoteException;
 }

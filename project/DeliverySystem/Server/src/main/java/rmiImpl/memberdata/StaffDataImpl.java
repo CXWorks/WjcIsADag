@@ -15,7 +15,8 @@ import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.receivedata.ReceivePO;
 import rmi.memberdata.MemberDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
+import rmiImpl.receivedata.ReceiveDataImpl;
 
 public class StaffDataImpl extends UnicastRemoteObject implements MemberDataService<StaffPO> {
 	private static final long serialVersionUID = 1L;
@@ -176,9 +177,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see rmi.memberdata.MemberDataService#getStaffByInstitution(java.lang.String)
-	 */
 	@Override
 	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) {
 		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";

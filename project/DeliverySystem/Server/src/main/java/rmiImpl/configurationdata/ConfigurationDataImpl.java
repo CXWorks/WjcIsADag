@@ -24,18 +24,18 @@ import po.financedata.PaymentPO;
 import po.orderdata.DeliverTypeEnum;
 import po.receivedata.ReceivePO;
 import rmi.configurationdata.ConfigurationDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
  * 目前全是stub
- * 
+ *
  * @author cxworks 2015/10/25
  */
 public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		ConfigurationDataService {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 

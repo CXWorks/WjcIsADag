@@ -14,7 +14,8 @@ import po.FormEnum;
 import po.receivedata.ReceivePO;
 import rmi.receivedata.ReceiveDataService;
 import rmiImpl.CommonData;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
+import rmiImpl.orderdata.OrderDataImpl;
 
 /**
  *
