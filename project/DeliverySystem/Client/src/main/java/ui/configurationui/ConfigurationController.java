@@ -2,6 +2,7 @@ package ui.configurationui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
@@ -66,6 +67,11 @@ public class ConfigurationController {
 	public TextField paper_Field;
 	public TextField wood_Field;
 	public TextField bag_Field;
+	//
+	private PriceVO priceVO;
+	private ProportionVO proportionVO;
+	private PackVO packVO;
+	
 	
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
@@ -82,19 +88,61 @@ public class ConfigurationController {
 	//调整城市距离
 	public void submitDistance(){
 		
+		//TODO jump back
+		
 	}
 	
     //调整快递费
 	public void submitExpense(){
+		String expense=factor_Field.getText();
+		try {
+			int price=Integer.parseInt(expense);
+			priceVO.setByType(DeliverTypeEnum.NORMAL, price);
+			configurationBLService.modify(priceVO);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		finally{
+			//TODO jump backs
+		}
 		
 	}
     //调整包装费
 	public void submitPack(){
-		
+		String papers=paper_Field.getText();
+		String bags=bag_Field.getText();
+		String woods=wood_Field.getText();
+		try {
+			double paper=Double.parseDouble(papers);
+			double bag=Double.parseDouble(bags);
+			double wood=Double.parseDouble(woods);
+			packVO.setByType(PackEnum.WOOD, wood);
+			packVO.setByType(PackEnum.PACKAGE, bag);
+			packVO.setByType(PackEnum.PAPER, paper);
+			configurationBLService.modify(packVO);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//TODO jump back
 	}
 	//调整收费比例
 	public void submitProportion(){
-		
+		String fasts=fast_Field.getText();
+		String normals=normal_Field.getText();
+		String slows=slow_Field.getText();
+		try {
+			int fast=Integer.parseInt(fasts);
+			int normal=Integer.parseInt(normals);
+			int slow=Integer.parseInt(slows);
+			proportionVO.setByType(DeliverTypeEnum.FAST, fast);
+			proportionVO.setByType(DeliverTypeEnum.NORMAL, normal);
+			proportionVO.setByType(DeliverTypeEnum.SLOW, slow);
+			configurationBLService.modify(proportionVO);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//TODO jump back
 	}
 	//
 	public void selectedChanged(){
@@ -107,7 +155,7 @@ public class ConfigurationController {
 					this.initializeDistance();
 					break;
 				case "快递费":
-					this.initializeDeliverFee();
+					this.initializePrice();
 					break;
 				case "收费比例":
 					this.initializeProportion();
@@ -115,7 +163,6 @@ public class ConfigurationController {
 				case "包装费":
 					this.initializePack();
 					break;
-
 				default:
 					break;
 				}
@@ -148,15 +195,15 @@ public class ConfigurationController {
 		four_Three_Label.setText(Double.toString(city1.distance(city2)));
 	}
 	//
-	private void initializeDeliverFee(){
+	private void initializePrice(){
 		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PRICE);
-		PriceVO priceVO=(PriceVO)configurationVOs.get(0);
+		priceVO=(PriceVO)configurationVOs.get(0);
 		factor_Field.setText(Integer.toString(priceVO.getByType(DeliverTypeEnum.NORMAL)));
 	}
 	//
 	private void initializeProportion(){
 		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PROPORTION);
-		ProportionVO proportionVO=(ProportionVO)configurationVOs.get(0);
+		proportionVO=(ProportionVO)configurationVOs.get(0);
 		slow_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.SLOW)));
 		normal_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.NORMAL)));
 		fast_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.FAST)));
@@ -164,7 +211,7 @@ public class ConfigurationController {
 	//
 	private void initializePack(){
 		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PACK);
-		PackVO packVO=(PackVO)configurationVOs.get(0);
+		packVO=(PackVO)configurationVOs.get(0);
 		paper_Field.setText(Double.toString(packVO.getByType(PackEnum.PAPER)));
 		wood_Field.setText(Double.toString(packVO.getByType(PackEnum.WOOD)));
 		bag_Field.setText(Double.toString(packVO.getByType(PackEnum.PACKAGE)));

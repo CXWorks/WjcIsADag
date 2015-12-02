@@ -12,6 +12,9 @@ public class ProportionVO extends ConfigurationVO{
 	public ProportionVO(){
 		super(InfoEnum.PROPORTION);
 	}
+	public void setByType(DeliverTypeEnum deliverTypeEnum,int newProportion){
+		proportion.replace(deliverTypeEnum, newProportion);
+	}
 	public int getByType(DeliverTypeEnum type) {
 		return proportion.get(type);
 	}

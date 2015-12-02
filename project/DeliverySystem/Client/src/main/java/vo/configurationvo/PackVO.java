@@ -17,6 +17,9 @@ public class PackVO extends ConfigurationVO{
 		this();
 		this.packPrice=po.getClonedPackPrice();
 	}
+	public void setByType(PackEnum packEnum,double newPrice){
+		packPrice.replace(packEnum, newPrice);
+	}
 	
 	public double getByType(PackEnum type){
 		return packPrice.get(type);
