@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.store.StoreAreaCode;
+import po.FormEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
@@ -77,5 +78,22 @@ public class StoreSummaryController {
                         new ArrayList<StoreFormVO>(list)
                 )
         );
+		double in_money = 0;
+		double out_money = 0;
+		int in_num = 0;
+		int out_num = 0;
+		for(StoreFormVO tmp:list){
+			if(tmp.getFormType()==FormEnum.STORE_IN){
+				in_num++;
+				in_money += Double.parseDouble(tmp.getMoney());
+			} else if(tmp.getFormType()==FormEnum.STORE_OUT){
+				out_num++;
+				out_money += Double.parseDouble(tmp.getMoney());
+			}
+		}
+		InMoney_Label.setText(in_money + "");
+		outMoney_Label.setText(out_money + "");
+		InNum_Label.setText(in_num + "");
+		outNum_Label.setText(out_num + "");
 	}
 }
