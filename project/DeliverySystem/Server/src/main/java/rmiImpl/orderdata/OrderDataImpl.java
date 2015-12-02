@@ -21,10 +21,10 @@ import po.receivedata.ReceivePO;
 import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import rmiImpl.CommonData;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
- * 
+ *
  * @author mx 2015/10/25
  */
 

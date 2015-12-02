@@ -20,7 +20,7 @@ import model.store.StoreLocation;
 import model.store.StoreModel;
 import model.store.StoreModelOperation;
 import rmi.storedata.StoreModelDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 public class StoreModelDataImpl extends UnicastRemoteObject implements
 		StoreModelDataService {

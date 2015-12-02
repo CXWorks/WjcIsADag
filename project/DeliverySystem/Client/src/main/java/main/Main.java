@@ -13,6 +13,7 @@ import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.navigationui.FinanceNavigation;
 import ui.receiveui.ReceiveFormController;
+import ui.storeui.StoreSummaryController;
 
 import java.io.IOException;
 
@@ -53,9 +54,10 @@ public class Main extends Application {
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
 //        		ManageOrganizationController.launch()
-        		ManageSalaryController.launch()
+//        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
+        		StoreSummaryController.launch()
 
         ));
 

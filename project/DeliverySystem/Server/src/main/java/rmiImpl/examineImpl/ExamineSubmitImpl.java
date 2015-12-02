@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import message.ChatMessage;
 import message.OperationMessage;
+import model.examine.ExamineQueue;
 import po.FormPO;
 import rmi.chatRemindService.ChatNewService;
 import rmi.examineService.ExamineSubmitService;

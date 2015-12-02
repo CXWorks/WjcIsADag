@@ -16,7 +16,7 @@ import po.memberdata.StaffTypeEnum;
 import po.transportdata.CenterOutPO;
 import rmi.companydata.CompanyDataCenterService;
 import rmi.memberdata.MemberDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 

@@ -13,7 +13,7 @@ import message.OperationMessage;
 import po.financedata.PaymentPO;
 import po.receivedata.ReceivePO;
 import rmi.financedata.PaymentDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataService {
 

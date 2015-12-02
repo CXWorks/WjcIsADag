@@ -1,51 +1,43 @@
 package serverMain;
 
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
-
-import rmiImpl.DataFactory;
-import database.SqlHelper;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import message.OperationMessage;
+import ui.ServerView;
 
 /**
- * Created by Sissel on 2015/10/25.
+ *
+ * @author WJC
+ * @version 1.0
  */
-public class ServerMain {
+public class ServerMain extends Application {
 
-    SqlHelper sql;
+	public static Stage primaryStage;
 
-    OperationMessage setUpSystem(String username, char[] password, String dbName){
-        return null;
-    }
+	OperationMessage setUpSystem(String username, char[] password, String dbName) {
+		return null;
+	}
 
-    OperationMessage recoverSystem(String username, char[] password, String dbName){
-        return null;
-    }
+	OperationMessage recoverSystem(String username, char[] password, String dbName) {
+		return null;
+	}
 
-    public static void main(String[] args) {
-    	try {
-    		DataFactory.initializeRMI();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		try {
-//			OrderDataService test = new OrderDataImpl();
-////			ReceiveDataService t2 = new ReceiveDataImpl();
-//			OrderPO t = test.getFormPO("10000001");
-//			t.setFormID("10000002");
-//			test.insert(t);
-////			test.delete("10000002");
-//			ConnecterHelper.deconnSQL(test.getConn());
-//			System.exit(0);
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    }
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		ServerMain.primaryStage = primaryStage;
+
+		primaryStage.setTitle("Server");
+		primaryStage.setX(150);
+		primaryStage.setY(150);
+
+		primaryStage.setScene(new Scene(ServerView.launch()));
+
+		primaryStage.show();
+	}
 
 }

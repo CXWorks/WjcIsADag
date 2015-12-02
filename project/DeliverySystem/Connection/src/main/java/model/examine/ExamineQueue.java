@@ -1,4 +1,4 @@
-package rmiImpl.examineImpl;
+package model.examine;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

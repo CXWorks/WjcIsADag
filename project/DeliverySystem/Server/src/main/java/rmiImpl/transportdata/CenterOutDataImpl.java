@@ -20,7 +20,7 @@ import po.transportdata.LoadPO;
 import po.transportdata.TransportPO;
 import rmi.transportdata.CenterOutDataService;
 import rmiImpl.CommonData;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 public class CenterOutDataImpl extends CommonData<CenterOutPO> implements CenterOutDataService {
 

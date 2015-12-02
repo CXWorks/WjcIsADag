@@ -32,7 +32,7 @@ import rmiImpl.storedata.StoreFormDataImpl;
 import rmiImpl.transportdata.CenterOutDataImpl;
 import rmiImpl.transportdata.LoadDataImpl;
 
-public class pass_helper {
+public class PassHelper {
 	private static OrderDataService orderDataService;
 	private static DeliverDataService deliverDataService;
 	private static PaymentDataService paymentDataService;
@@ -42,7 +42,7 @@ public class pass_helper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 	
-	public pass_helper() throws RemoteException, MalformedURLException{
+	public PassHelper() throws RemoteException, MalformedURLException{
 		orderDataService = new OrderDataImpl();
 		deliverDataService = new DeliverDataImpl();
 		paymentDataService = new PaymentDataImpl();

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import message.ChatMessage;
 import message.OperationMessage;
+import model.examine.ExamineQueue;
 import po.FormEnum;
 import po.FormPO;
 import po.deliverdata.DeliverPO;
@@ -30,7 +31,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 	/*负责新建消息*/
 	private ChatNewService addMessage;
 
-	private pass_helper pass_helper;
+	private PassHelper pass_helper;
 
 	/*总经理的ID*/
 	private String managerID = "01000001";
@@ -39,7 +40,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 		super();
 		this.queue = new ExamineQueue();
 		addMessage = new Reminder();
-		pass_helper = new pass_helper();
+		pass_helper = new PassHelper();
 	}
 
 	public ExamineQueue getQueue() {

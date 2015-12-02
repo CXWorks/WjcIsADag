@@ -7,7 +7,7 @@ import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
 import po.receivedata.ReceivePO;
 import rmi.financedata.BankAccountDataService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

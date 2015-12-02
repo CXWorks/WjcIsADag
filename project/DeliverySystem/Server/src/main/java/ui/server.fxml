@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StockTackController">
+   <children>
+      <Region layoutX="47.0" layoutY="32.0" prefHeight="386.0" prefWidth="281.0">
+         <effect>
+            <Shadow />
+         </effect>
+      </Region>
+      <Label layoutX="84.0" layoutY="32.0" prefHeight="36.0" prefWidth="74.0" text="服务器" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Button layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#start" prefHeight="36.0" prefWidth="102.0" text="启动服务" />
+      <Button layoutX="70.0" layoutY="196.0" mnemonicParsing="false" onAction="#stop" prefHeight="36.0" prefWidth="102.0" text="关闭服务" />
+      <Label fx:id="state" layoutX="70.0" layoutY="269.0" prefHeight="36.0" prefWidth="150.0" text="当前状态：停止" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="start_time" layoutX="70.0" layoutY="323.0" prefHeight="36.0" prefWidth="150.0" text="开始时间：" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

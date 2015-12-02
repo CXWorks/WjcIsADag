@@ -12,7 +12,7 @@ import message.OperationMessage;
 import po.companydata.CarPO;
 import po.receivedata.ReceivePO;
 import rmi.companydata.CompanyDataCarService;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 /**
  * Server//rmiImpl.companydata//CompanyDataCarImpl.java

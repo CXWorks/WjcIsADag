@@ -15,7 +15,7 @@ import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import rmi.transportdata.LoadDataService;
 import rmiImpl.CommonData;
-import rmiImpl.ConnecterHelper;
+import database.ConnecterHelper;
 
 public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService {
 
