@@ -48,6 +48,45 @@ public class StaffVO extends InfoVO{
 	public String getName(){
 		return name;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getPersonID() {
+		return personID;
+	}
+	public void setPersonID(String personID) {
+		this.personID = personID;
+	}
+	public SexEnum getSex() {
+		return sex;
+	}
+	public void setSex(SexEnum sex) {
+		this.sex = sex;
+	}
+	public String getLove() {
+		return love;
+	}
+	public void setLove(String love) {
+		this.love = love;
+	}
+	public String getInstitutionID() {
+		return institutionID;
+	}
+	public void setInstitutionID(String institutionID) {
+		this.institutionID = institutionID;
+	}
+	public void setStaff(StaffTypeEnum staff) {
+		this.staff = staff;
+	}
+	public void setID(String iD) {
+		ID = iD;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }
 

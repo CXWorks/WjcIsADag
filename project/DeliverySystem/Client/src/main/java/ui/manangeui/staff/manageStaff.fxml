@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.oraganization.ManageStaffController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
    <children>
       <SplitPane dividerPositions="0.6203007518796992" prefHeight="450.0" prefWidth="800.0">
         <items>
@@ -29,20 +29,19 @@
                                     <Label text="机构编号" />
                                     <Label text="所在城市" GridPane.columnIndex="1" />
                                     <Label text="所在区域" GridPane.columnIndex="2" />
-                                    <Label GridPane.rowIndex="1" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="institution" GridPane.rowIndex="1" />
+                                    <Label fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="area" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TableView prefHeight="325.0" prefWidth="491.0">
+                              <TableView fx:id="staffTable" prefHeight="325.0" prefWidth="491.0">
                                 <columns>
-                                  <TableColumn prefWidth="108.0" text="员工类型" />
-                                  <TableColumn minWidth="0.0" prefWidth="117.0" text="ID" />
-                                    <TableColumn prefWidth="264.0" text="基本信息" />
+                                  <TableColumn fx:id="key_Column" prefWidth="108.0" text="员工类型/ID" />
+                                    <TableColumn fx:id="value_Column" prefWidth="382.0" text="基本信息" />
                                 </columns>
                               </TableView>
                            </children>
@@ -77,14 +76,14 @@
                         <Label text="身份证号" GridPane.rowIndex="5" />
                         <Label text="恋爱情况" GridPane.rowIndex="6" />
                         <Label text="机构编号" GridPane.rowIndex="7" />
-                        <TextField prefHeight="30.0" prefWidth="32.0" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="staffType" prefHeight="30.0" prefWidth="32.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="sex" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="personID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="love" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="institutionID" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="50.0" layoutY="390.0">
@@ -96,8 +95,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="确定" />
-                        <Button mnemonicParsing="false" text="取消" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#submit" text="确定" />
+                        <Button mnemonicParsing="false" onAction="#cancel" text="取消" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

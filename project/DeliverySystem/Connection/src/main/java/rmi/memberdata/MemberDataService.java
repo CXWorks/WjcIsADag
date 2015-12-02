@@ -20,7 +20,7 @@ public interface MemberDataService<PO extends StaffPO> extends DataService<Staff
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "MemberData";
 	
-	public ArrayList<PO> getStaffByInstitution(String institutionID);
+	public ArrayList<PO> getStaffByInstitution(String institutionID) throws RemoteException;
 	
 	
 	

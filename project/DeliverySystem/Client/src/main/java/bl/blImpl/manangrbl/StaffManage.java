@@ -7,6 +7,7 @@ import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import rmi.memberdata.MemberDataService;
 import message.OperationMessage;
+import userinfo.UserInfo;
 import vo.FormVO;
 import vo.managevo.staff.StaffVO;
 import bl.blService.manageblService.ManageblStaffService;
@@ -109,8 +110,18 @@ public class StaffManage implements ManageblStaffService {
 	 */
 	@Override
 	public ArrayList<StaffVO> getStaffByInstitution() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(UserInfo.getInstitutionID());
+			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
+			for(int i=0;i<po.size();i++){
+				StaffPO each=po.get(i);
+				StaffVO vo=(StaffVO)vopoFactory.transPOtoVO(each);
+				result.add(vo);
+			}
+			return result;
+		} catch (RemoteException e) {
+			return null;
+		}
 	}
 
 }

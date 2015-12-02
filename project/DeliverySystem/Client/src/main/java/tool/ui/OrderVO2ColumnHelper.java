@@ -16,7 +16,6 @@ public class OrderVO2ColumnHelper extends VO2ColumnHelper<OrderVO> {
     public Set<Map.Entry<String, String>> VO2Entries(OrderVO vo) {
     	
         Map<String, String> map = new HashMap<>();
-
         map.put("订单号", vo.getFormID());
         map.put("寄件人", vo.getNameFrom());
         map.put("收件人", vo.getNameTo());
