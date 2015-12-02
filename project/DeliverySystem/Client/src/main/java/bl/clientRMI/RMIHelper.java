@@ -28,17 +28,17 @@ import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
 
-/** 
+/**
  * Client//bl.clientRMI//RMIHelper.java
  * @author CXWorks
  * @date 2015年10月30日 下午5:13:14
- * @version 1.0 
+ * @version 1.0
  */
 public class RMIHelper {
 	private static final String IP="localhost:2333";
-	
+
 	private static boolean initialized=false;
-	
+
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;
@@ -60,9 +60,9 @@ public class RMIHelper {
 	private static SystemDataService systemDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
-	
-	
-	
+
+
+
 	public synchronized static void	init() throws NetInitException {
 		if(initialized)
 			return;
@@ -81,7 +81,7 @@ public class RMIHelper {
 		accountDataService = (AccountDataService)Naming.lookup("rmi://localhost:2333/AccountDataService");
 		deliverDataService = (DeliverDataService)Naming.lookup("rmi://localhost:2333/DeliverDataService");
 	}
-	
+
 	public static LoadDataService getLoadDataService() {
 		return loadDataService;
 	}
@@ -122,7 +122,7 @@ public class RMIHelper {
 	public static BankAccountDataService getBankAccountDataService() {
 		return bankAccountDataService;
 	}
-	
+
 	public static PaymentDataService getPaymentDataService() {
 		return paymentDataService;
 	}
@@ -136,7 +136,6 @@ public class RMIHelper {
 		return memberDataService;
 	}
 	public static ReceiveDataService getReceiveDataService() {
-		System.out.println("fuck");
 		return receiveDataService;
 	}
 	public static StoreFormDataService getStoreFormDataService() {
@@ -151,5 +150,5 @@ public class RMIHelper {
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}
-	
+
 }
