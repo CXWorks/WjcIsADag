@@ -96,6 +96,7 @@ public class StorePartitionController {
 	}
 
 	public void reajust(ActionEvent actionEvent) {
-
+		storeModelBLService.setWarningLine(Double.parseDouble(warnLine_Field.getText()));
+		this.setView();
 	}
 }
