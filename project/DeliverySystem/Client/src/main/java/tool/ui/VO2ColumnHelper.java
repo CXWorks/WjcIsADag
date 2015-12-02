@@ -2,6 +2,7 @@ package tool.ui;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
+import vo.CommonVO;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 /**
  * Created by Sissel on 2015/11/24.
  */
-public abstract class VO2ColumnHelper<T extends FormVO> {
+public abstract class VO2ColumnHelper<T extends CommonVO> {
 
     public abstract Set<Map.Entry<String, String >> VO2Entries(T vo);
 
