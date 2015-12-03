@@ -8,6 +8,7 @@ import factory.StaffFactory;
 import bl.blService.manageblService.ManageblStaffService;
 import tool.ui.StaffVO2ColumnHelper;
 import vo.managevo.staff.StaffVO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 
 public class ManageStaffController {
@@ -32,9 +35,13 @@ public class ManageStaffController {
 	public Label city;
 	public Label area;
 	
-	public TableView<Map.Entry<String, String>> staffTable;
-	public TableColumn<Map.Entry<String, String>, String> key_Column;
-    public TableColumn<Map.Entry<String, String>, String> value_Column;
+	public TableView<StaffVO> staffTable;
+	public TableColumn<StaffVO, String> typeColumn;
+    public TableColumn<StaffVO, String> IDColumn;
+    public TableColumn<StaffVO, String> nameColumn;
+    public TableColumn<StaffVO, String> sexcColumn;
+    public TableColumn<StaffVO, String> ageColumn;
+    public TableColumn<StaffVO, String> institutionColumn;
     //
     private ManageblStaffService manageblStaffService=StaffFactory.getManageService();
     private ArrayList<StaffVO> staffVOs;
@@ -47,16 +54,29 @@ public class ManageStaffController {
     }
 	@FXML
 	public void initilize(){
-		StaffVO2ColumnHelper.setKeyColumn(key_Column);
-		StaffVO2ColumnHelper.setValueColumn(value_Column);
+		staffVOs=manageblStaffService.getStaffByInstitution();
+		typeColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
+		IDColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(cellData.getValue().getID()));
+		nameColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(cellData.getValue().getName()));
+		sexcColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(cellData.getValue().getSex().toString()));
+		ageColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(Integer.toString(cellData.getValue().getAge())));
+		institutionColumn.setCellValueFactory(
+				cellData->new SimpleStringProperty(cellData.getValue().getInstitutionID()));
+		staffTable.setItems(FXCollections.observableList(staffVOs));
+		//
+//		staffTable.setSelectionModel(new TableViewSelectionModel<StaffVO>());
+		
 	}
 	//
 	public void fillStaffTable(){
 		staffVOs=manageblStaffService.getStaffByInstitution();
 		StaffVO2ColumnHelper staffVO2ColumnHelper=new StaffVO2ColumnHelper();
-		for (StaffVO staffVO : staffVOs) {
-			staffTable.setItems(FXCollections.observableArrayList(staffVO2ColumnHelper.VO2Entries(staffVO)));
-		}
+		
 	}
 	//
 	public void submit(){

@@ -39,8 +39,12 @@
                            <children>
                               <TableView fx:id="staffTable" prefHeight="325.0" prefWidth="491.0">
                                 <columns>
-                                  <TableColumn fx:id="key_Column" prefWidth="108.0" text="员工类型/ID" />
-                                    <TableColumn fx:id="value_Column" prefWidth="382.0" text="基本信息" />
+                                  <TableColumn fx:id="typeColumn" prefWidth="108.0" text="员工类型" />
+                                    <TableColumn fx:id="IDColumn" prefWidth="77.0" text="编号" />
+                                    <TableColumn fx:id="nameColumn" prefWidth="83.0" text="姓名" />
+                                    <TableColumn fx:id="sexcColumn" prefWidth="65.0" text="性别" />
+                                    <TableColumn fx:id="ageColumn" prefWidth="58.0" text="年龄" />
+                                    <TableColumn fx:id="institutionColumn" prefWidth="99.0" text="所属机构" />
                                 </columns>
                               </TableView>
                            </children>

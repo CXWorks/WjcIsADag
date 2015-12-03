@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
@@ -59,7 +60,7 @@ public class Main extends Application {
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
-                //ManageBankAccountController.launch()
+                ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
@@ -68,7 +69,7 @@ public class Main extends Application {
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
 //        		ManageOrganizationController.launch()
-        		ManageSalaryController.launch()
+//        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
 //        		ManageCarDriverController.launch()
