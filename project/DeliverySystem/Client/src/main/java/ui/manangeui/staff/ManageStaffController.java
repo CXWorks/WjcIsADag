@@ -37,6 +37,8 @@ public class ManageStaffController {
     public TableColumn<Map.Entry<String, String>, String> value_Column;
     //
     private ManageblStaffService manageblStaffService=StaffFactory.getManageService();
+    private ArrayList<StaffVO> staffVOs;
+    private boolean isNew=false;
     @FXML
     public static Parent launch() throws IOException{
     	FXMLLoader fxmlLoader=new FXMLLoader();
@@ -50,7 +52,7 @@ public class ManageStaffController {
 	}
 	//
 	public void fillStaffTable(){
-		ArrayList<StaffVO> staffVOs=manageblStaffService.getStaffByInstitution();
+		staffVOs=manageblStaffService.getStaffByInstitution();
 		StaffVO2ColumnHelper staffVO2ColumnHelper=new StaffVO2ColumnHelper();
 		for (StaffVO staffVO : staffVOs) {
 			staffTable.setItems(FXCollections.observableArrayList(staffVO2ColumnHelper.VO2Entries(staffVO)));
@@ -58,14 +60,16 @@ public class ManageStaffController {
 	}
 	//
 	public void submit(){
-		String nType=staffType.getText();
-		String nID=ID.getText();
-		String nName=name.getText();
-		String nAge=age.getText();
-		String nSex=sex.getText();
-		String nPersonID=personID.getText();
-		String nLove=love.getText();
-		String nInstitutionID=institutionID.getText();
+		StaffVO staffVO=this.makeStaff();
+		if (staffVO==null) {
+			
+			return;
+		}
+		if (isNew) {
+			manageblStaffService.addStaff(staffVO);
+		} else {
+			manageblStaffService.modifyStaff(staffVO);
+		}
 		
 	}
 	public void cancel(){
@@ -79,7 +83,37 @@ public class ManageStaffController {
 		institutionID.clear();
 		
 	}
+	//
+	public void newStaff(){
+		this.cancel();
+		this.isNew=true;
+	}
 	
-	
-	
+	public void deleteStaff(){
+		StaffVO staffVO=this.makeStaff();
+		if (staffVO==null) {
+			return;
+		}
+		this.cancel();
+		manageblStaffService.dismissStaff(staffVO);
+	}
+	private StaffVO makeStaff(){
+		String nType=staffType.getText();
+		String nID=ID.getText();
+		String nName=name.getText();
+		String nAge=age.getText();
+		String nSex=sex.getText();
+		String nPersonID=personID.getText();
+		String nLove=love.getText();
+		String nInstitutionID=institutionID.getText();
+		//
+		if (nType.length()*nID.length()*nName.length()*nAge.length()*nSex.length()*nPersonID.length()*nLove.length()*nInstitutionID.length()==0) {
+			return null;
+		}
+		//
+		StaffVO staffVO=new StaffVO(null, nID, nName, Integer.parseInt(nAge), nPersonID, null, nLove, nInstitutionID);
+		staffVO.setStaff(nType);
+		staffVO.setSex(nSex);
+		return staffVO;
+	}
 }

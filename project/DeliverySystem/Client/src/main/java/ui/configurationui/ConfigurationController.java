@@ -75,7 +75,7 @@ public class ConfigurationController {
 	
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(LoginController.class.getResource("configuration.fxml"));
+        return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
     }
 	
     public void initialize(){
@@ -147,6 +147,9 @@ public class ConfigurationController {
 	//
 	public void selectedChanged(){
 		ObservableList<Tab> tabs=tabPane.getTabs();
+//		if (true) {
+//			return;
+//		}
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
 				String text=tab.getText();
