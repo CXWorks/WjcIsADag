@@ -50,19 +50,31 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 				ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
 				ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
-				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
-				ArrayList<String> t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-				MemberDataService s1 = new StaffDataImpl();
-				MemberDataService s2 = new DriverDataImpl();
-				for (String tmp : t1) {
-					driver.add((DriverPO) s2.getPerson(tmp));
+				ArrayList<String> t1;
+				ArrayList<String> t2;
+				ArrayList<String> t3;
+				MemberDataService<StaffPO> s1 = new StaffDataImpl();
+				MemberDataService<DriverPO> s2 = new DriverDataImpl();
+				t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
+				t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
+				t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+				if (!rs.getString("driver").equalsIgnoreCase("")) {
+					t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
+					for (String tmp : t1) {
+						driver.add(s2.getPerson(tmp));
+					}
 				}
-				for (String tmp : t2) {
-					deliver.add(s1.getPerson(tmp));
+				if (!rs.getString("deliver").equalsIgnoreCase("")) {
+					t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
+					for (String tmp : t2) {
+						deliver.add(s1.getPerson(tmp));
+					}
 				}
-				for (String tmp : t3) {
-					counterman.add(s1.getPerson(tmp));
+				if (!rs.getString("counterman").equalsIgnoreCase("")) {
+					t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+					for (String tmp : t3) {
+						counterman.add(s1.getPerson(tmp));
+					}
 				}
 				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
 						counterman, rs.getString("nearCenterID"));

@@ -25,7 +25,14 @@ public class CarPO extends InfoPO implements Serializable{
 	public boolean isFree() {
 		return free;
 	}
-	
+	public int isFreeForSql() {
+		if(free)
+			return 1;
+		else {
+			return 0;
+		}
+	}
+
 	public Calendar getUseTime() {
 		return useTime;
 	}
@@ -35,14 +42,13 @@ public class CarPO extends InfoPO implements Serializable{
 	public ImageIcon getImg() {
 		return img;
 	}
-	
+
 	public Calendar getBuyTime() {
 		return buyTime;
 	}
 	public Timestamp getBuyTimeForSQL() {
 		return new Timestamp(this.buyTime.getTimeInMillis());
 	}
-	
 	//
 	public CarPO(){
 		super(InfoEnum.CAR);
@@ -104,6 +110,6 @@ public class CarPO extends InfoPO implements Serializable{
 		temp.setTime(buyTime);
 		this.buyTime = temp;
 	}
-	
-	
+
+
 }

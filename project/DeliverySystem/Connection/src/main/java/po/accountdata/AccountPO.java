@@ -40,7 +40,7 @@ public class AccountPO extends InfoPO implements Serializable{
 	public AuthorityEnum getAuthority() {
 		return authority;
 	}
-	
+
 	public void setAuthority(String authority) {
 		if(authority.equalsIgnoreCase("DONT_HAVE"))
 			this.authority = AuthorityEnum.DONT_HAVE;

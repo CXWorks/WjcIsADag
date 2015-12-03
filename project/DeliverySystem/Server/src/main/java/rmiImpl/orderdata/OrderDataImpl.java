@@ -28,8 +28,7 @@ import database.ConnecterHelper;
  * @author mx 2015/10/25
  */
 
-public class OrderDataImpl extends CommonData<OrderPO> implements
-		OrderDataService {
+public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataService {
 
 	private String Table_Name;
 	private Connection conn = null;
@@ -63,23 +62,17 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			else
 				formIDs += list.get(i) + " ";
 		;
-		String insert = "insert into `"
-				+ Table_Name
+		String insert = "insert into `" + Table_Name
 				+ "`(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
 				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
-				+ "money,type,targetHallID,FormIDs,goodsType,pack) "
-				+ "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getNameFrom()
-				+ "','" + po.getNameTo() + "','" + po.getUnitFrom() + "','"
-				+ po.getUnitTo() + "','" + po.getAddressFrom() + "','"
-				+ po.getAddressTo() + "','" + po.getPhoneNumFrom() + "','"
-				+ po.getPhoneNumTo() + "','" + po.getTelNumFrom() + "','"
-				+ po.getTelNumTo() + "','" + po.getGoodsNum() + "','"
-				+ po.getGoodsName() + "','" + po.getWeight() + "','"
-				+ po.getVolume() + "','" + po.getMoney() + "','"
-				+ po.getType().toString() + "','" + po.getTargetHallID()
-				+ "','" + formIDs + "','" + po.getGoodsType() + "','"
-				+ po.getPack().toString() + "')";
+				+ "money,type,targetHallID,FormIDs,goodsType,pack) " + "values('" + po.getFormID() + "','"
+				+ po.getFormState().toString() + "','" + po.getNameFrom() + "','" + po.getNameTo() + "','"
+				+ po.getUnitFrom() + "','" + po.getUnitTo() + "','" + po.getAddressFrom() + "','" + po.getAddressTo()
+				+ "','" + po.getPhoneNumFrom() + "','" + po.getPhoneNumTo() + "','" + po.getTelNumFrom() + "','"
+				+ po.getTelNumTo() + "','" + po.getGoodsNum() + "','" + po.getGoodsName() + "','" + po.getWeight()
+				+ "','" + po.getVolume() + "','" + po.getMoney() + "','" + po.getType().toString() + "','"
+				+ po.getTargetHallID() + "','" + formIDs + "','" + po.getGoodsType() + "','" + po.getPack().toString()
+				+ "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -97,8 +90,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '"
-				+ id + "'";
+		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -142,8 +134,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
-		String temp = new Timestamp(System.currentTimeMillis()).toString()
-				.substring(0, 10);
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String date = temp.substring(5, 7) + temp.substring(8);// 当天日期
 
 		// 当前日期与缓存日期一致
@@ -161,8 +152,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			while (rs.next()) {
 				temp = rs.getString("formID").substring(0, 4);
 				if (date.equalsIgnoreCase(temp))
-					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString(
-							"formID").substring(4)));// 最后6位编号
+					ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(4)));// 最后6位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
@@ -179,8 +169,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 
 	public OrderPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where `formID` = '"
-				+ id + "'";
+		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		OrderPO result = null;
 
@@ -188,18 +177,16 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
-					.getString("FormIDs").split(" ")));
-			result = new OrderPO(rs.getString("formID"),
-					rs.getString("nameFrom"), rs.getString("nameTo"),
-					rs.getString("unitFrom"), rs.getString("unitTo"),
-					rs.getString("addressFrom"), rs.getString("addressTo"),
-					rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
-					rs.getString("telNumFrom"), rs.getString("telNumTo"),
-					rs.getString("goodsNum"), rs.getString("goodsName"),
-					rs.getString("weight"), rs.getString("volume"),
-					rs.getString("money"), rs.getString("goodsType"),
-					rs.getString("type"), rs.getString("pack"), FormIDs,
+			ArrayList<String> FormIDs = new ArrayList<String>();
+			if (!rs.getString("FormIDs").equalsIgnoreCase("")) {
+				FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
+			}
+			result = new OrderPO(rs.getString("formID"), rs.getString("nameFrom"), rs.getString("nameTo"),
+					rs.getString("unitFrom"), rs.getString("unitTo"), rs.getString("addressFrom"),
+					rs.getString("addressTo"), rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
+					rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
+					rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"), rs.getString("money"),
+					rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"), FormIDs,
 					rs.getString("targetHallID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
@@ -220,20 +207,17 @@ public class OrderDataImpl extends CommonData<OrderPO> implements
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs
-						.getString("FormIDs").split(" ")));
-				temp = new OrderPO(rs.getString("formID"),
-						rs.getString("nameFrom"), rs.getString("nameTo"),
-						rs.getString("unitFrom"), rs.getString("unitTo"),
-						rs.getString("addressFrom"), rs.getString("addressTo"),
-						rs.getString("phoneNumFrom"),
-						rs.getString("phoneNumTo"), rs.getString("telNumFrom"),
-						rs.getString("telNumTo"), rs.getString("goodsNum"),
-						rs.getString("goodsName"), rs.getString("weight"),
-						rs.getString("volume"), rs.getString("money"),
-						rs.getString("goodsType"), rs.getString("type"),
-						rs.getString("pack"), FormIDs,
-						rs.getString("targetHallID"));
+				ArrayList<String> FormIDs = new ArrayList<String>();
+				if (!rs.getString("FormIDs").equalsIgnoreCase("")) {
+					FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
+				}
+				temp = new OrderPO(rs.getString("formID"), rs.getString("nameFrom"), rs.getString("nameTo"),
+						rs.getString("unitFrom"), rs.getString("unitTo"), rs.getString("addressFrom"),
+						rs.getString("addressTo"), rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
+						rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
+						rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"),
+						rs.getString("money"), rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"),
+						FormIDs, rs.getString("targetHallID"));
 				;
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

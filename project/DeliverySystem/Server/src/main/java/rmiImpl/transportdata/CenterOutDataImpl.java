@@ -83,7 +83,10 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+			ArrayList<String> IDs = new ArrayList<String>();
+			if (!rs.getString("IDs").equalsIgnoreCase("")) {
+				IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+			}
 			result = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
 					rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 					rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs);
@@ -181,7 +184,10 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				ArrayList<String> IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+				}
 				temp = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
 						rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 						rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs);

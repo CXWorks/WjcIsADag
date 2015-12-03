@@ -40,7 +40,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	public Connection getConn() {
 		return conn;
 	}
-
 	public OperationMessage insert(DeliverPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();

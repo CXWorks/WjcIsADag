@@ -50,14 +50,21 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			while (rs.next()) {
 				ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
 				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
-				ArrayList<String> t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-				MemberDataService staff = new StaffDataImpl();
-				for (String tmp : t1) {
-					storeman.add(staff.getPerson(tmp));
+				ArrayList<String> t1;
+				ArrayList<String> t2;
+				MemberDataService<StaffPO> staff = new StaffDataImpl();
+				if (!rs.getString("storeman").equalsIgnoreCase("")) {
+					t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
+					for (String tmp : t1) {
+						storeman.add(staff.getPerson(tmp));
+					}
 				}
-				for (String tmp : t2) {
-					counterman.add(staff.getPerson(tmp));
+
+				if (!rs.getString("counterman").equalsIgnoreCase("")) {
+					t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+					for (String tmp : t2) {
+						counterman.add(staff.getPerson(tmp));
+					}
 				}
 				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), storeman, counterman);
 				result.add(temp);

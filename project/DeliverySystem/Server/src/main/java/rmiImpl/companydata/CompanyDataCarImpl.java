@@ -89,10 +89,10 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	public OperationMessage addCar(CarPO po) {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID) "
-				+ "values('" + po.getCarID() + "','" + po.isFree() + "','" + po.getUseTimeForSQL() + "','"
+		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID,engineID) "
+				+ "values('" + po.getCarID() + "','" + po.isFreeForSql() + "','" + po.getUseTimeForSQL() + "','"
 				+ po.getNameID() + "','" + po.getChassisID() + "','" + po.getBuyTimeForSQL() + "','"
-				+ po.getCarID().substring(0, 7) + "')";
+				+ po.getCarID().substring(0, 7) + "','" + po.getEngineID() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -171,6 +171,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
+//			System.out.println(rs.getTimestamp("useTime").toString());
 			result = new CarPO(rs.getBoolean("free"), rs.getString("carID"), rs.getTimestamp("useTime"), null,
 					rs.getString("engineID"), rs.getString("nameID"), rs.getString("chassisID"),
 					rs.getTimestamp("buyTime"));
