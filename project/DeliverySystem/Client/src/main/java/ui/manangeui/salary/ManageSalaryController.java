@@ -48,25 +48,33 @@ public class ManageSalaryController {
 	public void initialize(){
 		//
 		tabs=tabPane.getTabs();
-		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
-		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
-		for (ConfigurationVO configurationVO : vo) {
-			this.vo.add((SalaryStrategyVO)configurationVO);
-		}
+//		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
+//		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
+//		for (ConfigurationVO configurationVO : vo) {
+//			this.vo.add((SalaryStrategyVO)configurationVO);
+//		}
 		//
-		this.seletedChange();
+		try {
+			this.seletedChange();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//
 	@FXML
-	private void seletedChange(){
+	private void seletedChange() throws IOException{
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
 				//
-				for (SalaryStrategyVO salaryStrategyVO : vo) {
-					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
-						staffTypeSalaryController.change(salaryStrategyVO);
-					}
-				}
+//				for (SalaryStrategyVO salaryStrategyVO : vo) {
+//					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
+//						staffTypeSalaryController.change(salaryStrategyVO);
+						FXMLLoader fxmlLoader=new FXMLLoader();
+						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
+						tab.setContent(fxmlLoader.load());
+//					}
+//				}
 			}
 		}
 		

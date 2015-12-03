@@ -3,11 +3,16 @@ package ui.examineui;
 import java.io.IOException;
 import java.util.List;
 
+import factory.ExamineFactory;
+import bl.blService.examineblService.ExamineblManageService;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import ui.loginui.LoginController;
 import vo.FormVO;
 
@@ -27,25 +32,50 @@ public class CheckFormController {
 	
 	public CheckBox chooseAll_Box;
 	
+	public Label pass;
+	public Label deny;
+	public Label modify;
+	
+	public TabPane tabPane;
+	//
+	//
+	private ObservableList<Tab> tabs;
+	
+	
+	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
+	
 	
 	
 	 public static Parent launch() throws IOException {
 	        return FXMLLoader.load(LoginController.class.getResource("checkFrom.fxml"));
-	    }
+	 }
+	 
+	 public void initialize(){
+		 tabs=tabPane.getTabs();
+	 }
 	
+	public void selectedChanged(){
+		for (Tab tab : tabs) {
+			if (tab.isSelected()) {
+				//TODO do something
+				
+			}
+		}
+	}
 	
-	
-	public void pass(ActionEvent e){
+	public void pass(){
 		
 	}
 	
-	public void fail(ActionEvent e){
+	public void fail(){
 		
 	}
 	
-	public void delete(ActionEvent e){
+	public void delete(){
 		
 	}
-	
+	public void selectAll(){
+		
+	}
 	
 }

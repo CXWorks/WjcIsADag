@@ -10,17 +10,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.salary.ManageSalaryController">
    <children>
-      <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab onSelectionChanged="#seletedChange" text="快递员">
           </Tab>
           <Tab onSelectionChanged="#seletedChange" text="营业厅业务员">  
           </Tab>
-          <Tab text="仓库管理员" />
-          <Tab text="快递员" />
-          <Tab text="财务员" />
-          <Tab text="中转中心营业员" />
-          <Tab text="司机" />
+          <Tab onSelectionChanged="#seletedChange" text="仓库管理员" />
+          <Tab onSelectionChanged="#seletedChange" text="快递员" />
+          <Tab onSelectionChanged="#seletedChange" text="财务员" />
+          <Tab onSelectionChanged="#seletedChange" text="中转中心营业员" />
+          <Tab onSelectionChanged="#seletedChange" text="司机" />
         </tabs>
       </TabPane>
    </children>
