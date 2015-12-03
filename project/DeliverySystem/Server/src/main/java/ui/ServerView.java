@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 public class ServerView {
 	public Label state;
 	public Label start_time;
+	private boolean isON = false;
 
 	public static Parent launch() throws IOException {
 		FXMLLoader contentLoader = new FXMLLoader();
@@ -30,33 +31,35 @@ public class ServerView {
 
 	public void start(ActionEvent actionEvent) {
 		try {
-			RMIHelper.initializeRMI();
-			state.setText("启动");
-			SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	    	String TimeString = time.format(new java.util.Date());
-			start_time.setText("开始时间：" + TimeString);
+			if (!isON) {
+				state.setText("当前状态：启动");
+				SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String TimeString = time.format(new java.util.Date());
+				start_time.setText(TimeString);
+				RMIHelper.initializeRMI();
+			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		} catch (
+
+		MalformedURLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public void stop(ActionEvent actionEvent) {
 		try {
-			RMIHelper.closeServer();
-			state.setText("关闭");
-			start_time.setText("开始时间：");
+			if (isON) {
+				RMIHelper.closeServer();
+				state.setText("当前状态：停止");
+				start_time.setText("");
+			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

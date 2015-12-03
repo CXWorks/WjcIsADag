@@ -43,13 +43,14 @@ public class ManageCarDriverController {
     public CheckBox all_Driver_CheckBox;
     public TextField search_Car_Field;
     public TextField search_Driver_Field;
-    
+
     public static Parent launch() throws IOException {
         return FXMLLoader.load(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
     }
-    
+
+    @FXML
     public void initialize(){
-    	
+
     	//初始化车辆栏
     	car_TableView.setItems(FXCollections.observableArrayList(cars));
 
@@ -68,24 +69,24 @@ public class ManageCarDriverController {
     	carCheck_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
-    	
+
     	//初始化司机栏
     	driver_TableView.setItems(FXCollections.observableArrayList(drivers));
-    	
+
     	driverID_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getVo().getID())
         );
     	driverName_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getVo().getName())
         );
-    	
+
     	driverCheck_TableColumn.setCellFactory(
                 o -> new DriverTableCell()
         );
     	driverCheck_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
-    	
+
     }
 
 	public void selectAllCar(ActionEvent actionEvent) {
@@ -97,9 +98,9 @@ public class ManageCarDriverController {
             // do nothing
         }
     }
-    
+
     public void addCar(ActionEvent actionEvent) {
-    	
+
     }
 
     @FXML
@@ -117,7 +118,7 @@ public class ManageCarDriverController {
             }
         }
     }
-    
+
     @FXML
 	public void editCar(ActionEvent actionEvent) {
         CarVO selected = car_TableView.getSelectionModel().getSelectedItem().getVo();
@@ -140,7 +141,7 @@ public class ManageCarDriverController {
             car.setSelected(value);
         }
     }
-    
+
     private class CarTableCell extends TableCell<CarVOCheckItem, CarVOCheckItem> {
         @Override
         protected void updateItem(CarVOCheckItem item, boolean empty) {
@@ -156,8 +157,8 @@ public class ManageCarDriverController {
             setGraphic(checkBox);
         }
     }
-    
-    
+
+
     private class DriverTableCell extends TableCell<DriverVOCheckItem, DriverVOCheckItem> {
         @Override
         protected void updateItem(DriverVOCheckItem item, boolean empty) {
@@ -173,8 +174,8 @@ public class ManageCarDriverController {
             setGraphic(checkBox);
         }
     }
-    
-    
+
+
 
 	public void selectAllDriver(ActionEvent actionEvent) {
         if((!all_Driver_CheckBox.isSelected()) && isAllDriverSelected()){
@@ -185,9 +186,9 @@ public class ManageCarDriverController {
             // do nothing
         }
     }
-    
+
     public void addDriver(ActionEvent actionEvent) {
-    	
+
     }
 
     @FXML
@@ -205,7 +206,7 @@ public class ManageCarDriverController {
             }
         }
     }
-    
+
     @FXML
 	public void editDriver(ActionEvent actionEvent) {
         DriverVO selected = driver_TableView.getSelectionModel().getSelectedItem().getVo();

@@ -13,12 +13,14 @@ import ui.financeui.CheckRevenueFormController;
 import vo.ordervo.OrderVO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class PoepleReceiveFormController {
 
@@ -31,19 +33,22 @@ public class PoepleReceiveFormController {
 
 	OrderBLService obl = FormFactory.getOrderBLService();
 	 ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+	 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(PoepleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
-		return loader.load();
+		Pane pane=loader.load();
+		return pane;
 	}
 
+	@FXML
 	public void initialize(){
 		order_Field.setOnAction(
 				uselessParam->{
 					fillOrderTable();
 				}
 				);
-		OrderVO2ColumnHelper.setKeyColumn(key_Column); 
+		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
 	}
 
@@ -75,7 +80,7 @@ public class PoepleReceiveFormController {
 	public void saveDraft(ActionEvent actionEvent) {
 		//TODO
 	}
-	
+
 	private void fillOrderTable(){
 		OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
 		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));

@@ -36,13 +36,13 @@ public class NewOrderController {
 	public TextField unit_From;
 	public TextField tel_From;
 	public TextField phone_From;
-	
+
 	public TextField name_To;
 	public TextField address_To;
 	public TextField unit_To;
 	public TextField tel_To;
 	public TextField phone_To;
-	
+
 	public TextField goods_Number;
 	public TextField goods_Weight;
 	public TextField goods_Volume;
@@ -50,7 +50,7 @@ public class NewOrderController {
 	public TextField goods_Type;
 	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
 	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
-	
+
 	public Label predict_Expense;
 	public Label predict_Date;
     public Label date_ErrLabel;
@@ -65,13 +65,13 @@ public class NewOrderController {
 
     private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
-	
+
 	int money=0;//预计运费
 	int day=0;
 	String predictDate;//预计送达日期
-	
+
 	OrderBLService obl = FormFactory.getOrderBLService();
-	
+
 	 public static Parent launch() throws IOException {
 
 	        FXMLLoader contentLoader = new FXMLLoader();
@@ -118,7 +118,7 @@ public class NewOrderController {
         }
 
 	}
-	
+
 	private OrderVO generateVO(String FormID){
 		return new OrderVO
 				(FormID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
@@ -153,6 +153,7 @@ public class NewOrderController {
 		goods_Weight.clear();
 		goods_Volume.clear();
 		goods_Name.clear();
+		goods_Type.clear();
 
         SimpleEnumProperty<PackingEnum> pe = pack_Box.getItems().get(0);
 		pack_Box.setValue(pe);

@@ -22,15 +22,15 @@
             <Label fx:id="storeout_DatePicker" text="入库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
             <DatePicker fx:id="storeIn_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
+            <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label layoutX="288.0" layoutY="48.0" text="库存位置" />
       <TableView fx:id="order_TableView" layoutX="572.0" layoutY="75.0" prefHeight="273.0" prefWidth="201.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="项目" />
-          <TableColumn prefWidth="75.0" text="信息" />
+          <TableColumn fx:id="key_Column" prefWidth="75.0" text="项目" />
+          <TableColumn fx:id="value_Column" prefWidth="75.0" text="信息" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

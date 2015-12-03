@@ -1,6 +1,7 @@
 package factory;
 
-import bl.blImpl.logbl.LogBLImpl;
+
+import bl.blImpl.logbl.LogblImpl;
 import bl.blService.logblService.LogblService;
 
 /**
@@ -12,7 +13,7 @@ public class LogBLFactory extends BLFactory {
 
     public static LogblService getLogblService(){
         if(logblService == null){
-            logblService = new LogBLImpl();
+            logblService = new LogblImpl();
         }
         return logblService;
     }

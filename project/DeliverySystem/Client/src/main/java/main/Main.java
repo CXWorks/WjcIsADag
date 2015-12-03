@@ -9,11 +9,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.hallui.ManageCarDriverController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.navigationui.FinanceNavigation;
+import ui.orderui.NewOrderController;
+import ui.orderui.PoepleReceiveFormController;
 import ui.receiveui.ReceiveFormController;
+import ui.storeui.StoreInFormController;
+import ui.storeui.StoreOutFormController;
+import ui.storeui.StorePartitionController;
 import ui.storeui.StoreSummaryController;
+import ui.accountui.PersonalAccountViewController;
+import ui.accountui.personAccountViewEditDialogController;
 
 import java.io.IOException;
 
@@ -38,11 +46,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
 
-        primaryStage.setTitle("Receive Demo");
+        primaryStage.setTitle("Demo");
         primaryStage.setX(150);
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
+//        		StoreInFormController.launch()
+//        		StoreOutFormController.launch()
+//        		StoreSummaryController.launch()
+        		StorePartitionController.launch()
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
@@ -51,13 +63,17 @@ public class Main extends Application {
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
                 //NewOrderController.launch()
+                //PersonalAccountViewController.launch()
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
 //        		ManageOrganizationController.launch()
 //        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
-        		StoreSummaryController.launch()
+//        		ManageCarDriverController.launch()
+        		//PoepleReceiveFormController.launch()
+        		//StoreSummaryController.launch()
+
 
         ));
 

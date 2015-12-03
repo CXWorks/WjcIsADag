@@ -32,13 +32,13 @@ public class StoreInFormController {
 	public DatePicker storeIn_DatePicker;
 	public TextField orderID_Field;
 	public TextField destination_Field;
-	public TableView<Map.Entry<String, String>> order_Table;
+	public TableView<Map.Entry<String, String>> order_TableView;
 	public TextField row_Field;
 	public TextField shelf_Field;
 	public TextField position_Field;
 	public ChoiceBox<SimpleEnumProperty<StoreAreaCode>> area_ChoiceBox;
-    public TableColumn<Map.Entry<String, String>, String> key_Column;
-    public TableColumn<Map.Entry<String, String>, String> value_Column;
+	public TableColumn<Map.Entry<String, String>, String> key_Column;
+	public TableColumn<Map.Entry<String, String>, String> value_Column;
 
 	private StoreAreaCode area = StoreAreaCode.FLEX;
 
@@ -55,11 +55,9 @@ public class StoreInFormController {
 	public void initialize() {
 		// initialize the choice box
 		area_ChoiceBox.setItems(Enum2ObservableList.transit(StoreAreaCode.values()));
-		area_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					area = newValue.getEnum();
-				}
-		);
+		area_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			area = newValue.getEnum();
+		});
 		clear(null);
 
 		orderID_Field.setOnAction(uselessParam -> {
@@ -78,7 +76,7 @@ public class StoreInFormController {
 		storeIn_DatePicker.setValue(LocalDate.now());
 		orderID_Field.clear();
 		destination_Field.clear();
-		order_Table.setItems(null);
+		order_TableView.setItems(null);
 		row_Field.clear();
 		shelf_Field.clear();
 		position_Field.clear();
@@ -106,9 +104,9 @@ public class StoreInFormController {
 
 	public void fillPosition(ActionEvent actionEvent) {
 		StoreLocation location = storeInBLService.getAvailableLocation(area);
-		row_Field.setText(""+location.getRow());
-		shelf_Field.setText(""+location.getShelf());
-		position_Field.setText(""+location.getPosition());
+		row_Field.setText("" + location.getRow());
+		shelf_Field.setText("" + location.getShelf());
+		position_Field.setText("" + location.getPosition());
 	}
 
 	private void fillOrderTable() {
@@ -120,6 +118,6 @@ public class StoreInFormController {
 		// null,
 		// DeliverTypeEnum.NORMAL, PackingEnum.BAG);
 
-		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 }

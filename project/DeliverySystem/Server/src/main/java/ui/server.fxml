@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StockTackController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
    <children>
       <Region layoutX="47.0" layoutY="32.0" prefHeight="386.0" prefWidth="281.0">
          <effect>
@@ -26,9 +26,14 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="start_time" layoutX="70.0" layoutY="323.0" prefHeight="36.0" prefWidth="150.0" text="开始时间：" textAlignment="CENTER">
+      <Label layoutX="70.0" layoutY="323.0" prefHeight="36.0" prefWidth="102.0" text="开始时间：" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="start_time" layoutX="172.0" layoutY="323.0" prefHeight="36.0" prefWidth="224.0" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
          </font>
       </Label>
    </children>

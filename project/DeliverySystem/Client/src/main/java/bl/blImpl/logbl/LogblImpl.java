@@ -6,13 +6,13 @@ import java.util.Calendar;
 import vo.systemvo.LogVO;
 import bl.blService.logblService.LogblService;
 
-/** 
+/**
  * Client//bl.blImpl.logbl//LogBLImpl.java
  * @author CXWorks
  * @date 2015年11月29日 下午5:13:26
- * @version 1.0 
+ * @version 1.0
  */
-public class LogBLImpl implements LogblService {
+public class LogblImpl implements LogblService {
 
 	/* (non-Javadoc)
 	 * @see bl.blService.logblService.LogblService#getHistory()
