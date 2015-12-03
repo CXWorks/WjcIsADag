@@ -67,17 +67,15 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 	@Override
 	public OperationMessage checkIsNameUsed(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		String selectAll = "select * from `" + Table_Name + "`";
+		String select = "select * from `" + Table_Name + "` where `accountName` = '"
+				+ name + "'";
 		ResultSet rs = null;
 		OperationMessage result = new OperationMessage(false, "没有被使用");
 		try {
-			statement = conn.prepareStatement(selectAll);
-			rs = statement.executeQuery(selectAll);
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				if (name.equalsIgnoreCase(rs.getString("accountName"))) {
-					result = new OperationMessage(true, "已经被使用");
-					break;
-				}
+					return new OperationMessage(true, "已经被使用");
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");

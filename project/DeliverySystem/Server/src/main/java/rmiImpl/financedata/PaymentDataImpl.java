@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Year;
 import java.util.ArrayList;
 
 import message.OperationMessage;
@@ -38,12 +39,12 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(formID,formState,data,amount,payerAccID,payerName,"
+		String insert = "insert into `" + Table_Name + "`(formID,formState,date,amount,payerAccID,payerName,"
 				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL() + "','"
 				+ po.getAmount() + "','" + po.getPayerAccID() + "','" + po.getPayerName() + "','" + po.getPayerAccount()
-				+ po.getReceiverAccID() + "','" + po.getReceiverName() + "','" + po.getReceiverAccount() + "','"
-				+ po.getItem() + "','" + po.getNote() + "','" + po.getFormID().substring(2, 17) + "')";
+				+ "','" + po.getReceiverAccID() + "','" + po.getReceiverName() + "','" + po.getReceiverAccount()
+				+ "','" + po.getItem() + "','" + po.getNote() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);

@@ -25,7 +25,7 @@ public class StoreLocation implements Serializable,Cloneable {
 	}
 
 	public StoreLocation(String message) {
-		String[] list = message.split(" ");
+		String[] list = message.split("-");
 		this.setArea(list[0]);
 		this.row = Integer.parseInt(list[1]);
 		this.shelf = Integer.parseInt(list[2]);
@@ -34,7 +34,7 @@ public class StoreLocation implements Serializable,Cloneable {
 	}
 
 	public String getLocationForSQL() {
-		return area.toString() + " " + row + " " + shelf + " " + position + " "
+		return area.toString() + "-" + row + "-" + shelf + "-" + position + "-"
 				+ orderID;
 	}
 

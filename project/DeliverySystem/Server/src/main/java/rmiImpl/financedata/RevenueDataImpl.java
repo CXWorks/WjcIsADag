@@ -39,7 +39,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,data,amount,deliverName,hallID,orderID,date_and_unit) " + "values('"
+				+ "`(formID,formState,date,amount,deliverName,hallID,orderID,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL().toString() + "','"
 				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + po.getOrderID()
 				+ "','" + po.getFormID().substring(2, 17) + "')";

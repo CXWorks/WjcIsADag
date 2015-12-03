@@ -60,7 +60,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				+ "`(formID,formState,orderID,date,destination,location,money,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
 				+ po.getDateForSQL().toString() + "','" + po.getDestination() + "','"
-				+ po.getLocation().getLocationForSQL() + po.getMoney() + "','" + po.getFormID().substring(2, 17) + "')";
+				+ po.getLocation().getLocationForSQL() + "','" + po.getMoney() + "','" + po.getFormID().substring(2, 17)
+				+ "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -83,7 +84,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				+ "`(formID,formState,orderID,date,destination,transportation,transID,money,location,date_and_unit) "
 				+ "values('" + po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
 				+ po.getDateForSQL().toString() + "','" + po.getDestination() + "','"
-				+ po.getTransportation().toString() + "','" + po.getTransID() + po.getMoney() + "','"
+				+ po.getTransportation().toString() + "','" + po.getTransID() + "','" + po.getMoney() + "','"
 				+ po.getLocation().getLocationForSQL() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
@@ -348,24 +349,22 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		Timestamp start_t = new Timestamp(start.getTimeInMillis());
-		Timestamp end_t = new Timestamp(end.getTimeInMillis());
-		String selectIn = "select * from `" + Store_In + "`";
-		String selectOut = "select * from `" + Store_Out + "`";
+		String selectIn = "select * from `" + Store_In + "` where (unix_timestamp(`date`) - '"
+				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
+				+ end.getTime().getTime() / 1000 + "' <= 0";
+		String selectOut = "select * from `" + Store_Out + "` where (unix_timestamp(`date`) - '"
+				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
+				+ end.getTime().getTime() / 1000 + "' <= 0";
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;
 		ArrayList<FormPO> result = new ArrayList<FormPO>();
-		Timestamp tmp = null;
 		try {
 			statement = conn.prepareStatement(selectIn);
 			rs = statement.executeQuery(selectIn);
 			while (rs.next()) {
-				tmp = rs.getTimestamp("date");
-				if (!(tmp.getTime() > start_t.getTime() || tmp.getTime() < end_t.getTime()))
-					continue;
-				in = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), tmp, rs.getString("destination"),
-						rs.getString("location"));
+				in = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"), rs.getString("location"));
 				in.setFormState(rs.getString("formState"));
 				in.setMoney(rs.getString("money"));
 				result.add(in);
@@ -373,12 +372,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			statement = conn.prepareStatement(selectOut);
 			rs = statement.executeQuery(selectOut);
 			while (rs.next()) {
-				tmp = rs.getTimestamp("date");
-				tmp = rs.getTimestamp("date");
-				if (!(tmp.getTime() > start_t.getTime() || tmp.getTime() < end_t.getTime()))
-					continue;
-				out = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), tmp, rs.getString("destination"),
-						rs.getString("transportation"), rs.getString("transID"));
+				out = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"));
 				out.setFormState(rs.getString("formState"));
 				out.setMoney(rs.getString("money"));
 				out.setLocation(rs.getString("location"));
