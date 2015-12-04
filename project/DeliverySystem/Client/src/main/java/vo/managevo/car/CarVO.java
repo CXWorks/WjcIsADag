@@ -32,8 +32,8 @@ public class CarVO extends InfoVO{
 	public CarVO(){
 		super(InfoEnum.CAR);
 	}
-	
-	
+
+
 	/**
 	 * @param infoEnum
 	 * @param free
@@ -62,7 +62,7 @@ public class CarVO extends InfoVO{
 
 	public CarVO(CarPO po){
 		this(po.isFree(), po.getCarID(), po.getUseTime(), po.getImg(), po.getEngineID(), po.getNameID(), po.getChassisID(), po.getBuyTime());
-		
+
 	}
 	//
 	public CarPO toPO(){
@@ -94,5 +94,60 @@ public class CarVO extends InfoVO{
 	public String getCarID() {
 		return carID;
 	}
-	
+
+
+	public boolean isFree() {
+		return free;
+	}
+
+
+	public ImageIcon getImag() {
+		return imag;
+	}
+
+
+	public String getEngineID() {
+		return engineID;
+	}
+
+
+	public String getChassisID() {
+		return chassisID;
+	}
+
+
+	public Calendar getBuyTime() {
+		return buyTime;
+	}
+
+
+	public void setFree(boolean free) {
+		this.free = free;
+	}
+
+
+	public void setCarID(String carID) {
+		this.carID = carID;
+	}
+
+
+	public void setImag(ImageIcon imag) {
+		this.imag = imag;
+	}
+
+
+	public void setEngineID(String engineID) {
+		this.engineID = engineID;
+	}
+
+
+	public void setChassisID(String chassisID) {
+		this.chassisID = chassisID;
+	}
+
+
+	public void setBuyTime(Calendar buyTime) {
+		this.buyTime = buyTime;
+	}
+
 }

@@ -7,6 +7,9 @@ import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblStaffService;
 import factory.CarFactory;
 import factory.StaffFactory;
+import ui.financeui.AccountEditDialogController;
+import vo.accountvo.AccountVO;
+import vo.financevo.BankAccountVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.staff.DriverVO;
 import javafx.beans.property.SimpleObjectProperty;
@@ -43,7 +46,8 @@ public class ManageCarDriverController {
     public CheckBox all_Driver_CheckBox;
     public TextField search_Car_Field;
     public TextField search_Driver_Field;
-
+    private CarVOCheckItem carVO = new CarVOCheckItem(null);
+    private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
     public static Parent launch() throws IOException {
         return FXMLLoader.load(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
     }
@@ -52,7 +56,7 @@ public class ManageCarDriverController {
     public void initialize(){
 
     	//初始化车辆栏
-    	car_TableView.setItems(FXCollections.observableArrayList(cars));
+    	//car_TableView.setItems(FXCollections.observableArrayList(cars));
 
     	carID_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getVo().getCarID())
@@ -69,9 +73,15 @@ public class ManageCarDriverController {
     	carCheck_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
+    	 car_TableView.getSelectionModel().selectedItemProperty().addListener(
+                 (observable, oldValue, newValue) -> {
+                     System.out.println("selected " + newValue);
+                     carVO = newValue;
+                 }
+         );
 
     	//初始化司机栏
-    	driver_TableView.setItems(FXCollections.observableArrayList(drivers));
+    	//driver_TableView.setItems(FXCollections.observableArrayList(drivers));
 
     	driverID_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getVo().getID())
@@ -87,6 +97,12 @@ public class ManageCarDriverController {
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
 
+   	 driver_TableView.getSelectionModel().selectedItemProperty().addListener(
+             (observable, oldValue, newValue) -> {
+                 System.out.println("selected " + newValue);
+                 driverVO = newValue;
+             }
+     );
     }
 
 	public void selectAllCar(ActionEvent actionEvent) {
@@ -99,8 +115,16 @@ public class ManageCarDriverController {
         }
     }
 
-    public void addCar(ActionEvent actionEvent) {
+    public void addCar(ActionEvent actionEvent) throws IOException {
+        CarVO car = new CarVO();
+        CarVOCheckItem selected= new CarVOCheckItem(car);
+        CarEditDialogController controller = CarEditDialogController.newDialog
+                (car);
 
+        controller.stage.showAndWait();
+
+        car_TableView.getItems().add(selected);
+        //bankAccountBLService.addAccount(bankAccountVO);
     }
 
     @FXML
@@ -179,7 +203,7 @@ public class ManageCarDriverController {
 
 	public void selectAllDriver(ActionEvent actionEvent) {
         if((!all_Driver_CheckBox.isSelected()) && isAllDriverSelected()){
-            setAllCarSelectedValue(false);
+            setAllDriverSelectedValue(false);
         }else if(all_Driver_CheckBox.isSelected()){
             setAllDriverSelectedValue(true);
         }else{
@@ -187,9 +211,18 @@ public class ManageCarDriverController {
         }
     }
 
-    public void addDriver(ActionEvent actionEvent) {
+    public void addDriver(ActionEvent actionEvent) throws IOException {
+        DriverVO driver = new DriverVO(null);
+        DriverVOCheckItem selected= new DriverVOCheckItem(driver);
+        DriverEditDialogController controller = DriverEditDialogController.newDialog
+                (driver);
 
+        controller.stage.showAndWait();
+
+        driver_TableView.getItems().add(selected);
+        //bankAccountBLService.addAccount(bankAccountVO);
     }
+
 
     @FXML
   	public void searchDriver(ActionEvent actionEvent) {

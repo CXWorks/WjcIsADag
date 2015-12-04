@@ -14,6 +14,7 @@ import ui.accountui.ManageAccountController;
 import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -33,14 +34,24 @@ public class RevenueFormController {
     //这个是快递员的编号，，等jr搞定我来搬砖orz
     public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> deliver_ChoiceBox;
     
+    
+    private RevenueVO  revenueVO = new RevenueVO("");
+    
     public String institutionID="1001";
     //怎么获得本地营业厅的编号还木有想好
     
     private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
+    
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
     }
 
+	@FXML
+	public void initialize(){
+		
+	}
+	
+	
     public void add(ActionEvent actionEvent) {
     	//TODO
     }

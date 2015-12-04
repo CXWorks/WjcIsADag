@@ -25,7 +25,7 @@ public class personAccountViewEditDialogController {
 	
 	public static personAccountViewEditDialogController newDialog(AccountVO editVO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(AccountEditDialogController.class.getResource("accountEditDialog.fxml"));
+        loader.setLocation(personAccountViewEditDialogController.class.getResource("personAccountViewEditDialog.fxml"));
         Pane pane = loader.load();
 
         Stage stage = new Stage();
@@ -41,6 +41,7 @@ public class personAccountViewEditDialogController {
 
 	public void check(){
 		//TODO  检查输入密码以及两次新密码是否正确
+		
 	}
 	
 	
