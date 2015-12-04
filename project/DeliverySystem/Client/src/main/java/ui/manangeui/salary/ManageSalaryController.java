@@ -12,8 +12,10 @@ import java.util.Observable;
 import javax.swing.table.TableCellEditor;
 
 import po.InfoEnum;
+import po.memberdata.StaffTypeEnum;
 import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.SalaryStrategyVO;
+import vo.managevo.staff.StaffVO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +50,7 @@ public class ManageSalaryController {
 	public void initialize(){
 		//
 		tabs=tabPane.getTabs();
+		
 //		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
 //		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
 //		for (ConfigurationVO configurationVO : vo) {
@@ -64,17 +67,28 @@ public class ManageSalaryController {
 	//
 	@FXML
 	private void seletedChange() throws IOException{
-		for (Tab tab : tabs) {
+		ObservableList<Tab> nuo=tabPane.getTabs(); 
+		SalaryStrategyVO alaryStrategyVO=new SalaryStrategyVO(StaffTypeEnum.DELIVER, 342, 432, 432);
+		this.vo=new ArrayList<SalaryStrategyVO>();
+		this.vo.add(alaryStrategyVO);
+		for (Tab tab : nuo) {
 			if (tab.isSelected()) {
 				//
-//				for (SalaryStrategyVO salaryStrategyVO : vo) {
-//					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
-//						staffTypeSalaryController.change(salaryStrategyVO);
+				for (SalaryStrategyVO salaryStrategyVO : vo) {
+					System.out.println(salaryStrategyVO.getStaff().getChinese()+" "+tab.getText());
+					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
 						FXMLLoader fxmlLoader=new FXMLLoader();
 						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
-						tab.setContent(fxmlLoader.load());
-//					}
-//				}
+						Parent son=fxmlLoader.load();
+						this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
+						
+						tab.setContent(son);
+						this.staffTypeSalaryController.change(salaryStrategyVO);
+						
+						
+						
+					}
+				}
 			}
 		}
 		

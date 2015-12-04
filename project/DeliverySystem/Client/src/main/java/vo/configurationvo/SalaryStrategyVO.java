@@ -43,5 +43,20 @@ public class SalaryStrategyVO extends ConfigurationVO{
 	public void setBonus(int bonus) {
 		this.bonus = bonus;
 	}
+	/**
+	 * @param infoEnum
+	 * @param staff
+	 * @param base
+	 * @param commission
+	 * @param bonus
+	 */
+	public SalaryStrategyVO(StaffTypeEnum staff, int base,
+			int commission, int bonus) {
+		super(InfoEnum.SALARY);
+		this.staff = staff;
+		this.base = base;
+		this.commission = commission;
+		this.bonus = bonus;
+	}
 	
 }

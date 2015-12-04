@@ -13,6 +13,7 @@ import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
+import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.FinanceNavigation;
 import ui.orderui.NewOrderController;
 import ui.orderui.PoepleReceiveFormController;
@@ -60,7 +61,7 @@ public class Main extends Application {
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
-                ManageBankAccountController.launch()
+//                ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
@@ -68,12 +69,13 @@ public class Main extends Application {
                 //PersonalAccountViewController.launch()
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
-//        		ManageOrganizationController.launch()
+        		ManageOrganizationController.launch()
 //        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
 //        		ManageCarDriverController.launch()
         		//PoepleReceiveFormController.launch()
+//        		ManageStaffController.launch()
         		//StoreSummaryController.launch()
 
 
