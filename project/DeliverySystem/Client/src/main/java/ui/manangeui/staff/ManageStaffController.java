@@ -34,7 +34,7 @@ public class ManageStaffController {
 	public Label institution;
 	public Label city;
 	public Label area;
-	
+
 	public TableView<StaffVO> staffTable;
 	public TableColumn<StaffVO, String> typeColumn;
     public TableColumn<StaffVO, String> IDColumn;
@@ -70,19 +70,19 @@ public class ManageStaffController {
 		staffTable.setItems(FXCollections.observableList(staffVOs));
 		//
 //		staffTable.setSelectionModel(new TableViewSelectionModel<StaffVO>());
-		
+
 	}
 	//
 	public void fillStaffTable(){
 		staffVOs=manageblStaffService.getStaffByInstitution();
 		StaffVO2ColumnHelper staffVO2ColumnHelper=new StaffVO2ColumnHelper();
-		
+
 	}
 	//
 	public void submit(){
 		StaffVO staffVO=this.makeStaff();
 		if (staffVO==null) {
-			
+
 			return;
 		}
 		if (isNew) {
@@ -90,7 +90,7 @@ public class ManageStaffController {
 		} else {
 			manageblStaffService.modifyStaff(staffVO);
 		}
-		
+
 	}
 	public void cancel(){
 		staffType.clear();
@@ -101,14 +101,14 @@ public class ManageStaffController {
 		personID.clear();
 		love.clear();
 		institutionID.clear();
-		
+
 	}
 	//
 	public void newStaff(){
 		this.cancel();
 		this.isNew=true;
 	}
-	
+
 	public void deleteStaff(){
 		StaffVO staffVO=this.makeStaff();
 		if (staffVO==null) {

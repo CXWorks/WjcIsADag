@@ -17,15 +17,7 @@ public class DriverVO extends StaffVO {
 	private Calendar birth;
 	private String tel;
 	private Calendar licence_period;
-	public Calendar getBirth() {
-		return birth;
-	} 
-	public String getTel() {
-		return tel;
-	}
-	public Calendar getLicence_period() {
-		return licence_period;
-	}
+
 	//
 	/**
 	 * @param staff
@@ -55,5 +47,23 @@ public class DriverVO extends StaffVO {
 	//
 	public DriverPO toPO(){
 		return new DriverPO(staff, ID, name, age, personID, sex, love, institutionID, birth, tel, licence_period);
+	}
+	public void setBirth(Calendar birth) {
+		this.birth = birth;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public void setLicence_period(Calendar licence_period) {
+		this.licence_period = licence_period;
+	}
+	public Calendar getBirth() {
+		return birth;
+	} 
+	public String getTel() {
+		return tel;
+	}
+	public Calendar getLicence_period() {
+		return licence_period;
 	}
 }
