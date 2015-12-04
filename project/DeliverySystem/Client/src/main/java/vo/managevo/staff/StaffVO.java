@@ -88,5 +88,43 @@ public class StaffVO extends InfoVO{
 		this.name = name;
 	}
 	
+	public void setStaff(String staff) {
+		switch (staff) {
+		case "ADMINISTRATOR":
+			this.staff = StaffTypeEnum.ADMINISTRATOR;
+			break;
+		case "BURSAR":
+			this.staff = StaffTypeEnum.BURSAR;
+			break;
+		case "CENTER_COUNTERMAN":
+			this.staff = StaffTypeEnum.CENTER_COUNTERMAN;
+			break;
+		case "DELIVER":
+			this.staff = StaffTypeEnum.DELIVER;
+			break;
+		case "HALL_COUNTERMAN":
+			this.staff = StaffTypeEnum.HALL_COUNTERMAN;
+			break;
+		case "MANAGER":
+			this.staff = StaffTypeEnum.MANAGER;
+		case "STOREMAN":
+			this.staff = StaffTypeEnum.STOREMAN;
+			break;
+		}
+	}
+	public void setSex(String sex) {
+		switch (sex) {
+		case "MAN":
+			this.sex = SexEnum.MAN;
+			break;
+		case "WOMAN":
+			this.sex = SexEnum.WOMAN;
+			break;
+		case "OTHERS":
+			this.sex = SexEnum.OTHERS;
+			break;
+		}
+	}
+	
 }
 

@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.jar.Attributes.Name;
 
+import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
 import rmi.companydata.CompanyDataCarService;
@@ -24,6 +25,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
@@ -60,6 +62,7 @@ public class RMIHelper {
 	private static SystemDataService systemDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
+	private static LogDataService logDataService;
 
 
 
@@ -75,12 +78,31 @@ public class RMIHelper {
 	//
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
 		String url="rmi://"+IP+"/";
-//		orderDataService=(OrderDataService)Naming.lookup("rmi://localhost:2333/OrderDataService");
-//		receiveDataService=(ReceiveDataService)Naming.lookup("rmi://localhost:2333/ReceiveDataService");
-//		loadDataService=(LoadDataService)Naming.lookup("rmi://localhost:2333/LoadDataService");
-		accountDataService = (AccountDataService)Naming.lookup("rmi://localhost:2333/AccountDataService");
-		deliverDataService = (DeliverDataService)Naming.lookup("rmi://localhost:2333/DeliverDataService");
+		orderDataService=(OrderDataService)Naming.lookup(url+"OrderDataService");
+		accountDataService=(AccountDataService)Naming.lookup(url+"AccountDataService");
+		chatRemindService=(ChatRemindService)Naming.lookup(url+"ChatRemindService");
+		companyDataCarService=(CompanyDataCarService)Naming.lookup(url+"CompanyDataCarService");
+		companyDataCenterService=(CompanyDataCenterService)Naming.lookup(url+"CompanyDataCenterService");
+		companyDataHallService=(CompanyDataHallService)Naming.lookup(url+"CompanyDataHallService");
+		configurationDataService=(ConfigurationDataService)Naming.lookup(url+"ConfigurationDataService");
+		deliverDataService = (DeliverDataService)Naming.lookup(url+"DeliverDataService");
+		examineManageService=(ExamineManageService)Naming.lookup(url+"ExamineManageService");
+		examineSubmitService=(ExamineSubmitService)Naming.lookup(url+"ExamineSubmitService");
+		bankAccountDataService=(BankAccountDataService)Naming.lookup(url+"BankAccountDataService");
+		paymentDataService=(PaymentDataService)Naming.lookup(url+"PaymentDataService");
+		revenueDataService=(RevenueDataService)Naming.lookup(url+"RevenueDataService");
+		memberDataService=(MemberDataService<StaffPO>)Naming.lookup(url+"MemberDataService_staff");
+		receiveDataService=(ReceiveDataService)Naming.lookup(url+"ReceiveDataService");
+		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
+		storeFormDataService=(StoreFormDataService)Naming.lookup(url+"StoreFormDataService");
+		storeModelDataService=(StoreModelDataService)Naming.lookup(url+"StoreModelDataService");
+		logDataService=(LogDataService)Naming.lookup(url+"LogDataService");
+		transportDataService=(CenterOutDataService)Naming.lookup(url+"CenterOutDataService");
+		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
+		
+		
 	}
+	
 
 	public static LoadDataService getLoadDataService() {
 		return loadDataService;
@@ -132,7 +154,7 @@ public class RMIHelper {
 	public static InitialDataService getInitialDataService() {
 		return initialDataService;
 	}
-	public static MemberDataService getMemberDataService() {
+	public static MemberDataService<StaffPO> getMemberDataService() {
 		return memberDataService;
 	}
 	public static ReceiveDataService getReceiveDataService() {
