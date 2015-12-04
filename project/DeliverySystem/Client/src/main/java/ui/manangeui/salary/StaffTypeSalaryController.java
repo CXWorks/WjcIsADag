@@ -43,6 +43,9 @@ public class StaffTypeSalaryController {
 	@FXML
 	private void cancel(){
 		//TODO jump back
+		this.base.clear();
+		this.bonus.clear();
+		this.commission.clear();
 	}
 	@FXML
 	private void modify(){
@@ -78,5 +81,8 @@ public class StaffTypeSalaryController {
 		} catch (Exception e) {
 			return;
 		}
+	}
+	public void test(){
+		System.out.println("succeed");
 	}
 }

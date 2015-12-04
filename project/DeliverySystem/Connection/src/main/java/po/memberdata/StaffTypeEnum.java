@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 public enum StaffTypeEnum implements Serializable, EnumObservable<StaffTypeEnum>{
 
-    DRIVER("快递员"),
+    DRIVER("司机"),
     MANAGER("经理"),
     ADMINISTRATOR("系统管理员"),
-    DELIVER("司机"),
+    DELIVER("快递员"),
     HALL_COUNTERMAN("营业厅业务员"),
     CENTER_COUNTERMAN("中转中心业务员"),
     STOREMAN("仓库管理员"),
