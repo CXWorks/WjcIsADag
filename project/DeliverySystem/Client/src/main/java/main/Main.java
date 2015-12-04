@@ -60,7 +60,7 @@ public class Main extends Application {
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
-                ManageBankAccountController.launch()
+            //    ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
@@ -72,7 +72,7 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
-//        		ManageCarDriverController.launch()
+        		ManageCarDriverController.launch()
         		//PoepleReceiveFormController.launch()
         		//StoreSummaryController.launch()
 

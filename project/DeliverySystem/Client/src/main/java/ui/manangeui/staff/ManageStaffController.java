@@ -132,8 +132,8 @@ public class ManageStaffController {
 		}
 		//
 		StaffVO staffVO=new StaffVO(null, nID, nName, Integer.parseInt(nAge), nPersonID, null, nLove, nInstitutionID);
-		staffVO.setStaff(nType);
-		staffVO.setSex(nSex);
+//		staffVO.setStaff(nType);
+//		staffVO.setSex(nSex);
 		return staffVO;
 	}
 }
