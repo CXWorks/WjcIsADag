@@ -55,13 +55,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String formIDs = "";
-		ArrayList<String> list = po.getFormIDs();
-		for (int i = 0; i < list.size(); i++)
-			if (i == list.size() - 1)
-				formIDs += list.get(i);
-			else
-				formIDs += list.get(i) + " ";
-		;
 		String insert = "insert into `" + Table_Name
 				+ "`(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
 				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"

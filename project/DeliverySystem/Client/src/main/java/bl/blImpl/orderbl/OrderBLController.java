@@ -6,6 +6,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import po.FormEnum;
 import po.FormPO;
+import po.orderdata.OrderPO;
 import rmi.examineService.ExamineSubmitService;
 import rmi.orderdata.OrderDataService;
 import vo.ordervo.OrderVO;
@@ -46,11 +47,14 @@ public class OrderBLController implements OrderBLService{
 
 	public OperationMessage submit(OrderVO form) {
 		try {
-			FormPO ready=(FormPO)vopoFactory.transVOtoPO(form);
-			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
-			return examineSubmitService.submit(ready);
+			OrderPO ready=(OrderPO)vopoFactory.transVOtoPO(form);
+//			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+//			return examineSubmitService.submit(ready);
+			OrderDataService orderDataService=CacheHelper.getOrderDataService();
+			return orderDataService.insert(ready);
 		} catch (Exception e) {
 			//TODO handle the exception
+			e.printStackTrace();
 			return new OperationMessage(false,"");
 		}
 	}

@@ -21,6 +21,7 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
@@ -99,7 +100,9 @@ public class StoreInFormController {
 		StoreLocation loc = new StoreLocation(area, Integer.parseInt(row_Field.getText()),
 				Integer.parseInt(shelf_Field.getText()), Integer.parseInt(position_Field.getText()),
 				orderID_Field.getText());
-		return new StoreInVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), loc);
+		StoreInVO vo = new StoreInVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), loc);
+		vo.setCreaterID(UserInfo.getUserID());
+		return vo;
 	}
 
 	public void fillPosition(ActionEvent actionEvent) {

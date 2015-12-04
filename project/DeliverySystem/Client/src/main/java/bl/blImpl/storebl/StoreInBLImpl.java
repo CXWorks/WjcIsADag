@@ -93,10 +93,11 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public OperationMessage submit(StoreInVO form) {
-        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+//        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         StoreInPO po=(StoreInPO)vopoFactory.transVOtoPO(form);
         try {
-			return examineSubmitService.submit(po);
+			return storeFormDataService.insertStoreInPO(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
@@ -107,6 +108,6 @@ public class StoreInBLImpl implements StoreInBLService {
 	 */
 	public String newID() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getNewStoreInID(null);
 	}
 }

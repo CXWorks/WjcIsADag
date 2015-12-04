@@ -29,7 +29,7 @@ import javafx.scene.control.Tab;
 
 
 
-//快递费、收费比例、城市距离、包装费、薪资 
+//快递费、收费比例、城市距离、包装费、薪资
 
 public class ConfigurationController {
 	public TabPane tabPane;
@@ -39,30 +39,30 @@ public class ConfigurationController {
 	public Tab expense_Tab;
 	public Tab pack_Tab;
 	public Tab proportion_Tab;
-	
+
 	//城市距离
-	public TextField one_Two_Field;  
+	public TextField one_Two_Field;
 	public TextField one_Three_Field;
 	public TextField one_Four_Field;
 	public TextField two_Three_Field;
 	public TextField two_Four_Field;
 	public TextField three_Four_Field;
-	
+
 	public Label two_One_Label;
 	public Label three_One_Label;
 	public Label three_Two_Label;
 	public Label four_One_Label;
 	public Label four_Two_Label;
 	public Label four_Three_Label;
-	
+
 	//快递费
 	public TextField factor_Field; //后面的那个比例（原来是23）
-	
+
 	//收费比例
 	public TextField slow_Field;
 	public TextField normal_Field;
 	public TextField fast_Field;
-	
+
 	//包装费
 	public TextField paper_Field;
 	public TextField wood_Field;
@@ -71,27 +71,27 @@ public class ConfigurationController {
 	private PriceVO priceVO;
 	private ProportionVO proportionVO;
 	private PackVO packVO;
-	
-	
+
+
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
     }
-	
+
     public void initialize(){
     	//one_Two_Field.setText();
     	this.selectedChanged();
     }
-	
-	
-	
+
+
+
 	//调整城市距离
 	public void submitDistance(){
-		
+
 		//TODO jump back
-		
+
 	}
-	
+
     //调整快递费
 	public void submitExpense(){
 		String expense=factor_Field.getText();
@@ -105,7 +105,7 @@ public class ConfigurationController {
 		finally{
 			//TODO jump backs
 		}
-		
+
 	}
     //调整包装费
 	public void submitPack(){
@@ -120,7 +120,7 @@ public class ConfigurationController {
 			packVO.setByType(PackEnum.PACKAGE, bag);
 			packVO.setByType(PackEnum.PAPER, paper);
 			configurationBLService.modify(packVO);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -154,9 +154,9 @@ public class ConfigurationController {
 			if (tab.isSelected()) {
 				String text=tab.getText();
 				switch (text) {
-				case "城市距离":
-					this.initializeDistance();
-					break;
+//				case "城市距离":
+//					this.initializeDistance();
+//					break;
 				case "快递费":
 					this.initializePrice();
 					break;
@@ -201,7 +201,7 @@ public class ConfigurationController {
 	private void initializePrice(){
 		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PRICE);
 		priceVO=(PriceVO)configurationVOs.get(0);
-		factor_Field.setText(Integer.toString(priceVO.getByType(DeliverTypeEnum.NORMAL)));
+		factor_Field.setText(Integer.toString(priceVO.getByType(DeliverTypeEnum.FAST)));
 	}
 	//
 	private void initializeProportion(){

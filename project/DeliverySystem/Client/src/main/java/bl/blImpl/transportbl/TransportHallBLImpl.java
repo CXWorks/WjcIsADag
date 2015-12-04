@@ -38,8 +38,8 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		this.vopoFactory=vopoFactory;
 	}
 
-	
-		
+
+
 		public LoadVO loadDraft() {
 			LoadVO vo=(LoadVO)draftService.getDraft(FormEnum.TRANSPORT_HALL);
 			return vo;
@@ -76,9 +76,9 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			} catch (RemoteException e) {
 				return null;
 			}
-			
+
 		}
-		
+
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getCars(java.lang.String)
 		 */
@@ -96,7 +96,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			} catch (RemoteException e) {
 				return null;
 			}
-			
+
 		}
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getLocation(java.lang.String)
@@ -126,7 +126,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		 */
 		@Override
 		public ArrayList<DriverVO> getDrivers(String hallID) {
-			MemberDataService<DriverPO> memberDataService=CacheHelper.getMemberDataService();
+			MemberDataService<DriverPO> memberDataService=CacheHelper.getMemberDataService_driver();
 			try {
 				ArrayList<DriverPO> po=memberDataService.getStaff(StaffTypeEnum.DRIVER);
 				ArrayList<DriverVO> vo=new ArrayList<DriverVO>(po.size());

@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.jar.Attributes.Name;
 
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
@@ -55,7 +56,8 @@ public class RMIHelper {
 	private static PaymentDataService paymentDataService;
 	private static RevenueDataService revenueDataService;
 	private static InitialDataService initialDataService;
-	private static MemberDataService memberDataService;
+	private static MemberDataService<DriverPO> memberDataService_driver;
+	private static MemberDataService<StaffPO> memberDataService_staff;
 	private static ReceiveDataService receiveDataService;
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
@@ -91,7 +93,8 @@ public class RMIHelper {
 		bankAccountDataService=(BankAccountDataService)Naming.lookup(url+"BankAccountDataService");
 		paymentDataService=(PaymentDataService)Naming.lookup(url+"PaymentDataService");
 		revenueDataService=(RevenueDataService)Naming.lookup(url+"RevenueDataService");
-		memberDataService=(MemberDataService<StaffPO>)Naming.lookup(url+"MemberDataService_staff");
+		memberDataService_driver=(MemberDataService<DriverPO>)Naming.lookup(url+"MemberDataService_driver");
+		memberDataService_staff=(MemberDataService<StaffPO>)Naming.lookup(url+"MemberDataService_staff");
 		receiveDataService=(ReceiveDataService)Naming.lookup(url+"ReceiveDataService");
 		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
 		storeFormDataService=(StoreFormDataService)Naming.lookup(url+"StoreFormDataService");
@@ -99,10 +102,10 @@ public class RMIHelper {
 		logDataService=(LogDataService)Naming.lookup(url+"LogDataService");
 		transportDataService=(CenterOutDataService)Naming.lookup(url+"CenterOutDataService");
 		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
-		
-		
+
+
 	}
-	
+
 
 	public static LoadDataService getLoadDataService() {
 		return loadDataService;
@@ -154,9 +157,6 @@ public class RMIHelper {
 	public static InitialDataService getInitialDataService() {
 		return initialDataService;
 	}
-	public static MemberDataService<StaffPO> getMemberDataService() {
-		return memberDataService;
-	}
 	public static ReceiveDataService getReceiveDataService() {
 		return receiveDataService;
 	}
@@ -171,6 +171,12 @@ public class RMIHelper {
 	}
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
+	}
+	public static MemberDataService<DriverPO> getMemberDataService_driver() {
+		return memberDataService_driver;
+	}
+	public static MemberDataService<StaffPO> getMemberDataService_staff() {
+		return memberDataService_staff;
 	}
 
 }

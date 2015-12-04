@@ -38,7 +38,7 @@ public class ManageStaffController {
 	public Label institution;
 	public Label city;
 	public Label area;
-	
+
 	public TableView<StaffVO> staffTable;
 	public TableColumn<StaffVO, String> typeColumn;
     public TableColumn<StaffVO, String> IDColumn;
@@ -58,39 +58,39 @@ public class ManageStaffController {
     }
 	@FXML
 	public void initialize(){
-//		staffVOs=manageblStaffService.getStaffByInstitution();
-		
+		staffVOs=manageblStaffService.getStaffByInstitution();
+		System.out.println(staffVOs.size());
+
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
 		IDColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getID()));
 		nameColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getName()));
-		
+
 		sexcColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getSex().toString()));
 		ageColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(Integer.toString(cellData.getValue().getAge())));
 		institutionColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getInstitutionID()));
-		staffTable.setItems(FXCollections.observableArrayList(new StaffVO(StaffTypeEnum.ADMINISTRATOR, "141250-018", "cx", 7, "4533532", SexEnum.MAN, "fds", "342432"),
-				new StaffVO(StaffTypeEnum.BURSAR, "424", "42", 5, "3", SexEnum.WOMAN, "42", "erw")));
+		staffTable.setItems(FXCollections.observableList(staffVOs));
 		System.out.println("ddddd");
 		//
-		
-		
+
+
 	}
 	//
 	public void fillStaffTable(){
 		staffVOs=manageblStaffService.getStaffByInstitution();
 		StaffVO2ColumnHelper staffVO2ColumnHelper=new StaffVO2ColumnHelper();
-		
+
 	}
 	//
 	public void submit(){
 		StaffVO staffVO=this.makeStaff();
 		if (staffVO==null) {
-			
+
 			return;
 		}
 		if (isNew) {
@@ -98,7 +98,7 @@ public class ManageStaffController {
 		} else {
 			manageblStaffService.modifyStaff(staffVO);
 		}
-		
+
 	}
 	public void cancel(){
 		staffType.clear();
@@ -109,14 +109,14 @@ public class ManageStaffController {
 		personID.clear();
 		love.clear();
 		institutionID.clear();
-		
+
 	}
 	//
 	public void newStaff(){
 		this.cancel();
 		this.isNew=true;
 	}
-	
+
 	public void deleteStaff(){
 		StaffVO staffVO=this.makeStaff();
 		if (staffVO==null) {
@@ -139,7 +139,7 @@ public class ManageStaffController {
 			return null;
 		}
 		//
-		StaffVO staffVO=new StaffVO(null, nID, nName, Integer.parseInt(nAge), nPersonID, null, nLove, nInstitutionID);
+		StaffVO staffVO=new StaffVO(StaffTypeEnum.ADMINISTRATOR, nID, nName, Integer.parseInt(nAge), nPersonID, SexEnum.MAN, nLove, nInstitutionID);
 //		staffVO.setStaff(nType);
 //		staffVO.setSex(nSex);
 		return staffVO;

@@ -11,18 +11,20 @@ import userinfo.UserInfo;
 import vo.FormVO;
 import vo.managevo.staff.StaffVO;
 import bl.blService.manageblService.ManageblStaffService;
+import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//blImpl.manangrbl//ManageblStaffImpl.java
  * @author CXWorks
  * @date 2015年10月26日 上午8:32:19
- * @version 1.0 
+ * @version 1.0
  */
 public class StaffManage implements ManageblStaffService {
 	private MemberDataService<StaffPO> memberDataService;
 	private VOPOFactory vopoFactory;
 	public StaffManage(VOPOFactory vopoFactory){
+		memberDataService=CacheHelper.getMemberDataService_staff();
 		this.vopoFactory=vopoFactory;
 	}
 
@@ -111,6 +113,8 @@ public class StaffManage implements ManageblStaffService {
 	@Override
 	public ArrayList<StaffVO> getStaffByInstitution() {
 		try {
+			if (memberDataService==null) {
+			}
 			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(UserInfo.getInstitutionID());
 			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
 			for(int i=0;i<po.size();i++){

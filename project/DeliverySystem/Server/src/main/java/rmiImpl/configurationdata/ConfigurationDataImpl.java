@@ -299,10 +299,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				switch (rs.getString("name")) {
-				case "ECONOMIC":
+				case "SLOW":
 					price.put(DeliverTypeEnum.SLOW, rs.getInt("money"));
 					break;
-				case "USUAL":
+				case "NORMAL":
 					price.put(DeliverTypeEnum.NORMAL, rs.getInt("money"));
 					break;
 				case "FAST":
@@ -326,10 +326,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.SLOW)
-				+ "' where `name` = 'ECONOMIC'");
+				+ "' where `name` = 'SLOW'");
 		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where `name` = 'USUAL'");
+				+ "' where `name` = 'NORMAL'");
 		operations.add("update `" + Price + "` set `money` ='"
 				+ price.getByType(DeliverTypeEnum.FAST)
 				+ "' where `name` = 'FAST'");
@@ -358,10 +358,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				switch (rs.getString("name")) {
-				case "ECONOMIC":
+				case "SLOW":
 					target.put(DeliverTypeEnum.SLOW, rs.getInt("num"));
 					break;
-				case "USUAL":
+				case "NORMAL":
 					target.put(DeliverTypeEnum.NORMAL, rs.getInt("num"));
 					break;
 				case "FAST":
@@ -386,10 +386,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.SLOW)
-				+ "' where `name` = 'ECONOMIC'");
+				+ "' where `name` = 'SLOW'");
 		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where `name` = 'USUAL'");
+				+ "' where `name` = 'NORMAL'");
 		operations.add("update `" + Proportion + "` set `num` ='"
 				+ proportion.getByType(DeliverTypeEnum.FAST)
 				+ "' where `name` = 'FAST'");

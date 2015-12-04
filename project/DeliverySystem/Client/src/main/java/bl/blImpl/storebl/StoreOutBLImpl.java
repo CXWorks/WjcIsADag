@@ -108,9 +108,10 @@ public class StoreOutBLImpl implements StoreOutBLService {
 
     public OperationMessage submit(StoreOutVO form) {
         StoreOutPO po=(StoreOutPO)vopoFactory.transVOtoPO(form);
-        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+//        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         try {
-			return examineSubmitService.submit(po);
+			return storeFormDataService.insertStoreOutPO(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
@@ -121,7 +122,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getNewStoreOutID(null);
+
 	}
 }

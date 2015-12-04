@@ -171,7 +171,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-//			System.out.println(rs.getTimestamp("useTime").toString());
 			result = new CarPO(rs.getBoolean("free"), rs.getString("carID"), rs.getTimestamp("useTime"), null,
 					rs.getString("engineID"), rs.getString("nameID"), rs.getString("chassisID"),
 					rs.getTimestamp("buyTime"));

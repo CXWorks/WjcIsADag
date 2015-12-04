@@ -2,6 +2,8 @@ package bl.clientNetCache;
 
 import bl.clientRMI.NetInitException;
 import bl.clientRMI.RMIHelper;
+import po.memberdata.DriverPO;
+import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
 import rmi.companydata.CompanyDataCarService;
@@ -24,11 +26,11 @@ import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
 
-/** 
+/**
  * Client//bl.clientNetCache//CacheHelper.java
  * @author CXWorks
  * @date 2015年10月30日 下午7:16:58
- * @version 1.0 
+ * @version 1.0
  */
 public class CacheHelper {
 	//
@@ -45,8 +47,9 @@ public class CacheHelper {
 	private static BankAccountDataService bankAccountDataService;
 	private static PaymentDataService paymentDataService;
 	private static RevenueDataService revenueDataService;
-	private static InitialDataService initialDataService;
-	private static MemberDataService memberDataService;
+//	private static InitialDataService initialDataService;
+	private static MemberDataService<DriverPO> memberDataService_driver;
+	private static MemberDataService<StaffPO> memberDataService_staff;
 	private static ReceiveDataService receiveDataService;
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
@@ -60,7 +63,7 @@ public class CacheHelper {
 			updateCache();
 		}
 		initCacheService();
-		
+
 	}
 	//
 	private static boolean initStoredData(){
@@ -68,15 +71,33 @@ public class CacheHelper {
 	}
 	//
 	private static void updateCache(){
-		
+
 	}
 	//
 	private static void initCacheService(){
 		orderDataService=RMIHelper.getOrderDataService();
-		receiveDataService=RMIHelper.getReceiveDataService();
-		loadDataService=RMIHelper.getLoadDataService();
 		accountDataService=RMIHelper.getAccountDataService();
+		chatRemindService=RMIHelper.getChatRemindService();
+		companyDataCarService=RMIHelper.getCompanyDataCarService();
+		companyDataCenterService=RMIHelper.getCompanyDataCenterService();
+		companyDataHallService=RMIHelper.getCompanyDataHallService();
+		configurationDataService=RMIHelper.getConfigurationDataService();
 		deliverDataService=RMIHelper.getDeliverDataService();
+		examineManageService=RMIHelper.getExamineManageService();
+		examineSubmitService=RMIHelper.getExamineSubmitService();
+		bankAccountDataService=RMIHelper.getBankAccountDataService();
+		paymentDataService=RMIHelper.getPaymentDataService();
+		revenueDataService=RMIHelper.getRevenueDataService();
+		memberDataService_driver=RMIHelper.getMemberDataService_driver();
+		memberDataService_staff=RMIHelper.getMemberDataService_staff();
+		receiveDataService=RMIHelper.getReceiveDataService();
+		storeFormDataService=RMIHelper.getStoreFormDataService();
+		storeModelDataService=RMIHelper.getStoreModelDataService();
+		systemDataService=RMIHelper.getSystemDataService();
+		transportDataService=RMIHelper.getTransportDataService();
+		loadDataService=RMIHelper.getLoadDataService();
+
+
 	}
 	//
 	public static OrderDataService getOrderDataService() {
@@ -112,19 +133,16 @@ public class CacheHelper {
 	public static BankAccountDataService getBankAccountDataService() {
 		return bankAccountDataService;
 	}
-	
+
 	public static PaymentDataService getPaymentDataService() {
 		return paymentDataService;
 	}
 	public static RevenueDataService getRevenueDataService() {
 		return revenueDataService;
 	}
-	public static InitialDataService getInitialDataService() {
-		return initialDataService;
-	}
-	public static MemberDataService getMemberDataService() {
-		return memberDataService;
-	}
+//	public static InitialDataService getInitialDataService() {
+//		return initialDataService;
+//	}
 	public static ReceiveDataService getReceiveDataService() {
 		return receiveDataService;
 	}
@@ -143,6 +161,12 @@ public class CacheHelper {
 	public static LoadDataService getLoadDataService() {
 		return loadDataService;
 	}
-	
-	
+	public static MemberDataService<DriverPO> getMemberDataService_driver() {
+		return memberDataService_driver;
+	}
+	public static MemberDataService<StaffPO> getMemberDataService_staff() {
+		return memberDataService_staff;
+	}
+
+
 }

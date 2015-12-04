@@ -15,11 +15,11 @@ import bl.blService.configurationblService.ConfigurationBLService;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//bl.blImpl.configurationbl//ConfigurationBLController.java
  * @author CXWorks
  * @date 2015年11月15日 下午4:40:00
- * @version 1.0 
+ * @version 1.0
  */
 public class ConfigurationBLController implements ConfigurationBLService {
 	private Distance distance;

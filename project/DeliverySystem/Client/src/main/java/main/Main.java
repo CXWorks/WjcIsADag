@@ -3,6 +3,7 @@
  */
 package main;
 
+import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
+import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.FinanceNavigation;
 import ui.orderui.NewOrderController;
 import ui.orderui.PoepleReceiveFormController;
@@ -39,7 +41,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        //CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -56,7 +58,7 @@ public class Main extends Application {
 //        		StoreOutFormController.launch()
 //        		StoreSummaryController.launch()
 //        		StorePartitionController.launch()
-//        		ConfigurationController.launch()
+        		ConfigurationController.launch()
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
@@ -64,7 +66,7 @@ public class Main extends Application {
                 //LoginController.launch()
                 //NewAccountController.launch()
                 //ManageAccountController.launch()
-                //NewOrderController.launch()
+//                NewOrderController.launch()
                 //PersonalAccountViewController.launch()
                 //CheckFinanceChartController.launch()
 //                FinanceNavigation.launch()
@@ -72,10 +74,10 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
                 //ManageAccountController.launch()
-        		ManageCarDriverController.launch()
+//        		ManageCarDriverController.launch()
         		//PoepleReceiveFormController.launch()
         		//StoreSummaryController.launch()
-
+//        		ManageStaffController.launch()
 
         ));
 

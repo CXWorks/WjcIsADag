@@ -27,6 +27,7 @@ public class PricePO extends InfoPO implements Serializable{
 		return this.price.get(deliverTypeEnum);
 	}
 	public HashMap<DeliverTypeEnum, Integer> getClonedPrice(){
+		System.out.println(price.get(DeliverTypeEnum.SLOW));
 		HashMap<DeliverTypeEnum, Integer> ans=new HashMap<DeliverTypeEnum, Integer>();
 		ans.putAll(price);
 		return ans;
