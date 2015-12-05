@@ -39,6 +39,8 @@ public class TransitFormController {
     public TableColumn order_TableColumn;
     public Label fee_Label;
     
+    
+    
     ArrayList<String> ids=null;//这只是权宜之计，，并不能，，就这样放着
     
     TransportationEnum transitEnum =TransportationEnum.TRAIN;

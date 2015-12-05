@@ -12,6 +12,7 @@ public class CheckLogisticsController {
 	
 	public void search(String id){
 		
+		
 	}
 	
 }
