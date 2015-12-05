@@ -1,8 +1,10 @@
 package ui.examineui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import po.FormEnum;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
 import javafx.collections.ObservableList;
@@ -58,13 +60,16 @@ public class CheckFormController {
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
 				//TODO do something
-				
+				String text=tab.getText();
+				FormEnum formEnum=this.getFormEnum(text);
+				formTableController.change(formEnum);
 			}
 		}
 	}
 	
 	public void pass(){
-		
+		ArrayList<FormVO> temp=formTableController.getSelected();
+		examineblManageService.passForm(temp);
 	}
 	
 	public void fail(){
@@ -72,10 +77,38 @@ public class CheckFormController {
 	}
 	
 	public void delete(){
-		
+		ArrayList<FormVO> temp=formTableController.getSelected();
 	}
 	public void selectAll(){
-		
+		formTableController.selectAll();
 	}
-	
+	private FormEnum getFormEnum(String text){
+		if (text==null) {
+			return null;
+		}
+		//
+		switch (text) {
+		case "订单":
+			return FormEnum.ORDER;
+		case "派件单":
+			return FormEnum.DELIVER;
+		case "付款单":
+			return FormEnum.PAYMENT;
+		case "收款单":
+			return FormEnum.REVENUE;
+		case "到达单":
+			return FormEnum.RECEIVE;
+		case "营业厅中转单":
+			return FormEnum.TRANSPORT_HALL;
+		case "中转中心中转单":
+			return FormEnum.TRANSPORT_CENTER;
+		case "入库单":
+			return FormEnum.STORE_IN;
+		case "出库单":
+			return FormEnum.STORE_OUT;
+
+		default:
+			return null;
+		}
+	}
 }

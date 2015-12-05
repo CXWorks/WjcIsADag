@@ -28,6 +28,7 @@ public class FormTableController {
 	public TableColumn<FormVO, String> typeColumn;
 	public TableColumn<FormVO, String> formIDColumn;
 	public TableColumn<FormVO, String> creatorIDColumn;
+	public TableColumn<FormVO, String> infoColumn;
 	//
 	private ArrayList<FormVO> formVOs;
 	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
@@ -48,12 +49,20 @@ public class FormTableController {
 		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID.substring(9, 17)));
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
-		
+		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 	}
 	//
 	public void change(FormEnum formEnum){
 		this.setColumn(formEnum);
 		//
-		TableColumn<DeliverVO, String> de=new TableColumn<DeliverVO, String>("ee");
+	}
+	//
+	public void selectAll(){
+		//TODO waitting for solutions
+	}
+	//
+	public ArrayList<FormVO> getSelected(){
+		//TODO the same reason
+		return null;
 	}
 }

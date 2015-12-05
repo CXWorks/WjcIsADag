@@ -14,7 +14,6 @@
             <TableColumn fx:id="typeColumn" prefWidth="89.0" text="类型" />
             <TableColumn fx:id="formIDColumn" prefWidth="75.0" text="编号" />
             <TableColumn fx:id="creatorIDColumn" prefWidth="84.0" text="申请人编号" />
-            <TableColumn prefWidth="201.0" text="内容摘要" />
         </columns>
       </TableView>
    </children>
