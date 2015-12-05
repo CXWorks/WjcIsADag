@@ -54,4 +54,6 @@ public interface DeliverBLService extends FormBLService<DeliverVO>{
 	 * @return
 	 */
 	public ArrayList<String> getUnhandledOrderID(String hallID);
+	
+	
 }

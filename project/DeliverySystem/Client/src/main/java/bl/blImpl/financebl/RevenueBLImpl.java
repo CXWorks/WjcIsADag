@@ -6,12 +6,14 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import rmi.examineService.ExamineSubmitService;
 import rmi.financedata.RevenueDataService;
+import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
 import util.R;
 import vo.financevo.RevenueVO;
+import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 
 import java.net.MalformedURLException;
@@ -25,6 +27,8 @@ import java.util.List;
 
 import po.FormEnum;
 import po.financedata.RevenuePO;
+import po.memberdata.StaffPO;
+import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
 
 /**
@@ -148,6 +152,29 @@ public class RevenueBLImpl implements RevenueBLService {
 			return Double.parseDouble(num);
 		} catch (RemoteException e) {
 			return 0;
+		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.RevenueBLService#getInstitutionDelivers()
+	 */
+	@Override
+	public ArrayList<StaffVO> getInstitutionDelivers() {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
+		try {
+			
+			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(UserInfo.getInstitutionID());
+			ArrayList<StaffVO> vo=new ArrayList<StaffVO>();
+			for (StaffPO staffPO : po) {
+				if (staffPO.getStaff()==StaffTypeEnum.DELIVER) {
+					StaffVO staffVO=(StaffVO)vopoFactory.transPOtoVO(staffPO);
+					vo.add(staffVO);
+				}
+			}
+			return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

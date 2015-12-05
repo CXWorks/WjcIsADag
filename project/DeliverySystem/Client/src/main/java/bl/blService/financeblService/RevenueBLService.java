@@ -3,8 +3,10 @@ package bl.blService.financeblService;
 import bl.blService.FormBLService;
 import message.OperationMessage;
 import vo.financevo.RevenueVO;
+import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -24,5 +26,7 @@ public interface RevenueBLService extends FormBLService<RevenueVO> {
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate);
     
     public double sum(String revenueID);
+    
+    public ArrayList<StaffVO> getInstitutionDelivers();
 
 }
