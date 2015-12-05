@@ -40,4 +40,13 @@ public class StoreOutVO extends StoreFormVO {
     public StoreOutPO toPO(){
     	return new StoreOutPO(formID, orderID, date, destination, transportation, transID);
     }
+
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return destination+" 位置 "+" "+location.getArea().getChinese()+" "+location.getRow()+" "
+				+" "+location.getShelf()+" "+location.getPosition();
+	}
 }

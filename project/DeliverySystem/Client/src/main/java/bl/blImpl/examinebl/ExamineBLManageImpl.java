@@ -3,6 +3,7 @@ package bl.blImpl.examinebl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.FormEnum;
 import po.FormPO;
 import rmi.examineService.ExamineManageService;
 import message.OperationMessage;
@@ -25,24 +26,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		this.examineManageService=CacheHelper.getExamineManageService();
 		this.vopoFactory=vopoFactory;
 	}
-	/* (non-Javadoc)
-	 * @see blService.examineblService.ExamineblManageService#getForms()
-	 */
-	public ArrayList<FormVO> getForms() {
-		try {
-			ArrayList<FormPO> po=examineManageService.getForms();
-			ArrayList<FormVO> result=new ArrayList<FormVO>(po.size());
-			for (int i = 0; i < po.size(); i++) {
-				FormPO each=po.get(i);
-				FormVO temp=(FormVO)vopoFactory.transPOtoVO(each);
-				result.add(temp);
-			}
-			return result;
-		} catch (RemoteException e) {
-			return null;
-		}
-		
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see blService.examineblService.ExamineblManageService#passForm(java.util.ArrayList)
@@ -124,6 +108,36 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			return examineManageService.modifyForm(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
+		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.examineblService.ExamineblManageService#getForms(po.FormEnum)
+	 */
+	@Override
+	public ArrayList<FormVO> getForms(FormEnum formType) {
+		try {
+			ArrayList<FormPO> po=examineManageService.getForms();
+			ArrayList<FormVO> result=new ArrayList<FormVO>(po.size());
+			for (int i = 0; i < po.size(); i++) {
+				FormPO each=po.get(i);
+				if (checkFormType(each.getFormType(), formType)) {
+					FormVO temp=(FormVO)vopoFactory.transPOtoVO(each);
+					result.add(temp);
+				}
+				
+			}
+			return result;
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	//
+	private boolean checkFormType(FormEnum po,FormEnum std){
+		if (std==null) {
+			return true;
+		}
+		else {
+			return po==std;
 		}
 	}
 

@@ -39,4 +39,13 @@ public class LoadVO extends TransitVO {
 		
 		return new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO);
 	}
+
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return placeTo;
+	}
+	
 }

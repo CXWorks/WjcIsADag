@@ -42,4 +42,13 @@ public class CenterOutVO extends TransitVO  {
 		
 		return new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO);
 	}
+
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		// TODO Auto-generated method stub
+		return placeFrom+" "+placeTo;
+	}
 }

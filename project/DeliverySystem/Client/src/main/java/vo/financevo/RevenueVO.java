@@ -44,5 +44,12 @@ public class RevenueVO extends FinanceFormVO {
     public RevenuePO toPO(){
     	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
     }
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return "快递员: "+deliverName+" 合计  "+amount;
+	}
 
 }

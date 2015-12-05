@@ -74,5 +74,12 @@ public class ReceiveVO extends FormVO{
 	public void setState(StateEnum state) {
 		this.orderState = state;
 	}
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return depature;
+	}
 	
 }

@@ -23,8 +23,7 @@
                     <tabs>
                       <Tab fx:id="all_Tab" text="全部单据" />
                       <Tab fx:id="order_Tab" text="订单" />
-                        <Tab fx:id="hall_Arrive_Tab" text="营业厅到达单" />
-                        <Tab fx:id="center_Arrive_Tab" text="中转中心到达单" />
+                        <Tab fx:id="hall_Arrive_Tab" text="到达单" />
                         <Tab fx:id="store_In_Tab" text="入库单" />
                         <Tab fx:id="store_Out_Tab" text="出库单" />
                         <Tab fx:id="deliver_Tab" text="派件单" />

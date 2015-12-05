@@ -34,4 +34,13 @@ public class StoreInVO extends StoreFormVO {
     public StoreInPO toPO(){
     	return new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);
     }
+
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return destination+" 位置 "+" "+location.getArea().getChinese()+" "+location.getRow()+" "
+				+" "+location.getShelf()+" "+location.getPosition();
+	}
 }

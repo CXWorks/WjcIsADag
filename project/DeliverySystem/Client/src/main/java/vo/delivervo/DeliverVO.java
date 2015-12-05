@@ -63,4 +63,11 @@ public class DeliverVO extends FormVO{
 		po.setFinished(finished);
 		return po;
 	}
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return "配送员"+this.postman;
+	}
 }

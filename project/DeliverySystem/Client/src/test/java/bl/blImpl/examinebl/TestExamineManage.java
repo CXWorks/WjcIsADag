@@ -74,7 +74,7 @@ public class TestExamineManage {
 			assertNotNull(examineblManageService.getForm(""));
 		}
 		//
-		assertNotNull(examineblManageService.getForms());
+		assertNotNull(examineblManageService.getForms(null));
 	}
 
 }

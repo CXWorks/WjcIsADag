@@ -43,7 +43,7 @@ public class CheckFormController {
 	
 	
 	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
-	
+	private FormTableController formTableController;
 	
 	
 	 public static Parent launch() throws IOException {

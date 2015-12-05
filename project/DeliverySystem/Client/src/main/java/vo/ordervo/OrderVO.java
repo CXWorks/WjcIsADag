@@ -256,5 +256,13 @@ public class OrderVO extends FormVO {
 	public void setReceiveDate(Calendar receiveDate) {
 		this.receiveDate = receiveDate;
 	}
+
+	/* (non-Javadoc)
+	 * @see vo.FormVO#getMainInfo()
+	 */
+	@Override
+	public String getMainInfo() {
+		return nameTo+" "+nameFrom+" "+goodsName;
+	}
 	
 }
