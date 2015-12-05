@@ -9,9 +9,9 @@ import vo.InfoVO;
 
 public class LogVO extends InfoVO implements Serializable{
 
-	private String personID;
-	private Calendar time;
-	private String info;
+	public String personID;
+	public Calendar time;
+	public String info;
 	
 	protected LogVO(InfoEnum infoEnum) {
 		super(infoEnum);

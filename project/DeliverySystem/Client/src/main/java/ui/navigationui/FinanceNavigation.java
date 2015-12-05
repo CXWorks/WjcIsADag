@@ -19,7 +19,10 @@ public class FinanceNavigation {
                 new Pair<String, Parent>("管理账户", ManageBankAccountController.launch()),
                 new Pair<String, Parent>("成本收益表", CheckFinanceSummaryController.launch()),
                 new Pair<String, Parent>("新建付款单", PaymentFormController.launch()),
-                new Pair<String, Parent>("查看系统日志", CheckInitInfoController.launch())
+                new Pair<String, Parent>("查看收款单", CheckRevenueFormController.launch()),
+                new Pair<String, Parent>("查看系统日志", CheckLogController.launch()),
+                new Pair<String, Parent>("查看期初建账", CheckInitInfoController.launch()),
+                new Pair<String, Parent>("进行期初建账", NewInitController.launch())
         ));
 
         return node;

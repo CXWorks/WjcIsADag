@@ -165,9 +165,7 @@ public class RMIHelper {
 	public static StoreModelDataService getStoreModelDataService() {
 		return storeModelDataService;
 	}
-	public static LogDataService getLogDataService() {
-		return logDataService;
-	}
+
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}

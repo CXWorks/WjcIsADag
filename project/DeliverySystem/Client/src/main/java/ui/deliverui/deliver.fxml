@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.deliverui.deliverController">
    <children>
       <TextField fx:id="id_Search_Field" layoutX="53.0" layoutY="50.0" prefHeight="23.0" prefWidth="127.0" text="请输入订单号" />
@@ -16,7 +15,7 @@
           <TableColumn prefWidth="126.0" text="未派出订单号" />
         </columns>
       </TableView>
-      <TableView fx:id="info_Column" layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="146.0">
+      <TableView fx:id="info_Column" layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="144.0">
         <columns>
             <TableColumn prefWidth="145.0" text="订单信息" />
         </columns>

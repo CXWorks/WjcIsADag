@@ -10,6 +10,7 @@ import po.orderdata.DeliverTypeEnum;
 import bl.blService.configurationblService.ConfigurationBLService;
 import factory.ConfigurationFactory;
 import factory.LoginFactory;
+import ui.fxml.MyFXMLLoader;
 import ui.loginui.LoginController;
 import util.R.string;
 import vo.configurationvo.City2DVO;
@@ -75,7 +76,7 @@ public class ConfigurationController {
 
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
+        return MyFXMLLoader.load("configuration.fxml");
     }
 
     public void initialize(){

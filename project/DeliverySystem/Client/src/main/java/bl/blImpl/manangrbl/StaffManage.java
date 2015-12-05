@@ -70,9 +70,9 @@ public class StaffManage implements ManageblStaffService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblStaffService#searchStaff(vo.managevo.staff.StaffVO)
 	 */
-	public StaffVO searchStaff(StaffVO staff) {
+	public StaffVO searchStaff(String staffID) {
 		try {
-			StaffPO po=memberDataService.getPerson(staff.getID());
+			StaffPO po=memberDataService.getPerson(staffID);
 			StaffVO vo=(StaffVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {

@@ -22,4 +22,13 @@ public class TimeConvert {
         calendar.setTime(date);
         return calendar;
     }
+
+    public static String getDisplayDate(Calendar calendar){
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // month is a stupid design
+        return year + "-" + (month + 1) + "-" + day;
+    }
 }

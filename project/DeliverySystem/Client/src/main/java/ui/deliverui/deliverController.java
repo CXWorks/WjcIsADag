@@ -2,6 +2,7 @@ package ui.deliverui;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import bl.blService.receiveblService.ReceiveBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import ui.loginui.LoginController;
+import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.receivevo.ReceiveVO;
 import javafx.event.ActionEvent;
@@ -35,6 +37,9 @@ public class deliverController {
 
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
+	ArrayList<String> toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
+	
+	
 	public static Parent launch() throws IOException {
 		return FXMLLoader.load(LoginController.class.getResource("deliver.fxml"));
 	}
@@ -43,6 +48,8 @@ public class deliverController {
 	@FXML
 	public void initialize(){
 		
+		
+		
 		//TODO 
 		 // initialize the choice box and the id_Field
 		date_DatePicker.setValue(LocalDate.now());
@@ -50,7 +57,8 @@ public class deliverController {
 	}
 
 	public void search(ActionEvent e){
-
+		String filter = id_Search_Field.getText();
+		
 	}
 
     public void commit(ActionEvent actionEvent) {
@@ -78,9 +86,5 @@ public class deliverController {
 	public void saveDraft(ActionEvent actionEvent) {
 		deliverBLService.saveDraft(generateVO(null));
 	}
-
-
-
-
 
 }

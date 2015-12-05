@@ -35,7 +35,6 @@ import rmi.transportdata.LoadDataService;
  */
 public class CacheHelper {
 	//
-	private static LogDataService logDataService;
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;
@@ -154,9 +153,7 @@ public class CacheHelper {
 	public static StoreModelDataService getStoreModelDataService() {
 		return storeModelDataService;
 	}
-	public static LogDataService getLogDataService() {
-		return logDataService;
-	}
+
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;
 	}
