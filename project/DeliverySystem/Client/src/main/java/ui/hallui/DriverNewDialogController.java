@@ -1,7 +1,6 @@
 package ui.hallui;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import po.memberdata.SexEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -20,7 +19,7 @@ import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import vo.managevo.staff.DriverVO;
 
-public class DriverEditDialogController {
+public class DriverNewDialogController {
 
 	public TextField ID_Field;
 	public TextField name_Field;
@@ -38,16 +37,16 @@ public class DriverEditDialogController {
 	private DriverVO editVO =new DriverVO(null);
 	public Stage stage;
 
-	public static DriverEditDialogController newDialog(DriverVO editVO) throws IOException {
+	public static DriverNewDialogController newDialog(DriverVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(DriverEditDialogController.class.getResource("driverEditDialog.fxml"));
+		loader.setLocation(DriverNewDialogController.class.getResource("driverNewDialog.fxml"));
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 
-		DriverEditDialogController controller = (DriverEditDialogController)loader.getController();
+		DriverNewDialogController controller = (DriverNewDialogController)loader.getController();
 		controller.editVO = editVO;
 		controller.stage = stage;
 		controller.init();
@@ -57,10 +56,7 @@ public class DriverEditDialogController {
 		
 	}
 	
-    private void init() {
-    	
-    	sexEnum=editVO.getSex();
-    	
+    public void init(){
     	sex_Box.setItems(
                 Enum2ObservableList.transit(SexEnum.values())
         );
@@ -70,20 +66,12 @@ public class DriverEditDialogController {
                 }
 		);
     	
-    	ID_Field.setText(editVO.getID());
-    	name_Field.setText(editVO.getName());
-    	personID_Field.setText(editVO.getPersonID());
-    	tel_Field.setText(editVO.getTel());
-    	carUnit_Field.setText(editVO.getInstitutionID());
-    	birth_Picker.setValue(LocalDate.parse(editVO.getBirth().toString()));
-    	licencePeriod_Picker.setValue(LocalDate.parse(editVO.getLicence_period().toString()));
-    	
-	}
-
+    }
 
 
 	public void ok(ActionEvent actionEvent){
 		//TODO solve sex and Picker
+		
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
 		//editVO.setSex(sex_Box.getValue());
@@ -93,6 +81,8 @@ public class DriverEditDialogController {
 		//editVO.setLicence_period(licencePeriod_Picker.getValue());
 		
 		stage.close();
+		
+		
 	}
 
 	public void cancel(ActionEvent actionEvent){

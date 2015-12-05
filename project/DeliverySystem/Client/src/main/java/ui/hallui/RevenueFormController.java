@@ -2,6 +2,7 @@ package ui.hallui;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import message.OperationMessage;
@@ -11,8 +12,13 @@ import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
 import tool.ui.SimpleEnumProperty;
 import ui.accountui.ManageAccountController;
+import userinfo.UserInfo;
+import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
+import vo.managevo.staff.StaffVO;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,24 +29,27 @@ import javafx.scene.control.*;
  * Created by Sissel on 2015/11/27.
  */
 public class RevenueFormController {
-    public TableView revenues_TableView;
-    public TableColumn date_TableColumn;
-    public TableColumn money_TableColumn;
-    public TableColumn deliver_TableColumn;
-    public TableColumn order_TableColumn;
+    public TableView<RevenueVO> revenues_TableView;
+    public TableColumn<RevenueVO,String> date_TableColumn;
+    public TableColumn<RevenueVO,String> money_TableColumn;
+    public TableColumn<RevenueVO,String> deliver_TableColumn;
+    public TableColumn<RevenueVO,String> order_TableColumn;
     public DatePicker revenue_DatePicker;
     public TextField money_Field;
     public TextField order_Field;
+    
+    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
+    private ArrayList<StaffVO> dlivers=revenueBLService.getInstitutionDelivers();
+    
     //这个是快递员的编号，，等jr搞定我来搬砖orz
     public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> deliver_ChoiceBox;
     
     
     private RevenueVO  revenueVO = new RevenueVO("");
     
-    public String institutionID="1001";
-    //怎么获得本地营业厅的编号还木有想好
+    public String institutionID=UserInfo.getInstitutionID();
     
-    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
+   
     
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
@@ -49,11 +58,35 @@ public class RevenueFormController {
 	@FXML
 	public void initialize(){
 		
+		
 	}
 	
 	
     public void add(ActionEvent actionEvent) {
-    	//TODO
+    	date_TableColumn.setCellValueFactory(
+                cellData->new SimpleStringProperty(cellData.getValue().getDate().toString())
+        );
+	money_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getAmount())
+        );
+	deliver_TableColumn.setCellValueFactory(
+            cellData -> new SimpleStringProperty(cellData.getValue().getCreaterID())
+    );
+	order_TableColumn.setCellValueFactory(
+            cellData -> new SimpleStringProperty(cellData.getValue().getOrderID())
+    );
+	revenues_TableView.setItems(
+                FXCollections.observableArrayList(
+
+                )
+        );
+	revenues_TableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    System.out.println("selected " + newValue.orderID);
+                    
+                   // RevenueVO = newValue;
+                }
+        );
     }
 
     public void saveDraft(ActionEvent actionEvent) {

@@ -3,12 +3,14 @@ package bl.blImpl.manangrbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import rmi.memberdata.MemberDataService;
 import message.OperationMessage;
 import userinfo.UserInfo;
 import vo.FormVO;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 import bl.blService.manageblService.ManageblStaffService;
 import bl.clientNetCache.CacheHelper;
@@ -22,6 +24,7 @@ import tool.vopo.VOPOFactory;
  */
 public class StaffManage implements ManageblStaffService {
 	private MemberDataService<StaffPO> memberDataService;
+	private MemberDataService<DriverPO> memberDataService_driver;
 	private VOPOFactory vopoFactory;
 	public StaffManage(VOPOFactory vopoFactory){
 		memberDataService=CacheHelper.getMemberDataService_staff();
@@ -124,6 +127,22 @@ public class StaffManage implements ManageblStaffService {
 			}
 			return result;
 		} catch (RemoteException e) {
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblStaffService#searchDriver()
+	 */
+	@Override
+	public DriverVO searchDriver(String driverVO) {
+		try {
+			DriverPO po=memberDataService_driver.getPerson(driverVO);
+			DriverVO ans=(DriverVO)vopoFactory.transPOtoVO(po);
+			return ans;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}

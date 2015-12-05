@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import po.memberdata.StaffTypeEnum;
 import message.OperationMessage;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 
 /** 
@@ -29,4 +30,6 @@ public interface ManageblStaffService {
 	 * @return
 	 */
 	public String newStaffID(StaffTypeEnum staffType,String unitID);
+	
+	public DriverVO searchDriver(String  driverID);
 }
