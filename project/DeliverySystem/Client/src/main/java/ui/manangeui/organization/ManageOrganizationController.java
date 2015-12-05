@@ -81,9 +81,12 @@ public class ManageOrganizationController {
 				String te=url.toURL().toString();
 //				te=te.substring(0, 5)+"//"+te.substring(5);
 				System.out.println(te);
-				String script="src=\"http://api.map.baidu.com/api?v=2.0&ak=tb10CGBzf9V5EBweTKnLuogr\" var map = new BMap.Map(\"allmap\");  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  map.addControl(new BMap.MapTypeControl());   map.setCurrentCity(\"北京\");         map.enableScrollWheelZoom(true);";
+//				webEngine.
+				String script="<script type=\"text/javascript\"> var map = new BMap.Map(\"allmap\");  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  map.addControl(new BMap.MapTypeControl());   map.setCurrentCity(\"北京\");         map.enableScrollWheelZoom(true);</script>";
+				webEngine.loadContent(script);
 				webEngine.load(te);
-				webEngine.executeScript(script);
+				
+//				webEngine.executeScript(script);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -35,6 +35,7 @@ import rmi.transportdata.LoadDataService;
  */
 public class CacheHelper {
 	//
+	private static LogDataService logDataService;
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;
@@ -76,6 +77,7 @@ public class CacheHelper {
 	}
 	//
 	private static void initCacheService(){
+		logDataService=RMIHelper.getLogDataService();
 		orderDataService=RMIHelper.getOrderDataService();
 		accountDataService=RMIHelper.getAccountDataService();
 		chatRemindService=RMIHelper.getChatRemindService();
@@ -99,6 +101,10 @@ public class CacheHelper {
 		loadDataService=RMIHelper.getLoadDataService();
 
 
+	}
+	//
+	public static LogDataService getLogDataService(){
+		return logDataService;
 	}
 	//
 	public static OrderDataService getOrderDataService() {

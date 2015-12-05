@@ -30,4 +30,21 @@ public class LogVO extends InfoVO implements Serializable{
 	public LogPO toPO(){
 		return new LogPO( personID, time, info);
 	}
+	//
+	public boolean fuzzyCheck(String key){
+		if (personID.contains(key)) {
+			return true;
+		}
+		if (info.contains(key)) {
+			return true;
+		}
+		if (time.toString().contains(key)) {
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public String toString(){
+		return this.time.getTime().toString()+" "+personID+" "+info;
+	}
 }
