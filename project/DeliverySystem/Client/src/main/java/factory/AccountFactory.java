@@ -1,7 +1,9 @@
 package factory;
 
 import bl.blImpl.accountbl.AccountBLManageImpl;
+import bl.blImpl.accountbl.AccountBLRemindImpl;
 import bl.blService.accountblService.AccountBLManageService;
+import bl.blService.accountblService.AccountBLRemindService;
 import tool.vopo.VOPOFactory;
 
 /**
@@ -10,6 +12,7 @@ import tool.vopo.VOPOFactory;
 public class AccountFactory extends BLFactory{
 
     private static AccountBLManageService manageService;
+    private static AccountBLRemindService remindService;
 
     public static AccountBLManageService getManageService(){
         if(manageService == null){
@@ -17,4 +20,14 @@ public class AccountFactory extends BLFactory{
         }
         return manageService;
     }
+    
+
+
+    public static AccountBLRemindService getRemindService(){
+        if(remindService == null){
+        	remindService = new AccountBLRemindImpl();
+        }
+        return remindService;
+    }
+    
 }

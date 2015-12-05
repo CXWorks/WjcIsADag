@@ -10,15 +10,16 @@ import vo.financevo.BankAccountVO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class personAccountViewEditDialogController {
 
-	public TextField originalPassWord_Field;
-	public TextField newPassWord_Field;
-	public TextField againNewPassWord_Field;
+	public PasswordField originalPassWord_Field;
+	public PasswordField newPassWord_Field;
+	public PasswordField againNewPassWord_Field;
 	
 	private AccountVO editVO =  new AccountVO();
     public Stage stage;
@@ -39,17 +40,26 @@ public class personAccountViewEditDialogController {
         return controller;
     }
 
-	public void check(){
-		//TODO  检查输入密码以及两次新密码是否正确
+	public boolean check(String pw0,String pw1,String pw2){
+		if(pw1==pw2&&pw0==editVO.password){
+			return true;
+		}else{
+			return false;
+		}
 		
 	}
 	
 	
     public void ok(ActionEvent actionEvent) {
-        // TODO check
+        if(check(originalPassWord_Field.getText(),newPassWord_Field.getText(),againNewPassWord_Field.getText())){
         editVO.password = newPassWord_Field.getText();
         
-        stage.close();
+        System.out.println("modify password successfully!");
+        
+        stage.close();}else{
+        	System.out.println("modify password failed!");
+        	//TODO  
+        }
     }
 
     public void cancel(ActionEvent actionEvent) {

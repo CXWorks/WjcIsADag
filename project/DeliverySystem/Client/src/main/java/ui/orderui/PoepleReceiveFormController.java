@@ -11,6 +11,7 @@ import message.OperationMessage;
 import tool.ui.OrderVO2ColumnHelper;
 import ui.financeui.CheckRevenueFormController;
 import vo.ordervo.OrderVO;
+import vo.receivevo.ReceiveVO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,8 +55,8 @@ public class PoepleReceiveFormController {
 
 	public void commit(ActionEvent actionEvent) {
 
-		OrderVO ovo = generateOrderVO();
-		OperationMessage msg = obl.submit(ovo);
+		ReceiveVO rvo = generateReceiveVO(receiveBLService.newID());
+		OperationMessage msg = receiveBLService.submit(rvo);
         if(msg.operationResult){
             System.out.println("commit successfully");
             clear(null);
@@ -65,8 +66,9 @@ public class PoepleReceiveFormController {
 
 	}
 
-	public OrderVO generateOrderVO() {
-		//TODO
+	public ReceiveVO generateReceiveVO(String formID) {
+	
+		
 		return null;
 	}
 
@@ -78,7 +80,8 @@ public class PoepleReceiveFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		//TODO
+		ReceiveVO rvo= generateReceiveVO(null);
+		receiveBLService.saveDraft(rvo);
 	}
 
 	private void fillOrderTable(){
