@@ -79,8 +79,4 @@ public class deliverController {
 		deliverBLService.saveDraft(generateVO(null));
 	}
 
-
-
-
-
 }

@@ -65,7 +65,7 @@ public class NewAccountController {
 	}
 
     private AccountVO generateAccountVO(){
-        // TODO
+        // TODO check
         return new AccountVO(id_Field.getText(), password_Field.getText(), null);
     }
 }

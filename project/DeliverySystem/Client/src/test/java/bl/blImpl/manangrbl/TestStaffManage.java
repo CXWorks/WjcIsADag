@@ -53,7 +53,7 @@ public class TestStaffManage {
 	
 	@Test
 	public void testSearchStaff(){
-		assertNotNull(staff.searchStaff(s));
+		assertNotNull(staff.searchStaff("bitch"));
 	}
 	
 	@Test
