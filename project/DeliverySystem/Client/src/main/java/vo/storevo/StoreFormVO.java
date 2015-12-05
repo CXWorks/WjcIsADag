@@ -19,10 +19,12 @@ public abstract class StoreFormVO extends FormVO {
 		super(type, state, formID);
 	}
 
-	public String getIO(){
+	public String getIO() {
 		switch (this.formType) {
-		case STORE_IN:return "进库";
-		case STORE_OUT:return "出库";
+		case STORE_IN:
+			return "进库";
+		case STORE_OUT:
+			return "出库";
 		default:
 			return "非出入库单";
 		}
@@ -50,6 +52,16 @@ public abstract class StoreFormVO extends FormVO {
 
 	public Calendar getDate() {
 		return date;
+	}
+
+	public String getTime() {
+		int year = date.get(Calendar.YEAR); // 获取年
+		int month = date.get(Calendar.MONTH) + 1; // 获取月份，0表示1月份
+		int day = date.get(Calendar.DAY_OF_MONTH); // 获取当前天数
+		int time = date.get(Calendar.HOUR_OF_DAY); // 获取当前小时
+		int min = date.get(Calendar.MINUTE); // 获取当前分钟
+		int xx = date.get(Calendar.SECOND); // 获取当前秒
+		return year + "-" + month + "-"+ day + " "+time + ":" + min +":" + xx;
 	}
 
 	public String getDestination() {

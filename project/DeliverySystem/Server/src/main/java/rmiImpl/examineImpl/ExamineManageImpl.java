@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import message.ChatMessage;
 import message.OperationMessage;
@@ -17,11 +18,14 @@ import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
+import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import rmi.chatRemindService.ChatNewService;
 import rmi.examineService.ExamineManageService;
+import rmi.systemdata.LogDataService;
 import rmiImpl.chatRemindImpl.Reminder;
+import rmiImpl.systemdata.LogDataImpl;
 
 public class ExamineManageImpl extends UnicastRemoteObject implements
 		ExamineManageService {
@@ -33,14 +37,18 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 
 	private PassHelper pass_helper;
 
+	/*负责添加纪录到系统日志*/
+	private LogDataService log;
+
 	/*总经理的ID*/
-	private String managerID = "01000001";
+	private static String managerID = "01000001";
 
 	public ExamineManageImpl() throws RemoteException, MalformedURLException {
 		super();
 		this.queue = new ExamineQueue();
 		addMessage = new Reminder();
 		pass_helper = new PassHelper();
+		log = new LogDataImpl();
 	}
 
 	public ExamineQueue getQueue() {
@@ -78,17 +86,13 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 			break;
 		case STORE_IN:
 			StoreInPO sInPO = (StoreInPO) form;
-			sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
 			result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
+			pass_helper.getStoreModelDataService().setLocation(sInPO.getLocation());//改变数据库中这个位置的状态
 			break;
 		case STORE_OUT:
 			StoreOutPO sOutPO = (StoreOutPO) form;
-			OrderPO orderPO = pass_helper.getOrderDataService().getFormPO(sOutPO.getOrderID());
-			sOutPO.setMoney(orderPO.getMoney());
-			ArrayList<String> IDs = orderPO.getFormIDs();
-			String inID = IDs.get(IDs.size()-1);
-			sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 			result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
+			pass_helper.getStoreModelDataService().setLocation(sOutPO.getLocation());//改变数据库中这个位置的状态
 			break;
 		case TRANSPORT_CENTER:
 			result = pass_helper.getTransportDataService().update(
@@ -103,6 +107,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 		ChatMessage mes = new ChatMessage(managerID,form.getCreaterID(),
 				"表单被修改：" + form.getFormID());
 		addMessage.add(form.getCreaterID(), mes);
+		log.insert(new LogPO(managerID, Calendar.getInstance(), "修改表单:" + form.getFormID()));
 		return result;
 	}
 
@@ -134,12 +139,20 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 						(RevenuePO) tmp);
 				break;
 			case STORE_IN:
-				result = pass_helper.getStoreFormDataService().insertStoreInPO(
-						(StoreInPO) tmp);
+				StoreInPO sInPO = (StoreInPO) tmp;
+				sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
+				result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
+				pass_helper.getStoreModelDataService().setLocation(sInPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case STORE_OUT:
-				result = pass_helper.getStoreFormDataService().insertStoreOutPO(
-						(StoreOutPO) tmp);
+				StoreOutPO sOutPO = (StoreOutPO) tmp;
+				OrderPO orderPO = pass_helper.getOrderDataService().getFormPO(sOutPO.getOrderID());
+				sOutPO.setMoney(orderPO.getMoney());
+				ArrayList<String> IDs = orderPO.getFormIDs();
+				String inID = IDs.get(IDs.size()-1);
+				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
+				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
+				pass_helper.getStoreModelDataService().setLocation(sOutPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case TRANSPORT_CENTER:
 				result = pass_helper.getTransportDataService().insert(
@@ -158,6 +171,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				ChatMessage chat = new ChatMessage(managerID,tmp.getCreaterID(),
 						"表单通过：" + tmp.getFormID());
 				addMessage.add(tmp.getCreaterID(), chat);
+				log.insert(new LogPO(managerID, Calendar.getInstance(), "新建表单:" + tmp.getFormID()));
 			}
 		}
 		return mes;
@@ -217,6 +231,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				ChatMessage chat = new ChatMessage(managerID,tmp.getCreaterID(),
 						"表单被删除：" + tmp.getFormID());
 				addMessage.add(tmp.getCreaterID(), chat);
+				log.insert(new LogPO(managerID, Calendar.getInstance(), "删除表单:" + tmp.getFormID()));
 			}
 		}
 		return mes;

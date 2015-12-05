@@ -54,7 +54,7 @@ public class StoreSummaryController {
 	@FXML
 	public void initialize() {
 		time_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getDate().toString())
+                cellData->new SimpleStringProperty(cellData.getValue().getTime())
         );
 		orderID_Column.setCellValueFactory(
                 cellData->new SimpleStringProperty(cellData.getValue().getOrderID())

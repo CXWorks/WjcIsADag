@@ -26,12 +26,13 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
-	private int ID;
+	private static int ID;
 
 	public LogDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "log";
+		ID = this.getMaxID();
 		conn = ConnecterHelper.connSQL(conn);
 	}
 
@@ -64,10 +65,8 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	public OperationMessage insert(LogPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name
-				+ "`(ID,personID,time,info) " + "values('" + ++ID + "','"
-				+ po.getPersonID() + "','" + po.getTimeForSQL() + "','"
-				+ po.getInfo() + "')";
+		String insert = "insert into `" + Table_Name + "`(ID,personID,time,info) " + "values('" + ++ID + "','"
+				+ po.getPersonID() + "','" + po.getTimeForSQL() + "','" + po.getInfo() + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -83,26 +82,19 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	}
 
 	@Override
-	public ArrayList<LogPO> getByTime(Calendar start, Calendar end)
-			throws RemoteException {
+	public ArrayList<LogPO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		Timestamp start_t = new Timestamp(start.getTimeInMillis());
-		Timestamp end_t = new Timestamp(end.getTimeInMillis());
-		String selectIn = "select * from `" + Table_Name + "`";
+		String selectIn = "select * from `" + Table_Name + "` where (unix_timestamp(`date`) - '"
+				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
+				+ end.getTime().getTime() / 1000 + "' <= 0";
 		ResultSet rs = null;
 		LogPO log = null;
 		ArrayList<LogPO> result = new ArrayList<LogPO>();
-		Timestamp tmp = null;
 		try {
 			statement = conn.prepareStatement(selectIn);
 			rs = statement.executeQuery(selectIn);
 			while (rs.next()) {
-				tmp = rs.getTimestamp("time");
-				if (!(tmp.getTime() > start_t.getTime() || tmp.getTime() < end_t
-						.getTime()))
-					continue;
-				log = new LogPO(rs.getString("personID"),
-						tmp,rs.getString("info"));
+				log = new LogPO(rs.getString("personID"), rs.getTimestamp("time"), rs.getString("info"));
 				result.add(log);
 			}
 		} catch (SQLException e) {
