@@ -19,23 +19,13 @@ public class CarVO extends InfoVO{
 	private String chassisID;//chassis是车辆底盘的意思
 	private Calendar buyTime;
 	//
-	/**
-	 * @param free
-	 * @param carID
-	 * @param useTime
-	 * @param imag
-	 * @param engineID
-	 * @param nameID
-	 * @param chassisID
-	 * @param buyTime
-	 */
+
 	public CarVO(){
 		super(InfoEnum.CAR);
 	}
 
 
 	/**
-	 * @param infoEnum
 	 * @param free
 	 * @param carID
 	 * @param useTime

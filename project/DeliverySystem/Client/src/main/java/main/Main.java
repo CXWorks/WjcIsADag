@@ -6,8 +6,11 @@ package main;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
 import ui.financeui.ManageBankAccountController;
@@ -25,8 +28,10 @@ import ui.storeui.StorePartitionController;
 import ui.storeui.StoreSummaryController;
 import ui.accountui.PersonalAccountViewController;
 import ui.accountui.personAccountViewEditDialogController;
+import userinfo.UserInfo;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Client//main//Main.java
@@ -38,11 +43,48 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private static Map<StaffTypeEnum, Parent> panes;
+    private static Pane loginPane;
+
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+        //CacheHelper.initializeCache();
         launch(args);
+    }
+
+    /**
+     * 返回登录界面
+     */
+    public static void logOut(){
+        primaryStage.setScene(new Scene(loginPane));
+    }
+
+    private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
+        try{
+            switch (staffTypeEnum){
+                case BURSAR:
+                    return FinanceNavigation.launch();
+
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 根据UserInfo加载对应的界面
+     */
+    private static void logIn(){
+        StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
+        Parent pane = panes.get(staffTypeEnum);
+
+        if(pane == null){
+            pane = launchByStaff(staffTypeEnum);
+            panes.put(staffTypeEnum, pane);
+        }
+        primaryStage.setScene(new Scene(pane));
     }
 
     @Override
@@ -58,7 +100,7 @@ public class Main extends Application {
 //        		StoreOutFormController.launch()
 //        		StoreSummaryController.launch()
 //        		StorePartitionController.launch()
-        		ConfigurationController.launch()
+ //       		ConfigurationController.launch()
 //                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
@@ -69,7 +111,7 @@ public class Main extends Application {
 //                NewOrderController.launch()
                 //PersonalAccountViewController.launch()
                 //CheckFinanceChartController.launch()
-//                FinanceNavigation.launch()
+                FinanceNavigation.launch()
 //        		ManageOrganizationController.launch()
 //        		ManageSalaryController.launch()
 //        		ConfigurationController.launch()
@@ -78,7 +120,6 @@ public class Main extends Application {
         		//PoepleReceiveFormController.launch()
         		//StoreSummaryController.launch()
 //        		ManageStaffController.launch()
-
         ));
 
         primaryStage.show();

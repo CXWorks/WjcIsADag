@@ -49,7 +49,7 @@ public class CheckFinanceSummaryController {
     @FXML
     public void initialize(){
         date_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().date.toString())
+                cellData -> new SimpleStringProperty(TimeConvert.getDisplayDate(cellData.getValue().date))
         );
         type_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getFormType().getChinese())

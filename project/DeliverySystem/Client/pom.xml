@@ -39,6 +39,15 @@
   </dependencies>
 
   <build>
+      <resources>
+          <resource>
+              <directory>main/java/ui/fxml</directory>
+              <targetPath>ui/fxml</targetPath>
+              <includes>
+                  <include>**/*.fxml</include>
+              </includes>
+          </resource>
+      </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
