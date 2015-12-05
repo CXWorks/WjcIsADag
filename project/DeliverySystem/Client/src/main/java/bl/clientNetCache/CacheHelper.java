@@ -55,7 +55,6 @@ public class CacheHelper {
 	private static ReceiveDataService receiveDataService;
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
-	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 	//
@@ -77,7 +76,6 @@ public class CacheHelper {
 	}
 	//
 	private static void initCacheService(){
-		logDataService=RMIHelper.getLogDataService();
 		orderDataService=RMIHelper.getOrderDataService();
 		accountDataService=RMIHelper.getAccountDataService();
 		chatRemindService=RMIHelper.getChatRemindService();
@@ -103,9 +101,6 @@ public class CacheHelper {
 
 	}
 	//
-	public static LogDataService getLogDataService(){
-		return logDataService;
-	}
 	//
 	public static OrderDataService getOrderDataService() {
 		return orderDataService;
