@@ -40,11 +40,12 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "order";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
-		// this.newID(null);
-		// ID_MAX--;
+		this.newID(null);
+		ID_MAX--;
+		System.out.println(ID_MAX);
 	}
 
 	public Connection getConn() {

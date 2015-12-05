@@ -5,11 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnecterHelper {
+
+	private static Connection conn = connSQL();
+
+	public static Connection getConn() {
+		return conn;
+	}
+
 	// connect to MySQL
-	 public static Connection connSQL(Connection conn) {
+	 public static Connection connSQL() {
 		String url = "jdbc:mysql://localhost:3306/2333?characterEncoding=UTF-8";
 		String username = "root";
-		String password = "123456"; // 加载驱动程序以连接数据库
+		String password = ""; // 加载驱动程序以连接数据库
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, username, password);
@@ -28,7 +35,7 @@ public class ConnecterHelper {
 	}
 
 	// disconnect to MySQL
-	 public static void deconnSQL(Connection conn) {
+	 public static void deconnSQL() {
 		try {
 			if (conn != null)
 				conn.close();

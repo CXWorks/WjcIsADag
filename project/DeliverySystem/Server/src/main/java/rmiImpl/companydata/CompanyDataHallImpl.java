@@ -8,15 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
+import po.systemdata.LogPO;
 import rmi.companydata.CompanyDataHallService;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 
@@ -30,7 +33,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	public CompanyDataHallImpl() throws RemoteException {
 		super();
 		Table_Name = "hall";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {
@@ -79,8 +82,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
 						counterman, rs.getString("nearCenterID"));
 				result.add(temp);
-				ConnecterHelper.deconnSQL(s1.getConn());
-				ConnecterHelper.deconnSQL(s2.getConn());
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -92,7 +93,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		return result;
 	}
 
-	public OperationMessage addHall(HallPO po) {
+	public OperationMessage addHall(HallPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String dr = "";
@@ -137,10 +138,14 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新建营业厅:" + po.getHallID()));
+
 		return result;
 	}
 
-	public OperationMessage deleteHall(HallPO hall) {
+	public OperationMessage deleteHall(HallPO hall) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `hallID` = '" + hall.getHallID() + "'";
@@ -153,10 +158,15 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除营业厅:" + hall.getHallID()));
+
 		return result;
 	}
 
-	public OperationMessage modifyHall(HallPO hall) {
+	public OperationMessage modifyHall(HallPO hall) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteHall(hall).operationResult)

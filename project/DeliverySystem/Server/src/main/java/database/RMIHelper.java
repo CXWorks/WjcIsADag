@@ -80,7 +80,7 @@ public class RMIHelper {
 	private static BankAccountDataService bankAccountDataService;
 	private static PaymentDataService paymentDataService;
 	private static RevenueDataService revenueDataService;
-	// private static InitialDataService initialDataService;
+//	private static InitialDataService initialDataService;
 	private static MemberDataService<DriverPO> memberDataService_driver;
 	private static MemberDataService<StaffPO> memberDataService_staff;
 	private static OrderDataService orderDataService;
@@ -91,26 +91,27 @@ public class RMIHelper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 
-	public static void createService() throws RemoteException, MalformedURLException{
+	public static void createService() throws RemoteException, MalformedURLException {
 		accountDataService = new AccountDataImpl();
 		chatRemindService = new ChatRemindImpl();
 		companyDataCarService = new CompanyDataCarImpl();
 		companyDataCenterService = new CompanyDataCenterImpl();
-		companyDataHallService =  new CompanyDataHallImpl();
+		companyDataHallService = new CompanyDataHallImpl();
 		configurationDataService = new ConfigurationDataImpl();
 		deliverDataService = new DeliverDataImpl();
 		examineManageService = new ExamineManageImpl();
 		examineSubmitService = new ExamineSubmitImpl(examineManageService.getQueue());
-		bankAccountDataService =  new BankAccountDataImpl();
-		paymentDataService =  new PaymentDataImpl();
+		bankAccountDataService = new BankAccountDataImpl();
+		paymentDataService = new PaymentDataImpl();
 		revenueDataService = new RevenueDataImpl();
-		memberDataService_driver =  new DriverDataImpl();
+		//
+		memberDataService_driver = new DriverDataImpl();
 		memberDataService_staff = new StaffDataImpl();
 		orderDataService = new OrderDataImpl();
 		receiveDataService = new ReceiveDataImpl();
 		storeFormDataService = new StoreFormDataImpl();
-		storeModelDataService =  new StoreModelDataImpl();
-		logDataService =  new LogDataImpl();
+		storeModelDataService = new StoreModelDataImpl();
+		logDataService = new LogDataImpl();
 		transportDataService = new CenterOutDataImpl();
 		loadDataService = new LoadDataImpl();
 	}
@@ -132,7 +133,7 @@ public class RMIHelper {
 		Naming.rebind(url + "BankAccountDataService",bankAccountDataService);
 		Naming.rebind(url + "PaymentDataService",paymentDataService);
 		Naming.rebind(url + "RevenueDataService",revenueDataService );
-		// Naming.rebind(url + "InitialDataService",);
+//		Naming.rebind(url + "InitialDataService",initialDataService);
 		Naming.rebind(url + "MemberDataService_driver",memberDataService_driver);
 		Naming.rebind(url + "MemberDataService_staff", memberDataService_staff);
 		Naming.rebind(url + "OrderDataService",orderDataService );
@@ -144,27 +145,15 @@ public class RMIHelper {
 		Naming.rebind(url + "LoadDataService",loadDataService);
 	}
 
-	public static void closeServer() throws RemoteException, MalformedURLException, NotBoundException{
-		ConnecterHelper.deconnSQL(accountDataService.getConn());
-		ConnecterHelper.deconnSQL(companyDataCarService.getConn());
-		ConnecterHelper.deconnSQL(companyDataCenterService.getConn());
-		ConnecterHelper.deconnSQL(companyDataHallService.getConn());
-		ConnecterHelper.deconnSQL(configurationDataService.getConn());
-		ConnecterHelper.deconnSQL(deliverDataService.getConn());
-		ConnecterHelper.deconnSQL(bankAccountDataService.getConn());
-		ConnecterHelper.deconnSQL(paymentDataService.getConn());
-		ConnecterHelper.deconnSQL(revenueDataService.getConn());
-		ConnecterHelper.deconnSQL(memberDataService_driver.getConn());
-		ConnecterHelper.deconnSQL(memberDataService_staff.getConn());
-		ConnecterHelper.deconnSQL(orderDataService.getConn());
-		ConnecterHelper.deconnSQL(receiveDataService.getConn());
-		ConnecterHelper.deconnSQL(storeFormDataService.getConn());
-		ConnecterHelper.deconnSQL(storeModelDataService.getConn());
-		ConnecterHelper.deconnSQL(logDataService.getConn());
-		ConnecterHelper.deconnSQL(transportDataService.getConn());
-		ConnecterHelper.deconnSQL(loadDataService.getConn());
+	public static void closeServer() throws RemoteException, MalformedURLException, NotBoundException {
+		ConnecterHelper.deconnSQL();
 
 		java.rmi.server.UnicastRemoteObject.unexportObject(reg, true);
 		reg = null;
 	}
+
+	public static LogDataService getLogDataService() {
+		return logDataService;
+	}
+
 }

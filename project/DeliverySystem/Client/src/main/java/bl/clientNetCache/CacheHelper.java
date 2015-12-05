@@ -22,6 +22,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
@@ -34,6 +35,7 @@ import rmi.transportdata.LoadDataService;
  */
 public class CacheHelper {
 	//
+	private static LogDataService logDataService;
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;
@@ -53,7 +55,7 @@ public class CacheHelper {
 	private static ReceiveDataService receiveDataService;
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
-	private static SystemDataService systemDataService;
+	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 	//
@@ -75,6 +77,7 @@ public class CacheHelper {
 	}
 	//
 	private static void initCacheService(){
+		logDataService=RMIHelper.getLogDataService();
 		orderDataService=RMIHelper.getOrderDataService();
 		accountDataService=RMIHelper.getAccountDataService();
 		chatRemindService=RMIHelper.getChatRemindService();
@@ -93,11 +96,15 @@ public class CacheHelper {
 		receiveDataService=RMIHelper.getReceiveDataService();
 		storeFormDataService=RMIHelper.getStoreFormDataService();
 		storeModelDataService=RMIHelper.getStoreModelDataService();
-		systemDataService=RMIHelper.getSystemDataService();
+		logDataService=RMIHelper.getLogDataService();
 		transportDataService=RMIHelper.getTransportDataService();
 		loadDataService=RMIHelper.getLoadDataService();
 
 
+	}
+	//
+	public static LogDataService getLogDataService(){
+		return logDataService;
 	}
 	//
 	public static OrderDataService getOrderDataService() {
@@ -152,8 +159,8 @@ public class CacheHelper {
 	public static StoreModelDataService getStoreModelDataService() {
 		return storeModelDataService;
 	}
-	public static SystemDataService getSystemDataService() {
-		return systemDataService;
+	public static LogDataService getLogDataService() {
+		return logDataService;
 	}
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;

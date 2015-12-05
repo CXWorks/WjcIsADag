@@ -32,7 +32,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "centerout";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {

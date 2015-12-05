@@ -6,8 +6,10 @@ import po.financedata.BankAccountPO;
 import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
 import po.receivedata.ReceivePO;
+import po.systemdata.LogPO;
 import rmi.financedata.BankAccountDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -16,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 public class BankAccountDataImpl extends UnicastRemoteObject implements
@@ -30,7 +33,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "bank_account";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 		this.getNewBankID();
 		ID_MAX--;
 	}
@@ -123,6 +126,10 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + po.getBankID()));
+
 		return result;
 	}
 
@@ -141,6 +148,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + id));
+
 		return result;
 	}
 

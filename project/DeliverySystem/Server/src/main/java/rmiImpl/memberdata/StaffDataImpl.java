@@ -8,14 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import message.OperationMessage;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.receivedata.ReceivePO;
+import po.systemdata.LogPO;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 import rmiImpl.receivedata.ReceiveDataImpl;
 
 public class StaffDataImpl extends UnicastRemoteObject implements MemberDataService<StaffPO> {
@@ -29,7 +32,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "staff";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {
@@ -62,7 +65,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		return result;
 	}
 
-	public OperationMessage modifyStaff(StaffPO after) {
+	public OperationMessage modifyStaff(StaffPO after) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.dismissStaff(after).operationResult)
@@ -73,7 +76,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			return result;
 	}
 
-	public OperationMessage addStaff(StaffPO po) {
+	public OperationMessage addStaff(StaffPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String add = "insert into `" + Table_Name + "`(ID,staff,name,age,personID,sex,love,institutionID,typeID) "
@@ -91,10 +94,14 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "新增员工:" + po.getID()));
+
 		return result;
 	}
 
-	public OperationMessage dismissStaff(StaffPO staff) {
+	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + staff.getID() + "'";
@@ -107,6 +114,11 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "解雇员工:" + staff.getID()));
+
 		return result;
 	}
 

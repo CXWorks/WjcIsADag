@@ -25,7 +25,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "revenue";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	@Override

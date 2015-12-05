@@ -1,6 +1,7 @@
 package factory;
 
 
+import tool.vopo.VOPOFactory;
 import bl.blImpl.logbl.LogblImpl;
 import bl.blService.logblService.LogblService;
 
@@ -13,7 +14,7 @@ public class LogBLFactory extends BLFactory {
 
     public static LogblService getLogblService(){
         if(logblService == null){
-            logblService = new LogblImpl();
+            logblService = new LogblImpl(new VOPOFactory());
         }
         return logblService;
     }
