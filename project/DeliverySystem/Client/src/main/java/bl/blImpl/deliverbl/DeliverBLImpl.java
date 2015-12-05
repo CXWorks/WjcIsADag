@@ -43,7 +43,7 @@ public class DeliverBLImpl implements DeliverBLService {
 	public String newID() {
 		String unitID=UserInfo.getInstitutionID();
 		try {
-			String ID=deliverDataService.newID("0000000");
+			String ID=deliverDataService.newID(unitID);
 			return ID;
 		} catch (RemoteException e) {
 			return null;

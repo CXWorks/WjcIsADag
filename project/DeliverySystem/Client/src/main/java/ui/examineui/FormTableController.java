@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -44,6 +45,7 @@ public class FormTableController {
 	}
 	//
 	public void initialize(){
+		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		this.setColumn(null);
 		//
 		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID.substring(9, 17)));

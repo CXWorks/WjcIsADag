@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 
+import netscape.javascript.JSObject;
+
 import com.sun.glass.ui.EventLoop.State;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import po.InfoEnum;
 import javafx.collections.FXCollections;
@@ -66,12 +69,12 @@ public class ManageOrganizationController {
 			if (webEngine==null) {
 				System.out.println("null");
 			}
-			this.webView.getEngine().getLoadWorker().stateProperty().addListener(
-					(observable,oldState,newState)->{if (newState==javafx.concurrent.Worker.State.SUCCEEDED){
-						System.out.println("test");
-					} {
+//			this.webView.getEngine().getLoadWorker().stateProperty().addListener(
+//					(observable,oldState,newState)->{if (newState==javafx.concurrent.Worker.State.SUCCEEDED){
+//						
+//					} {
 				
-			}});
+//			}});
 			File file=new File("src/main/java/ui/manangeui/organization/map.html");
 			
 			try {
@@ -82,10 +85,16 @@ public class ManageOrganizationController {
 //				te=te.substring(0, 5)+"//"+te.substring(5);
 				System.out.println(te);
 //				webEngine.
-				String script="<script type=\"text/javascript\"> var map = new BMap.Map(\"allmap\");  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  map.addControl(new BMap.MapTypeControl());   map.setCurrentCity(\"北京\");         map.enableScrollWheelZoom(true);</script>";
-				webEngine.loadContent(script);
+//				String script="<script type=\"text/javascript\"> var map = new BMap.Map(\"allmap\");  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  map.addControl(new BMap.MapTypeControl());   map.setCurrentCity(\"北京\");         map.enableScrollWheelZoom(true);</script>";
+//				webEngine.loadContent(script);
 				webEngine.load(te);
-				
+//				JSObject js=
+//				if (js==null) {
+//					System.out.println("null");
+//				}
+//				System.out.println(js.getMember("BMap"));
+//				JSObject jsObject=(JSObject)webEngine.executeScript("window");
+//				jsObject.setMember("tr", new test());
 //				webEngine.executeScript(script);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -111,5 +120,11 @@ public class ManageOrganizationController {
 
 	    public void saveDraft(ActionEvent e){
 
+	    }
+	    
+	    class test{
+	    	public void tt(){
+	    		System.out.println("succeed");
+	    	}
 	    }
 }
