@@ -26,7 +26,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "payment";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	@Override

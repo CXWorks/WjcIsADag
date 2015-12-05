@@ -8,14 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import message.OperationMessage;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
+import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 
 public class DriverDataImpl extends UnicastRemoteObject implements MemberDataService<DriverPO> {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +31,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "driver";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	@Override
@@ -94,6 +97,10 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "新增司机:" + po.getID()));
+
 		return result;
 	}
 
@@ -111,6 +118,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "解雇司机:" + po.getID()));
+
 		return result;
 	}
 

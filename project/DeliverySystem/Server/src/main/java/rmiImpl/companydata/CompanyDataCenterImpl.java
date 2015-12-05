@@ -8,15 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
+import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import rmi.companydata.CompanyDataCenterService;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 
@@ -31,7 +34,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "center";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {
@@ -68,7 +71,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 				}
 				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), storeman, counterman);
 				result.add(temp);
-				ConnecterHelper.deconnSQL(staff.getConn());
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -104,7 +106,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		return cityID + "0" + added;
 	}
 
-	public OperationMessage addCenter(CenterPO po) {
+	public OperationMessage addCenter(CenterPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String s = "";
@@ -140,10 +142,14 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新建中转中心:" + po.getCenterID()));
+
 		return result;
 	}
 
-	public OperationMessage deleteCenter(CenterPO center) {
+	public OperationMessage deleteCenter(CenterPO center) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + center.getCenterID() + "'";
@@ -156,10 +162,15 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除中转中心:" + center.getCenterID()));
+
 		return result;
 	}
 
-	public OperationMessage modifyCenter(CenterPO center) {
+	public OperationMessage modifyCenter(CenterPO center) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteCenter(center).operationResult)

@@ -45,7 +45,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 		super();
 		Store_In = "store_in";
 		Store_Out = "store_out";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {

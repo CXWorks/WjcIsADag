@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -23,8 +24,10 @@ import po.configurationdata.enums.PackEnum;
 import po.financedata.PaymentPO;
 import po.orderdata.DeliverTypeEnum;
 import po.receivedata.ReceivePO;
+import po.systemdata.LogPO;
 import rmi.configurationdata.ConfigurationDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 
 /**
  * 目前全是stub
@@ -55,7 +58,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		Pack = "pack";
 		Price = "price";
 		Proportion = "proportion";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {
@@ -78,6 +81,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("新建时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新增城市信息" + po.getName()));
+
 		return result;
 	}
 
@@ -95,6 +103,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除城市信息" + name ));
+
 		return result;
 	}
 
@@ -168,6 +181,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
 		}
+
 		return result;
 	}
 
@@ -223,6 +237,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			result = new OperationMessage(false, "修改的信息有误");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改薪水策略"));
 
 		return result;
 	}
@@ -285,6 +303,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("更新时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改包装价格"));
+
 		return result;
 	}
 
@@ -344,6 +367,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("更新时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费价格"));
+
 		return result;
 	}
 
@@ -404,6 +432,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			System.err.println("更新时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费比例"));
+
 		return result;
 	}
 

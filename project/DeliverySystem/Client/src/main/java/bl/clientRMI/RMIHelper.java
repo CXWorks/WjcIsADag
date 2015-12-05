@@ -61,10 +61,10 @@ public class RMIHelper {
 	private static ReceiveDataService receiveDataService;
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
-	private static SystemDataService systemDataService;
+	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
-	private static LogDataService logDataService;
+
 
 
 
@@ -166,8 +166,8 @@ public class RMIHelper {
 	public static StoreModelDataService getStoreModelDataService() {
 		return storeModelDataService;
 	}
-	public static SystemDataService getSystemDataService() {
-		return systemDataService;
+	public static LogDataService getLogDataService() {
+		return logDataService;
 	}
 	public static CenterOutDataService getTransportDataService() {
 		return transportDataService;

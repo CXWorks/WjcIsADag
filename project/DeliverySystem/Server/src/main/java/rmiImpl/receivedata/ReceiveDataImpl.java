@@ -32,7 +32,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "receive";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {

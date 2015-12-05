@@ -34,7 +34,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "deliver";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {

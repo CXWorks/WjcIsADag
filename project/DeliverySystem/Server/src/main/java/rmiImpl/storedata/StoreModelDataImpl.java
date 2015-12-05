@@ -7,12 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.tools.DocumentationTool.Location;
 
 import po.receivedata.ReceivePO;
+import po.systemdata.LogPO;
 import message.OperationMessage;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
@@ -21,6 +23,7 @@ import model.store.StoreModel;
 import model.store.StoreModelOperation;
 import rmi.storedata.StoreModelDataService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 
 public class StoreModelDataImpl extends UnicastRemoteObject implements
 		StoreModelDataService {
@@ -34,7 +37,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 	public StoreModelDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	@Override
@@ -113,6 +116,10 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("仓库管理人员", Calendar.getInstance(), "新增货架"));
+
 		return result;
 	}
 
@@ -133,6 +140,11 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements
 			result = new OperationMessage(false, "删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("仓库管理人员", Calendar.getInstance(), "移除货架"));
+
 		return result;
 	}
 

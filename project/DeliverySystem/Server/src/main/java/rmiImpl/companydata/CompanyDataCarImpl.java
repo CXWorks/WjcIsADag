@@ -7,12 +7,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import message.OperationMessage;
 import po.companydata.CarPO;
 import po.receivedata.ReceivePO;
+import po.systemdata.LogPO;
 import rmi.companydata.CompanyDataCarService;
 import database.ConnecterHelper;
+import database.RMIHelper;
 
 /**
  * Server//rmiImpl.companydata//CompanyDataCarImpl.java
@@ -32,7 +35,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "car";
-		conn = ConnecterHelper.connSQL(conn);
+		conn = ConnecterHelper.getConn();
 	}
 
 	public Connection getConn() {
@@ -86,7 +89,7 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 		return unitID + added;
 	}
 
-	public OperationMessage addCar(CarPO po) {
+	public OperationMessage addCar(CarPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID,engineID) "
@@ -104,10 +107,14 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			e.printStackTrace();
 		}
 
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "新建车辆:" + po.getCarID()));
+
 		return result;
 	}
 
-	public OperationMessage deleteCar(CarPO car) {
+	public OperationMessage deleteCar(CarPO car) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `carID` = '" + car.getCarID() + "'";
@@ -120,10 +127,15 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
+
+		//系统日志
+		if(result.operationResult==true)
+			RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "删除车辆:" + car.getCarID()));
+
 		return result;
 	}
 
-	public OperationMessage modifyCar(CarPO car) {
+	public OperationMessage modifyCar(CarPO car) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteCar(car).operationResult)

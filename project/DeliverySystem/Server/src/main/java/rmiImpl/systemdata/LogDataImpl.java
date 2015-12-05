@@ -6,14 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import message.OperationMessage;
-import po.FormPO;
-import po.storedata.StoreInPO;
-import po.storedata.StoreOutPO;
 import po.systemdata.LogPO;
 import rmi.systemdata.LogDataService;
 import database.ConnecterHelper;
@@ -32,8 +28,8 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "log";
+		conn = ConnecterHelper.getConn();
 		ID = this.getMaxID();
-		conn = ConnecterHelper.connSQL(conn);
 	}
 
 	@Override
