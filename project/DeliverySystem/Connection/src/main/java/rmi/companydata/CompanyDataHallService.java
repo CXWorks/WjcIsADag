@@ -8,15 +8,19 @@ import message.OperationMessage;
 import po.companydata.HallPO;
 import rmi.DataService;
 /**
- * 
+ *
  * @author cxworks
  *2015/10/24
  */
 public interface CompanyDataHallService extends DataService<HallPO>{
-	
+
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "CompanyDataHall";
-
+	/**
+	 * 获取营业厅
+	 * @return
+	 */
+	public HallPO getHallByID(String ID) throws RemoteException;
 	/**
 	 * 获取营业厅
 	 * @return

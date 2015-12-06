@@ -123,6 +123,8 @@ public class ManageBankAccountController {
                     // TODO test
                     System.out.println("selected " + newValue.accountName);
                     bankAccountVO = newValue;
+                    checkHistory(null);
+                    
                 }
         );
 

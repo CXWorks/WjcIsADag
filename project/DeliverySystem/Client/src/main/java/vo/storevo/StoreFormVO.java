@@ -28,6 +28,7 @@ public abstract class StoreFormVO extends FormVO {
 		default:
 			return "非出入库单";
 		}
+
 	}
 
 	public String getLocationForLog() {

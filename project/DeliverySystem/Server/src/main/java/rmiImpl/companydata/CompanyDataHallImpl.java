@@ -138,8 +138,8 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新建营业厅:" + po.getHallID()));
 
 		return result;
@@ -159,8 +159,8 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除营业厅:" + hall.getHallID()));
 
 		return result;
@@ -199,6 +199,58 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		String added = String.format("%03d", ID_MAX);
 
 		return cityID + "1" + added;
+	}
+
+	@Override
+	public HallPO getHallByID(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from `" + Table_Name + "`";
+		ResultSet rs = null;
+		HallPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
+			ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
+			ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
+			ArrayList<String> t1;
+			ArrayList<String> t2;
+			ArrayList<String> t3;
+			MemberDataService<StaffPO> s1 = new StaffDataImpl();
+			MemberDataService<DriverPO> s2 = new DriverDataImpl();
+			t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
+			t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
+			t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+			if (!rs.getString("driver").equalsIgnoreCase("")) {
+				t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
+				for (String tmp : t1) {
+					driver.add(s2.getPerson(tmp));
+				}
+			}
+			if (!rs.getString("deliver").equalsIgnoreCase("")) {
+				t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
+				for (String tmp : t2) {
+					deliver.add(s1.getPerson(tmp));
+				}
+			}
+			if (!rs.getString("counterman").equalsIgnoreCase("")) {
+				t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+				for (String tmp : t3) {
+					counterman.add(s1.getPerson(tmp));
+				}
+			}
+			result = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
+					counterman, rs.getString("nearCenterID"));
+
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

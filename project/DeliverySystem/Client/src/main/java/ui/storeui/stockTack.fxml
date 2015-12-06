@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StockTackController">
    <children>
@@ -15,7 +14,7 @@
       <Label layoutX="437.0" layoutY="421.0" text="当天序号" />
       <Button layoutX="588.0" layoutY="417.0" mnemonicParsing="false" onAction="#makeStockTack" text="重新盘点" />
       <Button layoutX="703.0" layoutY="417.0" mnemonicParsing="false" onAction="#exportExcel" text="导出Excel" />
-      <TableView layoutX="532.0" layoutY="48.0" prefHeight="354.0" prefWidth="240.0">
+      <TableView fx:id="order_TableView" layoutX="532.0" layoutY="48.0" prefHeight="354.0" prefWidth="240.0">
         <columns>
           <TableColumn fx:id="key_TableColumn" prefWidth="75.0" text="项目" />
           <TableColumn fx:id="value_TaxbleColumn" prefWidth="75.0" text="信息" />
@@ -24,5 +23,13 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <TreeTableView fx:id="store_TableView" layoutX="57.0" layoutY="48.0" prefHeight="354.0" prefWidth="452.0">
+        <columns>
+          <TreeTableColumn fx:id="area_Column" prefWidth="113.0" text="区域" />
+          <TreeTableColumn fx:id="row_Column" prefWidth="113.0" text="排号" />
+            <TreeTableColumn fx:id="shelf_Column" minWidth="0.0" prefWidth="113.0" text="架号" />
+            <TreeTableColumn fx:id="position_Column" prefWidth="113.0" text="位置" />
+        </columns>
+      </TreeTableView>
    </children>
 </AnchorPane>

@@ -110,7 +110,8 @@ public class Main extends Application {
 
         loginPane = (Pane)LoginController.launch();
 
-        primaryStage.setScene(new Scene( loginPane));
+//        primaryStage.setScene(new Scene( loginPane));
+        primaryStage.setScene(new Scene(ManageBankAccountController.launch()));
 
         primaryStage.show();
     }
