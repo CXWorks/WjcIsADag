@@ -56,6 +56,13 @@ public class CacheHelper {
 	private static StoreModelDataService storeModelDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
+
+	public static LogDataService getLogDataService() {
+		return logDataService;
+	}
+
+	private static LogDataService logDataService;
+
 	//
 	public static void  initializeCache() throws NetInitException{
 		RMIHelper.init();

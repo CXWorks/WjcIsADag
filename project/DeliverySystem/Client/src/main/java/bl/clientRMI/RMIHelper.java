@@ -62,6 +62,11 @@ public class RMIHelper {
 	private static StoreFormDataService storeFormDataService;
 	private static StoreModelDataService storeModelDataService;
 	private static LogDataService logDataService;
+
+	public static LogDataService getLogDataService() {
+		return logDataService;
+	}
+
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 
