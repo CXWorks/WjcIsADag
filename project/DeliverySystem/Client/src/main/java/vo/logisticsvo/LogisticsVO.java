@@ -58,4 +58,22 @@ public class LogisticsVO extends InfoVO{
 	public LogisticsVO(OrderPO order,ArrayList<String> location, ArrayList<String> time){
 		this(order.getNameFrom(), order.getNameTo(), location, time, null, order.getPhoneNumTo(), order.getGoodsNum(), order.getGoodsName(), order.getType());
 	}
+	public ArrayList<String> getLocation() {
+		return location;
+	}
+	public ArrayList<String> getTime() {
+		return time;
+	}
+	public String getLocal() {
+		return local;
+	}
+	public void setLocation(ArrayList<String> location) {
+		this.location = location;
+	}
+	public void setTime(ArrayList<String> time) {
+		this.time = time;
+	}
+	public void setLocal(String local) {
+		this.local = local;
+	}
 }

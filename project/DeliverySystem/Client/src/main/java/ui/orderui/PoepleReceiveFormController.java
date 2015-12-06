@@ -29,6 +29,7 @@ import javafx.scene.layout.Pane;
 public class PoepleReceiveFormController {
 
 
+
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
 	public TableView<OrderVOCheckItem> order_TableView;
@@ -38,10 +39,16 @@ public class PoepleReceiveFormController {
 
 	public TextField id_Field;
 
+	private OrderVO selected = null;
+//			new OrderVO(null, null, null, 
+//			null, null, null, null, null, null, null, 
+//			null, null, null, null, null, null, null, null, null);
+	private OrderVOCheckItem orderVoCheckItem = new OrderVOCheckItem(selected);
 	private List<OrderVOCheckItem> orders;
 
+	ReceiveBLService receivebl=FormFactory.getReceiveBLService();
 	OrderBLService obl = FormFactory.getOrderBLService();
-//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+	//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -61,17 +68,28 @@ public class PoepleReceiveFormController {
 		name_Column.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getNameTo())
 				);
+		order_TableView.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					// TODO test
+					System.out.println("selected " + newValue.getVo());}
+				);
+//		selected=newValue.getVo();
+//		orderVoCheckItem=newValue;
+
+
 		receive_DatePicker.setValue(LocalDate.now());
 	}
 
 	public void search(ActionEvent actionEvent){
+		//TODO
 		String id = id_Field.getText();
-		
+		OrderVO result=receivebl.getOrderVO(id);
+	//	order_TableView.setFocusModel();
 	}
 
 
 	public void commit(ActionEvent actionEvent) {
-		
+
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
 		OperationMessage msg = obl.submit(generateOrderVO(selected));
 		if(msg.operationResult){
@@ -84,8 +102,8 @@ public class PoepleReceiveFormController {
 	}
 
 	public OrderVO generateOrderVO(OrderVO ovo) {
-		
-		
+		//TODO
+
 		return null;
 	}
 

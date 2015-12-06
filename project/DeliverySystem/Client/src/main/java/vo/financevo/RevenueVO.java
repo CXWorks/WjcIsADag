@@ -11,6 +11,7 @@ import vo.FormVO;
 /**
  * Created by Sissel on 2015/10/24.
  */
+
 public class RevenueVO extends FinanceFormVO {
     public Calendar date;
     public String amount;
