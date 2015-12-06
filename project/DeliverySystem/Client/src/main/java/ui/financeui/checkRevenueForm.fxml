@@ -14,7 +14,7 @@
       <Label fx:id="sum_Label" layoutX="724.0" layoutY="408.0" text="999" />
       <TableView fx:id="revenue_TableView" layoutX="26.0" layoutY="85.0" prefHeight="306.0" prefWidth="755.0">
         <columns>
-          <TableColumn fx:id="orderID_Column" prefWidth="75.0" text="订单号" />
+          <TableColumn fx:id="orderCounts_Column" prefWidth="75.0" text="订单数目" />
           <TableColumn fx:id="deliver_Column" prefWidth="75.0" text="收款快递员" />
             <TableColumn fx:id="money_Column" prefWidth="75.0" text="金额" />
         </columns>

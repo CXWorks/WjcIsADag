@@ -29,7 +29,7 @@ public class TestRevenueBLImpl {
 	@Before
 	public void setUp() throws Exception {
 		re=new RevenueBLImpl(new VOPOFactory(),new DraftController());
-		revenue=new RevenueVO("11",Calendar.getInstance(), "300", "plane", "5839", "0034");
+		//revenue=new RevenueVO("11",Calendar.getInstance(), "300", "plane", "5839", "0034");
 	}
 
 	@Test

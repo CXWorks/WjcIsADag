@@ -15,7 +15,6 @@ import userinfo.Services;
 import vo.financevo.RevenueVO;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class CheckRevenueFormController {
     public TextField hall_Field;
     public Label hall_errLabel;
     public Label date_errLabel;
-    public TableColumn<RevenueVO, String> orderID_Column;
+    public TableColumn<RevenueVO, String> orderCounts_Column;
     public TableColumn<RevenueVO, String> deliver_Column;
     public TableColumn<RevenueVO, String> money_Column;
 
@@ -49,11 +48,8 @@ public class CheckRevenueFormController {
         formatCheckService = Services.formatCheckService;
         revenueBLService = Services.revenueBLService;
 
-        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , "999"));
-        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", "1999"));
-
-        orderID_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().orderID)
+        orderCounts_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(""+cellData.getValue().orderIDs.size())
         );
         deliver_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().deliverName)
