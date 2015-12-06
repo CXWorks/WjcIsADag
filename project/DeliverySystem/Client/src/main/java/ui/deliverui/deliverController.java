@@ -41,7 +41,7 @@ public class deliverController {
 	
 	
 	public static Parent launch() throws IOException {
-		return FXMLLoader.load(LoginController.class.getResource("deliver.fxml"));
+		return FXMLLoader.load(deliverController.class.getResource("deliver.fxml"));
 	}
 
 
