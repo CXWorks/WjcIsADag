@@ -11,10 +11,12 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <CheckBox fx:id="chooseAll_Box" layoutX="56.0" layoutY="4.0" mnemonicParsing="false" text="全选" />
-                  <Label fx:id="pass" layoutX="253.0" layoutY="5.0" onMouseClicked="#pass" text="通过" underline="true" />
-                  <Label fx:id="deny" layoutX="380.0" layoutY="5.0" text="未通过" underline="true" />
-                  <Label fx:id="modify" layoutX="526.0" layoutY="4.0" text="修改" underline="true" />
+                  <CheckBox fx:id="chooseAll_Box" layoutX="172.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="全选" />
+                  <Label fx:id="pass" layoutX="563.0" layoutY="5.0" onMouseClicked="#pass" text="通过" underline="true" />
+                  <Label fx:id="deny" layoutX="642.0" layoutY="5.0" onMouseClicked="#delete" text="未通过" underline="true" />
+                  <Label fx:id="modify" layoutX="725.0" layoutY="4.0" text="修改" underline="true" />
+                  <Label layoutX="291.0" layoutY="4.0" onMouseClicked="#oneKey" text="一键通过" underline="true" />
+                  <Label layoutX="60.0" layoutY="5.0" onMouseClicked="#refresh" text="刷新" underline="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

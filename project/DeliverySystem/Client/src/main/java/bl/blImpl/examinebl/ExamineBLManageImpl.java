@@ -22,9 +22,11 @@ import tool.vopo.VOPOFactory;
 public class ExamineBLManageImpl implements ExamineblManageService {
 	private ExamineManageService examineManageService;
 	private VOPOFactory vopoFactory;
+	private ArrayList<FormVO> formVOs;
 	public ExamineBLManageImpl(VOPOFactory vopoFactory){
 		this.examineManageService=CacheHelper.getExamineManageService();
 		this.vopoFactory=vopoFactory;
+		formVOs=new ArrayList<FormVO>();
 	}
 	
 
@@ -67,36 +69,14 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see blService.examineblService.ExamineblManageService#getForm(vo.FormVO)
 	 */
 	public FormVO getForm(String formID) {
-		try {
-			boolean found=false;
-			FormPO each=null;
-			ArrayList<FormPO> po=examineManageService.getForms();
-			for (int i = 0; i < po.size(); i++) {
-				each=po.get(i);
-				if (each.getFormID().equalsIgnoreCase(formID)) {
-					found=true;
-					break;
-				}
+		this.refresh();
+		for (FormVO formVO : formVOs) {
+			if (formVO.formID.equalsIgnoreCase(formID)) {
+				return formVO;
 			}
-			//
-			if (found) {
-				FormVO vo=(FormVO)vopoFactory.transPOtoVO(each);
-				return vo;
-			} else {
-				return null;
-			}
-		} catch (RemoteException e) {
-			return null;
 		}
-	}
+		return null;
 
-	/* (non-Javadoc)
-	 * @see blService.examineblService.ExamineblManageService#getFormHistory()
-	 */
-	public ArrayList<FormVO> getFormHistory() {
-		// TODO discuss with JC// get all for each
-		ArrayList<FormVO> result=new ArrayList<FormVO>();
-		return result;
 	}
 	/* (non-Javadoc)
 	 * @see bl.blService.examineblService.ExamineblManageService#modifyForm(vo.FormVO)
@@ -115,22 +95,16 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 */
 	@Override
 	public ArrayList<FormVO> getForms(FormEnum formType) {
-		try {
-			ArrayList<FormPO> po=examineManageService.getForms();
-			ArrayList<FormVO> result=new ArrayList<FormVO>(po.size());
-			System.out.println(po.size());
-			for (int i = 0; i < po.size(); i++) {
-				FormPO each=po.get(i);
-				if (checkFormType(each.getFormType(), formType)) {
-					FormVO temp=(FormVO)vopoFactory.transPOtoVO(each);
-					result.add(temp);
-				}
-				
+		ArrayList<FormVO> result = new ArrayList<FormVO>();
+		for (int i = 0; i < formVOs.size(); i++) {
+			FormVO temp = formVOs.get(i);
+			if (checkFormType(temp.getFormType(), formType)) {
+
+				result.add(temp);
 			}
-			return result;
-		} catch (RemoteException e) {
-			return null;
+
 		}
+		return result;
 	}
 	//
 	private boolean checkFormType(FormEnum po,FormEnum std){
@@ -139,6 +113,26 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		}
 		else {
 			return po==std;
+		}
+	}
+
+
+	/* (non-Javadoc)
+	 * @see bl.blService.examineblService.ExamineblManageService#refresh()
+	 */
+	@Override
+	public OperationMessage refresh() {
+		try {
+			ArrayList<FormPO> formPOs=examineManageService.getForms();
+			for (FormPO formPO : formPOs) {
+				FormVO vo=(FormVO)vopoFactory.transPOtoVO(formPO);
+				formVOs.add(vo);
+			}
+			return new OperationMessage();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new OperationMessage(false, e.getMessage());
 		}
 	}
 

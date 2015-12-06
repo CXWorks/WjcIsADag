@@ -49,6 +49,10 @@ public class CheckFormController {
 	public ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
 	@FXML
 	public FormTableController formTableController;
+	
+	public ArrayList<FormVO> unhandledForms;
+	
+	public FormEnum nowFormEnum=null;
 
 
 	 public static Parent launch() throws IOException {
@@ -63,18 +67,14 @@ public class CheckFormController {
 		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
 		 try {
 			Parent son=(Parent)fxmlLoader.load();
-//			for (Tab tab : tabs) {
-//				tab.setContent(son);
-//			}
 			this.formTableController=(FormTableController)fxmlLoader.getController();
-			if (formTableController==null) {
-				System.out.println("isnull");
+			for (Tab tab : tabs) {
+				tab.setContent(son);
 			}
+			this.refresh();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		 this.selectedChanged();
 	 }
 
 	public void selectedChanged(){
@@ -84,11 +84,9 @@ public class CheckFormController {
 		this.tabs=tabPane.getTabs();
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
-				//TODO do something
 				String text=tab.getText();
-				FormEnum formEnum=this.getFormEnum(text);
-				formTableController.change(formEnum);
-				tab.setContent(formTableController.tableView);
+				nowFormEnum=this.getFormEnum(text);
+				formTableController.change(nowFormEnum);
 			}
 		}
 	}
@@ -96,6 +94,7 @@ public class CheckFormController {
 	public void pass(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.passForm(temp);
+		unhandledForms=examineblManageService.getForms(nowFormEnum);
 	}
 
 	public void fail(){
@@ -104,10 +103,23 @@ public class CheckFormController {
 
 	public void delete(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
+		examineblManageService.deleteForm(temp);
+		unhandledForms=examineblManageService.getForms(nowFormEnum);
 	}
 	public void selectAll(){
 		formTableController.selectAll();
 	}
+	//
+	public void refresh(){
+		examineblManageService.refresh();
+		unhandledForms=examineblManageService.getForms(nowFormEnum);
+		formTableController.change(nowFormEnum);
+	}
+	
+	public void oneKey(){
+		
+	}
+	
 	private FormEnum getFormEnum(String text){
 		if (text==null) {
 			return null;

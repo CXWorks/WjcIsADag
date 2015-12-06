@@ -51,7 +51,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+//        CacheHelper.initializeCache();
         launch(args);
     }
 

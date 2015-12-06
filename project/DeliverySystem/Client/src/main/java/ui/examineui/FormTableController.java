@@ -45,9 +45,6 @@ public class FormTableController {
 		this.formVOs=examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
 //		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
-//		this.tableView.
-//		System.out.println(formVOs.size());
-//		this.tableView.setItems(FXCollections.observableArrayList(new DeliverVO("111"),new DeliverVO("222"),new DeliverVO("333")));
 	}
 	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
 		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
@@ -59,23 +56,18 @@ public class FormTableController {
 	//
 	public void initialize(){
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//		this.setColumn(null);
 		//
 		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		typeColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formType.getChinese()));
-//		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
-		//
 	}
 	//
 	public void change(FormEnum formEnum){
 		this.setColumn(formEnum);
-		//
 	}
 	//
 	public void selectAll(){
-		//TODO waitting for solutions
 		this.tableView.getSelectionModel().selectAll();
 	}
 	//
