@@ -29,7 +29,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	private PreparedStatement statement = null;
 
 	public StaffDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "staff";
 		conn = ConnecterHelper.getConn();
@@ -40,7 +39,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	}
 
 	public ArrayList<StaffPO> getStaff(StaffTypeEnum staffTypeEnum) {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		StaffPO temp = null;
@@ -66,7 +64,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	}
 
 	public OperationMessage modifyStaff(StaffPO after) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.dismissStaff(after).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应员工");
@@ -77,7 +74,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	}
 
 	public OperationMessage addStaff(StaffPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String add = "insert into `" + Table_Name + "`(ID,staff,name,age,personID,sex,love,institutionID,typeID) "
 				+ "values('" + po.getID() + "','" + po.getStaff().toString() + "','" + po.getName() + "','"
@@ -88,7 +84,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			statement = conn.prepareStatement(add);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -102,14 +97,12 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	}
 
 	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + staff.getID() + "'";
 		try {
 			statement = conn.prepareStatement(dismiss);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -124,7 +117,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String target = "";
@@ -171,7 +163,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	@Override
 	public StaffPO getPerson(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID + "'";
 		ResultSet rs = null;
 		StaffPO result = null;

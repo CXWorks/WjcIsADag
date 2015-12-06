@@ -1,5 +1,6 @@
 package vo.financevo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.FormEnum;
@@ -15,7 +16,7 @@ public class RevenueVO extends FinanceFormVO {
     public String amount;
     public String deliverName;
     public String hallID;
-    public String orderID;
+    private ArrayList<String> orderIDs;
     //
     public RevenueVO(String formID){
     	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID);
@@ -29,20 +30,20 @@ public class RevenueVO extends FinanceFormVO {
 	 * @param orderID
 	 */
 	public RevenueVO(String formID,Calendar date, String amount, String deliverName,
-			String hallID, String orderID) {
+			String hallID, ArrayList<String> orderIDs) {
 		this(formID);
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;
 		this.hallID = hallID;
-		this.orderID = orderID;
+		this.orderIDs = orderIDs;
 	}
     public RevenueVO(RevenuePO po){
-    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderID());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderIDs());
     }
     //
     public RevenuePO toPO(){
-    	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderID);
+    	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderIDs);
     }
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()
@@ -63,8 +64,8 @@ public class RevenueVO extends FinanceFormVO {
 	public String getHallID() {
 		return hallID;
 	}
-	public String getOrderID() {
-		return orderID;
+	public ArrayList<String> getOrderIDs() {
+		return orderIDs;
 	}
 	public void setDate(Calendar date) {
 		this.date = date;
@@ -77,9 +78,6 @@ public class RevenueVO extends FinanceFormVO {
 	}
 	public void setHallID(String hallID) {
 		this.hallID = hallID;
-	}
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
 	}
 
 }

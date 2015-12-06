@@ -32,40 +32,40 @@ public class CheckFormController {
 	public Tab transit_Tab;
 	public Tab payment_Tab;
 	public Tab Revenue_Tab;
-	
+
 	public CheckBox chooseAll_Box;
-	
+
 	public Label pass;
 	public Label deny;
 	public Label modify;
-	
+
 	public TabPane tabPane;
 	//
 	//
 	@FXML
 	public ObservableList<Tab> tabs;
-	
+
 	@FXML
 	public ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
 	@FXML
 	public FormTableController formTableController;
-	
-	
+
+
 	 public static Parent launch() throws IOException {
 	       FXMLLoader fxmlLoader=new FXMLLoader();
 	       fxmlLoader.setLocation(CheckFormController.class.getResource("checkForm.fxml"));
 	       return fxmlLoader.load();
 	 }
-	 
+
 	 public void initialize(){
 		 tabs=tabPane.getTabs();
 		 FXMLLoader fxmlLoader=new FXMLLoader();
 		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
 		 try {
 			Parent son=(Parent)fxmlLoader.load();
-			for (Tab tab : tabs) {
-				tab.setContent(son);
-			}
+//			for (Tab tab : tabs) {
+//				tab.setContent(son);
+//			}
 			this.formTableController=(FormTableController)fxmlLoader.getController();
 			if (formTableController==null) {
 				System.out.println("isnull");
@@ -74,9 +74,9 @@ public class CheckFormController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 this.selectedChanged();
+//		 this.selectedChanged();
 	 }
-	
+
 	public void selectedChanged(){
 		if (formTableController==null) {
 			return;
@@ -87,22 +87,21 @@ public class CheckFormController {
 				//TODO do something
 				String text=tab.getText();
 				FormEnum formEnum=this.getFormEnum(text);
-				System.out.println(formEnum);
 				formTableController.change(formEnum);
 				tab.setContent(formTableController.tableView);
 			}
 		}
 	}
-	
+
 	public void pass(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.passForm(temp);
 	}
-	
+
 	public void fail(){
-		
+
 	}
-	
+
 	public void delete(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 	}
@@ -115,6 +114,8 @@ public class CheckFormController {
 		}
 		//
 		switch (text) {
+		case "全部单据":
+			return null;
 		case "订单":
 			return FormEnum.ORDER;
 		case "派件单":

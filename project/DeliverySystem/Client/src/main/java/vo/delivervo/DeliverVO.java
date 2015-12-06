@@ -8,18 +8,19 @@ import po.deliverdata.DeliverPO;
 import vo.FormVO;
 
 /**
- * 
+ *
  * @author wjc
  *2015/10/24
  */
 
 public class DeliverVO extends FormVO{
-	
+
 	private String orderID;
 	private Calendar date;
 	private String postman;
 	private boolean finished;
-	
+
+
 	public String getOrderID() {
 		return orderID;
 	}

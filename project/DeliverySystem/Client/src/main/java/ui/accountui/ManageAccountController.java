@@ -31,14 +31,14 @@ import vo.accountvo.AccountVO;
 import vo.managevo.staff.StaffVO;
 
 public class ManageAccountController {
+    private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
+    private List<AccountVOCheckItem> accounts;
 
     public TableView<AccountVOCheckItem> accounts_TableView;
     public TableColumn<AccountVOCheckItem, AccountVOCheckItem> check_TableColumn;
     public TableColumn<AccountVOCheckItem, String> id_TableColumn;
     public TableColumn<AccountVOCheckItem, String> password_TableColumn;
     public TableColumn<AccountVOCheckItem, String> staff_TableColumn;
-    private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-    private List<AccountVOCheckItem> accounts;
 
 	public TextField search_Field;
     public CheckBox all_CheckBox;
@@ -88,6 +88,12 @@ public class ManageAccountController {
     @FXML
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
+        accounts.clear();
+        accounts_TableView.getItems().clear();
+        for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
+            accounts.add(new AccountVOCheckItem(accountVO));
+        }
+        accounts_TableView.getItems().addAll(accounts);
         // TODO filter accountBLManageService
 	}
 

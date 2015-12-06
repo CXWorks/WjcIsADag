@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.openxmlformats.schemas.xpackage.x2006.digitalSignature.STValue;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
@@ -19,6 +20,7 @@ import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
 import vo.managevo.car.CarVO;
+import vo.managevo.staff.StaffVO;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -130,11 +132,7 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, licence_TableColumn, time_TableColumn);
-        info_TableView.getItems().addAll(
-                // TODO debug
-                //initBLService.getAllCars()
-                new CarVO(true, "0013", Calendar.getInstance(), null, "0", "0", "0", Calendar.getInstance())
-        );
+        info_TableView.getItems().addAll(initBLService.getAllCars());
     }
 
     private void showInstitutions(){
@@ -142,7 +140,26 @@ public class CheckInitInfoController {
     }
 
     private void showStaffs(){
+        TableColumn<StaffVO, String> id_TableColumn = new TableColumn<>("员工编号");
+        TableColumn<StaffVO, String> name_TableColumn = new TableColumn<>("姓名");
+        TableColumn<StaffVO, String> type_TableColumn = new TableColumn<>("职务");
+        TableColumn<StaffVO, String> institution_TableColumn = new TableColumn<>("单位");
 
+        id_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getID())
+        );
+        name_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getName())
+        );
+        type_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getStaff().getChinese())
+        );
+        institution_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getInstitutionID())
+        );
+
+        reconstructColumns(id_TableColumn, name_TableColumn, type_TableColumn, institution_TableColumn);
+        info_TableView.getItems().addAll(initBLService.getAllStaffs());
     }
 
     private void showStroes(){
@@ -152,6 +169,8 @@ public class CheckInitInfoController {
     private void reconstructColumns(TableColumn...columns){
         info_TableView.getColumns().clear();
         info_TableView.getItems().clear();
-        info_TableView.getColumns().addAll(new Object[]{columns});
+        for (TableColumn column : columns) {
+            info_TableView.getColumns().add(column);
+        }
     }
 }

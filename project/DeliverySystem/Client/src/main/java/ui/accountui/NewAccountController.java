@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import message.OperationMessage;
+import po.accountdata.AuthorityEnum;
 import po.memberdata.StaffTypeEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
@@ -66,6 +67,6 @@ public class NewAccountController {
 
     private AccountVO generateAccountVO(){
         // TODO check
-        return new AccountVO(id_Field.getText(), password_Field.getText(), null);
+        return new AccountVO(id_Field.getText(), password_Field.getText(), AuthorityEnum.DONT_HAVE);
     }
 }

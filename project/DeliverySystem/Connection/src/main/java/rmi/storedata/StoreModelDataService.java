@@ -33,22 +33,22 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 
 	// public void setTableName(StoreAreaCode code) throws RemoteException;
 
-	public OperationMessage setLocation(StoreLocation location)
+	public OperationMessage setLocation(String centerID,StoreLocation location)
 			throws RemoteException;
 
-	public StoreArea getArea(StoreAreaCode code) throws RemoteException;
+	public StoreArea getArea(String centerID,StoreAreaCode code) throws RemoteException;
 
-	public StoreModel getModel() throws RemoteException;
+	public StoreModel getModel(String centerID) throws RemoteException;
 
-	public OperationMessage newShelf(StoreAreaCode code, int row,int shelf)
+	public OperationMessage newShelf(String centerID,StoreAreaCode code, int row,int shelf)
 			throws RemoteException;
 
-	public OperationMessage removeShelf(StoreAreaCode code, int row,int shelf)
+	public OperationMessage removeShelf(String centerID,StoreAreaCode code, int row,int shelf)
 			throws RemoteException;
-	
+
 	/**
 	 * 修改货架位置
-	 * 
+	 *
 	 * @param code_now
 	 *            要转移的货架所在区域
 	 * @param row_now
@@ -63,10 +63,10 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 	 *            目标shelf编号
 	 * @return 返回操作结果
 	 */
-	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+	public OperationMessage moveShelf(String centerID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf)
 			throws RemoteException;
-	
-	public String getLocation(StoreAreaCode code, int row,
+
+	public String getLocation(String centerID,StoreAreaCode code, int row,
 			int shelf,int position) throws RemoteException;
 }

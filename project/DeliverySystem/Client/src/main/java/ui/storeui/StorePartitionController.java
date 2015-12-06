@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,10 +36,14 @@ public class StorePartitionController {
 	public TableColumn<Map.Entry<String, String>, String> key_TableColumn;
 	public TableColumn<Map.Entry<String, String>, String> value_TableColumn;
 	public TextField warnLine_Field;
+	public RadioButton button_air;
+	public RadioButton button_rail;
+	public RadioButton button_road;
+	public RadioButton button_flex;
 
 	private StoreModelBLService storeModelBLService = FormFactory.getStoreModelBLService();
 
-	StoreAreaCode area;
+	private StoreAreaCode area;
 
 	public static Parent launch() throws IOException {
 		FXMLLoader contentLoader = new FXMLLoader();
@@ -62,25 +67,38 @@ public class StorePartitionController {
 
 	public void selectAir(ActionEvent actionEvent) {
 		area = StoreAreaCode.AIR;
+		button_rail.setSelected(false);
+		button_road.setSelected(false);
+		button_flex.setSelected(false);
 		this.setView();
 	}
 
 	public void selectRail(ActionEvent actionEvent) {
 		area = StoreAreaCode.RAIL;
+		button_air.setSelected(false);
+		button_road.setSelected(false);
+		button_flex.setSelected(false);
 		this.setView();
 	}
 
 	public void selectRoad(ActionEvent actionEvent) {
 		area = StoreAreaCode.ROAD;
+		button_air.setSelected(false);
+		button_rail.setSelected(false);
+		button_flex.setSelected(false);
 		this.setView();
 	}
 
 	public void selectFlex(ActionEvent actionEvent) {
 		area = StoreAreaCode.FLEX;
+		button_air.setSelected(false);
+		button_rail.setSelected(false);
+		button_road.setSelected(false);
 		this.setView();
 	}
 
 	private void setView() {
+//		System.out.println(storeModelBLService.getShelfInfo(area)==null);
 		rows_TableView.setItems(FXCollections.observableArrayList(storeModelBLService.getShelfInfo(area)));
 
 		area_TableView.setItems(FXCollections.observableArrayList(

@@ -118,6 +118,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		try {
 			ArrayList<FormPO> po=examineManageService.getForms();
 			ArrayList<FormVO> result=new ArrayList<FormVO>(po.size());
+			System.out.println(po.size());
 			for (int i = 0; i < po.size(); i++) {
 				FormPO each=po.get(i);
 				if (checkFormType(each.getFormType(), formType)) {

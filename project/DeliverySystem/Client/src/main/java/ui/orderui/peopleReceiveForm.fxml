@@ -33,11 +33,11 @@
             <Button fx:id="ok_Btn" defaultButton="true" mnemonicParsing="false" onAction="#commit" prefHeight="23.0" prefWidth="52.0" text="确认" />
          </children>
       </HBox>
-      <TableView layoutX="54.0" layoutY="89.0" prefHeight="330.0" prefWidth="533.0">
+      <TableView fx:id="order_TableView" layoutX="54.0" layoutY="89.0" prefHeight="330.0" prefWidth="533.0">
          <columns>
             <TableColumn fx:id="id_Column" minWidth="0.0" prefWidth="152.0" text="订单号" />
             <TableColumn fx:id="address_Column" prefWidth="271.0" text="目的地" />
-            <TableColumn fx:id="people_Column" minWidth="0.0" prefWidth="109.0" text="收件人" />
+            <TableColumn fx:id="name_Column" minWidth="0.0" prefWidth="109.0" text="收件人" />
          </columns>
       </TableView>
    </children>
