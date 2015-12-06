@@ -44,7 +44,13 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
-        return new LinkedList<BankAccountVO>();
+        LinkedList<BankAccountVO> ans=new LinkedList<BankAccountVO>();
+        for (BankAccountVO bankAccountVO : list) {
+			if (bankAccountVO.quzzySearch(s)) {
+				ans.add(bankAccountVO);
+			}
+		}
+        return ans;
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {

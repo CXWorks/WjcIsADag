@@ -10,23 +10,42 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import po.financedata.PaymentPO;
+import po.financedata.RevenuePO;
 import rmi.financedata.PaymentDataService;
+import rmi.financedata.RevenueDataService;
 
 /**
  * Created by Sissel on 2015/10/26.
  */
 public class FinanceChartBLImpl implements FinanceChartBLService {
 	private PaymentDataService paymentDataService;
+	private RevenueDataService revenueDataService;
 	public FinanceChartBLImpl(){
 		this.paymentDataService=CacheHelper.getPaymentDataService();
+		revenueDataService=CacheHelper.getRevenueDataService();
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.financeblService.FinanceChartBLService#getCompanyState()
 	 */
 	public CalculateVO getCompanyState() {
-		// TODO Auto-generated method stub
-		return new CalculateVO();
+		try {
+			ArrayList<PaymentPO> paymentPOs=paymentDataService.getAll();
+			ArrayList<RevenuePO> revenuePOs=revenueDataService.getAll();
+			double income=0;
+			double outcome=0;
+			for (RevenuePO revenuePO : revenuePOs) {
+				income+=Double.parseDouble(revenuePO.getAmount());
+			}
+			for (PaymentPO paymentPO : paymentPOs) {
+				outcome+=Double.parseDouble(paymentPO.getAmount());
+			}
+			return new CalculateVO(income,outcome,income-outcome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private boolean comp(Calendar strat,Calendar end,Calendar target){
@@ -37,7 +56,8 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 
     @Override
     public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
-        return new BaseChartVO();
+    	//TODO wait UI
+    	return new BaseChartVO();
     }
 
     @Override
@@ -70,11 +90,13 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 
     @Override
     public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
-        return new BaseChartVO();
+        //TODO wait UI
+    	return new BaseChartVO();
     }
 
     @Override
     public CalculateVO getCompanyState(Calendar begin, Calendar end) {
-        return new CalculateVO();
+        //TODO waitting 
+    	return null;
     }
 }

@@ -14,7 +14,7 @@ import tool.vopo.VOPOFactory;
 /**
  * Created by Sissel on 2015/11/27.
  */
-public class FinanceBLFactory {
+public class FinanceBLFactory extends BLFactory{
     private static FinanceChartBLService financeChartBLService;
     private static RevenueBLService revenueBLService;
     private static PaymentBLService paymentBLService;
@@ -29,14 +29,14 @@ public class FinanceBLFactory {
 
     public static RevenueBLService getRevenueBLService() {
         if(revenueBLService == null){
-            revenueBLService = new RevenueBLImpl(new VOPOFactory(), new DraftController());
+            revenueBLService = new RevenueBLImpl(vopoFactory,draftService);
         }
         return revenueBLService;
     }
 
     public static PaymentBLService getPaymentBLService() {
         if(paymentBLService == null){
-            paymentBLService = new PaymentBLImpl(new VOPOFactory(), new DraftController());
+            paymentBLService = new PaymentBLImpl(vopoFactory,draftService);
         }
         return paymentBLService;
     }

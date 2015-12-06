@@ -11,8 +11,6 @@ import bl.blService.deliverblService.DeliverBLService;
 public class DeliverFactory extends BLFactory{
 
 	private static DeliverBLService deliverBLService;
-	private static DraftService draftService = new DraftController();
-	private static VOPOFactory vopoFactory = new VOPOFactory();
 	private static FormatCheckService formatCheckService = new FormatCheckImpl();
 	
 	private DeliverFactory(){}

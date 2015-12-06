@@ -110,6 +110,9 @@ public class RMIHelper {
 
 
 	}
+	public static LogDataService getLogDataService(){
+		return logDataService;
+	}
 	
 	public static LoadDataService getLoadDataService() {
 		return loadDataService;

@@ -1,5 +1,9 @@
 package factory;
 
+import tool.draft.DraftController;
+import tool.draft.DraftService;
+import tool.vopo.VOPOFactory;
+
 /** 
  * Client//factory//BLFactory.java
  * @author CXWorks
@@ -7,5 +11,6 @@ package factory;
  * @version 1.0 
  */
 public abstract class BLFactory {
-
+	protected static VOPOFactory vopoFactory=new VOPOFactory();
+	protected static DraftService draftService=new DraftController();
 }

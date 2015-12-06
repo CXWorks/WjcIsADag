@@ -39,7 +39,7 @@ public class LoginController {
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
         if(msg.operationResult){
             StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
-
+            UserInfo.setInfo(staffVO.getID(), );
 
             // TODO jump between scenes
             System.out.println("login successfully");

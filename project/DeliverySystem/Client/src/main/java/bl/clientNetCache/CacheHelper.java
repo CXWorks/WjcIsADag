@@ -57,13 +57,8 @@ public class CacheHelper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 
-	public static LogDataService getLogDataService() {
-		return logDataService;
-	}
-
 	private static LogDataService logDataService;
 
-	//
 	public static void  initializeCache() throws NetInitException{
 		RMIHelper.init();
 		if(initStoredData()){
@@ -173,6 +168,8 @@ public class CacheHelper {
 	public static MemberDataService<StaffPO> getMemberDataService_staff() {
 		return memberDataService_staff;
 	}
-
+	public static LogDataService getLogDataService(){
+		return logDataService;
+	}
 
 }

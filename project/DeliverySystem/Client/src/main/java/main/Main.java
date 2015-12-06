@@ -6,11 +6,8 @@ package main;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
 import ui.financeui.ManageBankAccountController;
@@ -19,7 +16,6 @@ import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.FinanceNavigation;
-import ui.orderui.CheckToSendController;
 import ui.orderui.NewOrderController;
 import ui.orderui.PoepleReceiveFormController;
 import ui.receiveui.ReceiveFormController;
@@ -29,10 +25,8 @@ import ui.storeui.StorePartitionController;
 import ui.storeui.StoreSummaryController;
 import ui.accountui.PersonalAccountViewController;
 import ui.accountui.personAccountViewEditDialogController;
-import userinfo.UserInfo;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Client//main//Main.java
@@ -44,48 +38,11 @@ import java.util.Map;
 
 public class Main extends Application {
 
-    private static Map<StaffTypeEnum, Parent> panes;
-    private static Pane loginPane;
-
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+//        CacheHelper.initializeCache();
         launch(args);
-    }
-
-    /**
-     * 返回登录界面
-     */
-    public static void logOut(){
-        primaryStage.setScene(new Scene(loginPane));
-    }
-
-    private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
-        try{
-            switch (staffTypeEnum){
-                case BURSAR:
-                    return FinanceNavigation.launch();
-
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 根据UserInfo加载对应的界面
-     */
-    private static void logIn(){
-        StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
-        Parent pane = panes.get(staffTypeEnum);
-
-        if(pane == null){
-            pane = launchByStaff(staffTypeEnum);
-            panes.put(staffTypeEnum, pane);
-        }
-        primaryStage.setScene(new Scene(pane));
     }
 
     @Override
@@ -102,20 +59,20 @@ public class Main extends Application {
 //        		StoreSummaryController.launch()
 //        		StorePartitionController.launch()
 //        		ConfigurationController.launch()
-              //  ReceiveFormController.launch()
+//                ReceiveFormController.launch()
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
             //    ManageBankAccountController.launch()
                 //LoginController.launch()
                 //NewAccountController.launch()
-                //ManageAccountController.launch()
+                ManageAccountController.launch()
 //                NewOrderController.launch()
-                PersonalAccountViewController.launch()
+                //PersonalAccountViewController.launch()
                 //CheckFinanceChartController.launch()
-                //FinanceNavigation.launch()
+//                FinanceNavigation.launch()
 //        		ManageOrganizationController.launch()
 //        		ManageSalaryController.launch()
-        		//ConfigurationController.launch()
+//        		ConfigurationController.launch()
                 //ManageAccountController.launch()
 //        		ManageCarDriverController.launch()
         		//PoepleReceiveFormController.launch()

@@ -10,7 +10,7 @@ public class CarFactory  extends BLFactory{
 
     public static ManageblCarService getCarService(){
         if(manageCarService == null){
-        	manageCarService = new CarManage(new VOPOFactory());
+        	manageCarService = new CarManage(vopoFactory);
         }
         return manageCarService;
     }

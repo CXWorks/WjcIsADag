@@ -35,8 +35,6 @@ import tool.vopo.VOPOFactory;
  */
 public class FormFactory extends BLFactory {
 	//
-	private static DraftService draftService = new DraftController();
-	private static VOPOFactory vopoFactory = new VOPOFactory();
 	private static FormatCheckService formatCheckService = new FormatCheckImpl();
 	//
 	private static ReceiveBLService receiveBLService;

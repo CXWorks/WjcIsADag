@@ -16,7 +16,7 @@ public class AccountFactory extends BLFactory{
 
     public static AccountBLManageService getManageService(){
         if(manageService == null){
-            manageService = new AccountBLManageImpl(new VOPOFactory());
+            manageService = new AccountBLManageImpl(vopoFactory);
         }
         return manageService;
     }
