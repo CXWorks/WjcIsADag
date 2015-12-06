@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.examineui.CheckFormController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
@@ -111,6 +112,34 @@ public class Main extends Application {
         loginPane = (Pane)LoginController.launch();
 
         primaryStage.setScene(new Scene( loginPane));
+
+    //    primaryStage.setScene(new Scene(
+    //    		CheckFormController.launch()
+//        		StoreInFormController.launch()
+//        		StoreOutFormController.launch()
+//        		StoreSummaryController.launch()
+    //    		StorePartitionController.launch()
+//        		ConfigurationController.launch()
+//                ReceiveFormController.launch()
+                //LoadCarController.launch()
+                //CheckRevenueFormController.launch()
+            //    ManageBankAccountController.launch()
+                //LoginController.launch()
+                //NewAccountController.launch()
+//                ManageAccountController.launch()
+//                NewOrderController.launch()
+                //PersonalAccountViewController.launch()
+                //CheckFinanceChartController.launch()
+//                FinanceNavigation.launch()
+//        		ManageOrganizationController.launch()
+//        		ManageSalaryController.launch()
+//        		ConfigurationController.launch()
+                //ManageAccountController.launch()
+//        		ManageCarDriverController.launch()
+        		//PoepleReceiveFormController.launch()
+        		//StoreSummaryController.launch()
+//        		ManageStaffController.launch()
+//        ));
 
         primaryStage.show();
     }

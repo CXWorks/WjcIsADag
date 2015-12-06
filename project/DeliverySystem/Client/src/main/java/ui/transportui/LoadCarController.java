@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import tool.time.TimeConvert;
+import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import po.transportdata.TransportationEnum;
 import message.OperationMessage;
 import bl.blService.transportblService.TransportCenterBLService;
 import bl.blService.transportblService.TransportHallBLService;
@@ -34,10 +37,11 @@ public class LoadCarController {
     public Label date_errLabel;
     public Label fee_Label;
     public ListView orders_ListView;
-    public ChoiceBox arrival_ChoiceBox;
-    public ChoiceBox carID_ChoiceBox;
+    public ChoiceBox<String> arrival_ChoiceBox;
+    public ChoiceBox<String> carID_ChoiceBox;
 
-    ArrayList<String> ids=null;//这只是权宜之计，，并不能，，就这样放着
+    
+    ArrayList<String> ids;
     
     TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
     public static Parent launch() throws IOException {
@@ -47,9 +51,12 @@ public class LoadCarController {
     @FXML
     public void initialize(){
         // TODO init arrival_ChoiceBox
-
-
-        List<CarVO> cars;
+    	
+    	
+    	List<CarVO> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
+    	
+//    	arrival_ChoiceBox;
+    	
     }
 
 

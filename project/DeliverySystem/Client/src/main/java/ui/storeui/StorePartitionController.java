@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import model.store.StoreAreaCode;
 import tool.time.TimeConvert;
 import tool.ui.StoreAreaVO2ColumnHelper;
@@ -47,6 +48,7 @@ public class StorePartitionController {
 
 	@FXML
 	public void initialize() {
+
 		rowNum_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRowID() + ""));
 		shelfNum_TableColumn

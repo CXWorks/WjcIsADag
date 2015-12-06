@@ -9,6 +9,7 @@ import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
@@ -41,28 +42,54 @@ public class CheckFormController {
 	public TabPane tabPane;
 	//
 	//
-	private ObservableList<Tab> tabs;
+	@FXML
+	public ObservableList<Tab> tabs;
 	
-	
-	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
-	private FormTableController formTableController;
+	@FXML
+	public ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
+	@FXML
+	public FormTableController formTableController;
 	
 	
 	 public static Parent launch() throws IOException {
-	        return FXMLLoader.load(LoginController.class.getResource("checkFrom.fxml"));
+	       FXMLLoader fxmlLoader=new FXMLLoader();
+	       fxmlLoader.setLocation(CheckFormController.class.getResource("checkForm.fxml"));
+	       return fxmlLoader.load();
 	 }
 	 
 	 public void initialize(){
 		 tabs=tabPane.getTabs();
+		 FXMLLoader fxmlLoader=new FXMLLoader();
+		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
+		 try {
+			Parent son=(Parent)fxmlLoader.load();
+			for (Tab tab : tabs) {
+				tab.setContent(son);
+			}
+			this.formTableController=(FormTableController)fxmlLoader.getController();
+			if (formTableController==null) {
+				System.out.println("isnull");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 this.selectedChanged();
 	 }
 	
 	public void selectedChanged(){
+		if (formTableController==null) {
+			return;
+		}
+		this.tabs=tabPane.getTabs();
 		for (Tab tab : tabs) {
 			if (tab.isSelected()) {
 				//TODO do something
 				String text=tab.getText();
 				FormEnum formEnum=this.getFormEnum(text);
+				System.out.println(formEnum);
 				formTableController.change(formEnum);
+				tab.setContent(formTableController.tableView);
 			}
 		}
 	}

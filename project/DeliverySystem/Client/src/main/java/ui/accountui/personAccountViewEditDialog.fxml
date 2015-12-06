@@ -34,5 +34,6 @@
             <Button mnemonicParsing="false" onAction="#cancel" text="取消" />
          </children>
       </HBox>
+      <Label fx:id="attention_Label" layoutX="115.0" layoutY="24.0" prefHeight="15.0" prefWidth="0.0" />
    </children>
 </AnchorPane>

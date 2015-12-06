@@ -8,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import message.OperationMessage;
+import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
 import po.receivedata.ReceivePO;
 import rmi.financedata.RevenueDataService;
@@ -198,6 +200,31 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+
+	@Override
+	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from `" + Table_Name + "` where (unix_timestamp(`date`) - '"
+				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
+				+ end.getTime().getTime() / 1000 + "' <= 0";
+		ResultSet rs = null;
+		RevenuePO temp = null;
+		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
+						rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 
