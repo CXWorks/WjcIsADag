@@ -45,7 +45,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		// 为today和ID_MAX初始化
 		this.newID(null);
 		ID_MAX--;
-		System.out.println(ID_MAX);
 	}
 
 	public Connection getConn() {

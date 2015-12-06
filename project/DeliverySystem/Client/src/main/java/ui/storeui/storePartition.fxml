@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StorePartitionController">
    <children>
       <Label layoutX="35.0" layoutY="32.0" text="分区选择" />
-      <VBox layoutX="35.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+      <VBox focusTraversable="true" layoutX="35.0" layoutY="83.0" opacity="0.8" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
          <children>
             <RadioButton mnemonicParsing="false" onAction="#selectAir" text="航运区" />
             <RadioButton mnemonicParsing="false" onAction="#selectRail" text="铁路区" />
