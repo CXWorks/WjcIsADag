@@ -110,5 +110,10 @@ public class DeliverBLImpl implements DeliverBLService {
 			return null;
 		}
 	}
+	@Override
+	public ArrayList<String> getPostman(String hallID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
