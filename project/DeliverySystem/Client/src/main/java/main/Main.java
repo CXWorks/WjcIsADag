@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.examineui.CheckFormController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.manangeui.organization.ManageOrganizationController;
@@ -54,6 +55,7 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
+        		CheckFormController.launch()
 //        		StoreInFormController.launch()
 //        		StoreOutFormController.launch()
 //        		StoreSummaryController.launch()

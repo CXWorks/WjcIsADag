@@ -42,8 +42,9 @@ public class FormTableController {
 		return fxmlLoader.load();
 	}
 	private  void setColumn(FormEnum formEnum){
-		this.formVOs=examineblManageService.getForms(formEnum);
-		this.tableView.setItems(FXCollections.observableList(formVOs));
+//		this.formVOs=examineblManageService.getForms(formEnum);
+//		this.tableView.setItems(FXCollections.observableList(formVOs));
+		this.tableView.setItems(FXCollections.observableArrayList(new DeliverVO("111"),new DeliverVO("222"),new DeliverVO("333")));
 	}
 	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
 		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
@@ -57,10 +58,10 @@ public class FormTableController {
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		this.setColumn(null);
 		//
-		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID.substring(9, 17)));
+		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
-		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
+//		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 		//
 	}
 	//
