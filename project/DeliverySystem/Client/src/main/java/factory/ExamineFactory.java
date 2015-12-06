@@ -14,7 +14,7 @@ public class ExamineFactory extends BLFactory {
 	private static ExamineblManageService examineblManageService;
 	public static ExamineblManageService getExamineblManageService(){
 		if (examineblManageService==null) {
-			examineblManageService=new ExamineBLManageImpl(new VOPOFactory());
+			examineblManageService=new ExamineBLManageImpl(vopoFactory);
 		}
 		return examineblManageService;
 	}

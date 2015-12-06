@@ -9,7 +9,6 @@ import bl.blService.configurationblService.ConfigurationBLService;
 public class ConfigurationFactory extends BLFactory{
 
 	private static ConfigurationBLService configurationBLService;
-	private static VOPOFactory vopoFactory = new VOPOFactory();
 	
 	private ConfigurationFactory(){}
 

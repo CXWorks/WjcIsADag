@@ -1,11 +1,12 @@
 package ui.hallui;
 
 import java.io.IOException;
-
 import java.util.List;
 
 
+
 import bl.blService.manageblService.ManageblCarService;
+import bl.blService.manageblService.ManageblDriverService;
 import bl.blService.manageblService.ManageblStaffService;
 import factory.CarFactory;
 import factory.StaffFactory;
@@ -48,7 +49,7 @@ public class ManageCarDriverController {
 	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
 
 	private ManageblCarService manageblCarService = CarFactory.getCarService();
-	private ManageblStaffService manageblDriverService = StaffFactory.getManageService();
+	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
 
 	public static Parent launch() throws IOException {
 		return FXMLLoader.load(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));

@@ -31,5 +31,5 @@ public interface ManageblStaffService {
 	 */
 	public String newStaffID(StaffTypeEnum staffType,String unitID);
 	
-	public DriverVO searchDriver(String  driverID);
+	
 }

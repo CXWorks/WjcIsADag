@@ -14,7 +14,7 @@ public class LogBLFactory extends BLFactory {
 
     public static LogblService getLogblService(){
         if(logblService == null){
-            logblService = new LogblImpl(new VOPOFactory());
+            logblService = new LogblImpl(vopoFactory);
         }
         return logblService;
     }
