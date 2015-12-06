@@ -31,12 +31,19 @@ public class StoreModelBLImpl implements StoreModelBLService {
     public OperationMessage setWarningLine(double percent) {
         return new OperationMessage();
     }
+    //
+    private boolean checkCondition(int first,int second){
+    	return first<=second;
+    }
 
     public OperationMessage expandPartition(StoreAreaCode area, int number) {
     	 try {
  			StoreArea flex=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.FLEX);
  			int row=flex.getRowNumber();
  			int shelf=flex.getShelfNumber();
+ 			if (!checkCondition(number, shelf+row*50)) {
+				return new OperationMessage(false, "size error");
+			}
  			OperationMessage step1=storeModelDataService.removeShelf(UserInfo.getInstitutionID(),StoreAreaCode.FLEX, row, shelf);
  			//
  			StoreArea target=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
@@ -51,7 +58,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
  			OperationMessage step2=storeModelDataService.newShelf(UserInfo.getInstitutionID(),area, rowt, shelft);
  			return new OperationMessage(step1.operationResult&&step2.operationResult,step1.getReason()+step2.getReason());
  		} catch (RemoteException e) {
- 			return new OperationMessage(false, "net error");
+ 			return new OperationMessage(false, "not big enough");
  		}
     }
 
@@ -61,6 +68,9 @@ public class StoreModelBLImpl implements StoreModelBLService {
  			int row=target.getRowNumber();
  			int shelf=target.getShelfNumber();
  			OperationMessage step1=storeModelDataService.removeShelf(UserInfo.getInstitutionID(),area, row, shelf);
+ 			if (!checkCondition(number, row*50+shelf)) {
+				return new OperationMessage(false, "not big enough");
+			}
  			//
  			StoreArea flex=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.FLEX);
  			int rowt=flex.getRowNumber();
@@ -101,9 +111,9 @@ public class StoreModelBLImpl implements StoreModelBLService {
 			int totalRow=area.getRowNumber();
 			ArrayList<StoreShelfVO> storeShelfVOs=new ArrayList<StoreShelfVO>(totalShelf);
 			for(int i=1;i<=totalRow;i++){
-				for (int j = 0; j < totalShelf; j++) {
+				for (int j = 1; j <=totalShelf; j++) {
 					ArrayList<StoreLocation> storeLocations=area.getByShelf(i, j);
-					double usedProportion=storeLocations.size()/50;
+					double usedProportion=storeLocations.size()/50.0;
 					StoreShelfVO storeShelfVO=new StoreShelfVO(i, j, usedProportion);
 					storeShelfVOs.add(storeShelfVO);
 				}
@@ -128,5 +138,5 @@ public class StoreModelBLImpl implements StoreModelBLService {
 			return null;
 		}
 	}
-
+	
 }
