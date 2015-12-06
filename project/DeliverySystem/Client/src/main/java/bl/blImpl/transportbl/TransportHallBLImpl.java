@@ -101,10 +101,10 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getLocation(java.lang.String)
 		 */
-		public ArrayList<Object> getLocation(String hallID) {
+		public ArrayList<String> getLocation(String hallID) {
 			// TODO discuss
-			ArrayList<Object> result=new ArrayList<Object>();
-			Object stub=new Object();
+			ArrayList<String> result=new ArrayList<>();
+			String stub=new String();
 			result.add(stub);
 			return result;
 		}

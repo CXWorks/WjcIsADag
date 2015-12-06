@@ -84,7 +84,11 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				return null;
 			}
 		}
-		
+
+	@Override
+	public ArrayList<String> getLocation(String hallID) {
+		return null;
+	}
 
 
 }

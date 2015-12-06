@@ -2,25 +2,18 @@ package ui.configurationui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
 import bl.blService.configurationblService.ConfigurationBLService;
 import factory.ConfigurationFactory;
-import factory.LoginFactory;
-import ui.fxml.MyFXMLLoader;
-import ui.loginui.LoginController;
-import util.R.string;
 import vo.configurationvo.City2DVO;
-import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
 import vo.configurationvo.ProportionVO;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -76,7 +69,7 @@ public class ConfigurationController {
 
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
-        return MyFXMLLoader.load("configuration.fxml");
+        return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
     }
 
     public void initialize(){
