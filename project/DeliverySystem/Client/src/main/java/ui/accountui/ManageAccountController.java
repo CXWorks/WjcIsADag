@@ -32,7 +32,7 @@ import vo.managevo.staff.StaffVO;
 
 public class ManageAccountController {
     private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-    private List<AccountVOCheckItem> accounts;
+    private List<AccountVOCheckItem> accounts = new ArrayList<>();
 
     public TableView<AccountVOCheckItem> accounts_TableView;
     public TableColumn<AccountVOCheckItem, AccountVOCheckItem> check_TableColumn;
@@ -57,7 +57,6 @@ public class ManageAccountController {
 	
     public void initialize(){
     	this.accounts_TableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        makeTest();
 
         accounts_TableView.setItems(FXCollections.observableArrayList(accounts));
 

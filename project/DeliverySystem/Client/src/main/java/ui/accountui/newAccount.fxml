@@ -4,20 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.NewAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.NewAccountController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="新建账户信息" />
-      <HBox layoutX="421.0" layoutY="363.0">
+      <HBox layoutX="165.0" layoutY="288.0" spacing="20.0">
          <children>
-            <Button layoutX="316.0" layoutY="209.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button layoutX="316.0" layoutY="209.0" mnemonicParsing="false" onAction="#clear" text="取消" />
             <Button layoutX="384.0" layoutY="209.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
-      <Label layoutX="112.0" layoutY="138.0" text="账户名" />
-      <Label layoutX="112.0" layoutY="73.0" text="用户类型" />
-      <Label layoutX="112.0" layoutY="193.0" text="密码" />
-      <ChoiceBox fx:id="type_ChoiceBox" layoutX="254.0" layoutY="69.0" prefWidth="150.0" />
-      <TextField fx:id="id_Field" layoutX="254.0" layoutY="134.0" />
-      <TextField fx:id="password_Field" layoutX="254.0" layoutY="189.0" />
+      <Label layoutX="14.0" layoutY="138.0" text="账户名" />
+      <Label layoutX="14.0" layoutY="73.0" text="用户类型" />
+      <Label layoutX="14.0" layoutY="212.0" text="密码" />
+      <ChoiceBox fx:id="type_ChoiceBox" layoutX="104.0" layoutY="69.0" prefWidth="150.0" />
+      <TextField fx:id="id_Field" layoutX="104.0" layoutY="142.0" />
+      <TextField fx:id="password_Field" layoutX="104.0" layoutY="208.0" />
    </children>
 </AnchorPane>
