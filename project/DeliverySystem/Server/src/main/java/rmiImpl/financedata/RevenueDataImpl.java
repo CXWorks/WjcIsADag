@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import message.OperationMessage;
@@ -40,10 +41,19 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	public OperationMessage insert(RevenuePO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
+		String IDs = "";
+		ArrayList<String> list = po.getOrderIDs();
+		for (int i = 0; i < list.size(); i++)
+			if (i == list.size() - 1)
+				IDs += list.get(i);
+			else
+				IDs += list.get(i) + " ";
+		;
+
 		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,date,amount,deliverName,hallID,orderID,date_and_unit) " + "values('"
+				+ "`(formID,formState,date,amount,deliverName,hallID,orderIDs,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL().toString() + "','"
-				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + po.getOrderID()
+				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + IDs
 				+ "','" + po.getFormID().substring(2, 17) + "')";
 		try {
 			statement = conn.prepareStatement(insert);
@@ -68,8 +78,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
+			ArrayList<String> IDs = new ArrayList<String>();
+			if (!rs.getString("IDs").equalsIgnoreCase("")) {
+				IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
+			}
 			result = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-					rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
+					rs.getString("deliverName"), rs.getString("hallID"),IDs);
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -164,8 +178,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
+				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
+						rs.getString("deliverName"), rs.getString("hallID"), IDs);
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 
@@ -189,8 +207,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
+				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
+						rs.getString("deliverName"), rs.getString("hallID"), IDs);
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 
@@ -216,8 +238,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
+				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
+						rs.getString("deliverName"), rs.getString("hallID"), IDs);
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}
