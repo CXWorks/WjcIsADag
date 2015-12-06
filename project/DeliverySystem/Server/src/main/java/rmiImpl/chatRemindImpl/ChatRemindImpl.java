@@ -17,8 +17,7 @@ import rmi.chatRemindService.ChatRemindService;
  * @author wjc 2015/10/24
  */
 
-public class ChatRemindImpl extends UnicastRemoteObject implements
-		ChatRemindService{
+public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindService{
 
 	/**
 	 * 

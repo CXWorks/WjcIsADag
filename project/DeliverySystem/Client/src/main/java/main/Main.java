@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.financeui.CheckFinanceChartController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
@@ -51,7 +52,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-//        CacheHelper.initializeCache();
+//      CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -111,7 +112,10 @@ public class Main extends Application {
         loginPane = (Pane)LoginController.launch();
 
 //        primaryStage.setScene(new Scene( loginPane));
-        primaryStage.setScene(new Scene(ManageBankAccountController.launch()));
+        primaryStage.setScene(new Scene(
+                //ManageBankAccountController.launch()
+                CheckFinanceChartController.launch()
+        ));
 
         primaryStage.show();
     }

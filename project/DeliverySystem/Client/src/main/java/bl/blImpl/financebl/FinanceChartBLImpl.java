@@ -57,7 +57,18 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     @Override
     public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
     	//TODO wait UI
-    	return new BaseChartVO();
+        BaseChartVO vo = new BaseChartVO();
+
+        vo.title = "每月花费时间比较图";
+        vo.mainXType = "月份/种类";
+        vo.mainYType = "时数";
+
+        vo.categories = new String[]{"一月", "二月", "三月"};
+        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
+
+        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+
+        return vo;
     }
 
     @Override
@@ -91,7 +102,18 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     @Override
     public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
         //TODO wait UI
-    	return new BaseChartVO();
+        BaseChartVO vo = new BaseChartVO();
+
+        vo.title = "每月花费时间比较图";
+        vo.mainXType = "月份/种类";
+        vo.mainYType = "时数";
+
+        vo.categories = new String[]{"一月", "二月", "三月"};
+        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
+
+        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+
+        return vo;
     }
 
     @Override

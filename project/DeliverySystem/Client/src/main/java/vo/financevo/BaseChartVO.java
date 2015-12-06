@@ -8,20 +8,21 @@ import vo.InfoVO;
  * 此类为直方图和折线图的共用数据集合类
  */
 public class BaseChartVO extends InfoVO{
-    String	title;
-    String	mainXType;
-    String	mainYType;
+    public String	title;
+    public String	mainXType;
+    public String	mainYType;
 
-    double	ySpan;
-    double	ybegin;
-    double	yend;
+    public double	ySpan;
+    public double	ybegin;
+    public double	yend;
 
-    String[]	x1Classes;
-    String[]	x2Classes;
+    public String[] categories;
+    public String[] elements;
 
-    double[][]	values;
+    public double[][]	values;
 
     public BaseChartVO(){
     	super(InfoEnum.BASE_CHART);
     }
 }
+

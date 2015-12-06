@@ -40,9 +40,6 @@ public class CheckMessageController {
     public void initialize(){
     	chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
     	
-    	
-    	
-    	
     }
     
     
