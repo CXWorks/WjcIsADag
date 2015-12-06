@@ -72,21 +72,21 @@ public class RevenueFormController {
 	deliver_TableColumn.setCellValueFactory(
             cellData -> new SimpleStringProperty(cellData.getValue().getCreaterID())
     );
-//	order_TableColumn.setCellValueFactory(
-//            cellData -> new SimpleStringProperty(cellData.getValue().getOrderID())
-//    );
+	order_TableColumn.setCellValueFactory(
+            cellData -> new SimpleStringProperty(cellData.getValue().getOrderID())
+    );
 	revenues_TableView.setItems(
                 FXCollections.observableArrayList(
 
                 )
         );
-//	revenues_TableView.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> {
-//                    System.out.println("selected " + newValue.orderID);
-//
-//                   // RevenueVO = newValue;
-//                }
-//        );
+	revenues_TableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    System.out.println("selected " + newValue.orderID);
+                    
+                   // RevenueVO = newValue;
+                }
+        );
     }
 
     public void saveDraft(ActionEvent actionEvent) {
@@ -106,11 +106,10 @@ public class RevenueFormController {
 
     private RevenueVO generateRevenueVO(String formID){
     	 Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
-//        return new RevenueVO(
-//                formID,calendar,money_Field.getText(),
-//                deliver_ChoiceBox.getValue().toString(),institutionID,order_Field.getText()
-//        );
-        return null;
+        return new RevenueVO(
+                formID,calendar,money_Field.getText(),
+                deliver_ChoiceBox.getValue().toString(),institutionID,order_Field.getText()
+        );
     }
     
     

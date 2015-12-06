@@ -44,6 +44,8 @@ public class OrderVO extends FormVO {
 	/**
 	 * @param nameFrom
 	 * @param nameTo
+	 * @param location
+	 * @param loacal
 	 * @param unitFrom
 	 * @param unitTo
 	 * @param phoneNumFrom
@@ -55,6 +57,7 @@ public class OrderVO extends FormVO {
 	 * @param weight
 	 * @param volume
 	 * @param money
+	 * @param goodstype
 	 * @param type
 	 */
 	public OrderVO(String formID, String nameFrom, String nameTo,
