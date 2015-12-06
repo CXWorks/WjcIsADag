@@ -132,11 +132,7 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, licence_TableColumn, time_TableColumn);
-        info_TableView.getItems().addAll(
-                // TODO debug
-                //initBLService.getAllCars()
-                new CarVO(true, "0013", Calendar.getInstance(), null, "0", "0", "0", Calendar.getInstance())
-        );
+        info_TableView.getItems().addAll(initBLService.getAllCars());
     }
 
     private void showInstitutions(){
@@ -149,7 +145,21 @@ public class CheckInitInfoController {
         TableColumn<StaffVO, String> type_TableColumn = new TableColumn<>("职务");
         TableColumn<StaffVO, String> institution_TableColumn = new TableColumn<>("单位");
 
-        
+        id_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getID())
+        );
+        name_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getName())
+        );
+        type_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getStaff().getChinese())
+        );
+        institution_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getInstitutionID())
+        );
+
+        reconstructColumns(id_TableColumn, name_TableColumn, type_TableColumn, institution_TableColumn);
+        info_TableView.getItems().addAll(initBLService.getAllStaffs());
     }
 
     private void showStroes(){

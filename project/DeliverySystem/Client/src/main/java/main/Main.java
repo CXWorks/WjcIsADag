@@ -6,18 +6,20 @@ package main;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
-import ui.examineui.CheckFormController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
-import ui.navigationui.FinanceNavigation;
+import ui.navigationui.*;
 import ui.orderui.NewOrderController;
 import ui.orderui.PoepleReceiveFormController;
 import ui.receiveui.ReceiveFormController;
@@ -27,8 +29,11 @@ import ui.storeui.StorePartitionController;
 import ui.storeui.StoreSummaryController;
 import ui.accountui.PersonalAccountViewController;
 import ui.accountui.personAccountViewEditDialogController;
+import userinfo.UserInfo;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Client//main//Main.java
@@ -40,11 +45,59 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private static Map<StaffTypeEnum, Parent> panes = new HashMap<>();
+    private static Pane loginPane;
+
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
         CacheHelper.initializeCache();
         launch(args);
+    }
+
+    /**
+     * 返回登录界面
+     */
+    public static void logOut(){
+        primaryStage.setScene(new Scene(loginPane));
+    }
+
+    private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
+        try{
+            switch (staffTypeEnum){
+                case BURSAR:
+                    return FinanceNavigation.launch();
+                case MANAGER:
+                    return ManagerNavigation.launch();
+                case ADMINISTRATOR:
+                    return AdminNavigation.launch();
+                case DELIVER:
+                    return DeliverNavigation.launch();
+                case HALL_COUNTERMAN:
+                    return HallNavigation.launch();
+                case CENTER_COUNTERMAN:
+                    return CenterNavigation.launch();
+                case STOREMAN:
+                    return StoreNavigation.launch();
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 根据UserInfo加载对应的界面
+     */
+    public static void logIn(){
+        StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
+        Parent pane = panes.get(staffTypeEnum);
+
+        if(pane == null){
+            pane = launchByStaff(staffTypeEnum);
+            panes.put(staffTypeEnum, pane);
+        }
+        primaryStage.setScene(new Scene(pane));
     }
 
     @Override
@@ -55,34 +108,9 @@ public class Main extends Application {
         primaryStage.setX(150);
         primaryStage.setY(150);
 
-        primaryStage.setScene(new Scene(
-//        		CheckFormController.launch()
-//        		StoreInFormController.launch()
-//        		StoreOutFormController.launch()
-//        		StoreSummaryController.launch()
-        		StorePartitionController.launch()
-//        		ConfigurationController.launch()
-//                ReceiveFormController.launch()
-                //LoadCarController.launch()
-                //CheckRevenueFormController.launch()
-            //    ManageBankAccountController.launch()
-//                LoginController.launch()
-                //NewAccountController.launch()
-//                ManageAccountController.launch()
-//                NewOrderController.launch()
-                //PersonalAccountViewController.launch()
-                //CheckFinanceChartController.launch()
-//                FinanceNavigation.launch()
-//        		ManageOrganizationController.launch()
-//        		ManageSalaryController.launch()
-//        		ConfigurationController.launch()
-                //ManageAccountController.launch()
-//        		ManageCarDriverController.launch()
-        		//PoepleReceiveFormController.launch()
-        		//StoreSummaryController.launch()
-//        		ManageStaffController.launch()
+        loginPane = (Pane)LoginController.launch();
 
-        ));
+        primaryStage.setScene(new Scene( loginPane));
 
         primaryStage.show();
     }
