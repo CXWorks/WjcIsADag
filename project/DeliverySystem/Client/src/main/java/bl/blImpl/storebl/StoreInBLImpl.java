@@ -39,7 +39,7 @@ public class StoreInBLImpl implements StoreInBLService {
     public StoreLocation getAvailableLocation(StoreAreaCode area) {
         StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
         try {
-			StoreArea storeArea=storeModelDataService.getArea(area);
+			StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
 			ArrayList<StoreLocation> storeLocation=storeArea.getList();
 			StoreLocation ans=null;
 			for (int i = 0; i < storeLocation.size(); i++) {

@@ -9,6 +9,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import tool.excel.Excel;
+import userinfo.UserInfo;
 import bl.blService.storeblService.StockTackBLService;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
@@ -32,7 +33,7 @@ public class StockTackBLImpl implements StockTackBLService {
     public StockTackVO getStockTack() {
         return new StockTackVO();
     }
-    
+
 
     public OrderVO getOrder(String orderNumber) {
 		OrderDataService orderDataService = CacheHelper.getOrderDataService();
@@ -58,13 +59,13 @@ public class StockTackBLImpl implements StockTackBLService {
     public OperationMessage makeExcel(String path) {
         try {
         	ArrayList<StoreArea> storeArea=new ArrayList<StoreArea>(4);
-			StoreArea storeArea1=storeModelDataService.getArea(StoreAreaCode.AIR);
+			StoreArea storeArea1=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
 			storeArea.add(storeArea1);
-			StoreArea storeArea2=storeModelDataService.getArea(StoreAreaCode.AIR);
+			StoreArea storeArea2=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
 			storeArea.add(storeArea2);
-			StoreArea storeArea3=storeModelDataService.getArea(StoreAreaCode.AIR);
+			StoreArea storeArea3=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
 			storeArea.add(storeArea3);
-			StoreArea storeArea4=storeModelDataService.getArea(StoreAreaCode.AIR);
+			StoreArea storeArea4=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
 			storeArea.add(storeArea4);
 			return Excel.exportToExcel(path, storeArea);
 		} catch (RemoteException e) {
