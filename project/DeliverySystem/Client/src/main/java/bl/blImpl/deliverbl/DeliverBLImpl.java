@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 import po.FormEnum;
 import po.deliverdata.DeliverPO;
+import po.memberdata.StaffPO;
+import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
 import rmi.deliverdata.DeliverDataService;
+import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import message.CheckFormMessage;
 import message.OperationMessage;
@@ -113,7 +116,22 @@ public class DeliverBLImpl implements DeliverBLService {
 	@Override
 	public ArrayList<String> getPostman(String hallID) {
 		// TODO Auto-generated method stub
-		return null;
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
+		try {
+			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(hallID);
+			ArrayList<String> post=new ArrayList<String>();
+			for (StaffPO staffPO : po) {
+				if (staffPO.getStaff()==StaffTypeEnum.DELIVER) {
+					post.add(staffPO.getID());
+				}
+			}
+			return post;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }
