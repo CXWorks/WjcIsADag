@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import main.Main;
 import message.OperationMessage;
 import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
@@ -39,9 +40,9 @@ public class LoginController {
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
         if(msg.operationResult){
             StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
-            UserInfo.setInfo(staffVO.getID(), );
+            UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID());
 
-            // TODO jump between scenes
+            Main.logIn();
             System.out.println("login successfully");
         }else{
             // TODO tips

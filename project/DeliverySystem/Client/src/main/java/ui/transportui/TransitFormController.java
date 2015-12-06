@@ -48,7 +48,7 @@ public class TransitFormController {
     public static Parent launch() throws IOException {
 
         FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(ReceiveFormController.class.getResource("transitForm.fxml"));
+        contentLoader.setLocation(TransitFormController.class.getResource("transitForm.fxml"));
         return contentLoader.load();
     }
 

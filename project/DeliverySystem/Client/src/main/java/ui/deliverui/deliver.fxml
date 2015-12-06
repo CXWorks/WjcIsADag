@@ -10,14 +10,14 @@
    <children>
       <TextField fx:id="id_Search_Field" layoutX="53.0" layoutY="50.0" prefHeight="23.0" prefWidth="127.0" text="请输入订单号" />
       <Button layoutX="186.0" layoutY="50.0" mnemonicParsing="false" onAction="#search" text="搜索" />
-      <TableView fx:id="ids_Column" layoutX="53.0" layoutY="99.0" prefHeight="309.0" prefWidth="127.0">
+      <TableView layoutX="53.0" layoutY="99.0" prefHeight="309.0" prefWidth="127.0">
         <columns>
-          <TableColumn prefWidth="126.0" text="未派出订单号" />
+          <TableColumn fx:id="ids_Column" prefWidth="126.0" text="未派出订单号" />
         </columns>
       </TableView>
-      <TableView fx:id="info_Column" layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="144.0">
+      <TableView layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="144.0">
         <columns>
-            <TableColumn prefWidth="145.0" text="订单信息" />
+            <TableColumn fx:id="info_Column" prefWidth="145.0" text="订单信息" />
         </columns>
       </TableView>
       <GridPane layoutX="427.0" layoutY="99.0" prefHeight="179.0" prefWidth="243.0">

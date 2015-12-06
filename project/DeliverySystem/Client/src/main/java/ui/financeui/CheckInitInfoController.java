@@ -152,6 +152,8 @@ public class CheckInitInfoController {
     private void reconstructColumns(TableColumn...columns){
         info_TableView.getColumns().clear();
         info_TableView.getItems().clear();
-        info_TableView.getColumns().addAll(new Object[]{columns});
+        for (TableColumn column : columns) {
+            info_TableView.getColumns().add(column);
+        }
     }
 }
