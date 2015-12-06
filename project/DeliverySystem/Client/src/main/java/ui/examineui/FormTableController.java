@@ -8,8 +8,10 @@ import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.SelectionMode;
@@ -40,8 +42,15 @@ public class FormTableController {
 		return fxmlLoader.load();
 	}
 	private  void setColumn(FormEnum formEnum){
-		this.formVOs=examineblManageService.getForms(null);
+		this.formVOs=examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
+	}
+	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
+		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
+		for (FormVO formVO : observableList) {
+			ans.add(formVO);
+		}
+		return ans;
 	}
 	//
 	public void initialize(){
@@ -52,6 +61,7 @@ public class FormTableController {
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
+		//
 	}
 	//
 	public void change(FormEnum formEnum){
@@ -61,10 +71,11 @@ public class FormTableController {
 	//
 	public void selectAll(){
 		//TODO waitting for solutions
+		this.tableView.getSelectionModel().selectAll();
 	}
 	//
 	public ArrayList<FormVO> getSelected(){
-		//TODO the same reason
-		return null;
+		ObservableList<FormVO> selected= this.tableView.getSelectionModel().getSelectedItems();
+		return this.transObervableList2List(selected);
 	}
 }
