@@ -33,7 +33,7 @@ public class FormTableController {
 	public TableColumn<FormVO, String> creatorIDColumn;
 	public TableColumn<FormVO, String> infoColumn;
 	//
-	private ArrayList<FormVO> formVOs;
+	public ArrayList<FormVO> formVOs;
 	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
 	//
 	public static Parent launch() throws IOException{
@@ -42,9 +42,12 @@ public class FormTableController {
 		return fxmlLoader.load();
 	}
 	private  void setColumn(FormEnum formEnum){
-//		this.formVOs=examineblManageService.getForms(formEnum);
-//		this.tableView.setItems(FXCollections.observableList(formVOs));
-		this.tableView.setItems(FXCollections.observableArrayList(new DeliverVO("111"),new DeliverVO("222"),new DeliverVO("333")));
+		this.formVOs=examineblManageService.getForms(formEnum);
+		this.tableView.setItems(FXCollections.observableList(formVOs));
+//		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
+//		this.tableView.
+//		System.out.println(formVOs.size());
+//		this.tableView.setItems(FXCollections.observableArrayList(new DeliverVO("111"),new DeliverVO("222"),new DeliverVO("333")));
 	}
 	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
 		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
@@ -56,11 +59,12 @@ public class FormTableController {
 	//
 	public void initialize(){
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		this.setColumn(null);
+//		this.setColumn(null);
 		//
 		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
+		typeColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formType.getChinese()));
 //		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 		//
 	}

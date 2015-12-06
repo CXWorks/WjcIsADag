@@ -13,6 +13,7 @@ import ui.configurationui.ConfigurationController;
 import ui.examineui.CheckFormController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
+import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
@@ -42,7 +43,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-//        CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -55,7 +56,7 @@ public class Main extends Application {
         primaryStage.setY(150);
 
         primaryStage.setScene(new Scene(
-        		CheckFormController.launch()
+//        		CheckFormController.launch()
 //        		StoreInFormController.launch()
 //        		StoreOutFormController.launch()
 //        		StoreSummaryController.launch()
@@ -65,7 +66,7 @@ public class Main extends Application {
                 //LoadCarController.launch()
                 //CheckRevenueFormController.launch()
             //    ManageBankAccountController.launch()
-                //LoginController.launch()
+//                LoginController.launch()
                 //NewAccountController.launch()
 //                ManageAccountController.launch()
 //                NewOrderController.launch()

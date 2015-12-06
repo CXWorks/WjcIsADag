@@ -1,10 +1,11 @@
 package model.store;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class StoreArea {
+public class StoreArea implements Serializable {
 	private StoreAreaCode areaType;
 	private ArrayList<StoreLocation> list;
 	private int rowNum=50;

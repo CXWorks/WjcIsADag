@@ -31,7 +31,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
         return new OperationMessage();
     }
 
-    public OperationMessage reducePartition(StoreAreaCode area, int number) {
+    public OperationMessage expandPartition(StoreAreaCode area, int number) {
     	 try {
  			StoreArea flex=storeModelDataService.getArea(StoreAreaCode.FLEX);
  			int row=flex.getRowNumber();
@@ -54,7 +54,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
  		}
     }
 
-    public OperationMessage expandPartition(StoreAreaCode area, int number) {
+    public OperationMessage reducePartition(StoreAreaCode area, int number) {
     	 try {
  			StoreArea target=storeModelDataService.getArea(area);
  			int row=target.getRowNumber();
@@ -76,7 +76,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
  			return new OperationMessage(false, "net error");
  		}
     }
-    
+
 	/* (non-Javadoc)
 	 * @see bl.blService.storeblService.StoreModelBLService#moveShelf(model.store.StoreAreaCode, int, int, model.store.StoreAreaCode, int, int)
 	 */
@@ -109,9 +109,10 @@ public class StoreModelBLImpl implements StoreModelBLService {
 			}
 			return storeShelfVOs;
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
 	/* (non-Javadoc)
 	 * @see bl.blService.storeblService.StoreModelBLService#getStoreAreaInfo(model.store.StoreAreaCode)

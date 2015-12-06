@@ -48,10 +48,10 @@ public class OrderBLController implements OrderBLService{
 	public OperationMessage submit(OrderVO form) {
 		try {
 			OrderPO ready=(OrderPO)vopoFactory.transVOtoPO(form);
-//			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
-//			return examineSubmitService.submit(ready);
-			OrderDataService orderDataService=CacheHelper.getOrderDataService();
-			return orderDataService.insert(ready);
+			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+			return examineSubmitService.submit(ready);
+//			OrderDataService orderDataService=CacheHelper.getOrderDataService();
+//			return orderDataService.insert(ready);
 		} catch (Exception e) {
 			//TODO handle the exception
 			e.printStackTrace();

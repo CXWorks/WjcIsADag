@@ -87,12 +87,12 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 		case STORE_IN:
 			StoreInPO sInPO = (StoreInPO) form;
 			result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
-			pass_helper.getStoreModelDataService().setLocation(sInPO.getLocation());//改变数据库中这个位置的状态
+			pass_helper.getStoreModelDataService().setLocation(form.getFormID().substring(2, 9),sInPO.getLocation());//改变数据库中这个位置的状态
 			break;
 		case STORE_OUT:
 			StoreOutPO sOutPO = (StoreOutPO) form;
 			result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
-			pass_helper.getStoreModelDataService().setLocation(sOutPO.getLocation());//改变数据库中这个位置的状态
+			pass_helper.getStoreModelDataService().setLocation(form.getFormID().substring(2, 9),sOutPO.getLocation());//改变数据库中这个位置的状态
 			break;
 		case TRANSPORT_CENTER:
 			result = pass_helper.getTransportDataService().update(
@@ -142,7 +142,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				StoreInPO sInPO = (StoreInPO) tmp;
 				sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
 				result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
-				pass_helper.getStoreModelDataService().setLocation(sInPO.getLocation());//改变数据库中这个位置的状态
+				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),sInPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case STORE_OUT:
 				StoreOutPO sOutPO = (StoreOutPO) tmp;
@@ -152,7 +152,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				String inID = IDs.get(IDs.size()-1);
 				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
-				pass_helper.getStoreModelDataService().setLocation(sOutPO.getLocation());//改变数据库中这个位置的状态
+				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),sOutPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case TRANSPORT_CENTER:
 				result = pass_helper.getTransportDataService().insert(
