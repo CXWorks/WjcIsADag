@@ -48,6 +48,7 @@ public class NewOrderController {
 	public TextField goods_Volume;
 	public TextField goods_Name;
 	public TextField goods_Type;
+	
 	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
 	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
 

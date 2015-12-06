@@ -7,6 +7,7 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import po.transportdata.LoadPO;
 import vo.managevo.car.CarVO;
+import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
@@ -33,7 +34,7 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	 */
 	public ArrayList<CarVO> getCars(String hallID);
 	
-	public ArrayList<Object> getLocation(String hallID);
+	public ArrayList<InstitutionVO> getLocation(String hallID);
 	
 	public OrderVO getOrder(String orderID);
 }

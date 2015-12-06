@@ -6,6 +6,7 @@ import bl.blService.FormBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import po.transportdata.CenterOutPO;
+import vo.managevo.institution.InstitutionVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.CenterOutVO;
 
@@ -22,4 +23,8 @@ public interface TransportCenterBLService extends FormBLService<CenterOutVO> {
 	 * @return
 	 */
 	public OrderVO getOrder(String orderID);
+	
+	
+	
+	public ArrayList<InstitutionVO> getLocation(String hallID);
 }

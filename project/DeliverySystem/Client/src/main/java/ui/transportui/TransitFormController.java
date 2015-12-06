@@ -35,20 +35,22 @@ public class TransitFormController {
     public TextField supervisor_Field;
     public TextField transNumber_Field;
     public TextField cargo_Field;
-    public TableView orders_TableView;
-    public TableColumn order_TableColumn;
+    public ListView<String> orders;
+//    public TableView<String> orders_TableView;
+//    public TableColumn<String,String> order_TableColumn;
     public Label fee_Label;
     
+    public TextField id_Field;
     
-    
-    ArrayList<String> ids=null;//这只是权宜之计，，并不能，，就这样放着
+    ArrayList<String> ids;
     
     TransportationEnum transitEnum =TransportationEnum.TRAIN;
     TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
+    
     public static Parent launch() throws IOException {
 
         FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(ReceiveFormController.class.getResource("transitForm.fxml"));
+        contentLoader.setLocation(TransitFormController.class.getResource("transitForm.fxml"));
         return contentLoader.load();
     }
 
@@ -66,6 +68,14 @@ public class TransitFormController {
     }
     
     
+    public void add(ActionEvent actionEvent){
+    	String a= id_Field.getText();
+    	System.out.println("aaaa"+a);
+//    	ids.add(a);
+    	orders.getItems().add(a);
+    	id_Field.clear();
+    	
+    }
     
     public void saveDraft(ActionEvent actionEvent) {
     	transportCenterBLService.saveDraft(generateVO(null));
@@ -81,7 +91,8 @@ public class TransitFormController {
     	supervisor_Field.clear();
     	transNumber_Field.clear();
     	cargo_Field.clear();
-    	orders_TableView.setItems(null);
+    	id_Field.clear();
+    	orders.setItems(null);
     	
     }
 
