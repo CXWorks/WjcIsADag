@@ -34,7 +34,13 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	 */
 	public ArrayList<CarVO> getCars(String hallID);
 	
-	public ArrayList<InstitutionVO> getLocation(String hallID);
+	/**
+	 * 
+	 * @param hallID
+	 * @return 当前城市营业厅和中转中心编号列表 （还是给我Sring吧，，VO 里也没有InstitutionID啊？
+	 */
+	
+	public ArrayList<String> getLocation(String hallID);
 	
 	public OrderVO getOrder(String orderID);
 }
