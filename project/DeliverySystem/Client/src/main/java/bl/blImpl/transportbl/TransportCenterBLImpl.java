@@ -84,6 +84,13 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				return null;
 			}
 		}
+
+
+		@Override
+		public ArrayList<Object> getLocation(String hallID) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 
 

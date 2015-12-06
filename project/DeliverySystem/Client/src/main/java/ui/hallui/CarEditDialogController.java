@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import main.Main;
+import tool.time.TimeConvert;
 import vo.managevo.car.CarVO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,7 @@ public class CarEditDialogController {
 	public static Label buyTime_Label;
 	public static DatePicker useTime_Picker;
 
-
+	TimeConvert timeconvert = new TimeConvert();
 	private CarVO editVO =new CarVO();
 	public Stage stage;
 
@@ -63,11 +64,12 @@ public class CarEditDialogController {
 
 
 	
+	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent){
 		
 		editVO.setCarID(carID_Field.getText());
 		editVO.setNameID(nameID_Field.getText());
-		//editVO.setUseTime(LocalDate.parse(useTime_Picker.getValue().toString()));
+		editVO.setUseTime(timeconvert.convertDate(useTime_Picker.getValue()));
 		stage.close();
 		
 		
