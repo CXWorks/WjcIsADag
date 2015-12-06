@@ -45,4 +45,17 @@ public class BankAccountVO extends InfoVO{
     public BankAccountPO toPO(){
     	return new BankAccountPO(bankID, accountName, balance);
     }
+    
+    public boolean quzzySearch(String key){
+    	if (accountName.contains(key)) {
+			return true;
+		}
+    	if (balance.contains(key)) {
+			return true;
+		}
+    	if (bankID.contains(key)) {
+			return true;
+		}
+    	return false;
+    }
 }

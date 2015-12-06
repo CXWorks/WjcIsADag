@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import bl.clientNetCache.CacheHelper;
 import po.configurationdata.City2DPO;
 import po.configurationdata.PricePO;
 import rmi.configurationdata.ConfigurationDataService;
@@ -21,7 +22,7 @@ public class Predicter {
 	private ConfigurationDataService configurationDataService;
 	private VOPOFactory vopoFactory;
 	public Predicter(VOPOFactory vopoFactory){
-		this.configurationDataService=configurationDataService;
+		this.configurationDataService=CacheHelper.getConfigurationDataService();
 		this.vopoFactory=vopoFactory;
 	}
 	//

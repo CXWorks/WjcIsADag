@@ -17,7 +17,21 @@ public class CalculateVO extends InfoVO{
 	public double companyPayment;
 	//毛利润
 	public double companyProfit;
-	public CalculateVO(){
+	private CalculateVO(){
 		super(InfoEnum.CALCULATE);
 	}
+	/**
+	 * @param infoEnum
+	 * @param companyRevenue
+	 * @param companyPayment
+	 * @param companyProfit
+	 */
+	public CalculateVO(double companyRevenue,
+			double companyPayment, double companyProfit) {
+		this();
+		this.companyRevenue = companyRevenue;
+		this.companyPayment = companyPayment;
+		this.companyProfit = companyProfit;
+	}
+	
 }
