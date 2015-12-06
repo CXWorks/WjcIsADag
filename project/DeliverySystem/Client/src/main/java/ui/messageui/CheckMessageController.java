@@ -1,8 +1,11 @@
 package ui.messageui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import message.ChatMessage;
 import ui.financeui.ManageBankAccountController;
+import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
 import bl.blService.accountblService.AccountBLRemindService;
 import factory.AccountFactory;
@@ -19,21 +22,27 @@ import javafx.scene.control.TableView;
  * Created by Sissel on 2015/11/27.
  */
 public class CheckMessageController {
-	public TableView message_View;
-    public TableColumn check_TableColumn;
-    public TableColumn time_TableColumn;
-    public TableColumn message_TableColumn;
+	public TableView<ChatMessage> message_View;
+    public TableColumn<ChatMessage,String> check_TableColumn;
+    public TableColumn<ChatMessage,String> time_TableColumn;
+    public TableColumn<ChatMessage,String> message_TableColumn;
 
+    
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
+    ArrayList<ChatMessage> chatMessage = new  ArrayList<ChatMessage>();
     
-    
+ 
     public static Parent launch() throws IOException {
         return FXMLLoader.load(CheckMessageController.class.getResource("checkMessage.fxml"));
     }
 
     @FXML
     public void initialize(){
-        
+    	chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
+    	
+    	
+    	
+    	
     }
     
     

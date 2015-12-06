@@ -7,8 +7,12 @@ import java.util.List;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import po.FormEnum;
+import po.companydata.CenterPO;
+import po.companydata.HallPO;
 import po.orderdata.OrderPO;
 import po.transportdata.CenterOutPO;
+import rmi.companydata.CompanyDataCenterService;
+import rmi.companydata.CompanyDataHallService;
 import rmi.examineService.ExamineSubmitService;
 import rmi.orderdata.OrderDataService;
 import rmi.transportdata.CenterOutDataService;
@@ -85,10 +89,24 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 			}
 		}
 
-	@Override
-	public ArrayList<String> getLocation(String hallID) {
-		return null;
-	}
+
+		/* (non-Javadoc)
+		 * @see bl.blService.transportblService.TransportCenterBLService#getLocation(java.lang.String)
+		 */
+		@Override
+		public ArrayList<String> getLocation(String hallID) {
+			CompanyDataCenterService companyDataCenterService=CacheHelper.getCompanyDataCenterService();
+			CompanyDataHallService companyDataHallService=CacheHelper.getCompanyDataHallService();
+			try {
+				ArrayList<HallPO> hallPOs=companyDataHallService.getHall();
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
 
 
 }

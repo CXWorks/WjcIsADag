@@ -55,5 +55,10 @@ public interface DeliverBLService extends FormBLService<DeliverVO>{
 	 */
 	public ArrayList<String> getUnhandledOrderID(String hallID);
 	
+	/**
+	 * 获得营业厅的快递员
+	 */
+	public ArrayList<String> getPostman(String hallID);
+	
 	
 }

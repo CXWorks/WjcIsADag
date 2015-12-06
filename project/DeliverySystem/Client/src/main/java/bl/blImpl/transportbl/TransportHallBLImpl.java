@@ -98,16 +98,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			}
 
 		}
-		/* (non-Javadoc)
-		 * @see bl.blService.transportblService.TransportHallBLService#getLocation(java.lang.String)
-		 */
-		public ArrayList<String> getLocation(String hallID) {
-			// TODO discuss
-			ArrayList<String> result=new ArrayList<>();
-			String stub=new String();
-			result.add(stub);
-			return result;
-		}
+		
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getOrder(java.lang.String)
 		 */
@@ -139,5 +130,16 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			} catch (RemoteException e) {
 				return null;
 			}
+		}
+
+
+
+		/* (non-Javadoc)
+		 * @see bl.blService.transportblService.TransportHallBLService#getLocation(java.lang.String)
+		 */
+		@Override
+		public ArrayList<String> getLocation(String hallID) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

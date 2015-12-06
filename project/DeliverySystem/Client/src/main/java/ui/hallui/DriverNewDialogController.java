@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import vo.managevo.staff.DriverVO;
@@ -32,7 +33,7 @@ public class DriverNewDialogController {
 	ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
 	
 	public static Label age_Label;
-	
+	TimeConvert timeconvert = new TimeConvert();
 	SexEnum sexEnum = SexEnum.MAN;
 	private DriverVO editVO =new DriverVO(null);
 	public Stage stage;
@@ -69,17 +70,16 @@ public class DriverNewDialogController {
     }
 
 
+	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent){
 		//TODO solve sex and Picker
 		
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
-		//editVO.setSex(sex_Box.getValue());
-		//editVO.setBirth(birth_Picker.getValue());
+		editVO.setBirth(timeconvert.convertDate(birth_Picker.getValue()));
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());
-		//editVO.setLicence_period(licencePeriod_Picker.getValue());
-		
+		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));		
 		stage.close();
 		
 		

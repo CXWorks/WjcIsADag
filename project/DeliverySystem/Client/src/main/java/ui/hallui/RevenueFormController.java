@@ -7,6 +7,8 @@ import java.util.Calendar;
 
 import message.OperationMessage;
 import factory.FinanceBLFactory;
+import factory.FormFactory;
+import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.financeblService.RevenueBLService;
 import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
@@ -38,13 +40,12 @@ public class RevenueFormController {
     public TextField money_Field;
     public TextField order_Field;
     
+    public Label total_Label;
     private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
-    private ArrayList<StaffVO> dlivers=revenueBLService.getInstitutionDelivers();
+    DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
+    public ChoiceBox<String> deliver_ChoiceBox;
     
-    //这个是快递员的编号，，等jr搞定我来搬砖orz
-    public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> deliver_ChoiceBox;
-    
-    
+	ArrayList<String> postmans= deliverBLService.getPostman(UserInfo.getInstitutionID());
     private RevenueVO  revenueVO = new RevenueVO("");
     
     public String institutionID=UserInfo.getInstitutionID();
@@ -57,9 +58,10 @@ public class RevenueFormController {
 
 	@FXML
 	public void initialize(){
-		
-		
+		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
+		revenue_DatePicker.setValue(LocalDate.now());
 	}
+	
 	
 	
     public void add(ActionEvent actionEvent) {
@@ -70,10 +72,10 @@ public class RevenueFormController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getAmount())
         );
 	deliver_TableColumn.setCellValueFactory(
-            cellData -> new SimpleStringProperty(cellData.getValue().getCreaterID())
+            cellData -> new SimpleStringProperty(cellData.getValue().getDeliverName())
     );
 	order_TableColumn.setCellValueFactory(
-            cellData -> new SimpleStringProperty(cellData.getValue().getOrderID())
+            cellData -> new SimpleStringProperty(cellData.getValue().getOrderIDs().toString())
     );
 	revenues_TableView.setItems(
                 FXCollections.observableArrayList(
@@ -82,7 +84,7 @@ public class RevenueFormController {
         );
 	revenues_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    System.out.println("selected " + newValue.orderID);
+                    System.out.println("selected " + newValue.formID);
                     
                    // RevenueVO = newValue;
                 }
@@ -106,10 +108,11 @@ public class RevenueFormController {
 
     private RevenueVO generateRevenueVO(String formID){
     	 Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
-        return new RevenueVO(
-                formID,calendar,money_Field.getText(),
-                deliver_ChoiceBox.getValue().toString(),institutionID,order_Field.getText()
-        );
+    	 return null;
+//        return new RevenueVO(
+//                formID,calendar,money_Field.getText(),
+//                deliver_ChoiceBox.getValue().toString(),institutionID,order_Field.getText()
+//        );
     }
     
     
@@ -118,5 +121,9 @@ public class RevenueFormController {
     	money_Field.clear();
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
+    }
+    
+    public void Total(ActionEvent actionEvent){
+    	
     }
 }

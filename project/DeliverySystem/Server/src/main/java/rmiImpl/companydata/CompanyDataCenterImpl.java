@@ -142,9 +142,10 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新建中转中心:" + po.getCenterID()));
+		// 系统日志
+		if (result.operationResult == true)
+			RMIHelper.getLogDataService()
+					.insert(new LogPO("总经理", Calendar.getInstance(), "新建中转中心:" + po.getCenterID()));
 
 		return result;
 	}
@@ -163,9 +164,10 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除中转中心:" + center.getCenterID()));
+		// 系统日志
+		if (result.operationResult == true)
+			RMIHelper.getLogDataService()
+					.insert(new LogPO("总经理", Calendar.getInstance(), "删除中转中心:" + center.getCenterID()));
 
 		return result;
 	}
@@ -179,6 +181,45 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			return result = new OperationMessage(false, "更新失败");
 		else
 			return result;
+	}
+
+	@Override
+	public CenterPO getCenterByID(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from `" + Table_Name + "` where `centerID` = '" + ID + "'";
+		ResultSet rs = null;
+		CenterPO result = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
+			ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
+			ArrayList<String> t1;
+			ArrayList<String> t2;
+			MemberDataService<StaffPO> staff = new StaffDataImpl();
+			if (!rs.getString("storeman").equalsIgnoreCase("")) {
+				t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
+				for (String tmp : t1) {
+					storeman.add(staff.getPerson(tmp));
+				}
+			}
+
+			if (!rs.getString("counterman").equalsIgnoreCase("")) {
+				t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
+				for (String tmp : t2) {
+					counterman.add(staff.getPerson(tmp));
+				}
+			}
+			result = new CenterPO(ID, rs.getString("city"), storeman, counterman);
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

@@ -12,6 +12,8 @@ public interface ExamineblManageService {
 	
 	public ArrayList<FormVO> getForms(FormEnum formType);
 	
+	public OperationMessage refresh();
+	
 	public OperationMessage passForm(ArrayList<FormVO> form);
 	
 	public OperationMessage deleteForm(ArrayList<FormVO> form);

@@ -6,7 +6,7 @@ import java.util.Map;
 import po.InfoEnum;
 import po.configurationdata.PricePO;
 import po.orderdata.DeliverTypeEnum;
-import ui.deliverui.deliverController;
+
 
 public class PriceVO extends ConfigurationVO{
 	//TODO discuss how to build this with JR

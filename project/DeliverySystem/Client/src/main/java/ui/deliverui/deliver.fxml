@@ -6,21 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.deliverui.deliverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.deliverui.DeliverController">
    <children>
       <TextField fx:id="id_Search_Field" layoutX="53.0" layoutY="50.0" prefHeight="23.0" prefWidth="127.0" text="请输入订单号" />
       <Button layoutX="186.0" layoutY="50.0" mnemonicParsing="false" onAction="#search" text="搜索" />
-      <TableView layoutX="53.0" layoutY="99.0" prefHeight="309.0" prefWidth="127.0">
+      <TableView fx:id="ids_TableView" layoutX="53.0" layoutY="99.0" prefHeight="309.0" prefWidth="127.0">
         <columns>
           <TableColumn fx:id="ids_Column" prefWidth="126.0" text="未派出订单号" />
         </columns>
       </TableView>
-      <TableView layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="144.0">
+      <TableView fx:id="info_TableView" layoutX="226.0" layoutY="99.0" prefHeight="309.0" prefWidth="246.0">
         <columns>
-            <TableColumn fx:id="info_Column" prefWidth="145.0" text="订单信息" />
+            <TableColumn fx:id="key_Column" prefWidth="108.0" text="条目" />
+            <TableColumn fx:id="value_Column" prefWidth="137.0" text="值" />
         </columns>
       </TableView>
-      <GridPane layoutX="427.0" layoutY="99.0" prefHeight="179.0" prefWidth="243.0">
+      <GridPane layoutX="490.0" layoutY="99.0" prefHeight="179.0" prefWidth="180.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -51,7 +51,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+//        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -110,7 +110,8 @@ public class Main extends Application {
 
         loginPane = (Pane)LoginController.launch();
 
-        primaryStage.setScene(new Scene( loginPane));
+//        primaryStage.setScene(new Scene( loginPane));
+        primaryStage.setScene(new Scene(ManageBankAccountController.launch()));
 
         primaryStage.show();
     }

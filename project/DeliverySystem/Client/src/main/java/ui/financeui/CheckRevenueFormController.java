@@ -49,12 +49,12 @@ public class CheckRevenueFormController {
         formatCheckService = Services.formatCheckService;
         revenueBLService = Services.revenueBLService;
 
-        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , "999"));
-        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", "1999"));
+        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , null));
+        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", null));
 
-        orderID_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().orderID)
-        );
+//        orderID_Column.setCellValueFactory(
+//                cellData -> new SimpleStringProperty(cellData.getValue().orderID)
+//        );
         deliver_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().deliverName)
         );

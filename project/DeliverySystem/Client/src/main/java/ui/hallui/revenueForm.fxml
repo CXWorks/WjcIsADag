@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.RevenueFormController">
    <children>
@@ -45,5 +45,8 @@
       <Button layoutX="572.0" layoutY="413.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
       <Button layoutX="746.0" layoutY="413.0" mnemonicParsing="false" onAction="#commit" text="提交" />
       <Button layoutX="675.0" layoutY="413.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+      <Button layoutX="499.0" layoutY="413.0" mnemonicParsing="false" onAction="#Total" text="合计" />
+      <Text layoutX="339.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="总金额" />
+      <Label fx:id="total_Label" layoutX="400.0" layoutY="417.0" text="Label" />
    </children>
 </AnchorPane>

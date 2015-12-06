@@ -18,6 +18,7 @@ import userinfo.UserInfo;
 import vo.managevo.institution.InstitutionVO;
 import vo.receivevo.ReceiveVO;
 import vo.transitvo.CenterOutVO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,23 +35,23 @@ public class TransitFormController {
     public ChoiceBox<SimpleEnumProperty<TransportationEnum>> transitType_ChoiceBox;
     public DatePicker transit_DatePicker;
     public TextField departure_Field;
-    public ChoiceBox<String> arrival_Box;
+    public ChoiceBox<String> arrival_Box = new ChoiceBox<String>();
     public TextField supervisor_Field;
     public TextField transNumber_Field;
     public TextField cargo_Field;
     public ListView<String> orders;
-//    public TableView<String> orders_TableView;
+    public TableView<String> orders_TableView;
 //    public TableColumn<String,String> order_TableColumn;
     public Label fee_Label;
     public TextField id_Field;
     
-    ArrayList<String> ids;
+    ArrayList<String> ids= new ArrayList<String>();
     
     TransportationEnum transitEnum =TransportationEnum.TRAIN;
     TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
     
-//    InstitutionVO ivo= transportCenterBLService.getLocation(UserInfo.getInstitutionID());
-//    ObservableList<String> arrivals 
+    ArrayList<String> arrivals=new ArrayList<String>();
+    //  ObservableList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
 
     
     public static Parent launch() throws IOException {
@@ -63,6 +64,7 @@ public class TransitFormController {
     @FXML
     public void initialize(){
 
+    	departure_Field.setText(UserInfo.getInstitutionID());
         // initialize the choice box
     	transitType_ChoiceBox.setItems(Enum2ObservableList.transit(TransportationEnum.values()));
     	transitType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
@@ -71,18 +73,19 @@ public class TransitFormController {
                 }
         );
     	
-//    	arrival_Box.setItems(arrivals);
-//    	
+//       arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
+    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
     	
-        clear(null);
+//        clear(null);
     }
     
     
     public void add(ActionEvent actionEvent){
     	String a= id_Field.getText();
     	System.out.println("aaaa"+a);
-//    	ids.add(a);
-    	orders.getItems().add(a);
+     	ids.add(a);
+     	orders_TableView.getItems().add(a);
+    	//orders.getItems().add(a);
     	id_Field.clear();
     	
     }

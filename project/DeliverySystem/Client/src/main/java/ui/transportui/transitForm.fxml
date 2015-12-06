@@ -35,7 +35,7 @@
             <TextField fx:id="supervisor_Field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="transNumber_Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="cargo_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="arrival_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label layoutX="415.0" layoutY="33.0" text="所有订单号" />
@@ -56,7 +56,7 @@
             <Button mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
-      <TextField layoutX="415.0" layoutY="70.0" />
-      <Button layoutX="586.0" layoutY="70.0" mnemonicParsing="false" text="添加" />
+      <TextField fx:id="id_Field" layoutX="415.0" layoutY="70.0" />
+      <Button layoutX="586.0" layoutY="70.0" mnemonicParsing="false" onAction="#add" text="添加" />
    </children>
 </AnchorPane>
