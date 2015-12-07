@@ -55,7 +55,8 @@ public class CheckFormController implements EventHandler<Event>{
 	@FXML
 	public FormTableController formTableController;
 	
-	public ArrayList<FormVO> unhandledForms;
+	
+	public Parent son;
 	
 	public FormEnum nowFormEnum=null;
 
@@ -65,47 +66,37 @@ public class CheckFormController implements EventHandler<Event>{
 	       fxmlLoader.setLocation(CheckFormController.class.getResource("checkForm.fxml"));
 	       return fxmlLoader.load();
 	 }
+	 private void initSon() throws IOException{
+		 FXMLLoader fxmlLoader=new FXMLLoader();
+		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
+		 son=(Parent)fxmlLoader.load();
+			this.formTableController=(FormTableController)fxmlLoader.getController();
+	 }
 
 	 public void initialize(){
 		 tabs=tabPane.getTabs();
-		 FXMLLoader fxmlLoader=new FXMLLoader();
-		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
-		 try {
-			Parent son=(Parent)fxmlLoader.load();
-			this.formTableController=(FormTableController)fxmlLoader.getController();
+		 
+		 
 			for (Tab tab : tabs) {
 				tab.setOnSelectionChanged(this);
+//				tab.setContent(son);
 			}
 			tabPane.getSelectionModel().selectFirst();
 			selectedTab=tabPane.getSelectionModel().getSelectedItem();
 			this.handleSelection();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	 }
-
-//	public void selectedChanged(EventHandler<Event> value){
-//		value.handle(event);
-//		this.tabs=tabPane.getTabs();
-//		for (Tab tab : tabs) {
-//			if (tab.isSelected()) {
-//				String text=tab.getText();
-//				nowFormEnum=this.getFormEnum(text);
-//				formTableController.change(nowFormEnum);
-//			}
-//		}
-//	}
 
 	public void pass(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.passForm(temp);
-		unhandledForms=examineblManageService.getForms(nowFormEnum);
+		formTableController.change(nowFormEnum);
 	}
 
 	public void delete(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.deleteForm(temp);
-		unhandledForms=examineblManageService.getForms(nowFormEnum);
+		formTableController.change(nowFormEnum);
 	}
 	public void selectAll(){
 		formTableController.selectAll();
@@ -113,7 +104,6 @@ public class CheckFormController implements EventHandler<Event>{
 	//
 	public void refresh(){
 		examineblManageService.refresh();
-		unhandledForms=examineblManageService.getForms(nowFormEnum);
 		formTableController.change(nowFormEnum);
 	}
 	
@@ -160,7 +150,8 @@ public class CheckFormController implements EventHandler<Event>{
 	@Override
 	public void handle(Event event) {
 		Tab unknown=(Tab)event.getSource();
-		if (unknown==selectedTab) {
+//		System.out.println(unknown.getText());
+		if (unknown.getText().equalsIgnoreCase(selectedTab.getText())) {
 			return;
 		}else {
 			selectedTab=unknown;
@@ -169,11 +160,18 @@ public class CheckFormController implements EventHandler<Event>{
 	}
 	//
 	private void handleSelection(){
-		
-//		System.out.println("used"+selectedTab.getText());
+		try {
+			this.initSon();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String text=selectedTab.getText();
 		nowFormEnum=this.getFormEnum(text);
 		formTableController.change(nowFormEnum);
-		selectedTab.setContent(formTableController.tableView);
+		selectedTab.setContent(son);
+		if (son==null) {
+			System.out.println("null");
+		}
 	}
 }

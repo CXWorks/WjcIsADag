@@ -1,6 +1,7 @@
 package vo;
 
 import java.util.Calendar;
+import java.util.function.Predicate;
 
 import po.FormEnum;
 import po.FormStateEnum;
@@ -9,7 +10,7 @@ import util.DataType;
 /**
  * Created by Sissel on 2015/10/24.
  */
-public abstract class FormVO extends CommonVO{
+public abstract class FormVO extends CommonVO {
     public FormEnum formType;
     public FormStateEnum state;
     public String formID;

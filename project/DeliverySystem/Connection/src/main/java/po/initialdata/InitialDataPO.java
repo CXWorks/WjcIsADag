@@ -26,6 +26,8 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<StaffPO> staffs;
     List<HallPO> halls;
     List<CenterPO> centers;
+    
+    
     public InitialDataPO(){
     	super(InfoEnum.INITIAL_DATA);
     }

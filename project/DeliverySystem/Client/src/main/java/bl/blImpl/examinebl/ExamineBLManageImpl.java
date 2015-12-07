@@ -29,11 +29,31 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		formVOs=new ArrayList<FormVO>();
 	}
 	
+	private void maintainData(ArrayList<FormVO> form){
+		if (form.size()==formVOs.size()) {
+			formVOs.clear();
+			return;
+		} else {
+			ArrayList<FormVO> ans=new ArrayList<FormVO>();
+			int i=0,j=0;
+			while(i<form.size()&&j<formVOs.size()){
+				FormVO temp=form.get(i);
+				if (!temp.formID.equalsIgnoreCase(formVOs.get(j).formID)) {
+					ans.add(temp);
+				}
+				j++;
+				i++;
+			}
+			this.formVOs=ans;
+		}
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see blService.examineblService.ExamineblManageService#passForm(java.util.ArrayList)
 	 */
 	public OperationMessage passForm(ArrayList<FormVO> form) {
+		this.maintainData(form);
 		ArrayList<FormPO> po=new ArrayList<FormPO>(form.size());
 		for (int i = 0; i < form.size(); i++) {
 			FormVO each=form.get(i);
@@ -52,6 +72,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see blService.examineblService.ExamineblManageService#deleteForm(java.util.ArrayList)
 	 */
 	public OperationMessage deleteForm(ArrayList<FormVO> form) {
+		this.maintainData(form);
 		ArrayList<FormPO> po=new ArrayList<FormPO>(form.size());
 		for (int i = 0; i < form.size(); i++) {
 			FormVO each=form.get(i);
@@ -83,6 +104,9 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 */
 	@Override
 	public OperationMessage modifyForm(FormVO form) {
+		ArrayList<FormVO> temp=new ArrayList<FormVO>(1);
+		temp.add(form);
+		this.maintainData(temp);
 		FormPO po=(FormPO)vopoFactory.transVOtoPO(form);
 		try {
 			return examineManageService.modifyForm(po);
@@ -126,6 +150,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			ArrayList<FormPO> formPOs=examineManageService.getForms();
 			for (FormPO formPO : formPOs) {
 				FormVO vo=(FormVO)vopoFactory.transPOtoVO(formPO);
+				System.out.println(vo.formID);
 				formVOs.add(vo);
 			}
 			return new OperationMessage();
