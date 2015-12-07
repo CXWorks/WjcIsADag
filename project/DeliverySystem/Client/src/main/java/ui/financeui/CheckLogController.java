@@ -42,7 +42,7 @@ public class CheckLogController {
     @FXML
     public void exportTXT(ActionEvent actionEvent) {
         // TODO file browser
-
+        logblService.exportToTXT("path");
     }
 
     @FXML
