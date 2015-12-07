@@ -88,6 +88,9 @@ public class ManageOrganizationController {
 //				String script="<script type=\"text/javascript\"> var map = new BMap.Map(\"allmap\");  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  map.addControl(new BMap.MapTypeControl());   map.setCurrentCity(\"北京\");         map.enableScrollWheelZoom(true);</script>";
 //				webEngine.loadContent(script);
 				webEngine.load(te);
+				JSObject js=(JSObject)webEngine.executeScript("window");
+				js.setMember("ho", new Hope());
+//				webEngine.executeScript("test()");
 //				JSObject js=
 //				if (js==null) {
 //					System.out.println("null");
