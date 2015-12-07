@@ -49,9 +49,8 @@ public class TransitFormController {
     
     TransportationEnum transitEnum =TransportationEnum.TRAIN;
     TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
-    
-    ArrayList<String> arrivals=new ArrayList<String>();
-    //  ObservableList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
+   
+    ArrayList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
 
     
     public static Parent launch() throws IOException {
@@ -73,10 +72,10 @@ public class TransitFormController {
                 }
         );
     	
-//       arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
-    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
+         arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
+//    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
     	
-//        clear(null);
+         clear(null);
     }
     
     

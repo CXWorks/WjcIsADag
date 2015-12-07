@@ -1,5 +1,6 @@
 package ui.transportui;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,29 +38,37 @@ public class LoadCarController {
     public Label date_errLabel;
     public Label fee_Label;
     public ListView orders_ListView;
+    public TextField id_Field;
     public ChoiceBox<String> arrival_ChoiceBox;
     public ChoiceBox<String> carID_ChoiceBox;
 
-    
     ArrayList<String> ids;
     
     TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
+    
+    ArrayList<String> arrivals=transportHallBLService.getLocation(UserInfo.getInstitutionID());
+    ArrayList<String> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
     public static Parent launch() throws IOException {
         return FXMLLoader.load(LoadCarController.class.getResource("loadCarForm.fxml"));
     }
 
     @FXML
     public void initialize(){
-        // TODO init arrival_ChoiceBox
-    	
-    	
-    	List<CarVO> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
-    	
-//    	arrival_ChoiceBox;
-    	
+
+    	arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
+    	carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
+    	 clear(null);
     }
 
-
+    public void add(ActionEvent actionEvent){
+    	String a= id_Field.getText();
+    	System.out.println("aaaa"+a);
+     	ids.add(a);
+     	orders_ListView.getItems().add(a);
+    	//orders.getItems().add(a);
+    	id_Field.clear();
+    	
+    }
     public void saveDraft(ActionEvent actionEvent) {
     	transportHallBLService.saveDraft(generateVO(null));
     }
