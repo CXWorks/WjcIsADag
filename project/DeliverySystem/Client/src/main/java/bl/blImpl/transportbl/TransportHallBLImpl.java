@@ -84,17 +84,15 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		/* (non-Javadoc)
 		 * @see bl.blService.transportblService.TransportHallBLService#getCars(java.lang.String)
 		 */
-		public ArrayList<CarVO> getCars(String hallID) {
+		public ArrayList<String> getCars(String hallID) {
 			CompanyDataCarService companyDataCarService=CacheHelper.getCompanyDataCarService();
 			try {
 				ArrayList<CarPO> po=companyDataCarService.getCars(hallID);
-				ArrayList<CarVO> result=new ArrayList<CarVO>(po.size());
+				ArrayList<String> ans=new ArrayList<String>(po.size());
 				for (int i = 0; i < po.size(); i++) {
-					CarPO each=po.get(i);
-					CarVO temp=(CarVO)vopoFactory.transPOtoVO(each);
-					result.add(temp);
+					ans.add(i, po.get(i).getCarID());
 				}
-				return result;
+				return ans;
 			} catch (RemoteException e) {
 				return null;
 			}

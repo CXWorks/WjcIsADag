@@ -32,7 +32,7 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	 * @param hallID
 	 * @return
 	 */
-	public ArrayList<CarVO> getCars(String hallID);
+	public ArrayList<String> getCars(String hallID);
 	
 	/**
 	 * 
