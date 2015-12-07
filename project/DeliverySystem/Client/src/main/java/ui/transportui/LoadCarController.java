@@ -53,7 +53,7 @@ public class LoadCarController {
         // TODO init arrival_ChoiceBox
     	
     	
-    	List<CarVO> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
+//    	List<CarVO> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
     	
 //    	arrival_ChoiceBox;
     	

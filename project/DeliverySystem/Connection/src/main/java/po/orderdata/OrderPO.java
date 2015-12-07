@@ -61,7 +61,10 @@ public class OrderPO extends FormPO implements Serializable {
 		this.formType = FormEnum.ORDER;
 	}
 	//
-	
+	public void finfished(Calendar receiveCalendar,String signPeople){
+		this.receiveDate=receiveCalendar;
+		this.receivePeople=signPeople;
+	}
 
 	//
 	public String getNameFrom() {

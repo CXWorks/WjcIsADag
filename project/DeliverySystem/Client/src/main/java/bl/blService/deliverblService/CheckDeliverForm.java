@@ -19,5 +19,5 @@ public interface CheckDeliverForm {
 	 */
 	public ArrayList<DeliverVO> getDeliverForms(String postmanID);
 	
-	public OperationMessage finishDelivery(ArrayList<DeliverVO> finfished);
+	public OperationMessage finishDelivery(DeliverVO finfished);
 }

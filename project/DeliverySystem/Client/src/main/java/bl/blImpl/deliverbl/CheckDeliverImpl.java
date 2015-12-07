@@ -4,7 +4,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.deliverdata.DeliverPO;
+import po.orderdata.OrderPO;
 import rmi.deliverdata.DeliverDataService;
+import rmi.orderdata.OrderDataService;
 import message.OperationMessage;
 import vo.delivervo.DeliverVO;
 import bl.blService.deliverblService.CheckDeliverForm;
@@ -44,23 +46,23 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	}
 
 	/* (non-Javadoc)
-	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(java.util.ArrayList)
+	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(vo.DeliverVO)
 	 */
-	public OperationMessage finishDelivery(ArrayList<DeliverVO> finfished) {
+	public OperationMessage finishDelivery(DeliverVO each) {
 		DeliverPO po;
-		for (int i = 0; i < finfished.size(); i++) {
-			DeliverVO each=finfished.get(i);
+		
 			po=(DeliverPO)vopoFactory.transVOtoPO(each);
 			po.setFinished(true);
 			try {
 				OperationMessage op=deliverDataService.update(po);
-				if (!op.operationResult) {
-					return op;
-				}
+				OrderDataService orderDataService=CacheHelper.getOrderDataService();
+				OrderPO orderPO=orderDataService.getFormPO(each.getOrderID());
+				orderPO.finfished(each.getReceiveDate()	, each.getReceivePeople());
+				orderDataService.update(orderPO);
 			} catch (RemoteException e) {
 				return new OperationMessage(false, "net error");
 			}
-		}
+		
 		//
 		return new OperationMessage();
 	}

@@ -19,6 +19,23 @@ public class DeliverVO extends FormVO{
 	private Calendar date;
 	private String postman;
 	private boolean finished;
+	private String receivePeople;
+	private Calendar receiveDate;
+	public void finfished(Calendar receiveCalendar,String signPeople){
+		this.receiveDate=receiveCalendar;
+		this.receivePeople=signPeople;
+		this.finished=true;
+	}
+
+
+	public String getReceivePeople() {
+		return receivePeople;
+	}
+
+
+	public Calendar getReceiveDate() {
+		return receiveDate;
+	}
 
 
 	public String getOrderID() {
@@ -58,12 +75,19 @@ public class DeliverVO extends FormVO{
 	public DeliverVO(DeliverPO po){
 		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
 		this.finished=po.isFinished();
+		this.receiveDate=po.getReceiveDate();
+		this.receivePeople=po.getReceivePeople();
 	}
 	public DeliverPO toPO(){
 		DeliverPO po= new DeliverPO(formID, orderID, date, postman);
 		po.setFinished(finished);
+		if (finished) {
+			po.finfished(receiveDate, receivePeople);
+		}
 		return po;
 	}
+	//
+	
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()
 	 */
