@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.examineui.CheckFormController;
 import ui.financeui.CheckFinanceChartController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
@@ -113,8 +114,9 @@ public class Main extends Application {
 
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
+        		CheckFormController.launch()
                 //ManageBankAccountController.launch()
-                CheckFinanceChartController.launch()
+//                CheckFinanceChartController.launch()
         ));
 
         primaryStage.show();
