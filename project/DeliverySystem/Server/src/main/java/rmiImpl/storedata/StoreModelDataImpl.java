@@ -102,7 +102,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public StoreModel getModel(String centerID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new StoreModel(this.getArea(centerID, StoreAreaCode.AIR), this.getArea(centerID, StoreAreaCode.RAIL),
+		return new StoreModel(centerID,this.getArea(centerID, StoreAreaCode.AIR), this.getArea(centerID, StoreAreaCode.RAIL),
 				this.getArea(centerID, StoreAreaCode.ROAD), this.getArea(centerID, StoreAreaCode.FLEX));
 	}
 

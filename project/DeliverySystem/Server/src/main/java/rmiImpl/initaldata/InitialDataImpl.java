@@ -10,11 +10,11 @@ import po.initialdata.InitialDataPO;
 import rmi.initialdata.InitialDataService;
 
 public class InitialDataImpl extends UnicastRemoteObject implements InitialDataService{
-	
+
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
-	
+
 	public InitialDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -23,7 +23,7 @@ public class InitialDataImpl extends UnicastRemoteObject implements InitialDataS
 	public Connection getConn() {
 		return conn;
 	}
-	
+
 	public InitialDataPO getInitialDataPO(String version)
 			throws RemoteException {
 		// TODO Auto-generated method stub

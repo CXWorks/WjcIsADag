@@ -17,7 +17,12 @@ import java.util.List;
  * Created by Sissel on 2015/10/26.
  */
 public class InitialDataPO extends InfoPO implements Serializable{
-    String version;
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 2373730774787127089L;
+
+	String version;
     String dbName;
 
     List<StoreModel> storeModels;
@@ -26,8 +31,8 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<StaffPO> staffs;
     List<HallPO> halls;
     List<CenterPO> centers;
-    
-    
+
+
     public InitialDataPO(){
     	super(InfoEnum.INITIAL_DATA);
     }

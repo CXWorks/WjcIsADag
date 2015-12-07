@@ -12,6 +12,7 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	private InitialDataService InitialDataService = new InitialDataImpl();
     private static boolean System_on_initial = false;
+    private static String ID_initial = "";
 
 	protected InitialDataProxy() throws RemoteException {
 		super();
@@ -30,6 +31,14 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	public static void setSystem_on_initial(boolean system_on_initial) {
 		System_on_initial = system_on_initial;
+	}
+
+	public static String getID_initial() {
+		return ID_initial;
+	}
+
+	public static void setID_initial(String iD_initial) {
+		ID_initial = iD_initial;
 	}
 
 	@Override
