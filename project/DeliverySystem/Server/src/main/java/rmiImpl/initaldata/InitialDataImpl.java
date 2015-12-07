@@ -11,6 +11,7 @@ import rmi.initialdata.InitialDataService;
 public class InitialDataImpl extends UnicastRemoteObject implements InitialDataService {
 
 	private InitialHelper helper;
+	private String latest_version;
 
 	public InitialDataImpl() throws RemoteException {
 		super();

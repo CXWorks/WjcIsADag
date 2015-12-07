@@ -1,7 +1,9 @@
 package po.initialdata;
 
+import java.io.Serializable;
+import java.util.List;
+
 import model.store.StoreModel;
-import po.CommonPO;
 import po.InfoEnum;
 import po.InfoPO;
 import po.companydata.CarPO;
@@ -9,9 +11,6 @@ import po.companydata.CenterPO;
 import po.companydata.HallPO;
 import po.financedata.BankAccountPO;
 import po.memberdata.StaffPO;
-
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Sissel on 2015/10/26.

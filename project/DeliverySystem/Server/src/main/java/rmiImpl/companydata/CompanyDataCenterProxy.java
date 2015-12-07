@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
+import po.systemdata.SystemState;
 import rmi.companydata.CompanyDataCenterService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -28,7 +29,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public CenterPO getCenterByID(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.getCenterByID(ID);
 		return null;
 	}
@@ -36,7 +37,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public ArrayList<CenterPO> getCenter() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.getCenter();
 		return null;
 	}
@@ -44,7 +45,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public OperationMessage addCenter(CenterPO center) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.addCenter(center);
 		return null;
 	}
@@ -52,7 +53,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public OperationMessage deleteCenter(CenterPO center) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.deleteCenter(center);
 		return null;
 	}
@@ -60,7 +61,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public OperationMessage modifyCenter(CenterPO center) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.modifyCenter(center);
 		return null;
 	}
@@ -68,7 +69,7 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	@Override
 	public String newCenterID(String city) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.newCenterID(city);
 		return null;
 	}

@@ -11,6 +11,7 @@ import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
+import po.systemdata.SystemState;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -31,7 +32,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.newCity2D(po);
 		return null;
 	}
@@ -39,7 +40,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.deleteCity2D(name);
 		return null;
 	}
@@ -47,7 +48,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyCity2D(po);
 		return null;
 	}
@@ -55,7 +56,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getCity2D(name);
 		return null;
 	}
@@ -63,7 +64,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getAllCity2D();
 		return null;
 	}
@@ -71,7 +72,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.clearCity2D();
 		return null;
 	}
@@ -79,7 +80,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getSalaryStrategy();
 		return null;
 	}
@@ -87,7 +88,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifySalaryStrategy(salaryStrategy);
 		return null;
 	}
@@ -95,7 +96,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public PackPO getPack() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getPack();
 		return null;
 	}
@@ -103,7 +104,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyPack(pack);
 		return null;
 	}
@@ -111,7 +112,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public PricePO getPrice() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getPrice();
 		return null;
 	}
@@ -119,7 +120,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyPrice(price);
 		return null;
 	}
@@ -127,7 +128,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public ProportionPO getProportion() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getProportion();
 		return null;
 	}
@@ -135,7 +136,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyProportion(proportion);
 		return null;
 	}
@@ -143,7 +144,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public Object getInstitutionDistance() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getInstitutionDistance();
 		return null;
 	}
@@ -151,7 +152,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public Object[] newInstitutionDistanceSearch(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.newInstitutionDistanceSearch(ID);
 		return null;
 	}
@@ -159,7 +160,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.newInstitutionDistanceInsert(ID,ob);
 		return null;
 	}
@@ -167,7 +168,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyInstitutionDistance(String ID, Object ob) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyInstitutionDistance(ID,ob);
 		return null;
 	}

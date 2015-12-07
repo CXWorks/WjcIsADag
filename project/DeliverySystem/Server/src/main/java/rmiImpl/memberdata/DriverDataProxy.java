@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffTypeEnum;
+import po.systemdata.SystemState;
 import rmi.memberdata.MemberDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -29,7 +30,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public ArrayList<DriverPO> getStaffByInstitution(String institutionID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.getStaffByInstitution(institutionID);
 		return null;
 	}
@@ -37,7 +38,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.getPerson(ID);
 		return null;
 	}
@@ -45,7 +46,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.getStaff(staffTypeEnum);
 		return null;
 	}
@@ -53,7 +54,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public OperationMessage modifyStaff(DriverPO after) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.modifyStaff(after);
 		return null;
 	}
@@ -61,7 +62,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public OperationMessage addStaff(DriverPO staff) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.addStaff(staff);
 		return null;
 	}
@@ -69,7 +70,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public OperationMessage dismissStaff(DriverPO staff) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.dismissStaff(staff);
 		return null;
 	}
@@ -77,7 +78,7 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.newStaffID(staffType, unitID);
 		return null;
 	}

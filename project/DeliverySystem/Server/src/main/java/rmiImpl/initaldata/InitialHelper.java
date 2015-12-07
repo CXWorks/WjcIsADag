@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import database.ConnecterHelper;
@@ -114,6 +113,16 @@ public class InitialHelper {
 			}
 		}
 		return result;
+	}
+
+	public InitialDataPO saveMysql() {
+		// 少东西
+		return null;
+	}
+
+	public OperationMessage loadMysql(InitialDataPO po) {
+		// 少东西
+		return null;
 	}
 
 }

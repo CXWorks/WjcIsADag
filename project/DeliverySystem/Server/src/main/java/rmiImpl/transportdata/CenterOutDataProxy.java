@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.systemdata.SystemState;
 import po.transportdata.CenterOutPO;
 import rmi.transportdata.CenterOutDataService;
 import rmiImpl.CommonData;
@@ -22,7 +23,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public OperationMessage insert(CenterOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.insert(po);
 		return null;
 	}
@@ -30,7 +31,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public CenterOutPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.getFormPO(id);
 		return null;
 	}
@@ -38,7 +39,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.delete(id);
 		return null;
 	}
@@ -46,7 +47,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public OperationMessage update(CenterOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.update(po);
 		return null;
 	}
@@ -54,7 +55,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.newID(unitID);
 		return null;
 	}
@@ -62,7 +63,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.clear();
 		return null;
 	}
@@ -70,7 +71,7 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 	@Override
 	public ArrayList<CenterOutPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return centerOutDataService.getAll();
 		return null;
 	}

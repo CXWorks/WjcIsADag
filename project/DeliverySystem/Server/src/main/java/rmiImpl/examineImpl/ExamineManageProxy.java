@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import model.examine.ExamineQueue;
 import po.FormPO;
+import po.systemdata.SystemState;
 import rmi.examineService.ExamineManageService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -23,7 +24,7 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 	@Override
 	public ArrayList<FormPO> getForms() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.getForms();
 		return null;
 	}
@@ -31,7 +32,7 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 	@Override
 	public OperationMessage modifyForm(FormPO form) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.modifyForm(form);
 		return null;
 	}
@@ -39,7 +40,7 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 	@Override
 	public OperationMessage passForm(ArrayList<FormPO> forms) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.passForm(forms);
 		return null;
 	}
@@ -47,7 +48,7 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 	@Override
 	public OperationMessage deleteForm(ArrayList<FormPO> forms) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.deleteForm(forms);
 		return null;
 	}
@@ -55,7 +56,7 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 	@Override
 	public ExamineQueue getQueue() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.getQueue();
 		return null;
 	}

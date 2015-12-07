@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import message.OperationMessage;
 import po.financedata.RevenuePO;
+import po.systemdata.SystemState;
 import rmi.financedata.RevenueDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -23,7 +24,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public OperationMessage insert(RevenuePO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.insert(po);
 		return null;
 	}
@@ -31,7 +32,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public RevenuePO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getFormPO(id);
 		return null;
 	}
@@ -39,7 +40,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.delete(id);
 		return null;
 	}
@@ -47,7 +48,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public OperationMessage update(RevenuePO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.update(po);
 		return null;
 	}
@@ -55,7 +56,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.newID(unitID);
 		return null;
 	}
@@ -63,7 +64,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.clear();
 		return null;
 	}
@@ -71,7 +72,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public ArrayList<RevenuePO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getAll();
 		return null;
 	}
@@ -85,7 +86,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getByHallID(ID);
 		return null;
 	}
@@ -93,7 +94,7 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	@Override
 	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getByTime(start, end);
 		return null;
 	}
