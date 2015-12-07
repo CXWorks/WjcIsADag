@@ -33,7 +33,11 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<CenterPO> centers;
 
 
-    public InitialDataPO(){
+    public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public InitialDataPO(){
     	super(InfoEnum.INITIAL_DATA);
     }
 }

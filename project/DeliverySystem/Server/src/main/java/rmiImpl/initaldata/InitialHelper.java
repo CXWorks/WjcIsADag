@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import database.ConnecterHelper;
@@ -25,26 +26,33 @@ public class InitialHelper {
 		conn = ConnecterHelper.getConn();
 	}
 
-	public OperationMessage saveFile(InitialDataPO po){
-		OperationMessage result = new OperationMessage();
+	public int getVersion() throws ClassNotFoundException {
+		String file_path = "E:/initial/";
+		return new File(file_path).listFiles().length + 1;
+	}
+
+	public OperationMessage saveFile(InitialDataPO po) throws ClassNotFoundException {
+		int num = this.getVersion();
+		po.setVersion(num + "");
 		try {
-			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(new File("E:/Person.txt")));
+			ObjectOutputStream oo = new ObjectOutputStream(
+					new FileOutputStream(new File("E:/initial/" + num + ".txt")));
 			oo.writeObject(po);
 			oo.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "打包时出错");
 			e.printStackTrace();
+			return new OperationMessage(false, "打包时出错");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "打包时出错：");
 			e.printStackTrace();
+			return new OperationMessage(false, "打包时出错：");
 		}
 
-		return result;
+		return new OperationMessage(true, "版本号：" + num);
 	}
 
-	public InitialDataPO loadFile(String version){
+	public InitialDataPO loadFile(String version) {
 
 		InitialDataPO po = null;
 		try {
@@ -60,7 +68,7 @@ public class InitialHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return po;
+		return po;
 	}
 
 	public OperationMessage clearMysql() {
