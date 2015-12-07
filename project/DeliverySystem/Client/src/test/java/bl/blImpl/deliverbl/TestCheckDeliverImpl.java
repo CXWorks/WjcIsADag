@@ -48,7 +48,7 @@ public class TestCheckDeliverImpl {
 	 */
 	@Test
 	public void testFinishDelivery() {
-		assertTrue(checkDeliverForm.finishDelivery(list).operationResult);
+		assertTrue(checkDeliverForm.finishDelivery(null).operationResult);
 	}
 
 }

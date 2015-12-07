@@ -20,6 +20,14 @@ public class DeliverPO extends FormPO implements Serializable{
 	private Calendar date;
 	private String postman;
 	private boolean finished;
+	private String receivePeople;
+	private Calendar receiveDate;
+	
+	public void finfished(Calendar receiveCalendar,String signPeople){
+		this.receiveDate=receiveCalendar;
+		this.receivePeople=signPeople;
+		this.finished=true;
+	}
 	
 	
 	public DeliverPO(String formID,String orderID, Calendar date, String postman) {
@@ -67,6 +75,16 @@ public class DeliverPO extends FormPO implements Serializable{
 
 	public void setFinished(boolean finished) {
 		this.finished = finished;
+	}
+
+
+	public String getReceivePeople() {
+		return receivePeople;
+	}
+
+
+	public Calendar getReceiveDate() {
+		return receiveDate;
 	}
 	
 	
