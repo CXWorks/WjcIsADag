@@ -114,9 +114,9 @@ public class Main extends Application {
 
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
-        		CheckFormController.launch()
+//        		CheckFormController.launch()
                 //ManageBankAccountController.launch()
-//                CheckFinanceChartController.launch()
+                CheckFinanceChartController.launch()
         ));
 
         primaryStage.show();

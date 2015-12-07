@@ -20,9 +20,11 @@ import rmi.financedata.RevenueDataService;
 public class FinanceChartBLImpl implements FinanceChartBLService {
 	private PaymentDataService paymentDataService;
 	private RevenueDataService revenueDataService;
+	private BarChartMaker barChartMaker;
 	public FinanceChartBLImpl(){
 		this.paymentDataService=CacheHelper.getPaymentDataService();
 		revenueDataService=CacheHelper.getRevenueDataService();
+		barChartMaker=new BarChartMaker();
 	}
 
 	/* (non-Javadoc)
@@ -57,18 +59,30 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     @Override
     public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
     	//TODO wait UI
-        BaseChartVO vo = new BaseChartVO();
+        try {
+			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
+			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
+			switch (type) {
+			case IO_MONTH:
+				return barChartMaker.make_MonthIO(begin, end, paymentPOs, revenuePOs);
 
-        vo.title = "每月花费时间比较图";
-        vo.mainXType = "月份/种类";
-        vo.mainYType = "时数";
+			default:
+				return null;
+			}
+		} catch (RemoteException e) {
+			BaseChartVO vo = new BaseChartVO();
 
-        vo.categories = new String[]{"一月", "二月", "三月"};
-        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
+	        vo.title = "每月花费时间比较图";
+	        vo.mainXType = "月份/种类";
+	        vo.mainYType = "时数";
 
-        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+	        vo.categories = new String[]{"一月", "二月", "三月"};
+	        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
 
-        return vo;
+	        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+
+	        return vo;
+		}
     }
 
     @Override
@@ -77,7 +91,6 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
         try {
         	PieChartVO vo=new PieChartVO();
         	vo.initial();
-        	
 			ArrayList<PaymentPO> src=paymentDataService.getAll();
 			for (PaymentPO paymentPO : src) {
 				if (comp(begin, end, paymentPO.getDate())) {
@@ -101,19 +114,30 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 
     @Override
     public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
-        //TODO wait UI
-        BaseChartVO vo = new BaseChartVO();
+    	try {
+			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
+			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
+			switch (type) {
+			case IO_MONTH:
+				return barChartMaker.make_MonthIO(begin, end, paymentPOs, revenuePOs);
 
-        vo.title = "每月花费时间比较图";
-        vo.mainXType = "月份/种类";
-        vo.mainYType = "时数";
+			default:
+				return null;
+			}
+		} catch (RemoteException e) {
+			BaseChartVO vo = new BaseChartVO();
 
-        vo.categories = new String[]{"一月", "二月", "三月"};
-        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
+	        vo.title = "每月花费时间比较图";
+	        vo.mainXType = "月份/种类";
+	        vo.mainYType = "时数";
 
-        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+	        vo.categories = new String[]{"一月", "二月", "三月"};
+	        vo.elements = new String[]{"吃饭", "睡觉", "打豆豆"};
 
-        return vo;
+	        vo.values = new double[][]{{23,45,12}, {1,1,23}, {12,12,12}};
+
+	        return vo;
+		}
     }
 
     @Override

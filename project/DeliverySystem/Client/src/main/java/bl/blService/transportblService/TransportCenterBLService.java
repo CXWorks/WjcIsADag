@@ -30,5 +30,5 @@ public interface TransportCenterBLService extends FormBLService<CenterOutVO> {
 	 * @return 当前城市营业厅和全国各地的中转中心编号列表 （还是给我Sring吧，，VO 里也没有InstitutionID啊？
 	 */
 	
-	public ArrayList<String> getLocation(String hallID);
+	public ArrayList<String> getLocation(String centerID);
 }

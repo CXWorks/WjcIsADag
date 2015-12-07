@@ -94,17 +94,30 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		 * @see bl.blService.transportblService.TransportCenterBLService#getLocation(java.lang.String)
 		 */
 		@Override
-		public ArrayList<String> getLocation(String hallID) {
+		public ArrayList<String> getLocation(String centerID) {
+			ArrayList<String> ans=new ArrayList<String>();
 			CompanyDataCenterService companyDataCenterService=CacheHelper.getCompanyDataCenterService();
 			CompanyDataHallService companyDataHallService=CacheHelper.getCompanyDataHallService();
 			try {
+				ArrayList<CenterPO> centerPOs=companyDataCenterService.getCenter();
+				for (CenterPO centerPO : centerPOs) {
+					if (centerPO.getCenterID()!=centerID) {
+						ans.add(centerPO.getCenterID());
+					}
+				}
+				//
 				ArrayList<HallPO> hallPOs=companyDataHallService.getHall();
-				
+				for (HallPO hallPO : hallPOs) {
+					if (hallPO.getNearCenterID()==centerID) {
+						ans.add(hallPO.getHallID());
+					}
+				}
+				return ans;
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
-			return null;
+			
 		}
 
 

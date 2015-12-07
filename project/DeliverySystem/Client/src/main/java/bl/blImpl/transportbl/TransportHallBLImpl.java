@@ -7,12 +7,14 @@ import message.CheckFormMessage;
 import message.OperationMessage;
 import po.FormEnum;
 import po.companydata.CarPO;
+import po.companydata.HallPO;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
 import po.transportdata.LoadPO;
 import rmi.companydata.CompanyDataCarService;
+import rmi.companydata.CompanyDataHallService;
 import rmi.examineService.ExamineSubmitService;
 import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
@@ -139,7 +141,23 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		 */
 		@Override
 		public ArrayList<String> getLocation(String hallID) {
-			// TODO Auto-generated method stub
-			return null;
+			CompanyDataHallService companyDataHallService=CacheHelper.getCompanyDataHallService();
+			ArrayList<String> ans=new ArrayList<String>();
+			try {
+				HallPO hall=companyDataHallService.getHallByID(hallID);
+				String centerID=hall.getNearCenterID();
+				ans.add(centerID);
+				ArrayList<HallPO> hallPOs=companyDataHallService.getHall();
+				for (HallPO hallPO : hallPOs) {
+					if (hallPO.getNearCenterID()==centerID&&hallPO.getHallID()!=hallID) {
+						ans.add(hallPO.getHallID());
+					}
+				}
+				return ans;
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
 		}
 }
