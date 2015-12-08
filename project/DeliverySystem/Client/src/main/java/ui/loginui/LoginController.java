@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.Main;
 import message.OperationMessage;
 import userinfo.UserInfo;
@@ -28,6 +30,16 @@ public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
 
+    public Image Image_Back;
+    public ImageView back_ImageView;
+    
+    
+    
+    
+    
+    
+    
+    
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();
     ManageblStaffService manageblStaffService = StaffFactory.getManageService();
