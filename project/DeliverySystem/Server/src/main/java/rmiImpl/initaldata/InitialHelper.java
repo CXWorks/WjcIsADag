@@ -232,4 +232,11 @@ public class InitialHelper {
 		return new OperationMessage();
 	}
 
+	public OperationMessage deleteFile(String version) {
+		File f = new File("E:/initial/" + version + ".txt");
+		if (f.exists())
+			f.delete();
+		return new OperationMessage();
+	}
+
 }

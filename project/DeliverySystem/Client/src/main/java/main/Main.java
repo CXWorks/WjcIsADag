@@ -20,6 +20,7 @@ import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
+import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
@@ -110,23 +111,23 @@ public class Main extends Application {
 
         loginPane = (Pane)LoginController.launch();
 
-        primaryStage.setScene(new Scene( loginPane));
-//        primaryStage.setScene(new Scene(
-////        		NewOrderController.launch()
-////        		CheckFormController.launch()
-////                ManageBankAccountController.launch()
-////                CheckFinanceChartController.launch()
-////        		ManageOrganizationController.launch()
-////                CheckLogController.launch()
-////                deliverController.launch()
-//        		//ManageStaffController.launch()
-////               StockTackController.launch()
-//        		//ConfigurationController.launch()
-////        		ManageSalaryController.launch()
-////        		LoadCarController.launch()
-////        		TransitFormController.launch()
-//        		
-//        ));
+//        primaryStage.setScene(new Scene( loginPane));
+        primaryStage.setScene(new Scene(
+//        		NewOrderController.launch()
+//        		CheckFormController.launch()
+//                ManageBankAccountController.launch()
+//                CheckFinanceChartController.launch()
+        		ManageOrganizationController.launch()
+//                CheckLogController.launch()
+//                deliverController.launch()
+        		//ManageStaffController.launch()
+//               StockTackController.launch()
+        		//ConfigurationController.launch()
+//        		ManageSalaryController.launch()
+//        		LoadCarController.launch()
+//        		TransitFormController.launch()
+        		
+        ));
         primaryStage.show();
     }
 }
