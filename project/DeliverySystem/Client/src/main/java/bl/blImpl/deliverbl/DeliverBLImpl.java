@@ -107,7 +107,7 @@ public class DeliverBLImpl implements DeliverBLService {
 	@Override
 	public ArrayList<String> getUnhandledOrderID(String hallID) {
 		try {
-			ArrayList<String> order=deliverDataService.available();
+			ArrayList<String> order=deliverDataService.available(hallID);
 			return order;
 		} catch (RemoteException e) {
 			return null;

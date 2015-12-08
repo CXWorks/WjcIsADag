@@ -10,6 +10,8 @@ public class StoreModel implements Serializable {
 
 	String centerID;
 
+    private static final long serialVersionUID = 8369651544671002011L;
+
 	private StoreArea air;
 	private StoreArea rail;
 	private StoreArea road;
