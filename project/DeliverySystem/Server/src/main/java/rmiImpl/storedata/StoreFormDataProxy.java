@@ -11,6 +11,7 @@ import message.OperationMessage;
 import po.FormPO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
+import po.systemdata.SystemState;
 import rmi.storedata.StoreFormDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -32,7 +33,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage insertStoreInPO(StoreInPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.insertStoreInPO(po);
 		return null;
 	}
@@ -40,7 +41,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage insertStoreOutPO(StoreOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.insertStoreOutPO(po);
 		return null;
 	}
@@ -48,7 +49,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage deleteStoreInPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.deleteStoreInPO(id);
 		return null;
 	}
@@ -56,7 +57,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage deleteStoreOutPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.deleteStoreOutPO(id);
 		return null;
 	}
@@ -64,7 +65,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage updateStoreInPO(StoreInPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.updateStoreInPO(po);
 		return null;
 	}
@@ -72,7 +73,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage updateStoreOutPO(StoreOutPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.updateStoreOutPO(po);
 		return null;
 	}
@@ -80,7 +81,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage clearStoreInPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.clearStoreInPO();
 		return null;
 	}
@@ -88,7 +89,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public OperationMessage clearStoreOutPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.clearStoreOutPO();
 		return null;
 	}
@@ -96,7 +97,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public String newIDStoreInPO(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.newIDStoreInPO(unitID);
 		return null;
 	}
@@ -104,7 +105,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public String newIDStoreOutPO(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.newIDStoreOutPO(unitID);
 		return null;
 	}
@@ -112,7 +113,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public StoreInPO getStoreInPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getStoreInPO(id);
 		return null;
 	}
@@ -120,7 +121,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public StoreOutPO getStoreOutPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getStoreOutPO(id);
 		return null;
 	}
@@ -128,7 +129,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getAllStoreInPO();
 		return null;
 	}
@@ -136,7 +137,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getAllStoreOutPO();
 		return null;
 	}
@@ -144,7 +145,7 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getInOutInfo(start, end);
 		return null;
 	}

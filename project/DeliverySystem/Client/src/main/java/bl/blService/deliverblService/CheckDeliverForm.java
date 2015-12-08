@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import vo.delivervo.DeliverVO;
+import vo.ordervo.OrderVO;
 
 /** 
  * Client//bl.blService.deliverblService//CheckDeliverForm.java
@@ -20,4 +21,6 @@ public interface CheckDeliverForm {
 	public ArrayList<DeliverVO> getDeliverForms(String postmanID);
 	
 	public OperationMessage finishDelivery(DeliverVO finfished);
+	
+	public ArrayList<OrderVO> getDeliverOrder(String postmanID);
 }

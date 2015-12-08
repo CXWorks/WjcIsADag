@@ -26,7 +26,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="机构编号" />
-                                    <Label text="所在城市" GridPane.columnIndex="1" />
+                                    <Label text="城市" GridPane.columnIndex="1" />
                                     <Label text="所在区域" GridPane.columnIndex="2" />
                                     <Label fx:id="institution" GridPane.rowIndex="1" />
                                     <Label fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="1" />

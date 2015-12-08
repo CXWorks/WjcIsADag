@@ -35,12 +35,10 @@ public class ConfigurationController {
 	public Tab proportion_Tab;
 
 	//城市距离
-	public TextField one_Two_Field;
-	public TextField one_Three_Field;
-	public TextField one_Four_Field;
-	public TextField two_Three_Field;
-	public TextField two_Four_Field;
-	public TextField three_Four_Field;
+	public TextField city1;
+	public TextField city2;
+	public TextField city3;
+	public TextField city4;
 
 	public Label two_One_Label;
 	public Label three_One_Label;
@@ -77,12 +75,25 @@ public class ConfigurationController {
     	this.selectedChanged();
     }
 
-
+    private City2DVO makeCity2DVO(String src,String name){
+    	int cut=src.indexOf(',');
+    	double x=Double.parseDouble(src.substring(0, cut));
+    	double y=Double.parseDouble(src.substring(cut+1, src.length()));
+    	return new City2DVO(name, x, y);
+    }
 
 	//调整城市距离
 	public void submitDistance(){
-
-		//TODO jump back
+		City2DVO c1=this.makeCity2DVO(city1.getText(), "北京");
+		City2DVO c2=this.makeCity2DVO(city2.getText(), "上海");
+		City2DVO c3=this.makeCity2DVO(city3.getText(), "南京");
+		City2DVO c4=this.makeCity2DVO(city4.getText(), "广州");
+		
+		configurationBLService.modify(c1);
+		configurationBLService.modify(c2);
+		configurationBLService.modify(c3);
+		configurationBLService.modify(c4);
+		this.initializeDistance();
 
 	}
 
@@ -148,9 +159,9 @@ public class ConfigurationController {
 			if (tab.isSelected()) {
 				String text=tab.getText();
 				switch (text) {
-//				case "城市距离":
-//					this.initializeDistance();
-//					break;
+				case "城市距离":
+					this.initializeDistance();
+					break;
 				case "快递费":
 					this.initializePrice();
 					break;
@@ -190,6 +201,12 @@ public class ConfigurationController {
 		four_Two_Label.setText(Double.toString(city1.distance(city2)));
 		city1=vo.get(2);
 		four_Three_Label.setText(Double.toString(city1.distance(city2)));
+		
+		//
+		this.city1.setText(vo.get(0).getXY());
+		this.city2.setText(vo.get(1).getXY());
+		this.city3.setText(vo.get(2).getXY());
+		this.city4.setText(vo.get(3).getXY());
 	}
 	//
 	private void initializePrice(){

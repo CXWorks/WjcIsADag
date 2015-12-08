@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.companydata.HallPO;
+import po.systemdata.SystemState;
 import rmi.companydata.CompanyDataHallService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -28,7 +29,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public HallPO getHallByID(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.getHallByID(ID);
 		return null;
 	}
@@ -36,7 +37,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public ArrayList<HallPO> getHall() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.getHall();
 		return null;
 	}
@@ -44,7 +45,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public OperationMessage addHall(HallPO hall) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.addHall(hall);
 		return null;
 	}
@@ -52,7 +53,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public OperationMessage deleteHall(HallPO hall) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.deleteHall(hall);
 		return null;
 	}
@@ -60,7 +61,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public OperationMessage modifyHall(HallPO hall) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.modifyHall(hall);
 		return null;
 	}
@@ -68,7 +69,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public String newHallID(String city) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.newHallID(city);
 		return null;
 	}

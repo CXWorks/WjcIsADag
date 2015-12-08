@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import message.OperationMessage;
+import po.systemdata.SystemState;
 import po.transportdata.LoadPO;
 import rmi.transportdata.LoadDataService;
 import rmiImpl.CommonData;
@@ -22,7 +23,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public OperationMessage insert(LoadPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.insert(po);
 		return null;
 	}
@@ -30,7 +31,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public LoadPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.getFormPO(id);
 		return null;
 	}
@@ -38,7 +39,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.delete(id);
 		return null;
 	}
@@ -46,7 +47,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public OperationMessage update(LoadPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.update(po);
 		return null;
 	}
@@ -54,7 +55,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.newID(unitID);
 		return null;
 	}
@@ -62,7 +63,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.clear();
 		return null;
 	}
@@ -70,7 +71,7 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	@Override
 	public ArrayList<LoadPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		if (!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.getAll();
 		return null;
 	}

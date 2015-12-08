@@ -15,6 +15,7 @@ import vo.delivervo.DeliverVO;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
+import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
@@ -41,6 +42,7 @@ import po.deliverdata.DeliverPO;
 import po.financedata.BankAccountPO;
 import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
+import po.initialdata.InitialDataPO;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import po.orderdata.OrderPO;
@@ -93,6 +95,8 @@ public class VOPOFactory {
 				return new DriverVO((DriverPO)info);
 			case LOG:
 				return new LogVO((LogPO)info);
+			case INITIAL_DATA:
+				return new InitialDataVO((InitialDataPO)info);
 			default:
 				return null;
 			}
@@ -154,6 +158,8 @@ public class VOPOFactory {
 				return ((DriverVO)vo).toPO();
 			case LOG:
 				return ((LogVO)vo).toPO();
+			case INITIAL_DATA:
+				return ((InitialDataVO)vo).toPO();
 			default:
 				return null;
 			}

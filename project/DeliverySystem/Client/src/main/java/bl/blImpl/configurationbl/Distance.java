@@ -8,6 +8,7 @@ import po.configurationdata.City2DPO;
 import po.configurationdata.CityDistancePO;
 import tool.vopo.VOPOFactory;
 import rmi.configurationdata.ConfigurationDataService;
+import vo.configurationvo.City2DVO;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.ConfigurationVO;
 
@@ -33,7 +34,7 @@ public class Distance {
 	/*
 	 * modify methods
 	 */
-	public OperationMessage modifyCityDistance(CityDistanceVO vo){
+	public OperationMessage modifyCityDistance(City2DVO vo){
 		return null;
 	}
 }

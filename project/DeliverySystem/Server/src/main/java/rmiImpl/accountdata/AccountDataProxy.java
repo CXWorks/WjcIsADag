@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import message.OperationMessage;
 import po.accountdata.AccountPO;
+import po.systemdata.SystemState;
 import rmi.accountdata.AccountDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -28,7 +29,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public AccountPO getAccountPO(String accountID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.getAccountPO(accountID);
 		return null;
 	}
@@ -36,7 +37,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public ArrayList<AccountPO> getAccountPOs() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.getAccountPOs();
 		return null;
 	}
@@ -44,7 +45,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public OperationMessage insert(AccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.insert(po);
 		return null;
 	}
@@ -52,7 +53,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public OperationMessage delete(String accountID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.delete(accountID);
 		return null;
 	}
@@ -60,7 +61,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public OperationMessage update(AccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.update(po);
 		return null;
 	}
@@ -68,7 +69,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	@Override
 	public OperationMessage checkAccount(String id, String password) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.checkAccount(id,password);
 		return null;
 	}

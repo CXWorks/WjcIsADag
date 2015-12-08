@@ -36,11 +36,10 @@ public class deliverController {
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
 	public TableColumn<Map.Entry<String, String>, String> value_Column;
 
-	public TextField id_Field;  //派送单的ID 应该按照鼠标点击自动生成
+	public TextField id_Field; 
 	public DatePicker date_DatePicker;
 	public ChoiceBox<String> postman_Box;
 
-	private String postman="";
 	private String idToSend="";
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 	

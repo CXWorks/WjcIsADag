@@ -9,6 +9,7 @@ import rmi.deliverdata.DeliverDataService;
 import rmi.orderdata.OrderDataService;
 import message.OperationMessage;
 import vo.delivervo.DeliverVO;
+import vo.ordervo.OrderVO;
 import bl.blService.deliverblService.CheckDeliverForm;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
@@ -65,6 +66,30 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 		
 		//
 		return new OperationMessage();
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.deliverblService.CheckDeliverForm#getDeliverOrder(java.lang.String)
+	 */
+	@Override
+	public ArrayList<OrderVO> getDeliverOrder(String postmanID) {
+		try {
+			OrderDataService orderDataService=CacheHelper.getOrderDataService();
+			ArrayList<String> ID=deliverDataService.searchAsPerson(postmanID);
+			ArrayList<OrderVO> orderVOs=new ArrayList<OrderVO>(ID.size());
+			DeliverPO deliverPO;
+			OrderPO orderPO;
+			for (int i = 0; i < ID.size(); i++) {
+				deliverPO=deliverDataService.getFormPO(ID.get(i));
+				orderPO=orderDataService.getFormPO(deliverPO.getOrderID());
+				OrderVO orderVO=(OrderVO)vopoFactory.transPOtoVO(orderPO);
+				orderVOs.add(orderVO);
+			}
+			return orderVOs;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

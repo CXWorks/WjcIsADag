@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import bl.blService.deliverblService.CheckDeliverForm;
 import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
+import factory.DeliverFactory;
 import factory.FormFactory;
 import message.OperationMessage;
 import tool.ui.OrderVO2ColumnHelper;
@@ -47,7 +49,7 @@ public class PoepleReceiveFormController {
 	private List<OrderVOCheckItem> orders;
 
 	ReceiveBLService receivebl=FormFactory.getReceiveBLService();
-	OrderBLService obl = FormFactory.getOrderBLService();
+	CheckDeliverForm checkDeliver=DeliverFactory.getCheckDeliverForm();
 	//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
 	public static Parent launch() throws IOException {
@@ -91,7 +93,7 @@ public class PoepleReceiveFormController {
 	public void commit(ActionEvent actionEvent) {
 
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OperationMessage msg = obl.submit(generateOrderVO(selected));
+		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
 		if(msg.operationResult){
 			System.out.println("commit successfully");
 			clear(null);

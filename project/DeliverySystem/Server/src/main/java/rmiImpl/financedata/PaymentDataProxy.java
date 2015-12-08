@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import message.OperationMessage;
 import po.financedata.PaymentPO;
+import po.systemdata.SystemState;
 import rmi.financedata.PaymentDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
@@ -23,7 +24,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.insert(po);
 		return null;
 	}
@@ -31,7 +32,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public PaymentPO getFormPO(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getFormPO(id);
 		return null;
 	}
@@ -39,7 +40,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.delete(id);
 		return null;
 	}
@@ -47,7 +48,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public OperationMessage update(PaymentPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.update(po);
 		return null;
 	}
@@ -55,15 +56,14 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.newID(unitID);
 		return null;
 	}
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.clear();
 		return null;
 	}
@@ -71,7 +71,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public ArrayList<PaymentPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getAll();
 		return null;
 	}
@@ -85,7 +85,7 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(!InitialDataProxy.isSystem_on_initial())
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getByTime(start, end);
 		return null;
 	}

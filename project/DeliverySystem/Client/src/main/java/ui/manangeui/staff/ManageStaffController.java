@@ -4,13 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import po.InfoEnum;
 import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import factory.StaffFactory;
 import bl.blService.manageblService.ManageblStaffService;
 import tool.ui.StaffVO2ColumnHelper;
+import vo.managevo.institution.CenterVO;
+import vo.managevo.institution.HallVO;
+import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.StaffVO;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,7 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 
-public class ManageStaffController {
+public class ManageStaffController implements ChangeListener<StaffVO>{
 	public TextField staffType;
 	public TextField ID;
 	public TextField name;
@@ -59,7 +65,6 @@ public class ManageStaffController {
 	@FXML
 	public void initialize(){
 		staffVOs=manageblStaffService.getStaffByInstitution();
-		System.out.println(staffVOs.size());
 
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
@@ -75,16 +80,14 @@ public class ManageStaffController {
 		institutionColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getInstitutionID()));
 		staffTable.setItems(FXCollections.observableList(staffVOs));
-		System.out.println("ddddd");
 		//
-
+		staffTable.getSelectionModel().selectedItemProperty().addListener(this);
 
 	}
 	//
 	public void fillStaffTable(){
 		staffVOs=manageblStaffService.getStaffByInstitution();
-		StaffVO2ColumnHelper staffVO2ColumnHelper=new StaffVO2ColumnHelper();
-
+		this.staffTable.setItems(FXCollections.observableList(staffVOs));
 	}
 	//
 	public void submit(){
@@ -98,8 +101,10 @@ public class ManageStaffController {
 		} else {
 			manageblStaffService.modifyStaff(staffVO);
 		}
-
+		this.fillStaffTable();
 	}
+	
+	
 	public void cancel(){
 		staffType.clear();
 		ID.clear();
@@ -124,6 +129,7 @@ public class ManageStaffController {
 		}
 		this.cancel();
 		manageblStaffService.dismissStaff(staffVO);
+		this.fillStaffTable();
 	}
 	private StaffVO makeStaff(){
 		String nType=staffType.getText();
@@ -140,8 +146,52 @@ public class ManageStaffController {
 		}
 		//
 		StaffVO staffVO=new StaffVO(StaffTypeEnum.ADMINISTRATOR, nID, nName, Integer.parseInt(nAge), nPersonID, SexEnum.MAN, nLove, nInstitutionID);
-//		staffVO.setStaff(nType);
-//		staffVO.setSex(nSex);
+		staffVO.setStaff(nType);
+		staffVO.setSex(nSex);
 		return staffVO;
+	}
+	/* (non-Javadoc)
+	 * @see javafx.beans.value.ChangeListener#changed(javafx.beans.value.ObservableValue, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public void changed(ObservableValue<? extends StaffVO> observable,
+			StaffVO oldValue, StaffVO newValue) {
+		this.setTextArea(newValue);
+		
+		
+		
+		
+	}
+	
+	private void setTextArea(StaffVO src){
+		this.cancel();
+		this.staffType.setText(src.getStaff().getChinese());
+		this.age.setText(Integer.toString(src.getAge()));
+		this.ID.setText(src.getID());
+		this.institutionID.setText(src.getInstitutionID());
+		this.love.setText(src.getLove());
+		this.name.setText(src.getName());
+		this.personID.setText(src.getPersonID());
+		this.sex.setText(src.getSex().getChinese());
+	}
+	
+	public void initLabel(InstitutionVO institutionVO){
+		if (institutionVO.getInfoEnum()==InfoEnum.CENTER) {
+			CenterVO centerVO=(CenterVO)institutionVO;
+			this.setLabel(centerVO.getCenterID(), centerVO.getCity(), null);
+		}
+		else {
+			HallVO hallVO=(HallVO)institutionVO;
+			this.setLabel(hallVO.getHallID(), hallVO.getCity(), hallVO.getArea());
+		}
+	}
+	
+	private void setLabel(String ID,String city,String area){
+		institution.setText(ID);
+		this.city.setText(city);
+		if (area!=null) {
+			this.area.setText(area);
+		}
+		
 	}
 }

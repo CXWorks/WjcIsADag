@@ -19,11 +19,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 
-/** 
+/**
  * Client//ui.examineui//FormTableController.java
  * @author CXWorks
  * @date 2015年12月3日 下午7:56:11
- * @version 1.0 
+ * @version 1.0
  */
 public class FormTableController {
 	public TableView<FormVO> tableView;
@@ -44,6 +44,7 @@ public class FormTableController {
 	private  void setColumn(FormEnum formEnum){
 		this.formVOs=examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
+//		tableView.r
 //		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 //		tableView.getColumns().add(infoColumn);
 	}

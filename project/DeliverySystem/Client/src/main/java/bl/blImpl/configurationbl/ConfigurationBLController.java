@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import message.OperationMessage;
 import po.InfoEnum;
 import rmi.configurationdata.ConfigurationDataService;
+import vo.configurationvo.City2DVO;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.PackVO;
@@ -45,6 +46,8 @@ public class ConfigurationBLController implements ConfigurationBLService {
 			return money.getPrice();
 		case SALARY:
 			return salary.getSalary();
+		case CITY_2D:
+			return distance.getCityDistance();
 
 		default:
 			return null;
@@ -68,6 +71,9 @@ public class ConfigurationBLController implements ConfigurationBLService {
 		case SALARY:
 			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
 			return salary.modify(salaryStrategyVO);
+		case CITY_2D:
+			City2DVO city2dvo=(City2DVO)after;
+			return distance.modifyCityDistance(city2dvo);
 		default:
 			return new OperationMessage(false, "unknown type");
 		}
