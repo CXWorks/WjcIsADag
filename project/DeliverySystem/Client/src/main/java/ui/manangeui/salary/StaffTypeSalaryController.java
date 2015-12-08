@@ -74,6 +74,7 @@ public class StaffTypeSalaryController {
 			if (changed) {
 				ConfigurationBLService configurationBLService=ConfigurationFactory.getConfigurationBLService();
 				configurationBLService.modify(salaryStrategyVO);
+				this.test();
 			}
 			else {
 				return;

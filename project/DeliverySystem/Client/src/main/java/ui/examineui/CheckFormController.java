@@ -75,8 +75,6 @@ public class CheckFormController implements EventHandler<Event>{
 
 	 public void initialize(){
 		 tabs=tabPane.getTabs();
-		 
-		 
 			for (Tab tab : tabs) {
 				tab.setOnSelectionChanged(this);
 //				tab.setContent(son);
@@ -91,8 +89,11 @@ public class CheckFormController implements EventHandler<Event>{
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.passForm(temp);
 		formTableController.change(nowFormEnum);
+		this.changeCheckBox();
 	}
-
+	private void changeCheckBox(){
+		chooseAll_Box.setSelected(false);
+	}
 	public void delete(){
 		ArrayList<FormVO> temp=formTableController.getSelected();
 		examineblManageService.deleteForm(temp);

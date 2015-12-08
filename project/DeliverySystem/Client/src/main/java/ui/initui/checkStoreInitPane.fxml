@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.CheckStoreInitPane">
+   <children>
+      <TextField fx:id="storeID_Field" layoutX="118.0" layoutY="14.0" />
+      <Label layoutX="29.0" layoutY="16.0" text="仓库编号">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="319.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadStore" text="Search" />
+      <AnchorPane fx:id="content_Pane" layoutX="29.0" layoutY="43.0" prefHeight="312.0" prefWidth="688.0" />
+   </children>
+</AnchorPane>

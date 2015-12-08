@@ -93,6 +93,11 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		return result;
 	}
 
+//	public static void main(String[] args) throws RemoteException {
+//		CompanyDataHallImpl tCompanyDataHallImpl = new CompanyDataHallImpl();
+//		HallPO po  = new HallPO(0251001, "南京", "鼓楼", driver2, deliver, counterman, nearCenterID)
+//	}
+
 	public OperationMessage addHall(HallPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();

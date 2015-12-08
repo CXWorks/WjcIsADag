@@ -46,4 +46,10 @@ public class InitialDataImpl extends UnicastRemoteObject implements InitialDataS
 		return new OperationMessage();
 	}
 
+	@Override
+	public String getLatest_version(String staffID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return latest_version;
+	}
+
 }

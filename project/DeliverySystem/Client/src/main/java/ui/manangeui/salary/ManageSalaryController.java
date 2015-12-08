@@ -45,17 +45,20 @@ public class ManageSalaryController {
 		fxmlLoader.setLocation(ManageSalaryController.class.getResource("manageSalaryStrategy.fxml"));
 		return fxmlLoader.load();
 	}
+	private void initData(){
+		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
+		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
+		for (ConfigurationVO configurationVO : vo) {
+			this.vo.add((SalaryStrategyVO)configurationVO);
+		}
+	}
 	//
 	@FXML
 	public void initialize(){
 		//
 		tabs=tabPane.getTabs();
 		
-//		ArrayList<ConfigurationVO> vo=configurationBLService.get(InfoEnum.SALARY);
-//		this.vo=new ArrayList<SalaryStrategyVO>(vo.size());
-//		for (ConfigurationVO configurationVO : vo) {
-//			this.vo.add((SalaryStrategyVO)configurationVO);
-//		}
+//		this.initData();
 		//
 		try {
 			this.seletedChange();
@@ -68,14 +71,14 @@ public class ManageSalaryController {
 	@FXML
 	private void seletedChange() throws IOException{
 		ObservableList<Tab> nuo=tabPane.getTabs(); 
-		SalaryStrategyVO alaryStrategyVO=new SalaryStrategyVO(StaffTypeEnum.DELIVER, 342, 432, 432);
-		this.vo=new ArrayList<SalaryStrategyVO>();
-		this.vo.add(alaryStrategyVO);
+		this.initData();
+		System.out.println(this.vo.get(0).getBase());
+		
 		for (Tab tab : nuo) {
 			if (tab.isSelected()) {
 				//
 				for (SalaryStrategyVO salaryStrategyVO : vo) {
-					System.out.println(salaryStrategyVO.getStaff().getChinese()+" "+tab.getText());
+//					System.out.println(salaryStrategyVO.getStaff().getChinese()+" "+tab.getText());
 					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
 						FXMLLoader fxmlLoader=new FXMLLoader();
 						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));

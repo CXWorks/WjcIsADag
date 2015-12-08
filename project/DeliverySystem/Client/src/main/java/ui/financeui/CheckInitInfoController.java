@@ -3,7 +3,6 @@ package ui.financeui;
 import bl.blService.initblService.InitializationBLService;
 import factory.InitBLFactory;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,18 +11,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.openxmlformats.schemas.xpackage.x2006.digitalSignature.STValue;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.initui.CheckStoreInitPane;
 import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
+import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
+import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.StaffVO;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -50,12 +52,15 @@ enum  InitType implements EnumObservable<InitType> {
 }
 
 public class CheckInitInfoController {
+    private InitializationBLService initBLService = InitBLFactory.getInitializationBLService();
 
-   private InitializationBLService initBLService = InitBLFactory.getInitializationBLService();
-
-    public TableView info_TableView;
+    public AnchorPane content_Pane;
     public Label systemState_Label;
     public ChoiceBox<SimpleEnumProperty<InitType>> initType_ChoiceBox;
+
+    public TableView info_TableView = new TableView();
+
+    private InitialDataVO initialDataVO;
 
     public static Parent launch() throws IOException {
         return FXMLLoader.load(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
@@ -76,7 +81,7 @@ public class CheckInitInfoController {
                         case STAFF_INIT:
                             showStaffs();break;
                         case STORE_INIT:
-                            showStroes();break;
+                            showStores();break;
                         case CAR_INIT:
                             showCars();break;
                     }
@@ -88,6 +93,8 @@ public class CheckInitInfoController {
         // TODO test to be removed
         UserInfo.setSystemState(SystemState.NORMAL);
         systemState_Label.setText(UserInfo.getSystemState().getChinese());
+
+        //initialDataVO = initBLService.getInitialDataVO();
     }
 
     public void applyForInitialization(ActionEvent actionEvent) {
@@ -106,14 +113,10 @@ public class CheckInitInfoController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getBalance())
         );
 
-
         reconstructColumns(name_TableColumn, balance_TableColumn);
-        //TODO test
-        //info_TableView.getItems().addAll(initBLService.getAllAccounts());
-        info_TableView.getItems().addAll(
-                new BankAccountVO("123", "soft", "450"),
-                new BankAccountVO("233", "hard", "99999")
-        );
+        info_TableView.getItems().addAll(initialDataVO.getBankAccounts());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showCars(){
@@ -132,11 +135,43 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, licence_TableColumn, time_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllCars());
+        info_TableView.getItems().addAll(initialDataVO.getCars());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showInstitutions(){
+        TableColumn<InstitutionVO, String> id_TableColumn = new TableColumn<>("机构编号");
+        TableColumn<InstitutionVO, String> type_TableColumn = new TableColumn<>("机构类型");
+        TableColumn<InstitutionVO, String> city_TableColumn = new TableColumn<>("所在城市");
+        TableColumn<InstitutionVO, String> staff_TableColumn = new TableColumn<>("职工人数");
 
+        id_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getInstitutionID())
+        );
+        type_TableColumn.setCellValueFactory(
+                cell -> {
+                    switch (cell.getValue().getInfoEnum()){
+                        case HALL:
+                            return new SimpleStringProperty("营业厅");
+                        case CENTER:
+                            return new SimpleStringProperty("中转中心");
+                    }
+                    return new SimpleStringProperty("???");
+                }
+        );
+        city_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getCity())
+        );
+        staff_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getStaffCount()+"")
+        );
+
+        reconstructColumns(id_TableColumn, type_TableColumn, city_TableColumn, staff_TableColumn);
+        info_TableView.getItems().addAll(initialDataVO.getHalls());
+        info_TableView.getItems().addAll(initialDataVO.getCenters());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showStaffs(){
@@ -159,11 +194,21 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, name_TableColumn, type_TableColumn, institution_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllStaffs());
+        info_TableView.getItems().addAll(initialDataVO.getStaffs());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
-    private void showStroes(){
+    private void showStores(){
+        Pane pane = null;
+        try {
+            pane = FXMLLoader.load(CheckStoreInitPane.class.getResource("checkStoreInitPane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(pane);
     }
 
     private void reconstructColumns(TableColumn...columns){

@@ -3,6 +3,7 @@ package vo.storevo;
 import model.store.StoreLocation;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import model.store.StoreModel;
@@ -17,13 +18,13 @@ public class StockTackVO extends InfoVO{
 	public StockTackVO(){
 		super(InfoEnum.STOCK_TACK);
 	}
-	public StockTackVO(String date,String id,StoreModel storeModel){
+	public StockTackVO(Calendar date,String id,StoreModel storeModel){
 		this();
 		this.date=date;
 		this.id=id;
 		this.storeModel=storeModel;
 	}
-    public StockTackVO(String date, ArrayList<StoreLocation> locations,
+    public StockTackVO(Calendar date, ArrayList<StoreLocation> locations,
 			ArrayList<String> filters) {
 		this();
 		this.date = date;
@@ -32,7 +33,7 @@ public class StockTackVO extends InfoVO{
 	}
 
 	// 日期
-	public String date;
+	public Calendar date;
 
     // 该日期的序号
 	public String id;

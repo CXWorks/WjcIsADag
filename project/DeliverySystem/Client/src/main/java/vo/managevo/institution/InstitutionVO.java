@@ -41,5 +41,6 @@ public abstract class InstitutionVO extends InfoVO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
+	public abstract int getStaffCount();
 }

@@ -106,5 +106,9 @@ public class HallVO extends InstitutionVO{
 	public void setArea(String area) {
 		this.area = area;
 	}
-	
+
+	@Override
+	public int getStaffCount() {
+		return driver.size() + deliver.size() + counterman.size();
+	}
 }

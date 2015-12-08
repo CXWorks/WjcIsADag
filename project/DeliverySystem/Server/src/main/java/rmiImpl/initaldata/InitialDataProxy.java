@@ -66,4 +66,12 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 		return new OperationMessage(false,"ID不正确");
 	}
 
+	@Override
+	public String getLatest_version(String staffID) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(ID.equalsIgnoreCase(staffID))
+			return InitialDataService.getLatest_version(staffID);
+		return null;
+	}
+
 }

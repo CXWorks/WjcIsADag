@@ -18,6 +18,8 @@ import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.staff.StaffVO;
+import vo.storevo.StoreAreaInfoVO;
+import vo.storevo.StoreShelfVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,19 +43,22 @@ public interface InitializationBLService {
     public OperationMessage editAccount(BankAccountVO avo, String newName);
 
     // Store Manage
+    
+    public StoreModel searchModel(String modelID);
+    
     public List<StoreModel> getAllStoreModels();
 
-    public OperationMessage selectStoreModel(StoreModel model);
+    public OperationMessage reducePartition(String modelID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage reducePartition(StoreAreaCode area, int number);
+    public OperationMessage expandPartition(String modelID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage expandPartition(StoreAreaCode area, int number);
-
-    public OperationMessage deleteRow(StoreAreaCode area, int rowNum, boolean confirmed);
-
-    public OperationMessage addRow(StoreAreaCode area, int initCapacity);
-
-    public OperationMessage adjustRow(StoreAreaCode area, int rowNum, int newCapacity, boolean confirmed);
+    public OperationMessage moveShelf(String modelID,StoreAreaCode code_now, int row_now,
+			int shelf_now, StoreAreaCode code, int row, int shelf);
+    
+    
+    public ArrayList<StoreShelfVO> getShelfInfo(String modelID,StoreAreaCode storeAreaCode); 
+    
+    public StoreAreaInfoVO getStoreAreaInfo(String modelID,StoreAreaCode storeAreaCode);
 
     // Car Manage
     public List<CarVO> getAllCars();
@@ -100,7 +105,7 @@ public interface InitializationBLService {
     public OperationMessage modifyHall(HallVO hall);
 
     // Initial Data Manage
-    public InitialDataVO getInitialDataVO(String version);
+    public InitialDataVO getInitialDataVO();
 
     public OperationMessage requestInitData();
 

@@ -59,7 +59,9 @@ public class CarVO extends InfoVO{
 		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
 	}
 	//
-
+	public String getInstitutionID(){
+		return carID.substring(3, 10);
+	}
 
 	public Calendar getUseTime() {
 		return useTime;

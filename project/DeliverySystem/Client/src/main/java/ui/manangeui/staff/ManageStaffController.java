@@ -91,7 +91,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	}
 	//
 	public void submit(){
-		StaffVO staffVO=this.makeStaff();
+		StaffVO staffVO=this.makeNewStaff();
 		if (staffVO==null) {
 			return;
 		}
@@ -131,6 +131,24 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		this.fillStaffTable();
 	}
 	private StaffVO makeStaff(){
+		String nType=staffType.getText();
+		String nID=ID.getText();
+		String nName=name.getText();
+		String nAge=age.getText();
+		String nSex=sex.getText();
+		String nPersonID=personID.getText();
+		String nLove=love.getText();
+		String nInstitutionID=institutionID.getText();
+		//
+		if (nType.length()*nName.length()*nAge.length()*nSex.length()*nPersonID.length()*nLove.length()*nInstitutionID.length()==0) {
+			return null;
+		}
+		StaffVO ans= new StaffVO(null, nID, nName, Integer.parseInt(nAge), nPersonID, null, nLove, nInstitutionID);
+		ans.setStaff(nType);
+		ans.setSex(nSex);
+		return ans;
+	}
+	private StaffVO makeNewStaff(){
 		String nType=staffType.getText();
 		String nID=ID.getText();
 		String nName=name.getText();
