@@ -42,8 +42,8 @@ public class PoepleReceiveFormController {
 	public TextField id_Field;
 
 	private OrderVO selected = null;
-//			new OrderVO(null, null, null, 
-//			null, null, null, null, null, null, null, 
+//			new OrderVO(null, null, null,
+//			null, null, null, null, null, null, null,
 //			null, null, null, null, null, null, null, null, null);
 	private OrderVOCheckItem orderVoCheckItem = new OrderVOCheckItem(selected);
 	private List<OrderVOCheckItem> orders;
@@ -91,15 +91,15 @@ public class PoepleReceiveFormController {
 
 
 	public void commit(ActionEvent actionEvent) {
-
-		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
-		if(msg.operationResult){
-			System.out.println("commit successfully");
-			clear(null);
-		}else{
-			System.out.println("commit fail: " + msg.getReason());
-		}
+//
+//		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
+//		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
+//		if(msg.operationResult){
+//			System.out.println("commit successfully");
+//			clear(null);
+//		}else{
+//			System.out.println("commit fail: " + msg.getReason());
+//		}
 
 	}
 
@@ -117,7 +117,7 @@ public class PoepleReceiveFormController {
 	public void saveDraft(ActionEvent actionEvent) {
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
 		OrderVO ovo= generateOrderVO(selected);
-		obl.saveDraft(ovo);
+//		obl.saveDraft(ovo);
 	}
 
 

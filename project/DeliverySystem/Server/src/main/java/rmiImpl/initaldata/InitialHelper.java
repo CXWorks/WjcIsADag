@@ -88,14 +88,15 @@ public class InitialHelper {
 			return new OperationMessage(false, "打包时出错：");
 		}
 
-		return new OperationMessage(true, "版本号：" + num);
+		return new OperationMessage(true, "" + num);
 	}
 
 	public InitialDataPO loadFile(String version) {
 
 		InitialDataPO po = null;
 		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("E:/Person.txt")));
+			ObjectInputStream ois = new ObjectInputStream(
+					new FileInputStream(new File("E:/initial/" + version + ".txt")));
 			po = (InitialDataPO) ois.readObject();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -182,46 +183,50 @@ public class InitialHelper {
 	}
 
 	public OperationMessage loadMysql(InitialDataPO po) throws RemoteException {
-		for(StoreModel tmp:po.getStoreModels()){
-			for(String label:tmp.getAir().getShelfLabel()){
-				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.AIR,Integer.parseInt(label.split("-")[0]),Integer.parseInt(label.split("-")[1])) ;
+		for (StoreModel tmp : po.getStoreModels()) {
+			for (String label : tmp.getAir().getShelfLabel()) {
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.AIR,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for(String label:tmp.getFlex().getShelfLabel()){
-				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.FLEX,Integer.parseInt(label.split("-")[0]),Integer.parseInt(label.split("-")[1])) ;
+			for (String label : tmp.getFlex().getShelfLabel()) {
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.FLEX,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for(String label:tmp.getRail().getShelfLabel()){
-				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.RAIL,Integer.parseInt(label.split("-")[0]),Integer.parseInt(label.split("-")[1])) ;
+			for (String label : tmp.getRail().getShelfLabel()) {
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.RAIL,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for(String label:tmp.getRoad().getShelfLabel()){
-				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.ROAD,Integer.parseInt(label.split("-")[0]),Integer.parseInt(label.split("-")[1])) ;
+			for (String label : tmp.getRoad().getShelfLabel()) {
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.ROAD,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
 		}
-		for(BankAccountPO tmp:po.getBankAccounts()){
+		for (BankAccountPO tmp : po.getBankAccounts()) {
 			bankAccountDataService.insert(tmp);
 		}
-		for(CarPO tmp:po.getCars()){
+		for (CarPO tmp : po.getCars()) {
 			companyDataCarService.addCar(tmp);
 		}
-		for(StaffPO tmp:po.getStaffs()){
-			if(tmp.getStaff().equals(StaffTypeEnum.DRIVER))
-				driverDatalService.addStaff((DriverPO)tmp);
+		for (StaffPO tmp : po.getStaffs()) {
+			if (tmp.getStaff().equals(StaffTypeEnum.DRIVER))
+				driverDatalService.addStaff((DriverPO) tmp);
 			else
 				staffDatalService.addStaff(tmp);
 		}
-		for(HallPO tmp:po.getHalls()){
+		for (HallPO tmp : po.getHalls()) {
 			companyDataHallService.addHall(tmp);
 		}
-		for(CenterPO tmp:po.getCenters()){
+		for (CenterPO tmp : po.getCenters()) {
 			companyDataCenterService.addCenter(tmp);
 		}
-		for(City2DPO tmp:po.getCity2dpos()){
+		for (City2DPO tmp : po.getCity2dpos()) {
 			configurationDataService.newCity2D(tmp);
 		}
 		configurationDataService.newPrice(po.getPricePO());
 		configurationDataService.newPack(po.getPackPO());
 		configurationDataService.newProportion(po.getProportionPO());
 		configurationDataService.newSalaryStrategy(po.getSalaryStrategyPO());
-		for(AccountPO tmp:po.getAccountPOs()){
+		for (AccountPO tmp : po.getAccountPOs()) {
 			accountDataService.insert(tmp);
 		}
 		return new OperationMessage();
