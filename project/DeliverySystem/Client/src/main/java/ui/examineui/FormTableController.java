@@ -44,7 +44,6 @@ public class FormTableController {
 	private  void setColumn(FormEnum formEnum){
 		this.formVOs=examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
-		tableView.refresh();
 //		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 //		tableView.getColumns().add(infoColumn);
 	}

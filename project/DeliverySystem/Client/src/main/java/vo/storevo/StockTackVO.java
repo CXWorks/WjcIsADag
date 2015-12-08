@@ -5,6 +5,7 @@ import model.store.StoreLocation;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.store.StoreModel;
 import po.InfoEnum;
 import vo.InfoVO;
 
@@ -26,15 +27,18 @@ public class StockTackVO extends InfoVO{
 	}
 
 	// 日期
-    String date;
+	public String date;
 
     // 该日期的序号
-    static String id;
+	public String id;
 
     // 筛选出的符合的货架位置
-    ArrayList<StoreLocation> locations;
+	public ArrayList<StoreLocation> locations;
 
     // 已经添加的筛选条件
-    ArrayList<String> filters;
+	public ArrayList<String> filters;
+
+	// 直接给我storeModel好了
+	public StoreModel storeModel;
 
 }

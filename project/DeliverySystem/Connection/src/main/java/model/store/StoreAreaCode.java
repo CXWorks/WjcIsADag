@@ -22,7 +22,6 @@ public enum StoreAreaCode implements EnumObservable<StoreAreaCode> {
 
 	@Override
 	public String getChinese() {
-		// TODO Auto-generated method stub
 		return chinese;
 	}
 }
