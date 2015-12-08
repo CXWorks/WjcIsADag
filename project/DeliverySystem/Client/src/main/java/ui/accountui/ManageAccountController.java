@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import po.accountdata.AuthorityEnum;
 import po.memberdata.StaffTypeEnum;
@@ -47,14 +48,7 @@ public class ManageAccountController {
         return FXMLLoader.load(ManageAccountController.class.getResource("manageAccount.fxml"));
     }
 
-	private void makeTest(){
-        accounts = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
-            accounts.add(new AccountVOCheckItem(new AccountVO("dora", "1243", AuthorityEnum.HAVE)));
-        }
-        accounts.add(new AccountVOCheckItem(new AccountVO("wjr", "2333", AuthorityEnum.DONT_HAVE)));
-    }
-	
+    @FXML
     public void initialize(){
     	this.accounts_TableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -66,33 +60,38 @@ public class ManageAccountController {
         password_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getVo().getPassword())
         );
+
+        // check and select
         check_TableColumn.setCellFactory(
                 o -> new MyTableCell()
         );
         check_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
+        accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    newValue.setSelected(true);
+                }
+        );
     }
 
-	public void selectAll(ActionEvent actionEvent) {
-        if((!all_CheckBox.isSelected()) && isAllSelected()){
-            setAllSelectedValue(false);
-        }else if(all_CheckBox.isSelected()){
-            setAllSelectedValue(true);
-        }else{
-            // do nothing
+    @FXML
+    public void add(ActionEvent actionEvent) {
+        try {
+            Stage dialogStage = new Stage();
+            EditAccountDialogController controller = EditAccountDialogController.newDialog
+                    (dialogStage, EditAccountDialogController.EditType.NEW, null);
+            dialogStage.showAndWait();
+            refreshItems();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
-        accounts.clear();
-        accounts_TableView.getItems().clear();
-        for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
-            accounts.add(new AccountVOCheckItem(accountVO));
-        }
-        accounts_TableView.getItems().addAll(accounts);
+
         // TODO filter accountBLManageService
 	}
 
@@ -100,19 +99,32 @@ public class ManageAccountController {
 	public void delete(ActionEvent actionEvent) {
         for (int i = 0; i < accounts.size(); i++) {
             if(accounts.get(i).getSelected()){
-                accounts.remove(i);
-                accounts_TableView.getItems().remove(i);
-                //accountBLManageService.deleteAccount(account.getVo());
+                accounts.remove(accounts.get(i));
+                ObservableList<AccountVOCheckItem> list = accounts_TableView.getItems();
+                list.remove(list.get(i));
+                accountBLManageService.deleteAccount(list.get(i).getVo());
+                --i;
             }
         }
+        refreshItems();
     }
 
     @FXML
 	public void edit(ActionEvent actionEvent) {
-        AccountVO selected = accounts_TableView.getSelectionModel().getSelectedItem().getVo();
-        // TODO POPUP EDIT WINDOW
-
-        accountBLManageService.modifyAccount(selected);
+        ObservableList<AccountVOCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
+        if(checkItems.size() != 1){
+            System.out.println("please choose one item");
+            return;
+        }
+        try {
+            Stage dialogStage = new Stage();
+            EditAccountDialogController controller = EditAccountDialogController.newDialog
+                    (dialogStage, EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo());
+            dialogStage.showAndWait();
+            refreshItems();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
     private boolean isAllSelected(){
@@ -128,6 +140,20 @@ public class ManageAccountController {
         for (AccountVOCheckItem account : accounts) {
             account.setSelected(value);
         }
+        ObservableList<AccountVOCheckItem> list = accounts_TableView.getItems();
+        for (int i = 0; i < list.size(); i++) {
+            accounts_TableView.getSelectionModel().select(i);
+        }
+    }
+
+    public void selectAll(ActionEvent actionEvent) {
+        if((!all_CheckBox.isSelected()) && isAllSelected()){
+            setAllSelectedValue(false);
+        }else if(all_CheckBox.isSelected()){
+            setAllSelectedValue(true);
+        }else{
+            // do nothing
+        }
     }
 
     private class MyTableCell extends TableCell<AccountVOCheckItem, AccountVOCheckItem> {
@@ -141,8 +167,24 @@ public class ManageAccountController {
 
             CheckBox checkBox = new CheckBox();
             checkBox.selectedProperty().bindBidirectional(item.selectedProperty());
+            checkBox.selectedProperty().addListener(
+                    (observable, oldValue, newValue) -> {
+                        // TODO don't know whether I can diselect
+                        int row = accounts_TableView.getItems().indexOf(item);
+                        accounts_TableView.getSelectionModel().select(row);
+                    }
+            );
 
             setGraphic(checkBox);
         }
+    }
+
+    private void refreshItems(){
+        accounts.clear();
+        accounts_TableView.getItems().clear();
+        for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
+            accounts.add(new AccountVOCheckItem(accountVO));
+        }
+        accounts_TableView.getItems().addAll(accounts);
     }
 }

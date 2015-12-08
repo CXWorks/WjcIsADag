@@ -93,13 +93,13 @@ public class PoepleReceiveFormController {
 	public void commit(ActionEvent actionEvent) {
 
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
-		if(msg.operationResult){
-			System.out.println("commit successfully");
-			clear(null);
-		}else{
-			System.out.println("commit fail: " + msg.getReason());
-		}
+		//OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected));
+//		if(msg.operationResult){
+//			System.out.println("commit successfully");
+//			clear(null);
+//		}else{
+//			System.out.println("commit fail: " + msg.getReason());
+//		}
 
 	}
 
@@ -117,7 +117,7 @@ public class PoepleReceiveFormController {
 	public void saveDraft(ActionEvent actionEvent) {
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
 		OrderVO ovo= generateOrderVO(selected);
-		obl.saveDraft(ovo);
+		//obl.saveDraft(ovo);
 	}
 
 

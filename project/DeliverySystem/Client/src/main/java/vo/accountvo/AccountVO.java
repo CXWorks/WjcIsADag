@@ -15,9 +15,9 @@ import java.time.*;
  */
 
 public class AccountVO extends InfoVO{
-	private String ID;
+	public String ID;
 	public String password;
-	private AuthorityEnum authority;
+	public AuthorityEnum authority;
 	public AccountVO(){
 		super(InfoEnum.ACCOUNT);
 	}
