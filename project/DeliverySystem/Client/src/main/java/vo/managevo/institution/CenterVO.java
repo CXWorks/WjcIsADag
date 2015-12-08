@@ -70,5 +70,9 @@ public class CenterVO extends InstitutionVO{
 	public String getCity() {
 		return city;
 	}
-	
+
+	@Override
+	public int getStaffCount() {
+		return storeman.size() + counterman.size();
+	}
 }

@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import org.openxmlformats.schemas.xpackage.x2006.digitalSignature.STValue;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
@@ -20,6 +21,7 @@ import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
 import vo.managevo.car.CarVO;
+import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.StaffVO;
 
 import java.io.IOException;
@@ -50,12 +52,13 @@ enum  InitType implements EnumObservable<InitType> {
 }
 
 public class CheckInitInfoController {
+    private InitializationBLService initBLService = InitBLFactory.getInitializationBLService();
 
-   private InitializationBLService initBLService = InitBLFactory.getInitializationBLService();
-
-    public TableView info_TableView;
+    public AnchorPane content_Pane;
     public Label systemState_Label;
     public ChoiceBox<SimpleEnumProperty<InitType>> initType_ChoiceBox;
+
+    public TableView info_TableView = new TableView();
 
     public static Parent launch() throws IOException {
         return FXMLLoader.load(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
@@ -136,7 +139,35 @@ public class CheckInitInfoController {
     }
 
     private void showInstitutions(){
+        TableColumn<InstitutionVO, String> id_TableColumn = new TableColumn<>("机构编号");
+        TableColumn<InstitutionVO, String> type_TableColumn = new TableColumn<>("机构类型");
+        TableColumn<InstitutionVO, String> city_TableColumn = new TableColumn<>("所在城市");
+        TableColumn<InstitutionVO, String> staff_TableColumn = new TableColumn<>("职工人数");
 
+        id_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getInstitutionID())
+        );
+        type_TableColumn.setCellValueFactory(
+                cell -> {
+                    switch (cell.getValue().getInfoEnum()){
+                        case HALL:
+                            return new SimpleStringProperty("营业厅");
+                        case CENTER:
+                            return new SimpleStringProperty("中转中心");
+                    }
+                    return new SimpleStringProperty("???");
+                }
+        );
+        city_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getCity())
+        );
+        staff_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getStaffCount()+"")
+        );
+
+        reconstructColumns(id_TableColumn, type_TableColumn, city_TableColumn, staff_TableColumn);
+        info_TableView.getItems().addAll(initBLService.getAllCenters());
+        info_TableView.getItems().addAll(initBLService.getAllHalls());
     }
 
     private void showStaffs(){
