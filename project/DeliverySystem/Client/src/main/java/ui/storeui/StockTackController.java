@@ -24,6 +24,7 @@ import model.store.StoreModel;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
 import vo.storevo.StoreShelfVO;
@@ -82,7 +83,7 @@ public class StockTackController {
 
     @FXML
     public void makeStockTack(ActionEvent actionEvent) {
-        StockTackVO stockTackVO = stockTackBLService.getStockTack();
+        StockTackVO stockTackVO = stockTackBLService.getStockTack(UserInfo.getInstitutionID());
 
         time_Label.setText(TimeConvert.getDisplayDate(stockTackVO.date));
         orderNumber_Label.setText(stockTackVO.id);
