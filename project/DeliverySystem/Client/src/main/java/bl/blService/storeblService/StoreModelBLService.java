@@ -28,5 +28,7 @@ public interface StoreModelBLService {
     public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode); 
     
     public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode);
+    
+    public double getWarningLine();
 
 }

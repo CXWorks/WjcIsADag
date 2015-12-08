@@ -89,5 +89,11 @@ public class HallVO extends InstitutionVO{
 	public String getHallID() {
 		return hallID;
 	}
+	public String getCity() {
+		return city;
+	}
+	public String getArea() {
+		return area;
+	}
 	
 }
