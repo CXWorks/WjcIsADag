@@ -21,15 +21,8 @@ public interface ManageblCenterService {
 	
 	public OperationMessage modifyCenter(CenterVO center);
 	
-	public CenterVO searchCenter(CenterVO center);
+	public CenterVO searchCenter(String centerID);
 	
 	public String newCenterID(String city);
-	/**
-	 * 这个涉及到新建的距离问题，2015/11/26前搁置
-	 * @param ID
-	 * @param ob
-	 * @return
-	 */
-	public OperationMessage newInstitutionDistance(String ID,Object ob);
 	
 }

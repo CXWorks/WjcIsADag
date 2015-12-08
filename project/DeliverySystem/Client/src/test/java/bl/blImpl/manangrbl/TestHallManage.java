@@ -45,7 +45,7 @@ public class TestHallManage {
 	
 	@Test
 	public void testSearchHall(){
-		assertNotNull(hall.searchHall(h));
+		assertNotNull(hall.searchHall(null));
 	}
 	
 	@Test
@@ -58,8 +58,5 @@ public class TestHallManage {
 		assertTrue(hall.addHall(h).operationResult);
 	}
 	
-	@Test
-	public void testNewInstitutionDistance(){
-		assertTrue(hall.newInstitutionDistance("111111",new Object()).operationResult);
-	}
+	
 }

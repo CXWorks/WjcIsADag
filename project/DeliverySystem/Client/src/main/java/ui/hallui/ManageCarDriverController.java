@@ -52,7 +52,7 @@ public class ManageCarDriverController {
 	private ManageblCarService manageblCarService = CarFactory.getCarService();
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
 
-	private ArrayList<CarVO> carvo_list = manageblCarService.getCar(new HallVO(UserInfo.getInstitutionID()));
+	private ArrayList<CarVO> carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
 	private ArrayList<DriverVO> drivervo_list = manageblDriverService.getStaffByInstitution();
 
 	private List<CarVOCheckItem> cars = new ArrayList<CarVOCheckItem>();
@@ -150,9 +150,7 @@ public class ManageCarDriverController {
 	@FXML
 	public void searchCar(ActionEvent actionEvent) {
 		String filter = search_Car_Field.getText();
-		CarVO car=manageblCarService.searchCar(new CarVO (true, filter,
-				null, null, null, null,
-				null, null));
+		CarVO car=manageblCarService.searchCar(filter);
 		CarVOCheckItem select = new CarVOCheckItem(car);
 		car_TableView.setItems(FXCollections.observableArrayList(select));
 

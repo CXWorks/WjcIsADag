@@ -83,8 +83,8 @@ public class HallManage implements ManageblHallService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#searchHall(vo.managevo.institution.HallVO)
 	 */
-	public HallVO searchHall(HallVO hall) {
-		String ID=hall.getHallID();
+	public HallVO searchHall(String hall) {
+		String ID=hall;
 		ArrayList<HallPO> po;
 		try {
 			po = hallService.getHall();

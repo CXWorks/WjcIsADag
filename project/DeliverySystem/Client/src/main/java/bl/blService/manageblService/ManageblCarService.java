@@ -14,7 +14,7 @@ import vo.managevo.institution.HallVO;
  */
 public interface ManageblCarService {
 	
-	public ArrayList<CarVO> getCar(HallVO itself);
+	public ArrayList<CarVO> getCar(String hallID);
 	
 	public OperationMessage addCar(CarVO car);
 	
@@ -22,7 +22,7 @@ public interface ManageblCarService {
 	
 	public OperationMessage deleteCar(CarVO car);
 	
-	public CarVO searchCar(CarVO car);
+	public CarVO searchCar(String  carID);
 	
 	public String newCarID();
 }

@@ -15,10 +15,12 @@ import model.store.StoreAreaCode;
 import model.store.StoreLocation;
 import model.store.StoreModel;
 import po.initialdata.InitialDataPO;
+import po.memberdata.StaffTypeEnum;
 import rmi.initialdata.InitialDataService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
+import vo.financevo.PaymentVO;
 import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
@@ -97,21 +99,11 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     
-    public List<CarVO> getAllCars() {
-    	List<CarVO> result =initialDataVO.getCars();
+    public ArrayList<CarVO> getCar(String itself) {
+    	ArrayList<CarVO> result =initialDataVO.getCars();
 		return result;
     }
 
-    public List<CarVO> filterCarsByHall(String hallID) {
-    	List<CarVO> result =new LinkedList<CarVO>();
-    	List<CarVO> carVOs=initialDataVO.getCars();
-    	for (CarVO carVO : carVOs) {
-			if (carVO.getInstitutionID().equalsIgnoreCase(hallID)) {
-				result.add(carVO);
-			}
-		}
-    	return result;
-    }
 
     public OperationMessage addCar(CarVO car) {
         boolean re=initialDataVO.getCars().add(car);
@@ -129,13 +121,13 @@ public class InitializationBLController implements InitializationBLService {
         return new OperationMessage(re, null);
     }
 
-    public List<StaffVO> getAllStaffs() {
-    	List<StaffVO> result =initialDataVO.getStaffs();
+    public ArrayList<StaffVO> getStaff(StaffTypeEnum staffTypeEnum) {
+    	ArrayList<StaffVO> result =initialDataVO.getStaffs();
 		return result;
     }
 
-    public List<StaffVO> filterStaffsByHall(String hallID) {
-    	List<StaffVO> result =new ArrayList<StaffVO>();
+    public ArrayList<StaffVO> getStaffByInstitution(String hallID) {
+    	ArrayList<StaffVO> result =new ArrayList<StaffVO>();
     	List<StaffVO> src=initialDataVO.getStaffs();
     	for (StaffVO staffVO : src) {
 			if (staffVO.getInstitutionID().equalsIgnoreCase(hallID)) {
@@ -146,7 +138,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage modifyStaff(StaffVO after) {
-        this.deleteStaff(after);
+        this.dismissStaff(after);
         this.addStaff(after);
         return new OperationMessage();
     }
@@ -156,13 +148,13 @@ public class InitializationBLController implements InitializationBLService {
         return new OperationMessage(re, null);
     }
 
-    public OperationMessage deleteStaff(StaffVO staff) {
+    public OperationMessage dismissStaff(StaffVO staff) {
         boolean re=initialDataVO.getStaffs().remove(staff);
         return new OperationMessage(re, null);
     }
 
-    public List<CenterVO> getAllCenters() {
-    	List<CenterVO> result =initialDataVO.getCenters();
+    public ArrayList<CenterVO> getCenter() {
+    	ArrayList<CenterVO> result =initialDataVO.getCenters();
     	return result;
     }
 
@@ -193,19 +185,8 @@ public class InitializationBLController implements InitializationBLService {
        return new OperationMessage();
     }
 
-    public List<HallVO> getAllHalls() {
-    	List<HallVO> result =initialDataVO.getHalls();
-		return result;
-    }
-
-    public List<HallVO> filterHallsByNumber(String number) {
-    	List<HallVO> result =new ArrayList<HallVO>();
-    	List<HallVO> src=initialDataVO.getHalls();
-    	for (HallVO hallVO : src) {
-			if (hallVO.getHallID().equalsIgnoreCase(number)) {
-				result.add(hallVO);
-			}
-		}
+    public ArrayList<HallVO> getHall() {
+    	ArrayList<HallVO> result =initialDataVO.getHalls();
 		return result;
     }
 
@@ -355,6 +336,141 @@ public class InitializationBLController implements InitializationBLService {
 				return storeModel;
 			}
 		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.BankAccountBLService#getTradeHistory(vo.financevo.BankAccountVO)
+	 */
+	@Override
+	public List<PaymentVO> getTradeHistory(BankAccountVO avo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.BankAccountBLService#pay(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public OperationMessage pay(String bankAccID, String amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.BankAccountBLService#receive(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public OperationMessage receive(String bankAccID, String amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StoreModelBLService#setWarningLine(double)
+	 */
+	@Override
+	public OperationMessage setWarningLine(double percent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StoreModelBLService#getWarningLine()
+	 */
+	@Override
+	public double getWarningLine() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	@Override
+	public CarVO searchCar(String car) {
+    	List<CarVO> carVOs=initialDataVO.getCars();
+    	for (CarVO carVO : carVOs) {
+			if (carVO.getCarID().equalsIgnoreCase(car)) {
+				return carVO;
+			}
+		}
+    	return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblCarService#newCarID()
+	 */
+	@Override
+	public String newCarID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblStaffService#searchStaff(java.lang.String)
+	 */
+	@Override
+	public StaffVO searchStaff(String staffID) {
+		List<StaffVO> staffVOs=initialDataVO.getStaffs();
+		for (StaffVO staffVO : staffVOs) {
+			if (staffVO.getID().equalsIgnoreCase(staffID)) {
+				return staffVO;
+			}
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblStaffService#newStaffID(po.memberdata.StaffTypeEnum, java.lang.String)
+	 */
+	@Override
+	public String newStaffID(StaffTypeEnum staffType, String unitID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblCenterService#searchCenter(java.lang.String)
+	 */
+	@Override
+	public CenterVO searchCenter(String centerID) {
+    	List<CenterVO> src=initialDataVO.getCenters();
+    	for (CenterVO centerVO : src) {
+			if (centerVO.getCenterID().equalsIgnoreCase(centerID)) {
+				return centerVO;
+			}
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblCenterService#newCenterID(java.lang.String)
+	 */
+	@Override
+	public String newCenterID(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblHallService#searchHall(java.lang.String)
+	 */
+	@Override
+	public HallVO searchHall(String hallID) {
+    	List<HallVO> src=initialDataVO.getHalls();
+    	for (HallVO hallVO : src) {
+			if (hallVO.getHallID().equalsIgnoreCase(hallID)) {
+				return hallVO;
+			}
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblHallService#newHallID(java.lang.String)
+	 */
+	@Override
+	public String newHallID(String centerID) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

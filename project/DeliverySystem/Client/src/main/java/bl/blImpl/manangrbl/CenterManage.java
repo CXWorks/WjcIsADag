@@ -83,8 +83,8 @@ public class CenterManage implements ManageblCenterService{
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCenterService#searchCenter(vo.managevo.institution.CenterVO)
 	 */
-	public CenterVO searchCenter(CenterVO center) {
-		String ID=center.getCenterID();
+	public CenterVO searchCenter(String center) {
+		String ID=center;
 		try {
 			ArrayList<CenterPO> po=centerService.getCenter();
 			CenterPO each=null;

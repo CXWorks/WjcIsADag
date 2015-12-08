@@ -10,6 +10,7 @@ import po.memberdata.StaffTypeEnum;
 import factory.StaffFactory;
 import bl.blService.manageblService.ManageblStaffService;
 import tool.ui.StaffVO2ColumnHelper;
+import userinfo.UserInfo;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
@@ -64,7 +65,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     }
 	@FXML
 	public void initialize(){
-		staffVOs=manageblStaffService.getStaffByInstitution();
+		staffVOs=manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
 
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
@@ -86,7 +87,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	}
 	//
 	public void fillStaffTable(){
-		staffVOs=manageblStaffService.getStaffByInstitution();
+		staffVOs=manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
 		this.staffTable.setItems(FXCollections.observableList(staffVOs));
 	}
 	//
