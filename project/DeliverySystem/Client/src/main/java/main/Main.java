@@ -89,15 +89,15 @@ public class Main extends Application {
      * 根据UserInfo加载对应的界面
      */
     public static void logIn(){
-    	
+
         StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
-      
+
         Parent pane = panes.get(staffTypeEnum);
         if(pane == null){
             pane = launchByStaff(staffTypeEnum);
             panes.put(staffTypeEnum, pane);
         }
-       
+
         primaryStage.setScene(new Scene(pane));
     }
 
@@ -117,16 +117,16 @@ public class Main extends Application {
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
-        		ManageOrganizationController.launch()
+//        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
         		//ManageStaffController.launch()
 //               StockTackController.launch()
         		//ConfigurationController.launch()
 //        		ManageSalaryController.launch()
-//        		LoadCarController.launch()
+        		LoadCarController.launch()
 //        		TransitFormController.launch()
-        		
+
         ));
         primaryStage.show();
     }
