@@ -70,10 +70,10 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	private InstitutionVO makeInstitutionVO(){
 		if (institutionType.getText()=="CENTER") {
-			return new CenterVO(ID.getText(), city.getText());
+			return new CenterVO(manageblCenterService.newCenterID(city.getText()), city.getText());
 		}
 		else {
-			return new HallVO(ID.getText(), city.getText(), area.getText(), nearCenter.getText());
+			return new HallVO(manageblHallService.newHallID(nearCenter.getText()), city.getText(), area.getText(), nearCenter.getText());
 		}
 	}
 	
