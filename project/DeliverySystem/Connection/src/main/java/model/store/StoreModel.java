@@ -3,6 +3,8 @@ package model.store;
 import java.io.Serializable;
 import java.util.List;
 
+import message.OperationMessage;
+
 /**
  * Created by Sissel on 2015/10/24.
  */
@@ -16,6 +18,18 @@ public class StoreModel implements Serializable {
 	private StoreArea rail;
 	private StoreArea road;
 	private StoreArea flex;
+	
+	public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 	public StoreModel(String centerID,StoreArea air, StoreArea rail, StoreArea road,
 			StoreArea flex) {

@@ -275,7 +275,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#reducePartition(model.store.StoreAreaCode, int)
 	 */
 	@Override
-	public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber) {
+	public OperationMessage reducePartition(String modelID,StoreAreaCode area, int shelfNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -284,7 +284,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#expandPartition(model.store.StoreAreaCode, int)
 	 */
 	@Override
-	public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber) {
+	public OperationMessage expandPartition(String modelID,StoreAreaCode area, int shelfNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -293,7 +293,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#moveShelf(model.store.StoreAreaCode, int, int, model.store.StoreAreaCode, int, int)
 	 */
 	@Override
-	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+	public OperationMessage moveShelf(String modelID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf) {
 		// TODO Auto-generated method stub
 		return null;
@@ -303,7 +303,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#getShelfInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode) {
+	public ArrayList<StoreShelfVO> getShelfInfo(String modelID,StoreAreaCode storeAreaCode) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -312,7 +312,16 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#getStoreAreaInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode) {
+	public StoreAreaInfoVO getStoreAreaInfo(String modelID,StoreAreaCode storeAreaCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#searchModel(java.lang.String)
+	 */
+	@Override
+	public StoreModel searchModel(String modelID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -43,19 +43,21 @@ public interface InitializationBLService {
     public OperationMessage editAccount(BankAccountVO avo, String newName);
 
     // Store Manage
+    public StoreModel searchModel(String modelID);
+    
     public List<StoreModel> getAllStoreModels();
 
-    public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber);
+    public OperationMessage reducePartition(String modelID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber);
+    public OperationMessage expandPartition(String modelID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+    public OperationMessage moveShelf(String modelID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf);
     
     
-    public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode); 
+    public ArrayList<StoreShelfVO> getShelfInfo(String modelID,StoreAreaCode storeAreaCode); 
     
-    public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode);
+    public StoreAreaInfoVO getStoreAreaInfo(String modelID,StoreAreaCode storeAreaCode);
 
     // Car Manage
     public List<CarVO> getAllCars();

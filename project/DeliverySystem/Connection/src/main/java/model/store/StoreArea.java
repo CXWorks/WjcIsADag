@@ -54,6 +54,22 @@ public class StoreArea implements Serializable {
 		}
 		return null;
 	}
+	public boolean addShelf(){
+		StoreLocation last = list.get(list.size() - 1);
+		int shelf = last.getShelf();
+		int row=last.getRow();
+		if (shelf==50) {
+			row ++;
+			shelf=1;
+		}
+		else {
+			shelf++;
+		}
+		for (int i = 0; i < shelfForEachRow; i++) {
+			this.list.add(new StoreLocation(areaType, row, shelf, i+1));
+		}
+		return true;
+	}
 
 	//
 	public boolean deleteLastShelf() {

@@ -13,6 +13,14 @@ public class StoreLocation implements Serializable,Cloneable {
 	private int shelf;
 	private int position;
 	private String orderID;
+	
+	public StoreLocation (StoreAreaCode area,int row,int shelf,int position){
+		super();
+		this.area=area;
+		this.row=row;
+		this.shelf=shelf;
+		this.position=position;
+	}
 
 	public StoreLocation(StoreAreaCode area, int row, int shelf, int position,
 			String orderID) {
