@@ -71,6 +71,7 @@ public class StaffPO extends InfoPO implements Serializable{
 			break;
 		case "MANAGER":
 			this.staff = StaffTypeEnum.MANAGER;
+			break;
 		case "STOREMAN":
 			this.staff = StaffTypeEnum.STOREMAN;
 			break;
