@@ -50,7 +50,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-//        CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -89,15 +89,15 @@ public class Main extends Application {
      * 根据UserInfo加载对应的界面
      */
     public static void logIn(){
-    	
+
         StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
-      
+
         Parent pane = panes.get(staffTypeEnum);
         if(pane == null){
             pane = launchByStaff(staffTypeEnum);
             panes.put(staffTypeEnum, pane);
         }
-       
+
         primaryStage.setScene(new Scene(pane));
     }
 
@@ -114,7 +114,7 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
 //        		NewOrderController.launch()
-//        		CheckFormController.launch()
+        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
 //        		ManageOrganizationController.launch()
@@ -126,8 +126,8 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
-        		LoginController.launch()
-        		
+//        		LoginController.launch()
+
         ));
         primaryStage.show();
     }

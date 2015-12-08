@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import po.FormEnum;
 import po.FormPO;
+import po.transportdata.LoadPO;
 import rmi.examineService.ExamineManageService;
 import message.OperationMessage;
 import vo.FormVO;
@@ -13,11 +14,11 @@ import bl.blService.examineblService.ExamineblManageService;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//blImpl.examinebl//ExamineBLManageImpl.java
  * @author CXWorks
  * @date 2015年10月26日 上午8:29:04
- * @version 1.0 
+ * @version 1.0
  */
 public class ExamineBLManageImpl implements ExamineblManageService {
 	private ExamineManageService examineManageService;
@@ -28,7 +29,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		this.vopoFactory=vopoFactory;
 		formVOs=new ArrayList<FormVO>();
 	}
-	
+
 	private void maintainData(ArrayList<FormVO> form){
 		if (form.size()==formVOs.size()) {
 			formVOs.clear();
@@ -47,7 +48,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			this.formVOs=ans;
 		}
 	}
-	
+
 
 	/* (non-Javadoc)
 	 * @see blService.examineblService.ExamineblManageService#passForm(java.util.ArrayList)
@@ -65,7 +66,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
-		
+
 	}
 
 	/* (non-Javadoc)

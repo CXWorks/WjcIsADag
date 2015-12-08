@@ -26,7 +26,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	public LoadDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
-		Table_Name = "centerout";
+		Table_Name = "load";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -48,11 +48,10 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 		;
 
 		String insert = "insert into `" + Table_Name + "`(formID,formState,LoadDate,TransportID,placeTo,"
-				+ "peopleSee,expense,IDs,peopleTransport,date_and_unit) " + "values('" + po.getFormID() + "','"
+				+ "peopleSee,expense,IDs,date_and_unit,peopleTrans) " + "values('" + po.getFormID() + "','"
 				+ po.getFormState().toString() + "','" + po.getLoadDateForSQL().toString() + "','" + po.getTransportID()
 				+ "','" + po.getPlaceTo() + "','" + po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs + "','"
-				+ po.getPeopleTransport() + "','" + po.getFormID().substring(2, 17) + "')";
-
+				+ po.getFormID().substring(2, 17) + "','" + po.getPeopleTransport() + "')";
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
