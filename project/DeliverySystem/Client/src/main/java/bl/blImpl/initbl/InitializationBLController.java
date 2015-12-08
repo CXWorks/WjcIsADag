@@ -224,7 +224,7 @@ public class InitializationBLController implements InitializationBLService {
         return new OperationMessage();
     }
 
-    public InitialDataVO getInitialDataVO(String version) {
+    public InitialDataVO getInitialDataVO() {
        return this.initialDataVO;
     }
 

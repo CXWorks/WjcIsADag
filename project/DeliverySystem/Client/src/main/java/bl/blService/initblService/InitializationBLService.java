@@ -43,6 +43,7 @@ public interface InitializationBLService {
     public OperationMessage editAccount(BankAccountVO avo, String newName);
 
     // Store Manage
+    
     public StoreModel searchModel(String modelID);
     
     public List<StoreModel> getAllStoreModels();
@@ -104,7 +105,7 @@ public interface InitializationBLService {
     public OperationMessage modifyHall(HallVO hall);
 
     // Initial Data Manage
-    public InitialDataVO getInitialDataVO(String version);
+    public InitialDataVO getInitialDataVO();
 
     public OperationMessage requestInitData();
 
