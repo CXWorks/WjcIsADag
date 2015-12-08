@@ -44,15 +44,15 @@ public class TransitFormController {
 //    public TableColumn<String,String> order_TableColumn;
     public Label fee_Label;
     public TextField id_Field;
-    
+
     ArrayList<String> ids= new ArrayList<String>();
-    
+
     TransportationEnum transitEnum =TransportationEnum.TRAIN;
     TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
-   
+
     ArrayList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
 
-    
+
     public static Parent launch() throws IOException {
 
         FXMLLoader contentLoader = new FXMLLoader();
@@ -71,14 +71,14 @@ public class TransitFormController {
                 	transitEnum = newValue.getEnum();
                 }
         );
-    	
+
          arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
 //    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
-    	
+
 //         clear(null);
     }
-    
-    
+
+
     public void add(ActionEvent actionEvent){
     	String a= id_Field.getText();
     	System.out.println("aaaa"+a);
@@ -86,16 +86,16 @@ public class TransitFormController {
      	orders_TableView.getItems().add(a);
     	//orders.getItems().add(a);
     	id_Field.clear();
-    	
+
     }
-    
+
     public void saveDraft(ActionEvent actionEvent) {
     	transportCenterBLService.saveDraft(generateVO(null));
-    	
+
     }
 
     public void clear(ActionEvent actionEvent) {
-    	
+
     	transit_DatePicker.setValue(LocalDate.now());
     	transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
     	departure_Field.clear();
@@ -105,7 +105,7 @@ public class TransitFormController {
     	cargo_Field.clear();
     	id_Field.clear();
     	orders.setItems(null);
-    	
+
     }
 
     private CenterOutVO generateVO(String formID){
@@ -115,7 +115,7 @@ public class TransitFormController {
         		transitEnum);
     }
 
-    
+
     public void commit(ActionEvent actionEvent) {
     	 OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
 

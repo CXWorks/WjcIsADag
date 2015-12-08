@@ -43,4 +43,12 @@ public class LogDataProxy extends UnicastRemoteObject implements LogDataService 
 		return null;
 	}
 
+	@Override
+	public OperationMessage clear() throws RemoteException {
+		// TODO Auto-generated method stub
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return logDataService.clear();
+		return null;
+	}
+
 }

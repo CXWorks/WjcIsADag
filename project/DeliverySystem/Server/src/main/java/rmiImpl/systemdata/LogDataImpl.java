@@ -24,6 +24,11 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	private PreparedStatement statement = null;
 	private static int ID;
 
+//	public static void main(String[] args) throws RemoteException {
+//		LogDataImpl t = new LogDataImpl();
+//		t.clear();
+//	}
+
 	public LogDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
@@ -98,6 +103,23 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+
+	@Override
+	public OperationMessage clear() throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String clear = "delete from `" + Table_Name + "`";
+		try {
+			statement = conn.prepareStatement(clear);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "清空数据库时出错：");
+			System.err.println("清空数据库时出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 

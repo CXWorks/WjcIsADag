@@ -31,8 +31,8 @@ public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
 
-//    public Image Image_Back= new Image("https://github.com/WjcIsaDog"
-//    		+ "/WjcIsADag/blob/master/UI%E5%9B%BE%E7%89%87/login/back.png");
+    public Image Image_Back= new Image("https://github.com/WjcIsaDog"
+    		+ "/WjcIsADag/blob/master/UI%E5%9B%BE%E7%89%87/login/back.png");
     
     public ImageView back_ImageView;
     
@@ -46,10 +46,10 @@ public class LoginController {
     }
     
     
-//    @FXML
-//    public void initialize(){
-//    	back_ImageView.setImage(Image_Back);
-//    }
+    @FXML
+    public void initialize(){
+    	back_ImageView.setImage(Image_Back);
+    }
     
 
     public void login(ActionEvent actionEvent) {
