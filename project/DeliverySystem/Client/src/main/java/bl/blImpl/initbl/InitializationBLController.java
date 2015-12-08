@@ -21,9 +21,12 @@ import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.staff.StaffVO;
+import vo.storevo.StoreAreaInfoVO;
+import vo.storevo.StoreShelfVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,12 +40,12 @@ public class InitializationBLController implements InitializationBLService {
 
     // manageServices
     InitialDataService initialDataService;
-    StoreModelBLService storeService;
-    BankAccountBLService bankService;
-    ManageblCarService carService;
-    ManageblStaffService staffService;
-    ManageblCenterService centerService;
-    ManageblHallService hallService;
+//    StoreModelBLService storeService;
+//    BankAccountBLService bankService;
+//    ManageblCarService carService;
+//    ManageblStaffService staffService;
+//    ManageblCenterService centerService;
+//    ManageblHallService hallService;
     
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
@@ -51,159 +54,171 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public List<BankAccountVO> getAllAccounts() {
-    	List<BankAccountVO> result =new ArrayList<BankAccountVO>();
-    	BankAccountVO stub=new BankAccountVO();
-		result.add(stub);
-		return result;
+    	ArrayList<BankAccountVO> bankAccountVOs=initialDataVO.getBankAccounts();
+    	return bankAccountVOs;
     }
 
     public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
-//    	ArrayList<BankAccountVO> vos=da;
-    	return null;
+    	LinkedList<BankAccountVO> ans=new LinkedList<BankAccountVO>();
+    	for (BankAccountVO bankAccountVO : list) {
+			if (bankAccountVO.quzzySearch(s)) {
+				ans.add(bankAccountVO);
+			}
+		}
+    	return ans;
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getBankAccounts().add(avo);
+        return new OperationMessage(re,null);
+        
     }
 
     public OperationMessage deleteAccount(BankAccountVO avo) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getBankAccounts().remove(avo);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage editAccount(BankAccountVO avo, String newName) {
+        String ID=avo.bankID;
+        ArrayList<BankAccountVO> bankAccountVOs=initialDataVO.getBankAccounts();
+        int i;
+        for (i = 0; i < bankAccountVOs.size(); i++) {
+			if (bankAccountVOs.get(i).bankID.equalsIgnoreCase(ID)) {
+				break;
+			}
+		}
+        bankAccountVOs.remove(i);
+        bankAccountVOs.add(avo);
         return new OperationMessage();
     }
 
-    public List<StoreModel> getAllStoreModels() {
-    	List<StoreModel> result =new ArrayList<StoreModel>();
-		return result;
-    }
-
-    public OperationMessage selectStoreModel(StoreModel model) {
-        return new OperationMessage();
-    }
-
-    public OperationMessage reducePartition(StoreAreaCode area, int number) {
-        return new OperationMessage();
-    }
-
-    public OperationMessage expandPartition(StoreAreaCode area, int number) {
-        return new OperationMessage();
-    }
-
-    public OperationMessage deleteRow(StoreAreaCode area, int rowNum, boolean confirmed) {
-        return new OperationMessage();
-    }
-
-    public OperationMessage addRow(StoreAreaCode area, int initCapacity) {
-        return new OperationMessage();
-    }
-
-    public OperationMessage adjustRow(StoreAreaCode area, int rowNum, int newCapacity, boolean confirmed) {
-        return new OperationMessage();
-    }
-
+    
     public List<CarVO> getAllCars() {
-    	List<CarVO> result =new ArrayList<CarVO>();
-    	CarVO stub=new CarVO();
-		result.add(stub);
+    	List<CarVO> result =initialDataVO.getCars();
 		return result;
     }
 
     public List<CarVO> filterCarsByHall(String hallID) {
-    	List<CarVO> result =new ArrayList<CarVO>();
-    	CarVO stub=new CarVO();
-		result.add(stub);
-		return result;
+    	List<CarVO> result =new LinkedList<CarVO>();
+    	List<CarVO> carVOs=initialDataVO.getCars();
+    	for (CarVO carVO : carVOs) {
+			if (carVO.getInstitutionID().equalsIgnoreCase(hallID)) {
+				result.add(carVO);
+			}
+		}
+    	return result;
     }
 
     public OperationMessage addCar(CarVO car) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getCars().add(car);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage modifyCar(CarVO car) {
-        return new OperationMessage();
+       this.deleteCar(car);
+       this.addCar(car);
+       return new OperationMessage();
     }
 
     public OperationMessage deleteCar(CarVO car) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getCars().remove(car);
+        return new OperationMessage(re, null);
     }
 
     public List<StaffVO> getAllStaffs() {
-    	List<StaffVO> result =new ArrayList<StaffVO>();
-    	StaffVO stub=new StaffVO();
-		result.add(stub);
+    	List<StaffVO> result =initialDataVO.getStaffs();
 		return result;
     }
 
     public List<StaffVO> filterStaffsByHall(String hallID) {
     	List<StaffVO> result =new ArrayList<StaffVO>();
-    	StaffVO stub=new StaffVO();
-		result.add(stub);
+    	List<StaffVO> src=initialDataVO.getStaffs();
+    	for (StaffVO staffVO : src) {
+			if (staffVO.getInstitutionID().equalsIgnoreCase(hallID)) {
+				result.add(staffVO);
+			}
+		}
 		return result;
     }
 
     public OperationMessage modifyStaff(StaffVO after) {
+        this.deleteStaff(after);
+        this.addStaff(after);
         return new OperationMessage();
     }
 
     public OperationMessage addStaff(StaffVO staff) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getStaffs().add(staff);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage deleteStaff(StaffVO staff) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getStaffs().remove(staff);
+        return new OperationMessage(re, null);
     }
 
     public List<CenterVO> getAllCenters() {
-    	List<CenterVO> result =new ArrayList<CenterVO>();
-    	CenterVO stub=new CenterVO();
-		result.add(stub);
-		return result;
+    	List<CenterVO> result =initialDataVO.getCenters();
+    	return result;
     }
 
     public List<CenterVO> filterCentersByNumber(String number) {
     	List<CenterVO> result =new ArrayList<CenterVO>();
-    	CenterVO stub=new CenterVO();
-		result.add(stub);
+    	List<CenterVO> src=initialDataVO.getCenters();
+    	for (CenterVO centerVO : src) {
+			if (centerVO.getCenterID().equalsIgnoreCase(number)) {
+				result.add(centerVO);
+			}
+		}
 		return result;
     }
 
     public OperationMessage addCenter(CenterVO center) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getCenters().add(center);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage deleteCenter(CenterVO center) {
-        return new OperationMessage();
+       boolean re=initialDataVO.getCenters().remove(center);
+       return new OperationMessage(re,null);
     }
 
     public OperationMessage modifyCenter(CenterVO center) {
-        return new OperationMessage();
+       this.deleteCenter(center);
+       this.addCenter(center);
+       return new OperationMessage();
     }
 
     public List<HallVO> getAllHalls() {
-    	List<HallVO> result =new ArrayList<HallVO>();
-    	HallVO stub=new HallVO();
-		result.add(stub);
+    	List<HallVO> result =initialDataVO.getHalls();
 		return result;
     }
 
     public List<HallVO> filterHallsByNumber(String number) {
     	List<HallVO> result =new ArrayList<HallVO>();
-    	HallVO stub=new HallVO();
-		result.add(stub);
+    	List<HallVO> src=initialDataVO.getHalls();
+    	for (HallVO hallVO : src) {
+			if (hallVO.getHallID().equalsIgnoreCase(number)) {
+				result.add(hallVO);
+			}
+		}
 		return result;
     }
 
     public OperationMessage addHall(HallVO center) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getHalls().add(center);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage deleteHall(HallVO center) {
-        return new OperationMessage();
+        boolean re=initialDataVO.getHalls().remove(center);
+        return new OperationMessage(re, null);
     }
 
     public OperationMessage modifyHall(HallVO center) {
+        this.deleteHall(center);
+        this.addHall(center);
         return new OperationMessage();
     }
 
@@ -246,4 +261,59 @@ public class InitializationBLController implements InitializationBLService {
 	}
 
     }
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#getAllStoreModels()
+	 */
+	@Override
+	public List<StoreModel> getAllStoreModels() {
+		List<StoreModel> result=initialDataVO.getStoreModels();
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#reducePartition(model.store.StoreAreaCode, int)
+	 */
+	@Override
+	public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#expandPartition(model.store.StoreAreaCode, int)
+	 */
+	@Override
+	public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#moveShelf(model.store.StoreAreaCode, int, int, model.store.StoreAreaCode, int, int)
+	 */
+	@Override
+	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+			int shelf_now, StoreAreaCode code, int row, int shelf) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#getShelfInfo(model.store.StoreAreaCode)
+	 */
+	@Override
+	public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#getStoreAreaInfo(model.store.StoreAreaCode)
+	 */
+	@Override
+	public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
