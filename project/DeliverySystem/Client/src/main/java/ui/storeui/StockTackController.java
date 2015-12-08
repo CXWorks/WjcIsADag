@@ -79,7 +79,8 @@ public class StockTackController {
 
     public void makeStockTack(ActionEvent actionEvent) {
         stockTackVO = stockTackBLService.getStockTack();
-        time_Label.setText(stockTackVO.date);
+        time_Label.setText(
+                stockTackVO.date);
         orderNumber_Label.setText(stockTackVO.id);
 
         storeModel = stockTackVO.storeModel;

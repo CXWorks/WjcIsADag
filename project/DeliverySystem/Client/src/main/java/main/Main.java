@@ -3,6 +3,7 @@
  */
 package main;
 
+import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
+import ui.storeui.StockTackController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        //CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -111,7 +113,8 @@ public class Main extends Application {
 //        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
-        		ManageStaffController.launch()
+        		//ManageStaffController.launch()
+                StockTackController.launch()
         		
         ));
         primaryStage.show();

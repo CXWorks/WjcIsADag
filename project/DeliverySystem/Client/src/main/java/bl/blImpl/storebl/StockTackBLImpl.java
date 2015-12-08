@@ -37,7 +37,7 @@ public class StockTackBLImpl implements StockTackBLService {
 	}
     public StockTackVO getStockTack() {
        try {
-		StoreModel storeModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
+		StoreModel storeModel=storeModelDataService.getModel("0040001");
 		Calendar temp=Calendar.getInstance();
 		Date today=temp.getTime();
 		return new StockTackVO(today.toString(), Integer.toString(i++), storeModel);
