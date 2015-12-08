@@ -16,7 +16,7 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	private static String ID = "";
 
-	protected InitialDataProxy() throws RemoteException {
+	protected InitialDataProxy() throws RemoteException,ClassNotFoundException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

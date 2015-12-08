@@ -236,7 +236,7 @@ public class InitialHelper {
 		File f = new File("E:/initial/" + version + ".txt");
 		if (f.exists())
 			f.delete();
-		return new OperationMessage();
+		return new OperationMessage(true,"删除成功");
 	}
 
 }
