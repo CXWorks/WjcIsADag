@@ -3,7 +3,6 @@ package ui.financeui;
 import bl.blService.initblService.InitializationBLService;
 import factory.InitBLFactory;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import org.openxmlformats.schemas.xpackage.x2006.digitalSignature.STValue;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
@@ -25,7 +23,6 @@ import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.StaffVO;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -79,7 +76,7 @@ public class CheckInitInfoController {
                         case STAFF_INIT:
                             showStaffs();break;
                         case STORE_INIT:
-                            showStroes();break;
+                            showStores();break;
                         case CAR_INIT:
                             showCars();break;
                     }
@@ -109,14 +106,10 @@ public class CheckInitInfoController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getBalance())
         );
 
-
         reconstructColumns(name_TableColumn, balance_TableColumn);
-        //TODO test
-        //info_TableView.getItems().addAll(initBLService.getAllAccounts());
-        info_TableView.getItems().addAll(
-                new BankAccountVO("123", "soft", "450"),
-                new BankAccountVO("233", "hard", "99999")
-        );
+        info_TableView.getItems().addAll(initBLService.getAllAccounts());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showCars(){
@@ -136,6 +129,8 @@ public class CheckInitInfoController {
 
         reconstructColumns(id_TableColumn, licence_TableColumn, time_TableColumn);
         info_TableView.getItems().addAll(initBLService.getAllCars());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showInstitutions(){
@@ -168,6 +163,8 @@ public class CheckInitInfoController {
         reconstructColumns(id_TableColumn, type_TableColumn, city_TableColumn, staff_TableColumn);
         info_TableView.getItems().addAll(initBLService.getAllCenters());
         info_TableView.getItems().addAll(initBLService.getAllHalls());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
     private void showStaffs(){
@@ -191,9 +188,11 @@ public class CheckInitInfoController {
 
         reconstructColumns(id_TableColumn, name_TableColumn, type_TableColumn, institution_TableColumn);
         info_TableView.getItems().addAll(initBLService.getAllStaffs());
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(info_TableView);
     }
 
-    private void showStroes(){
+    private void showStores(){
 
     }
 
