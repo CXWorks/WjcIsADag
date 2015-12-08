@@ -72,7 +72,6 @@ public class personAccountViewEditDialogController {
         
         stage.close();}else{
         	System.out.println("modify password failed!");
-        	//TODO  
         }
     }
 
