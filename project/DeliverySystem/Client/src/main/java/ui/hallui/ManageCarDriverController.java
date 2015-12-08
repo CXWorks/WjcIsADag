@@ -1,7 +1,11 @@
 package ui.hallui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+
+
 
 
 
@@ -9,7 +13,9 @@ import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblDriverService;
 import factory.CarFactory;
 import factory.StaffFactory;
+import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
+import vo.managevo.institution.HallVO;
 import vo.managevo.staff.DriverVO;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -38,17 +44,24 @@ public class ManageCarDriverController {
 	public TableColumn<DriverVOCheckItem,String> driverID_TableColumn;
 	public TableColumn<DriverVOCheckItem,String> driverName_TableColumn;
 
-	private List<CarVOCheckItem> cars;
-	private List<DriverVOCheckItem> drivers;
 	public CheckBox all_Car_CheckBox;
 	public CheckBox all_Driver_CheckBox;
 	public TextField search_Car_Field;
 	public TextField search_Driver_Field;
-	private CarVOCheckItem carVO = new CarVOCheckItem(null);
-	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
 
 	private ManageblCarService manageblCarService = CarFactory.getCarService();
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
+
+	private ArrayList<CarVO> carvo_list = manageblCarService.getCar(new HallVO(UserInfo.getInstitutionID()));
+	private ArrayList<DriverVO> drivervo_list = manageblDriverService.getStaffByInstitution();
+
+	private List<CarVOCheckItem> cars = new ArrayList<CarVOCheckItem>();
+	private List<DriverVOCheckItem> drivers = new ArrayList<DriverVOCheckItem>();
+
+	private CarVOCheckItem carVO = new CarVOCheckItem(null);
+	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
+
+
 
 	public static Parent launch() throws IOException {
 		return FXMLLoader.load(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
@@ -56,8 +69,14 @@ public class ManageCarDriverController {
 
 	@FXML
 	public void initialize(){
+		for(int i=0;i<carvo_list.size();i++){
+			cars.add(new CarVOCheckItem(carvo_list.get(i)));
+		}
+		for(int j=0;j<drivervo_list.size();j++){
+			drivers.add(new DriverVOCheckItem(drivervo_list.get(j)));
+		}
 
-		//car_TableView.setItems(FXCollections.observableArrayList(cars));
+		car_TableView.setItems(FXCollections.observableArrayList(cars));
 
 		carID_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getCarID())
@@ -81,7 +100,7 @@ public class ManageCarDriverController {
 				}
 				);
 
-		//driver_TableView.setItems(FXCollections.observableArrayList(drivers));
+		driver_TableView.setItems(FXCollections.observableArrayList(drivers));
 
 		driverID_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getID())
@@ -265,7 +284,7 @@ public class ManageCarDriverController {
 		String filter = search_Driver_Field.getText();
 		DriverVO driver =manageblDriverService.searchDriver(filter);
 		DriverVOCheckItem selected= new DriverVOCheckItem(driver);
-		
+
 		driver_TableView.setItems(FXCollections.observableArrayList(selected));
 		driverID_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(driver.getID())
@@ -311,7 +330,6 @@ public class ManageCarDriverController {
 
 		//以下好像不是这么干的
 		driver_TableView.getItems().add(driver);
-
 		manageblDriverService.modifyStaff(selected);
 	}
 

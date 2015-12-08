@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import message.ChatMessage;
+import tool.time.TimeConvert;
 import ui.financeui.ManageBankAccountController;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
@@ -23,13 +24,13 @@ import javafx.scene.control.TableView;
  */
 public class CheckMessageController {
 	public TableView<ChatMessage> message_View;
-    public TableColumn<ChatMessage,String> check_TableColumn;
+//    public TableColumn<ChatMessage,String> check_TableColumn;
     public TableColumn<ChatMessage,String> time_TableColumn;
     public TableColumn<ChatMessage,String> message_TableColumn;
 
     
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
-    ArrayList<ChatMessage> chatMessage = new  ArrayList<ChatMessage>();
+    ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
     
  
     public static Parent launch() throws IOException {
@@ -38,8 +39,16 @@ public class CheckMessageController {
 
     @FXML
     public void initialize(){
-    	chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
     	
+    	message_View.setItems(
+                FXCollections.observableArrayList(chatMessage)
+                		);
+    	time_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(TimeConvert.getDisplayDate(cellData.getValue().getTime()))
+                );
+    	message_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getMessage())
+                );
     }
     
     
@@ -48,9 +57,10 @@ public class CheckMessageController {
     }
 
     public void markChecked(ActionEvent actionEvent) {
+    	
     }
 
     public void delete(ActionEvent actionEvent) {
-
+    	
     }
 }

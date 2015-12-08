@@ -13,6 +13,8 @@ import factory.FormFactory;
 import message.OperationMessage;
 import tool.ui.OrderVO2ColumnHelper;
 import ui.financeui.CheckRevenueFormController;
+import userinfo.UserInfo;
+import vo.delivervo.DeliverVO;
 import vo.managevo.car.CarVO;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
@@ -30,8 +32,6 @@ import javafx.scene.layout.Pane;
 
 public class PoepleReceiveFormController {
 
-
-
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
 	public TableView<OrderVOCheckItem> order_TableView;
@@ -41,16 +41,16 @@ public class PoepleReceiveFormController {
 
 	public TextField id_Field;
 
+	ReceiveBLService receivebl=FormFactory.getReceiveBLService();
+	CheckDeliverForm checkDeliver=DeliverFactory.getCheckDeliverForm();
 	private OrderVO selected = null;
 //			new OrderVO(null, null, null, 
 //			null, null, null, null, null, null, null, 
 //			null, null, null, null, null, null, null, null, null);
 	private OrderVOCheckItem orderVoCheckItem = new OrderVOCheckItem(selected);
-	private List<OrderVOCheckItem> orders;
+	private List<OrderVO> orders=checkDeliver.getDeliverOrder(UserInfo.getUserID());
 
-	ReceiveBLService receivebl=FormFactory.getReceiveBLService();
-	CheckDeliverForm checkDeliver=DeliverFactory.getCheckDeliverForm();
-	//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+
 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -73,10 +73,16 @@ public class PoepleReceiveFormController {
 		order_TableView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					// TODO test
-					System.out.println("selected " + newValue.getVo());}
+					System.out.println("selected " + newValue.getVo());
+					selected=newValue.getVo();
+					orderVoCheckItem=newValue;
+					name_Field.setText(selected.getReceivePeople());
+					receive_DatePicker.setValue(LocalDate.parse(selected.getReceiveDate().toString()));
+
+					}
+	
 				);
-//		selected=newValue.getVo();
-//		orderVoCheckItem=newValue;
+
 
 
 		receive_DatePicker.setValue(LocalDate.now());
@@ -93,7 +99,8 @@ public class PoepleReceiveFormController {
 	public void commit(ActionEvent actionEvent) {
 
 		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
+		DeliverVO dvo = null;
+		OperationMessage msg = checkDeliver.finishDelivery(generateDeliverVO(dvo));
 		if(msg.operationResult){
 			System.out.println("commit successfully");
 			clear(null);
@@ -103,10 +110,9 @@ public class PoepleReceiveFormController {
 
 	}
 
-	public OrderVO generateOrderVO(OrderVO ovo) {
-		//TODO
+	public DeliverVO generateDeliverVO(DeliverVO ovo) {
 
-		return null;
+		return new DeliverVO(name_Field.getText(),receive_DatePicker.getValue(),true);
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -114,11 +120,7 @@ public class PoepleReceiveFormController {
 		name_Field.clear();
 	}
 
-	public void saveDraft(ActionEvent actionEvent) {
-		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OrderVO ovo= generateOrderVO(selected);
-		obl.saveDraft(ovo);
-	}
+
 
 
 

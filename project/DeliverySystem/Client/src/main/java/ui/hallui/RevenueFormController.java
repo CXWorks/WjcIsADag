@@ -68,6 +68,8 @@ public class RevenueFormController {
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");
     	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
+    	order_Field.clear();
+    	money_Field.clear();
     	}                
  
     public void saveDraft(ActionEvent actionEvent) {
@@ -76,7 +78,7 @@ public class RevenueFormController {
 
     public void commit(ActionEvent actionEvent) {
     	OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.newID()));
-
+    	clear(null);
         if(msg.operationResult){
             System.out.println("commit successfully");
             clear(null);
@@ -91,6 +93,7 @@ public class RevenueFormController {
                 formID,calendar,total_Label.getText(),
                 deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs
         );
+        
     }
     
     

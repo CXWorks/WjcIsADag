@@ -4,12 +4,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.messageui.CheckMessageController">
    <children>
       <TableView fx:id="message_View" layoutX="40.0" layoutY="47.0" prefHeight="349.0" prefWidth="722.0">
         <columns>
-          <TableColumn fx:id="check_TableColumn" prefWidth="53.0" text="勾选" />
           <TableColumn fx:id="time_TableColumn" prefWidth="141.0" text="时间" />
             <TableColumn fx:id="message_TableColumn" prefWidth="526.0" text="消息" />
         </columns>
