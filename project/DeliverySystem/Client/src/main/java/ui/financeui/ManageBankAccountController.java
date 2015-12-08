@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
 import vo.financevo.BankAccountVO;
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by Sissel on 2015/11/24.
  */
 public class ManageBankAccountController {
-    private BankAccountBLService bankAccountBLService = FinanceBLFactory.getBankAccountBLService();
+    private BankAccountBLService bankAccountBLService;
     private BankAccountVO bankAccountVO = null;
     private List<BankAccountVO> bankAccountVOList = new ArrayList<>();
 
@@ -38,8 +39,14 @@ public class ManageBankAccountController {
     public TableColumn<PaymentVO, String> date_TableColumn;
     public TableColumn<PaymentVO, String> amount_TableColumn;
 
-    public static Parent launch() throws IOException {
-        return FXMLLoader.load(ManageBankAccountController.class.getResource("manageBankAccount.fxml"));
+    public static Parent launch(BankAccountBLService service) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ManageBankAccountController.class.getResource("manageBankAccount.fxml"));
+        Pane pane = loader.load();
+        ManageBankAccountController controller = loader.getController();
+        controller.bankAccountBLService = service;
+
+        return pane;
     }
 
     @FXML

@@ -13,6 +13,7 @@ import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblDriverService;
 import factory.CarFactory;
 import factory.StaffFactory;
+import javafx.scene.layout.Pane;
 import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.HallVO;
@@ -49,7 +50,7 @@ public class ManageCarDriverController {
 	public TextField search_Car_Field;
 	public TextField search_Driver_Field;
 
-	private ManageblCarService manageblCarService = CarFactory.getCarService();
+	private ManageblCarService manageblCarService;
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
 
 	private ArrayList<CarVO> carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
@@ -61,10 +62,14 @@ public class ManageCarDriverController {
 	private CarVOCheckItem carVO = new CarVOCheckItem(null);
 	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
 
+	public static Parent launch(ManageblCarService service) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
+		Pane pane = loader.load();
+		ManageCarDriverController controller = loader.getController();
+		controller.manageblCarService = service;
 
-
-	public static Parent launch() throws IOException {
-		return FXMLLoader.load(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
+		return pane;
 	}
 
 	@FXML

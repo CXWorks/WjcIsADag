@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javafx.scene.layout.Pane;
 import po.InfoEnum;
 import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
@@ -54,14 +55,18 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     public TableColumn<StaffVO, String> ageColumn;
     public TableColumn<StaffVO, String> institutionColumn;
     //
-    private ManageblStaffService manageblStaffService=StaffFactory.getManageService();
+    private ManageblStaffService manageblStaffService;
     private ArrayList<StaffVO> staffVOs;
     private boolean isNew=false;
     @FXML
-    public static Parent launch() throws IOException{
+    public static Parent launch(ManageblStaffService service) throws IOException{
     	FXMLLoader fxmlLoader=new FXMLLoader();
     	fxmlLoader.setLocation(ManageStaffController.class.getResource("manageStaff.fxml"));
-    	return fxmlLoader.load();
+    	Pane pane = fxmlLoader.load();
+		ManageStaffController controller = fxmlLoader.getController();
+		controller.manageblStaffService = service;
+
+		return pane;
     }
 	@FXML
 	public void initialize(){

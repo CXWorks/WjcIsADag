@@ -1,5 +1,6 @@
 package ui.navigationui;
 
+import factory.CarFactory;
 import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.common.TabMaker;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 public class HallNavigation {
     public static Parent launch() throws IOException {
         Parent node = TabMaker.makeTabs(Arrays.asList(
-                new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch()),
+                new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch(CarFactory.getCarService())),
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
                 new Pair<String, Parent>("填写装车单", LoadCarController.launch())
