@@ -8,6 +8,7 @@ import bl.blService.deliverblService.CheckDeliverForm;
 import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -24,22 +25,17 @@ public class PeopleReceiveFormController {
 
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
-	public TableView<OrderVOCheckItem> order_TableView;
-	public TableColumn<OrderVOCheckItem,String> id_Column;
-	public TableColumn<OrderVOCheckItem,String> address_Column;
-	public TableColumn<OrderVOCheckItem,String> name_Column;
+	public TableView<OrderVO> order_TableView;
+	public TableColumn<OrderVO,String> id_Column;
+	public TableColumn<OrderVO,String> address_Column;
+	public TableColumn<OrderVO,String> name_Column;
 
 	public TextField id_Field;
 
 	private OrderVO selected = null;
-//			new OrderVO(null, null, null,
-//			null, null, null, null, null, null, null,
-//			null, null, null, null, null, null, null, null, null);
-	private OrderVOCheckItem orderVoCheckItem = new OrderVOCheckItem(selected);
-	private List<OrderVOCheckItem> orders;
+	private List<OrderVO> orderVOs;
 
-	ReceiveBLService receivebl=FormFactory.getReceiveBLService();
-	CheckDeliverForm checkDeliver=DeliverFactory.getCheckDeliverForm();
+	CheckDeliverForm checkDeliver = DeliverFactory.getCheckDeliverForm();
 	//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
 	public static Parent launch() throws IOException {
@@ -52,63 +48,40 @@ public class PeopleReceiveFormController {
 	@FXML
 	public void initialize(){
 		id_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getFormID())
-				);
+				cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
+		);
 		address_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getAddressTo())
-				);
+				cellData -> new SimpleStringProperty(cellData.getValue().getAddressTo())
+        );
 		name_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getNameTo())
-				);
+				cellData -> new SimpleStringProperty(cellData.getValue().getNameTo())
+        );
 		order_TableView.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					// TODO test
-					System.out.println("selected " + newValue.getVo());}
-				);
-//		selected=newValue.getVo();
-//		orderVoCheckItem=newValue;
-
-
-		receive_DatePicker.setValue(LocalDate.now());
+                (observable, oldValue, newValue) -> {
+                    name_Field.clear();
+                    receive_DatePicker.setValue(LocalDate.now());
+                    selected = newValue;
+                }
+        );
 	}
 
 	public void search(ActionEvent actionEvent){
-		//TODO
 		String id = id_Field.getText();
-		OrderVO result=receivebl.getOrderVO(id);
-	//	order_TableView.setFocusModel();
+        if(id.isEmpty()){
+            orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());
+            order_TableView.getItems().clear();
+            order_TableView.getItems().addAll(orderVOs);
+        }
 	}
 
 
 	public void commit(ActionEvent actionEvent) {
 
-//
-//		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-//		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
-//		if(msg.operationResult){
-//			System.out.println("commit successfully");
-//			clear(null);
-//		}else{
-//			System.out.println("commit fail: " + msg.getReason());
-//		}
-
-	}
-
-	public OrderVO generateOrderVO(OrderVO ovo) {
-		//TODO
-
-		return null;
 	}
 
 	public void clear(ActionEvent actionEvent) {
 		receive_DatePicker.setValue(LocalDate.now());
 		name_Field.clear();
-	}
-
-	public void saveDraft(ActionEvent actionEvent) {
-		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		OrderVO ovo= generateOrderVO(selected);
-		//obl.saveDraft(ovo);
 	}
 
 }
