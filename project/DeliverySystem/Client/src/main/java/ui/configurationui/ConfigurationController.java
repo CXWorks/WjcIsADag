@@ -190,6 +190,7 @@ public class ConfigurationController {
 		}
 		City2DVO city1=vo.get(0);
 		City2DVO city2=vo.get(1);
+		System.out.println(city1.getXY());
 		//
 		two_One_Label.setText(Double.toString(city1.distance(city2)));
 		city2=vo.get(2);

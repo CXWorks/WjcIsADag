@@ -31,11 +31,13 @@ public class Distance {
 	public ArrayList<ConfigurationVO> getCityDistance(){
 		try {
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
+			System.out.println(city2dpos.get(0).getX());
 			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(city2dpos.size());
 			for (int i = 0; i < city2dpos.size(); i++) {
 				City2DVO city2dvo=(City2DVO)vopoFactory.transPOtoVO(city2dpos.get(i));
 				ans.add(city2dvo);
 			}
+			
 			return ans;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

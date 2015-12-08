@@ -6,6 +6,7 @@ import vo.CommonVO;
 import vo.FormVO;
 import vo.InfoVO;
 import vo.accountvo.AccountVO;
+import vo.configurationvo.City2DVO;
 import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
@@ -33,6 +34,7 @@ import po.accountdata.AccountPO;
 import po.companydata.CarPO;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
+import po.configurationdata.City2DPO;
 import po.configurationdata.CityDistancePO;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
@@ -77,8 +79,8 @@ public class VOPOFactory {
 				return new CenterVO((CenterPO)info);
 			case HALL:
 				return new HallVO((HallPO)info);
-			case CITY_DISTANCE:
-				return new CityDistanceVO((CityDistancePO)info);
+			case CITY_2D:
+				return new City2DVO((City2DPO)info);
 			case PACK:
 				return new PackVO((PackPO)info);
 			case PRICE:
@@ -140,8 +142,8 @@ public class VOPOFactory {
 				return ((CenterVO)vo).toPO();
 			case HALL:
 				return ((HallVO)vo).toPO();
-			case CITY_DISTANCE:
-				return ((CityDistanceVO)vo).toPO();
+			case CITY_2D:
+				return((City2DVO)vo).toPO();
 			case PACK:
 				return ((PackVO)vo).toPO();
 			case PRICE:

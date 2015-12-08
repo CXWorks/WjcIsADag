@@ -1,5 +1,7 @@
 package vo.configurationvo;
 
+import java.math.BigDecimal;
+
 import po.InfoEnum;
 import po.configurationdata.City2DPO;
 
@@ -42,7 +44,9 @@ public class City2DVO extends ConfigurationVO {
 	}
 	//
 	public double distance(City2DVO target){
-		return Math.sqrt(Math.pow((this.x-target.x), 2)+Math.pow((this.y-target.y), 2))*SCALE;
+		double dis=Math.sqrt(Math.pow((this.x-target.x), 2)+Math.pow((this.y-target.y), 2))*SCALE;
+		BigDecimal ans=new BigDecimal(dis);
+		return ans.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		
 	}
 	public String getXY(){
