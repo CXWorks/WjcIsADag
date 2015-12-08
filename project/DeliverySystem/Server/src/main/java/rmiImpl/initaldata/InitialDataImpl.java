@@ -27,18 +27,22 @@ public class InitialDataImpl extends UnicastRemoteObject implements InitialDataS
 		return helper.loadFile(version);
 	}
 
-	public OperationMessage requestInitData(String staffID) throws RemoteException {
+	public OperationMessage requestInitData(String staffID) throws RemoteException, ClassNotFoundException {
 		// TODO Auto-generated method stub
+		latest_version = helper.saveFile(helper.saveMysql(staffID)).getReason();
+		helper.clearMysql();
 		return new OperationMessage();
 	}
 
 	public OperationMessage uploadInitialData(String staffID, InitialDataPO newData) throws RemoteException {
 		// TODO Auto-generated method stub
+		helper.loadMysql(newData);
 		return new OperationMessage();
 	}
 
 	public OperationMessage abortInitData(String staffID) throws RemoteException {
 		// TODO Auto-generated method stub
+		helper.loadMysql(helper.loadFile(latest_version));
 		return new OperationMessage();
 	}
 

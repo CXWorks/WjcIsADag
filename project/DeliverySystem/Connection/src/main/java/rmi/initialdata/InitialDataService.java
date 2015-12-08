@@ -15,15 +15,16 @@ public interface InitialDataService extends DataService<InitialDataPO> {
 
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "InitialData";
-	
+
     public InitialDataPO getInitialDataPO(String version) throws RemoteException;
 
     /**
      * 期初建账时先调用这个方法，系统进入建账中状态，不回应期初建账外其他的操作
      * @param staffID 进行建账的人员，只有他能继续操作
      * @return
+     * @throws ClassNotFoundException
      */
-    public OperationMessage requestInitData(String staffID) throws RemoteException;
+    public OperationMessage requestInitData(String staffID) throws RemoteException, ClassNotFoundException;
 
     /**
      * 调用过前面方法后，将新的期初修改过的期初建账上传

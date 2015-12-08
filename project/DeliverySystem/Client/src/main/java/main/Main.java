@@ -3,7 +3,6 @@
  */
 package main;
 
-import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -13,25 +12,15 @@ import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
+import ui.deliverui.deliverController;
 import ui.examineui.CheckFormController;
 import ui.financeui.CheckFinanceChartController;
 import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
-import ui.manangeui.organization.ManageOrganizationController;
-import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
-import ui.orderui.NewOrderController;
-import ui.orderui.PoepleReceiveFormController;
-import ui.receiveui.ReceiveFormController;
-import ui.storeui.StoreInFormController;
-import ui.storeui.StoreOutFormController;
-import ui.storeui.StorePartitionController;
-import ui.storeui.StoreSummaryController;
-import ui.accountui.PersonalAccountViewController;
-import ui.accountui.personAccountViewEditDialogController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -54,7 +43,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+        //CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -119,8 +108,11 @@ public class Main extends Application {
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
-        		//ManageOrganizationController.launch()
-                CheckLogController.launch()
+//        		ManageOrganizationController.launch()
+//                CheckLogController.launch()
+//                deliverController.launch()
+        		ManageStaffController.launch()
+        		
         ));
         primaryStage.show();
     }

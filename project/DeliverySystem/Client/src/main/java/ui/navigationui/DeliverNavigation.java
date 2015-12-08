@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import ui.common.TabMaker;
 import ui.deliverui.deliverController;
 import ui.orderui.NewOrderController;
-import ui.orderui.PoepleReceiveFormController;
+import ui.orderui.PeopleReceiveFormController;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class DeliverNavigation {
     public static Parent launch() throws IOException {
         Parent node = TabMaker.makeTabs(Arrays.asList(
-                new Pair<String, Parent>("填写收件单", PoepleReceiveFormController.launch()),
+                new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
                 new Pair<String, Parent>("查看派送单", deliverController.launch()),
                 new Pair<String, Parent>("新建订单", NewOrderController.launch())
         ));

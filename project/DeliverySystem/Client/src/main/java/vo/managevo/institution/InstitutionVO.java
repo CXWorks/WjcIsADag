@@ -17,8 +17,9 @@ public abstract class InstitutionVO extends InfoVO {
 	/**
 	 * 
 	 */ 
+	protected String institutionID;
+	protected String city;
 	protected InstitutionVO(InfoEnum infoEnum) {
-		// TODO Auto-generated constructor stub
 		super(infoEnum);
 	}
 	protected ArrayList<StaffVO> selfDeepClonePOtoVO(ArrayList<StaffPO> po){
@@ -28,4 +29,17 @@ public abstract class InstitutionVO extends InfoVO {
 		}
 		return ans;
 	}
+	public String getInstitutionID() {
+		return institutionID;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setInstitutionID(String institutionID) {
+		this.institutionID = institutionID;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
 }

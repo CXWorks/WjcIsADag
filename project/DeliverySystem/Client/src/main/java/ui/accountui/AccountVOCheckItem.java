@@ -15,6 +15,7 @@ public class AccountVOCheckItem extends VOCheckItem<AccountVO> {
         this.selected = new SimpleBooleanProperty(false);
         selected.addListener(
                 (observable, oldValue, newValue) -> {
+                    // TODO debug
                     System.out.println(vo.getID() + " change to " + newValue.booleanValue());
                 }
         );

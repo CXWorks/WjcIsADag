@@ -42,7 +42,7 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 	}
 
 	@Override
-	public OperationMessage requestInitData(String staffID) throws RemoteException {
+	public OperationMessage requestInitData(String staffID) throws RemoteException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		ID = staffID;
 		this.setState(SystemState.INITIALIZING);
@@ -60,6 +60,7 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 	@Override
 	public OperationMessage abortInitData(String staffID) throws RemoteException {
 		// TODO Auto-generated method stub
+		this.setState(SystemState.NORMAL);
 		if(ID.equalsIgnoreCase(staffID))
 			return InitialDataService.abortInitData(staffID);
 		return new OperationMessage(false,"ID不正确");

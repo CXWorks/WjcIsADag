@@ -2,6 +2,8 @@ package bl.blImpl.storebl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import po.orderdata.OrderPO;
 import po.storedata.StoreInPO;
@@ -15,6 +17,7 @@ import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
+import model.store.StoreModel;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
 import vo.storevo.StoreInVO;
@@ -25,13 +28,24 @@ import vo.storevo.StoreInVO;
 public class StockTackBLImpl implements StockTackBLService {
 	private StoreModelDataService storeModelDataService;
 	private StoreFormDataService storeFormDataService;
+	private int i;
 	//
 	public StockTackBLImpl(){
 		this.storeFormDataService=CacheHelper.getStoreFormDataService();
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
+		i=1;
 	}
     public StockTackVO getStockTack() {
-        return new StockTackVO();
+       try {
+		StoreModel storeModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
+		Calendar temp=Calendar.getInstance();
+		Date today=temp.getTime();
+		return new StockTackVO(today.toString(), Integer.toString(i++), storeModel);
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
     }
 
 

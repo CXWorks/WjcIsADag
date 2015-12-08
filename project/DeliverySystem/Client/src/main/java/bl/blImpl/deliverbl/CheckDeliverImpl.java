@@ -45,10 +45,6 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			return null;
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(vo.DeliverVO)
-	 */
 	public OperationMessage finishDelivery(DeliverVO each) {
 		DeliverPO po;
 		
@@ -85,6 +81,21 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 				orderVOs.add(orderVO);
 			}
 			return orderVOs;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(vo.ordervo.OrderVO)
+	 */
+	
+	public OperationMessage finishDelivery(OrderVO orderVO) {
+		OrderDataService orderDataService=CacheHelper.getOrderDataService();
+		OrderPO orderPO=(OrderPO)vopoFactory.transVOtoPO(orderVO);
+		try {
+			return orderDataService.update(orderPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -26,16 +26,37 @@ public class StoreModel implements Serializable {
 	}
 
 	public StoreArea getArea(StoreAreaCode code){
-		switch (code){
-			case AIR:
-				return air;
-			case RAIL:
-				return rail;
-			case ROAD:
-				return road;
-			case FLEX:
-				return flex;
-		}
-		return null;
+        switch (code){
+            case AIR:
+                return air;
+            case RAIL:
+                return rail;
+            case ROAD:
+                return road;
+            case FLEX:
+                return flex;
+        }
+        return null;
+    }
+
+	public String getCenterID() {
+		return centerID;
 	}
+
+	public StoreArea getAir() {
+		return air;
+	}
+
+	public StoreArea getRail() {
+		return rail;
+	}
+
+	public StoreArea getRoad() {
+		return road;
+	}
+
+	public StoreArea getFlex() {
+		return flex;
+	}
+
 }

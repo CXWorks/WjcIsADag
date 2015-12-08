@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import main.Main;
 
 import java.io.IOException;
 
@@ -34,6 +35,7 @@ public class EditShelfDialogController {
 
         EditShelfDialogController controller = loader.getController();
         controller.stage = stage;
+        stage.initOwner(Main.primaryStage);
         stage.setScene(new Scene(pane));
 
         return controller;
