@@ -11,6 +11,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
+import ui.configurationui.ConfigurationController;
+import ui.deliverui.deliverController;
+import ui.examineui.CheckFormController;
+import ui.financeui.CheckFinanceChartController;
+import ui.financeui.CheckLogController;
+import ui.financeui.ManageBankAccountController;
+import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
@@ -101,8 +108,8 @@ public class Main extends Application {
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
         		//ManageOrganizationController.launch()
-                //CheckLogController.launch()
-                ManageAccountController.launch()
+//                CheckLogController.launch()
+                deliverController.launch()
         ));
         primaryStage.show();
     }

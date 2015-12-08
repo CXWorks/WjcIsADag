@@ -39,7 +39,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<City2DPO> city2dpos;
     PricePO pricePO;
     ProportionPO proportionPO;
-    SalaryStrategyPO salaryStrategyPO;
+    List< SalaryStrategyPO> salaryStrategyPO;
     PackPO packPO;
     List<AccountPO> accountPOs;
 
@@ -100,7 +100,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
 		return proportionPO;
 	}
 
-	public SalaryStrategyPO getSalaryStrategyPO() {
+	public List<SalaryStrategyPO> getSalaryStrategyPO() {
 		return salaryStrategyPO;
 	}
 
@@ -133,7 +133,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
 			List<StoreModel> storeModels, List<BankAccountPO> bankAccounts,
 			List<CarPO> cars, List<StaffPO> staffs, List<HallPO> halls,
 			List<CenterPO> centers, List<City2DPO> city2dpos, PricePO pricePO,
-			ProportionPO proportionPO, SalaryStrategyPO salaryStrategyPO,
+			ProportionPO proportionPO, List<SalaryStrategyPO> salaryStrategyPO,
 			PackPO packPO, List<AccountPO> accountPOs) {
 		this();
 		this.version = version;
@@ -151,5 +151,5 @@ public class InitialDataPO extends InfoPO implements Serializable{
 		this.packPO = packPO;
 		this.accountPOs = accountPOs;
 	}
-    
+
 }

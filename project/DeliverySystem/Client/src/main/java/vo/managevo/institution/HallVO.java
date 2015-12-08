@@ -15,7 +15,7 @@ public class HallVO extends InstitutionVO{
 			ArrayList<DriverVO> driver, ArrayList<StaffVO> deliver,
 			ArrayList<StaffVO> counterman, String nearCenterID) {
 		this();
-		this.hallID = hallID;
+		this.institutionID = hallID;
 		this.city = city;
 		this.area = area;
 		this.driver = driver;
@@ -23,9 +23,17 @@ public class HallVO extends InstitutionVO{
 		this.counterman = counterman;
 		this.nearCenterID = nearCenterID;
 	}
+	public HallVO(String hallID,String city,String area,String nearCenterID){
+		this();
+		this.institutionID=hallID;
+		this.city=city;
+		this.area=area;
+		this.nearCenterID=nearCenterID;
+		this.deliver=new ArrayList<StaffVO>();
+		this.driver=new ArrayList<DriverVO>();
+		this.counterman=new ArrayList<StaffVO>();
+	}
 	
-	private String hallID;
-	private String city;
 	private String area;
 	private ArrayList<DriverVO> driver;
 	private ArrayList<StaffVO> deliver;
@@ -37,7 +45,7 @@ public class HallVO extends InstitutionVO{
 	//
 	public HallVO(String hallID){
 		this();
-		this.hallID=hallID;
+		this.institutionID=hallID;
 	}
 	//
 	public HallVO(HallPO po){
@@ -83,17 +91,20 @@ public class HallVO extends InstitutionVO{
 			countermanPO.add(temp);
 		}
 		//
-		return new HallPO(hallID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
+		return new HallPO(institutionID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
 	}
 	//
 	public String getHallID() {
-		return hallID;
+		return institutionID;
 	}
 	public String getCity() {
 		return city;
 	}
 	public String getArea() {
 		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
 	}
 	
 }

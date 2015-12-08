@@ -3,21 +3,13 @@ package ui.orderui;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import bl.blService.deliverblService.CheckDeliverForm;
-import bl.blService.orderblService.OrderBLService;
 import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
-import message.OperationMessage;
-import tool.ui.OrderVO2ColumnHelper;
-import ui.financeui.CheckRevenueFormController;
-import vo.managevo.car.CarVO;
 import vo.ordervo.OrderVO;
-import vo.receivevo.ReceiveVO;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,9 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class PoepleReceiveFormController {
-
-
+public class PeopleReceiveFormController {
 
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
@@ -42,8 +32,8 @@ public class PoepleReceiveFormController {
 	public TextField id_Field;
 
 	private OrderVO selected = null;
-//			new OrderVO(null, null, null, 
-//			null, null, null, null, null, null, null, 
+//			new OrderVO(null, null, null,
+//			null, null, null, null, null, null, null,
 //			null, null, null, null, null, null, null, null, null);
 	private OrderVOCheckItem orderVoCheckItem = new OrderVOCheckItem(selected);
 	private List<OrderVOCheckItem> orders;
@@ -54,7 +44,7 @@ public class PoepleReceiveFormController {
 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(PoepleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
+		loader.setLocation(PeopleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
 		Pane pane=loader.load();
 		return pane;
 	}
@@ -92,8 +82,9 @@ public class PoepleReceiveFormController {
 
 	public void commit(ActionEvent actionEvent) {
 
-		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
-		//OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected));
+//
+//		OrderVO selected =  order_TableView.getSelectionModel().getSelectedItem().getVo();
+//		OperationMessage msg = checkDeliver.finishDelivery(generateOrderVO(selected))();
 //		if(msg.operationResult){
 //			System.out.println("commit successfully");
 //			clear(null);
@@ -119,8 +110,5 @@ public class PoepleReceiveFormController {
 		OrderVO ovo= generateOrderVO(selected);
 		//obl.saveDraft(ovo);
 	}
-
-
-
 
 }
