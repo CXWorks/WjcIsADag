@@ -17,7 +17,12 @@ public class StockTackVO extends InfoVO{
 	public StockTackVO(){
 		super(InfoEnum.STOCK_TACK);
 	}
-	
+	public StockTackVO(String date,String id,StoreModel storeModel){
+		this();
+		this.date=date;
+		this.id=id;
+		this.storeModel=storeModel;
+	}
     public StockTackVO(String date, ArrayList<StoreLocation> locations,
 			ArrayList<String> filters) {
 		this();
@@ -40,5 +45,7 @@ public class StockTackVO extends InfoVO{
 
 	// 直接给我storeModel好了
 	public StoreModel storeModel;
+	
+	
 
 }

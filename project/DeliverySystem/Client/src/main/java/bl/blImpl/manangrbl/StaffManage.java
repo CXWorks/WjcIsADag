@@ -118,7 +118,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			if (memberDataService==null) {
 			}
-			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(UserInfo.getInstitutionID());
+			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution("0040001");
 			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
 			for(int i=0;i<po.size();i++){
 				StaffPO each=po.get(i);

@@ -137,7 +137,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 			ans.add((InstitutionVO)centerVOs.get(i));
 		}
 		for (int i = 0; i < hallVOs.size(); i++) {
-			ans.add((InstitutionVO)centerVOs.get(i));
+			ans.add((InstitutionVO)hallVOs.get(i));
 		}
 		return ans;
 	}
@@ -155,6 +155,9 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	private void setText(InstitutionVO src){
 		this.clear();
+		if (src==null) {
+			return;
+		}
 		ID.setText(src.getInstitutionID());
 		institutionType.setText(src.getInfoEnum().name());
 		city.setText(src.getCity());

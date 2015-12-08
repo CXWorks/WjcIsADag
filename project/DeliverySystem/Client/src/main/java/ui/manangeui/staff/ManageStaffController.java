@@ -33,7 +33,7 @@ import javafx.scene.control.TextField;
 
 public class ManageStaffController implements ChangeListener<StaffVO>{
 	public TextField staffType;
-	public TextField ID;
+	public Label ID;
 	public TextField name;
 	public TextField age;
 	public TextField sex;
@@ -93,7 +93,6 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	public void submit(){
 		StaffVO staffVO=this.makeStaff();
 		if (staffVO==null) {
-
 			return;
 		}
 		if (isNew) {
@@ -107,7 +106,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	
 	public void cancel(){
 		staffType.clear();
-		ID.clear();
+		ID.setText(null);
 		name.clear();
 		age.clear();
 		sex.clear();
@@ -141,13 +140,14 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		String nLove=love.getText();
 		String nInstitutionID=institutionID.getText();
 		//
-		if (nType.length()*nID.length()*nName.length()*nAge.length()*nSex.length()*nPersonID.length()*nLove.length()*nInstitutionID.length()==0) {
+		if (nType.length()*nName.length()*nAge.length()*nSex.length()*nPersonID.length()*nLove.length()*nInstitutionID.length()==0) {
 			return null;
 		}
 		//
-		StaffVO staffVO=new StaffVO(StaffTypeEnum.ADMINISTRATOR, nID, nName, Integer.parseInt(nAge), nPersonID, SexEnum.MAN, nLove, nInstitutionID);
+		StaffVO staffVO=new StaffVO(StaffTypeEnum.ADMINISTRATOR, null, nName, Integer.parseInt(nAge), nPersonID, SexEnum.MAN, nLove, nInstitutionID);
 		staffVO.setStaff(nType);
 		staffVO.setSex(nSex);
+		staffVO.setID(manageblStaffService.newStaffID(staffVO.getStaff(), staffVO.getInstitutionID()));
 		return staffVO;
 	}
 	/* (non-Javadoc)
@@ -165,6 +165,9 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	
 	private void setTextArea(StaffVO src){
 		this.cancel();
+		if (src==null) {
+			return;
+		}
 		this.staffType.setText(src.getStaff().getChinese());
 		this.age.setText(Integer.toString(src.getAge()));
 		this.ID.setText(src.getID());

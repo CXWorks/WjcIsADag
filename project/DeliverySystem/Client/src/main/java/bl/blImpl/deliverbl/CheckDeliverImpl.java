@@ -90,7 +90,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	/* (non-Javadoc)
 	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(vo.ordervo.OrderVO)
 	 */
-	@Override
+	
 	public OperationMessage finishDelivery(OrderVO orderVO) {
 		OrderDataService orderDataService=CacheHelper.getOrderDataService();
 		OrderPO orderPO=(OrderPO)vopoFactory.transVOtoPO(orderVO);
