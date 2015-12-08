@@ -77,7 +77,7 @@ public class StockTackController {
                 }
         );
 
-        stockTackPaneController.makeStockTack();
+        makeStockTack(null);
     }
 
     @FXML
@@ -87,7 +87,7 @@ public class StockTackController {
         time_Label.setText(TimeConvert.getDisplayDate(stockTackVO.date));
         orderNumber_Label.setText(stockTackVO.id);
 
-        stockTackPaneController.makeStockTack();
+        stockTackPaneController.setStoreModel(stockTackVO.storeModel);
     }
 
     @FXML

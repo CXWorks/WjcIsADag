@@ -116,9 +116,10 @@ public class Main extends Application {
 //                CheckLogController.launch()
 //                deliverController.launch()
         		//ManageStaffController.launch()
-               StockTackController.launch()
+               //StockTackController.launch()
         		//ConfigurationController.launch()
 //        		ManageSalaryController.launch()
+                ManageAccountController.launch()
         		
         ));
         primaryStage.show();
