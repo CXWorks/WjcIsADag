@@ -48,7 +48,7 @@ public class CacheHelper {
 	private static BankAccountDataService bankAccountDataService;
 	private static PaymentDataService paymentDataService;
 	private static RevenueDataService revenueDataService;
-//	private static InitialDataService initialDataService;
+	private static InitialDataService initialDataService;
 	private static MemberDataService<DriverPO> memberDataService_driver;
 	private static MemberDataService<StaffPO> memberDataService_staff;
 	private static ReceiveDataService receiveDataService;
@@ -98,13 +98,17 @@ public class CacheHelper {
 		logDataService=RMIHelper.getLogDataService();
 		transportDataService=RMIHelper.getTransportDataService();
 		loadDataService=RMIHelper.getLoadDataService();
-
+		initialDataService=RMIHelper.getInitialDataService();
 
 	}
 	//
 	//
+	
 	public static OrderDataService getOrderDataService() {
 		return orderDataService;
+	}
+	public static InitialDataService getInitialDataService() {
+		return initialDataService;
 	}
 	public static AccountDataService getAccountDataService() {
 		return accountDataService;

@@ -7,6 +7,7 @@ import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblHallService;
 import bl.blService.manageblService.ManageblStaffService;
 import bl.blService.storeblService.StoreModelBLService;
+import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
 import message.OperationMessage;
 import model.store.StoreArea;
@@ -51,7 +52,7 @@ public class InitializationBLController implements InitializationBLService {
     
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
-    	
+    	this.initialDataService=CacheHelper.getInitialDataService();
     	
     }
 
@@ -225,7 +226,16 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public InitialDataVO getInitialDataVO() {
-       return this.initialDataVO;
+       try {
+		String version=initialDataService.getLatest_version(UserInfo.getUserID());
+		InitialDataPO initialDataPO=initialDataService.getInitialDataPO(version);
+		this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
+		return this.initialDataVO;
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
     }
 
     public OperationMessage requestInitData() {
