@@ -8,6 +8,7 @@ import factory.BLFactory;
 import factory.LoginFactory;
 import factory.StaffFactory;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
@@ -30,8 +31,11 @@ public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
 
-    public Image Image_Back;
+    public Image Image_Back= new Image("http://docs.oracle.com/javafx/"
+            + "javafx/images/javafx-documentation.png");
+    
     public ImageView back_ImageView;
+    
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();
     ManageblStaffService manageblStaffService = StaffFactory.getManageService();
@@ -39,6 +43,13 @@ public class LoginController {
     public static Parent launch() throws IOException {
         return FXMLLoader.load(LoginController.class.getResource("logIn.fxml"));
     }
+    
+    
+    @FXML
+    public void initialize(){
+    	back_ImageView.setImage(Image_Back);
+    }
+    
 
     public void login(ActionEvent actionEvent) {
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
