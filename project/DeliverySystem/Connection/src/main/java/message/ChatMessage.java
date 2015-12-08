@@ -34,5 +34,25 @@ public class ChatMessage implements Serializable{
 		return message;
 	}
 
+	public Calendar getTime() {
+		return time;
+	}
+
+	public void setFromID(String fromID) {
+		this.fromID = fromID;
+	}
+
+	public void setToID(String toID) {
+		this.toID = toID;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setTime(Calendar time) {
+		this.time = time;
+	}
+
 
 }
