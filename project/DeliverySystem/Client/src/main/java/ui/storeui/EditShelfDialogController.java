@@ -30,7 +30,7 @@ public class EditShelfDialogController {
      */
     public static EditShelfDialogController newDialog(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(EditShelfDialogController.class.getResource("editShelfDialog"));
+        loader.setLocation(EditShelfDialogController.class.getResource("editShelfDialog.fxml"));
         Pane pane = loader.load();
 
         EditShelfDialogController controller = loader.getController();

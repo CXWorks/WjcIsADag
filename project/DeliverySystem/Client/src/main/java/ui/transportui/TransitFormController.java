@@ -35,19 +35,17 @@ public class TransitFormController {
     public ChoiceBox<SimpleEnumProperty<TransportationEnum>> transitType_ChoiceBox;
     public DatePicker transit_DatePicker;
     public TextField departure_Field;
-    public ChoiceBox<String> arrival_Box = new ChoiceBox<String>();
+    public ChoiceBox<String> arrival_Box;
     public TextField supervisor_Field;
     public TextField transNumber_Field;
     public TextField cargo_Field;
-    public ListView<String> orders;
     public TableView<String> orders_TableView;
-//    public TableColumn<String,String> order_TableColumn;
     public Label fee_Label;
     public TextField id_Field;
 
     ArrayList<String> ids= new ArrayList<String>();
 
-    TransportationEnum transitEnum =TransportationEnum.TRAIN;
+    TransportationEnum transitEnum = TransportationEnum.TRAIN;
     TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
 
     ArrayList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
@@ -72,21 +70,16 @@ public class TransitFormController {
                 }
         );
 
-         arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
-//    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
-
-//         clear(null);
+        arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
     }
 
 
     public void add(ActionEvent actionEvent){
-    	String a= id_Field.getText();
-    	System.out.println("aaaa"+a);
+    	String a = id_Field.getText();
+    	System.out.println("add" + a);
      	ids.add(a);
      	orders_TableView.getItems().add(a);
-    	//orders.getItems().add(a);
     	id_Field.clear();
-
     }
 
     public void saveDraft(ActionEvent actionEvent) {
@@ -95,7 +88,6 @@ public class TransitFormController {
     }
 
     public void clear(ActionEvent actionEvent) {
-
     	transit_DatePicker.setValue(LocalDate.now());
     	transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
     	departure_Field.clear();
@@ -104,14 +96,13 @@ public class TransitFormController {
     	transNumber_Field.clear();
     	cargo_Field.clear();
     	id_Field.clear();
-    	orders.setItems(null);
-
     }
 
     private CenterOutVO generateVO(String formID){
         Calendar calendar = TimeConvert.convertDate(transit_DatePicker.getValue());
-        return new CenterOutVO(formID,departure_Field.getText(),transNumber_Field.getText(),cargo_Field.getText(),
-        		calendar,fee_Label.getText(),arrival_Box.getValue(),supervisor_Field.getText(),ids,
+        return new CenterOutVO(
+                formID, departure_Field.getText(), transNumber_Field.getText(), cargo_Field.getText(),
+        		calendar, fee_Label.getText(), arrival_Box.getValue(), supervisor_Field.getText(), ids,
         		transitEnum);
     }
 

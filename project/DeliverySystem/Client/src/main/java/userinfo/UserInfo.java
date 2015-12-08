@@ -13,12 +13,12 @@ public class UserInfo {
 	private static String userID;
 	private static SystemState systemState;
 	private static StaffTypeEnum staffType;
-	private static String institutionID;
+	private static String institutionID = "0251001";
 	private static String userName;
 	private UserInfo(){
 	}
 	//
-	private static boolean logined = false;
+	private static boolean logined = true;
 	public static String getUserID() {
 		if (logined) {
 			return userID;

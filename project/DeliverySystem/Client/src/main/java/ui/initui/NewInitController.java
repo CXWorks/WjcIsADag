@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
+import ui.financeui.ManageBankAccountController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -34,7 +35,12 @@ public class NewInitController {
     }
 
     public void manageAccount(ActionEvent actionEvent) {
-
+        father.getChildren().clear();
+        try {
+            father.getChildren().add(ManageBankAccountController.launch());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void manageInstitution(ActionEvent actionEvent) {
