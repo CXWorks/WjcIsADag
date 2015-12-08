@@ -53,6 +53,10 @@ public class InitialDataVO extends InfoVO{
     List< SalaryStrategyVO> salaryStrategyVO;
     PackVO packVO;
     List<AccountVO> accountVOs;
+//    public static void main(String[] args) {
+//		InitialDataVO i=new InitialDataVO("1", "dd", new ArrayList<StoreModel>(), new ArrayList<BankAccountVO>(), new ArrayList<CarVO>(), new ArrayList<StaffVO>(), new ArrayList<HallVO>(), new ArrayList<CenterVO>(), new PriceVO(), new ProportionVO(), new ArrayList<SalaryStrategyVO>(), new PackVO(), new ArrayList<AccountVO>(),new ArrayList<City2DVO>());
+//		InitialDataPO p=i.toPO();
+//	}
 
     public InitialDataVO(){
     	super(InfoEnum.INITIAL_DATA);
@@ -138,7 +142,7 @@ public class InitialDataVO extends InfoVO{
 			ArrayList<StaffVO> staffs, ArrayList<HallVO> halls,
 			ArrayList<CenterVO> centers, PriceVO priceVO,
 			ProportionVO proportionVO, ArrayList<SalaryStrategyVO> salaryStrategyVO,
-			PackVO packVO, List<AccountVO> accountVOs) {
+			PackVO packVO, List<AccountVO> accountVOs,ArrayList<City2DVO> city2dvos) {
 		this();
 		this.version = version;
 		this.dbName = dbName;
@@ -153,6 +157,7 @@ public class InitialDataVO extends InfoVO{
 		this.salaryStrategyVO = salaryStrategyVO;
 		this.packVO = packVO;
 		this.accountVOs = accountVOs;
+		this.city2dvos=city2dvos;
 	}
 	public String getDbName() {
 		return dbName;

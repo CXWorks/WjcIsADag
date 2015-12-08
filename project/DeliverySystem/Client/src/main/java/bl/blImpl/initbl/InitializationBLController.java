@@ -14,6 +14,7 @@ import model.store.StoreModel;
 import po.initialdata.InitialDataPO;
 import rmi.initialdata.InitialDataService;
 import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
 import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
@@ -21,6 +22,7 @@ import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.staff.StaffVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class InitializationBLController implements InitializationBLService {
 	private VOPOFactory vopoFactory;
     // models
     InitialDataVO dataVO;
+    InitialDataPO lastPO;
 
     // manageServices
     InitialDataService initialDataService;
@@ -43,6 +46,8 @@ public class InitializationBLController implements InitializationBLService {
     
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
+    	
+    	
     }
 
     public List<BankAccountVO> getAllAccounts() {
@@ -209,7 +214,15 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage requestInitData() {
-        return new OperationMessage();
+        try {
+			OperationMessage re=initialDataService.requestInitData(UserInfo.getUserID());
+			String lastVersion=initialDataService.getLatest_version(UserInfo.getUserID());
+			this.lastPO=initialDataService.getInitialDataPO(lastVersion);
+			return re;
+		} catch (RemoteException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return new OperationMessage(false, e.getMessage());
+		}
     }
 
     public OperationMessage uploadInitialData() {
