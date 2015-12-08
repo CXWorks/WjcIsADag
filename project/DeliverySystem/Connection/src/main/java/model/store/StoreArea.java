@@ -87,11 +87,17 @@ public class StoreArea implements Serializable {
 
 	//
 	public int getRowNumber() {
+		if (list.size()==0) {
+			return 0;
+		}
 		StoreLocation last = list.get(list.size() - 1);
 		return last.getRow();
 	}
 
 	public int getShelfNumber() {
+		if (list.size()==0) {
+			return 0;
+		}
 		StoreLocation last = list.get(list.size() - 1);
 		int lastShelf = last.getShelf();
 		return lastShelf;

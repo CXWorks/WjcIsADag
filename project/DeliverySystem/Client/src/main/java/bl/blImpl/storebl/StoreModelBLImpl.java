@@ -115,7 +115,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 			for(int i=1;i<=totalRow;i++){
 				for (int j = 1; j <=totalShelf; j++) {
 					ArrayList<StoreLocation> storeLocations=area.getByShelf(i, j);
-					double usedProportion=storeLocations.size()/50.0;
+					double usedProportion=(double)storeLocations.size()/50.0;
 					StoreShelfVO storeShelfVO=new StoreShelfVO(i, j, usedProportion);
 					storeShelfVOs.add(storeShelfVO);
 				}

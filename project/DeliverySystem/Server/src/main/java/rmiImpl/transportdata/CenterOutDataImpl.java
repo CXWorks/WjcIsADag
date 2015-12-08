@@ -57,7 +57,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 				+ "','" + po.getFormState().toString() + "','" + po.getLoadDateForSQL().toString() + "','"
 				+ po.getTransportID() + "','" + po.getPlaceTo() + "','" + po.getPeopleSee() + "','" + po.getExpense()
 				+ "','" + IDs + "','" + po.getPlaceFrom() + "','" + po.getShelfNum() + "','"
-				+ po.getTransitState().toString() + po.getFormID().substring(2, 17) + "')";
+				+ po.getTransitState().toString() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
