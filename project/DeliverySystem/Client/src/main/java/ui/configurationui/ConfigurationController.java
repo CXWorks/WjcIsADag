@@ -180,6 +180,9 @@ public class ConfigurationController {
 	//
 	private void initializeDistance(){
 		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.CITY_2D);
+		if (configurationVOs.size()==0) {
+			return ;
+		}
 		ArrayList<City2DVO> vo=new ArrayList<City2DVO>(configurationVOs.size());
 		for (ConfigurationVO configurationVO : configurationVOs) {
 			City2DVO city2dvo=(City2DVO)configurationVO;

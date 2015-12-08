@@ -12,6 +12,8 @@ import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreModel;
 import po.initialdata.InitialDataPO;
+import rmi.initialdata.InitialDataService;
+import tool.vopo.VOPOFactory;
 import vo.financevo.BankAccountVO;
 import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
@@ -26,16 +28,22 @@ import java.util.List;
  * Created by Sissel on 2015/10/26.
  */
 public class InitializationBLController implements InitializationBLService {
+	private VOPOFactory vopoFactory;
     // models
     InitialDataVO dataVO;
 
     // manageServices
+    InitialDataService initialDataService;
     StoreModelBLService storeService;
     BankAccountBLService bankService;
     ManageblCarService carService;
     ManageblStaffService staffService;
     ManageblCenterService centerService;
     ManageblHallService hallService;
+    
+    public InitializationBLController(VOPOFactory vopoFactory){
+    	this.vopoFactory=vopoFactory;
+    }
 
     public List<BankAccountVO> getAllAccounts() {
     	List<BankAccountVO> result =new ArrayList<BankAccountVO>();

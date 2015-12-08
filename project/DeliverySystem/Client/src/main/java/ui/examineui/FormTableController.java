@@ -44,9 +44,11 @@ public class FormTableController {
 	private  void setColumn(FormEnum formEnum){
 		this.formVOs=examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
-//		tableView.r
-//		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
-//		tableView.getColumns().add(infoColumn);
+		if (formVOs==null||formVOs.size()==0) {
+			return;
+		}
+		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
+		tableView.getColumns().add(infoColumn);
 	}
 	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
 		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
@@ -58,6 +60,7 @@ public class FormTableController {
 	//
 	public void initialize(){
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		infoColumn=new TableColumn<FormVO, String>("信息摘要");
 		//
 		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));

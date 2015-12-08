@@ -14,6 +14,7 @@ public class UserInfo {
 	private static SystemState systemState;
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
+	private static String userName;
 	private UserInfo(){	
 	}
 	//
@@ -39,16 +40,20 @@ public class UserInfo {
 			return null;
 		}
 	}
-
+	
+	public static String getUserName() {
+		return userName;
+	}
 	public static SystemState getSystemState() {
 		return systemState;
 	}
 	
-	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID){
+	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID,String userName){
 		UserInfo.userID = userID;
 		UserInfo.staffType = staffTypeEnum;
 		UserInfo.institutionID = institutionID;
 		UserInfo.logined = true;
+		UserInfo.userName=userName;
 	}
 
 	public static void setSystemState(SystemState state){

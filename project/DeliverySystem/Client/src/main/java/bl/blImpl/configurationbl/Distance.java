@@ -29,12 +29,31 @@ public class Distance {
 	 * get methods
 	 */
 	public ArrayList<ConfigurationVO> getCityDistance(){
-		return null;
+		try {
+			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
+			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(city2dpos.size());
+			for (int i = 0; i < city2dpos.size(); i++) {
+				City2DVO city2dvo=(City2DVO)vopoFactory.transPOtoVO(city2dpos.get(i));
+				ans.add(city2dvo);
+			}
+			return ans;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	/*
 	 * modify methods
 	 */
 	public OperationMessage modifyCityDistance(City2DVO vo){
-		return null;
+		City2DPO city2dpo=(City2DPO)vopoFactory.transVOtoPO(vo);
+		try {
+			return configurationDataService.modifyCity2D(city2dpo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

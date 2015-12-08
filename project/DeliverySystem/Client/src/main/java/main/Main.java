@@ -20,8 +20,10 @@ import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
+import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
+import ui.orderui.NewOrderController;
 import ui.storeui.StockTackController;
 import userinfo.UserInfo;
 
@@ -106,7 +108,7 @@ public class Main extends Application {
 
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
-        		//NewOrderController.launch()
+//        		NewOrderController.launch()
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
@@ -114,7 +116,9 @@ public class Main extends Application {
 //                CheckLogController.launch()
 //                deliverController.launch()
         		//ManageStaffController.launch()
-                StockTackController.launch()
+//                StockTackController.launch()
+//        		ConfigurationController.launch()
+        		ManageSalaryController.launch()
         		
         ));
         primaryStage.show();
