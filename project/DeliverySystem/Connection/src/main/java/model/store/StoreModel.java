@@ -25,6 +25,20 @@ public class StoreModel implements Serializable {
 		this.flex = flex;
 	}
 
+	public StoreArea getArea(StoreAreaCode code){
+        switch (code){
+            case AIR:
+                return air;
+            case RAIL:
+                return rail;
+            case ROAD:
+                return road;
+            case FLEX:
+                return flex;
+        }
+        return null;
+    }
+
 	public String getCenterID() {
 		return centerID;
 	}

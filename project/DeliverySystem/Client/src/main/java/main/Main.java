@@ -19,6 +19,7 @@ import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
+import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
 
