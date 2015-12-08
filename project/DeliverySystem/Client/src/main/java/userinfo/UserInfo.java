@@ -13,7 +13,7 @@ public class UserInfo {
 	private static String userID;
 	private static SystemState systemState;
 	private static StaffTypeEnum staffType;
-	private static String institutionID = "0251001";
+	private static String institutionID = "0040001";
 	private static String userName;
 	private UserInfo(){
 	}

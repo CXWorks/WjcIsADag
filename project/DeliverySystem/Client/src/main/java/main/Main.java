@@ -26,6 +26,7 @@ import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
 import ui.orderui.NewOrderController;
 import ui.storeui.StockTackController;
+import ui.storeui.StorePartitionController;
 import ui.transportui.LoadCarController;
 import ui.transportui.TransitFormController;
 import userinfo.UserInfo;
@@ -50,7 +51,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-//        CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -126,7 +127,8 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
-        		LoginController.launch()
+//        		LoginController.launch()
+        		StorePartitionController.launch()
         		
         ));
         primaryStage.show();

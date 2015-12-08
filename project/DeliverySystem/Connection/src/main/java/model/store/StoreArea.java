@@ -9,6 +9,8 @@ public class StoreArea implements Serializable {
 	private ArrayList<StoreLocation> list;
 	private int rowNum = 50;
 	private final int shelfForEachRow = 50;
+	
+	
 
 	public double getUsedProportion() {
 		int total = rowNum * shelfForEachRow;
