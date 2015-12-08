@@ -14,6 +14,7 @@ import tool.ui.OrderVO2ColumnHelper;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,6 +54,7 @@ public class deliverController {
 
 
 
+
 	@FXML
 	public void initialize(){
 		postman_Box.setItems(FXCollections.observableArrayList(postmans));
@@ -62,8 +64,9 @@ public class deliverController {
 //				}
 //				);
 //		clear(null);
-		ids_TableView.setItems(FXCollections.observableArrayList(toSend));
 		date_DatePicker.setValue(LocalDate.now());
+		ids_TableView.setItems(FXCollections.observableArrayList(toSend));
+	//	ids_TableView.getColumns().addAll(ids_Column);
 		ids_TableView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					// TODO test
@@ -73,11 +76,8 @@ public class deliverController {
 					fillOrderTable();
 				}
 				);
-
-
+		
 	}
-
-	
     private void fillOrderTable(){
         OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
 
