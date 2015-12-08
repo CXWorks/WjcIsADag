@@ -12,7 +12,7 @@ public class InitBLFactory extends BLFactory {
 
     public static InitializationBLService getInitializationBLService(){
         if(initializationBLService == null){
-            initializationBLService = new InitializationBLController();
+            initializationBLService = new InitializationBLController(vopoFactory);
         }
         return initializationBLService;
     }
