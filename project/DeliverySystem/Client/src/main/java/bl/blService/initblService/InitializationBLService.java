@@ -31,7 +31,10 @@ import java.util.Observer;
  * combine the services to reuse the codes, problem may occur
  * Created by Sissel on 2015/10/26.
  */
-public interface InitializationBLService extends BankAccountBLService,StoreModelBLService,ManageblCarService,ManageblStaffService,ManageblCenterService,ManageblHallService{
+public interface InitializationBLService
+        extends BankAccountBLService, StoreModelBLService, ManageblCarService,
+        ManageblStaffService, ManageblCenterService, ManageblHallService
+{
 
 
     // Store Manage
@@ -39,7 +42,6 @@ public interface InitializationBLService extends BankAccountBLService,StoreModel
     public StoreModel searchModel(String modelID);
     
     public List<StoreModel> getAllStoreModels();
-
     
     // Initial Data Manage
     public InitialDataVO getInitialDataVO();

@@ -55,7 +55,6 @@ public class InitializationBLController implements InitializationBLService {
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
     	this.initialDataService=CacheHelper.getInitialDataService();
-    	
     }
 
     public List<BankAccountVO> getAllAccounts() {
@@ -213,7 +212,6 @@ public class InitializationBLController implements InitializationBLService {
 		this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		return this.initialDataVO;
 	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		return null;
 	}
@@ -238,7 +236,6 @@ public class InitializationBLController implements InitializationBLService {
 			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(),po);
 			return re;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		}
@@ -248,7 +245,6 @@ public class InitializationBLController implements InitializationBLService {
        try {
 		return initialDataService.abortInitData(UserInfo.getUserID());
 	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		return new OperationMessage(false, e.getMessage());
 	}
@@ -344,7 +340,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public List<PaymentVO> getTradeHistory(BankAccountVO avo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -353,7 +348,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage pay(String bankAccID, String amount) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -362,7 +356,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage receive(String bankAccID, String amount) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -371,7 +364,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage setWarningLine(double percent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -380,7 +372,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public double getWarningLine() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -401,7 +392,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newCarID() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -424,7 +414,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String unitID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -447,7 +436,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newCenterID(String city) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -470,7 +458,6 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newHallID(String centerID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

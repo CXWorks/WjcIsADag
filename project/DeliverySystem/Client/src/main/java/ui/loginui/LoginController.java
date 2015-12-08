@@ -32,14 +32,6 @@ public class LoginController {
 
     public Image Image_Back;
     public ImageView back_ImageView;
-    
-    
-    
-    
-    
-    
-    
-    
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();
     ManageblStaffService manageblStaffService = StaffFactory.getManageService();
