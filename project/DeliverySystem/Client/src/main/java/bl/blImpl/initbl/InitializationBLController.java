@@ -32,7 +32,7 @@ import java.util.List;
 public class InitializationBLController implements InitializationBLService {
 	private VOPOFactory vopoFactory;
     // models
-    InitialDataVO dataVO;
+    InitialDataVO initialDataVO;
     InitialDataPO lastPO;
 
     // manageServices
@@ -58,10 +58,8 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
-    	List<BankAccountVO> result =new ArrayList<BankAccountVO>();
-    	BankAccountVO stub=new BankAccountVO();
-		result.add(stub);
-		return result;
+//    	ArrayList<BankAccountVO> vos=da;
+    	return null;
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
@@ -210,7 +208,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public InitialDataVO getInitialDataVO(String version) {
-        return new InitialDataVO();
+       return this.initialDataVO;
     }
 
     public OperationMessage requestInitData() {
@@ -218,6 +216,7 @@ public class InitializationBLController implements InitializationBLService {
 			OperationMessage re=initialDataService.requestInitData(UserInfo.getUserID());
 			String lastVersion=initialDataService.getLatest_version(UserInfo.getUserID());
 			this.lastPO=initialDataService.getInitialDataPO(lastVersion);
+			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(lastPO);
 			return re;
 		} catch (RemoteException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -226,11 +225,25 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage uploadInitialData() {
-        return new OperationMessage();
+    	InitialDataPO po=(InitialDataPO)vopoFactory.transVOtoPO(initialDataVO);
+        try {
+			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(),po);
+			return re;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new OperationMessage(false, e.getMessage());
+		}
     }
 
     public OperationMessage abortInitData() {
-        return new OperationMessage();
+       try {
+		return initialDataService.abortInitData(UserInfo.getUserID());
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return new OperationMessage(false, e.getMessage());
+	}
 
     }
 }
