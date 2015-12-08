@@ -76,6 +76,7 @@ public class DriverNewDialogController {
 		
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
+		editVO.setSex(sexEnum);
 		editVO.setBirth(timeconvert.convertDate(birth_Picker.getValue()));
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());

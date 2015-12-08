@@ -42,9 +42,9 @@ public class TestCarManage {
 	}
 	@Test
 	public void testGet(){
-		assertNotNull(car.getCar(h));
+		assertNotNull(car.getCar(null));
 		assertNotNull(car.newCarID());
-		assertNotNull(car.searchCar(c));
+		assertNotNull(car.searchCar(null));
 	}
 
 }

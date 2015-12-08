@@ -38,7 +38,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
     	return first<=second;
     }
 
-    public OperationMessage expandPartition(StoreAreaCode area, int number) {
+    public OperationMessage expandPartition(String centerID,StoreAreaCode area, int number) {
     	 try {
  			StoreArea flex=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.FLEX);
  			int row=flex.getRowNumber();
@@ -64,7 +64,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
  		}
     }
 
-    public OperationMessage reducePartition(StoreAreaCode area, int number) {
+    public OperationMessage reducePartition(String centerID,StoreAreaCode area, int number) {
     	 try {
  			StoreArea target=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
  			int row=target.getRowNumber();
@@ -94,7 +94,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	 * @see bl.blService.storeblService.StoreModelBLService#moveShelf(model.store.StoreAreaCode, int, int, model.store.StoreAreaCode, int, int)
 	 */
 	@Override
-	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+	public OperationMessage moveShelf(String centerID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf) {
 		try {
 			return storeModelDataService.moveShelf(UserInfo.getInstitutionID(),code_now, row_now, shelf_now, code, row, shelf);
@@ -106,7 +106,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	 * @see bl.blService.storeblService.StoreModelBLService#getShelfInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode) {
+	public ArrayList<StoreShelfVO> getShelfInfo(String centerID,StoreAreaCode storeAreaCode) {
 		try {
 			StoreArea area=storeModelDataService.getArea(UserInfo.getInstitutionID(),storeAreaCode);
 			int totalShelf=area.getShelfNumber();
@@ -131,7 +131,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	 * @see bl.blService.storeblService.StoreModelBLService#getStoreAreaInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode) {
+	public StoreAreaInfoVO getStoreAreaInfo(String centerID,StoreAreaCode storeAreaCode) {
 		try {
 			StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),storeAreaCode);
 			StoreAreaInfoVO storeAreaInfoVO=new StoreAreaInfoVO(storeArea);

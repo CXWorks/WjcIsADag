@@ -31,20 +31,20 @@ public class TestStoreModel {
 	
 	@Test
 	public void testReducePartition(){
-		assertTrue(storeModelBLService.reducePartition(StoreAreaCode.AIR, 1).operationResult);
-		assertTrue(storeModelBLService.reducePartition(StoreAreaCode.FLEX, 1).operationResult);
-		assertTrue(storeModelBLService.reducePartition(StoreAreaCode.RAIL, 1).operationResult);
-		assertTrue(storeModelBLService.reducePartition(StoreAreaCode.ROAD, 1).operationResult);
+		assertTrue(storeModelBLService.reducePartition(null,StoreAreaCode.AIR, 1).operationResult);
+		assertTrue(storeModelBLService.reducePartition(null,StoreAreaCode.FLEX, 1).operationResult);
+		assertTrue(storeModelBLService.reducePartition(null,StoreAreaCode.RAIL, 1).operationResult);
+		assertTrue(storeModelBLService.reducePartition(null,StoreAreaCode.ROAD, 1).operationResult);
 	}
 	
 
 	
 	@Test
 	public void testExpandPartition(){
-		assertTrue(storeModelBLService.expandPartition(StoreAreaCode.AIR, 1).operationResult);
-		assertTrue(storeModelBLService.expandPartition(StoreAreaCode.FLEX, 1).operationResult);
-		assertTrue(storeModelBLService.expandPartition(StoreAreaCode.RAIL, 1).operationResult);
-		assertTrue(storeModelBLService.expandPartition(StoreAreaCode.ROAD, 1).operationResult);
+		assertTrue(storeModelBLService.expandPartition(null,StoreAreaCode.AIR, 1).operationResult);
+		assertTrue(storeModelBLService.expandPartition(null,StoreAreaCode.FLEX, 1).operationResult);
+		assertTrue(storeModelBLService.expandPartition(null,StoreAreaCode.RAIL, 1).operationResult);
+		assertTrue(storeModelBLService.expandPartition(null,StoreAreaCode.ROAD, 1).operationResult);
 	}
 	
 

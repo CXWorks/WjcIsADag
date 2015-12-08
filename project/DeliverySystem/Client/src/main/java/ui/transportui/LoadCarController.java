@@ -42,10 +42,10 @@ public class LoadCarController {
     public ChoiceBox<String> arrival_ChoiceBox;
     public ChoiceBox<String> carID_ChoiceBox;
 
-    ArrayList<String> ids;
-    
+    ArrayList<String> ids=new ArrayList<String>();
+
     TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
-    
+
     ArrayList<String> arrivals=transportHallBLService.getLocation(UserInfo.getInstitutionID());
     ArrayList<String> cars=transportHallBLService.getCars(UserInfo.getInstitutionID());
     public static Parent launch() throws IOException {
@@ -56,17 +56,19 @@ public class LoadCarController {
     public void initialize(){
     	arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
     	carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
+    	transitCarID_Field.setText(transportHallBLService.newID());
+    	System.out.println(transportHallBLService.newID());
     	 clear(null);
     }
 
     public void add(ActionEvent actionEvent){
     	String a= id_Field.getText();
     	System.out.println("aaaa"+a);
-     	ids.add(a);
+//     	ids.add(a);
      	orders_ListView.getItems().add(a);
     	//orders.getItems().add(a);
     	id_Field.clear();
-    	
+
     }
     public void saveDraft(ActionEvent actionEvent) {
     	transportHallBLService.saveDraft(generateVO(null));
@@ -87,8 +89,8 @@ public class LoadCarController {
         		calendar,transitCarID_Field.getText(),
         		arrival_ChoiceBox.getValue().toString(),monitor_Field.getText(),ids);
     }
-    
-    
+
+
     public void sure(ActionEvent actionEvent) {
 
     	 OperationMessage msg = transportHallBLService.submit(generateVO(transportHallBLService.newID()));

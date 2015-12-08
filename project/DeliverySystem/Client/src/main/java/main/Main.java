@@ -12,9 +12,22 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
-import ui.initui.CheckInitInfoController;
+import ui.configurationui.ConfigurationController;
+import ui.deliverui.deliverController;
+import ui.examineui.CheckFormController;
+import ui.financeui.CheckFinanceChartController;
+import ui.financeui.CheckLogController;
+import ui.financeui.ManageBankAccountController;
+import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
+import ui.manangeui.organization.ManageOrganizationController;
+import ui.manangeui.salary.ManageSalaryController;
+import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
+import ui.orderui.NewOrderController;
+import ui.storeui.StockTackController;
+import ui.transportui.LoadCarController;
+import ui.transportui.TransitFormController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -76,13 +89,15 @@ public class Main extends Application {
      * 根据UserInfo加载对应的界面
      */
     public static void logIn(){
-        StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
-        Parent pane = panes.get(staffTypeEnum);
 
+        StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
+
+        Parent pane = panes.get(staffTypeEnum);
         if(pane == null){
             pane = launchByStaff(staffTypeEnum);
             panes.put(staffTypeEnum, pane);
         }
+
         primaryStage.setScene(new Scene(pane));
     }
 
@@ -106,12 +121,11 @@ public class Main extends Application {
 //                CheckLogController.launch()
 //                deliverController.launch()
         		//ManageStaffController.launch()
-               //StockTackController.launch()
+//               StockTackController.launch()
         		//ConfigurationController.launch()
 //        		ManageSalaryController.launch()
-                ManageAccountController.launch()
-                //CheckInitInfoController.launch()
-        		
+        		LoadCarController.launch()
+//        		TransitFormController.launch()
         ));
         primaryStage.show();
     }

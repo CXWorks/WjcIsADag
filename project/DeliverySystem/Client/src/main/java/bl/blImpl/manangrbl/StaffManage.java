@@ -114,11 +114,11 @@ public class StaffManage implements ManageblStaffService {
 	 * @see bl.blService.manageblService.ManageblStaffService#getStaffByInstitution()
 	 */
 	@Override
-	public ArrayList<StaffVO> getStaffByInstitution() {
+	public ArrayList<StaffVO> getStaffByInstitution(String hallID) {
 		try {
 			if (memberDataService==null) {
 			}
-			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution("0040001");
+			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(hallID);
 			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
 			for(int i=0;i<po.size();i++){
 				StaffPO each=po.get(i);

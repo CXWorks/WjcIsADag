@@ -44,7 +44,7 @@ public class TestCenterManage {
 	
 	@Test
 	public void testSearchCenter(){
-		assertNotNull(center.searchCenter(c));
+		assertNotNull(center.searchCenter(null));
 	}
 	
 	@Test
@@ -52,8 +52,5 @@ public class TestCenterManage {
 		assertTrue(center.addCenter(c).operationResult);
 	}
 	
-	@Test
-	public void testNewInstitutionDistance(){
-		assertTrue(center.newInstitutionDistance("111111",new Object()).operationResult);
-	}
+	
 }

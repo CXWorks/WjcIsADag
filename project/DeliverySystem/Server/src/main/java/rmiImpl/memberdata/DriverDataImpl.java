@@ -97,8 +97,8 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "新增司机:" + po.getID()));
 
 		return result;
@@ -119,8 +119,8 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "解雇司机:" + po.getID()));
 
 		return result;
@@ -150,6 +150,19 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 		return institutionID + added;
 	}
+
+//	public static void main(String[] args) {
+//		MemberDataService<DriverPO> t;
+//		try {
+//			t = new DriverDataImpl();
+//			DriverPO po = t.getPerson("0251001001");
+//			System.out.println("hhh:" + po.getLove());
+//
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {

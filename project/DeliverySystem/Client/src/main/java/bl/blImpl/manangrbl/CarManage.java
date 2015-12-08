@@ -30,9 +30,9 @@ public class CarManage implements ManageblCarService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#getCar(vo.managevo.institution.HallVO)
 	 */
-	public ArrayList<CarVO> getCar(HallVO itself) {
+	public ArrayList<CarVO> getCar(String itself) {
 		try {
-			ArrayList<CarPO> po=companyDataCarService.getCars(itself.getHallID());
+			ArrayList<CarPO> po=companyDataCarService.getCars(itself);
 			ArrayList<CarVO> vo=new ArrayList<CarVO>(po.size());
 			for(int i=0;i<po.size();i++){
 				CarPO each=po.get(i);
@@ -84,8 +84,8 @@ public class CarManage implements ManageblCarService {
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCarService#searchCar(vo.managevo.car.CarVO)
 	 */
-	public CarVO searchCar(CarVO car) {
-		String ID=car.getCarID();
+	public CarVO searchCar(String car) {
+		String ID=car;
 		try {
 			CarPO po= companyDataCarService.getCar(ID);
 			CarVO ans=(CarVO)vopoFactory.transPOtoVO(po);

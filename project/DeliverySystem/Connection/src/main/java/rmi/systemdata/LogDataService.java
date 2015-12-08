@@ -15,8 +15,10 @@ public interface LogDataService extends DataService<LogPO>{
 
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "LogData";
-	
+
 	public OperationMessage insert(LogPO po) throws RemoteException;
-	
+
+	public OperationMessage clear() throws RemoteException;
+
 	public ArrayList<LogPO> getByTime(Calendar start,Calendar end) throws RemoteException;
 }

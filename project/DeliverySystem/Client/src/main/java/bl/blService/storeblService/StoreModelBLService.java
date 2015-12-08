@@ -17,17 +17,17 @@ public interface StoreModelBLService {
 
     public OperationMessage setWarningLine(double percent);
 
-    public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber);
+    public OperationMessage reducePartition(String centerID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber);
+    public OperationMessage expandPartition(String centerID,StoreAreaCode area, int shelfNumber);
 
-    public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+    public OperationMessage moveShelf(String centerID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf);
     
     
-    public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode); 
+    public ArrayList<StoreShelfVO> getShelfInfo(String centerID,StoreAreaCode storeAreaCode); 
     
-    public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode);
+    public StoreAreaInfoVO getStoreAreaInfo(String centerID,StoreAreaCode storeAreaCode);
     
     public double getWarningLine();
 

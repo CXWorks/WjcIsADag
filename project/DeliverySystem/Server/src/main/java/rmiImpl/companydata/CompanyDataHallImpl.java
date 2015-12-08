@@ -62,7 +62,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 				t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
 				t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
 				if (!rs.getString("driver").equalsIgnoreCase("")) {
-					t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
 					for (String tmp : t1) {
 						driver.add(s2.getPerson(tmp));
 					}

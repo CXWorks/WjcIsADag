@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.38" prefWidth="639.89" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginui.LoginController">
    <children>
-      <TextField fx:id="id_Field" layoutX="308.0" layoutY="202.0" promptText="员工编号输入框" />
-      <Button layoutX="308.0" layoutY="311.0" mnemonicParsing="false" onAction="#login" prefHeight="23.0" prefWidth="161.0" text="登录" />
-      <PasswordField fx:id="password_Field" layoutX="308.0" layoutY="255.0" promptText="密码输入框" />
+      <TextField fx:id="id_Field" layoutX="239.0" layoutY="173.0" promptText="员工编号输入框" />
+      <Button layoutX="239.0" layoutY="282.0" mnemonicParsing="false" onAction="#login" prefHeight="23.0" prefWidth="161.0" text="登录" />
+      <PasswordField fx:id="password_Field" layoutX="239.0" layoutY="226.0" promptText="密码输入框" />
+      <ImageView fx:id="back_ImageView" fitHeight="441.38" fitWidth="639.89" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

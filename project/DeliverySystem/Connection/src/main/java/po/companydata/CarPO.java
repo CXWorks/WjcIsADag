@@ -110,7 +110,10 @@ public class CarPO extends InfoPO implements Serializable{
 		temp.setTime(buyTime);
 		this.buyTime = temp;
 	}
-	
+	public static void main(String[] args) {
+		Timestamp timestamp=new Timestamp(Calendar.getInstance().getTimeInMillis());
+		System.out.println(timestamp);
+	}
 
 	
 }

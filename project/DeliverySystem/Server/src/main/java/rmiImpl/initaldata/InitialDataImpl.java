@@ -13,9 +13,10 @@ public class InitialDataImpl extends UnicastRemoteObject implements InitialDataS
 	private InitialHelper helper;
 	private String latest_version;
 
-	public InitialDataImpl() throws RemoteException {
+	public InitialDataImpl() throws RemoteException, ClassNotFoundException {
 		super();
 		helper = new InitialHelper();
+		latest_version = helper.getVersion() - 1 + "";
 	}
 
 	public Connection getConn() {
@@ -30,13 +31,20 @@ public class InitialDataImpl extends UnicastRemoteObject implements InitialDataS
 	public OperationMessage requestInitData(String staffID) throws RemoteException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		latest_version = helper.saveFile(helper.saveMysql(staffID)).getReason();
-		helper.clearMysql();
 		return new OperationMessage();
 	}
 
 	public OperationMessage uploadInitialData(String staffID, InitialDataPO newData) throws RemoteException {
 		// TODO Auto-generated method stub
+		helper.clearMysql();
 		helper.loadMysql(newData);
+		helper.deleteFile(latest_version);
+		try {
+			latest_version = helper.saveFile(newData).getReason();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new OperationMessage();
 	}
 

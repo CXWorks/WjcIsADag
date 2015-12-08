@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.time.TimeConvert;
 import tool.ui.StoreAreaVO2ColumnHelper;
+import userinfo.UserInfo;
 import vo.storevo.StoreAreaInfoVO;
 import vo.storevo.StoreFormVO;
 import vo.storevo.StoreShelfVO;
@@ -102,10 +103,10 @@ public class StorePartitionController {
 
 	private void setView() {
 //		System.out.println(storeModelBLService.getShelfInfo(area)==null);
-		rows_TableView.setItems(FXCollections.observableArrayList(storeModelBLService.getShelfInfo(area)));
+		rows_TableView.setItems(FXCollections.observableArrayList(storeModelBLService.getShelfInfo(UserInfo.getInstitutionID(),area)));
 
 		area_TableView.setItems(FXCollections.observableArrayList(
-				new StoreAreaVO2ColumnHelper().VO2Entries(storeModelBLService.getStoreAreaInfo(area))));
+				new StoreAreaVO2ColumnHelper().VO2Entries(storeModelBLService.getStoreAreaInfo(UserInfo.getInstitutionID(),area))));
 	}
 
 	public void expandArea(ActionEvent actionEvent) {
@@ -115,7 +116,7 @@ public class StorePartitionController {
             dialogStage.showAndWait();
             int num = dialog.getShelfNum();
             if(num != 0){
-                storeModelBLService.expandPartition(area, num);
+                storeModelBLService.expandPartition(UserInfo.getInstitutionID(),area, num);
             }
             this.setView();
         } catch (IOException e) {
@@ -130,7 +131,7 @@ public class StorePartitionController {
             dialogStage.showAndWait();
             int num = dialog.getShelfNum();
             if(num != 0){
-                storeModelBLService.reducePartition(area, num);
+                storeModelBLService.reducePartition(UserInfo.getInstitutionID(),area, num);
             }
             this.setView();
         } catch (IOException e) {
