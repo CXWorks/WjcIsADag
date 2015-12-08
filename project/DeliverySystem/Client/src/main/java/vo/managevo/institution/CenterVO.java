@@ -17,14 +17,19 @@ public class CenterVO extends InstitutionVO{
 	public CenterVO(String centerID, String city, ArrayList<StaffVO> storeman,
 			ArrayList<StaffVO> counterman) {
 		this();
-		this.centerID = centerID;
+		this.institutionID = centerID;
 		this.city = city;
 		this.storeman = storeman;
 		this.counterman = counterman;
 	}
-
-	private String centerID;
-	private String city;
+	public CenterVO(String centerID,String city){
+		this();
+		this.institutionID=centerID;
+		this.city=city;
+		this.storeman=new ArrayList<StaffVO>();
+		this.counterman=new ArrayList<StaffVO>();
+	}
+	
 	private ArrayList<StaffVO> storeman;
 	private ArrayList<StaffVO> counterman;
 	//
@@ -55,11 +60,11 @@ public class CenterVO extends InstitutionVO{
 			countermanPO.add(temp);
 		}
 		//
-		return new CenterPO(centerID, city, storemanPO, countermanPO);
+		return new CenterPO(institutionID, city, storemanPO, countermanPO);
 	}
 
 	public String getCenterID() {
-		return centerID;
+		return institutionID;
 	}
 
 	public String getCity() {
