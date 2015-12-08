@@ -16,7 +16,6 @@ public class CarPO extends InfoPO implements Serializable{
 	private String carID;
 	private Calendar useTime;
 	private ImageIcon img;
-	private String institutionID;
 	//以下为无用内容
 	private String engineID;
 	private String nameID;
@@ -84,7 +83,7 @@ public class CarPO extends InfoPO implements Serializable{
 	 */
 	public CarPO(boolean free, String carID,
 			Calendar useTime, ImageIcon img, String engineID, String nameID,
-			String chassisID, Calendar buyTime,String institutionID) {
+			String chassisID, Calendar buyTime) {
 		super(InfoEnum.CAR);
 		this.free = free;
 		this.carID = carID;
@@ -94,7 +93,6 @@ public class CarPO extends InfoPO implements Serializable{
 		this.nameID = nameID;
 		this.chassisID = chassisID;
 		this.buyTime = buyTime;
-		this.institutionID=institutionID;
 	}
 	public CarPO(boolean free, String carID,
 			Timestamp useTime, ImageIcon img, String engineID, String nameID,
@@ -112,9 +110,7 @@ public class CarPO extends InfoPO implements Serializable{
 		temp.setTime(buyTime);
 		this.buyTime = temp;
 	}
-	public String getInstitutionID() {
-		return institutionID;
-	}
+	
 
 	
 }

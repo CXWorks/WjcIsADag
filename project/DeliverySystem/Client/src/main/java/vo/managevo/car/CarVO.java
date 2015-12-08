@@ -13,7 +13,6 @@ public class CarVO extends InfoVO{
 	private String carID;    //车辆编号
 	private Calendar useTime; //服役时间
 	private ImageIcon imag;
-	private String institutionID;
 	//以下为无用内容
 	private String engineID;
 	private String nameID;      //车牌号
@@ -38,7 +37,7 @@ public class CarVO extends InfoVO{
 	 */
 	public CarVO(boolean free, String carID,
 			Calendar useTime, ImageIcon imag, String engineID, String nameID,
-			String chassisID, Calendar buyTime,String institutionID) {
+			String chassisID, Calendar buyTime) {
 		super(InfoEnum.CAR);
 		this.free = free;
 		this.carID = carID;
@@ -48,20 +47,21 @@ public class CarVO extends InfoVO{
 		this.nameID = nameID;
 		this.chassisID = chassisID;
 		this.buyTime = buyTime;
-		this.institutionID=institutionID;
 	}
 
 
 	public CarVO(CarPO po){
-		this(po.isFree(), po.getCarID(), po.getUseTime(), po.getImg(), po.getEngineID(), po.getNameID(), po.getChassisID(), po.getBuyTime(),po.getInstitutionID());
+		this(po.isFree(), po.getCarID(), po.getUseTime(), po.getImg(), po.getEngineID(), po.getNameID(), po.getChassisID(), po.getBuyTime());
 
 	}
 	//
 	public CarPO toPO(){
-		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone(),institutionID);
+		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
 	}
 	//
-
+	public String getInstitutionID(){
+		return carID.substring(3, 10);
+	}
 
 	public Calendar getUseTime() {
 		return useTime;
