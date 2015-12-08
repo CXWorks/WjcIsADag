@@ -9,7 +9,9 @@ import bl.blService.manageblService.ManageblStaffService;
 import bl.blService.storeblService.StoreModelBLService;
 import message.CheckFormMessage;
 import message.OperationMessage;
+import model.store.StoreArea;
 import model.store.StoreAreaCode;
+import model.store.StoreLocation;
 import model.store.StoreModel;
 import po.initialdata.InitialDataPO;
 import rmi.initialdata.InitialDataService;
@@ -222,7 +224,7 @@ public class InitializationBLController implements InitializationBLService {
         return new OperationMessage();
     }
 
-    public InitialDataVO getInitialDataVO(String version) {
+    public InitialDataVO getInitialDataVO() {
        return this.initialDataVO;
     }
 
@@ -275,45 +277,74 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.initblService.InitializationBLService#reducePartition(model.store.StoreAreaCode, int)
 	 */
 	@Override
-	public OperationMessage reducePartition(StoreAreaCode area, int shelfNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public OperationMessage reducePartition(String modelID,StoreAreaCode area, int shelfNumber) {
+		StoreModel src=this.searchModel(modelID);
+		return src.reducePartition(area, shelfNumber);
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.initblService.InitializationBLService#expandPartition(model.store.StoreAreaCode, int)
 	 */
 	@Override
-	public OperationMessage expandPartition(StoreAreaCode area, int shelfNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public OperationMessage expandPartition(String modelID,StoreAreaCode area, int shelfNumber) {
+		StoreModel src=this.searchModel(modelID);
+		return src.expandPartition(area, shelfNumber);
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.initblService.InitializationBLService#moveShelf(model.store.StoreAreaCode, int, int, model.store.StoreAreaCode, int, int)
 	 */
 	@Override
-	public OperationMessage moveShelf(StoreAreaCode code_now, int row_now,
+	public OperationMessage moveShelf(String modelID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf) {
-		// TODO Auto-generated method stub
-		return null;
+		StoreModel storeModel=this.searchModel(modelID);
+		return storeModel.moveShelf(code_now, row_now, shelf_now, code, row, shelf);
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.initblService.InitializationBLService#getShelfInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public ArrayList<StoreShelfVO> getShelfInfo(StoreAreaCode storeAreaCode) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<StoreShelfVO> getShelfInfo(String modelID,StoreAreaCode storeAreaCode) {
+		StoreModel storeModel=this.searchModel(modelID);
+		StoreArea area=storeModel.getArea(storeAreaCode);
+		int totalShelf=area.getShelfNumber();
+		int totalRow=area.getRowNumber();
+		ArrayList<StoreShelfVO> storeShelfVOs=new ArrayList<StoreShelfVO>(totalShelf);
+		for(int i=1;i<=totalRow;i++){
+			for (int j = 1; j <=totalShelf; j++) {
+				ArrayList<StoreLocation> storeLocations=area.getByShelf(i, j);
+				double usedProportion=storeLocations.size()/50.0;
+				StoreShelfVO storeShelfVO=new StoreShelfVO(i, j, usedProportion);
+				storeShelfVOs.add(storeShelfVO);
+			}
+		}
+		return storeShelfVOs;
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.initblService.InitializationBLService#getStoreAreaInfo(model.store.StoreAreaCode)
 	 */
 	@Override
-	public StoreAreaInfoVO getStoreAreaInfo(StoreAreaCode storeAreaCode) {
-		// TODO Auto-generated method stub
+	public StoreAreaInfoVO getStoreAreaInfo(String modelID,StoreAreaCode storeAreaCode) {
+		StoreModel storeModel=this.searchModel(modelID);
+		StoreArea storeArea=storeModel.getArea(storeAreaCode);
+		StoreAreaInfoVO storeAreaInfoVO=new StoreAreaInfoVO(storeArea);
+		return storeAreaInfoVO;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#searchModel(java.lang.String)
+	 */
+	@Override
+	public StoreModel searchModel(String modelID) {
+		List<StoreModel> storeModels=initialDataVO.getStoreModels();
+		for (int i = 0; i < storeModels.size(); i++) {
+			StoreModel storeModel=storeModels.get(i);
+			if (storeModel.getCenterID().equalsIgnoreCase(modelID)) {
+				return storeModel;
+			}
+		}
 		return null;
 	}
 }

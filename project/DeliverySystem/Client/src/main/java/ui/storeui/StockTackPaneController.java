@@ -53,9 +53,8 @@ public class StockTackPaneController {
     public IntegerProperty selectedShelf = new SimpleIntegerProperty();
     public IntegerProperty selectedPosition = new SimpleIntegerProperty();
 
-    public void makeStockTack() {
-        stockTackVO = stockTackBLService.getStockTack();
-        storeModel = stockTackVO.storeModel;
+    public void setStoreModel(StoreModel model){
+        storeModel = model;
         redirectArea(StoreAreaCode.AIR);
     }
 
@@ -103,8 +102,8 @@ public class StockTackPaneController {
                 (observable, oldValue, newValue) -> {
                     clear(shelf_TableView, position_TableView, message_TableView);
                     selectedRow.setValue(newValue.getRow());
-                    selectedShelf.setValue(0);
-                    selectedPosition.setValue(0);
+                    selectedShelf.setValue(1);
+                    selectedPosition.setValue(1);
                     List<StoreLocation> storeLocations = storeArea.getByRow(selectedRow.getValue());
                     setShelf_TableView(storeLocations);
                     position_TableView.getItems().addAll(
@@ -116,7 +115,7 @@ public class StockTackPaneController {
                 (observable, oldValue, newValue) -> {
                     clear(position_TableView, message_TableView);
                     selectedShelf.setValue(newValue.getShelf());
-                    selectedPosition.setValue(0);
+                    selectedPosition.setValue(1);
                     List<StoreLocation> storeLocations = storeArea.getByShelf
                             (selectedRow.getValue(), selectedShelf.getValue());
                     position_TableView.getItems().addAll(storeLocations);
@@ -170,9 +169,9 @@ public class StockTackPaneController {
 
     public void redirectArea(StoreAreaCode code){
         storeArea = storeModel.getArea(code);
-        selectedRow.setValue(0);
-        selectedShelf.setValue(0);
-        selectedPosition.setValue(0);
+        selectedRow.setValue(1);
+        selectedShelf.setValue(1);
+        selectedPosition.setValue(1);
         // TODO may be bug here (hard code
         // exactly the shelf table view display the locations of the getByRow, etc
         setRow_TableView(storeArea.getList());

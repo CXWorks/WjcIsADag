@@ -73,6 +73,7 @@ public class ManageAccountController {
                     newValue.setSelected(true);
                 }
         );
+        refreshItems();
     }
 
     @FXML
@@ -91,7 +92,6 @@ public class ManageAccountController {
     @FXML
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
-
         // TODO filter accountBLManageService
 	}
 
