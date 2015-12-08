@@ -36,6 +36,8 @@ public interface StoreModelDataService extends DataService<CommonPO> {
 	public OperationMessage setLocation(String centerID,StoreLocation location)
 			throws RemoteException;
 
+	public List<StoreModel> getModels() throws RemoteException;
+
 	public StoreArea getArea(String centerID,StoreAreaCode code) throws RemoteException;
 
 	public StoreModel getModel(String centerID) throws RemoteException;

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -34,8 +35,7 @@ import database.RMIHelper;
  *
  * @author cxworks 2015/10/25
  */
-public class ConfigurationDataImpl extends UnicastRemoteObject implements
-		ConfigurationDataService {
+public class ConfigurationDataImpl extends UnicastRemoteObject implements ConfigurationDataService {
 
 	/**
 	 *
@@ -47,6 +47,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	private String Pack;
 	private String Price;
 	private String Proportion;
+	private String Warningline;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
@@ -58,6 +59,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		Pack = "pack";
 		Price = "price";
 		Proportion = "proportion";
+		Warningline = "warningline";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -69,9 +71,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + City2D + "`(name,x,data,y) "
-				+ "values('" + po.getName() + "','" + po.getX() + "','"
-				+ po.getY() + "')";
+		String insert = "insert into `" + City2D + "`(name,x,data,y) " + "values('" + po.getName() + "','" + po.getX()
+				+ "','" + po.getY() + "')";
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -82,8 +83,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新增城市信息" + po.getName()));
 
 		return result;
@@ -104,9 +105,9 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除城市信息" + name ));
+		// 系统日志
+		if (result.operationResult == true)
+			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除城市信息" + name));
 
 		return result;
 	}
@@ -126,16 +127,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + City2D + "` where `name` = '" + name
-				+ "'";
+		String select = "select * from `" + City2D + "` where `name` = '" + name + "'";
 		ResultSet rs = null;
 		City2DPO result = null;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new City2DPO(rs.getString("name"), rs.getDouble("x"),
-					rs.getDouble("y"));
+			result = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -155,8 +154,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"),
-						rs.getDouble("y"));
+				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -185,8 +183,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	public ArrayList<SalaryStrategyPO> getSalaryStrategy()
-			throws RemoteException {
+	public ArrayList<SalaryStrategyPO> getSalaryStrategy() throws RemoteException {
 		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + SalaryStrategy + "`";
 		ResultSet rs = null;
@@ -196,8 +193,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new SalaryStrategyPO(rs.getInt("base"),
-						rs.getInt("commission"), rs.getInt("bonus"),
+				temp = new SalaryStrategyPO(rs.getInt("base"), rs.getInt("commission"), rs.getInt("bonus"),
 						rs.getString("staff"));
 				result.add(temp);
 			}
@@ -209,12 +205,10 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po)
-			throws RemoteException {
+	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '"
-				+ po.getStaff().toString() + "'";
+		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '" + po.getStaff().toString() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -224,10 +218,9 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 			return result;
 		}
-		String insert = "insert into " + SalaryStrategy
-				+ "(staff,base,commission,bonus) " + "values('"
-				+ po.getStaff().toString() + "','" + po.getBase() + "','"
-				+ po.getCommission() + "','" + po.getBonus() + "')";
+		String insert = "insert into " + SalaryStrategy + "(staff,base,commission,bonus) " + "values('"
+				+ po.getStaff().toString() + "','" + po.getBase() + "','" + po.getCommission() + "','" + po.getBonus()
+				+ "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -238,8 +231,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改薪水策略"));
 
 		return result;
@@ -284,14 +277,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update `" + Pack + "` set `money` ='"
-				+ pack.getByType(PackEnum.OTHER) + "' where `name` = 'OTHER'");
-		operations.add("update `" + Pack + "` set `money` ='"
-				+ pack.getByType(PackEnum.PACKAGE) + "' where `name` = 'PACKAGE'");
-		operations.add("update `" + Pack + "` set `money` ='"
-				+ pack.getByType(PackEnum.PAPER) + "' where `name` = 'PAPER'");
-		operations.add("update `" + Pack + "` set `money` ='"
-				+ pack.getByType(PackEnum.WOOD) + "' where `name` = 'WOOD'");
+		operations.add(
+				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.OTHER) + "' where `name` = 'OTHER'");
+		operations.add("update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.PACKAGE)
+				+ "' where `name` = 'PACKAGE'");
+		operations.add(
+				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.PAPER) + "' where `name` = 'PAPER'");
+		operations.add(
+				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.WOOD) + "' where `name` = 'WOOD'");
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -304,8 +297,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改包装价格"));
 
 		return result;
@@ -347,14 +340,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update `" + Price + "` set `money` ='"
-				+ price.getByType(DeliverTypeEnum.SLOW)
+		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.SLOW)
 				+ "' where `name` = 'SLOW'");
-		operations.add("update `" + Price + "` set `money` ='"
-				+ price.getByType(DeliverTypeEnum.NORMAL)
+		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.NORMAL)
 				+ "' where `name` = 'NORMAL'");
-		operations.add("update `" + Price + "` set `money` ='"
-				+ price.getByType(DeliverTypeEnum.FAST)
+		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.FAST)
 				+ "' where `name` = 'FAST'");
 		try {
 			for (String tmp : operations) {
@@ -368,8 +358,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费价格"));
 
 		return result;
@@ -407,19 +397,15 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return result;
 	}
 
-	public OperationMessage modifyProportion(ProportionPO proportion)
-			throws RemoteException {
+	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update `" + Proportion + "` set `num` ='"
-				+ proportion.getByType(DeliverTypeEnum.SLOW)
+		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.SLOW)
 				+ "' where `name` = 'SLOW'");
-		operations.add("update `" + Proportion + "` set `num` ='"
-				+ proportion.getByType(DeliverTypeEnum.NORMAL)
+		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.NORMAL)
 				+ "' where `name` = 'NORMAL'");
-		operations.add("update `" + Proportion + "` set `num` ='"
-				+ proportion.getByType(DeliverTypeEnum.FAST)
+		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.FAST)
 				+ "' where `name` = 'FAST'");
 		try {
 			for (String tmp : operations) {
@@ -433,8 +419,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
+		// 系统日志
+		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费比例"));
 
 		return result;
@@ -445,23 +431,162 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements
 		return new Object();
 	}
 
-	public OperationMessage modifyInstitutionDistance(String ID, Object ob)
-			throws RemoteException {
+	public OperationMessage modifyInstitutionDistance(String ID, Object ob) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
 	}
 
-	public Object[] newInstitutionDistanceSearch(String ID)
-			throws RemoteException {
+	public Object[] newInstitutionDistanceSearch(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		Object[] stub = new Object[2];
 		return stub;
 	}
 
-	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob)
-			throws RemoteException {
+	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new OperationMessage();
+	}
+
+	@Override
+	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> pos) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		for (SalaryStrategyPO tmp : pos) {
+			String insert = "insert into `" + SalaryStrategy + "`(staff,base,commission,bonus) " + "values('"
+					+ tmp.getStaff() + "','" + tmp.getBase() + "','" + tmp.getBonus() + "','" + tmp.getBonus() + "')";
+			try {
+				statement = conn.prepareStatement(insert);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				result = new OperationMessage(false, "新建时出错：");
+				System.err.println("新建时出错：");
+				e.printStackTrace();
+				break;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage newPack(PackPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String new1 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.PACKAGE + "','"
+				+ po.getByType(PackEnum.PACKAGE) + "')";
+		String new2 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.PAPER + "','"
+				+ po.getByType(PackEnum.PAPER) + "')";
+		String new3 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.WOOD + "','"
+				+ po.getByType(PackEnum.WOOD) + "')";
+		String new4 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.OTHER + "','"
+				+ po.getByType(PackEnum.OTHER) + "')";
+		try {
+			statement = conn.prepareStatement(new1);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new2);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new3);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new4);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage newPrice(PricePO po) throws RemoteException {
+		OperationMessage result = new OperationMessage();
+		String new1 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.FAST + "','"
+				+ po.getByType(DeliverTypeEnum.FAST) + "')";
+		String new2 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.NORMAL + "','"
+				+ po.getByType(DeliverTypeEnum.NORMAL) + "')";
+		String new3 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.SLOW + "','"
+				+ po.getByType(DeliverTypeEnum.SLOW) + "')";
+		try {
+			statement = conn.prepareStatement(new1);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new2);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new3);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String new1 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.FAST + "','"
+				+ po.getByType(DeliverTypeEnum.FAST) + "')";
+		String new2 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.NORMAL + "','"
+				+ po.getByType(DeliverTypeEnum.NORMAL) + "')";
+		String new3 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.SLOW + "','"
+				+ po.getByType(DeliverTypeEnum.SLOW) + "')";
+		try {
+			statement = conn.prepareStatement(new1);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new2);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(new3);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "新建时出错：");
+			System.err.println("新建时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public double getWarningline() throws RemoteException {
+		// TODO Auto-generated method stub
+		String select = "select * from `" + Warningline + "` where `name` = 'warning'";
+		ResultSet rs = null;
+		double result = 0;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			result = rs.getDouble("value");
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public OperationMessage setWarningline(double value) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String operation = "update `" + Warningline + "` set `value` ='" + value + "' where `name` = 'warning'";
+		try {
+			statement = conn.prepareStatement(operation);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "更新时出错：");
+			System.err.println("更新时出错：");
+			e.printStackTrace();
+		}
+
+		// 系统日志
+		if (result.operationResult == true)
+			RMIHelper.getLogDataService().insert(new LogPO("库存管理人员", Calendar.getInstance(), "修改库存警戒比例"));
+
+		return result;
 	}
 
 }

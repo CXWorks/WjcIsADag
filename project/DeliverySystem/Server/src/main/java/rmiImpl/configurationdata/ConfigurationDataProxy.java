@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
@@ -170,6 +171,46 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.modifyInstitutionDistance(ID,ob);
+		return null;
+	}
+
+	@Override
+	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OperationMessage newPack(PackPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OperationMessage newPrice(PricePO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getWarningline() throws RemoteException {
+		// TODO Auto-generated method stub
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return configurationDataService.getWarningline();
+		return 0;
+	}
+
+	@Override
+	public OperationMessage setWarningline(double value) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return configurationDataService.setWarningline(value);
 		return null;
 	}
 

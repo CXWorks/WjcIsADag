@@ -3,6 +3,7 @@ package rmiImpl.storedata;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
+import java.util.List;
 
 import message.OperationMessage;
 import model.store.StoreArea;
@@ -84,6 +85,14 @@ public class StoreModelDataProxy extends UnicastRemoteObject implements StoreMod
 		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeModelDataService.getLocation(centerID, code, row, shelf, position);
+		return null;
+	}
+
+	@Override
+	public List<StoreModel> getModels() throws RemoteException {
+		// TODO Auto-generated method stub
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return storeModelDataService.getModels();
 		return null;
 	}
 

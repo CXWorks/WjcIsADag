@@ -102,8 +102,9 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public StoreModel getModel(String centerID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new StoreModel(centerID,this.getArea(centerID, StoreAreaCode.AIR), this.getArea(centerID, StoreAreaCode.RAIL),
-				this.getArea(centerID, StoreAreaCode.ROAD), this.getArea(centerID, StoreAreaCode.FLEX));
+		return new StoreModel(centerID, this.getArea(centerID, StoreAreaCode.AIR),
+				this.getArea(centerID, StoreAreaCode.RAIL), this.getArea(centerID, StoreAreaCode.ROAD),
+				this.getArea(centerID, StoreAreaCode.FLEX));
 	}
 
 	@Override
@@ -209,6 +210,35 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public List<StoreModel> getModels() throws RemoteException {
+		// TODO Auto-generated method stub
+		String selectAll = "select * from `" + Table_Name + "`";
+		ResultSet rs = null;
+		StoreModel temp = null;
+		List<StoreModel> result = new ArrayList<StoreModel>();
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				if (list.indexOf(rs.getString("centerID"))==-1){
+					list.add(rs.getString("centerID"));
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		for (String tmp : list) {
+			temp = new StoreModel(tmp, this.getArea(tmp, StoreAreaCode.AIR),
+					this.getArea(tmp, StoreAreaCode.RAIL), this.getArea(tmp, StoreAreaCode.ROAD),
+					this.getArea(tmp, StoreAreaCode.FLEX));
+			result.add(temp);
+		}
+		return result;
 	}
 
 }
