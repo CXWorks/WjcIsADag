@@ -118,8 +118,8 @@ public class Main extends Application {
         		//ManageStaffController.launch()
                //StockTackController.launch()
         		//ConfigurationController.launch()
-//        		ManageSalaryController.launch()
-                ManageAccountController.launch()
+        		ManageSalaryController.launch()
+//                ManageAccountController.launch()
         		
         ));
         primaryStage.show();
