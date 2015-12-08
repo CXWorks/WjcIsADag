@@ -70,7 +70,7 @@ public class ManageAccountController {
         );
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    newValue.setSelected(true);
+                    newValue.setSelected(!newValue.getSelected());
                 }
         );
         refreshItems();
