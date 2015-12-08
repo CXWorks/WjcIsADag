@@ -16,6 +16,7 @@ import ui.configurationui.ConfigurationController;
 import ui.deliverui.deliverController;
 import ui.examineui.CheckFormController;
 import ui.financeui.CheckFinanceChartController;
+import ui.financeui.CheckInitInfoController;
 import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
@@ -119,7 +120,8 @@ public class Main extends Application {
                //StockTackController.launch()
         		//ConfigurationController.launch()
 //        		ManageSalaryController.launch()
-                ManageAccountController.launch()
+                //ManageAccountController.launch()
+                CheckInitInfoController.launch()
         		
         ));
         primaryStage.show();
