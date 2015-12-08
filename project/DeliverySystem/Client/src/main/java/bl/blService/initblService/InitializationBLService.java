@@ -1,6 +1,7 @@
 package bl.blService.initblService;
 
 import bl.blService.accountblService.AccountBLManageService;
+import bl.blService.configurationblService.ConfigurationBLService;
 import bl.blService.financeblService.BankAccountBLService;
 import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblCenterService;
@@ -31,7 +32,7 @@ import java.util.Observer;
  * combine the services to reuse the codes, problem may occur
  * Created by Sissel on 2015/10/26.
  */
-public interface InitializationBLService extends BankAccountBLService,StoreModelBLService,ManageblCarService,ManageblStaffService,ManageblCenterService,ManageblHallService{
+public interface InitializationBLService extends BankAccountBLService,StoreModelBLService,ManageblCarService,ManageblStaffService,ManageblCenterService,ManageblHallService,AccountBLManageService,ConfigurationBLService{
 
 
     // Store Manage

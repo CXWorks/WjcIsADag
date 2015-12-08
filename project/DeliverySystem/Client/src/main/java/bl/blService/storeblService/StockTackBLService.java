@@ -2,6 +2,7 @@ package bl.blService.storeblService;
 
 import message.OperationMessage;
 import model.store.StoreAreaCode;
+import util.R.string;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
 import vo.storevo.StoreInVO;
@@ -11,7 +12,7 @@ import vo.storevo.StoreInVO;
  */
 public interface StockTackBLService {
 
-    public StockTackVO getStockTack();
+    public StockTackVO getStockTack(String centerID);
 
     public OrderVO getOrder(String orderNumber);
 

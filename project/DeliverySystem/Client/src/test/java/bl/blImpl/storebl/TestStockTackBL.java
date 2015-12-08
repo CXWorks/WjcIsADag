@@ -25,7 +25,7 @@ public class TestStockTackBL {
 	
 	@Test
 	public void testGetStockTack(){
-		assertNotNull(stockTackBLService.getStockTack());
+		assertNotNull(stockTackBLService.getStockTack(null));
 	}
 	
 	@Test

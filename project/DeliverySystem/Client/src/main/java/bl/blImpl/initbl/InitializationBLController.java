@@ -14,11 +14,19 @@ import model.store.StoreArea;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
 import model.store.StoreModel;
+import po.InfoEnum;
 import po.initialdata.InitialDataPO;
 import po.memberdata.StaffTypeEnum;
 import rmi.initialdata.InitialDataService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
+import vo.accountvo.AccountVO;
+import vo.configurationvo.City2DVO;
+import vo.configurationvo.ConfigurationVO;
+import vo.configurationvo.PackVO;
+import vo.configurationvo.PriceVO;
+import vo.configurationvo.ProportionVO;
+import vo.configurationvo.SalaryStrategyVO;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
 import vo.initialdata.InitialDataVO;
@@ -45,12 +53,6 @@ public class InitializationBLController implements InitializationBLService {
 
     // manageServices
     InitialDataService initialDataService;
-//    StoreModelBLService storeService;
-//    BankAccountBLService bankService;
-//    ManageblCarService carService;
-//    ManageblStaffService staffService;
-//    ManageblCenterService centerService;
-//    ManageblHallService hallService;
     
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
@@ -472,5 +474,126 @@ public class InitializationBLController implements InitializationBLService {
 	public String newHallID(String centerID) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#getAccountVOs()
+	 */
+	@Override
+	public ArrayList<AccountVO> getAccountVOs() {
+		return initialDataVO.getAccountVOs();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#getAccountVO(java.lang.String)
+	 */
+	@Override
+	public AccountVO getAccountVO(String accountID) {
+		ArrayList<AccountVO> src=initialDataVO.getAccountVOs();
+		for (AccountVO accountVO : src) {
+			if (accountVO.ID.equalsIgnoreCase(accountID)) {
+				return accountVO;
+			}
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#addAccount(vo.accountvo.AccountVO)
+	 */
+	@Override
+	public OperationMessage addAccount(AccountVO vo) {
+		boolean re=initialDataVO.getAccountVOs().add(vo);
+		return new OperationMessage(re, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#deleteAccount(vo.accountvo.AccountVO)
+	 */
+	@Override
+	public OperationMessage deleteAccount(AccountVO vo) {
+		boolean re=initialDataVO.getAccountVOs().remove(vo);
+		return new OperationMessage(re, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#modifyAccount(vo.accountvo.AccountVO)
+	 */
+	@Override
+	public OperationMessage modifyAccount(AccountVO vo) {
+		this.deleteAccount(vo);
+		this.addAccount(vo);
+		return new OperationMessage();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.InfoEnum)
+	 */
+	@Override
+	public ArrayList<ConfigurationVO> get(InfoEnum type) {
+		ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>();
+		switch (type) {
+		case PACK:
+			ans.add(initialDataVO.getPackVO());
+			return ans;
+		case PROPORTION:
+			ans.add(initialDataVO.getProportionVO());
+			return ans;
+		case PRICE:
+			ans.add(initialDataVO.getPriceVO());
+			return ans;
+		case SALARY:
+			ans.addAll(initialDataVO.getSalaryStrategyVO());
+			return ans;
+		case CITY_2D:
+			ans.addAll(initialDataVO.getCity2dvos());
+			return ans;
+
+		default:
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#modify(vo.configurationvo.ConfigurationVO)
+	 */
+	@Override
+	public OperationMessage modify(ConfigurationVO after) {
+		switch (after.getInfoEnum()) {
+		case PRICE:
+			PriceVO priceVO=(PriceVO)after;
+			return initialDataVO.setPriceVO(priceVO);
+		case PROPORTION:
+			ProportionVO proportionVO=(ProportionVO)after;
+			return initialDataVO.setProportionVO(proportionVO);
+		case PACK:
+			PackVO packVO=(PackVO)after;
+			return initialDataVO.setPackVO(packVO);
+		case SALARY:
+			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
+			ArrayList<SalaryStrategyVO> salaryStrategyVOs=initialDataVO.getSalaryStrategyVO();
+			for (SalaryStrategyVO salaryStrategyVO2 : salaryStrategyVOs) {
+				if (salaryStrategyVO2.getStaff().equals(salaryStrategyVO.getStaff())) {
+					salaryStrategyVO2.setBase(salaryStrategyVO.getBase());
+					salaryStrategyVO2.setBonus(salaryStrategyVO.getBonus());
+					salaryStrategyVO2.setCommission(salaryStrategyVO.getCommission());
+					return new OperationMessage();
+				}
+			}
+			return new OperationMessage(false, "not found");
+		case CITY_2D:
+			City2DVO city2dvo=(City2DVO)after;
+			ArrayList<City2DVO> city2dvos=initialDataVO.getCity2dvos();
+			for (City2DVO city2dvo2 : city2dvos) {
+				if (city2dvo2.getName().equals(city2dvo.getName())) {
+					city2dvo2.setX(city2dvo.getX());
+					city2dvo2.setY(city2dvo.getY());
+					return new OperationMessage();
+				}
+			}
+			return new OperationMessage(false,"not found");
+		default:
+			return new OperationMessage(false, "unknown type");
+		}
 	}
 }

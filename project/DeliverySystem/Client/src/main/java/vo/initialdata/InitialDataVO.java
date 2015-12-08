@@ -1,5 +1,6 @@
 package vo.initialdata;
 
+import message.OperationMessage;
 import model.store.StoreModel;
 import tool.vopo.VOPOFactory;
 import vo.CommonVO;
@@ -47,12 +48,12 @@ public class InitialDataVO extends InfoVO{
     ArrayList<StaffVO> staffs;
     ArrayList<HallVO> halls;
     ArrayList<CenterVO> centers;
-    List<City2DVO> city2dvos;
+    ArrayList<City2DVO> city2dvos;
     PriceVO priceVO;
     ProportionVO proportionVO;
-    List< SalaryStrategyVO> salaryStrategyVO;
+    ArrayList< SalaryStrategyVO> salaryStrategyVO;
     PackVO packVO;
-    List<AccountVO> accountVOs;
+    ArrayList<AccountVO> accountVOs;
 //    public static void main(String[] args) {
 //		InitialDataVO i=new InitialDataVO("1", "dd", new ArrayList<StoreModel>(), new ArrayList<BankAccountVO>(), new ArrayList<CarVO>(), new ArrayList<StaffVO>(), new ArrayList<HallVO>(), new ArrayList<CenterVO>(), new PriceVO(), new ProportionVO(), new ArrayList<SalaryStrategyVO>(), new PackVO(), new ArrayList<AccountVO>(),new ArrayList<City2DVO>());
 //		InitialDataPO p=i.toPO();
@@ -74,8 +75,8 @@ public class InitialDataVO extends InfoVO{
     		this.salaryStrategyVO.add( new SalaryStrategyVO(tmp));
     	}
     	this.packVO=new PackVO(po.getPackPO());
-    	this.accountVOs=(List<AccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getAccountPOs());
-    	this.city2dvos=(List<City2DVO>) this.trans((ArrayList<? extends CommonPO>) po.getCity2dpos());
+    	this.accountVOs=(ArrayList<AccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getAccountPOs());
+    	this.city2dvos=(ArrayList<City2DVO>) this.trans((ArrayList<? extends CommonPO>) po.getCity2dpos());
     }
 
     private ArrayList<? extends CommonVO> trans(ArrayList<? extends CommonPO> src){
@@ -142,7 +143,7 @@ public class InitialDataVO extends InfoVO{
 			ArrayList<StaffVO> staffs, ArrayList<HallVO> halls,
 			ArrayList<CenterVO> centers, PriceVO priceVO,
 			ProportionVO proportionVO, ArrayList<SalaryStrategyVO> salaryStrategyVO,
-			PackVO packVO, List<AccountVO> accountVOs,ArrayList<City2DVO> city2dvos) {
+			PackVO packVO, ArrayList<AccountVO> accountVOs,ArrayList<City2DVO> city2dvos) {
 		this();
 		this.version = version;
 		this.dbName = dbName;
@@ -186,14 +187,29 @@ public class InitialDataVO extends InfoVO{
 	public ProportionVO getProportionVO() {
 		return proportionVO;
 	}
-	public List<SalaryStrategyVO> getSalaryStrategyVO() {
+	public ArrayList<SalaryStrategyVO> getSalaryStrategyVO() {
 		return salaryStrategyVO;
 	}
 	public PackVO getPackVO() {
 		return packVO;
 	}
-	public List<AccountVO> getAccountVOs() {
+	public ArrayList<AccountVO> getAccountVOs() {
 		return accountVOs;
 	}
-
+	public ArrayList<City2DVO> getCity2dvos() {
+		return city2dvos;
+	}
+	public OperationMessage setPriceVO(PriceVO priceVO) {
+		this.priceVO = priceVO;
+		return new OperationMessage();
+	}
+	public OperationMessage setProportionVO(ProportionVO proportionVO) {
+		this.proportionVO = proportionVO;
+		return new OperationMessage();
+	}
+	public OperationMessage setPackVO(PackVO packVO) {
+		this.packVO = packVO;
+		return new OperationMessage();
+	}
+	
 }
