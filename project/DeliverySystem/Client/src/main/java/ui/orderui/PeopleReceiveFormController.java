@@ -8,7 +8,9 @@ import bl.blService.deliverblService.CheckDeliverForm;
 import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
+import tool.time.TimeConvert;
 import userinfo.UserInfo;
+import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -76,7 +78,10 @@ public class PeopleReceiveFormController {
 
 
 	public void commit(ActionEvent actionEvent) {
-
+        // TODO check
+        DeliverVO deliverVO = new DeliverVO(null, selected.formID,
+                TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText());
+        checkDeliver.finishDelivery(deliverVO);
 	}
 
 	public void clear(ActionEvent actionEvent) {
