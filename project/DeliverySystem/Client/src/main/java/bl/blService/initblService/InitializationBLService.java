@@ -37,7 +37,6 @@ public interface InitializationBLService
         extends BankAccountBLService, StoreModelBLService, ManageblCarService,
         ManageblStaffService, ManageblCenterService, ManageblHallService, ConfigurationBLService, AccountBLManageService
 {
-
     // Store Manage
     
     public StoreModel searchModel(String modelID);
@@ -52,5 +51,4 @@ public interface InitializationBLService
     public OperationMessage uploadInitialData();
 
     public OperationMessage abortInitData();
-
 }

@@ -21,6 +21,7 @@ import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
 import vo.managevo.staff.StaffVO;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
@@ -30,11 +31,18 @@ import java.lang.management.ManagementFactory;
 public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
-
-    public Image Image_Back= new Image("http://docs.oracle.com/javafx/"
-            + "javafx/images/javafx-documentation.png");
+    
+    public Image Image_Back= new Image("https://github.com/WjcIsaDog/"
+    		+ "WjcIsADag/blob/master/UI%E5%9B%BE%E7%89%87/login/back.png?raw=true");
+    public Image Image_Name = new Image();
+    public Image Image_Password = new Image();
+    public Image Image_Sure = new Image();
+    
     
     public ImageView back_ImageView;
+    public ImageView name_ImageView;
+    public ImageView password_ImageView;
+    public ImageView sure_ImageView;
     
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();

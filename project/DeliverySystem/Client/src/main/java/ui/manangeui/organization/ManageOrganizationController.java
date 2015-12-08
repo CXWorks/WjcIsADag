@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javafx.scene.layout.Pane;
 import po.InfoEnum;
 import factory.InstitutionFactory;
 import bl.blService.manageblService.ManageblCenterService;
@@ -48,15 +49,21 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public TableColumn<InstitutionVO, String> typecColumn;
 	public TableColumn<InstitutionVO, String> institutionIDColumn;
 	public boolean isNew=false;
-	private ManageblHallService manageblHallService=InstitutionFactory.getManageblHallService();
-	private ManageblCenterService manageblCenterService=InstitutionFactory.getManageblCenterService();
+	private ManageblHallService manageblHallService;
+	private ManageblCenterService manageblCenterService;
 	
-	public static Parent launch() throws IOException{
-		FXMLLoader fxmlLoader=new FXMLLoader();
+	public static Parent launch
+            (ManageblHallService hallService, ManageblCenterService centerService) throws IOException
+    {
+		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(ManageOrganizationController.class.getResource("manageOrganization.fxml"));
-		return fxmlLoader.load();
+		Pane pane = fxmlLoader.load();
+        ManageOrganizationController controller = fxmlLoader.getController();
+        controller.manageblHallService = hallService;
+        controller.manageblCenterService = centerService;
+
+		return pane;
 	}
-	
 	
 	public void initialize(){
 		institutionVOs=this.getInstitutionVOs();
