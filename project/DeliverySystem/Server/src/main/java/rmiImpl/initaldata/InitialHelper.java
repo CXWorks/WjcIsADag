@@ -184,19 +184,19 @@ public class InitialHelper {
 
 	public OperationMessage loadMysql(InitialDataPO po) throws RemoteException {
 		for (StoreModel tmp : po.getStoreModels()) {
-			for (String label : tmp.getAir().getShelfLabel()) {
+			for (String label : tmp.getArea(StoreAreaCode.AIR).getShelfLabel()) {
 				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.AIR,
 						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for (String label : tmp.getFlex().getShelfLabel()) {
+			for (String label : tmp.getArea(StoreAreaCode.FLEX).getShelfLabel()) {
 				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.FLEX,
 						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for (String label : tmp.getRail().getShelfLabel()) {
+			for (String label : tmp.getArea(StoreAreaCode.RAIL).getShelfLabel()) {
 				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.RAIL,
 						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
-			for (String label : tmp.getRoad().getShelfLabel()) {
+			for (String label : tmp.getArea(StoreAreaCode.ROAD).getShelfLabel()) {
 				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.ROAD,
 						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
