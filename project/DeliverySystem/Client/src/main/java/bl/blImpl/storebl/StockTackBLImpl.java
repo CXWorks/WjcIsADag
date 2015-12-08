@@ -35,9 +35,9 @@ public class StockTackBLImpl implements StockTackBLService {
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
 		i=0;
 	}
-    public StockTackVO getStockTack() {
+    public StockTackVO getStockTack(String centerID) {
        try {
-		StoreModel storeModel=storeModelDataService.getModel("0040001");
+		StoreModel storeModel=storeModelDataService.getModel(centerID);
 		i++;
 		return new StockTackVO(Calendar.getInstance(), Integer.toString(i), storeModel);
 	} catch (RemoteException e) {

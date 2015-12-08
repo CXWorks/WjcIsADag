@@ -23,6 +23,26 @@ public class City2DVO extends ConfigurationVO {
 	private double y;
 	
 	
+	
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public String getName() {
+		return name;
+	}
 	//误差
 	private static final double ERROR = 0.05;
 	//比例尺 1：100
