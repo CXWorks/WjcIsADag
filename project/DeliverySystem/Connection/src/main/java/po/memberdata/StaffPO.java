@@ -53,6 +53,7 @@ public class StaffPO extends InfoPO implements Serializable{
 	}
 
 	public void setStaff(String staff) {
+		System.out.println(staff);
 		switch (staff) {
 		case "ADMINISTRATOR":
 			this.staff = StaffTypeEnum.ADMINISTRATOR;
@@ -71,6 +72,7 @@ public class StaffPO extends InfoPO implements Serializable{
 			break;
 		case "MANAGER":
 			this.staff = StaffTypeEnum.MANAGER;
+			break;
 		case "STOREMAN":
 			this.staff = StaffTypeEnum.STOREMAN;
 			break;

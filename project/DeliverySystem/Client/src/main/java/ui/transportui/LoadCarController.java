@@ -42,7 +42,7 @@ public class LoadCarController {
     public ChoiceBox<String> arrival_ChoiceBox;
     public ChoiceBox<String> carID_ChoiceBox;
 
-    ArrayList<String> ids;
+    ArrayList<String> ids=new ArrayList<String>();
     
     TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
     
@@ -54,16 +54,18 @@ public class LoadCarController {
 
     @FXML
     public void initialize(){
-
+    	transitCarID_Field.setText(transportHallBLService.newID());
     	arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
     	carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
+    	transitCarID_Field.setText(transportHallBLService.newID());
+    	System.out.println(transportHallBLService.newID());
     	 clear(null);
     }
 
     public void add(ActionEvent actionEvent){
     	String a= id_Field.getText();
     	System.out.println("aaaa"+a);
-     	ids.add(a);
+//     	ids.add(a);
      	orders_ListView.getItems().add(a);
     	//orders.getItems().add(a);
     	id_Field.clear();

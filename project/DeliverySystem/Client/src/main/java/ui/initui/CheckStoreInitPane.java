@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import model.store.StoreModel;
 import ui.storeui.StockTackPaneController;
 
 import java.io.IOException;
@@ -22,10 +23,12 @@ public class CheckStoreInitPane {
     public AnchorPane content_Pane;
 
     private InitializationBLService initService = InitBLFactory.getInitializationBLService();
+    private StockTackPaneController stockTackPaneController;
 
     public void loadStore(ActionEvent actionEvent) {
         String storeID = storeID_Field.getText();
-        
+        StoreModel model = initService.searchModel(storeID);
+        stockTackPaneController.setStoreModel(model);
     }
 
     @FXML
@@ -35,6 +38,7 @@ public class CheckStoreInitPane {
         try {
             Pane pane = loader.load();
             content_Pane.getChildren().add(pane);
+            stockTackPaneController = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,12 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.initui.CheckStoreInitPane;
 import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
+import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.InstitutionVO;
 import vo.managevo.staff.StaffVO;
@@ -57,6 +60,8 @@ public class CheckInitInfoController {
 
     public TableView info_TableView = new TableView();
 
+    private InitialDataVO initialDataVO;
+
     public static Parent launch() throws IOException {
         return FXMLLoader.load(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
     }
@@ -88,6 +93,8 @@ public class CheckInitInfoController {
         // TODO test to be removed
         UserInfo.setSystemState(SystemState.NORMAL);
         systemState_Label.setText(UserInfo.getSystemState().getChinese());
+
+        //initialDataVO = initBLService.getInitialDataVO();
     }
 
     public void applyForInitialization(ActionEvent actionEvent) {
@@ -107,7 +114,7 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(name_TableColumn, balance_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllAccounts());
+        info_TableView.getItems().addAll(initialDataVO.getBankAccounts());
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(info_TableView);
     }
@@ -128,7 +135,7 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, licence_TableColumn, time_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllCars());
+        info_TableView.getItems().addAll(initialDataVO.getCars());
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(info_TableView);
     }
@@ -161,8 +168,8 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, type_TableColumn, city_TableColumn, staff_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllCenters());
-        info_TableView.getItems().addAll(initBLService.getAllHalls());
+        info_TableView.getItems().addAll(initialDataVO.getHalls());
+        info_TableView.getItems().addAll(initialDataVO.getCenters());
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(info_TableView);
     }
@@ -187,13 +194,21 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(id_TableColumn, name_TableColumn, type_TableColumn, institution_TableColumn);
-        info_TableView.getItems().addAll(initBLService.getAllStaffs());
+        info_TableView.getItems().addAll(initialDataVO.getStaffs());
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(info_TableView);
     }
 
     private void showStores(){
+        Pane pane = null;
+        try {
+            pane = FXMLLoader.load(CheckStoreInitPane.class.getResource("checkStoreInitPane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(pane);
     }
 
     private void reconstructColumns(TableColumn...columns){

@@ -75,7 +75,7 @@ public class TransitFormController {
          arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
 //    	 arrival_Box.setItems(FXCollections.observableArrayList("a","b","c"));
     	
-         clear(null);
+//         clear(null);
     }
     
     

@@ -31,8 +31,8 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 			if (check.operationResult) {
 				MemberDataService< StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 				StaffPO user=memberDataService.getPerson(id);
-				UserInfo.setInfo(user.getID(), user.getStaff(), user.getInititutionID(),user.getName());
-				System.out.println(UserInfo.getInstitutionID());
+				UserInfo.setInfo(user.getID(), user.getStaff(), user.getInititutionID());
+				System.out.println(UserInfo.getStaffType());
 				return new OperationMessage();
 			} else {
 				return check;
