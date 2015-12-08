@@ -54,7 +54,6 @@ public class LoadCarController {
 
     @FXML
     public void initialize(){
-    	transitCarID_Field.setText(transportHallBLService.newID());
     	arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
     	carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
     	transitCarID_Field.setText(transportHallBLService.newID());

@@ -31,8 +31,8 @@ public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
 
-    public Image Image_Back= new Image("https://github.com/WjcIsaDog"
-    		+ "/WjcIsADag/blob/master/UI%E5%9B%BE%E7%89%87/login/back.png");
+    public Image Image_Back= new Image("http://docs.oracle.com/javafx/"
+            + "javafx/images/javafx-documentation.png");
     
     public ImageView back_ImageView;
     

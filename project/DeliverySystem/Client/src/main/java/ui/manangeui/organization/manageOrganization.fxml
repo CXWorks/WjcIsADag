@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.organization.ManageOrganizationController">
    <children>
-      <GridPane layoutX="400.0" layoutY="76.0" prefHeight="182.0" prefWidth="295.0">
+      <GridPane layoutX="416.0" layoutY="76.0" prefHeight="182.0" prefWidth="279.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,7 +34,7 @@
             <TextField fx:id="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Text layoutX="439.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="机构信息" underline="true" />
+      <Text layoutX="413.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="机构信息" underline="true" />
       <Button layoutX="675.0" layoutY="337.0" mnemonicParsing="false" onAction="#clear" text="清空" />
       <Button layoutX="675.0" layoutY="383.0" mnemonicParsing="false" onAction="#sure" text="确认" />
       <Button layoutX="620.0" layoutY="279.0" mnemonicParsing="false" onAction="#manageStaff" text="管理员工" />
