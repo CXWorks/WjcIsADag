@@ -11,9 +11,11 @@ import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.receiveui.ReceiveFormController;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,19 +38,21 @@ public class deliverController {
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
 	public TableColumn<Map.Entry<String, String>, String> value_Column;
 
-	public TextField id_Field; 
+	public TextField id_Field;
 	public DatePicker date_DatePicker;
 	public ChoiceBox<String> postman_Box;
 
 	private String idToSend="";
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
-	
+
 
 	ArrayList<String> toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
 	ArrayList<String> postmans= deliverBLService.getPostman(UserInfo.getInstitutionID());
 
 	public static Parent launch() throws IOException {
-		return FXMLLoader.load(deliverController.class.getResource("deliver.fxml"));
+		  FXMLLoader contentLoader = new FXMLLoader();
+	        contentLoader.setLocation(deliverController.class.getResource("deliver.fxml"));
+	        return contentLoader.load();
 	}
 
 
@@ -63,6 +67,9 @@ public class deliverController {
 //				);
 //		clear(null);
 		ids_TableView.setItems(FXCollections.observableArrayList(toSend));
+		ids_Column.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue())
+				);
 		date_DatePicker.setValue(LocalDate.now());
 		ids_TableView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
@@ -75,9 +82,14 @@ public class deliverController {
 				);
 
 
-	}
+        OrderVO2ColumnHelper.setKeyColumn(key_Column);
+        OrderVO2ColumnHelper.setValueColumn(value_Column);
+    }
 
-	
+
+
+
+
     private void fillOrderTable(){
         OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
 
@@ -87,17 +99,18 @@ public class deliverController {
 //                        DeliverTypeEnum.NORMAL, PackingEnum.BAG);
 
         info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+
     }
-	
+
 	public void search(ActionEvent actionEvent){
 		String filter = id_Search_Field.getText();
-		
+
         OrderVO orderVO = deliverBLService.getOrderVO(filter);
         info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
-        
+
         ids_TableView.setItems(FXCollections.observableArrayList(filter));
 
-		
+
 	}
 
 	public void commit(ActionEvent actionEvent) {

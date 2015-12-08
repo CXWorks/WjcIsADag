@@ -37,7 +37,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	public StoreModelDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
-		Table_Name = "model_store";
+		Table_Name = "store_model";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -106,6 +106,11 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 				this.getArea(centerID, StoreAreaCode.RAIL), this.getArea(centerID, StoreAreaCode.ROAD),
 				this.getArea(centerID, StoreAreaCode.FLEX));
 	}
+
+//	public static void main(String[] args) throws RemoteException {
+//		StoreModelDataImpl t = new StoreModelDataImpl();
+//		t.newShelf("0040001", StoreAreaCode.RAIL, 1, 1);
+//	}
 
 	@Override
 	public OperationMessage newShelf(String centerID, StoreAreaCode code, int row, int shelf) throws RemoteException {
@@ -224,7 +229,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				if (list.indexOf(rs.getString("centerID"))==-1){
+				if (list.indexOf(rs.getString("centerID")) == -1) {
 					list.add(rs.getString("centerID"));
 				}
 			}
@@ -233,9 +238,8 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			e.printStackTrace();
 		}
 		for (String tmp : list) {
-			temp = new StoreModel(tmp, this.getArea(tmp, StoreAreaCode.AIR),
-					this.getArea(tmp, StoreAreaCode.RAIL), this.getArea(tmp, StoreAreaCode.ROAD),
-					this.getArea(tmp, StoreAreaCode.FLEX));
+			temp = new StoreModel(tmp, this.getArea(tmp, StoreAreaCode.AIR), this.getArea(tmp, StoreAreaCode.RAIL),
+					this.getArea(tmp, StoreAreaCode.ROAD), this.getArea(tmp, StoreAreaCode.FLEX));
 			result.add(temp);
 		}
 		return result;

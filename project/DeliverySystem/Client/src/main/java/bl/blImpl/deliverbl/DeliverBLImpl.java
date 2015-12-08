@@ -22,11 +22,11 @@ import bl.clientNetCache.CacheHelper;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//bl.blImpl.deliverbl//DeliverBLController.java
  * @author CXWorks
  * @date 2015年11月15日 下午4:45:57
- * @version 1.0 
+ * @version 1.0
  */
 public class DeliverBLImpl implements DeliverBLService {
 	private DraftService draftService;
@@ -107,7 +107,7 @@ public class DeliverBLImpl implements DeliverBLService {
 	@Override
 	public ArrayList<String> getUnhandledOrderID(String hallID) {
 		try {
-			ArrayList<String> order=deliverDataService.available(hallID);
+			ArrayList<String> order=deliverDataService.available();
 			return order;
 		} catch (RemoteException e) {
 			return null;
@@ -131,7 +131,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
 
 }
