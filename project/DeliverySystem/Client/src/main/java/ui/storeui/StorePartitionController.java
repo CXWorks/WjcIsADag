@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.time.TimeConvert;
 import tool.ui.StoreAreaVO2ColumnHelper;
@@ -60,6 +61,8 @@ public class StorePartitionController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getShelfID() + ""));
 		rate_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getUsedProportion() + ""));
+
+
 
 		StoreAreaVO2ColumnHelper.setKeyColumn(key_TableColumn);
 		StoreAreaVO2ColumnHelper.setValueColumn(value_TableColumn);
@@ -106,13 +109,33 @@ public class StorePartitionController {
 	}
 
 	public void expandArea(ActionEvent actionEvent) {
-		storeModelBLService.expandPartition(area, 1);
-		this.setView();
+        Stage dialogStage = new Stage();
+        try {
+            EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
+            dialogStage.showAndWait();
+            int num = dialog.getShelfNum();
+            if(num != 0){
+                storeModelBLService.expandPartition(area, num);
+            }
+            this.setView();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void reduceArea(ActionEvent actionEvent) {
-		storeModelBLService.reducePartition(area, 1);
-		this.setView();
+        Stage dialogStage = new Stage();
+        try {
+            EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
+            dialogStage.showAndWait();
+            int num = dialog.getShelfNum();
+            if(num != 0){
+                storeModelBLService.reducePartition(area, num);
+            }
+            this.setView();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void reajust(ActionEvent actionEvent) {

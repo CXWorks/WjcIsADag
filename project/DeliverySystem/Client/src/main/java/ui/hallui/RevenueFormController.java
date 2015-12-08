@@ -31,24 +31,23 @@ import javafx.scene.control.*;
  * Created by Sissel on 2015/11/27.
  */
 public class RevenueFormController {
-    public TableView<RevenueVO> revenues_TableView;
-    public TableColumn<RevenueVO,String> date_TableColumn;
-    public TableColumn<RevenueVO,String> money_TableColumn;
-    public TableColumn<RevenueVO,String> deliver_TableColumn;
-    public TableColumn<RevenueVO,String> order_TableColumn;
+    public TableView<Revenue> revenues_TableView;
+    public TableColumn<Revenue,String> money_TableColumn;
+    public TableColumn<Revenue,String> order_TableColumn;
     public DatePicker revenue_DatePicker;
     public TextField money_Field;
     public TextField order_Field;
     
     public Label total_Label;
-    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
-    DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
     public ChoiceBox<String> deliver_ChoiceBox;
     
-	ArrayList<String> postmans= deliverBLService.getPostman(UserInfo.getInstitutionID());
-    private RevenueVO  revenueVO = new RevenueVO("");
-    
-    public String institutionID=UserInfo.getInstitutionID();
+    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
+    DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
+
+    String institutionID=UserInfo.getInstitutionID();
+	ArrayList<String> postmans= deliverBLService.getPostman(institutionID);
+	ArrayList<String> orderIDs=new ArrayList<String>();
+    int money=0;
     
    
     
@@ -65,32 +64,12 @@ public class RevenueFormController {
 	
 	
     public void add(ActionEvent actionEvent) {
-    	date_TableColumn.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getDate().toString())
-        );
-	money_TableColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getAmount())
-        );
-	deliver_TableColumn.setCellValueFactory(
-            cellData -> new SimpleStringProperty(cellData.getValue().getDeliverName())
-    );
-	order_TableColumn.setCellValueFactory(
-            cellData -> new SimpleStringProperty(cellData.getValue().getOrderIDs().toString())
-    );
-	revenues_TableView.setItems(
-                FXCollections.observableArrayList(
-
-                )
-        );
-	revenues_TableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    System.out.println("selected " + newValue.formID);
-                    
-                   // RevenueVO = newValue;
-                }
-        );
-    }
-
+    	orderIDs.add(order_Field.getText());
+    	money+=Integer.parseInt(money_Field.getText());
+    	total_Label.setText(money+"");
+    	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
+    	}                
+ 
     public void saveDraft(ActionEvent actionEvent) {
     	revenueBLService.saveDraft(generateRevenueVO(null));
     }
@@ -108,11 +87,10 @@ public class RevenueFormController {
 
     private RevenueVO generateRevenueVO(String formID){
     	 Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
-    	 return null;
-//        return new RevenueVO(
-//                formID,calendar,money_Field.getText(),
-//                deliver_ChoiceBox.getValue().toString(),institutionID,order_Field.getText()
-//        );
+        return new RevenueVO(
+                formID,calendar,total_Label.getText(),
+                deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs
+        );
     }
     
     
@@ -122,8 +100,8 @@ public class RevenueFormController {
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
     }
+
+
     
-    public void Total(ActionEvent actionEvent){
-    	
-    }
+    
 }

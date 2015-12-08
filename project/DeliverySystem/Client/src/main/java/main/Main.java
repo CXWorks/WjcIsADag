@@ -15,6 +15,7 @@ import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
 import ui.examineui.CheckFormController;
 import ui.financeui.CheckFinanceChartController;
+import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.loginui.LoginController;
@@ -53,7 +54,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-      CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -114,13 +115,13 @@ public class Main extends Application {
 
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
-        		NewOrderController.launch()
+        		//NewOrderController.launch()
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
-//        		ManageOrganizationController.launch()
+        		//ManageOrganizationController.launch()
+                CheckLogController.launch()
         ));
-
         primaryStage.show();
     }
 }

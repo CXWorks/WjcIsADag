@@ -5,6 +5,8 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import vo.InfoVO;
+import vo.managevo.institution.CenterVO;
+import vo.managevo.institution.InstitutionVO;
 
 public class StaffVO extends InfoVO{
 	
@@ -87,6 +89,8 @@ public class StaffVO extends InfoVO{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	
 	public void setStaff(String staff) {
 		switch (staff) {

@@ -25,10 +25,12 @@ import java.util.Observer;
  */
 public class StoreModelBLImpl implements StoreModelBLService {
 	private StoreModelDataService storeModelDataService;
+	private StoreWarningChecker storeWarningChecker;
 	public StoreModelBLImpl(){
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
 	}
     public OperationMessage setWarningLine(double percent) {
+    	this.storeWarningChecker=new StoreWarningChecker(percent);
         return new OperationMessage();
     }
     //
@@ -137,6 +139,13 @@ public class StoreModelBLImpl implements StoreModelBLService {
 		} catch (RemoteException e) {
 			return null;
 		}
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StoreModelBLService#getWarningLine()
+	 */
+	@Override
+	public double getWarningLine() {
+		return storeWarningChecker.getWarningLine();
 	}
 	
 }

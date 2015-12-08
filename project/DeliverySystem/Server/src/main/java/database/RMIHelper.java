@@ -60,7 +60,8 @@ import rmiImpl.transportdata.LoadDataProxy;
 public class RMIHelper {
 	//
 	private static Remote reg = null;
-	private static final String IP = "172.26.115.63:2333";
+	private static final String IP = "127.0.0.1:2333";
+
 	//
 	private static AccountDataService accountDataService;
 	private static ChatRemindService chatRemindService;

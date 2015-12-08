@@ -12,9 +12,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import main.Main;
 import tool.time.TimeConvert;
 import vo.systemvo.LogVO;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -41,8 +44,19 @@ public class CheckLogController {
 
     @FXML
     public void exportTXT(ActionEvent actionEvent) {
-        // TODO file browser
-        logblService.exportToTXT("path");
+        // TODO 记下用户上次存文件的位置
+        FileChooser fileChooser = new FileChooser();
+        //fileChooser.setInitialDirectory(new File("g:/develop"));
+        fileChooser.setInitialFileName("Log--"
+                + TimeConvert.getDisplayDate(begin_DatePicker.getValue())
+                + "--"
+                + TimeConvert.getDisplayDate(end_DatePicker.getValue())
+                +".txt");
+        File file = fileChooser.showSaveDialog(Main.primaryStage);
+
+        if(file != null){
+            logblService.exportToTXT(file.getAbsolutePath());
+        }
     }
 
     @FXML

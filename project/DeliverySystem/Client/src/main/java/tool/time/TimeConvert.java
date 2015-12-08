@@ -31,4 +31,12 @@ public class TimeConvert {
         // month is a stupid design
         return year + "-" + (month + 1) + "-" + day;
     }
+
+    public static String getDisplayDate(LocalDate date){
+        int year = date.getYear();
+        int month = date.getMonth().getValue();
+        int day = date.getDayOfMonth();
+
+        return year + "-" + month + "-" + day;
+    }
 }
