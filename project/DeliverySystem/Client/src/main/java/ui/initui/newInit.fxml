@@ -5,10 +5,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.NewInitController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.NewInitController">
    <children>
       <Label layoutX="50.0" layoutY="36.0" text="系统状态：" />
-      <Label fx:id="systemstate_Label" layoutX="138.0" layoutY="36.0" text="建账中" />
+      <Label fx:id="systemState_Label" layoutX="138.0" layoutY="36.0" text="建账中" />
       <Button layoutX="53.0" layoutY="115.0" mnemonicParsing="false" onAction="#manageStore" prefHeight="63.0" prefWidth="133.0" text="仓库管理">
          <font>
             <Font size="24.0" />
@@ -37,7 +37,7 @@
       <HBox layoutX="442.0" layoutY="362.0" spacing="16.0">
          <children>
             <Button layoutX="386.0" layoutY="363.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="37.0" prefWidth="87.0" text="保存草稿" />
-            <Button layoutX="496.0" layoutY="363.0" mnemonicParsing="false" onAction="#clear" prefHeight="37.0" prefWidth="87.0" text="清空" />
+            <Button layoutX="496.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancel" prefHeight="37.0" prefWidth="87.0" text="取消" />
             <Button layoutX="607.0" layoutY="363.0" mnemonicParsing="false" onAction="#commit" prefHeight="37.0" prefWidth="87.0" text="确认建账" />
          </children>
       </HBox>

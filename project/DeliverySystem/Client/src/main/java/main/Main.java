@@ -12,20 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
-import ui.configurationui.ConfigurationController;
-import ui.deliverui.deliverController;
-import ui.examineui.CheckFormController;
-import ui.financeui.CheckFinanceChartController;
-import ui.financeui.CheckInitInfoController;
-import ui.financeui.CheckLogController;
-import ui.financeui.ManageBankAccountController;
-import ui.hallui.ManageCarDriverController;
+import ui.initui.CheckInitInfoController;
 import ui.loginui.LoginController;
-import ui.manangeui.salary.ManageSalaryController;
-import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
-import ui.orderui.NewOrderController;
-import ui.storeui.StockTackController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -120,8 +109,8 @@ public class Main extends Application {
                //StockTackController.launch()
         		//ConfigurationController.launch()
 //        		ManageSalaryController.launch()
-                //ManageAccountController.launch()
-                CheckInitInfoController.launch()
+                ManageAccountController.launch()
+                //CheckInitInfoController.launch()
         		
         ));
         primaryStage.show();

@@ -42,6 +42,7 @@ public class ManageBankAccountController {
         return FXMLLoader.load(ManageBankAccountController.class.getResource("manageBankAccount.fxml"));
     }
 
+    @FXML
     public void newAccount(ActionEvent actionEvent) throws IOException {
         BankAccountVO bankAccountVO = new BankAccountVO(null, null, null);
         AccountEditDialogController controller = AccountEditDialogController.newDialog
@@ -53,12 +54,14 @@ public class ManageBankAccountController {
         //bankAccountBLService.addAccount(bankAccountVO);
     }
 
+    @FXML
     public void deleteAccount(ActionEvent actionEvent) {
         bankAccountBLService.deleteAccount(this.bankAccountVO);
 
         accounts_TableView.getItems().remove(this.bankAccountVO);
     }
 
+    @FXML
     public void editAccount(ActionEvent actionEvent) throws IOException {
         BankAccountVO bankAccountVO = this.bankAccountVO;
         AccountEditDialogController dialog = AccountEditDialogController.newDialog
@@ -69,19 +72,20 @@ public class ManageBankAccountController {
         //bankAccountBLService.editAccount(bankAccountVO, bankAccountVO.accountName);
     }
 
+    @FXML
     public void checkHistory(ActionEvent actionEvent) {
         if(this.bankAccountVO == null){
             return;
         }
         history_TableView.getItems().clear();
-        // TODO test
-        //List<PaymentVO> paymentVOs = bankAccountBLService.getTradeHistory(this.bankAccountVO);
-        List<PaymentVO> paymentVOs = new ArrayList<>();
-        paymentVOs.add(new PaymentVO("11", Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.AWARD, "no"));
+        List<PaymentVO> paymentVOs = bankAccountBLService.getTradeHistory(this.bankAccountVO);
+//        List<PaymentVO> paymentVOs = new ArrayList<>();
+//        paymentVOs.add(new PaymentVO("11", Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.AWARD, "no"));
 
         history_TableView.getItems().addAll(paymentVOs);
     }
 
+    @FXML
     public void search(ActionEvent actionEvent) {
         if(name_Field.getText() == null || name_Field.getText().equals("")){
             setAccounts(bankAccountBLService.getAllAccounts());

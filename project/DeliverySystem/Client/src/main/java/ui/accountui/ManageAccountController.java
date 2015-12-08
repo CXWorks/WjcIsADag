@@ -68,9 +68,14 @@ public class ManageAccountController {
         check_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
+        accounts_TableView.getSelectionModel().setCellSelectionEnabled(false);
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    newValue.setSelected(!newValue.getSelected());
+                    if(newValue == null){
+                        System.out.println("cao ni ma a");
+                    }else{
+
+                    }
                 }
         );
         refreshItems();

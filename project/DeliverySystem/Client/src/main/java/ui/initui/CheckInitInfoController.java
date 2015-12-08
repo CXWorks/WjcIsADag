@@ -1,4 +1,4 @@
-package ui.financeui;
+package ui.initui;
 
 import bl.blService.initblService.InitializationBLService;
 import factory.InitBLFactory;
@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
-import ui.initui.CheckStoreInitPane;
 import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
@@ -61,9 +60,15 @@ public class CheckInitInfoController {
     public TableView info_TableView = new TableView();
 
     private InitialDataVO initialDataVO;
+    private Pane father;
 
-    public static Parent launch() throws IOException {
-        return FXMLLoader.load(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
+    public static Parent launch(Pane father) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
+        Pane pane = loader.load();
+        CheckInitInfoController controller = loader.getController();
+        controller.father = father;
+        return pane;
     }
 
     @FXML
@@ -73,33 +78,44 @@ public class CheckInitInfoController {
 
         initType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    switch (newValue.getEnum()){
+                    switch (newValue.getEnum()) {
                         case BANK_ACCOUNT_INIT:
-                            showBankAccounts();break;
+                            showBankAccounts();
+                            break;
                         case INSTITUTION_INIT:
-                            showInstitutions();break;
+                            showInstitutions();
+                            break;
                         case STAFF_INIT:
-                            showStaffs();break;
+                            showStaffs();
+                            break;
                         case STORE_INIT:
-                            showStores();break;
+                            showStores();
+                            break;
                         case CAR_INIT:
-                            showCars();break;
+                            showCars();
+                            break;
                     }
                 }
         );
         initType_ChoiceBox.setValue(initType_ChoiceBox.getItems().get(0));
-        showBankAccounts();
 
         // TODO test to be removed
         UserInfo.setSystemState(SystemState.NORMAL);
         systemState_Label.setText(UserInfo.getSystemState().getChinese());
 
-        //initialDataVO = initBLService.getInitialDataVO();
+        initialDataVO = initBLService.getInitialDataVO();
+        showBankAccounts();
     }
 
+    @FXML
     public void applyForInitialization(ActionEvent actionEvent) {
         initBLService.requestInitData();
-        // TODO jump
+        father.getChildren().clear();
+        try {
+            father.getChildren().add(NewInitController.launch(father));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showBankAccounts(){

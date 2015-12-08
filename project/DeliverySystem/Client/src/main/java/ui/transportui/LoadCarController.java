@@ -54,7 +54,6 @@ public class LoadCarController {
 
     @FXML
     public void initialize(){
-
     	arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
     	carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
     	 clear(null);
