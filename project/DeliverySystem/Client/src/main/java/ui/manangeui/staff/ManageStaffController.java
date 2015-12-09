@@ -53,26 +53,30 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     //
     private ManageblStaffService manageblStaffService;
     private ArrayList<StaffVO> staffVOs;
-    private boolean isNew=false;
+    private boolean isNew = false;
+    private Pane selfPane;
+
     @FXML
-    public static Parent launch(Pane father, Pane before, ManageblStaffService service) throws IOException{
+    public static ManageStaffController launch(Pane father, Pane before, ManageblStaffService service) throws IOException{
     	FXMLLoader fxmlLoader=new FXMLLoader();
     	fxmlLoader.setLocation(ManageStaffController.class.getResource("manageStaff.fxml"));
-    	Pane pane = fxmlLoader.load();
+        Pane selfPane = fxmlLoader.load();
+
 		ManageStaffController controller = fxmlLoader.getController();
 		controller.manageblStaffService = service;
+        controller.selfPane = selfPane;
 
 		if(father == null){
-			pane.getChildren().remove(controller.back_Btn);
+            selfPane.getChildren().remove(controller.back_Btn);
 		}else{
 			controller.back_Btn.setOnAction(
-					o -> {
+					actionEvent -> {
 						father.getChildren().clear();
 						father.getChildren().add(before);}
 			);
 		}
 
-		return pane;
+		return controller;
     }
 	@FXML
 	public void initialize(){
@@ -188,10 +192,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 	public void changed(ObservableValue<? extends StaffVO> observable,
 			StaffVO oldValue, StaffVO newValue) {
 		this.setTextArea(newValue);
-		
-		
-		
-		
+
 	}
 	
 	private void setTextArea(StaffVO src){
@@ -226,6 +227,9 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		if (area!=null) {
 			this.area.setText(area);
 		}
-		
 	}
+
+    public Pane getSelfPane() {
+        return selfPane;
+    }
 }

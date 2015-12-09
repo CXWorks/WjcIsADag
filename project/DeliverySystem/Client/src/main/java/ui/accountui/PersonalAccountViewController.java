@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
+import main.Main;
 import ui.financeui.AccountEditDialogController;
 import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
@@ -45,5 +46,6 @@ public class PersonalAccountViewController {
     }
 
     public void logout(ActionEvent actionEvent) {
+        Main.logOut();
     }
 }

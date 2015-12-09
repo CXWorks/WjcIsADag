@@ -52,12 +52,12 @@ public class ManageSalaryController {
 			this.vo.add((SalaryStrategyVO)configurationVO);
 		}
 	}
-	//
+
 	@FXML
 	public void initialize(){
 		//
 		tabs=tabPane.getTabs();
-		
+
 //		this.initData();
 		//
 		try {
@@ -67,6 +67,7 @@ public class ManageSalaryController {
 			e.printStackTrace();
 		}
 	}
+
 	//
 	@FXML
 	private void seletedChange() throws IOException{

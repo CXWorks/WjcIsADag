@@ -2,6 +2,7 @@ package ui.navigationui;
 
 import javafx.scene.Parent;
 import javafx.util.Pair;
+import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.deliverui.deliverController;
 import ui.orderui.NewOrderController;
@@ -15,10 +16,11 @@ import java.util.Arrays;
  */
 public class DeliverNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.makeTabs(Arrays.asList(
+        Parent node = TabMaker.newTabPane(Arrays.asList(
                 new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
                 new Pair<String, Parent>("查看派送单", deliverController.launch()),
-                new Pair<String, Parent>("新建订单", NewOrderController.launch())
+                new Pair<String, Parent>("新建订单", NewOrderController.launch()),
+                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));
 
         return node;

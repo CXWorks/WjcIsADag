@@ -123,6 +123,9 @@ public class StockTackPaneController {
         );
         position_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
+                    if(newValue == null){
+                        return;
+                    }
                     clear(message_TableView);
                     selectedPosition.setValue(newValue.getPosition());
                     OrderVO orderVO = stockTackBLService.getOrder(newValue.getOrderID());

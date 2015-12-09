@@ -14,15 +14,27 @@ import java.util.List;
  */
 public class TabMaker {
 
-    public static Parent makeTabs(List<Pair<String, Parent>> list) throws IOException {
-        TabPane tabPane = FXMLLoader.load(TabMaker.class.getResource("generalTabPane.fxml"));
-        for (Pair<String, Parent> pair : list){
-            Tab tab = new Tab();
-            tab.setText(pair.getKey());
-            tab.setContent(pair.getValue());
-            tabPane.getTabs().add(tab);
-        }
+    public static TabPane newTabPane() throws IOException {
+        return FXMLLoader.load(TabMaker.class.getResource("generalTabPane.fxml"));
+    }
+
+    public static TabPane newTabPane(List<Pair<String, Parent>> list) throws IOException {
+        TabPane tabPane = newTabPane();
+        addTabs(tabPane, list);
 
         return tabPane;
+    }
+
+    public static void addTabs(TabPane tabPane, List<Pair<String, Parent>> list){
+        for (Pair<String, Parent> pair : list){
+            addTab(tabPane, pair);
+        }
+    }
+
+    public static void addTab(TabPane tabPane, Pair<String, Parent> pair){
+        Tab tab = new Tab();
+        tab.setText(pair.getKey());
+        tab.setContent(pair.getValue());
+        tabPane.getTabs().add(tab);
     }
 }
