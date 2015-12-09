@@ -75,6 +75,7 @@ public class CheckInitInfoController {
     public void initialize(){
         // initialize choiceBox
         initType_ChoiceBox.setItems(Enum2ObservableList.transit(InitType.values()));
+        initType_ChoiceBox.setValue(initType_ChoiceBox.getItems().get(0));
 
         initType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -97,19 +98,17 @@ public class CheckInitInfoController {
                     }
                 }
         );
-        initType_ChoiceBox.setValue(initType_ChoiceBox.getItems().get(0));
 
-        // TODO test to be removed
-        UserInfo.setSystemState(SystemState.NORMAL);
-        systemState_Label.setText(UserInfo.getSystemState().getChinese());
-
-        initialDataVO = initBLService.getInitialDataVO();
-        showBankAccounts();
+        // TODO test jump
+//        systemState_Label.setText(UserInfo.getSystemState().getChinese());
+//        initialDataVO = initBLService.getInitialDataVO();
+//        showBankAccounts();
     }
 
     @FXML
     public void applyForInitialization(ActionEvent actionEvent) {
-        initBLService.requestInitData();
+        // TODO test jump
+//        initBLService.requestInitData();
         father.getChildren().clear();
         try {
             father.getChildren().add(NewInitController.launch(father));
@@ -130,6 +129,7 @@ public class CheckInitInfoController {
         );
 
         reconstructColumns(name_TableColumn, balance_TableColumn);
+
         info_TableView.getItems().addAll(initialDataVO.getBankAccounts());
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(info_TableView);

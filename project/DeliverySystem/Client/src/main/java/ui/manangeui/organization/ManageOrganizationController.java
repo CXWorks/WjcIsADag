@@ -72,14 +72,15 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	
 	public void initialize(){
-		institutionVOs=this.getInstitutionVOs();
-		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
-		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
-		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
-		tableView.setItems(FXCollections.observableList(institutionVOs));
-		tableView.getSelectionModel().selectedItemProperty().addListener(this);
-		tableView.getSelectionModel().selectFirst();
-		now=tableView.getSelectionModel().getSelectedItem();
+        // TODO test jump
+//		institutionVOs=this.getInstitutionVOs();
+//		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
+//		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
+//		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
+//		tableView.setItems(FXCollections.observableList(institutionVOs));
+//		tableView.getSelectionModel().selectedItemProperty().addListener(this);
+//		tableView.getSelectionModel().selectFirst();
+//		now=tableView.getSelectionModel().getSelectedItem();
 	}
 	private InstitutionVO makeInstitutionVO(){
 		if (institutionType.getText()=="CENTER") {

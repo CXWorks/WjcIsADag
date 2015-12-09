@@ -50,8 +50,8 @@ public class ManageCarDriverController {
 	private ManageblCarService manageblCarService;
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
 
-	private ArrayList<CarVO> carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
-	private ArrayList<DriverVO> drivervo_list = manageblDriverService.getStaffByInstitution();
+	private ArrayList<CarVO> carvo_list;
+	private ArrayList<DriverVO> drivervo_list;
 
 	private List<CarVOCheckItem> cars = new ArrayList<CarVOCheckItem>();
 	private List<DriverVOCheckItem> drivers = new ArrayList<DriverVOCheckItem>();
@@ -76,11 +76,16 @@ public class ManageCarDriverController {
 			);
 		}
 
+        // TODO test jump
+//        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
+//        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
+
 		return pane;
 	}
 
 	@FXML
-	public void initialize(){
+    // TODO test jump : change the name
+	public void initialize2(){
 		for(int i=0;i<carvo_list.size();i++){
 			cars.add(new CarVOCheckItem(carvo_list.get(i)));
 		}

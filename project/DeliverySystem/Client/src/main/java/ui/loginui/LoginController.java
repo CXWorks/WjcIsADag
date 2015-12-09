@@ -34,9 +34,9 @@ public class LoginController {
     
     public Image Image_Back= new Image("https://github.com/WjcIsaDog/"
     		+ "WjcIsADag/blob/master/UI%E5%9B%BE%E7%89%87/login/back.png?raw=true");
-    public Image Image_Name = new Image();
-    public Image Image_Password = new Image();
-    public Image Image_Sure = new Image();
+//    public Image Image_Name = new Image();
+//    public Image Image_Password = new Image();
+//    public Image Image_Sure = new Image();
     
     
     public ImageView back_ImageView;

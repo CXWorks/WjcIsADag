@@ -70,10 +70,12 @@ public class NewInitController {
 
     @FXML
     public void cancel(ActionEvent actionEvent) throws IOException {
-        if(UserInfo.getSystemState() == SystemState.INITIALIZING){
-            initializationBLService.abortInitData();
-            jumpTo(CheckInitInfoController.launch(father));
-        }
+        // TODO test JUMP
+//        if(UserInfo.getSystemState() == SystemState.INITIALIZING){
+//            initializationBLService.abortInitData();
+//            jumpTo(CheckInitInfoController.launch(father));
+//        }
+        jumpTo(CheckInitInfoController.launch(father));
     }
 
     @FXML

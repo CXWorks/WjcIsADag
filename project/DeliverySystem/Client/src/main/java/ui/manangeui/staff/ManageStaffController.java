@@ -76,7 +76,9 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     }
 	@FXML
 	public void initialize(){
-		staffVOs=manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
+        // TODO test jump
+//		staffVOs = manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
+//      staffTable.setItems(FXCollections.observableList(staffVOs));
 
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
@@ -90,8 +92,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		ageColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(Integer.toString(cellData.getValue().getAge())));
 		institutionColumn.setCellValueFactory(
-				cellData->new SimpleStringProperty(cellData.getValue().getInstitutionID()));
-		staffTable.setItems(FXCollections.observableList(staffVOs));
+                cellData -> new SimpleStringProperty(cellData.getValue().getInstitutionID()));
 		//
 		staffTable.getSelectionModel().selectedItemProperty().addListener(this);
 
