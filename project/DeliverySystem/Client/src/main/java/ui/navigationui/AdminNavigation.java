@@ -3,7 +3,7 @@ package ui.navigationui;
 import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.accountui.ManageAccountController;
-import ui.accountui.EditAccountDialogController;
+import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.messageui.CheckMessageController;
 
@@ -15,9 +15,10 @@ import java.util.Arrays;
  */
 public class AdminNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.makeTabs(Arrays.asList(
+        Parent node = TabMaker.newTabPane(Arrays.asList(
                 new Pair<String, Parent>("管理账户", ManageAccountController.launch()),
-                new Pair<String, Parent>("个人界面", CheckMessageController.launch())
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
+                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));
 
         return node;

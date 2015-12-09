@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.Main;
 import message.OperationMessage;
+import po.memberdata.StaffTypeEnum;
 import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
 import vo.managevo.staff.StaffVO;
@@ -60,16 +61,20 @@ public class LoginController {
     
 
     public void login(ActionEvent actionEvent) {
+        System.out.println("reaching here");
+        UserInfo.setInfo("123", StaffTypeEnum.MANAGER, "990", "wjr");
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
-        if(msg.operationResult){
-            StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
-            UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID(), staffVO.getName());
-
-            Main.logIn();
-            System.out.println("login successfully");
-        }else{
-            // TODO tips
-            System.out.println("login fail: " + msg.getReason());
-        }
+        Main.logIn();
+        // TODO test
+//        if(msg.operationResult){
+//            StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
+//            UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID(), staffVO.getName());
+//
+//            Main.logIn();
+//            System.out.println("login successfully");
+//        }else{
+//            // TODO tips
+//            System.out.println("login fail: " + msg.getReason());
+//        }
     }
 }

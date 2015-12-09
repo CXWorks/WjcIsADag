@@ -3,6 +3,7 @@ package ui.navigationui;
 import factory.CarFactory;
 import javafx.scene.Parent;
 import javafx.util.Pair;
+import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.hallui.ManageCarDriverController;
 import ui.hallui.RevenueFormController;
@@ -17,12 +18,13 @@ import java.util.Arrays;
  */
 public class HallNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.makeTabs(Arrays.asList(
+        Parent node = TabMaker.newTabPane(Arrays.asList(
                 new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch
                         (null, null, CarFactory.getCarService())),
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
-                new Pair<String, Parent>("填写装车单", LoadCarController.launch())
+                new Pair<String, Parent>("填写装车单", LoadCarController.launch()),
+                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));
 
         return node;

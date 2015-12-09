@@ -2,22 +2,19 @@ package ui.manangeui.organization;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import po.InfoEnum;
-import factory.InstitutionFactory;
 import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblHallService;
+import ui.manangeui.staff.ManageStaffController;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -34,7 +31,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public TextField area;
 	public TextField nearCenter;
 	
-	public InstitutionVO now;
+	public InstitutionVO institutionVO;
 	
 	public ArrayList<InstitutionVO> institutionVOs;
 	
@@ -46,17 +43,24 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public Button back_Btn;
 	private ManageblHallService manageblHallService;
 	private ManageblCenterService manageblCenterService;
+    private TabPane outsideTabPane;
+    private Tab staffTab;
+    private ManageStaffController staffController;
 	
 	public static Parent launch
-			(Pane father, Pane before,
+			(Pane father, Pane before, TabPane outsideTabPane, Tab staffTab, ManageStaffController staffController,
 			 ManageblHallService hallService, ManageblCenterService centerService) throws IOException
     {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(ManageOrganizationController.class.getResource("manageOrganization.fxml"));
 		Pane pane = fxmlLoader.load();
+
         ManageOrganizationController controller = fxmlLoader.getController();
         controller.manageblHallService = hallService;
         controller.manageblCenterService = centerService;
+        controller.outsideTabPane = outsideTabPane;
+        controller.staffTab = staffTab;
+        controller.staffController = staffController;
 
 		if(father == null){
 			pane.getChildren().remove(controller.back_Btn);
@@ -80,7 +84,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 //		tableView.setItems(FXCollections.observableList(institutionVOs));
 //		tableView.getSelectionModel().selectedItemProperty().addListener(this);
 //		tableView.getSelectionModel().selectFirst();
-//		now=tableView.getSelectionModel().getSelectedItem();
+//		institutionVO=tableView.getSelectionModel().getSelectedItem();
 	}
 	private InstitutionVO makeInstitutionVO(){
 		if (institutionType.getText()=="CENTER") {
@@ -110,37 +114,40 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	public void sure(){
 		if (isNew) {
-			now=this.makeInstitutionVO();
-			if (now.getInfoEnum()==InfoEnum.HALL) {
-				manageblHallService.addHall((HallVO)now);
+			institutionVO =this.makeInstitutionVO();
+			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
+				manageblHallService.addHall((HallVO) institutionVO);
 			}
 			else {
-				manageblCenterService.addCenter((CenterVO)now);
+				manageblCenterService.addCenter((CenterVO) institutionVO);
 			}
 			isNew=false;
 		}
 		else {
-			now.setCity(city.getText());
-			if (now.getInfoEnum()==InfoEnum.HALL) {
-				((HallVO)now).setArea(area.getText());
+			institutionVO.setCity(city.getText());
+			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
+				((HallVO) institutionVO).setArea(area.getText());
 			}
-			if (now.getInfoEnum()==InfoEnum.HALL) {
-				manageblHallService.modifyHall((HallVO)now);
+			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
+				manageblHallService.modifyHall((HallVO) institutionVO);
 			}
 			else {
-				manageblCenterService.modifyCenter((CenterVO)now);
+				manageblCenterService.modifyCenter((CenterVO) institutionVO);
 			}
 		}
 		this.clear();
 		this.refreshTable();
 	}
+
 	public void refreshTable(){
 		institutionVOs=this.getInstitutionVOs();
 		this.tableView.setItems(FXCollections.observableList(institutionVOs));
 	}
-	public void manageStaff(){}
-	
-	
+
+	public void manageStaff(){
+        outsideTabPane.getSelectionModel().select(staffTab);
+        staffController.initLabel(institutionVO);
+	}
 	
 	private ArrayList<InstitutionVO> getInstitutionVOs(){
 		
@@ -164,8 +171,8 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public void changed(ObservableValue<? extends InstitutionVO> observable,
 			InstitutionVO oldValue, InstitutionVO newValue) {
 		// TODO Auto-generated method stub
-		now=newValue;
-		this.setText(now);
+		institutionVO =newValue;
+		this.setText(institutionVO);
 	}
 	private void setText(InstitutionVO src){
 		this.clear();

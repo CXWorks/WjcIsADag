@@ -50,7 +50,7 @@ public class NewInitController {
     @FXML
     public void manageInstitution(ActionEvent actionEvent) throws IOException {
         jumpTo(ManageOrganizationController.launch
-                (father, selfPane, initializationBLService, initializationBLService));
+                (father, selfPane, null, null, null, initializationBLService, initializationBLService));
     }
 
     @FXML
@@ -60,7 +60,8 @@ public class NewInitController {
 
     @FXML
     public void manageStaff(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageStaffController.launch(father, selfPane, initializationBLService));
+        ManageStaffController controller = ManageStaffController.launch(father, selfPane, initializationBLService);
+        jumpTo(controller.getSelfPane());
     }
 
     @FXML
