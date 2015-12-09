@@ -19,6 +19,7 @@ import ui.financeui.CheckFinanceChartController;
 import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
+import ui.initui.CheckInitInfoController;
 import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
@@ -51,7 +52,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+        //CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -128,7 +129,8 @@ public class Main extends Application {
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
 //        		LoginController.launch()
-        		StorePartitionController.launch()
+        		//StorePartitionController.launch()
+                FinanceNavigation.launch()
         		
         ));
         primaryStage.show();
