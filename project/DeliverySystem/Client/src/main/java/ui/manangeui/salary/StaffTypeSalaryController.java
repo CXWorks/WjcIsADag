@@ -56,6 +56,7 @@ public class StaffTypeSalaryController {
 			if (salaryStrategyVO==null) {
 				
 				salaryStrategyVO=new SalaryStrategyVO();
+				salaryStrategyVO.setStaff(nowSelected);
 			}
 			int newBase=Integer.parseInt(base.getText());
 			if (newBase!=salaryStrategyVO.getBase()) {

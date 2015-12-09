@@ -59,5 +59,8 @@ public class SalaryStrategyVO extends ConfigurationVO{
 		this.commission = commission;
 		this.bonus = bonus;
 	}
+	public void setStaff(StaffTypeEnum staff) {
+		this.staff = staff;
+	}
 	
 }

@@ -114,7 +114,7 @@ public class Main extends Application {
 
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
-//        		NewOrderController.launch()
+        		NewOrderController.launch()
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
 //                CheckFinanceChartController.launch()
@@ -124,7 +124,7 @@ public class Main extends Application {
         		//ManageStaffController.launch()
 //               StockTackController.launch()
         		//ConfigurationController.launch()
-        		ManageSalaryController.launch()
+//        		ManageSalaryController.launch()
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
 //        		LoginController.launch()

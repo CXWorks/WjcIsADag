@@ -105,6 +105,7 @@ public class ManageSalaryController {
 				Parent son=fxmlLoader.load();
 				this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
 				tab.setContent(son);
+				System.out.println(this.getStaffTypeEnum(tab.getText()));
 				staffTypeSalaryController.setStaffEnum(this.getStaffTypeEnum(tab.getText()));
 				return;
 			}
