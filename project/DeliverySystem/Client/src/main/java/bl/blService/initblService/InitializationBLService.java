@@ -33,9 +33,10 @@ import java.util.Observer;
  * Created by Sissel on 2015/10/26.
  */
 
-public interface InitializationBLService
-        extends BankAccountBLService, StoreModelBLService, ManageblCarService,
-        ManageblStaffService, ManageblCenterService, ManageblHallService, ConfigurationBLService, AccountBLManageService
+public interface InitializationBLService extends BankAccountBLService,
+		StoreModelBLService, ManageblCarService, ManageblStaffService, 
+		ManageblCenterService, ManageblHallService, ConfigurationBLService, 
+		AccountBLManageService
 {
     // Store Manage
     

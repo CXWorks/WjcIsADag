@@ -54,10 +54,6 @@ public class InitialDataVO extends InfoVO{
     ArrayList< SalaryStrategyVO> salaryStrategyVO;
     PackVO packVO;
     ArrayList<AccountVO> accountVOs;
-//    public static void main(String[] args) {
-//		InitialDataVO i=new InitialDataVO("1", "dd", new ArrayList<StoreModel>(), new ArrayList<BankAccountVO>(), new ArrayList<CarVO>(), new ArrayList<StaffVO>(), new ArrayList<HallVO>(), new ArrayList<CenterVO>(), new PriceVO(), new ProportionVO(), new ArrayList<SalaryStrategyVO>(), new PackVO(), new ArrayList<AccountVO>(),new ArrayList<City2DVO>());
-//		InitialDataPO p=i.toPO();
-//	}
 
     public InitialDataVO(){
     	super(InfoEnum.INITIAL_DATA);
