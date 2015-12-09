@@ -27,6 +27,7 @@ public class Salary {
 		try {
 			ArrayList<SalaryStrategyPO> po= this.configurationDataService.getSalaryStrategy();
 			ArrayList<ConfigurationVO> vo=new ArrayList<ConfigurationVO>(po.size());
+			
 			for (int i = 0; i < po.size(); i++) {
 				SalaryStrategyPO each=po.get(i);
 				SalaryStrategyVO temp=(SalaryStrategyVO)vopoFactory.transPOtoVO(each);

@@ -15,6 +15,7 @@ public class SalaryStrategyVO extends ConfigurationVO{
 	}
 	public SalaryStrategyVO(SalaryStrategyPO po){
 		this();
+		this.staff=po.getStaff();
 		this.base=po.getBase();
 		commission=po.getCommission();
 		bonus=po.getBonus();

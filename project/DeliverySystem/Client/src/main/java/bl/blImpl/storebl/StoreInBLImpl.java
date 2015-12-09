@@ -93,11 +93,11 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public OperationMessage submit(StoreInVO form) {
-//        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
     	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         StoreInPO po=(StoreInPO)vopoFactory.transVOtoPO(form);
         try {
-			return storeFormDataService.insertStoreInPO(po);
+			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}

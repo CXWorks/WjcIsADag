@@ -9,6 +9,7 @@ import message.OperationMessage;
 import po.FormEnum;
 import po.orderdata.OrderPO;
 import po.receivedata.ReceivePO;
+import rmi.examineService.ExamineSubmitService;
 import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import userinfo.UserInfo;
@@ -46,7 +47,8 @@ public class ReceiveblImpl implements ReceiveBLService {
 	public OperationMessage submit(ReceiveVO form) {
 		try {
 			ReceivePO temp=(ReceivePO)vopoFactory.transVOtoPO(form);
-			return receiveDataService.insert(temp);
+			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+			return examineSubmitService.submit(temp);
 		} catch (RemoteException e) {
 			return new OperationMessage(false,"net error");
 		}
