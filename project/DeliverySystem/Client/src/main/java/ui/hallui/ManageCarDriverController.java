@@ -85,7 +85,7 @@ public class ManageCarDriverController {
 
 	@FXML
     // TODO test jump : change the name
-	public void initialize2(){
+	public void initialize(){
 		for(int i=0;i<carvo_list.size();i++){
 			cars.add(new CarVOCheckItem(carvo_list.get(i)));
 		}

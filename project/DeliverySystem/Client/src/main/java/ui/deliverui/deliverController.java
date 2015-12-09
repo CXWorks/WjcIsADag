@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,8 +31,7 @@ public class deliverController {
 
 	public TextField id_Search_Field;
 
-	public TableView<String> ids_TableView;
-	public TableColumn<String, String> ids_Column;
+	public ListView<String> ids_ListView;
 
 	public TableView<Map.Entry<String, String>> info_TableView;
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
@@ -49,6 +49,9 @@ public class deliverController {
 	ArrayList<String> toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
 	ArrayList<String> postmans= deliverBLService.getPostman(UserInfo.getInstitutionID());
 
+//	ArrayList<String> toSend = new ArrayList<String>();
+//	ArrayList<String> postmans = new ArrayList<String>();
+	
 	public static Parent launch() throws IOException {
 		return FXMLLoader.load(deliverController.class.getResource("deliver.fxml"));
 	}
@@ -58,7 +61,11 @@ public class deliverController {
 
 	@FXML
 	public void initialize(){
+//		toSend.add("123"); toSend.add("456");toSend.add("789");
+//		postmans.add("wjc");postmans.add("cx");
+		
 		postman_Box.setItems(FXCollections.observableArrayList(postmans));
+		postman_Box.setValue(postman_Box.getItems().get(0));
 		postman_Box.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					postman = newValue.toString();
@@ -66,9 +73,8 @@ public class deliverController {
 				);
 //		clear(null);
 		date_DatePicker.setValue(LocalDate.now());
-		ids_TableView.setItems(FXCollections.observableArrayList(toSend));
-	//	ids_TableView.getColumns().addAll(ids_Column);
-		ids_TableView.getSelectionModel().selectedItemProperty().addListener(
+		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
+		ids_ListView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					// TODO test
 					System.out.println("selected " + newValue.toString());
@@ -96,7 +102,7 @@ public class deliverController {
         OrderVO orderVO = deliverBLService.getOrderVO(filter);
         info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
         
-        ids_TableView.setItems(FXCollections.observableArrayList(filter));
+        ids_ListView.setItems(FXCollections.observableArrayList(filter));
 
 		
 	}

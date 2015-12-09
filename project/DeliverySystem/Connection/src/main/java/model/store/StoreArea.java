@@ -113,4 +113,17 @@ public class StoreArea implements Serializable {
 		}
 		return result;
 	}
+	
+	public void addRows(String rowNum,String shelvesNum){
+		int row=this.getRowNumber();
+		for (int i = 0; i < Integer.parseInt(rowNum); i++) {
+			//
+			for (int j = 0; j < Integer.parseInt(shelvesNum); j++) {
+				for (int j2 = 0; j2 < 50; j2++) {
+					StoreLocation storeLocation=new StoreLocation(areaType, i+row+1, j+1, j2+1);
+					this.list.add(storeLocation);
+				}
+			}
+		}
+	}
 }

@@ -11,24 +11,18 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
+import database.ConnecterHelper;
+import database.RMIHelper;
 import message.OperationMessage;
-import po.companydata.CarPO;
 import po.configurationdata.City2DPO;
-import po.configurationdata.CityDistancePO;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.configurationdata.enums.PackEnum;
-import po.financedata.PaymentPO;
 import po.orderdata.DeliverTypeEnum;
-import po.receivedata.ReceivePO;
 import po.systemdata.LogPO;
 import rmi.configurationdata.ConfigurationDataService;
-import database.ConnecterHelper;
-import database.RMIHelper;
 
 /**
  * 目前全是stub

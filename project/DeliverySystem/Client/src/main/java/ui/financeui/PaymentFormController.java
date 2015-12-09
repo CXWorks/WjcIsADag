@@ -77,7 +77,7 @@ public class PaymentFormController {
                 TimeConvert.convertDate(payment_DatePicker.getValue()),
                 money_Field.getText(),
                 null, payerName_Field.getText(),payerAccount_Field.getText(),
-                null, receiverName_Field.getId(), receiverAccount_Field.getText(),
+                null, receiverName_Field.getText(), receiverAccount_Field.getText(),
                 item_ChoiceBox.getValue().getEnum(),
                 note_TextArea.getText()
         );
