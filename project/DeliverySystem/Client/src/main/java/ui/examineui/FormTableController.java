@@ -2,6 +2,9 @@ package ui.examineui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import po.FormEnum;
 import factory.ExamineFactory;
@@ -26,6 +29,7 @@ import javafx.scene.control.TableView;
  * @version 1.0
  */
 public class FormTableController {
+	public boolean loaded=false;
 	public TableView<FormVO> tableView;
 	public TableColumn<FormVO, String> calendarColumn;
 	public TableColumn<FormVO, String> typeColumn;
@@ -47,6 +51,9 @@ public class FormTableController {
 		if (formVOs==null||formVOs.size()==0) {
 			return;
 		}
+		if (tableView.getColumns().contains(infoColumn)) {
+			return;
+		}
 		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
 		tableView.getColumns().add(infoColumn);
 	}
@@ -62,7 +69,19 @@ public class FormTableController {
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		infoColumn=new TableColumn<FormVO, String>("信息摘要");
 		//
-		calendarColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
+		calendarColumn.setCellValueFactory(cell->{
+			FormEnum type=cell.getValue().formType;
+			String formID=cell.getValue().formID;
+			String ans;
+			if (type==FormEnum.ORDER) {
+				Calendar now=Calendar.getInstance();
+				ans=Integer.toString(now.get(Calendar.YEAR))+formID.substring(0, 4);
+			}
+			else {
+				ans=formID.substring(9, 17);
+			}
+			return new SimpleStringProperty(ans);
+		});
 		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
 		typeColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formType.getChinese()));
