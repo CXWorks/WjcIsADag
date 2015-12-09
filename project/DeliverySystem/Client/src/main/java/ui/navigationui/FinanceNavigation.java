@@ -25,7 +25,7 @@ public class FinanceNavigation {
         Parent node = TabMaker.makeTabs(Arrays.asList(
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
                 new Pair<String, Parent>("管理账户",
-                        ManageBankAccountController.launch( FinanceBLFactory.getBankAccountBLService())),
+                        ManageBankAccountController.launch(null, null, FinanceBLFactory.getBankAccountBLService())),
                 new Pair<String, Parent>("成本收益表", CheckFinanceSummaryController.launch()),
                 new Pair<String, Parent>("新建付款单", PaymentFormController.launch()),
                 new Pair<String, Parent>("查看收款单", CheckRevenueFormController.launch()),

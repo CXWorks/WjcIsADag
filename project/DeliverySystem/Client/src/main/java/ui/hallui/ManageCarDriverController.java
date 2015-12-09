@@ -13,6 +13,7 @@ import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblDriverService;
 import factory.CarFactory;
 import factory.StaffFactory;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
@@ -25,11 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -49,6 +45,7 @@ public class ManageCarDriverController {
 	public CheckBox all_Driver_CheckBox;
 	public TextField search_Car_Field;
 	public TextField search_Driver_Field;
+	public Button back_Btn;
 
 	private ManageblCarService manageblCarService;
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
@@ -62,12 +59,22 @@ public class ManageCarDriverController {
 	private CarVOCheckItem carVO = new CarVOCheckItem(null);
 	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
 
-	public static Parent launch(ManageblCarService service) throws IOException {
+	public static Parent launch(Pane father, Pane before, ManageblCarService service) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
 		Pane pane = loader.load();
 		ManageCarDriverController controller = loader.getController();
 		controller.manageblCarService = service;
+
+		if(father == null){
+			pane.getChildren().remove(controller.back_Btn);
+		}else{
+			controller.back_Btn.setOnAction(
+					o -> {
+						father.getChildren().clear();
+						father.getChildren().add(before);}
+			);
+		}
 
 		return pane;
 	}

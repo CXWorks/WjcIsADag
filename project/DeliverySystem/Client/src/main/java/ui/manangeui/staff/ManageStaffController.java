@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import po.InfoEnum;
 import po.memberdata.SexEnum;
@@ -24,14 +25,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
-import javafx.scene.control.TextField;
 
 public class ManageStaffController implements ChangeListener<StaffVO>{
 	public TextField staffType;
@@ -54,17 +49,28 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     public TableColumn<StaffVO, String> sexcColumn;
     public TableColumn<StaffVO, String> ageColumn;
     public TableColumn<StaffVO, String> institutionColumn;
+    public Button back_Btn;
     //
     private ManageblStaffService manageblStaffService;
     private ArrayList<StaffVO> staffVOs;
     private boolean isNew=false;
     @FXML
-    public static Parent launch(ManageblStaffService service) throws IOException{
+    public static Parent launch(Pane father, Pane before, ManageblStaffService service) throws IOException{
     	FXMLLoader fxmlLoader=new FXMLLoader();
     	fxmlLoader.setLocation(ManageStaffController.class.getResource("manageStaff.fxml"));
     	Pane pane = fxmlLoader.load();
 		ManageStaffController controller = fxmlLoader.getController();
 		controller.manageblStaffService = service;
+
+		if(father == null){
+			pane.getChildren().remove(controller.back_Btn);
+		}else{
+			controller.back_Btn.setOnAction(
+					o -> {
+						father.getChildren().clear();
+						father.getChildren().add(before);}
+			);
+		}
 
 		return pane;
     }

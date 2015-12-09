@@ -25,6 +25,7 @@ public class NewInitController {
     public Label systemState_Label;
     private InitializationBLService initializationBLService = InitBLFactory.getInitializationBLService();
     private Pane father;
+    private Pane selfPane;
 
     public static Parent launch(Pane father) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -32,6 +33,7 @@ public class NewInitController {
         Pane pane = loader.load();
         NewInitController controller = loader.getController();
         controller.father = father;
+        controller.selfPane = pane;
         return pane;
     }
 
@@ -42,50 +44,42 @@ public class NewInitController {
 
     @FXML
     public void manageAccount(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageBankAccountController.launch(initializationBLService));
+        jumpTo(ManageBankAccountController.launch(father, selfPane, initializationBLService));
     }
 
     @FXML
     public void manageInstitution(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageOrganizationController.launch(initializationBLService, initializationBLService));
+        jumpTo(ManageOrganizationController.launch
+                (father, selfPane, initializationBLService, initializationBLService));
     }
 
     @FXML
     public void manageCars(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageCarDriverController.launch(initializationBLService));
+        jumpTo(ManageCarDriverController.launch(father, selfPane, initializationBLService));
     }
 
     @FXML
     public void manageStaff(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageStaffController.launch(initializationBLService));
+        jumpTo(ManageStaffController.launch(father, selfPane, initializationBLService));
     }
 
     @FXML
     public void saveDraft(ActionEvent actionEvent) {
+        // TODO inform cx
     }
 
     @FXML
-    public void cancel(ActionEvent actionEvent) {
+    public void cancel(ActionEvent actionEvent) throws IOException {
         if(UserInfo.getSystemState() == SystemState.INITIALIZING){
             initializationBLService.abortInitData();
-            father.getChildren().clear();
-            try {
-                father.getChildren().add(CheckInitInfoController.launch(father));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            jumpTo(CheckInitInfoController.launch(father));
         }
     }
 
     @FXML
-    public void commit(ActionEvent actionEvent) {
+    public void commit(ActionEvent actionEvent) throws IOException {
         initializationBLService.uploadInitialData();
-        father.getChildren().clear();
-        try {
-            father.getChildren().add(CheckInitInfoController.launch(father));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        jumpTo(CheckInitInfoController.launch(father));
     }
 
     private void jumpTo(Node pane){

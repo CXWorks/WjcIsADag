@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +31,7 @@ public class ManageBankAccountController {
     private BankAccountVO bankAccountVO = null;
     private List<BankAccountVO> bankAccountVOList = new ArrayList<>();
 
+    public Button back_Btn;
     public TextField name_Field;
     public TableColumn<BankAccountVO, String> name_Column;
     public TableColumn<BankAccountVO, String> balance_Column;
@@ -39,12 +41,22 @@ public class ManageBankAccountController {
     public TableColumn<PaymentVO, String> date_TableColumn;
     public TableColumn<PaymentVO, String> amount_TableColumn;
 
-    public static Parent launch(BankAccountBLService service) throws IOException {
+    public static Parent launch(Pane father, Pane before, BankAccountBLService service) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ManageBankAccountController.class.getResource("manageBankAccount.fxml"));
         Pane pane = loader.load();
         ManageBankAccountController controller = loader.getController();
         controller.bankAccountBLService = service;
+
+        if(father == null){
+            pane.getChildren().remove(controller.back_Btn);
+        }else{
+            controller.back_Btn.setOnAction(
+                    o -> {
+                        father.getChildren().clear();
+                        father.getChildren().add(before);}
+            );
+        }
 
         return pane;
     }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import po.InfoEnum;
 import factory.InstitutionFactory;
@@ -19,13 +20,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 
 /** 
  * Client//ui.manangeui.organization//ManageOrganizationController.java
@@ -49,11 +43,13 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public TableColumn<InstitutionVO, String> typecColumn;
 	public TableColumn<InstitutionVO, String> institutionIDColumn;
 	public boolean isNew=false;
+	public Button back_Btn;
 	private ManageblHallService manageblHallService;
 	private ManageblCenterService manageblCenterService;
 	
 	public static Parent launch
-            (ManageblHallService hallService, ManageblCenterService centerService) throws IOException
+			(Pane father, Pane before,
+			 ManageblHallService hallService, ManageblCenterService centerService) throws IOException
     {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(ManageOrganizationController.class.getResource("manageOrganization.fxml"));
@@ -61,6 +57,16 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         ManageOrganizationController controller = fxmlLoader.getController();
         controller.manageblHallService = hallService;
         controller.manageblCenterService = centerService;
+
+		if(father == null){
+			pane.getChildren().remove(controller.back_Btn);
+		}else{
+			controller.back_Btn.setOnAction(
+					o -> {
+						father.getChildren().clear();
+						father.getChildren().add(before);}
+			);
+		}
 
 		return pane;
 	}

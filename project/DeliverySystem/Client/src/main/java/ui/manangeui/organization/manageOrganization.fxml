@@ -48,5 +48,6 @@
             <TableColumn fx:id="institutionIDColumn" prefWidth="96.0" text="编号" />
         </columns>
       </TableView>
+      <Button fx:id="back_Btn" layoutX="7.0" layoutY="425.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -37,5 +37,6 @@
       <Button layoutX="739.0" layoutY="27.0" mnemonicParsing="false" onAction="#deleteDriver" text="删除" />
       <Button layoutX="699.0" layoutY="27.0" mnemonicParsing="false" onAction="#editDriver" text="修改" />
       <Button layoutX="657.0" layoutY="27.0" mnemonicParsing="false" onAction="#addDriver" prefHeight="23.0" prefWidth="42.0" text="新增" />
+      <Button fx:id="back_Btn" layoutX="7.0" layoutY="423.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -32,5 +32,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button fx:id="back_Btn" layoutY="439.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" />
    </children>
 </AnchorPane>
