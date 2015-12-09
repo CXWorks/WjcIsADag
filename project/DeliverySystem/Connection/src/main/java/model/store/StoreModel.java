@@ -2,6 +2,7 @@ package model.store;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import message.OperationMessage;
@@ -48,6 +49,14 @@ public class StoreModel implements Serializable {
 			int shelf_now, StoreAreaCode code, int row, int shelf){
 		StoreArea old=this.getArea(code_now);
 		ArrayList<StoreLocation> src=old.getByShelf(row_now, shelf_now);
+		if (src.size()==0) {
+			return new OperationMessage();
+		}
+		LinkedList<String> orderID=new LinkedList<String>();
+		for (int i = 0; i < src.size(); i++) {
+			orderID.add(src.get(i).getOrderID());
+		}
+		
 		//hard coding
 		ArrayList<StoreLocation> oldChange=old.getList();
 		for (StoreLocation storeLocation : oldChange) {

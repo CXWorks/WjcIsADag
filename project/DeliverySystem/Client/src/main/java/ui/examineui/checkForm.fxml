@@ -12,11 +12,11 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <CheckBox fx:id="chooseAll_Box" layoutX="172.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="全选" />
-                  <Label fx:id="pass" layoutX="563.0" layoutY="5.0" onMouseClicked="#pass" text="通过" underline="true" />
-                  <Label fx:id="deny" layoutX="642.0" layoutY="5.0" onMouseClicked="#delete" text="未通过" underline="true" />
-                  <Label fx:id="modify" layoutX="725.0" layoutY="4.0" text="修改" underline="true" />
-                  <Label layoutX="291.0" layoutY="4.0" onMouseClicked="#oneKey" text="一键通过" underline="true" />
-                  <Label layoutX="60.0" layoutY="5.0" onMouseClicked="#refresh" text="刷新" underline="true" />
+                  <Button layoutX="37.0" layoutY="1.0" mnemonicParsing="false" onAction="#refresh" text="刷新" />
+                  <Button layoutX="311.0" layoutY="-1.0" mnemonicParsing="false" onAction="#oneKey" text="一键通过" />
+                  <Button fx:id="pass" layoutX="511.0" layoutY="-1.0" mnemonicParsing="false" onAction="#pass" text="通过" />
+                  <Button fx:id="deny" layoutX="602.0" layoutY="-1.0" mnemonicParsing="false" onAction="#delete" text="未通过" />
+                  <Button fx:id="modify" layoutX="704.0" mnemonicParsing="false" text="修改" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

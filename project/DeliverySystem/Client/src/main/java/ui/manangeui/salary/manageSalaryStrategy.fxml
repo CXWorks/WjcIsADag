@@ -17,9 +17,9 @@
           <Tab onSelectionChanged="#seletedChange" text="营业厅业务员">  
           </Tab>
           <Tab onSelectionChanged="#seletedChange" text="仓库管理员" />
-          <Tab onSelectionChanged="#seletedChange" text="快递员" />
-          <Tab onSelectionChanged="#seletedChange" text="财务员" />
-          <Tab onSelectionChanged="#seletedChange" text="中转中心营业员" />
+          <Tab onSelectionChanged="#seletedChange" text="经理" />
+          <Tab onSelectionChanged="#seletedChange" text="财务人员" />
+          <Tab onSelectionChanged="#seletedChange" text="中转中心业务员" />
           <Tab onSelectionChanged="#seletedChange" text="司机" />
         </tabs>
       </TabPane>

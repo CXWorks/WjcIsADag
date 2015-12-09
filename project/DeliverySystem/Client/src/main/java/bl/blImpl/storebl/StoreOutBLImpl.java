@@ -108,10 +108,10 @@ public class StoreOutBLImpl implements StoreOutBLService {
 
     public OperationMessage submit(StoreOutVO form) {
         StoreOutPO po=(StoreOutPO)vopoFactory.transVOtoPO(form);
-//        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
+        ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
         StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         try {
-			return storeFormDataService.insertStoreOutPO(po);
+			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}

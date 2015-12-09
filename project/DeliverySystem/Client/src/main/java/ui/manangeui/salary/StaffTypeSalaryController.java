@@ -2,6 +2,7 @@ package ui.manangeui.salary;
 
 import java.io.IOException;
 
+import po.memberdata.StaffTypeEnum;
 import factory.ConfigurationFactory;
 import bl.blService.configurationblService.ConfigurationBLService;
 import vo.configurationvo.SalaryStrategyVO;
@@ -24,6 +25,7 @@ public class StaffTypeSalaryController {
 	public TextField bonus;
 	//
 	private SalaryStrategyVO salaryStrategyVO;
+	private StaffTypeEnum nowSelected;
 	//
 	public static Parent launch() throws IOException{
 		FXMLLoader fxmlLoader=new FXMLLoader();
@@ -49,41 +51,44 @@ public class StaffTypeSalaryController {
 	}
 	@FXML
 	private void modify(){
-		if (salaryStrategyVO==null) {
-			return;
-		}
+		
 		boolean changed=false;
-		try {
+			if (salaryStrategyVO==null) {
+				
+				salaryStrategyVO=new SalaryStrategyVO();
+				salaryStrategyVO.setStaff(nowSelected);
+			}
 			int newBase=Integer.parseInt(base.getText());
 			if (newBase!=salaryStrategyVO.getBase()) {
 				changed=true;
-				salaryStrategyVO.setBase(newBase);
 			}
+			salaryStrategyVO.setBase(newBase);
 			//
 			int newCommission=Integer.parseInt(commission.getText());
 			if (newCommission!=salaryStrategyVO.getCommission()) {
 				changed=true;
-				salaryStrategyVO.setCommission(newCommission);
 			}
+			salaryStrategyVO.setCommission(newCommission);
 			//
 			int newBonus=Integer.parseInt(bonus.getText());
 			if (newBonus!=salaryStrategyVO.getBonus()) {
 				changed=true;
-				salaryStrategyVO.setBonus(newBonus);
 			}
+			salaryStrategyVO.setBonus(newBonus);
 			if (changed) {
 				ConfigurationBLService configurationBLService=ConfigurationFactory.getConfigurationBLService();
 				configurationBLService.modify(salaryStrategyVO);
-				this.test();
 			}
 			else {
+				ConfigurationBLService configurationBLService=ConfigurationFactory.getConfigurationBLService();
+				System.out.println(configurationBLService.modify(salaryStrategyVO).operationResult);
+				
 				return;
 			}
-		} catch (Exception e) {
-			return;
-		}
+		
 	}
-	public void test(){
-		System.out.println("succeed");
+	
+	public void setStaffEnum(StaffTypeEnum staffTypeEnum){
+		this.nowSelected=staffTypeEnum;
 	}
 }

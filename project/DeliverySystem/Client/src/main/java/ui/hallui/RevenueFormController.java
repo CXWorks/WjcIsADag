@@ -49,8 +49,6 @@ public class RevenueFormController {
 	ArrayList<String> orderIDs=new ArrayList<String>();
     int money=0;
     
-   
-    
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
     }
@@ -62,12 +60,12 @@ public class RevenueFormController {
 	}
 	
 	
-	
     public void add(ActionEvent actionEvent) {
     	orderIDs.add(order_Field.getText());
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");
     	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
+    	
     	order_Field.clear();
     	money_Field.clear();
     	}                

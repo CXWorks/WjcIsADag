@@ -282,7 +282,7 @@ public class ManageCarDriverController {
 
 	public void addDriver(ActionEvent actionEvent) throws IOException {
 		//TODO Problem!!!!!!!!!!!!!!!!
-		DriverVO driver = new DriverVO(null);
+		DriverVO driver =new DriverVO();
 
 		DriverNewDialogController controller = DriverNewDialogController.newDialog
 				(driver);

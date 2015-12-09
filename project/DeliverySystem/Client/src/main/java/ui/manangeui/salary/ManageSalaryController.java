@@ -73,7 +73,17 @@ public class ManageSalaryController {
 	private void seletedChange() throws IOException{
 		ObservableList<Tab> nuo=tabPane.getTabs(); 
 		this.initData();
-		System.out.println(this.vo.get(0).getBase());
+//		System.out.println(this.vo.size());
+//		if (this.vo.size()<6) {
+//			FXMLLoader fxmlLoader=new FXMLLoader();
+//			fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
+//			Parent son=fxmlLoader.load();
+//			this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
+//			
+//			tabPane.getSelectionModel().getSelectedItem().setContent(son);
+//			return;
+//		}
+		
 		
 		for (Tab tab : nuo) {
 			if (tab.isSelected()) {
@@ -85,16 +95,45 @@ public class ManageSalaryController {
 						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
 						Parent son=fxmlLoader.load();
 						this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
-						
 						tab.setContent(son);
 						this.staffTypeSalaryController.change(salaryStrategyVO);
-						
-						
-						
+						return;
 					}
 				}
+				FXMLLoader fxmlLoader=new FXMLLoader();
+				fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
+				Parent son=fxmlLoader.load();
+				this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
+				tab.setContent(son);
+				System.out.println(this.getStaffTypeEnum(tab.getText()));
+				staffTypeSalaryController.setStaffEnum(this.getStaffTypeEnum(tab.getText()));
+				return;
 			}
 		}
 		
 	}
+	
+	
+	private StaffTypeEnum getStaffTypeEnum(String chin){
+		switch(chin){
+		case "司机":
+			return StaffTypeEnum.DRIVER;
+		case "经理":
+			return StaffTypeEnum.MANAGER;
+		case "系统管理员":
+			return StaffTypeEnum.ADMINISTRATOR;
+		case "快递员":
+			return StaffTypeEnum.DELIVER;
+		case "营业厅业务员":
+			return StaffTypeEnum.HALL_COUNTERMAN;
+		case "中转中心业务员":
+			return StaffTypeEnum.CENTER_COUNTERMAN;
+		case "仓库管理员":
+			return StaffTypeEnum.STOREMAN;
+		case "财务人员":
+			return StaffTypeEnum.BURSAR;
+		}
+		return StaffTypeEnum.DELIVER;
+	}
+	
 }

@@ -67,18 +67,19 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return conn;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		ConfigurationDataImpl t = new ConfigurationDataImpl();
-//		String insert = "insert into `city2d`(name,x,y) " + "values('广州','113.27','23.12')";
-//		try {
-//			t.statement = t.conn.prepareStatement(insert);
-//			t.statement.executeUpdate();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			System.err.println("新建时出错：");
-//			e.printStackTrace();
-//		}
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// ConfigurationDataImpl t = new ConfigurationDataImpl();
+	// String insert = "insert into `city2d`(name,x,y) " +
+	// "values('广州','113.27','23.12')";
+	// try {
+	// t.statement = t.conn.prepareStatement(insert);
+	// t.statement.executeUpdate();
+	// } catch (SQLException e) {
+	// // TODO Auto-generated catch block
+	// System.err.println("新建时出错：");
+	// e.printStackTrace();
+	// }
+	// }
 
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
@@ -218,19 +219,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return result;
 	}
 
-	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+	private OperationMessage newSalaryStrategy(SalaryStrategyPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '" + po.getStaff().toString() + "'";
-		try {
-			statement = conn.prepareStatement(delete);
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "数据库中没有对应信息");
-			e.printStackTrace();
-			return result;
-		}
 		String insert = "insert into " + SalaryStrategy + "(staff,base,commission,bonus) " + "values('"
 				+ po.getStaff().toString() + "','" + po.getBase() + "','" + po.getCommission() + "','" + po.getBonus()
 				+ "')";
@@ -240,7 +230,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "修改的信息有误");
+			result = new OperationMessage(false, "新建时出错");
 			e.printStackTrace();
 		}
 
@@ -249,6 +239,19 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改薪水策略"));
 
 		return result;
+	}
+
+	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '" + po.getStaff().toString() + "'";
+		try {
+			statement = conn.prepareStatement(delete);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return this.newSalaryStrategy(po);
+		}
+		return this.newSalaryStrategy(po);
 	}
 
 	public PackPO getPack() throws RemoteException {

@@ -31,14 +31,14 @@ public class Predicter {
 			PricePO pricePO=configurationDataService.getPrice();
 			int priceKM=pricePO.getByType(orderVO.getType());
 			//
-			City2DPO city1=configurationDataService.getCity2D(orderVO.getAddressFrom());
-			City2DPO city2=configurationDataService.getCity2D(orderVO.getAddressTo());
+			City2DPO city1=configurationDataService.getCity2D(orderVO.getAddressFrom().substring(0, 2));
+			City2DPO city2=configurationDataService.getCity2D(orderVO.getAddressTo().substring(0, 2));
 			double distance=city1.distance(city2);
 			double price=priceKM*distance;
 			Calendar date=Calendar.getInstance();
 			date.add(Calendar.DAY_OF_MONTH, (int) (distance/400+1));
 			//
-			PredictVO vo=new PredictVO(Double.toString(price), date.toString());
+			PredictVO vo=new PredictVO(String.format("%.2f", price), date);
 			return vo;
 		} catch (RemoteException e) {
 			return null;

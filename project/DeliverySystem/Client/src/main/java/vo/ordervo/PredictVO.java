@@ -1,17 +1,19 @@
 package vo.ordervo;
 
+import java.util.Calendar;
+
 public class PredictVO {
 	private String expense;
-	private String predictDate;
+	private Calendar predictDate;
 	//
-	public PredictVO(String expense,String date){
+	public PredictVO(String expense,Calendar date){
 		this.expense=expense;
 		this.predictDate=date;
 	}
 	public String getExpense() {
 		return expense;
 	}
-	public String getPredictDate() {
+	public Calendar getPredictDate() {
 		return predictDate;
 	}
 	

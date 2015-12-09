@@ -42,6 +42,7 @@ public class deliverController {
 	public ChoiceBox<String> postman_Box;
 
 	private String idToSend="";
+	private String postman= new String();
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 	
 
@@ -58,11 +59,11 @@ public class deliverController {
 	@FXML
 	public void initialize(){
 		postman_Box.setItems(FXCollections.observableArrayList(postmans));
-//		postman_Box.getSelectionModel().selectedItemProperty().addListener(
-//				(observable, oldValue, newValue) -> {
-//					postman = newValue.toString();
-//				}
-//				);
+		postman_Box.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					postman = newValue.toString();
+				}
+				);
 //		clear(null);
 		date_DatePicker.setValue(LocalDate.now());
 		ids_TableView.setItems(FXCollections.observableArrayList(toSend));

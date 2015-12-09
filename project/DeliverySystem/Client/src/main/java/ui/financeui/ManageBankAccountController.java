@@ -144,7 +144,7 @@ public class ManageBankAccountController {
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     // TODO test
-                    System.out.println("selected " + newValue.accountName);
+//                    System.out.println("selected " + newValue.accountName);
                     bankAccountVO = newValue;
                     checkHistory(null);
                     
