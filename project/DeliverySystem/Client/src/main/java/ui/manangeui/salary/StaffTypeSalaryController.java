@@ -51,9 +51,8 @@ public class StaffTypeSalaryController {
 	}
 	@FXML
 	private void modify(){
-		System.out.println("use");
+		
 		boolean changed=false;
-		try {
 			if (salaryStrategyVO==null) {
 				
 				salaryStrategyVO=new SalaryStrategyVO();
@@ -81,13 +80,11 @@ public class StaffTypeSalaryController {
 			}
 			else {
 				ConfigurationBLService configurationBLService=ConfigurationFactory.getConfigurationBLService();
-				configurationBLService.modify(salaryStrategyVO);
+				System.out.println(configurationBLService.modify(salaryStrategyVO).operationResult);
 				
 				return;
 			}
-		} catch (Exception e) {
-			return;
-		}
+		
 	}
 	
 	public void setStaffEnum(StaffTypeEnum staffTypeEnum){

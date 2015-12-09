@@ -43,6 +43,7 @@ public class Salary {
 	public OperationMessage modify(SalaryStrategyVO vo){
 		SalaryStrategyPO po=(SalaryStrategyPO)vopoFactory.transVOtoPO(vo);
 		try {
+			System.out.println(po.getBase());
 			return configurationDataService.modifySalaryStrategy(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
