@@ -52,7 +52,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        //CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -132,7 +132,9 @@ public class Main extends Application {
         		//StorePartitionController.launch()
                 //FinanceNavigation.launch()
                 //PersonalAccountViewController.launch()
-                ManagerNavigation.launch()
+                //ManagerNavigation.launch()
+                //StockTackController.launch()
+                LoginController.launch()
         ));
         primaryStage.show();
     }

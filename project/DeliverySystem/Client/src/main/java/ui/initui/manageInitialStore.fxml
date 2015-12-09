@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.ManageInitialStoreController">
+   <children>
+      <ChoiceBox fx:id="store_ChoiceBox" layoutX="88.0" layoutY="18.0" prefWidth="150.0" />
+      <Label layoutX="28.0" layoutY="20.0" text="仓库">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Pane fx:id="content_Pane" layoutX="27.0" layoutY="47.0" prefHeight="357.0" prefWidth="746.0" />
+      <Button layoutX="3.0" layoutY="425.0" mnemonicParsing="false" onAction="#goBack" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <Button layoutX="505.0" layoutY="18.0" mnemonicParsing="false" onAction="#delete" text="删除所选" />
+      <Button layoutX="291.0" layoutY="18.0" mnemonicParsing="false" onAction="#addRow" text="新增排" />
+      <Button layoutX="400.0" layoutY="18.0" mnemonicParsing="false" onAction="#addShelf" text="新增架" />
+   </children>
+</AnchorPane>

@@ -28,6 +28,14 @@ import java.util.Map;
  * Created by Sissel on 2015/12/8.
  */
 public class StockTackPaneController {
+
+    public enum  SelectingItem{
+        AREA,
+        ROW,
+        SHELF,
+        POSITION
+    }
+
     public TableView<Map.Entry<String, String>> message_TableView;
     public TableColumn<Map.Entry<String, String>, String> key_TableColumn;
     public TableColumn<Map.Entry<String, String>, String> value_TableColumn;
@@ -46,12 +54,12 @@ public class StockTackPaneController {
     public TableColumn<StoreLocation, String> order_TableColumn;
 
     public StockTackBLService stockTackBLService = FormFactory.getStockTackBLService();
-    public StockTackVO stockTackVO;
     public StoreModel storeModel;
     public StoreArea storeArea;
     public IntegerProperty selectedRow = new SimpleIntegerProperty();
     public IntegerProperty selectedShelf = new SimpleIntegerProperty();
     public IntegerProperty selectedPosition = new SimpleIntegerProperty();
+    public SelectingItem selecting = null;
 
     public void setStoreModel(StoreModel model){
         storeModel = model;
@@ -96,6 +104,7 @@ public class StockTackPaneController {
                 (observable, oldValue, newValue) -> {
                     clear(row_TableView, shelf_TableView, position_TableView, message_TableView);
                     redirectArea(newValue.getEnum());
+                    selecting = SelectingItem.AREA;
                 }
         );
         row_TableView.getSelectionModel().selectedItemProperty().addListener(
@@ -104,6 +113,7 @@ public class StockTackPaneController {
                     selectedRow.setValue(newValue.getRow());
                     selectedShelf.setValue(1);
                     selectedPosition.setValue(1);
+                    selecting = SelectingItem.ROW;
                     List<StoreLocation> storeLocations = storeArea.getByRow(selectedRow.getValue());
                     setShelf_TableView(storeLocations);
                     position_TableView.getItems().addAll(
@@ -116,6 +126,7 @@ public class StockTackPaneController {
                     clear(position_TableView, message_TableView);
                     selectedShelf.setValue(newValue.getShelf());
                     selectedPosition.setValue(1);
+                    selecting = SelectingItem.SHELF;
                     List<StoreLocation> storeLocations = storeArea.getByShelf
                             (selectedRow.getValue(), selectedShelf.getValue());
                     position_TableView.getItems().addAll(storeLocations);
@@ -128,6 +139,7 @@ public class StockTackPaneController {
                     }
                     clear(message_TableView);
                     selectedPosition.setValue(newValue.getPosition());
+                    selecting = SelectingItem.POSITION;
                     OrderVO orderVO = stockTackBLService.getOrder(newValue.getOrderID());
                     message_TableView.setItems(FXCollections.observableArrayList(
                             new OrderVO2ColumnHelper().VO2Entries(orderVO)
