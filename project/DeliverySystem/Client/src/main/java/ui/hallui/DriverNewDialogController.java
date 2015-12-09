@@ -32,10 +32,10 @@ public class DriverNewDialogController {
 	
 	ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
 	
-	public static Label age_Label;
+	public  Label age_Label;
 	TimeConvert timeconvert = new TimeConvert();
 	SexEnum sexEnum = SexEnum.MAN;
-	private DriverVO editVO =new DriverVO(null);
+	private DriverVO editVO =new DriverVO();
 	public Stage stage;
 
 	public static DriverNewDialogController newDialog(DriverVO editVO) throws IOException {

@@ -77,15 +77,20 @@ public class CheckFinanceChartController {
         outcome_Label.setText(calculateVO.companyPayment + "元");
         income_Label.setText(calculateVO.companyRevenue + "元");
         profit_Label.setText(calculateVO.companyProfit + "元");
-
-        refreshPieChart();
-        refreshBarChart();
-        refreshLineChart();
+        
+        	refreshPieChart();
+            refreshBarChart();
+            refreshLineChart();
+		
+        
 
     }
 
     private void refreshLineChart() {
         lineChart.getData().clear();
+        if (lineType_ChoiceBox.getValue()==null) {
+			return;
+		}
 
         FinanceBaseChartType type = lineType_ChoiceBox.getValue().getEnum();
         BaseChartVO lineChartVO = financeChartBLService
@@ -118,6 +123,9 @@ public class CheckFinanceChartController {
     private void refreshBarChart() {
 
         barChart.getData().clear();
+        if (barType_ChoiceBox.getValue()==null) {
+			return;
+		}
 
         FinanceBaseChartType type = barType_ChoiceBox.getValue().getEnum();
         BaseChartVO barChartVO = financeChartBLService
@@ -149,7 +157,9 @@ public class CheckFinanceChartController {
 
     private void refreshPieChart() {
         pieChart.getData().clear();
-
+        if (pieType_ChoiceBox.getValue()==null) {
+			return;
+		}
         FinancePieChartType type = pieType_ChoiceBox.getValue().getEnum();
         PieChartVO pieChartVO = financeChartBLService
                 .getPieChart(getBegin(), getEnd(), type);

@@ -63,7 +63,7 @@ public class PaymentVO extends FinanceFormVO {
     }
     //
     public PaymentPO toPO(){
-    	return new PaymentPO(amount, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
+    	return new PaymentPO(formID, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
     }
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()

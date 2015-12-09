@@ -25,7 +25,6 @@ public abstract class FormVO extends CommonVO {
 	public String getCreaterID() {
 		return createrID;
 	}
-
 	public void setCreaterID(String createrID) {
 		this.createrID = createrID;
 	}

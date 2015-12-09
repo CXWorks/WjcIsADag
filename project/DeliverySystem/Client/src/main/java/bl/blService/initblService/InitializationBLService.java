@@ -52,4 +52,13 @@ public interface InitializationBLService extends BankAccountBLService,
     public OperationMessage uploadInitialData();
 
     public OperationMessage abortInitData();
+
+    /**
+     *
+     * @param modelID 仓库号
+     * @param anEnum 选区
+     * @param rowNum 要加的排的数目
+     * @param shelvesNum 每排的架子数
+     */
+    void addRows(String modelID, StoreAreaCode anEnum, String rowNum, String shelvesNum);
 }

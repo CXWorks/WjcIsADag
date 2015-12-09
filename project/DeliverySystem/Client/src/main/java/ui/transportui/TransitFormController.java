@@ -8,6 +8,7 @@ import java.util.Calendar;
 import message.OperationMessage;
 import factory.FormFactory;
 import bl.blService.transportblService.TransportCenterBLService;
+import po.orderdata.DeliverTypeEnum;
 import po.receivedata.StateEnum;
 import po.transportdata.TransportationEnum;
 import tool.time.TimeConvert;
@@ -30,91 +31,102 @@ import javafx.scene.control.*;
  * Created by Sissel on 2015/11/27.
  */
 public class TransitFormController {
-    public Label transNumber_Label;
-    public Label cargo_Label;
-    public ChoiceBox<SimpleEnumProperty<TransportationEnum>> transitType_ChoiceBox;
-    public DatePicker transit_DatePicker;
-    public TextField departure_Field;
-    public ChoiceBox<String> arrival_Box;
-    public TextField supervisor_Field;
-    public TextField transNumber_Field;
-    public TextField cargo_Field;
-    public TableView<String> orders_TableView;
-    public Label fee_Label;
-    public TextField id_Field;
+	public Label transNumber_Label;
+	public Label cargo_Label;
+	public ChoiceBox<SimpleEnumProperty<TransportationEnum>> transitType_ChoiceBox;
+	public DatePicker transit_DatePicker;
+	public TextField departure_Field;
+	public ChoiceBox<String> arrival_Box;
+	public TextField supervisor_Field;
+	public TextField transNumber_Field;
+	public TextField cargo_Field;
+	public ListView<String> orders_ListView;
+	public Label fee_Label;
+	public TextField id_Field;
 
-    ArrayList<String> ids= new ArrayList<String>();
+	int fee=0;
+	ArrayList<String> ids= new ArrayList<String>();
 
-    TransportationEnum transitEnum = TransportationEnum.TRAIN;
-    TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
+	TransportationEnum transitEnum = TransportationEnum.TRAIN;
+	TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
 
-    ArrayList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
-
-
-    public static Parent launch() throws IOException {
-
-        FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(TransitFormController.class.getResource("transitForm.fxml"));
-        return contentLoader.load();
-    }
-
-    @FXML
-    public void initialize(){
-
-    	departure_Field.setText(UserInfo.getInstitutionID());
-        // initialize the choice box
-    	transitType_ChoiceBox.setItems(Enum2ObservableList.transit(TransportationEnum.values()));
-    	transitType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                	transitEnum = newValue.getEnum();
-                }
-        );
-
-        arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
-    }
+	ArrayList<String> arrivals=transportCenterBLService.getLocation(UserInfo.getInstitutionID());
 
 
-    public void add(ActionEvent actionEvent){
-    	String a = id_Field.getText();
-    	System.out.println("add" + a);
-     	ids.add(a);
-     	orders_TableView.getItems().add(a);
-    	id_Field.clear();
-    }
+	public static Parent launch() throws IOException {
 
-    public void saveDraft(ActionEvent actionEvent) {
-    	transportCenterBLService.saveDraft(generateVO(null));
+		FXMLLoader contentLoader = new FXMLLoader();
+		contentLoader.setLocation(TransitFormController.class.getResource("transitForm.fxml"));
+		return contentLoader.load();
+	}
 
-    }
+	@FXML
+	public void initialize(){
+		transit_DatePicker.setValue(LocalDate.now());
+		departure_Field.setText(UserInfo.getInstitutionID());
+		// initialize the choice box  
+		transitType_ChoiceBox.setItems(
+				Enum2ObservableList.transit(TransportationEnum.values())
+				);
+	 	transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
+		transitType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					transitEnum = newValue.getEnum();
+				}
+				);
 
-    public void clear(ActionEvent actionEvent) {
-    	transit_DatePicker.setValue(LocalDate.now());
-    	transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
-    	departure_Field.clear();
-    	arrival_Box.setValue(arrival_Box.getItems().get(0));;
-    	supervisor_Field.clear();
-    	transNumber_Field.clear();
-    	cargo_Field.clear();
-    	id_Field.clear();
-    }
-
-    private CenterOutVO generateVO(String formID){
-        Calendar calendar = TimeConvert.convertDate(transit_DatePicker.getValue());
-        return new CenterOutVO(
-                formID, departure_Field.getText(), transNumber_Field.getText(), cargo_Field.getText(),
-        		calendar, fee_Label.getText(), arrival_Box.getValue(), supervisor_Field.getText(), ids,
-        		transitEnum);
-    }
+		arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
+		arrival_Box.setValue(arrival_Box.getItems().get(0));;
+	}
 
 
-    public void commit(ActionEvent actionEvent) {
-    	 OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
+	public void add(ActionEvent actionEvent){
+		String a = id_Field.getText();
+		System.out.println("add" + a);
+		ids.add(a);
+		orders_ListView.getItems().add(a);
+		id_Field.clear();
+		//    	fee+=
+	}
 
-         if(msg.operationResult){
-             System.out.println("commit successfully");
-             clear(null);
-         }else{
-             System.out.println("commit fail: " + msg.getReason());
-         }
-    }
+	public void saveDraft(ActionEvent actionEvent) {
+		transportCenterBLService.saveDraft(generateVO(null));
+		clear(null);
+
+	}
+
+	public void clear(ActionEvent actionEvent) {
+		transit_DatePicker.setValue(LocalDate.now());
+		transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
+		departure_Field.clear();
+		arrival_Box.setValue(arrival_Box.getItems().get(0));;
+		supervisor_Field.clear();
+		transNumber_Field.clear();
+		cargo_Field.clear();
+		id_Field.clear();
+		ids.clear();
+		orders_ListView.getItems().clear();
+	}
+
+	private CenterOutVO generateVO(String formID){
+		Calendar calendar = TimeConvert.convertDate(transit_DatePicker.getValue());
+		return new CenterOutVO(
+				formID, departure_Field.getText(), transNumber_Field.getText(), cargo_Field.getText(),
+				calendar, fee_Label.getText(), arrival_Box.getValue(), supervisor_Field.getText(), ids,
+				transitEnum);
+	}
+
+
+	public void commit(ActionEvent actionEvent) {
+		OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
+		ids.clear();
+//		orders_ListView=new ListView<>();
+		orders_ListView.getItems().clear();
+		if(msg.operationResult){
+			System.out.println("commit successfully");
+			clear(null);
+		}else{
+			System.out.println("commit fail: " + msg.getReason());
+		}
+	}
 }

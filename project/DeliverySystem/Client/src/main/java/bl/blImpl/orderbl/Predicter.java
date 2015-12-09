@@ -38,7 +38,7 @@ public class Predicter {
 			Calendar date=Calendar.getInstance();
 			date.add(Calendar.DAY_OF_MONTH, (int) (distance/400+1));
 			//
-			PredictVO vo=new PredictVO(Double.toString(price), date.toString());
+			PredictVO vo=new PredictVO(String.format("%.2f", price), date);
 			return vo;
 		} catch (RemoteException e) {
 			return null;

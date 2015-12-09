@@ -6,6 +6,8 @@ import java.util.List;
 
 
 
+
+
 import po.FormEnum;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
@@ -16,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -39,9 +42,9 @@ public class CheckFormController implements EventHandler<Event>{
 
 	public CheckBox chooseAll_Box;
 
-	public Label pass;
-	public Label deny;
-	public Label modify;
+	public Button pass;
+	public Button deny;
+	public Button modify;
 
 	public TabPane tabPane;
 	public Tab selectedTab;

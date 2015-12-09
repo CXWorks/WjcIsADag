@@ -133,7 +133,7 @@ public class NewOrderController {
     private void fillPrediction(){
 
 		PredictVO predictVO = obl.predict(generateVO(null));
-		predict_Date.setText(predictVO.getPredictDate());
+		predict_Date.setText(TimeConvert.getDisplayDate(predictVO.getPredictDate()));
 		predict_Expense.setText(predictVO.getExpense());
 	}
 

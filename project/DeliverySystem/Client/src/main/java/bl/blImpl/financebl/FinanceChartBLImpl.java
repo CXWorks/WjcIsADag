@@ -25,31 +25,7 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 		this.paymentDataService=CacheHelper.getPaymentDataService();
 		revenueDataService=CacheHelper.getRevenueDataService();
 		barChartMaker=new BarChartMaker();
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.financeblService.FinanceChartBLService#getCompanyState()
-	 */
-	public CalculateVO getCompanyState() {
-		try {
-			ArrayList<PaymentPO> paymentPOs=paymentDataService.getAll();
-			ArrayList<RevenuePO> revenuePOs=revenueDataService.getAll();
-			double income=0;
-			double outcome=0;
-			for (RevenuePO revenuePO : revenuePOs) {
-				income+=Double.parseDouble(revenuePO.getAmount());
-			}
-			for (PaymentPO paymentPO : paymentPOs) {
-				outcome+=Double.parseDouble(paymentPO.getAmount());
-			}
-			return new CalculateVO(income,outcome,income-outcome);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
+	}	
 	private boolean comp(Calendar strat,Calendar end,Calendar target){
 		if(target.after(strat)&&target.before(end))
 			return true;
@@ -60,8 +36,8 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     public BaseChartVO getBarChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
     	//TODO wait UI
         try {
-			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
-			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
+			ArrayList<PaymentPO> paymentPOs=this.smartGetPaymentPO(begin, end);
+			ArrayList<RevenuePO> revenuePOs=this.smartGetRevenuePO(begin, end);
 			switch (type) {
 			case IO_MONTH:
 				return barChartMaker.make_MonthIO(begin, end, paymentPOs, revenuePOs);
@@ -115,8 +91,8 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     @Override
     public BaseChartVO getLineChart(Calendar begin, Calendar end, FinanceBaseChartType type) {
     	try {
-			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
-			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
+			ArrayList<PaymentPO> paymentPOs=this.smartGetPaymentPO(begin, end);
+			ArrayList<RevenuePO> revenuePOs=this.smartGetRevenuePO(begin, end);
 			switch (type) {
 			case IO_MONTH:
 				return barChartMaker.make_MonthIO(begin, end, paymentPOs, revenuePOs);
@@ -142,7 +118,42 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 
     @Override
     public CalculateVO getCompanyState(Calendar begin, Calendar end) {
-        //TODO waitting 
-    	return null;
+    	
+        try {
+			ArrayList<PaymentPO> paymentPOs=this.smartGetPaymentPO(begin, end);
+			ArrayList<RevenuePO> revenuePOs=this.smartGetRevenuePO(begin, end);
+			double income=0;
+			double outcome=0;
+			for (RevenuePO revenuePO : revenuePOs) {
+				income+=Double.parseDouble(revenuePO.getAmount());
+			}
+			for (PaymentPO paymentPO : paymentPOs) {
+				outcome+=Double.parseDouble(paymentPO.getAmount());
+			}
+			return new CalculateVO(income,outcome,income-outcome);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+        
     }
+    private ArrayList<PaymentPO> smartGetPaymentPO(Calendar start,Calendar end) throws RemoteException{
+    	if (start==null||end==null) {
+			return paymentDataService.getAll();
+		}
+    	else {
+			return paymentDataService.getByTime(start, end);
+		}
+    }
+    
+    private ArrayList<RevenuePO> smartGetRevenuePO(Calendar start,Calendar end) throws RemoteException{
+    	if (start==null||end==null) {
+			return revenueDataService.getAll();
+		}
+    	else {
+			return revenueDataService.getByTime(start, end);
+		}
+    }
+    
 }
