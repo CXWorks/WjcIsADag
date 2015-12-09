@@ -2,7 +2,10 @@ package ui.accountui;
 
 import java.io.IOException;
 
+import bl.blService.accountblService.AccountBLManageService;
+import factory.AccountFactory;
 import main.Main;
+import message.OperationMessage;
 import ui.financeui.AccountEditDialogController;
 import ui.financeui.AccountEditDialogController.EditType;
 import vo.accountvo.AccountVO;
@@ -26,7 +29,7 @@ public class personAccountViewEditDialogController {
 	
 	private AccountVO editVO =  new AccountVO();
     public Stage stage;
-	
+    AccountBLManageService accountManageService = AccountFactory.getManageService();
 	public static personAccountViewEditDialogController newDialog(AccountVO editVO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(personAccountViewEditDialogController.class.getResource("personAccountViewEditDialog.fxml"));
@@ -44,9 +47,9 @@ public class personAccountViewEditDialogController {
     }
 
 	public boolean check(String pw0,String pw1,String pw2){
-		if(pw1==pw2&&pw0==editVO.password){
+		if(pw1.equalsIgnoreCase(pw2)&&pw0.equalsIgnoreCase(editVO.password)){
 			return true;
-		}if(pw1!=pw2){
+		}if(!pw1.equalsIgnoreCase(pw2)){
 			originalPassWord_Field.clear();
 			newPassWord_Field.clear();
 			againNewPassWord_Field.clear();
@@ -65,14 +68,17 @@ public class personAccountViewEditDialogController {
 	
 	
     public void ok(ActionEvent actionEvent) {
-        if(check(originalPassWord_Field.getText(),newPassWord_Field.getText(),againNewPassWord_Field.getText())){
-        editVO.password = newPassWord_Field.getText();
-        
-        System.out.println("modify password successfully!");
-        
-        stage.close();}else{
-        	System.out.println("modify password failed!");
-        }
+		if (check(originalPassWord_Field.getText(),
+				newPassWord_Field.getText(), againNewPassWord_Field.getText())) {
+			editVO.password = newPassWord_Field.getText();
+			accountManageService.modifyAccount(editVO);
+			
+			System.out.println("modify password successfully!");
+
+			stage.close();
+		} else {
+			System.out.println("modify password failed!");
+		}
     }
 
     public void cancel(ActionEvent actionEvent) {

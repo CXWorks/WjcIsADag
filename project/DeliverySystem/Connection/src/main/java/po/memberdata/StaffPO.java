@@ -76,6 +76,9 @@ public class StaffPO extends InfoPO implements Serializable{
 		case "STOREMAN":
 			this.staff = StaffTypeEnum.STOREMAN;
 			break;
+		case "DRIVER":
+			this.staff=StaffTypeEnum.DRIVER;
+			break;
 		}
 	}
 	public void setSex(String sex) {
