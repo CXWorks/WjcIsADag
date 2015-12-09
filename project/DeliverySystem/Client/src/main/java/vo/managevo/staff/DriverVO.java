@@ -18,6 +18,9 @@ public class DriverVO extends StaffVO {
 	private String tel;
 	private Calendar licence_period;
 
+	public DriverVO(){
+		super(InfoEnum.DRIVER);
+	}
 	//
 	/**
 	 * @param staff

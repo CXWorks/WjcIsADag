@@ -38,6 +38,10 @@ public class StaffVO extends InfoVO{
 	public StaffVO(StaffPO po){
 		this(po.getStaff(), po.getID(), po.getName(), po.getAge(), po.getPersonID(), po.getSex(), po.getLove(),po.getInititutionID());
 	}
+	protected StaffVO(InfoEnum infoEnum) {
+		super(infoEnum);
+		
+	}
 	public StaffPO toPO(){
 		return new StaffPO(staff, ID, name, age, personID, sex, love,institutionID);
 	}
