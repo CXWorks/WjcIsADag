@@ -29,6 +29,7 @@ import ui.navigationui.*;
 import ui.orderui.NewOrderController;
 import ui.receiveui.ReceiveFormController;
 import ui.storeui.StockTackController;
+import ui.storeui.StoreSummaryController;
 import ui.transportui.LoadCarController;
 import ui.transportui.TransitFormController;
 import userinfo.UserInfo;
@@ -117,9 +118,9 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
 //        		NewOrderController.launch()
-        		CheckFormController.launch()
+//        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
-//                CheckFinanceChartController.launch()
+                CheckFinanceChartController.launch()
 //        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
@@ -134,6 +135,7 @@ public class Main extends Application {
 //                FinanceNavigation.launch()
 //        		PaymentFormController.launch()
 //        		ReceiveFormController.launch()
+//        		StoreSummaryController.launch()
         ));
         primaryStage.show();
     }

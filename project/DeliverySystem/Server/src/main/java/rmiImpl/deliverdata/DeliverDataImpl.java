@@ -40,7 +40,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	public Connection getConn() {
 		return conn;
 	}
-	public OperationMessage insert(DeliverPO po) {
+	public OperationMessage insert(DeliverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
@@ -56,9 +56,14 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getFormPO(po.getFormID()) != null) {
+				po.setFormID(this.newID(po.getFormID().substring(9, 17)));
+				this.insert(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				 System.err.println("新建时出错：");
+				 e.printStackTrace();
+			}
 		}
 		try {
 			if (po.isFinished()) {
@@ -90,7 +95,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return result;
 	}
 
-	public OperationMessage update(DeliverPO po) {
+	public OperationMessage update(DeliverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)

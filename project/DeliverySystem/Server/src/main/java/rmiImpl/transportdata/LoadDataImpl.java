@@ -56,10 +56,14 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getFormPO(po.getFormID()) != null) {
+				po.setFormID(this.newID(po.getFormID().substring(9, 17)));
+				this.insert(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				 System.err.println("新建时出错：");
+				 e.printStackTrace();
+			}
 		}
 
 		return result;

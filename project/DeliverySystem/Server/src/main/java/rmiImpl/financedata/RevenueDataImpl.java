@@ -59,10 +59,14 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getFormPO(po.getFormID()) != null) {
+				po.setFormID(this.newID(po.getFormID().substring(9, 17)));
+				this.insert(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				 System.err.println("新建时出错：");
+				 e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -228,9 +232,9 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	@Override
 	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where (unix_timestamp(`date`) - '"
-				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
-				+ end.getTime().getTime() / 1000 + "' <= 0";
+		String select = "select * from `" + Table_Name + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
+				+ "') < UNIX_TIMESTAMP(`date`) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
+				+ "') > UNIX_TIMESTAMP(`date`)";
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
