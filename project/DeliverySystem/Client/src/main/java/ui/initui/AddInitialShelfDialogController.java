@@ -63,7 +63,7 @@ public class AddInitialShelfDialogController {
 
     public void commit(ActionEvent actionEvent) {
         // TODO check
-        initService.addRows(modelID,
+        initService.addShelves(modelID,
                 area_ChoiceBox.getSelectionModel().getSelectedItem().getEnum(),
                 rowNum_Field.getText(),
                 shelvesNum_Field.getText());

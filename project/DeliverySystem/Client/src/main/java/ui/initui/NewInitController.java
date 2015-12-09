@@ -38,8 +38,8 @@ public class NewInitController {
     }
 
     @FXML
-    public void manageStore(ActionEvent actionEvent) {
-        // TODO:damn
+    public void manageStore(ActionEvent actionEvent) throws IOException {
+        jumpTo(ManageInitialStoreController.launch(father, selfPane));
     }
 
     @FXML

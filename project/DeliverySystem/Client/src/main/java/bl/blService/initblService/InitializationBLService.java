@@ -61,4 +61,13 @@ public interface InitializationBLService extends BankAccountBLService,
      * @param shelvesNum 每排的架子数
      */
     void addRows(String modelID, StoreAreaCode anEnum, String rowNum, String shelvesNum);
+
+    /**
+     *
+     * @param modelID 仓库号
+     * @param anEnum 选区
+     * @param rowNum 加在哪一排
+     * @param shelvesNum 加多少架子
+     */
+    void addShelves(String modelID, StoreAreaCode anEnum, String rowNum, String shelvesNum);
 }

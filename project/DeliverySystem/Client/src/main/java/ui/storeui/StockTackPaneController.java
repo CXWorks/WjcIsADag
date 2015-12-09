@@ -202,4 +202,19 @@ public class StockTackPaneController {
                 + selectedPosition.getValue() + "号";
         return path;
     }
+
+    /**
+     * TODO important not finished
+     */
+    public void deleteRow(){
+
+    }
+
+    public void deleteShelf(){
+
+    }
+
+    public void deletePosition(){
+
+    }
 }

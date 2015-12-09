@@ -583,4 +583,17 @@ public class InitializationBLController implements InitializationBLService {
 			return new OperationMessage(false, "unknown type");
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#addRows(java.lang.String, model.store.StoreAreaCode, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void addRows(String modelID, StoreAreaCode anEnum, String rowNum,
+			String shelvesNum) {
+		StoreModel storeModel=this.searchModel(modelID);
+		StoreArea storeArea=storeModel.getArea(anEnum);
+		storeArea.addRows(rowNum, shelvesNum);
+		return ;
+		
+	}
 }
