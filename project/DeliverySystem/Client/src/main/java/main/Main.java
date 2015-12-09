@@ -112,29 +112,29 @@ public class Main extends Application {
         primaryStage.setX(150);
         primaryStage.setY(150);
 
-//        loginPane = (Pane)LoginController.launch();
+        loginPane = (Pane)LoginController.launch();
 
-//        primaryStage.setScene(new Scene( loginPane));
-        primaryStage.setScene(new Scene(
-//        		NewOrderController.launch()
-        		CheckFormController.launch()
-//                ManageBankAccountController.launch()
-//                CheckFinanceChartController.launch()
-//        		ManageOrganizationController.launch()
-//                CheckLogController.launch()
-//                deliverController.launch()
-        		//ManageStaffController.launch()
-//               StockTackController.launch()
-        		//ConfigurationController.launch()
-//        		ManageSalaryController.launch()
-//       		LoadCarController.launch()
-//        		TransitFormController.launch()
-//        		LoginController.launch()
-        		//StorePartitionController.launch()
-//                FinanceNavigation.launch()
-//        		PaymentFormController.launch()
-//        		ReceiveFormController.launch()
-        ));
+        primaryStage.setScene(new Scene( loginPane));
+//        primaryStage.setScene(new Scene(
+////        		NewOrderController.launch()
+////        		CheckFormController.launch()
+////                ManageBankAccountController.launch()
+////                CheckFinanceChartController.launch()
+////        		ManageOrganizationController.launch()
+////                CheckLogController.launch()
+////                deliverController.launch()
+//        		//ManageStaffController.launch()
+////               StockTackController.launch()
+//        		//ConfigurationController.launch()
+////        		ManageSalaryController.launch()
+////       		LoadCarController.launch()
+////        		TransitFormController.launch()
+////        		LoginController.launch()
+//        		//StorePartitionController.launch()
+////                FinanceNavigation.launch()
+////        		PaymentFormController.launch()
+////        		ReceiveFormController.launch()
+//        ));
         primaryStage.show();
     }
 }
