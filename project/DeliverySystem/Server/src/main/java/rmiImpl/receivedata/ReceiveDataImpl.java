@@ -31,6 +31,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	public ReceiveDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
+
 		Table_Name = "receive";
 		conn = ConnecterHelper.getConn();
 	}
@@ -56,6 +57,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
+//			po.setFormID(this.newID(po.getFormID().substring(9, 17)));
+//			this.insert(po);
 		}
 
 		return result;

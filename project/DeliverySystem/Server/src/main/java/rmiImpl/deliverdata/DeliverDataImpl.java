@@ -204,6 +204,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
 				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
 				String last = FormIDs.get(FormIDs.size() - 1);
+//				System.out.println(last);
 				if (last.substring(0, 9).equalsIgnoreCase("03" + HallID)) {
 					result.add(rs.getString("formID"));
 				}
