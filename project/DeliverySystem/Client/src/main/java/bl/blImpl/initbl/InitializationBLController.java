@@ -604,6 +604,9 @@ public class InitializationBLController implements InitializationBLService {
 	public void addShelves(String modelID, StoreAreaCode anEnum, String rowNum,
 			String shelvesNum) {
 		// TODO Auto-generated method stub
+		StoreModel storeModel=this.searchModel(modelID);
+		StoreArea storeArea=storeModel.getArea(anEnum);
+		storeArea.addShelves(rowNum, shelvesNum);
 		
 	}
 }

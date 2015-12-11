@@ -16,6 +16,19 @@ public class StoreArea implements Serializable {
 		int total = rowNum * shelfForEachRow;
 		return list.size() / (double) total;
 	}
+	
+	public void addShelves(String rowNum,String shelvesNum){
+		int rowN=Integer.parseInt(rowNum);
+		int shelvesN=Integer.parseInt(rowNum);
+		StoreLocation storeLocation=list.stream().filter(cell->{return cell.getRow()>rowN;}).findFirst().get();
+		int index=list.indexOf(storeLocation);
+		for (int i = 0; i < shelvesN; i++) {
+			for (int j = 0; j < 50; j++) {
+				list.add(new StoreLocation(areaType, rowN, shelvesN, j+1));
+			}
+		}
+		
+	}
 
 	public StoreArea(StoreAreaCode areaID, ArrayList<StoreLocation> list) {
 		super();
@@ -79,11 +92,9 @@ public class StoreArea implements Serializable {
 			return false;
 		}
 		StoreLocation last = list.get(list.size() - 1);
+		int row=last.getRow();
 		int shelf = last.getShelf();
-		while (last.getShelf() == shelf) {
-			list.remove(list.size() - 1);
-			last = list.get(list.size() - 1);
-		}
+		list.removeIf(cell->{return cell.getRow()==row&&cell.getShelf()==shelf;});
 		return true;
 	}
 
