@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import userinfo.UserInfo;
 import vo.managevo.car.CarVO;
-import vo.managevo.institution.HallVO;
 import vo.managevo.staff.DriverVO;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -26,15 +25,15 @@ import javafx.scene.Parent;
  * Created by Sissel on 2015/11/27.
  */
 public class ManageCarDriverController {
-	public TableView<CarVOCheckItem> car_TableView;
-	public TableColumn<CarVOCheckItem,CarVOCheckItem> carCheck_TableColumn;
-	public TableColumn<CarVOCheckItem,String> carID_TableColumn;
-	public TableColumn<CarVOCheckItem,String> carLicense_TableColumn;
-	public TableColumn<CarVOCheckItem,String> serveTime_TableColumn;
-	public TableView<DriverVOCheckItem> driver_TableView;
-	public TableColumn<DriverVOCheckItem,DriverVOCheckItem> driverCheck_TableColumn;
-	public TableColumn<DriverVOCheckItem,String> driverID_TableColumn;
-	public TableColumn<DriverVOCheckItem,String> driverName_TableColumn;
+	public TableView<CarAbstractCheckItem> car_TableView;
+	public TableColumn<CarAbstractCheckItem,CarAbstractCheckItem> carCheck_TableColumn;
+	public TableColumn<CarAbstractCheckItem,String> carID_TableColumn;
+	public TableColumn<CarAbstractCheckItem,String> carLicense_TableColumn;
+	public TableColumn<CarAbstractCheckItem,String> serveTime_TableColumn;
+	public TableView<DriverAbstractCheckItem> driver_TableView;
+	public TableColumn<DriverAbstractCheckItem,DriverAbstractCheckItem> driverCheck_TableColumn;
+	public TableColumn<DriverAbstractCheckItem,String> driverID_TableColumn;
+	public TableColumn<DriverAbstractCheckItem,String> driverName_TableColumn;
 
 	public CheckBox all_Car_CheckBox;
 	public CheckBox all_Driver_CheckBox;
@@ -48,11 +47,11 @@ public class ManageCarDriverController {
 	private ArrayList<CarVO> carvo_list=manageblCarService.getCar(UserInfo.getInstitutionID());
 	private ArrayList<DriverVO> drivervo_list=manageblDriverService.getStaffByInstitution();
 
-	private List<CarVOCheckItem> cars = new ArrayList<CarVOCheckItem>();
-	private List<DriverVOCheckItem> drivers = new ArrayList<DriverVOCheckItem>();
+	private List<CarAbstractCheckItem> cars = new ArrayList<CarAbstractCheckItem>();
+	private List<DriverAbstractCheckItem> drivers = new ArrayList<DriverAbstractCheckItem>();
 
-	private CarVOCheckItem carVO = new CarVOCheckItem(null);
-	private DriverVOCheckItem driverVO = new DriverVOCheckItem(null);
+	private CarAbstractCheckItem carVO = new CarAbstractCheckItem(null);
+	private DriverAbstractCheckItem driverVO = new DriverAbstractCheckItem(null);
 
 	public static Parent launch(Pane father, Pane before, ManageblCarService service) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -82,10 +81,10 @@ public class ManageCarDriverController {
     // TODO test jump : change the name
 	public void initialize(){
 		for(int i=0;i<carvo_list.size();i++){
-			cars.add(new CarVOCheckItem(carvo_list.get(i)));
+			cars.add(new CarAbstractCheckItem(carvo_list.get(i)));
 		}
 		for(int j=0;j<drivervo_list.size();j++){
-			drivers.add(new DriverVOCheckItem(drivervo_list.get(j)));
+			drivers.add(new DriverAbstractCheckItem(drivervo_list.get(j)));
 		}
 
 		car_TableView.setItems(FXCollections.observableArrayList(cars));
@@ -152,7 +151,7 @@ public class ManageCarDriverController {
 		CarNewDialogController controller = CarNewDialogController.newDialog
 				(car);
 
-		CarVOCheckItem selected= new CarVOCheckItem(car);
+		CarAbstractCheckItem selected= new CarAbstractCheckItem(car);
 		controller.stage.showAndWait();
 
 		car_TableView.getItems().add(selected);
@@ -163,7 +162,7 @@ public class ManageCarDriverController {
 	public void searchCar(ActionEvent actionEvent) {
 		String filter = search_Car_Field.getText();
 		CarVO car=manageblCarService.searchCar(filter);
-		CarVOCheckItem select = new CarVOCheckItem(car);
+		CarAbstractCheckItem select = new CarAbstractCheckItem(car);
 		car_TableView.setItems(FXCollections.observableArrayList(select));
 
 		carID_TableColumn.setCellValueFactory(
@@ -207,7 +206,7 @@ public class ManageCarDriverController {
 		CarEditDialogController controller = CarEditDialogController.newDialog
 				(selected);
 
-		CarVOCheckItem car= new CarVOCheckItem(selected);
+		CarAbstractCheckItem car= new CarAbstractCheckItem(selected);
 		controller.stage.showAndWait();
 
 		car_TableView.getItems().add(car);
@@ -216,7 +215,7 @@ public class ManageCarDriverController {
 	}
 
 	private boolean isAllCarSelected(){
-		for (CarVOCheckItem car : cars) {
+		for (CarAbstractCheckItem car : cars) {
 			if(!car.getSelected()){
 				return false;
 			}
@@ -225,14 +224,14 @@ public class ManageCarDriverController {
 	}
 
 	private void setAllCarSelectedValue(boolean value){
-		for (CarVOCheckItem car : cars) {
+		for (CarAbstractCheckItem car : cars) {
 			car.setSelected(value);
 		}
 	}
 
-	private class CarTableCell extends TableCell<CarVOCheckItem, CarVOCheckItem> {
+	private class CarTableCell extends TableCell<CarAbstractCheckItem, CarAbstractCheckItem> {
 		@Override
-		protected void updateItem(CarVOCheckItem item, boolean empty) {
+		protected void updateItem(CarAbstractCheckItem item, boolean empty) {
 			super.updateItem(item, empty);
 
 			if(item == null || empty){
@@ -247,9 +246,9 @@ public class ManageCarDriverController {
 	}
 
 
-	private class DriverTableCell extends TableCell<DriverVOCheckItem, DriverVOCheckItem> {
+	private class DriverTableCell extends TableCell<DriverAbstractCheckItem, DriverAbstractCheckItem> {
 		@Override
-		protected void updateItem(DriverVOCheckItem item, boolean empty) {
+		protected void updateItem(DriverAbstractCheckItem item, boolean empty) {
 			super.updateItem(item, empty);
 
 			if(item == null || empty){
@@ -283,7 +282,7 @@ public class ManageCarDriverController {
 				(driver);
 
 		controller.stage.showAndWait();
-		DriverVOCheckItem selected= new DriverVOCheckItem(driver);
+		DriverAbstractCheckItem selected= new DriverAbstractCheckItem(driver);
 		driver_TableView.getItems().add(selected);
 		manageblDriverService.addStaff(driver);
 	}
@@ -293,7 +292,7 @@ public class ManageCarDriverController {
 	public void searchDriver(ActionEvent actionEvent) {
 		String filter = search_Driver_Field.getText();
 		DriverVO driver =manageblDriverService.searchDriver(filter);
-		DriverVOCheckItem selected= new DriverVOCheckItem(driver);
+		DriverAbstractCheckItem selected= new DriverAbstractCheckItem(driver);
 
 		driver_TableView.setItems(FXCollections.observableArrayList(selected));
 		driverID_TableColumn.setCellValueFactory(
@@ -335,7 +334,7 @@ public class ManageCarDriverController {
 				(selected);
 
 		controller.stage.showAndWait();
-		DriverVOCheckItem driver= new DriverVOCheckItem(selected);
+		DriverAbstractCheckItem driver= new DriverAbstractCheckItem(selected);
 
 
 		//以下好像不是这么干的
@@ -344,7 +343,7 @@ public class ManageCarDriverController {
 	}
 
 	private boolean isAllDriverSelected(){
-		for (DriverVOCheckItem driver : drivers) {
+		for (DriverAbstractCheckItem driver : drivers) {
 			if(!driver.getSelected()){
 				return false;
 			}
@@ -353,7 +352,7 @@ public class ManageCarDriverController {
 	}
 
 	private void setAllDriverSelectedValue(boolean value){
-		for (DriverVOCheckItem driver : drivers) {
+		for (DriverAbstractCheckItem driver : drivers) {
 			driver.setSelected(value);
 		}
 	}

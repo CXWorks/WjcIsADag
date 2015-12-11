@@ -2,12 +2,12 @@ package ui.orderui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import ui.common.VOCheckItem;
-import vo.ordervo.OrderVO;
+import ui.common.AbstractCheckItem;
+import vo.delivervo.DeliverVO;
 
-public class OrderVOCheckItem extends VOCheckItem<OrderVO> {
+public class DeliverAbstractCheckItem extends AbstractCheckItem<DeliverVO> {
 
-	OrderVOCheckItem(OrderVO vo){
+	DeliverAbstractCheckItem(DeliverVO vo){
         this.vo = new SimpleObjectProperty<>(vo);
         this.selected = new SimpleBooleanProperty(false);
         selected.addListener(
@@ -19,8 +19,8 @@ public class OrderVOCheckItem extends VOCheckItem<OrderVO> {
 
     @Override
     public String toString() {
-    	OrderVO vo = this.vo.getValue();
-
-        return vo.getFormID()+vo.getAddressTo()+vo.getNameTo();
+    	DeliverVO vo = this.vo.getValue();
+    	
+        return vo.getOrderID()+vo.getReceivePeople();
     }
 }

@@ -7,7 +7,7 @@ import vo.CommonVO;
 /**
  * Created by Sissel on 2015/11/25.
  */
-public abstract class VOCheckItem<T extends CommonVO> {
+public abstract class AbstractCheckItem<T> {
     protected SimpleObjectProperty<T> vo;
     protected SimpleBooleanProperty selected;
 

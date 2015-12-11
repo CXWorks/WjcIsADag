@@ -2,25 +2,25 @@ package ui.hallui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import ui.common.VOCheckItem;
-import vo.managevo.car.CarVO;
+import ui.common.AbstractCheckItem;
+import vo.managevo.staff.DriverVO;
 
-public class CarVOCheckItem extends VOCheckItem<CarVO> {
+public class DriverAbstractCheckItem extends AbstractCheckItem<DriverVO> {
 
-	CarVOCheckItem(CarVO vo){
+	DriverAbstractCheckItem(DriverVO vo){
         this.vo = new SimpleObjectProperty<>(vo);
         this.selected = new SimpleBooleanProperty(false);
         selected.addListener(
                 (observable, oldValue, newValue) -> {
-                    System.out.println(vo.getCarID() + " change to " + newValue.booleanValue());
+                    System.out.println(vo.getID() + " change to " + newValue.booleanValue());
                 }
         );
     }
 
     @Override
     public String toString() {
-    	CarVO vo = this.vo.getValue();
+    	DriverVO vo = this.vo.getValue();
 
-        return vo.getCarID()+vo.getNameID()+vo.getUseTime();
+        return vo.getID() +vo.getName();
     }
 }

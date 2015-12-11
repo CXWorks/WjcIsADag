@@ -7,39 +7,27 @@ import java.util.List;
 
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableObjectValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import po.accountdata.AuthorityEnum;
-import po.memberdata.StaffTypeEnum;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import ui.financeui.ManageBankAccountController;
 import vo.accountvo.AccountVO;
-import vo.managevo.staff.StaffVO;
 
 public class ManageAccountController {
     private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-    private List<AccountVOCheckItem> accounts = new ArrayList<>();
+    private List<AccountAbstractCheckItem> accounts = new ArrayList<>();
 
-    public TableView<AccountVOCheckItem> accounts_TableView;
-    public TableColumn<AccountVOCheckItem, AccountVOCheckItem> check_TableColumn;
-    public TableColumn<AccountVOCheckItem, String> id_TableColumn;
-    public TableColumn<AccountVOCheckItem, String> password_TableColumn;
-    public TableColumn<AccountVOCheckItem, String> staff_TableColumn;
+    public TableView<AccountAbstractCheckItem> accounts_TableView;
+    public TableColumn<AccountAbstractCheckItem, AccountAbstractCheckItem> check_TableColumn;
+    public TableColumn<AccountAbstractCheckItem, String> id_TableColumn;
+    public TableColumn<AccountAbstractCheckItem, String> password_TableColumn;
+    public TableColumn<AccountAbstractCheckItem, String> staff_TableColumn;
 
 	public TextField search_Field;
     public CheckBox all_CheckBox;
@@ -68,13 +56,13 @@ public class ManageAccountController {
         check_TableColumn.setCellValueFactory(
                 cellData -> new SimpleObjectProperty<>(cellData.getValue())
         );
-        accounts_TableView.getSelectionModel().setCellSelectionEnabled(false);
+
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if(newValue == null){
-                        System.out.println("cao ni ma a");
+                        System.out.println("selected empty");
                     }else{
-
+                        System.out.println("selected " + newValue.getVo().getID());
                     }
                 }
         );
@@ -105,7 +93,7 @@ public class ManageAccountController {
         for (int i = 0; i < accounts.size(); i++) {
             if(accounts.get(i).getSelected()){
                 accounts.remove(accounts.get(i));
-                ObservableList<AccountVOCheckItem> list = accounts_TableView.getItems();
+                ObservableList<AccountAbstractCheckItem> list = accounts_TableView.getItems();
                 accountBLManageService.deleteAccount(list.get(i).getVo());
                 list.remove(list.get(i));
                 --i;
@@ -116,7 +104,7 @@ public class ManageAccountController {
 
     @FXML
 	public void edit(ActionEvent actionEvent) {
-        ObservableList<AccountVOCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
+        ObservableList<AccountAbstractCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
         if(checkItems.size() != 1){
             System.out.println("please choose one item");
             return;
@@ -133,7 +121,7 @@ public class ManageAccountController {
 	}
 
     private boolean isAllSelected(){
-        for (AccountVOCheckItem account : accounts) {
+        for (AccountAbstractCheckItem account : accounts) {
             if(!account.getSelected()){
                 return false;
             }
@@ -142,10 +130,10 @@ public class ManageAccountController {
     }
 
     private void setAllSelectedValue(boolean value){
-        for (AccountVOCheckItem account : accounts) {
+        for (AccountAbstractCheckItem account : accounts) {
             account.setSelected(value);
         }
-        ObservableList<AccountVOCheckItem> list = accounts_TableView.getItems();
+        ObservableList<AccountAbstractCheckItem> list = accounts_TableView.getItems();
         for (int i = 0; i < list.size(); i++) {
             accounts_TableView.getSelectionModel().select(i);
         }
@@ -161,12 +149,13 @@ public class ManageAccountController {
         }
     }
 
-    private class MyTableCell extends TableCell<AccountVOCheckItem, AccountVOCheckItem> {
+    private class MyTableCell extends TableCell<AccountAbstractCheckItem, AccountAbstractCheckItem> {
         @Override
-        protected void updateItem(AccountVOCheckItem item, boolean empty) {
+        protected void updateItem(AccountAbstractCheckItem item, boolean empty) {
             super.updateItem(item, empty);
 
             if(item == null || empty){
+                setGraphic(null);
                 return;
             }
 
@@ -186,10 +175,7 @@ public class ManageAccountController {
         accounts.clear();
         accounts_TableView.getItems().clear();
         for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
-            accounts.add(new AccountVOCheckItem(accountVO,
-                    (observable, oldValue, newValue) -> {
-
-                    }));
+            accounts.add(new AccountAbstractCheckItem(accountVO));
         }
         accounts_TableView.getItems().addAll(accounts);
     }
