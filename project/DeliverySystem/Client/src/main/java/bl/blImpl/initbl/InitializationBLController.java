@@ -596,4 +596,9 @@ public class InitializationBLController implements InitializationBLService {
 		return ;
 		
 	}
+
+	@Override
+	public void addShelves(String modelID, StoreAreaCode anEnum, String rowNum, String shelvesNum) {
+
+	}
 }
