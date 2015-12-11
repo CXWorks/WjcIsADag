@@ -21,10 +21,12 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
 	private PaymentDataService paymentDataService;
 	private RevenueDataService revenueDataService;
 	private BarChartMaker barChartMaker;
+	private PieChartMaker pieChartMaker;
 	public FinanceChartBLImpl(){
 		this.paymentDataService=CacheHelper.getPaymentDataService();
 		revenueDataService=CacheHelper.getRevenueDataService();
 		barChartMaker=new BarChartMaker();
+		pieChartMaker=new PieChartMaker();
 	}	
 	private boolean comp(Calendar strat,Calendar end,Calendar target){
 		if(target.after(strat)&&target.before(end))
@@ -64,18 +66,19 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     @Override
     public PieChartVO getPieChart(Calendar begin, Calendar end, FinancePieChartType type) {
         
-        try {
-        	PieChartVO vo=new PieChartVO();
-        	vo.initial();
-			ArrayList<PaymentPO> src=paymentDataService.getAll();
-			for (PaymentPO paymentPO : src) {
-				if (comp(begin, end, paymentPO.getDate())) {
-					double amount=Double.parseDouble(paymentPO.getAmount());
-					vo.addOriginMapByType(paymentPO.getItem(), amount);
-				}
-			}
-			//
-			return vo;
+        try {switch (type) {
+		case MONTH_IN_PAYMENT:
+			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
+			return pieChartMaker.monthPay(begin, end, paymentPOs);
+		case MONTH_IN_REVENUE:
+			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
+			return pieChartMaker.monthRevenue(begin, end, revenuePOs);
+		case TYPES_IN_PAYMENT:
+			ArrayList<PaymentPO> paymentPOs2=paymentDataService.getByTime(begin, end);
+			return pieChartMaker.typePay(paymentPOs2);
+		default:
+			return null;
+		}
 		} catch (RemoteException|NullPointerException e) {
 			PieChartVO vo =  new PieChartVO();
 	        vo.title = "支出类型比例饼状图";

@@ -19,25 +19,9 @@ public class PieChartVO extends InfoVO {
     public String	valueType;
     // 饼状图的每个项的名字及原始数值
     public Map<String, Double>	originMap;
-    // 饼状图的每个项的名字及最终比例
-    public Map<String,Double> ratioMap;
 
     public PieChartVO(){
     	super(InfoEnum.PIE_CHART);
     }
     //
-    public void initial(){
-    	originMap=new HashMap<String, Double>();
-    	originMap.put(FinancePayEnum.AWARD.getChinese(), 0.0);
-    	originMap.put(FinancePayEnum.RENT.getChinese(), 0.0);
-    	originMap.put(FinancePayEnum.SALARY.getChinese(), 0.0);
-    	originMap.put(FinancePayEnum.TRANSPORTION.getChinese(), 0.0);
-    	//
-    	
-    }
-    //
-    public void addOriginMapByType(FinancePayEnum financePayEnum,double value){
-    	double origin=originMap.get(financePayEnum.getChinese());
-    	origin+=value;
-    }
 }
