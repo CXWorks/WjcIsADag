@@ -3,6 +3,8 @@ package ui.configurationui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -188,29 +190,32 @@ public class ConfigurationController {
 			City2DVO city2dvo=(City2DVO)configurationVO;
 			vo.add(city2dvo);
 		}
-		City2DVO city1=vo.get(0);
-		City2DVO city2=vo.get(1);
-		System.out.println(city1.getXY());
+		City2DVO bj=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("北京");}).findFirst().get();
+		City2DVO sh=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("上海");}).findFirst().get();
+		City2DVO gz=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("广州");}).findFirst().get();
+		City2DVO nj=vo.stream().filter(city->{return city.getName().equalsIgnoreCase("南京");}).findFirst().get();
+		City2DVO city1=bj;
+		City2DVO city2=sh;
 		//
 		two_One_Label.setText(Double.toString(city1.distance(city2)));
-		city2=vo.get(2);
+		city2=gz;
 		three_One_Label.setText(Double.toString(city1.distance(city2)));
-		city2=vo.get(3);
+		city2=nj;
 		four_One_Label.setText(Double.toString(city1.distance(city2)));
 		//
-		city1=vo.get(1);
-		city2=vo.get(2);
+		city1=sh;
+		city2=gz;
 		three_Two_Label.setText(Double.toString(city1.distance(city2)));
-		city2=vo.get(3);
+		city2=nj;
 		four_Two_Label.setText(Double.toString(city1.distance(city2)));
-		city1=vo.get(2);
+		city1=gz;
 		four_Three_Label.setText(Double.toString(city1.distance(city2)));
 		
 		//
-		this.city1.setText(vo.get(0).getXY());
-		this.city2.setText(vo.get(1).getXY());
-		this.city3.setText(vo.get(2).getXY());
-		this.city4.setText(vo.get(3).getXY());
+		this.city1.setText(bj.getXY());
+		this.city2.setText(sh.getXY());
+		this.city3.setText(gz.getXY());
+		this.city4.setText(nj.getXY());
 	}
 	//
 	private void initializePrice(){
