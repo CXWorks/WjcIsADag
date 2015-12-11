@@ -10,7 +10,7 @@ import po.systemdata.SystemState;
  * @version 1.0
  */
 public class UserInfo {
-	private static String userID;
+	private static String userID = "01000001";
 	private static SystemState systemState;
 	private static StaffTypeEnum staffType;
 	private static String institutionID = "0251001";

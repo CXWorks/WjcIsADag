@@ -25,6 +25,7 @@ import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
+import ui.messageui.CheckMessageController;
 import ui.navigationui.*;
 import ui.orderui.NewOrderController;
 import ui.receiveui.ReceiveFormController;
@@ -120,7 +121,7 @@ public class Main extends Application {
 //        		NewOrderController.launch()
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
-                CheckFinanceChartController.launch()
+//                CheckFinanceChartController.launch()
 //        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
@@ -130,12 +131,13 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
-//        		LoginController.launch()
+        		LoginController.launch()
         		//StorePartitionController.launch()
 //                FinanceNavigation.launch()
 //        		PaymentFormController.launch()
 //        		ReceiveFormController.launch()
 //        		StoreSummaryController.launch()
+//        		CheckMessageController.launch()
         ));
         primaryStage.show();
     }

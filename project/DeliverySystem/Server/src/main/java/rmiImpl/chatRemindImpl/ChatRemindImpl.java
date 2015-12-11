@@ -39,6 +39,8 @@ public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindSer
 	public ArrayList<ChatMessage> getMessage(String ID) {
 		// TODO Auto-generated method stub
 		ArrayList<ChatMessage> list = map.get(ID);
+		if(list==null)
+			list = new ArrayList<ChatMessage>();
 		map.put(ID, new ArrayList<ChatMessage>());
 		return list;
 	}

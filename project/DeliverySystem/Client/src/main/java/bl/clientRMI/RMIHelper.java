@@ -38,7 +38,7 @@ import rmi.transportdata.LoadDataService;
  * @version 1.0
  */
 public class RMIHelper {
-	private static final String IP="114.212.42.162:2333";
+	private static final String IP="localhost:2333";
 
 	private static boolean initialized=false;
 

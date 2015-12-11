@@ -11,6 +11,8 @@ public enum FinanceBaseChartType implements EnumObservable<FinanceBaseChartType>
     // 第二个描述按什么分组
     IO_MONTH("每月的收支"); // 按月分组，每组对比的是收入和支出
 
+
+
     private String chinese;
 
     FinanceBaseChartType(String c){

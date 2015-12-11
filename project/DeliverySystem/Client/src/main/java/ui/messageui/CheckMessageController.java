@@ -28,18 +28,18 @@ public class CheckMessageController {
     public TableColumn<ChatMessage,String> time_TableColumn;
     public TableColumn<ChatMessage,String> message_TableColumn;
 
-    
+
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
-    ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
-    
- 
+    ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getUserID());
+
+
     public static Parent launch() throws IOException {
         return FXMLLoader.load(CheckMessageController.class.getResource("checkMessage.fxml"));
     }
 
     @FXML
     public void initialize(){
-    	
+
     	message_View.setItems(
                 FXCollections.observableArrayList(chatMessage)
                 		);
@@ -50,17 +50,17 @@ public class CheckMessageController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getMessage())
                 );
     }
-    
-    
+
+
     public void selectAll(ActionEvent actionEvent) {
-    	
+
     }
 
     public void markChecked(ActionEvent actionEvent) {
-    	
+
     }
 
     public void delete(ActionEvent actionEvent) {
-    	
+
     }
 }
