@@ -21,6 +21,7 @@ import ui.financeui.ManageBankAccountController;
 import ui.financeui.PaymentFormController;
 import ui.hallui.ManageCarDriverController;
 import ui.initui.CheckInitInfoController;
+import ui.initui.NewInitController;
 import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;

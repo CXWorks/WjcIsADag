@@ -90,6 +90,7 @@ public class CacheHelper {
 		bankAccountDataService=RMIHelper.getBankAccountDataService();
 		paymentDataService=RMIHelper.getPaymentDataService();
 		revenueDataService=RMIHelper.getRevenueDataService();
+		initialDataService=RMIHelper.getInitialDataService();
 		memberDataService_driver=RMIHelper.getMemberDataService_driver();
 		memberDataService_staff=RMIHelper.getMemberDataService_staff();
 		receiveDataService=RMIHelper.getReceiveDataService();
@@ -103,7 +104,7 @@ public class CacheHelper {
 	}
 	//
 	//
-	
+
 	public static OrderDataService getOrderDataService() {
 		return orderDataService;
 	}

@@ -99,16 +99,14 @@ public class CheckInitInfoController {
                 }
         );
 
-        // TODO test jump
-//        systemState_Label.setText(UserInfo.getSystemState().getChinese());
-//        initialDataVO = initBLService.getInitialDataVO();
-//        showBankAccounts();
+        systemState_Label.setText(UserInfo.getSystemState().getChinese());
+        initialDataVO = initBLService.getInitialDataVO();
+        showBankAccounts();
     }
 
     @FXML
     public void applyForInitialization(ActionEvent actionEvent) {
-        // TODO test jump
-//        initBLService.requestInitData();
+        initBLService.requestInitData();
         father.getChildren().clear();
         try {
             father.getChildren().add(NewInitController.launch(father));

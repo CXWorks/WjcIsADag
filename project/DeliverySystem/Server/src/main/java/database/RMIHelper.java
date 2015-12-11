@@ -21,6 +21,7 @@ import rmi.examineService.ExamineSubmitService;
 import rmi.financedata.BankAccountDataService;
 import rmi.financedata.PaymentDataService;
 import rmi.financedata.RevenueDataService;
+import rmi.initialdata.InitialDataService;
 import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
@@ -41,6 +42,7 @@ import rmiImpl.examineImpl.ExamineSubmitProxy;
 import rmiImpl.financedata.BankAccountDataProxy;
 import rmiImpl.financedata.PaymentDataProxy;
 import rmiImpl.financedata.RevenueDataProxy;
+import rmiImpl.initaldata.InitialDataProxy;
 import rmiImpl.memberdata.DriverDataProxy;
 import rmiImpl.memberdata.StaffDataProxy;
 import rmiImpl.orderdata.OrderDataProxy;
@@ -75,7 +77,7 @@ public class RMIHelper {
 	private static BankAccountDataService bankAccountDataService;
 	private static PaymentDataService paymentDataService;
 	private static RevenueDataService revenueDataService;
-//	private static InitialDataService initialDataService;
+	private static InitialDataService initialDataService;
 	private static MemberDataService<DriverPO> memberDataService_driver;
 	private static MemberDataService<StaffPO> memberDataService_staff;
 	private static OrderDataService orderDataService;
@@ -86,7 +88,7 @@ public class RMIHelper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 
-	public static void createService() throws RemoteException, MalformedURLException {
+	public static void createService() throws RemoteException, MalformedURLException, ClassNotFoundException {
 		accountDataService = new AccountDataProxy();
 		chatRemindService = new ChatRemindImpl();
 		companyDataCarService = new CompanyDataCarProxy();
@@ -99,7 +101,7 @@ public class RMIHelper {
 		bankAccountDataService = new BankAccountDataProxy();
 		paymentDataService = new PaymentDataProxy();
 		revenueDataService = new RevenueDataProxy();
-		//
+		initialDataService = new InitialDataProxy();
 		memberDataService_driver = new DriverDataProxy();
 		memberDataService_staff = new StaffDataProxy();
 		orderDataService = new OrderDataProxy();
@@ -111,7 +113,7 @@ public class RMIHelper {
 		loadDataService = new LoadDataProxy();
 	}
 
-	public static void initializeRMI() throws RemoteException, MalformedURLException {
+	public static void initializeRMI() throws RemoteException, MalformedURLException, ClassNotFoundException {
 		RMIHelper.createService();
 
 		String url = "rmi://" + IP + "/";
@@ -128,7 +130,7 @@ public class RMIHelper {
 		Naming.rebind(url + "BankAccountDataService",bankAccountDataService);
 		Naming.rebind(url + "PaymentDataService",paymentDataService);
 		Naming.rebind(url + "RevenueDataService",revenueDataService );
-//		Naming.rebind(url + "InitialDataService",initialDataService);
+		Naming.rebind(url + "InitialDataService",initialDataService);
 		Naming.rebind(url + "MemberDataService_driver",memberDataService_driver);
 		Naming.rebind(url + "MemberDataService_staff", memberDataService_staff);
 		Naming.rebind(url + "OrderDataService",orderDataService );

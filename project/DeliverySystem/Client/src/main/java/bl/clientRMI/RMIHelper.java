@@ -93,6 +93,7 @@ public class RMIHelper {
 		bankAccountDataService=(BankAccountDataService)Naming.lookup(url+"BankAccountDataService");
 		paymentDataService=(PaymentDataService)Naming.lookup(url+"PaymentDataService");
 		revenueDataService=(RevenueDataService)Naming.lookup(url+"RevenueDataService");
+		initialDataService=(InitialDataService)Naming.lookup(url+"InitialDataService");
 		memberDataService_driver=(MemberDataService<DriverPO>)Naming.lookup(url+"MemberDataService_driver");
 		memberDataService_staff=(MemberDataService<StaffPO>)Naming.lookup(url+"MemberDataService_staff");
 		receiveDataService=(ReceiveDataService)Naming.lookup(url+"ReceiveDataService");
