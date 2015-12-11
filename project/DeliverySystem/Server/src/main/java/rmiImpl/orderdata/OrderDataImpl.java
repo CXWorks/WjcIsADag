@@ -37,7 +37,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	private int ID_MAX;
 
 	public OrderDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "order";
 		conn = ConnecterHelper.getConn();
@@ -52,7 +51,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OperationMessage insert(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String formIDs = "";
 		String insert = "insert into `" + Table_Name
@@ -71,7 +69,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -81,14 +78,12 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -97,7 +92,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OperationMessage update(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -108,14 +102,12 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空时出错：");
 			System.err.println("清空时出错：");
 			e.printStackTrace();
@@ -124,7 +116,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public String newID(String unitID) throws RemoteException {// 成员变量成员持有ID信息
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -161,7 +152,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OrderPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		OrderPO result = null;
@@ -191,7 +181,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public ArrayList<OrderPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		OrderPO temp = null;

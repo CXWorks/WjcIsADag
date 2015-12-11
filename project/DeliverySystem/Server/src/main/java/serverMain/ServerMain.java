@@ -35,6 +35,12 @@ public class ServerMain extends Application {
 		primaryStage.setX(150);
 		primaryStage.setY(150);
 
+        primaryStage.setOnCloseRequest(
+                event -> {
+                    System.exit(0);
+                }
+        );
+
 		primaryStage.setScene(new Scene(ServerView.launch()));
 
 		primaryStage.show();

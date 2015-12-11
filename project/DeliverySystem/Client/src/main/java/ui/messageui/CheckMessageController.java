@@ -27,8 +27,9 @@ public class CheckMessageController {
 //    public TableColumn<ChatMessage,String> check_TableColumn;
     public TableColumn<ChatMessage,String> time_TableColumn;
     public TableColumn<ChatMessage,String> message_TableColumn;
+    public TableColumn check_TableColumn;
 
-    
+
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
     ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getInstitutionID());
     

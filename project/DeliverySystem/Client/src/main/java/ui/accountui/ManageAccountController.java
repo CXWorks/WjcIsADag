@@ -50,7 +50,7 @@ public class ManageAccountController {
 
     @FXML
     public void initialize(){
-    	this.accounts_TableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	accounts_TableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         accounts_TableView.setItems(FXCollections.observableArrayList(accounts));
 
