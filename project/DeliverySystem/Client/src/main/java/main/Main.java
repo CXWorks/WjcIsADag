@@ -21,12 +21,10 @@ import ui.financeui.ManageBankAccountController;
 import ui.financeui.PaymentFormController;
 import ui.hallui.ManageCarDriverController;
 import ui.initui.CheckInitInfoController;
-import ui.initui.NewInitController;
 import ui.loginui.LoginController;
 import ui.manangeui.organization.ManageOrganizationController;
 import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
-import ui.messageui.CheckMessageController;
 import ui.navigationui.*;
 import ui.orderui.NewOrderController;
 import ui.receiveui.ReceiveFormController;
@@ -51,8 +49,9 @@ import java.util.Map;
 public class Main extends Application {
 
     private static Map<StaffTypeEnum, Parent> panes = new HashMap<>();
-    private static Pane loginPane;
 
+    private static Scene loginScene;
+    private static Scene personScene;
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
@@ -64,7 +63,7 @@ public class Main extends Application {
      * 返回登录界面
      */
     public static void logOut(){
-        primaryStage.setScene(new Scene(loginPane));
+        primaryStage.setScene(loginScene);
     }
 
     private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
@@ -104,7 +103,13 @@ public class Main extends Application {
             panes.put(staffTypeEnum, pane);
         }
 
-        primaryStage.setScene(new Scene(pane));
+        if(personScene == null){
+            personScene = new Scene(pane);
+        }else{
+            personScene.setRoot(pane);
+        }
+
+        primaryStage.setScene(personScene);
     }
 
     @Override
@@ -115,14 +120,14 @@ public class Main extends Application {
         primaryStage.setX(150);
         primaryStage.setY(150);
 
-//        loginPane = (Pane)LoginController.launch();
+        loginScene = new Scene((Pane)LoginController.launch());
 
-//        primaryStage.setScene(new Scene( loginPane));
-        primaryStage.setScene(new Scene(
+        primaryStage.setScene(loginScene);
+//        primaryStage.setScene(new Scene(
 //        		NewOrderController.launch()
 //        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
-//                CheckFinanceChartController.launch()
+                //CheckFinanceChartController.launch()
 //        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
@@ -132,14 +137,12 @@ public class Main extends Application {
 //        		ManageSalaryController.launch()
 //       		LoadCarController.launch()
 //        		TransitFormController.launch()
-        		LoginController.launch()
         		//StorePartitionController.launch()
 //                FinanceNavigation.launch()
 //        		PaymentFormController.launch()
 //        		ReceiveFormController.launch()
 //        		StoreSummaryController.launch()
-//        		CheckMessageController.launch()
-        ));
+//        ));
         primaryStage.show();
     }
 }
