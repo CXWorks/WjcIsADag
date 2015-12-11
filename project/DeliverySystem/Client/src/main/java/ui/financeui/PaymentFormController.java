@@ -19,6 +19,7 @@ import vo.financevo.PaymentVO;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 /**
  * Created by Sissel on 2015/11/24.
@@ -73,7 +74,7 @@ public class PaymentFormController {
 
     private PaymentVO generatePaymentVO(){
         return new PaymentVO(
-                null,
+                paymentBLService.getNewPaymentID(TimeConvert.getDisplayDate(Calendar.getInstance())),
                 TimeConvert.convertDate(payment_DatePicker.getValue()),
                 money_Field.getText(),
                 null, payerName_Field.getText(),payerAccount_Field.getText(),

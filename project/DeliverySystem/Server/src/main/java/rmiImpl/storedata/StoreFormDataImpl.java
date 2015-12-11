@@ -9,6 +9,7 @@ import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmiImpl.financedata.PaymentDataImpl;
 import database.ConnecterHelper;
 import util.R;
 
@@ -67,10 +68,14 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getStoreInPO(po.getFormID()) != null) {
+				po.setFormID(this.newIDStoreInPO(po.getFormID().substring(9, 17)));
+				this.insertStoreInPO(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				System.err.println("新建时出错：");
+				e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -91,10 +96,14 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getStoreOutPO(po.getFormID()) != null) {
+				po.setFormID(this.newIDStoreOutPO(po.getFormID().substring(9, 17)));
+				this.insertStoreOutPO(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				System.err.println("新建时出错：");
+				e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -348,13 +357,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
-		String selectIn = "select * from `" + Store_In + "` where (unix_timestamp(`date`) - '"
-				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
-				+ end.getTime().getTime() / 1000 + "' <= 0";
-		String selectOut = "select * from `" + Store_Out + "` where (unix_timestamp(`date`) - '"
-				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
-				+ end.getTime().getTime() / 1000 + "' <= 0";
+		String selectIn = "select * from `" + Store_In + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
+				+ "') < UNIX_TIMESTAMP(date) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
+				+ "') > UNIX_TIMESTAMP(date)";
+		String selectOut = "select * from `" + Store_Out + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
+				+ "') < UNIX_TIMESTAMP(date) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
+				+ "') > UNIX_TIMESTAMP(date)";
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;

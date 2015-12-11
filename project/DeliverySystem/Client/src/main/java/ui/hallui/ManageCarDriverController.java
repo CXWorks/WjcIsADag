@@ -4,11 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
 import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblDriverService;
 import factory.CarFactory;
@@ -47,11 +42,11 @@ public class ManageCarDriverController {
 	public TextField search_Driver_Field;
 	public Button back_Btn;
 
-	private ManageblCarService manageblCarService;
+	private ManageblCarService manageblCarService = CarFactory.getCarService();
 	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
 
-	private ArrayList<CarVO> carvo_list;
-	private ArrayList<DriverVO> drivervo_list;
+	private ArrayList<CarVO> carvo_list=manageblCarService.getCar(UserInfo.getInstitutionID());
+	private ArrayList<DriverVO> drivervo_list=manageblDriverService.getStaffByInstitution();
 
 	private List<CarVOCheckItem> cars = new ArrayList<CarVOCheckItem>();
 	private List<DriverVOCheckItem> drivers = new ArrayList<DriverVOCheckItem>();

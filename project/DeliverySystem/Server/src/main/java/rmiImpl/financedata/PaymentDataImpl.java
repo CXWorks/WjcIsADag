@@ -44,17 +44,21 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL() + "','"
 				+ po.getAmount() + "','" + po.getPayerAccID() + "','" + po.getPayerName() + "','" + po.getPayerAccount()
-				+ "','" + po.getReceiverAccID() + "','" + po.getReceiverName() + "','" + po.getReceiverAccount()
-				+ "','" + po.getItem() + "','" + po.getNote() + "','" + po.getFormID().substring(2, 17) + "')";
+				+ "','" + po.getReceiverAccID() + "','" + po.getReceiverName() + "','" + po.getReceiverAccount() + "','"
+				+ po.getItem() + "','" + po.getNote() + "','" + po.getFormID().substring(2, 17) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "新建时出错：");
-			System.err.println("新建时出错：");
-			e.printStackTrace();
+			if (this.getFormPO(po.getFormID()) != null) {
+				po.setFormID(this.newID(po.getFormID().substring(9, 17)));
+				this.insert(po);
+			} else {
+				result = new OperationMessage(false, "新建时出错：");
+				System.err.println("新建时出错：");
+				e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -184,15 +188,17 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 		return result;
 	}
 
+
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where (unix_timestamp(`date`) - '"
-				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
-				+ end.getTime().getTime() / 1000 + "' <= 0";
+		String select = "select * from `" + Table_Name + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
+				+ "') < UNIX_TIMESTAMP(`date`) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
+				+ "') > UNIX_TIMESTAMP(`date`)";
 		ResultSet rs = null;
 		PaymentPO temp = null;
 		ArrayList<PaymentPO> result = new ArrayList<PaymentPO>();
+		System.out.println(select);
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
@@ -208,6 +214,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
+		System.out.println(result.size());
 		return result;
 	}
 

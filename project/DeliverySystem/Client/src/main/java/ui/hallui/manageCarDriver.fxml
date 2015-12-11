@@ -30,7 +30,7 @@
       </HBox>
       <TextField fx:id="search_Car_Field" layoutX="78.0" layoutY="27.0" />
       <TextField fx:id="search_Driver_Field" layoutX="536.0" layoutY="27.0" prefHeight="23.0" prefWidth="79.0" />
-      <Button layoutX="615.0" layoutY="27.0" mnemonicParsing="false" onAction="#addDriver" prefHeight="23.0" prefWidth="42.0" text="搜索" />
+      <Button layoutX="615.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchDriver" prefHeight="23.0" prefWidth="42.0" text="搜索" />
       <Button layoutX="246.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchCar" text="搜索" />
       <CheckBox fx:id="all_Car_CheckBox" layoutX="27.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectAllCar" text="全选" />
       <CheckBox fx:id="all_Driver_CheckBox" layoutX="491.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectAllDriver" text="全选" />

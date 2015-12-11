@@ -597,8 +597,13 @@ public class InitializationBLController implements InitializationBLService {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see bl.blService.initblService.InitializationBLService#addShelves(java.lang.String, model.store.StoreAreaCode, java.lang.String, java.lang.String)
+	 */
 	@Override
-	public void addShelves(String modelID, StoreAreaCode anEnum, String rowNum, String shelvesNum) {
-
+	public void addShelves(String modelID, StoreAreaCode anEnum, String rowNum,
+			String shelvesNum) {
+		// TODO Auto-generated method stub
+		
 	}
 }

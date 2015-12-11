@@ -18,6 +18,7 @@ import ui.examineui.CheckFormController;
 import ui.financeui.CheckFinanceChartController;
 import ui.financeui.CheckLogController;
 import ui.financeui.ManageBankAccountController;
+import ui.financeui.PaymentFormController;
 import ui.hallui.ManageCarDriverController;
 import ui.initui.CheckInitInfoController;
 import ui.loginui.LoginController;
@@ -26,7 +27,9 @@ import ui.manangeui.salary.ManageSalaryController;
 import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
 import ui.orderui.NewOrderController;
+import ui.receiveui.ReceiveFormController;
 import ui.storeui.StockTackController;
+import ui.storeui.StoreSummaryController;
 import ui.transportui.LoadCarController;
 import ui.transportui.TransitFormController;
 import userinfo.UserInfo;
@@ -115,8 +118,9 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene( loginPane));
         primaryStage.setScene(new Scene(
 //        		NewOrderController.launch()
+//        		CheckFormController.launch()
 //                ManageBankAccountController.launch()
-//                CheckFinanceChartController.launch()
+                CheckFinanceChartController.launch()
 //        		ManageOrganizationController.launch()
 //                CheckLogController.launch()
 //                deliverController.launch()
@@ -128,11 +132,10 @@ public class Main extends Application {
 //        		TransitFormController.launch()
 //        		LoginController.launch()
         		//StorePartitionController.launch()
-                //FinanceNavigation.launch()
-                //PersonalAccountViewController.launch()
-                //ManagerNavigation.launch()
-                //StockTackController.launch()
-                LoginController.launch()
+//                FinanceNavigation.launch()
+//        		PaymentFormController.launch()
+//        		ReceiveFormController.launch()
+//        		StoreSummaryController.launch()
         ));
         primaryStage.show();
     }
