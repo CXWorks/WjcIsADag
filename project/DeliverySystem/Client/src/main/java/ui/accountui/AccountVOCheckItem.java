@@ -2,6 +2,7 @@ package ui.accountui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import ui.common.VOCheckItem;
 import vo.accountvo.AccountVO;
 
@@ -10,15 +11,10 @@ import vo.accountvo.AccountVO;
  */
 public class AccountVOCheckItem extends VOCheckItem<AccountVO> {
 
-    AccountVOCheckItem(AccountVO vo){
+    AccountVOCheckItem(AccountVO vo, ChangeListener cl){
         this.vo = new SimpleObjectProperty<>(vo);
         this.selected = new SimpleBooleanProperty(false);
-        selected.addListener(
-                (observable, oldValue, newValue) -> {
-                    // TODO debug
-                    System.out.println(vo.getID() + " change to " + newValue.booleanValue());
-                }
-        );
+        this.selected.addListener(cl);
     }
 
     @Override
@@ -27,4 +23,5 @@ public class AccountVOCheckItem extends VOCheckItem<AccountVO> {
 
         return vo.getID() + vo.getPassword();
     }
+
 }

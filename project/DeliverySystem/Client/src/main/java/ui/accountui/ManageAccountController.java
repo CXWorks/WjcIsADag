@@ -106,8 +106,8 @@ public class ManageAccountController {
             if(accounts.get(i).getSelected()){
                 accounts.remove(accounts.get(i));
                 ObservableList<AccountVOCheckItem> list = accounts_TableView.getItems();
-                list.remove(list.get(i));
                 accountBLManageService.deleteAccount(list.get(i).getVo());
+                list.remove(list.get(i));
                 --i;
             }
         }
@@ -174,9 +174,7 @@ public class ManageAccountController {
             checkBox.selectedProperty().bindBidirectional(item.selectedProperty());
             checkBox.selectedProperty().addListener(
                     (observable, oldValue, newValue) -> {
-                        // TODO don't know whether I can diselect
                         int row = accounts_TableView.getItems().indexOf(item);
-                        accounts_TableView.getSelectionModel().select(row);
                     }
             );
 
@@ -188,7 +186,10 @@ public class ManageAccountController {
         accounts.clear();
         accounts_TableView.getItems().clear();
         for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
-            accounts.add(new AccountVOCheckItem(accountVO));
+            accounts.add(new AccountVOCheckItem(accountVO,
+                    (observable, oldValue, newValue) -> {
+
+                    }));
         }
         accounts_TableView.getItems().addAll(accounts);
     }
