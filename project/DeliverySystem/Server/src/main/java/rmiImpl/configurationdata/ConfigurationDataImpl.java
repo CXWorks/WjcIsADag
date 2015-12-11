@@ -560,11 +560,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	@Override
-	public double getWarningline() throws RemoteException {
+	public double getWarningline(String centerID) throws RemoteException {
 		// TODO Auto-generated method stub
-		String select = "select * from `" + Warningline + "` where `name` = 'warning'";
+		String select = "select * from `" + Warningline + "` where `centerID` = '" + centerID + "'";
 		ResultSet rs = null;
-		double result = 0;
+		double result = -1;
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
@@ -578,20 +578,34 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	@Override
-	public OperationMessage setWarningline(double value) throws RemoteException {
+	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String operation = "update `" + Warningline + "` set `value` ='" + value + "' where `name` = 'warning'";
-		try {
-			statement = conn.prepareStatement(operation);
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result = new OperationMessage(false, "更新时出错：");
-			System.err.println("更新时出错：");
-			e.printStackTrace();
+		if (this.getWarningline(centerID) != -1) {
+			String operation = "update `" + Warningline + "` set `value` ='" + value + "' where `centerID` = "
+					+ centerID + "'";
+			try {
+				statement = conn.prepareStatement(operation);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				result = new OperationMessage(false, "更新时出错：");
+				System.err.println("更新时出错：");
+				e.printStackTrace();
+			}
+		} else {
+			String insert = "insert into `" + Warningline + "`(centerID,value) " + "values('" + centerID + "','"
+					+ value + "')";
+			try {
+				statement = conn.prepareStatement(insert);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				result = new OperationMessage(false, "更新时出错：");
+				System.err.println("更新时出错：");
+				e.printStackTrace();
+			}
 		}
-
 		// 系统日志
 		if (result.operationResult == true)
 			RMIHelper.getLogDataService().insert(new LogPO("库存管理人员", Calendar.getInstance(), "修改库存警戒比例"));

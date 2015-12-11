@@ -231,10 +231,9 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
-				+ "') < UNIX_TIMESTAMP(`date`) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
-				+ "') > UNIX_TIMESTAMP(`date`)";
+		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
+				+ "' < UNIX_TIMESTAMP(`date`) " + "and '" + end.getTime().getTime() / 1000
+				+ "' > UNIX_TIMESTAMP(`date`)";
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();

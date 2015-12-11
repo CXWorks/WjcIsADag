@@ -199,18 +199,18 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	}
 
 	@Override
-	public double getWarningline() throws RemoteException {
+	public double getWarningline(String centerID) throws RemoteException {
 		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return configurationDataService.getWarningline();
+			return configurationDataService.getWarningline(centerID);
 		return 0;
 	}
 
 	@Override
-	public OperationMessage setWarningline(double value) throws RemoteException {
+	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
 		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return configurationDataService.setWarningline(value);
+			return configurationDataService.setWarningline(centerID, value);
 		return null;
 	}
 

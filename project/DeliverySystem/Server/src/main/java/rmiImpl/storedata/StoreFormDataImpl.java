@@ -357,12 +357,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
-		String selectIn = "select * from `" + Store_In + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
-				+ "') < UNIX_TIMESTAMP(date) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
-				+ "') > UNIX_TIMESTAMP(date)";
-		String selectOut = "select * from `" + Store_Out + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
-				+ "') < UNIX_TIMESTAMP(date) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
-				+ "') > UNIX_TIMESTAMP(date)";
+		String selectIn = "select * from `" + Store_In + "` where '" + start.getTime().getTime() / 1000
+				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000
+				+ "' > UNIX_TIMESTAMP(date)";
+		String selectOut = "select * from `" + Store_Out + "` where '" + start.getTime().getTime() / 1000
+				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000
+				+ "' > UNIX_TIMESTAMP(date)";
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;

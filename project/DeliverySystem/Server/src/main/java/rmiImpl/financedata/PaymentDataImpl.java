@@ -188,17 +188,23 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 		return result;
 	}
 
+//	public static void main(String[] args) throws RemoteException {
+//		PaymentDataImpl t = new PaymentDataImpl();
+//		Calendar a = Calendar.getInstance();
+//		Calendar b = Calendar.getInstance();
+//		a.set(Calendar.YEAR, 2014);
+//		b.set(Calendar.YEAR, 2015);
+//		System.out.println(t.getByTime(a, b).size());
+//	}
 
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
-		String select = "select * from `" + Table_Name + "` where UNIX_TIMESTAMP('" + start.getTime().getTime() / 1000
-				+ "') < UNIX_TIMESTAMP(`date`) " + "and UNIX_TIMESTAMP('" + end.getTime().getTime() / 1000
-				+ "') > UNIX_TIMESTAMP(`date`)";
+		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
+				+ "' < UNIX_TIMESTAMP(`date`) " + "and '" + end.getTime().getTime() / 1000
+				+ "' > UNIX_TIMESTAMP(`date`)";
 		ResultSet rs = null;
 		PaymentPO temp = null;
 		ArrayList<PaymentPO> result = new ArrayList<PaymentPO>();
-		System.out.println(select);
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
@@ -214,7 +220,6 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
-		System.out.println(result.size());
 		return result;
 	}
 

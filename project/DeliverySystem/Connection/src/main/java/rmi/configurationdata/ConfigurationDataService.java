@@ -70,7 +70,7 @@ public interface ConfigurationDataService extends DataService<CommonPO> {
 
 	public OperationMessage modifyInstitutionDistance(String ID, Object ob) throws RemoteException;
 
-	public double getWarningline() throws RemoteException;
+	public double getWarningline(String centerID) throws RemoteException;
 
-	public OperationMessage setWarningline(double value) throws RemoteException;
+	public OperationMessage setWarningline(String centerID, double value) throws RemoteException;
 }
