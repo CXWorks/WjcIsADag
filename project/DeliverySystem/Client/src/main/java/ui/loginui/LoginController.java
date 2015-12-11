@@ -65,12 +65,19 @@ public class LoginController {
 
         if(msg.operationResult){
             StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
+            if(staffVO == null){
+                // not yet make the staff by manager
+                // TODO : display tips
+                System.out.println("ask the manager to new a staff for you");
+            }
+
             UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID(), staffVO.getName());
 
             Main.logIn();
+            // TODO : display tips
             System.out.println("login successfully");
         }else{
-            // TODO tips
+            // TODO : display tips
             System.out.println("login fail: " + msg.getReason());
         }
 
