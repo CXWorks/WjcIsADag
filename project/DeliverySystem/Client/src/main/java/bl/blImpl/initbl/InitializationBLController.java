@@ -50,6 +50,7 @@ public class InitializationBLController implements InitializationBLService {
     // models
     InitialDataVO initialDataVO;
     InitialDataPO lastPO;
+    String version;
 
     // manageServices
     InitialDataService initialDataService;
@@ -57,6 +58,14 @@ public class InitializationBLController implements InitializationBLService {
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
     	this.initialDataService=CacheHelper.getInitialDataService();
+    	try {
+			version=this.initialDataService.getLatest_version(UserInfo.getUserID());
+			InitialDataPO initialDataPO=this.initialDataService.getInitialDataPO(version);
+			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public List<BankAccountVO> getAllAccounts() {

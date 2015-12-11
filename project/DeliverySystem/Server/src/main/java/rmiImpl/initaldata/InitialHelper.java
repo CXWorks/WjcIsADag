@@ -47,7 +47,7 @@ import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.storedata.StoreModelDataImpl;
 
 public class InitialHelper {
-
+	private static final String ROOT="initial/";
 	private Connection conn = ConnecterHelper.getConn();
 	private PreparedStatement statement = null;
 
@@ -66,7 +66,7 @@ public class InitialHelper {
 	}
 
 	public int getVersion() throws ClassNotFoundException {
-		String file_path = "E:/initial/";
+		String file_path = ROOT;
 		return new File(file_path).listFiles().length + 1;
 	}
 
@@ -75,7 +75,7 @@ public class InitialHelper {
 		po.setVersion(num + "");
 		try {
 			ObjectOutputStream oo = new ObjectOutputStream(
-					new FileOutputStream(new File("E:/initial/" + num + ".txt")));
+					new FileOutputStream(new File(ROOT + num + ".txt")));
 			oo.writeObject(po);
 			oo.close();
 		} catch (FileNotFoundException e) {

@@ -34,6 +34,17 @@ public class PieChartMaker {
 		int enMonth=end.get(Calendar.MONTH);
 		//
 		int total=(enYear-beYear)*12+enMonth-beMonth;
+		//
+		if (total==0) {
+			pieChartVO.originMap=new HashMap<String, Double>(1);
+			double all=0.0;
+			for (PaymentPO paymentPO2 : paymentPO) {
+				all+=Double.parseDouble(paymentPO2.getAmount());
+			}
+			pieChartVO.originMap.put(beYear+"年"+beMonth+"月", all);
+			return pieChartVO;
+		}
+		//
 		pieChartVO.originMap=new HashMap<String, Double>(total);
 		int nowYear=beYear;
 		int nowMonth=beMonth;
@@ -73,6 +84,17 @@ public class PieChartMaker {
 		int enMonth=end.get(Calendar.MONTH);
 		//
 		int total=(enYear-beYear)*12+enMonth-beMonth;
+		//
+		if (total==0) {
+			pieChartVO.originMap=new HashMap<String, Double>(1);
+			double all=0.0;
+			for (RevenuePO revenuePO2 : revenuePO) {
+				all+=Double.parseDouble(revenuePO2.getAmount());
+			}
+			pieChartVO.originMap.put(beYear+"年"+beMonth+"月", all);
+			return pieChartVO;
+		}
+		//
 		pieChartVO.originMap=new HashMap<String, Double>(total);
 		int nowYear=beYear;
 		int nowMonth=beMonth;
