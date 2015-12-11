@@ -1,30 +1,23 @@
 package ui.loginui;
 
+import java.io.IOException;
+
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.blService.accountblService.AccountBLManageService;
 import bl.blService.manageblService.ManageblStaffService;
 import factory.AccountFactory;
-import factory.BLFactory;
 import factory.LoginFactory;
 import factory.StaffFactory;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.Main;
 import message.OperationMessage;
-import po.memberdata.StaffTypeEnum;
 import userinfo.UserInfo;
-import vo.accountvo.AccountVO;
 import vo.managevo.staff.StaffVO;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
 
 /**
  * Created by Sissel on 2015/11/25.
@@ -32,18 +25,18 @@ import java.lang.management.ManagementFactory;
 public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
-    
+
 //    public Image Image_Back= new Image("pic\background.png");
 //    public Image Image_Name = new Image();
 //    public Image Image_Password = new Image();
 //    public Image Image_Sure = new Image();
-    
-    
+
+
     public ImageView back_ImageView;
     public ImageView name_ImageView;
     public ImageView password_ImageView;
     public ImageView sure_ImageView;
-    
+
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();
     ManageblStaffService manageblStaffService = StaffFactory.getManageService();
@@ -51,13 +44,13 @@ public class LoginController {
     public static Parent launch() throws IOException {
         return FXMLLoader.load(LoginController.class.getResource("logIn.fxml"));
     }
-    
-    
+
+
 //    @FXML
 //    public void initialize(){
 //    	back_ImageView.setImage(Image_Back);
 //    }
-    
+
 
     public void login(ActionEvent actionEvent) {
 
