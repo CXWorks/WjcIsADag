@@ -1,4 +1,4 @@
-package ui.common;
+package ui.common.checkFormat;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

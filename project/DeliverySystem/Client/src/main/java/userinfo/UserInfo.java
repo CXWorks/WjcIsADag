@@ -11,7 +11,7 @@ import po.systemdata.SystemState;
  */
 public class UserInfo {
 	private static String userID = "01000001";
-	private static SystemState systemState;
+	private static SystemState systemState = SystemState.NORMAL;
 	private static StaffTypeEnum staffType;
 	private static String institutionID = "0251001";
 	private static String userName;

@@ -14,6 +14,7 @@ import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.CheckOrderIDField;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
@@ -32,12 +33,13 @@ public class ReceiveFormController{
     public TextField departure_Field;
     public ChoiceBox<SimpleEnumProperty<StateEnum>> arriveState_Box;
     public TableView<Map.Entry<String, String>> order_Table;
-    public TextField order_Field;
+    public CheckOrderIDField order_Field;
     public Label date_ErrLabel;
     public Label transit_errLabel;
     public Label departure_errLabel;
     public TableColumn<Map.Entry<String, String>, String> key_Column;
     public TableColumn<Map.Entry<String, String>, String> value_Column;
+    public Label err_Label;
 
     private StateEnum stateEnum = StateEnum.Complete;
 
@@ -69,6 +71,8 @@ public class ReceiveFormController{
 
         OrderVO2ColumnHelper.setKeyColumn(key_Column); 
         OrderVO2ColumnHelper.setValueColumn(value_Column);
+
+        order_Field.setErrLabel(err_Label);
     }
 
     public void commit(ActionEvent actionEvent) {
@@ -102,12 +106,8 @@ public class ReceiveFormController{
     }
 
     private void fillOrderTable(){
+        order_Field.check();
         OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
-
-//        OrderVO orderVO =
-//                new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
-//                        "18351890356", "13724456739", "3", "图书", "", "", "", null, null, null,
-//                        DeliverTypeEnum.NORMAL, PackingEnum.BAG);
 
         order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
     }

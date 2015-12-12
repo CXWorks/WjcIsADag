@@ -7,6 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.CheckOrderIDField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.receiveui.ReceiveFormController">
    <children>
       <GridPane layoutX="28.0" layoutY="28.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="295.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="56.0">
@@ -72,7 +73,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="order_Field" layoutX="464.0" layoutY="46.0" AnchorPane.leftAnchor="464.0" AnchorPane.topAnchor="49.0" />
+      <CheckOrderIDField fx:id="order_Field" layoutX="464.0" layoutY="46.0" AnchorPane.leftAnchor="464.0" AnchorPane.topAnchor="49.0" />
       <TableView fx:id="order_Table" layoutX="372.0" layoutY="88.0" prefHeight="200.0" prefWidth="357.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="88.0">
         <columns>
           <TableColumn fx:id="key_Column" prefWidth="172.0" text="条目" />
@@ -85,5 +86,6 @@
       <Button layoutX="552.0" layoutY="409.0" mnemonicParsing="false" onAction="#clear" text="清空" />
       <Button layoutX="625.0" layoutY="409.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
       <Button layoutX="724.0" layoutY="409.0" mnemonicParsing="false" onAction="#commit" text="提交" />
+      <Label fx:id="err_Label" layoutX="642.0" layoutY="53.0" text="Label" />
    </children>
 </AnchorPane>

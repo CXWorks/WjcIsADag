@@ -1,4 +1,4 @@
-package ui.common;
+package ui.common.checkFormat;
 
 /**
  * Created by Sissel on 2015/12/7.
