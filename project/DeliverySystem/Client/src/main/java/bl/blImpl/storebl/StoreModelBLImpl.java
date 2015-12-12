@@ -27,7 +27,9 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	private StoreModelDataService storeModelDataService;
 	private StoreWarningChecker storeWarningChecker;
 	public StoreModelBLImpl(){
+		
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
+		this.storeWarningChecker=new StoreWarningChecker(0.8);
 	}
     public OperationMessage setWarningLine(double percent) {
     	this.storeWarningChecker=new StoreWarningChecker(percent);
