@@ -619,4 +619,13 @@ public class InitializationBLController implements InitializationBLService {
 		storeArea.addShelves(rowNum, shelvesNum);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.BankAccountBLService#newBankID()
+	 */
+	@Override
+	public String newBankID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
