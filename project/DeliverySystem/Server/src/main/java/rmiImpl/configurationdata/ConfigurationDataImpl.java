@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import operation.Operation;
 import database.ConnecterHelper;
 import database.RMIHelper;
 import message.OperationMessage;
@@ -436,27 +437,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return result;
 	}
 
-	public Object getInstitutionDistance() throws RemoteException {
-		// TODO Auto-generated method stub
-		return new Object();
-	}
-
-	public OperationMessage modifyInstitutionDistance(String ID, Object ob) throws RemoteException {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
-	}
-
-	public Object[] newInstitutionDistanceSearch(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
-		Object[] stub = new Object[2];
-		return stub;
-	}
-
-	public OperationMessage newInstitutionDistanceInsert(String ID, Object[] ob) throws RemoteException {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
-	}
-
+	
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> pos) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -611,6 +592,25 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			RMIHelper.getLogDataService().insert(new LogPO("库存管理人员", Calendar.getInstance(), "修改库存警戒比例"));
 
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
+	 */
+	@Override
+	public long getLatestVersionID() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getOperation(long)
+	 */
+	@Override
+	public List<Operation> getOperation(long localVersion)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
