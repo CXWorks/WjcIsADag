@@ -67,6 +67,7 @@ public class InitialHelper {
 
 	public int getVersion() throws ClassNotFoundException {
 		String file_path = ROOT;
+		System.out.println(new File(file_path).listFiles().length + 1);
 		return new File(file_path).listFiles().length + 1;
 	}
 
@@ -96,7 +97,7 @@ public class InitialHelper {
 		InitialDataPO po = null;
 		try {
 			ObjectInputStream ois = new ObjectInputStream(
-					new FileInputStream(new File("E:/initial/" + version + ".txt")));
+					new FileInputStream(new File(ROOT + version + ".txt")));
 			po = (InitialDataPO) ois.readObject();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -233,7 +234,7 @@ public class InitialHelper {
 	}
 
 	public OperationMessage deleteFile(String version) {
-		File f = new File("E:/initial/" + version + ".txt");
+		File f = new File(ROOT + version + ".txt");
 		if (f.exists())
 			f.delete();
 		return new OperationMessage(true,"删除成功");

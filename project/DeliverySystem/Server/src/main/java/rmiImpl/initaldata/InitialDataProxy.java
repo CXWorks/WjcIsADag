@@ -14,7 +14,7 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 	private InitialDataService InitialDataService = new InitialDataImpl();
 	private static SystemState state = SystemState.NORMAL;
 
-	private static String ID = "";
+	private static String ID = "02000001";
 
 	public InitialDataProxy() throws RemoteException,ClassNotFoundException {
 		super();

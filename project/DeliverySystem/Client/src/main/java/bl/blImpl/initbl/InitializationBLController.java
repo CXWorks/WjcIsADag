@@ -60,6 +60,7 @@ public class InitializationBLController implements InitializationBLService {
     	this.initialDataService=CacheHelper.getInitialDataService();
     	try {
 			version=this.initialDataService.getLatest_version(UserInfo.getUserID());
+			System.out.println(version);
 			InitialDataPO initialDataPO=this.initialDataService.getInitialDataPO(version);
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
