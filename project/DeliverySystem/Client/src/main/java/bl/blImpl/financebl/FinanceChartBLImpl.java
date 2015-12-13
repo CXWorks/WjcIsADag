@@ -68,13 +68,13 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
         
         try {switch (type) {
 		case MONTH_IN_PAYMENT:
-			ArrayList<PaymentPO> paymentPOs=paymentDataService.getByTime(begin, end);
-			return pieChartMaker.monthPay(begin, end, paymentPOs);
+			ArrayList<PaymentPO> paymentPOs=this.smartGetPaymentPO(begin, end);
+			return pieChartMaker.monthPay(paymentPOs);
 		case MONTH_IN_REVENUE:
-			ArrayList<RevenuePO> revenuePOs=revenueDataService.getByTime(begin, end);
-			return pieChartMaker.monthRevenue(begin, end, revenuePOs);
+			ArrayList<RevenuePO> revenuePOs=this.smartGetRevenuePO(begin, end);
+			return pieChartMaker.monthRevenue(revenuePOs);
 		case TYPES_IN_PAYMENT:
-			ArrayList<PaymentPO> paymentPOs2=paymentDataService.getByTime(begin, end);
+			ArrayList<PaymentPO> paymentPOs2=this.smartGetPaymentPO(begin, end);
 			return pieChartMaker.typePay(paymentPOs2);
 		default:
 			return null;

@@ -23,15 +23,17 @@ public class PieChartMaker {
 		return src.get(Calendar.YEAR)<=tar.get(Calendar.YEAR)&&src.get(Calendar.MONTH)<=tar.get(Calendar.MONTH);
 	}
 	
-	public PieChartVO monthPay(Calendar begin,Calendar end,ArrayList<PaymentPO> paymentPO){
+	public PieChartVO monthPay(ArrayList<PaymentPO> paymentPO){
+		Calendar begin=paymentPO.get(0).getDate();
+		Calendar end=paymentPO.get(paymentPO.size()-1).getDate();
 		PieChartVO pieChartVO=new PieChartVO();
 		pieChartVO.title="各个月支出统计";
 		pieChartVO.valueType="月份";
 		//
 		int beYear=begin.get(Calendar.YEAR);
-		int beMonth=begin.get(Calendar.MONTH);
+		int beMonth=begin.get(Calendar.MONTH)+1;
 		int enYear=end.get(Calendar.YEAR);
-		int enMonth=end.get(Calendar.MONTH);
+		int enMonth=end.get(Calendar.MONTH)+1;
 		//
 		int total=(enYear-beYear)*12+enMonth-beMonth;
 		//
@@ -41,7 +43,7 @@ public class PieChartMaker {
 			for (PaymentPO paymentPO2 : paymentPO) {
 				all+=Double.parseDouble(paymentPO2.getAmount());
 			}
-			pieChartVO.originMap.put(beYear+"年"+beMonth+"月", all);
+			pieChartVO.originMap.put(beYear+"年"+beMonth+"月", 1.0);
 			return pieChartVO;
 		}
 		//
@@ -73,7 +75,16 @@ public class PieChartMaker {
 		
 	}
 	
-	public PieChartVO monthRevenue(Calendar begin,Calendar end,ArrayList<RevenuePO> revenuePO){
+	public PieChartVO monthRevenue(ArrayList<RevenuePO> revenuePO){
+		if (revenuePO.isEmpty()) {
+			PieChartVO pieChartVO=new PieChartVO();
+			pieChartVO.title="各个月收入统计";
+			pieChartVO.valueType="月份";
+			pieChartVO.originMap=new HashMap<String, Double>();
+			return pieChartVO;
+		}
+		Calendar begin=revenuePO.get(0).getDate();
+		Calendar end=revenuePO.get(revenuePO.size()-1).getDate();
 		PieChartVO pieChartVO=new PieChartVO();
 		pieChartVO.title="各个月收入统计";
 		pieChartVO.valueType="月份";
