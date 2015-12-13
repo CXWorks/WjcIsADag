@@ -70,7 +70,6 @@ public class ManageBankAccountController {
         controller.stage.showAndWait();
 
         accounts_TableView.getItems().add(bankAccountVO);
-        //bankAccountBLService.addAccount(bankAccountVO);
     }
 
     @FXML
@@ -88,7 +87,7 @@ public class ManageBankAccountController {
 
         dialog.stage.showAndWait();
 
-        //bankAccountBLService.editAccount(bankAccountVO, bankAccountVO.accountName);
+        setAccounts(bankAccountBLService.getAllAccounts());
     }
 
     @FXML
@@ -134,20 +133,14 @@ public class ManageBankAccountController {
         balance_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getBalance())
         );
-        // TODO test
-        accounts_TableView.setItems(
-                FXCollections.observableArrayList(
-                        new BankAccountVO("wjr", "wjr", "-998"),
-                        new BankAccountVO("bill", "Micro$oft", "99999999999999999999999")
-                )
-        );
+
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    // TODO test
-//                    System.out.println("selected " + newValue.accountName);
+                    if(newValue == null){
+                        return;
+                    }
                     bankAccountVO = newValue;
                     checkHistory(null);
-                    
                 }
         );
 

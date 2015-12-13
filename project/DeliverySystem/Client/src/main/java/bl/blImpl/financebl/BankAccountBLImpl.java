@@ -24,7 +24,7 @@ import po.financedata.BankAccountPO;
  */
 public class BankAccountBLImpl implements BankAccountBLService {
 	private BankAccountDataService bankAccountDataService;
-	private VOPOFactory vopoFactory;
+	private VOPOFactory vopoFactory = new VOPOFactory();
 	public BankAccountBLImpl(){
 		this.bankAccountDataService=CacheHelper.getBankAccountDataService();
 	}

@@ -17,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import message.CheckFormMessage;
+import ui.common.checkFormat.CheckNumberField;
 import vo.accountvo.AccountVO;
 
 public class ManageAccountController {
@@ -29,8 +31,9 @@ public class ManageAccountController {
     public TableColumn<AccountAbstractCheckItem, String> password_TableColumn;
     public TableColumn<AccountAbstractCheckItem, String> staff_TableColumn;
 
-	public TextField search_Field;
+	public CheckNumberField search_Field;
     public CheckBox all_CheckBox;
+    public Label err_Label;
 
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(ManageAccountController.class.getResource("manageAccount.fxml"));
@@ -38,6 +41,8 @@ public class ManageAccountController {
 
     @FXML
     public void initialize(){
+        search_Field.setErrLabel(err_Label);
+
     	accounts_TableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         accounts_TableView.setItems(FXCollections.observableArrayList(accounts));
@@ -86,6 +91,8 @@ public class ManageAccountController {
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
         // TODO filter accountBLManageService
+
+        search_Field.handle(new CheckFormMessage(false, "not number"));
 	}
 
     @FXML

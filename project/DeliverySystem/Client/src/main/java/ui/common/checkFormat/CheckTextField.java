@@ -15,15 +15,15 @@ public class CheckTextField extends TextField{
         this.errLabel = errLabel;
     }
 
-    protected boolean handle(CheckFormMessage msg){
+    public boolean handle(CheckFormMessage msg){
         if(msg.getCheckResult()){
             if(errLabel != null){
-                errLabel.setText(msg.getReason());
+                errLabel.setText("");
             }
             return true;
         }else{
             if(errLabel != null){
-                errLabel.setText("");  // clear error tips
+                errLabel.setText(msg.getReason());  // clear error tips
             }
             return false;
         }

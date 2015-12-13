@@ -1,5 +1,7 @@
 package ui.financeui;
 
+import bl.blService.financeblService.BankAccountBLService;
+import factory.FinanceBLFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,7 @@ public class AccountEditDialogController {
 
     // VO that is passed in by the creator
     private BankAccountVO editVO;
+    private BankAccountBLService bankAccountBLService = FinanceBLFactory.getBankAccountBLService();
 
     /**
      *
@@ -77,8 +80,15 @@ public class AccountEditDialogController {
 
     public void ok(ActionEvent actionEvent) {
         // TODO check
-        editVO.accountName = editName_Field.getText();
-        editVO.balance = editBalance_Field.getText();
+
+        if(type == EditType.EDIT){
+            bankAccountBLService.editAccount(editVO, editName_Field.getText());
+        }else{
+            editVO.accountName = editName_Field.getText();
+            editVO.balance = editBalance_Field.getText();
+
+            bankAccountBLService.addAccount(editVO);
+        }
 
         stage.close();
     }
