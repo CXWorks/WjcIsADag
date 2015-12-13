@@ -26,5 +26,7 @@ public interface BankAccountBLService {
     public OperationMessage pay(String bankAccID, String amount);
 
     public OperationMessage receive(String bankAccID, String amount);
+    
+    public String newBankID();
 
 }

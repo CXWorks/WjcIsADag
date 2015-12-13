@@ -104,4 +104,18 @@ public class BankAccountBLImpl implements BankAccountBLService {
  			return new OperationMessage(false, "net error");
  		}
     }
+	/* (non-Javadoc)
+	 * @see bl.blService.financeblService.BankAccountBLService#newBankID()
+	 */
+	@Override
+	public String newBankID() {
+		try {
+			String ID=bankAccountDataService.getNewBankID();
+			return ID;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
