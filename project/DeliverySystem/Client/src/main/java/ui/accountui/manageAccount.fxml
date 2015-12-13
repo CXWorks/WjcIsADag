@@ -5,12 +5,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import ui.common.checkFormat.field.NumberOnlyField?>
+<?import ui.common.checkFormat.field.FloatOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
    <children>
       <CheckBox fx:id="all_CheckBox" layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
       <Button layoutX="528.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" text="查找" />
       <Button layoutX="172.0" layoutY="35.0" mnemonicParsing="false" onAction="#delete" text="删除" />
-      <NumberOnlyField fx:id="search_Field" layoutX="344.0" layoutY="35.0" />
+      <FloatOnlyField fx:id="search_Field" layoutX="344.0" layoutY="35.0" />
       <Button layoutX="236.0" layoutY="35.0" mnemonicParsing="false" onAction="#edit" text="修改" />
       <TableView fx:id="accounts_TableView" layoutX="33.0" layoutY="82.0" prefHeight="348.0" prefWidth="699.0">
         <columns>

@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import ui.common.checkFormat.field.FloatOnlyField;
 import ui.common.checkFormat.field.NumberOnlyField;
 import vo.accountvo.AccountVO;
 
@@ -30,7 +31,7 @@ public class ManageAccountController {
     public TableColumn<AccountAbstractCheckItem, String> password_TableColumn;
     public TableColumn<AccountAbstractCheckItem, String> staff_TableColumn;
 
-	public NumberOnlyField search_Field;
+	public FloatOnlyField search_Field;
     public CheckBox all_CheckBox;
     public Label err_Label;
 

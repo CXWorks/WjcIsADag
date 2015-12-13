@@ -67,10 +67,10 @@ public class FormatCheckImpl implements FormatCheckService {
 	}
 
 	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkLoction(java.lang.String, java.lang.String)
+	 * @see bl.blService.FormatCheckService.FormatCheckService#checkLocation(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public CheckFormMessage checkLoction(String from, String to) {
+	public CheckFormMessage checkLocation(String from, String to) {
 		if (from.equalsIgnoreCase(to)) {
 			return new CheckFormMessage(false, "输入相同");
 		} else {
@@ -139,29 +139,6 @@ public class FormatCheckImpl implements FormatCheckService {
 	}
 
 	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkName(java.lang.String)
-	 */
-	@Override
-	public CheckFormMessage checkName(String name) {
-		// TODO Auto-generated method stub
-		return new CheckFormMessage();
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkMoney(java.lang.String)
-	 */
-	@Override
-	public CheckFormMessage checkMoney(String money) {
-		double m=Double.parseDouble(money);
-		if (m>=0) {
-			return new CheckFormMessage();
-		} else {
-			return new CheckFormMessage(false, "输入金额小于0");
-		}
-		
-	}
-
-	/* (non-Javadoc)
 	 * @see bl.blService.FormatCheckService.FormatCheckService#checkPhone(java.lang.String)
 	 */
 	@Override
@@ -171,46 +148,6 @@ public class FormatCheckImpl implements FormatCheckService {
 		} else {
 			return new CheckFormMessage(false, "号码位数不对，应为11位");
 		}
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkIsInt(java.lang.String)
-	 */
-	@Override
-	public CheckFormMessage checkIsInt(String num) {
-		try {
-			int temp=Integer.parseInt(num);
-			return new CheckFormMessage();
-		} catch (NumberFormatException e) {
-			return new CheckFormMessage(false, "不是整数");
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkWeight(java.lang.String)
-	 */
-	@Override
-	public CheckFormMessage checkWeight(String weight) {
-		try {
-			double vol=Double.parseDouble(weight);
-			return new CheckFormMessage();
-		} catch (Exception e) {
-			return new CheckFormMessage(false, "不是数字");
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.FormatCheckService.FormatCheckService#checkVolume(java.lang.String)
-	 */
-	@Override
-	public CheckFormMessage checkVolume(String volume) {
-		try {
-			double vol=Double.parseDouble(volume);
-			return new CheckFormMessage();
-		} catch (Exception e) {
-			return new CheckFormMessage(false, "不是数字");
-		}
-		
 	}
 
 	/* (non-Javadoc)

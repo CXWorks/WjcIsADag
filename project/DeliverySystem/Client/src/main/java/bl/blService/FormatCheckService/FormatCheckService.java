@@ -3,8 +3,6 @@ package bl.blService.FormatCheckService;
 import java.util.Calendar;
 
 import message.CheckFormMessage;
-
-
 /**
  * 
  * @author wjc
@@ -39,7 +37,7 @@ public interface FormatCheckService{
 	 * @param from 出发地,to 到达地
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkLoction(String from, String to);
+	public  CheckFormMessage checkLocation(String from, String to);
 	
 	/**
 	 * 检查中转单号
@@ -70,46 +68,11 @@ public interface FormatCheckService{
 	public CheckFormMessage checkTruckLoadID(String ID);
 	
 	/**
-	 * 检查人名
-	 * @param name 人名
-	 * @return 返回检查结果
-	 */
-	public CheckFormMessage checkName(String name);
-	
-	/**
-	 * 检查金额
-	 * @param money 金额
-	 * @return 返回检查结果
-	 */
-	public CheckFormMessage checkMoney(String money);
-	
-	/**
 	 * 检查手机号码
 	 * @param num 手机号码
 	 * @return 返回检查结果
 	 */
 	public CheckFormMessage checkPhone(String num);
-	
-	/**
-	 * 检查是否为整数（货物内件数）
-	 * @param num 货物内件数
-	 * @return 返回检查结果
-	 */
-	public CheckFormMessage checkIsInt(String num);
-	
-	/**
-	 * 检查重量
-	 * @param weight 重量
-	 * @return 返回检查结果
-	 */
-	public CheckFormMessage checkWeight(String weight);
-	
-	/**
-	 * 检查体积
-	 * @param volume 体积
-	 * @return 返回检查结果
-	 */
-	public CheckFormMessage checkVolume(String volume);
 	
 	/**
 	 * 检查输入是否为空
