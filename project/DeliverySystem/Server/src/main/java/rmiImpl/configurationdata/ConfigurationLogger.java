@@ -20,6 +20,11 @@ import rmiImpl.Logger;
 public class ConfigurationLogger extends Logger {
 	private long version ;
 	private List<Operation> cacheData;
+	
+	public ConfigurationLogger(){
+		this.version=0;
+		this.cacheData=new ArrayList<Operation>(20);
+	}
 
 	/* (non-Javadoc)
 	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
@@ -40,6 +45,17 @@ public class ConfigurationLogger extends Logger {
 				.collect(Collectors.toList());
 		//
 		return ans;
+	}
+
+	/* (non-Javadoc)
+	 * @see cache.CacheLogService#addNewOperation(operation.Operation)
+	 */
+	@Override
+	public long addNewOperation(Operation operation) {
+		this.version++;
+		operation.version=this.version;
+		this.cacheData.add(operation);
+		return this.version;
 	}
 	
 }

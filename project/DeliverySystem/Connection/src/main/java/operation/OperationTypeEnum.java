@@ -7,5 +7,5 @@ package operation;
  * @version 1.0 
  */
 public enum OperationTypeEnum {
-ADD,DELETE,MODIFY,PASS;
+NEW,DELETE,MODIFY,PASS;
 }

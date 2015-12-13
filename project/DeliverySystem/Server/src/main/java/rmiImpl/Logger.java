@@ -1,5 +1,6 @@
 package rmiImpl;
 
+import cache.CacheLogService;
 import rmi.cachedata.CacheDataService;
 
 /** 
@@ -8,6 +9,6 @@ import rmi.cachedata.CacheDataService;
  * @date 2015年12月13日 上午9:51:53
  * @version 1.0 
  */
-public abstract class Logger implements CacheDataService{
+public abstract class Logger implements CacheDataService,CacheLogService{
 
 }

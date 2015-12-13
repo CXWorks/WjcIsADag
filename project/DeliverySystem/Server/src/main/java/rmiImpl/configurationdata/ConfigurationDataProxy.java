@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import cache.CacheLogService;
 import operation.Operation;
+import operation.OperationTypeEnum;
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
 import po.configurationdata.PackPO;
@@ -14,15 +16,20 @@ import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.systemdata.SystemState;
+import rmi.cachedata.CacheDataService;
 import rmi.configurationdata.ConfigurationDataService;
 import rmiImpl.initaldata.InitialDataProxy;
 
 public class ConfigurationDataProxy extends UnicastRemoteObject implements ConfigurationDataService {
 
 	ConfigurationDataService configurationDataService = new ConfigurationDataImpl();
+	CacheLogService cacheLogService;
+	CacheDataService cacheDataService;
 	public ConfigurationDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		ConfigurationLogger configurationLogger=new ConfigurationLogger();
+		this.cacheDataService=configurationLogger;
+		this.cacheLogService=configurationLogger;
 	}
 
 	@Override
@@ -33,8 +40,14 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
+		OperationMessage res=null;
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return configurationDataService.newCity2D(po);
+			res= configurationDataService.newCity2D(po);
+		if (res!=null&&res.operationResult) {
+			long version=cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
+			res.setCacheVersion(version);
+			return res;
+		}
 		return new OperationMessage(false, "system is "+InitialDataProxy.getState().getChinese());
 	}
 
@@ -176,8 +189,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	 */
 	@Override
 	public long getLatestVersionID() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		return cacheDataService.getLatestVersionID();
 	}
 
 	/* (non-Javadoc)
@@ -186,8 +198,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public List<Operation> getOperation(long localVersion)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return cacheDataService.getOperation(localVersion);
 	}
 
 }
