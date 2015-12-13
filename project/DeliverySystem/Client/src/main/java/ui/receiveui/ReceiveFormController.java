@@ -14,7 +14,6 @@ import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
-import ui.common.checkFormat.CheckOrderIDField;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
@@ -33,7 +32,7 @@ public class ReceiveFormController{
     public TextField departure_Field;
     public ChoiceBox<SimpleEnumProperty<StateEnum>> arriveState_Box;
     public TableView<Map.Entry<String, String>> order_Table;
-    public CheckOrderIDField order_Field;
+    public TextField order_Field;
     public Label date_ErrLabel;
     public Label transit_errLabel;
     public Label departure_errLabel;
@@ -64,15 +63,13 @@ public class ReceiveFormController{
         clear(null);
 
         order_Field.setOnAction(
-                uselessParam->{
+                uselessParam -> {
                     fillOrderTable();
                 }
         );
 
         OrderVO2ColumnHelper.setKeyColumn(key_Column); 
         OrderVO2ColumnHelper.setValueColumn(value_Column);
-
-        order_Field.setErrLabel(err_Label);
     }
 
     public void commit(ActionEvent actionEvent) {
@@ -106,7 +103,6 @@ public class ReceiveFormController{
     }
 
     private void fillOrderTable(){
-        order_Field.check();
         OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
 
         order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));

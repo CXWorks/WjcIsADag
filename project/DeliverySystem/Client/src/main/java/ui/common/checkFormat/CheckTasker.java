@@ -1,17 +1,20 @@
 package ui.common.checkFormat;
 
+import bl.blService.FormatCheckService.FormatCheckService;
+import factory.FormatCheckFactory;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import message.CheckFormMessage;
 
 /**
- * Created by Sissel on 2015/12/12.
+ * Created by Sissel on 2015/12/13.
  */
-public class CheckTextField extends TextField{
+public abstract class CheckTasker implements Checkable {
 
     protected Label errLabel;
+    protected FormatCheckService checkService;
 
-    public void setErrLabel(Label errLabel) {
+    protected CheckTasker(Label errLabel) {
+        this.checkService = FormatCheckFactory.getFormatCheckService();
         this.errLabel = errLabel;
     }
 

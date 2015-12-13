@@ -39,7 +39,7 @@ public interface FormatCheckService{
 	 * @param from 出发地,to 到达地
 	 * @return 返回检查结果
 	 */
-	public  CheckFormMessage checkLoction(String from,String to);
+	public  CheckFormMessage checkLoction(String from, String to);
 	
 	/**
 	 * 检查中转单号
