@@ -6,6 +6,7 @@ import po.FormEnum;
 import po.FormStateEnum;
 import po.financedata.FinancePayEnum;
 import po.financedata.PaymentPO;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -63,7 +64,9 @@ public class PaymentVO extends FinanceFormVO {
     }
     //
     public PaymentPO toPO(){
-    	return new PaymentPO(formID, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
+    	PaymentPO paymentPO= new PaymentPO(formID, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
+    	paymentPO.setCache_OperatorID(UserInfo.getUserID());
+    	return paymentPO;
     }
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()

@@ -12,11 +12,18 @@ import util.DataType;
  */
 public abstract class CommonPO implements Serializable{
 	protected DataType dataType;
+	private String cache_OperatorID;
 	protected CommonPO(DataType dataType) {
 		this.dataType=dataType;
 	}
 	public DataType getDataType() {
 		return dataType;
+	}
+	public String getCache_OperatorID() {
+		return cache_OperatorID;
+	}
+	public void setCache_OperatorID(String cache_OperatorID) {
+		this.cache_OperatorID = cache_OperatorID;
 	}
 	
 }

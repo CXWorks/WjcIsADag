@@ -3,6 +3,7 @@ package vo.initialdata;
 import message.OperationMessage;
 import model.store.StoreModel;
 import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import vo.CommonVO;
 import vo.InfoVO;
 import vo.accountvo.AccountVO;
@@ -107,7 +108,9 @@ public class InitialDataVO extends InfoVO{
     	for(SalaryStrategyVO tmp:this.salaryStrategyVO){
     		salaryStrategyPO.add( tmp.toPO());
     	}
-    	return new InitialDataPO(version, dbName, storeModels, bankAccountPOs, carPOs, staffPOs, hallPOs, centerPOs, city2dpos, priceVO.toPO(), proportionVO.toPO(), salaryStrategyPO, packVO.toPO(), accountPOs);
+    	InitialDataPO initialDataPO= new InitialDataPO(version, dbName, storeModels, bankAccountPOs, carPOs, staffPOs, hallPOs, centerPOs, city2dpos, priceVO.toPO(), proportionVO.toPO(), salaryStrategyPO, packVO.toPO(), accountPOs);
+    	initialDataPO.setCache_OperatorID(UserInfo.getUserID());
+    	return initialDataPO;
     }
 
 

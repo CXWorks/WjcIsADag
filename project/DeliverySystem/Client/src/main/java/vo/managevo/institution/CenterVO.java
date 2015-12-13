@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import po.InfoEnum;
 import po.companydata.CenterPO;
 import po.memberdata.StaffPO;
+import userinfo.UserInfo;
 import vo.InfoVO;
 import vo.managevo.staff.StaffVO;
 
@@ -60,7 +61,9 @@ public class CenterVO extends InstitutionVO{
 			countermanPO.add(temp);
 		}
 		//
-		return new CenterPO(institutionID, city, storemanPO, countermanPO);
+		CenterPO centerPO= new CenterPO(institutionID, city, storemanPO, countermanPO);
+		centerPO.setCache_OperatorID(UserInfo.getUserID());
+		return centerPO;
 	}
 
 	public String getCenterID() {

@@ -6,6 +6,7 @@ import po.FormEnum;
 import po.FormStateEnum;
 import po.storedata.StoreInPO;
 import model.store.StoreLocation;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -32,7 +33,9 @@ public class StoreInVO extends StoreFormVO {
     }
     //
     public StoreInPO toPO(){
-    	return new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);
+    	StoreInPO storeInPO= new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);
+    	storeInPO.setCache_OperatorID(UserInfo.getUserID());
+    	return storeInPO;
     }
 
 	/* (non-Javadoc)

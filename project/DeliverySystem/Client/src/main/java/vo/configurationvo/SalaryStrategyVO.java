@@ -4,6 +4,7 @@ import po.InfoEnum;
 import po.configurationdata.SalaryStrategyPO;
 import po.configurationdata.enums.PackEnum;
 import po.memberdata.StaffTypeEnum;
+import userinfo.UserInfo;
 
 public class SalaryStrategyVO extends ConfigurationVO{
 	private StaffTypeEnum staff;
@@ -33,7 +34,9 @@ public class SalaryStrategyVO extends ConfigurationVO{
 		return staff;
 	}
 	public SalaryStrategyPO toPO(){
-		return new SalaryStrategyPO(base, commission, bonus, staff);
+		SalaryStrategyPO salaryStrategyPO= new SalaryStrategyPO(base, commission, bonus, staff);
+		salaryStrategyPO.setCache_OperatorID(UserInfo.getUserID());
+		return salaryStrategyPO;
 	}
 	public void setBase(int base) {
 		this.base = base;

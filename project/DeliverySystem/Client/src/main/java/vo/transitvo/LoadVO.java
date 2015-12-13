@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import po.FormEnum;
 import po.transportdata.LoadPO;
+import userinfo.UserInfo;
 
 public class LoadVO extends TransitVO {
 
@@ -37,7 +38,9 @@ public class LoadVO extends TransitVO {
 	public LoadPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
 		
-		return new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO);
+		LoadPO loadPO= new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO);
+		loadPO.setCache_OperatorID(UserInfo.getUserID());
+		return loadPO;
 	}
 
 	/* (non-Javadoc)

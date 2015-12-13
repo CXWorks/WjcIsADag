@@ -6,6 +6,7 @@ import java.util.Calendar;
 import po.FormEnum;
 import po.transportdata.CenterOutPO;
 import po.transportdata.TransportationEnum;
+import userinfo.UserInfo;
 
 public class CenterOutVO extends TransitVO  {
 
@@ -40,7 +41,9 @@ public class CenterOutVO extends TransitVO  {
 	public CenterOutPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
 		
-		return new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO);
+		CenterOutPO centerOutPO= new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO);
+		centerOutPO.setCache_OperatorID(UserInfo.getUserID());
+		return centerOutPO;
 	}
 
 	/* (non-Javadoc)

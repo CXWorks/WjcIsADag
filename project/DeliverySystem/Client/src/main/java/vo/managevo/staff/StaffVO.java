@@ -4,6 +4,7 @@ import po.InfoEnum;
 import po.memberdata.SexEnum;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
+import userinfo.UserInfo;
 import vo.InfoVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.InstitutionVO;
@@ -43,7 +44,9 @@ public class StaffVO extends InfoVO{
 		
 	}
 	public StaffPO toPO(){
-		return new StaffPO(staff, ID, name, age, personID, sex, love,institutionID);
+		StaffPO staffPO= new StaffPO(staff, ID, name, age, personID, sex, love,institutionID);
+		staffPO.setCache_OperatorID(UserInfo.getUserID());
+		return staffPO;
 	}
 	public StaffTypeEnum getStaff() {
 		return staff;

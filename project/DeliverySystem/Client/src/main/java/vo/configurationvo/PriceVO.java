@@ -6,10 +6,10 @@ import java.util.Map;
 import po.InfoEnum;
 import po.configurationdata.PricePO;
 import po.orderdata.DeliverTypeEnum;
+import userinfo.UserInfo;
 
 
 public class PriceVO extends ConfigurationVO{
-	//TODO discuss how to build this with JR
 	private HashMap<DeliverTypeEnum,Integer> price;
 	public PriceVO(){
 		super(InfoEnum.PRICE);
@@ -34,6 +34,7 @@ public class PriceVO extends ConfigurationVO{
 	public PricePO toPO(){
 		PricePO temp=new PricePO();
 		temp.setPrice(price);
+		temp.setCache_OperatorID(UserInfo.getUserID());
 		return temp;
 	}
 }

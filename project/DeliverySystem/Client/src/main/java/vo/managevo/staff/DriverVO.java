@@ -6,6 +6,7 @@ import po.InfoEnum;
 import po.memberdata.DriverPO;
 import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
+import userinfo.UserInfo;
 
 /** 
  * Client//vo.managevo.staff//DriverVO.java
@@ -49,7 +50,9 @@ public class DriverVO extends StaffVO {
 	}
 	//
 	public DriverPO toPO(){
-		return new DriverPO(staff, ID, name, age, personID, sex, love, institutionID, birth, tel, licence_period);
+		DriverPO driverPO= new DriverPO(staff, ID, name, age, personID, sex, love, institutionID, birth, tel, licence_period);
+		driverPO.setCache_OperatorID(UserInfo.getUserID());
+		return driverPO;
 	}
 	public void setBirth(Calendar birth) {
 		this.birth = birth;

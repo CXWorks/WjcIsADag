@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import po.InfoEnum;
 import po.companydata.CarPO;
+import userinfo.UserInfo;
 import vo.InfoVO;
 
 public class CarVO extends InfoVO{
@@ -56,7 +57,10 @@ public class CarVO extends InfoVO{
 	}
 	//
 	public CarPO toPO(){
-		return new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
+		CarPO carPO= new CarPO(free, carID, (Calendar)useTime.clone(), imag, engineID, nameID, chassisID, (Calendar)buyTime.clone());
+		carPO.setCache_OperatorID(UserInfo.getUserID());
+		return carPO;
+		
 	}
 	//
 	public String getInstitutionID(){

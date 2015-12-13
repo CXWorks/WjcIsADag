@@ -5,6 +5,7 @@ import po.InfoEnum;
 import po.companydata.HallPO;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
+import userinfo.UserInfo;
 import vo.InfoVO;
 import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
@@ -91,7 +92,9 @@ public class HallVO extends InstitutionVO{
 			countermanPO.add(temp);
 		}
 		//
-		return new HallPO(institutionID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
+		HallPO hallPO= new HallPO(institutionID, city, area, driverPO, deliverPO, countermanPO, nearCenterID);
+		hallPO.setCache_OperatorID(UserInfo.getUserID());
+		return hallPO;
 	}
 	//
 	public String getHallID() {

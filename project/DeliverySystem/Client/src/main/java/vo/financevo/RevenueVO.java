@@ -6,6 +6,7 @@ import java.util.Calendar;
 import po.FormEnum;
 import po.FormStateEnum;
 import po.financedata.RevenuePO;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -44,7 +45,9 @@ public class RevenueVO extends FinanceFormVO {
     }
     //
     public RevenuePO toPO(){
-    	return new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderIDs);
+    	RevenuePO revenuePO= new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderIDs);
+    	revenuePO.setCache_OperatorID(UserInfo.getUserID());
+    	return revenuePO;
     }
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()

@@ -8,6 +8,7 @@ import po.FormStateEnum;
 import po.orderdata.DeliverTypeEnum;
 import po.orderdata.OrderPO;
 import po.orderdata.PackingEnum;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -106,10 +107,12 @@ public class OrderVO extends FormVO {
 
 	//
 	public OrderPO toPO() {
-		return new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
+		OrderPO orderPO= new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
 				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
 				telNumTo, goodsNum, goodsName, weight, volume, money,
 				goodsType, type.name(), pack.name(), null, null,receivePeople,receiveDate);
+		orderPO.setCache_OperatorID(UserInfo.getUserID());
+		return orderPO;
 	}
 
 	/**

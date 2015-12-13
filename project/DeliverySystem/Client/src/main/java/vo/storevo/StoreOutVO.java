@@ -7,6 +7,7 @@ import po.FormEnum;
 import po.FormStateEnum;
 import po.storedata.StoreOutPO;
 import po.transportdata.TransportationEnum;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -38,7 +39,9 @@ public class StoreOutVO extends StoreFormVO {
 
 	//
     public StoreOutPO toPO(){
-    	return new StoreOutPO(formID, orderID, date, destination, transportation, transID);
+    	StoreOutPO storeOutPO= new StoreOutPO(formID, orderID, date, destination, transportation, transID);
+    	storeOutPO.setCache_OperatorID(UserInfo.getUserID());
+    	return storeOutPO;
     }
 
 	/* (non-Javadoc)

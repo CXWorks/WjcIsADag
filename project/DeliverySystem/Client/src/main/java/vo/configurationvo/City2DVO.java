@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import po.InfoEnum;
 import po.configurationdata.City2DPO;
+import userinfo.UserInfo;
 
 /** 
  * Client//vo.configurationvo//City2DVO.java
@@ -60,7 +61,9 @@ public class City2DVO extends ConfigurationVO {
 	}
 	
 	public City2DPO toPO(){
-		return new City2DPO(name, x, y);
+		City2DPO city2dpo= new City2DPO(name, x, y);
+		city2dpo.setCache_OperatorID(UserInfo.getUserID());
+		return city2dpo;
 	}
 	//
 	public double distance(City2DVO target){

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import po.FormEnum;
 import po.FormStateEnum;
 import po.deliverdata.DeliverPO;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
@@ -84,6 +85,7 @@ public class DeliverVO extends FormVO{
 		if (finished) {
 			po.finfished(receiveDate, receivePeople);
 		}
+		po.setCache_OperatorID(UserInfo.getUserID());
 		return po;
 	}
 	//

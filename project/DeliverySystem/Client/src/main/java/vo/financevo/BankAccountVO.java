@@ -2,6 +2,7 @@ package vo.financevo;
 
 import po.InfoEnum;
 import po.financedata.BankAccountPO;
+import userinfo.UserInfo;
 import vo.InfoVO;
 
 /**
@@ -43,7 +44,9 @@ public class BankAccountVO extends InfoVO{
     	this(po.getBankID(), po.getAccountName(),po.getBalance() );
     }
     public BankAccountPO toPO(){
-    	return new BankAccountPO(bankID, accountName, balance);
+    	BankAccountPO bankAccountPO= new BankAccountPO(bankID, accountName, balance);
+    	bankAccountPO.setCache_OperatorID(UserInfo.getUserID());
+    	return bankAccountPO;
     }
     
     public boolean quzzySearch(String key){

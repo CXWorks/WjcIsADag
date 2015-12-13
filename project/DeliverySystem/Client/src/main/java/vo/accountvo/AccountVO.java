@@ -1,10 +1,13 @@
 package vo.accountvo;
 
+import po.CommonPO;
 import po.FormEnum;
 import po.InfoEnum;
 import po.accountdata.AccountPO;
 import po.accountdata.AuthorityEnum;
+import userinfo.UserInfo;
 import vo.InfoVO;
+
 import java.time.*;
 
 
@@ -39,7 +42,9 @@ public class AccountVO extends InfoVO{
 	}
 	//
 	public AccountPO toPO(){
-		return new AccountPO(ID, authority.name(), password);
+		AccountPO accountPO= new AccountPO(ID, authority.name(), password);
+		accountPO.setCache_OperatorID(UserInfo.getUserID());
+		return accountPO;
 	}
 	//
 	public String getID() {
