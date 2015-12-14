@@ -2,7 +2,9 @@ package bl.blImpl.financebl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 import po.financedata.FinancePayEnum;
 import po.financedata.PaymentPO;
@@ -29,6 +31,25 @@ public class BarChartMaker {
 		return false;
 	}
 	public BaseChartVO make_MonthIO(Calendar start,Calendar end,ArrayList<PaymentPO> paymentPOs,ArrayList<RevenuePO> revenuePOs){
+		if (start==null||end==null) {
+			if (start==null) {
+				Calendar startP = Calendar.getInstance(),startR=Calendar.getInstance();
+				
+				if (!paymentPOs.isEmpty()) {
+					startP=paymentPOs.stream()
+							.min(Comparator.comparing((PaymentPO pay)->pay.getDate())).get().getDate();
+				}
+				if (!revenuePOs.isEmpty()) {
+					startR=revenuePOs.stream()
+							.min(Comparator.comparing((RevenuePO re)->re.getDate())).get().getDate();
+				}
+				start=(startP.before(startR))?startP:startR;
+			}
+			if (end==null) {
+				end=Calendar.getInstance();
+			}
+		}
+		//
 		BaseChartVO baseChartVO=new BaseChartVO();
 		baseChartVO.title = "每月收支比较图";
         baseChartVO.mainXType = "月份/种类";
