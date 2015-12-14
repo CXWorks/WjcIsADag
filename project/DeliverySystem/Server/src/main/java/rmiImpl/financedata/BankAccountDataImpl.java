@@ -179,6 +179,12 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		return result;
 	}
 
+//	public static void main(String[] args) throws RemoteException {
+//		BankAccountDataImpl t = new BankAccountDataImpl();
+//		ArrayList<BankAccountPO> s = t.getAll();
+//		System.out.println(s.size());
+//	}
+
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -204,7 +210,8 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	@Override
 	public ArrayList<FormPO> getByAccID(String accID) throws RemoteException {
 		String select_pay = "select * from `payment` where `payerAccID` = '" + accID + "'";
-//		String select_rev = "select * from `revenue` where `payerAccID` = '" + accID + "'";//这地方不知道怎么搞
+		// String select_rev = "select * from `revenue` where `payerAccID` = '"
+		// + accID + "'";//这地方不知道怎么搞
 		ResultSet rs = null;
 		PaymentPO pay = null;
 		RevenuePO rev = null;
@@ -225,19 +232,21 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			e.printStackTrace();
 		}
 
-//		try {
-//			statement = conn.prepareStatement(select_rev);
-//			rs = statement.executeQuery(select_rev);
-//			while (rs.next()) {
-//				rev = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-//						rs.getString("deliverName"), rs.getString("hallID"), rs.getString("orderID"));
-//				rev.setFormState(rs.getString("formState"));
-//				result.add(rev);
-//			}
-//		} catch (SQLException e) {
-//			System.err.println("查找数据库时出错：");
-//			e.printStackTrace();
-//		}
+		// try {
+		// statement = conn.prepareStatement(select_rev);
+		// rs = statement.executeQuery(select_rev);
+		// while (rs.next()) {
+		// rev = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"),
+		// rs.getString("amount"),
+		// rs.getString("deliverName"), rs.getString("hallID"),
+		// rs.getString("orderID"));
+		// rev.setFormState(rs.getString("formState"));
+		// result.add(rev);
+		// }
+		// } catch (SQLException e) {
+		// System.err.println("查找数据库时出错：");
+		// e.printStackTrace();
+		// }
 
 		return result;
 	}

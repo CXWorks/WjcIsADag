@@ -16,6 +16,7 @@ import message.OperationMessage;
 import po.FormEnum;
 import po.accountdata.AccountPO;
 import po.companydata.CenterPO;
+import po.configurationdata.enums.PackEnum;
 import po.receivedata.ReceivePO;
 import po.systemdata.LogPO;
 import rmi.accountdata.AccountDataService;
@@ -148,6 +149,23 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 			result = new OperationMessage(false, "账户不存在");
 		else if (!password.equalsIgnoreCase(a.getPassword()))
 			result = new OperationMessage(false, "账户密码不匹配");
+		return result;
+	}
+
+	@Override
+	public OperationMessage setAccount(String id, boolean isOnline) throws RemoteException {
+		// TODO Auto-generated method stub
+		OperationMessage result = new OperationMessage();
+		String operation = "update `" + Table_Name + "` set `online` ='" + isOnline + "' where `ID` = '" + id + "'";
+		try {
+				statement = conn.prepareStatement(operation);
+				statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result = new OperationMessage(false, "更新账户状态出错：");
+			System.err.println("更新账户状态出错：");
+			e.printStackTrace();
+		}
 		return result;
 	}
 

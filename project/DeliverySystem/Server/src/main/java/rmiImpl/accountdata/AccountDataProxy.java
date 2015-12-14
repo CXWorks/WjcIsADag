@@ -74,4 +74,12 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 		return null;
 	}
 
+	@Override
+	public OperationMessage setAccount(String id, boolean isOnline) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return accountDataService.setAccount(id,isOnline);
+		return null;
+	}
+
 }
