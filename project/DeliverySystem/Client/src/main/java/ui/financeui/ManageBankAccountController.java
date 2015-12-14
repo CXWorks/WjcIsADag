@@ -145,7 +145,9 @@ public class ManageBankAccountController {
                     checkHistory(null);
                 }
         );
-        accounts_TableView.getItems().addAll(bankAccountBLService.getAllAccounts());
+        if (accounts_TableView==null) {
+			System.out.println("null");
+		}
         /**
          * configure history tableview
          */

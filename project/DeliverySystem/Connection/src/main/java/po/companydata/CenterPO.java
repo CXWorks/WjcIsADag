@@ -14,20 +14,12 @@ import util.DataType;
 public class CenterPO extends InfoPO implements Serializable{
 	private String centerID;
 	private String city;
-	private ArrayList<StaffPO> storeman;
-	private ArrayList<StaffPO> counterman;
 
 	public String getCenterID() {
 		return centerID;
 	}
 	public String getCity() {
 		return city;
-	}
-	public ArrayList<StaffPO> getStoreman() {
-		return storeman;
-	}
-	public ArrayList<StaffPO> getCounterman() {
-		return counterman;
 	}
 	public CenterPO(){
 		super(InfoEnum.CENTER);
@@ -36,16 +28,11 @@ public class CenterPO extends InfoPO implements Serializable{
 	 * @param infoEnum
 	 * @param centerID
 	 * @param city
-	 * @param storeman
-	 * @param counterman
 	 */
-	public CenterPO(String centerID, String city,
-			ArrayList<StaffPO> storeman, ArrayList<StaffPO> counterman) {
+	public CenterPO(String centerID, String city) {
 		this();
 		this.centerID = centerID;
 		this.city = city;
-		this.storeman = storeman;
-		this.counterman = counterman;
 	}
 
 }
