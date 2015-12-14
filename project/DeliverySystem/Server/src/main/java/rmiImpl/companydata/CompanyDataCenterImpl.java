@@ -41,7 +41,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		return conn;
 	}
 
-	public ArrayList<CenterPO> getCenter() {
+	public ArrayList<CenterPO> getCenter() throws RemoteException {
 		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
@@ -51,31 +51,10 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
-				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1;
-				ArrayList<String> t2;
-				MemberDataService<StaffPO> staff = new StaffDataImpl();
-				if (!rs.getString("storeman").equalsIgnoreCase("")) {
-					t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
-					for (String tmp : t1) {
-						storeman.add(staff.getPerson(tmp));
-					}
-				}
-
-				if (!rs.getString("counterman").equalsIgnoreCase("")) {
-					t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-					for (String tmp : t2) {
-						counterman.add(staff.getPerson(tmp));
-					}
-				}
-				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), storeman, counterman);
+				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
@@ -111,26 +90,9 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		OperationMessage result = new OperationMessage();
 		String s = "";
 		String c = "";
-		ArrayList<StaffPO> storeman = po.getStoreman();
-		ArrayList<StaffPO> counterman = po.getCounterman();
-		for (int i = 0; i < storeman.size(); i++) {
-			StaffPO tmp = storeman.get(i);
-			if (i != storeman.size() - 1)
-				s += tmp.getID() + " ";
-			else
-				s += tmp.getID();
-		}
-		for (int i = 0; i < counterman.size(); i++) {
-			StaffPO tmp = counterman.get(i);
-			if (i != counterman.size() - 1)
-				c += tmp.getID() + " ";
-			else
-				c += tmp.getID();
-		}
 
-		String insert = "insert into `" + Table_Name + "`(centerID,city,storeman,counterman,cityID) " + "values('"
-				+ po.getCenterID() + "','" + po.getCity() + "','" + s + "','" + c + "','"
-				+ po.getCenterID().substring(0, 3) + "')";
+		String insert = "insert into `" + Table_Name + "`(centerID,city,cityID) " + "values('" + po.getCenterID()
+				+ "','" + po.getCity() + "','" + po.getCenterID().substring(0, 3) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -193,29 +155,8 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			ArrayList<StaffPO> storeman = new ArrayList<StaffPO>();
-			ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-			ArrayList<String> t1;
-			ArrayList<String> t2;
-			MemberDataService<StaffPO> staff = new StaffDataImpl();
-			if (!rs.getString("storeman").equalsIgnoreCase("")) {
-				t1 = new ArrayList<String>(Arrays.asList(rs.getString("storeman").split(" ")));
-				for (String tmp : t1) {
-					storeman.add(staff.getPerson(tmp));
-				}
-			}
-
-			if (!rs.getString("counterman").equalsIgnoreCase("")) {
-				t2 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-				for (String tmp : t2) {
-					counterman.add(staff.getPerson(tmp));
-				}
-			}
-			result = new CenterPO(ID, rs.getString("city"), storeman, counterman);
+			result = new CenterPO(ID, rs.getString("city"));
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
