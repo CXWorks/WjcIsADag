@@ -15,7 +15,6 @@ public class LogVO extends InfoVO implements Serializable{
 	
 	protected LogVO(InfoEnum infoEnum) {
 		super(infoEnum);
-		// TODO Auto-generated constructor stub
 	}
 
 	public LogVO( String personID, Calendar time, String info) {

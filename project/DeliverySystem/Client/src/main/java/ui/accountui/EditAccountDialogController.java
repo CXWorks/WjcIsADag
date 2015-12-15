@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import main.Main;
 import message.OperationMessage;
 import po.accountdata.AuthorityEnum;
+import ui.common.checkFormat.field.EngOnlyField;
 import vo.accountvo.AccountVO;
 import javafx.scene.control.TextField;
 
@@ -25,8 +26,8 @@ public class EditAccountDialogController {
     public Stage stage;
     private AccountVO editVO;
 
-	public TextField id_Field;
-	public TextField password_Field;
+	public EngOnlyField id_Field;
+	public EngOnlyField password_Field;
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
 

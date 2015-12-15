@@ -19,6 +19,7 @@ import vo.systemvo.LogVO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by Sissel on 2015/11/27.
  */
 public class CheckLogController {
-    private List<LogVO> logVOs;
+    private List<LogVO> logVOs = new ArrayList<>();
 
     public TableView<LogVO> log_TableView;
     public DatePicker begin_DatePicker;

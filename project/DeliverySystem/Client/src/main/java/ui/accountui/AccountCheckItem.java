@@ -8,9 +8,9 @@ import vo.accountvo.AccountVO;
 /**
  * Created by Sissel on 2015/11/25.
  */
-public class AccountAbstractCheckItem extends AbstractCheckItem<AccountVO> {
+public class AccountCheckItem extends AbstractCheckItem<AccountVO> {
 
-    AccountAbstractCheckItem(AccountVO vo){
+    AccountCheckItem(AccountVO vo){
         this.vo = new SimpleObjectProperty<>(vo);
         this.selected = new SimpleBooleanProperty(false);
         this.selected.addListener(

@@ -51,7 +51,6 @@ public class CenterOutVO extends TransitVO  {
 	 */
 	@Override
 	public String getMainInfo() {
-		// TODO Auto-generated method stub
 		return placeFrom+" "+placeTo;
 	}
 }

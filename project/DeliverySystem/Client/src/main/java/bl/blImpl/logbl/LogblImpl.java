@@ -59,7 +59,6 @@ public class LogblImpl implements LogblService {
 			}
 			return now;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

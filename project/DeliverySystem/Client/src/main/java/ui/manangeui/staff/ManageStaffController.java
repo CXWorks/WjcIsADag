@@ -66,6 +66,9 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		controller.manageblStaffService = service;
         controller.selfPane = selfPane;
 
+        controller.staffVOs = service.getStaffByInstitution(UserInfo.getInstitutionID());
+        controller.staffTable.setItems(FXCollections.observableList(controller.staffVOs));
+
 		if(father == null){
             selfPane.getChildren().remove(controller.back_Btn);
 		}else{
@@ -79,11 +82,7 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
 		return controller;
     }
 	@FXML
-	public void initialize(){
-        // TODO test jump
-//		staffVOs = manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
-//      staffTable.setItems(FXCollections.observableList(staffVOs));
-
+	public void initialize() {
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
 		IDColumn.setCellValueFactory(

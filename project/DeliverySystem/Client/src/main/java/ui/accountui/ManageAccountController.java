@@ -18,20 +18,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import ui.common.checkFormat.field.FloatOnlyField;
-import ui.common.checkFormat.field.NumberOnlyField;
 import vo.accountvo.AccountVO;
 
 public class ManageAccountController {
     private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-    private List<AccountAbstractCheckItem> accounts = new ArrayList<>();
+    private List<AccountCheckItem> accounts = new ArrayList<>();
 
-    public TableView<AccountAbstractCheckItem> accounts_TableView;
-    public TableColumn<AccountAbstractCheckItem, AccountAbstractCheckItem> check_TableColumn;
-    public TableColumn<AccountAbstractCheckItem, String> id_TableColumn;
-    public TableColumn<AccountAbstractCheckItem, String> password_TableColumn;
-    public TableColumn<AccountAbstractCheckItem, String> staff_TableColumn;
+    public TableView<AccountCheckItem> accounts_TableView;
+    public TableColumn<AccountCheckItem, AccountCheckItem> check_TableColumn;
+    public TableColumn<AccountCheckItem, String> id_TableColumn;
+    public TableColumn<AccountCheckItem, String> password_TableColumn;
+    public TableColumn<AccountCheckItem, String> staff_TableColumn;
 
-	public FloatOnlyField search_Field;
+	public TextField search_Field;
     public CheckBox all_CheckBox;
     public Label err_Label;
 
@@ -96,7 +95,7 @@ public class ManageAccountController {
         for (int i = 0; i < accounts.size(); i++) {
             if(accounts.get(i).getSelected()){
                 accounts.remove(accounts.get(i));
-                ObservableList<AccountAbstractCheckItem> list = accounts_TableView.getItems();
+                ObservableList<AccountCheckItem> list = accounts_TableView.getItems();
                 accountBLManageService.deleteAccount(list.get(i).getVo());
                 list.remove(list.get(i));
                 --i;
@@ -107,7 +106,7 @@ public class ManageAccountController {
 
     @FXML
 	public void edit(ActionEvent actionEvent) {
-        ObservableList<AccountAbstractCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
+        ObservableList<AccountCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
         if(checkItems.size() != 1){
             System.out.println("please choose one item");
             return;
@@ -124,7 +123,7 @@ public class ManageAccountController {
 	}
 
     private boolean isAllSelected(){
-        for (AccountAbstractCheckItem account : accounts) {
+        for (AccountCheckItem account : accounts) {
             if(!account.getSelected()){
                 return false;
             }
@@ -133,10 +132,10 @@ public class ManageAccountController {
     }
 
     private void setAllSelectedValue(boolean value){
-        for (AccountAbstractCheckItem account : accounts) {
+        for (AccountCheckItem account : accounts) {
             account.setSelected(value);
         }
-        ObservableList<AccountAbstractCheckItem> list = accounts_TableView.getItems();
+        ObservableList<AccountCheckItem> list = accounts_TableView.getItems();
         for (int i = 0; i < list.size(); i++) {
             accounts_TableView.getSelectionModel().select(i);
         }
@@ -152,9 +151,9 @@ public class ManageAccountController {
         }
     }
 
-    private class MyTableCell extends TableCell<AccountAbstractCheckItem, AccountAbstractCheckItem> {
+    private class MyTableCell extends TableCell<AccountCheckItem, AccountCheckItem> {
         @Override
-        protected void updateItem(AccountAbstractCheckItem item, boolean empty) {
+        protected void updateItem(AccountCheckItem item, boolean empty) {
             super.updateItem(item, empty);
 
             if(item == null || empty){
@@ -178,7 +177,7 @@ public class ManageAccountController {
         accounts.clear();
         accounts_TableView.getItems().clear();
         for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
-            accounts.add(new AccountAbstractCheckItem(accountVO));
+            accounts.add(new AccountCheckItem(accountVO));
         }
         accounts_TableView.getItems().addAll(accounts);
     }
