@@ -58,7 +58,7 @@ public class ManageSalaryController {
 		//
 		tabs=tabPane.getTabs();
 
-//		this.initData();
+		this.initData();
 		//
 		try {
 			this.seletedChange();
@@ -89,7 +89,7 @@ public class ManageSalaryController {
 			if (tab.isSelected()) {
 				//
 				for (SalaryStrategyVO salaryStrategyVO : vo) {
-//					System.out.println(salaryStrategyVO.getStaff().getChinese()+" "+tab.getText());
+					System.out.println(salaryStrategyVO.getStaff().getChinese()+" "+tab.getText());
 					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
 						FXMLLoader fxmlLoader=new FXMLLoader();
 						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
@@ -105,7 +105,6 @@ public class ManageSalaryController {
 				Parent son=fxmlLoader.load();
 				this.staffTypeSalaryController=(StaffTypeSalaryController)fxmlLoader.getController();
 				tab.setContent(son);
-				System.out.println(this.getStaffTypeEnum(tab.getText()));
 				staffTypeSalaryController.setStaffEnum(this.getStaffTypeEnum(tab.getText()));
 				return;
 			}
@@ -118,8 +117,7 @@ public class ManageSalaryController {
 		switch(chin){
 		case "司机":
 			return StaffTypeEnum.DRIVER;
-		case "经理":
-			return StaffTypeEnum.MANAGER;
+		
 		case "系统管理员":
 			return StaffTypeEnum.ADMINISTRATOR;
 		case "快递员":
@@ -133,7 +131,7 @@ public class ManageSalaryController {
 		case "财务人员":
 			return StaffTypeEnum.BURSAR;
 		}
-		return StaffTypeEnum.DELIVER;
+		return StaffTypeEnum.MANAGER;
 	}
 	
 }
