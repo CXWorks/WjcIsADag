@@ -73,8 +73,8 @@ public class InitialHelper {
 	}
 
 	public OperationMessage saveFile(InitialDataPO po) throws ClassNotFoundException {
-		 int num = this.getVersion();
-		 po.setVersion(num + "");
+		int num = this.getVersion();
+		po.setVersion(num + "");
 		try {
 			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(new File(ROOT + num + ".txt")));
 			oo.writeObject(po);
@@ -89,7 +89,7 @@ public class InitialHelper {
 			return new OperationMessage(false, "打包时出错：");
 		}
 
-		 return new OperationMessage(true, "" + num);
+		return new OperationMessage(true, "" + num);
 	}
 
 	public InitialDataPO loadFile(String version) {
@@ -110,6 +110,12 @@ public class InitialHelper {
 		}
 		return po;
 	}
+
+//	public static void main(String[] args) throws RemoteException {
+//		InitialHelper helper = new InitialHelper();
+//		InitialDataPO po = helper.loadFile("1");
+//		System.out.println(po.getStoreModels().get(0).getCenterID());
+//	}
 
 	public OperationMessage clearMysql() {
 		ArrayList<String> list = new ArrayList<String>() {
@@ -156,17 +162,23 @@ public class InitialHelper {
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException, ClassNotFoundException {
-//		InitialHelper p = new InitialHelper();
-//		ArrayList<AccountPO> list = new ArrayList<AccountPO>();
-//		list.add(new AccountPO("admin", "HAVE", "admin"));
-//		InitialDataPO po = new InitialDataPO("0", "空版本", p.storeModelDataService.getModels(),
-//				new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(), new ArrayList<StaffPO>(),
-//				new ArrayList<HallPO>(), new ArrayList<CenterPO>(), p.configurationDataService.getAllCity2D(),
-//				p.configurationDataService.getPrice(), p.configurationDataService.getProportion(),
-//				p.configurationDataService.getSalaryStrategy(), p.configurationDataService.getPack(), list);
-//		p.saveFile(po);
-//	}
+	// public static void main(String[] args) throws RemoteException,
+	// ClassNotFoundException {
+	// InitialHelper p = new InitialHelper();
+	// ArrayList<AccountPO> list = new ArrayList<AccountPO>();
+	// list.add(new AccountPO("admin", "HAVE", "admin"));
+	// InitialDataPO po = new InitialDataPO("0", "空版本",
+	// p.storeModelDataService.getModels(),
+	// new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(), new
+	// ArrayList<StaffPO>(),
+	// new ArrayList<HallPO>(), new ArrayList<CenterPO>(),
+	// p.configurationDataService.getAllCity2D(),
+	// p.configurationDataService.getPrice(),
+	// p.configurationDataService.getProportion(),
+	// p.configurationDataService.getSalaryStrategy(),
+	// p.configurationDataService.getPack(), list);
+	// p.saveFile(po);
+	// }
 
 	public InitialDataPO saveMysql(String dbName) throws ClassNotFoundException, RemoteException {
 		ArrayList<HallPO> halls = companyDataHallService.getHall();

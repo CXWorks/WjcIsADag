@@ -54,7 +54,7 @@ public class InitializationBLController implements InitializationBLService {
 
     // manageServices
     InitialDataService initialDataService;
-    
+
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
     	this.initialDataService=CacheHelper.getInitialDataService();
@@ -62,6 +62,12 @@ public class InitializationBLController implements InitializationBLService {
 			version=this.initialDataService.getLatest_version(UserInfo.getUserID());
 			System.out.println(version);
 			InitialDataPO initialDataPO=this.initialDataService.getInitialDataPO(version);
+			if (initialDataPO.getStoreModels()==null) {
+				System.out.println("null------------");
+			}
+			else {
+//				System.out.println(initialDataPO.getStoreModels().);
+			}
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -87,7 +93,7 @@ public class InitializationBLController implements InitializationBLService {
     public OperationMessage addAccount(BankAccountVO avo) {
         boolean re=initialDataVO.getBankAccounts().add(avo);
         return new OperationMessage(re,null);
-        
+
     }
 
     public OperationMessage deleteAccount(BankAccountVO avo) {
@@ -109,7 +115,7 @@ public class InitializationBLController implements InitializationBLService {
         return new OperationMessage();
     }
 
-    
+
     public ArrayList<CarVO> getCar(String itself) {
     	ArrayList<CarVO> result =initialDataVO.getCars();
 		return result;
@@ -387,7 +393,7 @@ public class InitializationBLController implements InitializationBLService {
 		return 0;
 	}
 
-	
+
 	@Override
 	public CarVO searchCar(String car) {
     	List<CarVO> carVOs=initialDataVO.getCars();
@@ -604,7 +610,7 @@ public class InitializationBLController implements InitializationBLService {
 		StoreArea storeArea=storeModel.getArea(anEnum);
 		storeArea.addRows(rowNum, shelvesNum);
 		return ;
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -617,6 +623,6 @@ public class InitializationBLController implements InitializationBLService {
 		StoreModel storeModel=this.searchModel(modelID);
 		StoreArea storeArea=storeModel.getArea(anEnum);
 		storeArea.addShelves(rowNum, shelvesNum);
-		
+
 	}
 }
