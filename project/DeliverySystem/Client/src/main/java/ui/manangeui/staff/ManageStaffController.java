@@ -80,10 +80,6 @@ public class ManageStaffController implements ChangeListener<StaffVO>{
     }
 	@FXML
 	public void initialize(){
-        // TODO test jump
-//		staffVOs = manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
-//      staffTable.setItems(FXCollections.observableList(staffVOs));
-
 		typeColumn.setCellValueFactory(
 				cellData->new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
 		IDColumn.setCellValueFactory(

@@ -13,8 +13,9 @@ public class StoreArea implements Serializable {
 	
 
 	public double getUsedProportion() {
-		int total = rowNum * shelfForEachRow;
-		return list.size() / (double) total;
+		int total = list.size();
+		int used=(int) list.stream().filter(loca->{return loca.getOrderID().length()>0;}).count();
+		return used/(double)total;
 	}
 	
 	public void addShelves(String rowNum,String shelvesNum){
