@@ -24,7 +24,7 @@ public class TestCenterManage {
 	@Before
 	public void setUp() throws Exception {
 		center = new CenterManage(new VOPOFactory());
-		c = new CenterVO("111111","上海",null,null);
+		c = new CenterVO("111111","上海");
 	}
 	
 	@Test

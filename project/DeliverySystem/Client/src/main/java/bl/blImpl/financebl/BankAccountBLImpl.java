@@ -32,6 +32,9 @@ public class BankAccountBLImpl implements BankAccountBLService {
         try {
 			ArrayList<BankAccountPO> po=bankAccountDataService.getAll();
 			ArrayList<BankAccountVO> vo=new ArrayList<BankAccountVO>(po.size());
+			if (po.isEmpty()) {
+				return vo;
+			}
 			for (int i = 0; i < po.size(); i++) {
 				BankAccountPO each=po.get(i);
 				BankAccountVO temp=(BankAccountVO)vopoFactory.transPOtoVO(each);
@@ -55,7 +58,10 @@ public class BankAccountBLImpl implements BankAccountBLService {
 
     public OperationMessage addAccount(BankAccountVO avo) {
         BankAccountPO po=(BankAccountPO)vopoFactory.transVOtoPO(avo);
+        
         try {
+        	String ID=bankAccountDataService.getNewBankID();
+        	po.setBankID(ID);
 			return bankAccountDataService.insert(po);
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
@@ -104,18 +110,4 @@ public class BankAccountBLImpl implements BankAccountBLService {
  			return new OperationMessage(false, "net error");
  		}
     }
-	/* (non-Javadoc)
-	 * @see bl.blService.financeblService.BankAccountBLService#newBankID()
-	 */
-	@Override
-	public String newBankID() {
-		try {
-			String ID=bankAccountDataService.getNewBankID();
-			return ID;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

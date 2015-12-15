@@ -15,53 +15,23 @@ public class CenterVO extends InstitutionVO{
 		super(InfoEnum.CENTER);
 	}
 	
-	public CenterVO(String centerID, String city, ArrayList<StaffVO> storeman,
-			ArrayList<StaffVO> counterman) {
-		this();
-		this.institutionID = centerID;
-		this.city = city;
-		this.storeman = storeman;
-		this.counterman = counterman;
-	}
 	public CenterVO(String centerID,String city){
 		this();
 		this.institutionID=centerID;
 		this.city=city;
-		this.storeman=new ArrayList<StaffVO>();
-		this.counterman=new ArrayList<StaffVO>();
 	}
-	
-	private ArrayList<StaffVO> storeman;
-	private ArrayList<StaffVO> counterman;
 	//
 	public CenterVO(CenterPO po){
-		this(po.getCenterID(), po.getCity(), null, null);
-		this.setStoreman(selfDeepClonePOtoVO(po.getStoreman()));
-		this.setCounterman(selfDeepClonePOtoVO(po.getCounterman()));
+		this(po.getCenterID(), po.getCity());
 	}
 	//
 
-	private void setStoreman(ArrayList<StaffVO> storeman) {
-		this.storeman = storeman;
-	}
+	
 
-	private void setCounterman(ArrayList<StaffVO> counterman) {
-		this.counterman = counterman;
-	}
+	
 	public CenterPO toPO(){
-		ArrayList<StaffPO> storemanPO=new ArrayList<StaffPO>(this.storeman.size());
-		ArrayList<StaffPO> countermanPO=new ArrayList<StaffPO>(this.counterman.size());
-		//
-		for(int i=0;i<this.storeman.size();i++){
-			StaffPO temp=this.storeman.get(i).toPO();
-			storemanPO.add(temp);
-		}
-		for(int i=0;i<this.counterman.size();i++){
-			StaffPO temp=this.counterman.get(i).toPO();
-			countermanPO.add(temp);
-		}
-		//
-		CenterPO centerPO= new CenterPO(institutionID, city, storemanPO, countermanPO);
+		
+		CenterPO centerPO= new CenterPO(institutionID, city);
 		centerPO.setCache_OperatorID(UserInfo.getUserID());
 		return centerPO;
 	}
@@ -76,6 +46,6 @@ public class CenterVO extends InstitutionVO{
 
 	@Override
 	public int getStaffCount() {
-		return storeman.size() + counterman.size();
+		return 0;
 	}
 }

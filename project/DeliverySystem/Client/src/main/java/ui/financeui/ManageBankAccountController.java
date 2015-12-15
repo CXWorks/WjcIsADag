@@ -99,8 +99,10 @@ public class ManageBankAccountController {
         List<PaymentVO> paymentVOs = bankAccountBLService.getTradeHistory(this.bankAccountVO);
 //        List<PaymentVO> paymentVOs = new ArrayList<>();
 //        paymentVOs.add(new PaymentVO("11", Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.AWARD, "no"));
-
-        history_TableView.getItems().addAll(paymentVOs);
+        if (paymentVOs!=null) {
+        	history_TableView.getItems().addAll(paymentVOs);
+		}
+        
     }
 
     @FXML
@@ -143,7 +145,9 @@ public class ManageBankAccountController {
                     checkHistory(null);
                 }
         );
-
+        if (accounts_TableView==null) {
+			System.out.println("null");
+		}
         /**
          * configure history tableview
          */

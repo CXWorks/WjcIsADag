@@ -24,10 +24,10 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	private PreparedStatement statement = null;
 	private static int ID;
 
-//	public static void main(String[] args) throws RemoteException {
-//		LogDataImpl t = new LogDataImpl();
-//		t.clear();
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// LogDataImpl t = new LogDataImpl();
+	// t.clear();
+	// }
 
 	public LogDataImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
@@ -82,17 +82,27 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 		return result;
 	}
 
+	public static void main(String[] args) throws RemoteException {
+		LogDataImpl t = new LogDataImpl();
+		Calendar a = Calendar.getInstance();
+		Calendar b = Calendar.getInstance();
+		a.set(Calendar.YEAR, 2014);
+		b.set(Calendar.YEAR, 2015);
+		System.out.println(t.getByTime(a,b).size());
+	}
+
 	@Override
 	public ArrayList<LogPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		String selectIn = "select * from `" + Table_Name + "` where (unix_timestamp(`date`) - '"
-				+ start.getTime().getTime() / 1000 + "' >= 0 and (unix_timestamp(`date`) - '"
-				+ end.getTime().getTime() / 1000 + "' <= 0";
+		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
+				+ "' < UNIX_TIMESTAMP(`time`) " + "and '" + end.getTime().getTime() / 1000
+				+ "' > UNIX_TIMESTAMP(`time`)";
+
 		ResultSet rs = null;
 		LogPO log = null;
 		ArrayList<LogPO> result = new ArrayList<LogPO>();
 		try {
-			statement = conn.prepareStatement(selectIn);
-			rs = statement.executeQuery(selectIn);
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				log = new LogPO(rs.getString("personID"), rs.getTimestamp("time"), rs.getString("info"));
 				result.add(log);

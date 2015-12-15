@@ -40,7 +40,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		return conn;
 	}
 
-	public ArrayList<HallPO> getHall() {
+	public ArrayList<HallPO> getHall() throws RemoteException {
 		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
@@ -50,87 +50,29 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
-				ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
-				ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-				ArrayList<String> t1;
-				ArrayList<String> t2;
-				ArrayList<String> t3;
-				MemberDataService<StaffPO> s1 = new StaffDataImpl();
-				MemberDataService<DriverPO> s2 = new DriverDataImpl();
-				t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
-				t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
-				t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-				if (!rs.getString("driver").equalsIgnoreCase("")) {
-					for (String tmp : t1) {
-						driver.add(s2.getPerson(tmp));
-					}
-				}
-				if (!rs.getString("deliver").equalsIgnoreCase("")) {
-					t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
-					for (String tmp : t2) {
-						deliver.add(s1.getPerson(tmp));
-					}
-				}
-				if (!rs.getString("counterman").equalsIgnoreCase("")) {
-					t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-					for (String tmp : t3) {
-						counterman.add(s1.getPerson(tmp));
-					}
-				}
-				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
-						counterman, rs.getString("nearCenterID"));
+				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"),
+						rs.getString("nearCenterID"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		CompanyDataHallImpl tCompanyDataHallImpl = new CompanyDataHallImpl();
-//		HallPO po  = new HallPO(0251001, "南京", "鼓楼", driver2, deliver, counterman, nearCenterID)
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// CompanyDataHallImpl tCompanyDataHallImpl = new CompanyDataHallImpl();
+	// HallPO po = new HallPO(0251001, "南京", "鼓楼", driver2, deliver, counterman,
+	// nearCenterID)
+	// }
 
 	public OperationMessage addHall(HallPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
-		String dr = "";
-		String de = "";
-		String co = "";
-		ArrayList<DriverPO> driver = po.getDriver();
-		ArrayList<StaffPO> deliver = po.getDeliver();
-		ArrayList<StaffPO> counterman = po.getCounterman();
-		for (int i = 0; i < driver.size(); i++) {
-			DriverPO tmp = driver.get(i);
-			if (i != driver.size() - 1)
-				dr += tmp.getID() + " ";
-			else
-				dr += tmp.getID();
-		}
-		for (int i = 0; i < deliver.size(); i++) {
-			StaffPO tmp = deliver.get(i);
-			if (i != deliver.size() - 1)
-				de += tmp.getID() + " ";
-			else
-				de += tmp.getID();
-		}
-		for (int i = 0; i < counterman.size(); i++) {
-			StaffPO tmp = counterman.get(i);
-			if (i != counterman.size() - 1)
-				co += tmp.getID() + " ";
-			else
-				co += tmp.getID();
-		}
-		String insert = "insert into `" + Table_Name
-				+ "`(hallID,city,area,driver,deliver,counterman,nearCenterID,cityID) " + "values('" + po.getHallID()
-				+ "','" + po.getCity() + "','" + po.getArea() + "','" + dr + "','" + de + "','" + co + "','"
-				+ po.getNearCenterID() + "','" + po.getCity().substring(0, 3) + "')";
+		String insert = "insert into `" + Table_Name + "`(hallID,city,area,nearCenterID,cityID) " + "values('"
+				+ po.getHallID() + "','" + po.getCity() + "','" + po.getArea() + "','" + po.getNearCenterID() + "','"
+				+ po.getCity().substring(0, 3) + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -215,42 +157,10 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			ArrayList<DriverPO> driver = new ArrayList<DriverPO>();
-			ArrayList<StaffPO> deliver = new ArrayList<StaffPO>();
-			ArrayList<StaffPO> counterman = new ArrayList<StaffPO>();
-			ArrayList<String> t1;
-			ArrayList<String> t2;
-			ArrayList<String> t3;
-			MemberDataService<StaffPO> s1 = new StaffDataImpl();
-			MemberDataService<DriverPO> s2 = new DriverDataImpl();
-			t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
-			t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
-			t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-			if (!rs.getString("driver").equalsIgnoreCase("")) {
-				t1 = new ArrayList<String>(Arrays.asList(rs.getString("driver").split(" ")));
-				for (String tmp : t1) {
-					driver.add(s2.getPerson(tmp));
-				}
-			}
-			if (!rs.getString("deliver").equalsIgnoreCase("")) {
-				t2 = new ArrayList<String>(Arrays.asList(rs.getString("deliver").split(" ")));
-				for (String tmp : t2) {
-					deliver.add(s1.getPerson(tmp));
-				}
-			}
-			if (!rs.getString("counterman").equalsIgnoreCase("")) {
-				t3 = new ArrayList<String>(Arrays.asList(rs.getString("counterman").split(" ")));
-				for (String tmp : t3) {
-					counterman.add(s1.getPerson(tmp));
-				}
-			}
-			result = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"), driver, deliver,
-					counterman, rs.getString("nearCenterID"));
+			result = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"),
+					rs.getString("nearCenterID"));
 
 		} catch (SQLException e) {
-			System.err.println("查找数据库时出错：");
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}

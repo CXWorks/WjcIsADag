@@ -55,5 +55,8 @@ public class BankAccountPO extends InfoPO implements Serializable {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
+	public void setBankID(String bankID) {
+		this.bankID = bankID;
+	}
     
 }

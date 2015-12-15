@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import database.ConnecterHelper;
 import message.OperationMessage;
@@ -47,7 +48,7 @@ import rmiImpl.memberdata.StaffDataImpl;
 import rmiImpl.storedata.StoreModelDataImpl;
 
 public class InitialHelper {
-	private static final String ROOT="initial/";
+	private static final String ROOT = "initial/";
 	private Connection conn = ConnecterHelper.getConn();
 	private PreparedStatement statement = null;
 
@@ -75,8 +76,7 @@ public class InitialHelper {
 		int num = this.getVersion();
 		po.setVersion(num + "");
 		try {
-			ObjectOutputStream oo = new ObjectOutputStream(
-					new FileOutputStream(new File(ROOT + num + ".txt")));
+			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(new File(ROOT + num + ".txt")));
 			oo.writeObject(po);
 			oo.close();
 		} catch (FileNotFoundException e) {
@@ -96,8 +96,7 @@ public class InitialHelper {
 
 		InitialDataPO po = null;
 		try {
-			ObjectInputStream ois = new ObjectInputStream(
-					new FileInputStream(new File(ROOT + version + ".txt")));
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(ROOT + version + ".txt")));
 			po = (InitialDataPO) ois.readObject();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -111,6 +110,12 @@ public class InitialHelper {
 		}
 		return po;
 	}
+
+//	public static void main(String[] args) throws RemoteException {
+//		InitialHelper helper = new InitialHelper();
+//		InitialDataPO po = helper.loadFile("1");
+//		System.out.println(po.getStoreModels().get(0).getCenterID());
+//	}
 
 	public OperationMessage clearMysql() {
 		ArrayList<String> list = new ArrayList<String>() {
@@ -156,6 +161,24 @@ public class InitialHelper {
 		}
 		return result;
 	}
+
+	// public static void main(String[] args) throws RemoteException,
+	// ClassNotFoundException {
+	// InitialHelper p = new InitialHelper();
+	// ArrayList<AccountPO> list = new ArrayList<AccountPO>();
+	// list.add(new AccountPO("admin", "HAVE", "admin"));
+	// InitialDataPO po = new InitialDataPO("0", "空版本",
+	// p.storeModelDataService.getModels(),
+	// new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(), new
+	// ArrayList<StaffPO>(),
+	// new ArrayList<HallPO>(), new ArrayList<CenterPO>(),
+	// p.configurationDataService.getAllCity2D(),
+	// p.configurationDataService.getPrice(),
+	// p.configurationDataService.getProportion(),
+	// p.configurationDataService.getSalaryStrategy(),
+	// p.configurationDataService.getPack(), list);
+	// p.saveFile(po);
+	// }
 
 	public InitialDataPO saveMysql(String dbName) throws ClassNotFoundException, RemoteException {
 		ArrayList<HallPO> halls = companyDataHallService.getHall();
@@ -237,7 +260,7 @@ public class InitialHelper {
 		File f = new File(ROOT + version + ".txt");
 		if (f.exists())
 			f.delete();
-		return new OperationMessage(true,"删除成功");
+		return new OperationMessage(true, "删除成功");
 	}
 
 }

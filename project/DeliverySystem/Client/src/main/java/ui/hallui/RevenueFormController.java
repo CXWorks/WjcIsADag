@@ -56,6 +56,7 @@ public class RevenueFormController {
 	@FXML
 	public void initialize(){
 		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
+		deliver_ChoiceBox.getItems().get(0);
 		revenue_DatePicker.setValue(LocalDate.now());
 	}
 	
@@ -64,7 +65,14 @@ public class RevenueFormController {
     	orderIDs.add(order_Field.getText());
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");
+    	
     	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
+    	money_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getMoney())
+                );
+    	order_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getOrder())
+                );
     	
     	order_Field.clear();
     	money_Field.clear();
@@ -100,6 +108,9 @@ public class RevenueFormController {
     	money_Field.clear();
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
+    	orderIDs.clear();
+    	
+    	revenues_TableView.setItems(null);
     }
 
 

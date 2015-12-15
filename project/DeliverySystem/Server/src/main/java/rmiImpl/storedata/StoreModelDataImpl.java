@@ -41,18 +41,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		conn = ConnecterHelper.getConn();
 	}
 
-	// public static void main(String[] args) {
-	// try {
-	// StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
-	// tDataImpl.newShelf(StoreAreaCode.ROAD, 1, 1);
-	//
-	// } catch (RemoteException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// }
-
 	@Override
 	public Connection getConn() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -107,10 +95,10 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 				this.getArea(centerID, StoreAreaCode.FLEX));
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		StoreModelDataImpl t = new StoreModelDataImpl();
-//		t.newShelf("0040001", StoreAreaCode.RAIL, 1, 1);
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// StoreModelDataImpl t = new StoreModelDataImpl();
+	// t.newShelf("0040001", StoreAreaCode.RAIL, 1, 1);
+	// }
 
 	@Override
 	public OperationMessage newShelf(String centerID, StoreAreaCode code, int row, int shelf) throws RemoteException {
@@ -245,4 +233,15 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		return result;
 	}
 
+	public static void main(String[] args) {
+		try {
+			StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
+			System.out.println(tDataImpl.getModels().size());
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
