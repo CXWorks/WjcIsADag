@@ -66,7 +66,7 @@ public class InitializationBLController implements InitializationBLService {
 				System.out.println("null------------");
 			}
 			else {
-//				System.out.println(initialDataPO.getStoreModels().);
+				System.out.println(initialDataPO.getStoreModels().size());
 			}
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {

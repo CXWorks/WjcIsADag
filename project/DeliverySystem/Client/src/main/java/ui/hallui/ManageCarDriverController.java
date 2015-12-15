@@ -70,9 +70,8 @@ public class ManageCarDriverController {
 			);
 		}
 
-        // TODO test jump
-//        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
-//        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
+        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
+        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
 
 		return pane;
 	}

@@ -54,11 +54,11 @@ import po.storedata.StoreOutPO;
 import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
-/** 
+/**
  * Client//tool.vopo//VOPOFactory.java
  * @author CXWorks
  * @date 2015年11月18日 下午2:19:31
- * @version 1.0 
+ * @version 1.0
  */
 public class VOPOFactory {
 	/**
@@ -71,6 +71,8 @@ public class VOPOFactory {
 		if (po.getDataType()==DataType.DATA) {
 			InfoPO info=(InfoPO)po;
 			switch (info.getInfoEnum()) {
+			case DRIVER:
+				return new DriverVO((DriverPO)info);
 			case ACCOUNT:
 				return new AccountVO((AccountPO)info);
 			case CAR:
@@ -93,8 +95,7 @@ public class VOPOFactory {
 				return new BankAccountVO((BankAccountPO)info);
 			case STAFF:
 				return new StaffVO((StaffPO)info);
-			case DRIVER:
-				return new DriverVO((DriverPO)info);
+
 			case LOG:
 				return new LogVO((LogPO)info);
 			case INITIAL_DATA:
@@ -127,7 +128,7 @@ public class VOPOFactory {
 				return null;
 			}
 		}
-		
+
 	}
 
 	public CommonPO transVOtoPO(CommonVO vo) {

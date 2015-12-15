@@ -38,7 +38,7 @@ public class ManageInitialStoreController {
         ManageInitialStoreController outController = outLoader.getController();
 
         FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(StockTackPaneController.class.getResource("stockTackPaneController.fxml"));
+        contentLoader.setLocation(StockTackPaneController.class.getResource("stockTackPane.fxml"));
         Pane content = contentLoader.load();
 
         outController.contentController = contentLoader.getController();

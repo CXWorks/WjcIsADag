@@ -72,6 +72,7 @@ public class InitialDataVO extends InfoVO{
     	this.packVO=new PackVO(po.getPackPO());
     	this.accountVOs=(ArrayList<AccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getAccountPOs());
     	this.city2dvos=(ArrayList<City2DVO>) this.trans((ArrayList<? extends CommonPO>) po.getCity2dpos());
+    	this.storeModels=new ArrayList<>(po.getStoreModels());
     }
 
     private ArrayList<? extends CommonVO> trans(ArrayList<? extends CommonPO> src){
