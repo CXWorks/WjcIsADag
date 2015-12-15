@@ -80,11 +80,9 @@ public class InitialHelper {
 			oo.writeObject(po);
 			oo.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new OperationMessage(false, "打包时出错");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new OperationMessage(false, "打包时出错：");
 		}
@@ -96,16 +94,14 @@ public class InitialHelper {
 
 		InitialDataPO po = null;
 		try {
+			System.out.println("version = " + version);
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(ROOT + version + ".txt")));
 			po = (InitialDataPO) ois.readObject();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return po;
@@ -153,7 +149,6 @@ public class InitialHelper {
 				statement = conn.prepareStatement(delete);
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				result = new OperationMessage(false, "清空时出错：");
 				System.err.println("清空时出错：");
 				e.printStackTrace();
