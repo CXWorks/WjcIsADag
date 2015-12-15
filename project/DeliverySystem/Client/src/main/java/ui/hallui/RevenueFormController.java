@@ -37,35 +37,36 @@ public class RevenueFormController {
     public DatePicker revenue_DatePicker;
     public TextField money_Field;
     public TextField order_Field;
-    
+
     public Label total_Label;
     public ChoiceBox<String> deliver_ChoiceBox;
-    
+
     private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
     DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
     String institutionID=UserInfo.getInstitutionID();
-	ArrayList<String> postmans= deliverBLService.getPostman(institutionID);
+	ArrayList<String> postmans;
 	ArrayList<String> orderIDs=new ArrayList<String>();
     int money=0;
-    
+
 	public static Parent launch() throws IOException {
         return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
     }
 
 	@FXML
 	public void initialize(){
+		postmans= deliverBLService.getPostman(institutionID);
 		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
-		deliver_ChoiceBox.getItems().get(0);
+//		deliver_ChoiceBox.getItems().get(0);
 		revenue_DatePicker.setValue(LocalDate.now());
 	}
-	
-	
+
+
     public void add(ActionEvent actionEvent) {
     	orderIDs.add(order_Field.getText());
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");
-    	
+
     	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
     	money_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getMoney())
@@ -73,11 +74,11 @@ public class RevenueFormController {
     	order_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getOrder())
                 );
-    	
+
     	order_Field.clear();
     	money_Field.clear();
-    	}                
- 
+    	}
+
     public void saveDraft(ActionEvent actionEvent) {
     	revenueBLService.saveDraft(generateRevenueVO(null));
     }
@@ -99,21 +100,21 @@ public class RevenueFormController {
                 formID,calendar,total_Label.getText(),
                 deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs
         );
-        
+
     }
-    
-    
+
+
     public void clear(ActionEvent actionEvent) {
     	revenue_DatePicker.setValue(LocalDate.now());
     	money_Field.clear();
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
     	orderIDs.clear();
-    	
+
     	revenues_TableView.setItems(null);
     }
 
 
-    
-    
+
+
 }

@@ -62,12 +62,6 @@ public class InitializationBLController implements InitializationBLService {
 			version=this.initialDataService.getLatest_version(UserInfo.getUserID());
 			System.out.println(version);
 			InitialDataPO initialDataPO=this.initialDataService.getInitialDataPO(version);
-			if (initialDataPO.getStoreModels()==null) {
-				System.out.println("null------------");
-			}
-			else {
-//				System.out.println(initialDataPO.getStoreModels().);
-			}
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

@@ -50,6 +50,11 @@ public class LogblImpl implements LogblService {
 	 */
 	@Override
 	public ArrayList<LogVO> dateSearch(Calendar start, Calendar end) {
+		if (start==null||end==null) {
+			end=Calendar.getInstance();
+			start=Calendar.getInstance();
+			start.set(Calendar.YEAR, 2014);
+		}
 		try {
 			ArrayList<LogPO> logPOs=LogDataService.getByTime(start, end);
 			ArrayList<LogVO> now=new ArrayList<LogVO>(logPOs.size());

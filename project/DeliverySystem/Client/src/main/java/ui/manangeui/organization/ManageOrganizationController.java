@@ -12,6 +12,7 @@ import ui.manangeui.staff.ManageStaffController;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -61,6 +62,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         controller.outsideTabPane = outsideTabPane;
         controller.staffTab = staffTab;
         controller.staffController = staffController;
+        controller.continueInit();
 
 		if(father == null){
 			pane.getChildren().remove(controller.back_Btn);
@@ -71,20 +73,25 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 						father.getChildren().add(before);}
 			);
 		}
-
+		
 		return pane;
+	}
+	
+	public void continueInit(){
+		institutionVOs=this.getInstitutionVOs();
+		tableView.setItems(FXCollections.observableList(institutionVOs));
+		tableView.getSelectionModel().selectedItemProperty().addListener(this);
+		tableView.getSelectionModel().selectFirst();
+		institutionVO=tableView.getSelectionModel().getSelectedItem();
 	}
 	
 	public void initialize(){
         // TODO test jump
-//		institutionVOs=this.getInstitutionVOs();
-//		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
-//		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
-//		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
-//		tableView.setItems(FXCollections.observableList(institutionVOs));
-//		tableView.getSelectionModel().selectedItemProperty().addListener(this);
-//		tableView.getSelectionModel().selectFirst();
-//		institutionVO=tableView.getSelectionModel().getSelectedItem();
+		
+		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
+		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
+		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
+		
 	}
 	private InstitutionVO makeInstitutionVO(){
 		if (institutionType.getText()=="CENTER") {

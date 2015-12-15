@@ -26,11 +26,11 @@ public class DriverPO extends StaffPO {
 	public Timestamp getBirthForSQL() {
 		return new Timestamp(this.birth.getTimeInMillis());
 	}
-	
+
 	public Timestamp getLicence_periodForSQL() {
 		return new Timestamp(this.licence_period.getTimeInMillis());
 	}
-	
+
 	public DriverPO(Timestamp birth, String tel, Timestamp licence_period,
 			String iD, String name, int age, String personID, String sex,
 			String love,String institutionID) {
@@ -41,6 +41,7 @@ public class DriverPO extends StaffPO {
 		this.tel = tel;
 		temp.setTime(licence_period);
 		this.licence_period = temp;
+		this.infoEnum=InfoEnum.DRIVER;
 	}
 
 	/**
@@ -65,7 +66,7 @@ public class DriverPO extends StaffPO {
 		this.tel = tel;
 		this.licence_period = licence_period;
 	}
-	
-	
+
+
 
 }

@@ -12,6 +12,11 @@ import message.OperationMessage;
  */
 public class StoreModel implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7317549734777385139L;
+
 	String centerID;
 
 	private StoreArea air;
