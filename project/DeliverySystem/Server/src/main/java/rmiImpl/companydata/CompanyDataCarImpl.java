@@ -32,7 +32,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	private PreparedStatement statement = null;
 
 	public CompanyDataCarImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "car";
 		conn = ConnecterHelper.getConn();
@@ -43,7 +42,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		CarPO temp = null;
@@ -66,7 +64,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public String newCarID(String unitID) {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
@@ -90,7 +87,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public OperationMessage addCar(CarPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID,engineID) "
 				+ "values('" + po.getCarID() + "','" + po.isFreeForSql() + "','" + po.getUseTimeForSQL() + "','"
@@ -101,7 +97,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -115,14 +110,12 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public OperationMessage deleteCar(CarPO car) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `carID` = '" + car.getCarID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -136,7 +129,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public OperationMessage modifyCar(CarPO car) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteCar(car).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应车辆");
@@ -148,7 +140,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 
 	@Override
 	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
 		ResultSet rs = null;
 		CarPO temp = null;
@@ -175,7 +166,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 
 	@Override
 	public CarPO getCar(String carID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `carID` = '" + carID + "'";
 		ResultSet rs = null;
 		CarPO result = null;

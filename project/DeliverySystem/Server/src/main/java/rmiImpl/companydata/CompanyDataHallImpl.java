@@ -41,7 +41,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public ArrayList<HallPO> getHall() throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		HallPO temp = null;
@@ -68,7 +67,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	// }
 
 	public OperationMessage addHall(HallPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(hallID,city,area,nearCenterID,cityID) " + "values('"
 				+ po.getHallID() + "','" + po.getCity() + "','" + po.getArea() + "','" + po.getNearCenterID() + "','"
@@ -78,7 +76,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -92,14 +89,12 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public OperationMessage deleteHall(HallPO hall) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `hallID` = '" + hall.getHallID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -113,7 +108,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public OperationMessage modifyHall(HallPO hall) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteHall(hall).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应营业厅");
@@ -124,7 +118,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public String newHallID(String cityID) {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
@@ -149,7 +142,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public HallPO getHallByID(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		HallPO result = null;

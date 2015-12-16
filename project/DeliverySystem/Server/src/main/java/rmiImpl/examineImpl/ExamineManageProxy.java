@@ -18,12 +18,10 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 
 	public ExamineManageProxy() throws RemoteException, MalformedURLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public ArrayList<FormPO> getForms() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.getForms();
 		return null;
@@ -31,7 +29,6 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 
 	@Override
 	public OperationMessage modifyForm(FormPO form) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.modifyForm(form);
 		return null;
@@ -39,7 +36,6 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 
 	@Override
 	public OperationMessage passForm(ArrayList<FormPO> forms) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.passForm(forms);
 		return null;
@@ -47,7 +43,6 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 
 	@Override
 	public OperationMessage deleteForm(ArrayList<FormPO> forms) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.deleteForm(forms);
 		return null;
@@ -55,7 +50,6 @@ public class ExamineManageProxy extends UnicastRemoteObject implements ExamineMa
 
 	@Override
 	public ExamineQueue getQueue() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineManageService.getQueue();
 		return null;

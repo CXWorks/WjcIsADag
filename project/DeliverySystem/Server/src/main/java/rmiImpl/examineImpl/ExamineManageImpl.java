@@ -56,12 +56,10 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 	}
 
 	public ArrayList<FormPO> getForms() {
-		// TODO Auto-generated method stub
 		return queue.removeForms();
 	}
 
 	public OperationMessage modifyForm(FormPO form) throws RemoteException {
-		// TODO Auto-generated method stub
 		FormEnum type = form.getFormType();
 		OperationMessage result;
 		switch (type) {
@@ -113,7 +111,6 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 
 	public OperationMessage passForm(ArrayList<FormPO> forms)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage mes = new OperationMessage();
 		for (FormPO tmp : forms) {
 			OperationMessage result = new OperationMessage();
@@ -179,7 +176,6 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 
 	public OperationMessage deleteForm(ArrayList<FormPO> forms)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage mes = new OperationMessage();
 		for (FormPO tmp : forms) {
 			OperationMessage result = new OperationMessage();

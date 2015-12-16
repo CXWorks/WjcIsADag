@@ -18,18 +18,15 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	public BankAccountDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getNewBankID() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.getNewBankID();
 		return null;
@@ -37,7 +34,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage checkIsNameUsed(String name) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.checkIsNameUsed(name);
 		return null;
@@ -45,7 +41,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public BankAccountPO getBankAccount(String bankID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.getBankAccount(bankID);
 		return null;
@@ -53,7 +48,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage insert(BankAccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.insert(po);
 		return null;
@@ -61,7 +55,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.delete(id);
 		return null;
@@ -69,7 +62,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage update(BankAccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.update(po);
 		return null;
@@ -77,7 +69,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.clear();
 		return null;
@@ -85,7 +76,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.getAll();
 		return null;
@@ -93,7 +83,6 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public ArrayList<FormPO> getByAccID(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return bankAccountDataService.getByAccID(ID);
 		return null;

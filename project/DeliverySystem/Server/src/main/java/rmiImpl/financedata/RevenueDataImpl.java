@@ -25,7 +25,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	private PreparedStatement statement = null;
 
 	public RevenueDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "revenue";
 		conn = ConnecterHelper.getConn();
@@ -33,13 +32,11 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return conn;
 	}
 
 	@Override
 	public OperationMessage insert(RevenuePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String IDs = "";
 		ArrayList<String> list = po.getOrderIDs();
@@ -74,7 +71,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public RevenuePO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		RevenuePO result = null;
@@ -83,7 +79,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			rs = statement.executeQuery(select);
 			rs.next();
 			ArrayList<String> IDs = new ArrayList<String>();
-			if (!rs.getString("IDs").equalsIgnoreCase("")) {
+			if (!rs.getString("orderIDs").equalsIgnoreCase("")) {
 				IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 			}
 			result = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
@@ -99,14 +95,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -116,7 +110,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public OperationMessage update(RevenuePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -128,7 +121,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -156,14 +148,12 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -173,7 +163,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		RevenuePO temp = null;
@@ -183,7 +172,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				ArrayList<String> IDs = new ArrayList<String>();
-				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+				if (!rs.getString("orderIDs").equalsIgnoreCase("")) {
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
@@ -202,7 +191,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `hallID` = '" + ID + "'";
 		ResultSet rs = null;
 		RevenuePO temp = null;
@@ -212,7 +200,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				ArrayList<String> IDs = new ArrayList<String>();
-				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+				if (!rs.getString("orderIDs").equalsIgnoreCase("")) {
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
@@ -242,7 +230,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				ArrayList<String> IDs = new ArrayList<String>();
-				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+				if (!rs.getString("orderIDs").equalsIgnoreCase("")) {
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),

@@ -24,7 +24,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	private PreparedStatement statement = null;
 
 	public LoadDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "load";
 		conn = ConnecterHelper.getConn();
@@ -36,7 +35,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public OperationMessage insert(LoadPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String IDs = "";
 		ArrayList<String> list = po.getIDs();
@@ -71,7 +69,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public LoadPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		LoadPO result = null;
@@ -98,14 +95,12 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -115,7 +110,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public OperationMessage update(LoadPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -127,7 +121,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -155,14 +148,12 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -172,7 +163,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public ArrayList<LoadPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		LoadPO temp = null;

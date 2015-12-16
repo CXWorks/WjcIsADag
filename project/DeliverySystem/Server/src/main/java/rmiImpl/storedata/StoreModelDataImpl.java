@@ -35,7 +35,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	private final static int NUM = 50;
 
 	public StoreModelDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "store_model";
 		conn = ConnecterHelper.getConn();
@@ -43,12 +42,10 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return conn;
 	}
 
 	public void setTableName(StoreAreaCode code) throws RemoteException {
-		// TODO Auto-generated method stub
 		if (code.equals(StoreAreaCode.AIR))
 			area = "AIR";
 		else if (code.equals(StoreAreaCode.RAIL))
@@ -62,7 +59,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public StoreArea getArea(String centerID, StoreAreaCode code) throws RemoteException {
-		// TODO Auto-generated method stub
 		this.setTableName(code);
 		String selectAll = "select * from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '"
 				+ area + "'";
@@ -89,7 +85,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public StoreModel getModel(String centerID) throws RemoteException {
-		// TODO Auto-generated method stub
 		return new StoreModel(centerID, this.getArea(centerID, StoreAreaCode.AIR),
 				this.getArea(centerID, StoreAreaCode.RAIL), this.getArea(centerID, StoreAreaCode.ROAD),
 				this.getArea(centerID, StoreAreaCode.FLEX));
@@ -102,7 +97,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public OperationMessage newShelf(String centerID, StoreAreaCode code, int row, int shelf) throws RemoteException {
-		// TODO Auto-generated method stub
 		this.setTableName(code);
 		OperationMessage result = new OperationMessage();
 		try {
@@ -113,7 +107,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 				statement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -129,7 +122,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public OperationMessage removeShelf(String centerID, StoreAreaCode code, int row, int shelf)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		this.setTableName(code);
 		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
@@ -138,7 +130,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.err.println("删除时出错：");
 			result = new OperationMessage(false, "删除时出错：");
 			e.printStackTrace();
@@ -154,7 +145,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public OperationMessage moveShelf(String centerID, StoreAreaCode code_now, int row_now, int shelf_now,
 			StoreAreaCode code, int row, int shelf) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.removeShelf(centerID, code_now, row_now, shelf_now).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -166,7 +156,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public OperationMessage setLocation(String centerID, StoreLocation location) throws RemoteException {
-		// TODO Auto-generated method stub
 		this.setTableName(location.getArea());
 		OperationMessage result = new OperationMessage();
 		String updata = "update " + Table_Name + " set orderID= '" + location.getOrderID() + "` where `centerID` = '"
@@ -176,7 +165,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			statement = conn.prepareStatement(updata);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "修改时出错：");
 			System.err.println("修改时出错：");
 			e.printStackTrace();
@@ -187,7 +175,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public String getLocation(String centerID, StoreAreaCode code, int row, int shelf, int position)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		this.setTableName(code);
 		ResultSet rs = null;
 		String select = "select * from " + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
@@ -198,7 +185,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			rs.next();
 			return rs.getString("orderID");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.err.println("查找时出错：");
 			e.printStackTrace();
 		}
@@ -207,7 +193,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public List<StoreModel> getModels() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		StoreModel temp = null;
@@ -239,7 +224,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			System.out.println(tDataImpl.getModels().size());
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -18,12 +18,10 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	public PaymentDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.insert(po);
 		return null;
@@ -31,7 +29,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public PaymentPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getFormPO(id);
 		return null;
@@ -39,7 +36,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.delete(id);
 		return null;
@@ -47,7 +43,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public OperationMessage update(PaymentPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.update(po);
 		return null;
@@ -55,7 +50,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.newID(unitID);
 		return null;
@@ -70,7 +64,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public ArrayList<PaymentPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getAll();
 		return null;
@@ -78,13 +71,11 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getByTime(start, end);
 		return null;

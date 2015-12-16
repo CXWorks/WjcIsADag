@@ -15,13 +15,11 @@ public class Reminder extends UnicastRemoteObject implements  ChatNewService {
 
 	public Reminder() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public OperationMessage add(String ID, ChatMessage mes)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<ChatMessage> list = ChatRemindImpl.map.get(ID);
 		if (list == null) {

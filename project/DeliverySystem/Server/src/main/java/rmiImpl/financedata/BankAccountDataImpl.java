@@ -30,7 +30,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	private int ID_MAX;
 
 	public BankAccountDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "bank_account";
 		conn = ConnecterHelper.getConn();
@@ -44,7 +43,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public String getNewBankID() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		try {
@@ -68,7 +66,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage checkIsNameUsed(String name) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `accountName` = '" + name + "'";
 		ResultSet rs = null;
 		OperationMessage result = new OperationMessage(false, "没有被使用");
@@ -88,7 +85,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public BankAccountPO getBankAccount(String bankID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + bankID + "'";
 		ResultSet rs = null;
 		BankAccountPO result = null;
@@ -107,7 +103,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage insert(BankAccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(bankID,accountName,balance) " + "values('" + po.getBankID()
 				+ "','" + po.getAccountName() + "','" + po.getBalance() + "')";
@@ -115,7 +110,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -130,14 +124,12 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `bankID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -152,7 +144,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage update(BankAccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getBankID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应银行账户");
@@ -164,14 +155,12 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -187,7 +176,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		BankAccountPO temp = null;

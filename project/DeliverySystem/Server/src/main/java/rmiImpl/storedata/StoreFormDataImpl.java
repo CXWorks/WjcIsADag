@@ -42,7 +42,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	private PreparedStatement statement = null;
 
 	public StoreFormDataImpl() throws RemoteException, MalformedURLException {
-		// TODO Auto-generated constructor stub
 		super();
 		Store_In = "store_in";
 		Store_Out = "store_out";
@@ -55,7 +54,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage insertStoreInPO(StoreInPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Store_In
 				+ "`(formID,formState,orderID,date,destination,location,money,date_and_unit) " + "values('"
@@ -83,7 +81,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage insertStoreOutPO(StoreOutPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Store_Out
 				+ "`(formID,formState,orderID,date,destination,transportation,transID,money,location,date_and_unit) "
@@ -111,14 +108,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage deleteStoreInPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Store_In + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -128,14 +123,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage deleteStoreOutPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Store_Out + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -145,7 +138,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage updateStoreInPO(StoreInPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteStoreInPO(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -157,7 +149,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage updateStoreOutPO(StoreOutPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteStoreOutPO(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -169,14 +160,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage clearStoreInPO() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Store_In + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -186,14 +175,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public OperationMessage clearStoreOutPO() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Store_Out + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -203,7 +190,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public String newIDStoreInPO(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -231,7 +217,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public String newIDStoreOutPO(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -259,7 +244,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public StoreInPO getStoreInPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Store_In + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		StoreInPO result = null;
@@ -281,7 +265,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public StoreOutPO getStoreOutPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Store_Out + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		StoreOutPO result = null;
@@ -304,7 +287,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Store_In + "`";
 		ResultSet rs = null;
 		StoreInPO temp = null;
@@ -330,7 +312,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Store_Out + "`";
 		ResultSet rs = null;
 		StoreOutPO temp = null;

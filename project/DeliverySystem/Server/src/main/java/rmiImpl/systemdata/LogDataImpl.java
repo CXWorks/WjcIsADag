@@ -30,7 +30,6 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	// }
 
 	public LogDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "log";
 		conn = ConnecterHelper.getConn();
@@ -39,12 +38,10 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return conn;
 	}
 
 	public int getMaxID() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		int ID_MAX = 0;
@@ -64,7 +61,6 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	@Override
 	public OperationMessage insert(LogPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(ID,personID,time,info) " + "values('" + ++ID + "','"
 				+ po.getPersonID() + "','" + po.getTimeForSQL() + "','" + po.getInfo() + "')";
@@ -73,7 +69,6 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -117,14 +112,12 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();

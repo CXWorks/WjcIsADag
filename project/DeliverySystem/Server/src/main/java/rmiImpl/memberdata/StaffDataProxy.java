@@ -18,18 +18,15 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	public StaffDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.getStaffByInstitution(institutionID);
 		return null;
@@ -37,7 +34,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public StaffPO getPerson(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.getPerson(ID);
 		return null;
@@ -45,7 +41,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public ArrayList<StaffPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.getStaff(staffTypeEnum);
 		return null;
@@ -53,7 +48,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage modifyStaff(StaffPO after) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.modifyStaff(after);
 		return null;
@@ -61,7 +55,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage addStaff(StaffPO staff) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.addStaff(staff);
 		return null;
@@ -69,7 +62,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.dismissStaff(staff);
 		return null;
@@ -77,7 +69,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.newStaffID(staffType, unitID);
 		return null;

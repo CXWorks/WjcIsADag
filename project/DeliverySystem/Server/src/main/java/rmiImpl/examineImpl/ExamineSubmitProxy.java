@@ -17,12 +17,10 @@ public class ExamineSubmitProxy extends UnicastRemoteObject implements ExamineSu
 	public ExamineSubmitProxy(ExamineQueue queue) throws RemoteException {
 		super();
 		examineSubmitService = new ExamineSubmitImpl(queue);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public OperationMessage submit(FormPO form) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return examineSubmitService.submit(form);
 		return null;

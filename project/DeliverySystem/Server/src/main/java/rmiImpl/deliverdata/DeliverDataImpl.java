@@ -31,7 +31,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	private PreparedStatement statement = null;
 
 	public DeliverDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "deliver";
 		conn = ConnecterHelper.getConn();
@@ -41,7 +40,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return conn;
 	}
 	public OperationMessage insert(DeliverPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
 				+ "`(formID,formState,orderID,postman,date,finished,date_and_unit) " + "values('" + po.getFormID()
@@ -55,7 +53,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			if (this.getFormPO(po.getFormID()) != null) {
 				po.setFormID(this.newID(po.getFormID().substring(9, 17)));
 				this.insert(po);
@@ -71,7 +68,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 				statement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "修改order时时出错：");
 			System.err.println("修改order时时出错：");
 			e.printStackTrace();
@@ -80,14 +76,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public OperationMessage delete(String id) {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -96,7 +90,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public OperationMessage update(DeliverPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -107,7 +100,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public String newID(String unitID) {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		String date = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
@@ -134,14 +126,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public OperationMessage clear() {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -150,7 +140,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public DeliverPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		DeliverPO result = null;
@@ -171,7 +160,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public ArrayList<DeliverPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		DeliverPO temp = null;
@@ -197,7 +185,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	@Override
 	public ArrayList<String> available(String HallID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<String>();
 		String select = "select * from " + "`order`" + " where `targetHallID` = '" + HallID + "' and `finished` = '" + 0
 				+ "'";
@@ -224,7 +211,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	@Override
 	public ArrayList<String> searchAsPerson(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<String>();
 		String select = "select * from `" + Table_Name + "` where `postman` = '" + ID + "' and `finished` = '" + 0
 				+ "'";

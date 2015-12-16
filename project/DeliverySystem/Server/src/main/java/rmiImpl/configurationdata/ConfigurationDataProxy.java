@@ -34,7 +34,6 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -142,35 +141,30 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 		return null;
 	}
 
-	
+
 
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public OperationMessage newPrice(PricePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.getWarningline(centerID);
 		return 0;
@@ -178,7 +172,6 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 
 	@Override
 	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return configurationDataService.setWarningline(centerID, value);
 		return null;
