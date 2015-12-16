@@ -14,13 +14,13 @@ import vo.FormVO;
  * Created by Sissel on 2015/10/24.
  */
 public class StoreOutVO extends StoreFormVO {
-	private StoreOutVO(String formID){
-		super(FormEnum.STORE_OUT,FormStateEnum.CONSTRUCTED,formID);
+	private StoreOutVO(String formID,String createrID){
+		super(FormEnum.STORE_OUT,FormStateEnum.CONSTRUCTED,formID,createrID);
 	}
 
     public StoreOutVO(String formID,String orderID, Calendar date, String destination,
-			TransportationEnum transportation, String transID) {
-		this(formID);
+			TransportationEnum transportation, String transID,String createrID) {
+		this(formID,createrID);
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;
@@ -29,7 +29,7 @@ public class StoreOutVO extends StoreFormVO {
 	}
     //
     public StoreOutVO(StoreOutPO po){
-    	this(po.getFormID(),po.getOrderID(), po.getDate(), po.getDestination(), po.getTransportation(), po.getTransID());
+    	this(po.getFormID(),po.getOrderID(), po.getDate(), po.getDestination(), po.getTransportation(), po.getTransID(),po.getCreaterID());
     	this.setMoney(po.getMoney());
     	this.setLocation(po.getLocation());
     }
@@ -39,7 +39,7 @@ public class StoreOutVO extends StoreFormVO {
 
 	//
     public StoreOutPO toPO(){
-    	StoreOutPO storeOutPO= new StoreOutPO(formID, orderID, date, destination, transportation, transID);
+    	StoreOutPO storeOutPO= new StoreOutPO(formID, orderID, date, destination, transportation, transID,createrID);
     	storeOutPO.setCache_OperatorID(UserInfo.getUserID());
     	return storeOutPO;
     }

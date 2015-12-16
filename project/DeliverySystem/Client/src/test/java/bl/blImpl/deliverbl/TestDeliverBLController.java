@@ -30,8 +30,8 @@ public class TestDeliverBLController {
 	@Before
 	public void setUp() throws Exception {
 		deliverBLService=new DeliverBLImpl(new VOPOFactory(),new DraftController(),new FormatCheckImpl());
-		d=new DeliverVO("11","34", Calendar.getInstance(), "4322");
-		o=new OrderVO("11");
+		d=new DeliverVO("11","34", Calendar.getInstance(), "4322",null);
+		o=new OrderVO("11",null);
 	}
 
 	/**

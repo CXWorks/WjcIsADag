@@ -16,18 +16,18 @@ import vo.FormVO;
 
 public class ReceiveVO extends FormVO{
 	public ReceivePO toPO(){
-		return new ReceivePO(formID,orderID, transitID, (Calendar)date.clone(), depature, orderState.toString());
+		return new ReceivePO(formID,orderID, transitID, (Calendar)date.clone(), depature, orderState.toString(),createrID);
 	}
-	public ReceiveVO(String formID){
-		super(FormEnum.RECEIVE,FormStateEnum.CONSTRUCTED,formID);
+	public ReceiveVO(String formID,String createrID){
+		super(FormEnum.RECEIVE,FormStateEnum.CONSTRUCTED,formID,createrID);
 	}
 	//
 	public ReceiveVO(ReceivePO po){
-		this(po.getFormID(),po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState());
+		this(po.getFormID(),po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState(),po.getCreaterID());
 	}
 	public ReceiveVO(String formID,String orderID, String transitID, Calendar date,
-			String depature, StateEnum state) {
-		this(formID);
+			String depature, StateEnum state,String createrID) {
+		this(formID,createrID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		this.date = date;

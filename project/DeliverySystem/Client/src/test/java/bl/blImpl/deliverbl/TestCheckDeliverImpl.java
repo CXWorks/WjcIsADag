@@ -28,9 +28,9 @@ public class TestCheckDeliverImpl {
 	public void setUp() throws Exception {
 		checkDeliverForm=new CheckDeliverImpl(new VOPOFactory());
 		list=new ArrayList<DeliverVO>();
-		list.add(new DeliverVO("11","321432", Calendar.getInstance(), "43232"));
-		list.add(new DeliverVO("11","3232", Calendar.getInstance(), "887232"));
-		list.add(new DeliverVO("11","3642", Calendar.getInstance(), "4342"));
+		list.add(new DeliverVO("11","321432", Calendar.getInstance(), "43232",null));
+		list.add(new DeliverVO("11","3232", Calendar.getInstance(), "887232",null));
+		list.add(new DeliverVO("11","3642", Calendar.getInstance(), "4342",null));
 	}
 
 	/**

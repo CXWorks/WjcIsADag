@@ -104,8 +104,8 @@ public class OrderPO extends FormPO implements Serializable {
 			String goodsNum, String goodsName, String weight, String volume,
 			String money, String goodsType, String type,
 			String pack, ArrayList<String> formIDs, String targetHallID,
-			String receivePeople, Calendar receiveDate) {
-		super(FormEnum.ORDER, formID);
+			String receivePeople, Calendar receiveDate,String createrID) {
+		super(FormEnum.ORDER, formID,createrID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom = addressFrom;

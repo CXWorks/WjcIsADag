@@ -15,6 +15,7 @@ import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.financevo.PaymentVO;
 
 import java.io.IOException;
@@ -80,7 +81,8 @@ public class PaymentFormController {
                 null, payerName_Field.getText(),payerAccount_Field.getText(),
                 null, receiverName_Field.getText(), receiverAccount_Field.getText(),
                 item_ChoiceBox.getValue().getEnum(),
-                note_TextArea.getText()
+                note_TextArea.getText(),
+                UserInfo.getUserID()
         );
     }
 }

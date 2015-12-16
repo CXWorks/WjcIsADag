@@ -98,7 +98,7 @@ public class RevenueFormController {
     	 Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
         return new RevenueVO(
                 formID,calendar,total_Label.getText(),
-                deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs
+                deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs,UserInfo.getUserID()
         );
 
     }

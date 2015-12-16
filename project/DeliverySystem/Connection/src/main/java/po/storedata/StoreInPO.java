@@ -56,8 +56,8 @@ public class StoreInPO extends FormPO {
 	 * @param location
 	 */
 	public StoreInPO(String formID, String orderID, Calendar date,
-			String destination, StoreLocation location) {
-		super(FormEnum.STORE_IN, formID);
+			String destination, StoreLocation location,String createrID) {
+		super(FormEnum.STORE_IN, formID,createrID);
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;

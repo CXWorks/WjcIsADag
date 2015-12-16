@@ -76,8 +76,8 @@ public class PaymentPO extends FormPO {
 	public PaymentPO(String formID, Calendar date,
 			String amount, String payerAccID, String payerName,
 			String payerAccount, String receiverAccID, String receiverName,
-			String receiverAccount, FinancePayEnum item, String note) {
-		super(FormEnum.PAYMENT, formID);
+			String receiverAccount, FinancePayEnum item, String note,String createrID) {
+		super(FormEnum.PAYMENT, formID,createrID);
 		this.date = date;
 		this.amount = amount;
 		this.payerAccID = payerAccID;

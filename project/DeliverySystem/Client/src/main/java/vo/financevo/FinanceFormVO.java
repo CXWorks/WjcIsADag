@@ -10,8 +10,8 @@ import java.util.Calendar;
  * Created by Sissel on 2015/11/27.
  */
 public abstract class FinanceFormVO extends FormVO {
-    public FinanceFormVO(FormEnum type, FormStateEnum state, String formID) {
-        super(type, state, formID);
+    public FinanceFormVO(FormEnum type, FormStateEnum state, String formID,String createrID) {
+        super(type, state, formID,createrID);
     }
 
     public Calendar date;

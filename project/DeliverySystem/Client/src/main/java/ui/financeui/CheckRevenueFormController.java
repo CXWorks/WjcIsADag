@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import tool.time.TimeConvert;
 import userinfo.Services;
+import userinfo.UserInfo;
 import vo.financevo.RevenueVO;
 
 import java.io.IOException;
@@ -49,8 +50,8 @@ public class CheckRevenueFormController {
         formatCheckService = Services.formatCheckService;
         revenueBLService = Services.revenueBLService;
 
-        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , null));
-        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", null));
+        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , null,UserInfo.getUserID()));
+        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", null,UserInfo.getUserID()));
 
 //        orderID_Column.setCellValueFactory(
 //                cellData -> new SimpleStringProperty(cellData.getValue().orderID)

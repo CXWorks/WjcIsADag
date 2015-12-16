@@ -88,7 +88,7 @@ public class LoadCarController {
         return new LoadVO(
                 formID, carID_ChoiceBox.getValue().toString(), guard_Field.getText(), fee_Label.getText(),
         		calendar, transitCarID_Field.getText(),
-        		arrival_ChoiceBox.getValue().toString(), monitor_Field.getText(), ids);
+        		arrival_ChoiceBox.getValue().toString(), monitor_Field.getText(), ids,UserInfo.getUserID());
     }
 
 

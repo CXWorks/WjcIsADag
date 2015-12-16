@@ -17,8 +17,8 @@ public class CenterOutPO extends TransportPO implements Serializable {
 
 	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Calendar LoadDate, String TransportID, String placeTo,
-			String peopleSee, String expense, ArrayList<String> IDs) {
-		super(FormEnum.TRANSPORT_CENTER,formID);
+			String peopleSee, String expense, ArrayList<String> IDs,String createrID) {
+		super(FormEnum.TRANSPORT_CENTER,formID,createrID);
 
 		this.placeFrom = placeFrom;
 		this.shelfNum = shelfNum;

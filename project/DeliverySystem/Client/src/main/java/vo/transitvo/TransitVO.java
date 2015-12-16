@@ -25,8 +25,8 @@ public abstract class TransitVO extends FormVO{
 		}
 		return ans;
 	}
-	protected TransitVO(FormEnum formEnum,String formID){
-		super(formEnum,FormStateEnum.CONSTRUCTED,formID);
+	protected TransitVO(FormEnum formEnum,String formID,String createrID){
+		super(formEnum,FormStateEnum.CONSTRUCTED,formID,createrID);
 	}
 	public Calendar getLoadDate() {
 		return LoadDate;

@@ -45,8 +45,8 @@ public class OrderVO extends FormVO {
 	private int V;
 	private int W;
 
-	public OrderVO(String formID) {
-		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID);
+	public OrderVO(String formID,String createrID) {
+		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID,createrID);
 	}
 	public void calculateVolume(){
 		StringTokenizer stringTokenizer=new StringTokenizer(volume, "*, ");
@@ -98,8 +98,8 @@ public class OrderVO extends FormVO {
 			String addressTo, String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
 			String goodsName, String weight, String volume, String money,
-			String goodsType, DeliverTypeEnum type, PackingEnum pack) {
-		this(formID);
+			String goodsType, DeliverTypeEnum type, PackingEnum pack,String createrID) {
+		this(formID,createrID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom = addressFrom;
@@ -131,7 +131,7 @@ public class OrderVO extends FormVO {
 						.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(),
 				po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po
 						.getVolume(), po.getMoney(), po.getGoodsType(), po
-						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate());
+						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate(),po.getCreaterID());
 
 	}
 	//
@@ -142,7 +142,7 @@ public class OrderVO extends FormVO {
 		OrderPO orderPO= new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
 				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
 				telNumTo, goodsNum, goodsName, weight, volume, money,
-				goodsType, type.name(), pack.name(), null, null,receivePeople,receiveDate);
+				goodsType, type.name(), pack.name(), null, null,receivePeople,receiveDate,createrID);
 		orderPO.setCache_OperatorID(UserInfo.getUserID());
 		return orderPO;
 	}
@@ -179,8 +179,8 @@ public class OrderVO extends FormVO {
 			String telNumTo, String goodsNum, String goodsName, String weight,
 			String volume, String goodsType, String money,
 			DeliverTypeEnum type2, PackingEnum pack, String receivePeople,
-			Calendar receiveDate) {
-		this(formID);
+			Calendar receiveDate,String createrID) {
+		this(formID,createrID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom = addressFrom;

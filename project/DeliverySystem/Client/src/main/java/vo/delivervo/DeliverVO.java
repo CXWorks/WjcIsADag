@@ -57,8 +57,8 @@ public class DeliverVO extends FormVO{
 	public void setPostman(String postman) {
 		this.postman = postman;
 	}
-	public DeliverVO(String formID){
-		super(FormEnum.DELIVER,FormStateEnum.CONSTRUCTED,formID);
+	public DeliverVO(String formID,String createrID){
+		super(FormEnum.DELIVER,FormStateEnum.CONSTRUCTED,formID,createrID);
 		this.finished=false;
 	}
 	//
@@ -67,20 +67,20 @@ public class DeliverVO extends FormVO{
 	 * @param date
 	 * @param postman
 	 */
-	public DeliverVO(String formID,String orderID, Calendar date, String postman) {
-		this(formID);
+	public DeliverVO(String formID,String orderID, Calendar date, String postman,String createrID) {
+		this(formID,createrID);
 		this.orderID = orderID;
 		this.date = date;
 		this.postman = postman;
 	}
 	public DeliverVO(DeliverPO po){
-		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman());
+		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman(),po.getCreaterID());
 		this.finished=po.isFinished();
 		this.receiveDate=po.getReceiveDate();
 		this.receivePeople=po.getReceivePeople();
 	}
 	public DeliverPO toPO(){
-		DeliverPO po= new DeliverPO(formID, orderID, date, postman);
+		DeliverPO po= new DeliverPO(formID, orderID, date, postman,createrID);
 		po.setFinished(finished);
 		if (finished) {
 			po.finfished(receiveDate, receivePeople);

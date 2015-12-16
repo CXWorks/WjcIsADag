@@ -80,7 +80,7 @@ public class PeopleReceiveFormController {
 	public void commit(ActionEvent actionEvent) {
         // TODO check
         DeliverVO deliverVO = new DeliverVO(null, selected.formID,
-                TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText());
+                TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText(),UserInfo.getUserID());
         checkDeliver.finishDelivery(deliverVO);
 	}
 
