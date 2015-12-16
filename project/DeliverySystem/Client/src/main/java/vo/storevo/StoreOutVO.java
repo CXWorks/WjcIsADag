@@ -49,7 +49,6 @@ public class StoreOutVO extends StoreFormVO {
 	 */
 	@Override
 	public String getMainInfo() {
-		return destination+" 位置 "+" "+location.getArea().getChinese()+" "+location.getRow()+" "
-				+" "+location.getShelf()+" "+location.getPosition();
+		return orderID+"到"+destination;
 	}
 }

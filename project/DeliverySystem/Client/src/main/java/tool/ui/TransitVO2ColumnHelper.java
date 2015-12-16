@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import tool.time.TimeConvert;
 import vo.ordervo.OrderVO;
 import vo.transitvo.TransitVO;
 
@@ -18,7 +19,7 @@ public class TransitVO2ColumnHelper extends VO2ColumnHelper<TransitVO> {
 
         Map<String, String> map = new HashMap<>();
 
-        map.put("装车日期", vo.getLoadDate().toString());
+        map.put("装车日期", TimeConvert.getDisplayDate(vo.getLoadDate()));
         map.put("到达地", vo.getPlaceTo());
         map.put("监装员", vo.getPeopleSee());
         return map.entrySet();

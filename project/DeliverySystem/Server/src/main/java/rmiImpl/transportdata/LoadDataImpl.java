@@ -87,7 +87,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			if (!rs.getString("IDs").equalsIgnoreCase("")) {
 				IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
 			}
-			result = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
+			result = new LoadPO(rs.getString("formID"), rs.getString("peopleTrans"), rs.getTimestamp("LoadDate"),
 					rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
 					rs.getString("expense"), IDs);
 			result.setFormState(rs.getString("formState"));
