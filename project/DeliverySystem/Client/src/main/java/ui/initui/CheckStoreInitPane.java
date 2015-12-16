@@ -34,7 +34,7 @@ public class CheckStoreInitPane {
     @FXML
     public void initialize(){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(StockTackPaneController.class.getResource("stockTackPane"));
+        loader.setLocation(StockTackPaneController.class.getResource("stockTackPane.fxml"));
         try {
             Pane pane = loader.load();
             content_Pane.getChildren().add(pane);
