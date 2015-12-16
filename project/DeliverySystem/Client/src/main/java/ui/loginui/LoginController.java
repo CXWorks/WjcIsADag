@@ -32,10 +32,10 @@ public class LoginController {
 //    public Image Image_Sure = new Image();
 
 
-    public ImageView back_ImageView;
-    public ImageView name_ImageView;
-    public ImageView password_ImageView;
-    public ImageView sure_ImageView;
+//    public ImageView back_ImageView;
+//    public ImageView name_ImageView;
+//    public ImageView password_ImageView;
+//    public ImageView sure_ImageView;
 
     AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     AccountBLManageService manageService = AccountFactory.getManageService();
