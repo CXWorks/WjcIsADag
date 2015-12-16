@@ -31,11 +31,11 @@ public class TestPaymentBLImpl {
 	public void setUp() throws Exception {
 		pay=new PaymentBLImpl(new VOPOFactory(),new DraftController());
 		list=new LinkedList<PaymentVO>();
-		p=new PaymentVO("11",Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.RENT, "no");
+		p=new PaymentVO("11",Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.RENT, "no",null);
 		PaymentVO[] a=new PaymentVO[3];
-		a[0]=new PaymentVO("11",Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.AWARD, "no");
-		a[1]=new PaymentVO("11",Calendar.getInstance(), "3432", "4333", "王嘉琛", "43242", "43243", "吴嘉荣", "3223", FinancePayEnum.SALARY, "no");
-		a[2]=new PaymentVO("11",Calendar.getInstance(), "3432", "487933", "孟鑫", "43242", "43243", "丁二玉", "3223", FinancePayEnum.TRANSPORTION, "no");
+		a[0]=new PaymentVO("11",Calendar.getInstance(), "3432", "432333", "程翔", "43242", "43243", "刘钦", "3223", FinancePayEnum.AWARD, "no",null);
+		a[1]=new PaymentVO("11",Calendar.getInstance(), "3432", "4333", "王嘉琛", "43242", "43243", "吴嘉荣", "3223", FinancePayEnum.SALARY, "no",null);
+		a[2]=new PaymentVO("11",Calendar.getInstance(), "3432", "487933", "孟鑫", "43242", "43243", "丁二玉", "3223", FinancePayEnum.TRANSPORTION, "no",null);
 		for (int i = 0; i < a.length; i++) {
 			list.add(a[i]);
 		}

@@ -44,8 +44,8 @@ public class RevenuePO extends FormPO{
 	 * @param hallID
 	 */
 	public RevenuePO(String formID, Calendar date,
-			String amount, String deliverName, String hallID, ArrayList<String> orderIDs) {
-		super(FormEnum.REVENUE, formID);
+			String amount, String deliverName, String hallID, ArrayList<String> orderIDs,String createrID) {
+		super(FormEnum.REVENUE, formID,createrID);
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;

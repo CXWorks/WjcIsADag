@@ -121,7 +121,7 @@ public class deliverController {
 
 	private DeliverVO generateVO(String formID){
 		Calendar calendar = TimeConvert.convertDate(date_DatePicker.getValue());
-		return new DeliverVO(formID, id_Field.getText(),calendar,postman_Box.getValue().toString());
+		return new DeliverVO(formID, id_Field.getText(),calendar,postman_Box.getValue().toString(),UserInfo.getUserID());
 	}
 
 	public void clear(ActionEvent actionEvent) {

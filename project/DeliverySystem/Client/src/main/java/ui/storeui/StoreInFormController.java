@@ -100,7 +100,8 @@ public class StoreInFormController {
 		StoreLocation loc = new StoreLocation(area, Integer.parseInt(row_Field.getText()),
 				Integer.parseInt(shelf_Field.getText()), Integer.parseInt(position_Field.getText()),
 				orderID_Field.getText());
-		StoreInVO vo = new StoreInVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), loc);
+		StoreInVO vo = new StoreInVO(formID, orderID_Field.getText(), calendar,
+				destination_Field.getText(), loc,UserInfo.getUserID());
 		vo.setCreaterID(UserInfo.getUserID());
 		return vo;
 	}

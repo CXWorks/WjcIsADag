@@ -35,7 +35,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	private PreparedStatement statement = null;
 
 	public AccountDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "account";
 		conn = ConnecterHelper.getConn();
@@ -46,7 +45,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public AccountPO getAccountPO(String accountID) {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `ID`= '" + accountID + "'";
 		ResultSet rs = null;
 		AccountPO result = null;
@@ -64,7 +62,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public ArrayList<AccountPO> getAccountPOs() {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		AccountPO temp = null;
@@ -86,7 +83,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public OperationMessage insert(AccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(ID,password,authority) " + "values('" + po.getID() + "','"
 				+ po.getPassword() + "','" + po.getAuthority().toString() + "')";
@@ -95,7 +91,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -109,14 +104,12 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public OperationMessage delete(String accountID) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `ID` = '" + accountID + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -130,7 +123,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public OperationMessage update(AccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应账号");
@@ -142,7 +134,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public OperationMessage checkAccount(String id, String password) {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		AccountPO a = this.getAccountPO(id);
 		if (a == null)
@@ -154,14 +145,12 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 
 	@Override
 	public OperationMessage setAccount(String id, boolean isOnline) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String operation = "update `" + Table_Name + "` set `online` ='" + isOnline + "' where `ID` = '" + id + "'";
 		try {
 				statement = conn.prepareStatement(operation);
 				statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "更新账户状态出错：");
 			System.err.println("更新账户状态出错：");
 			e.printStackTrace();
@@ -170,7 +159,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	// public String newAccountID(String type,String city) {
-	// // TODO Auto-generated method stub
 	// String selectAll = "select * from " + Table_Name;
 	// ResultSet rs = null;
 	// int ID_MAX = 0;

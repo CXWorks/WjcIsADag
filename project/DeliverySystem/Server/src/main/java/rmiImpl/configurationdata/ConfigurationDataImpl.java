@@ -47,7 +47,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	private PreparedStatement statement = null;
 
 	public ConfigurationDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		City2D = "city2d";
 		SalaryStrategy = "salary_strategy";
@@ -70,7 +69,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	// t.statement = t.conn.prepareStatement(insert);
 	// t.statement.executeUpdate();
 	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
 	// System.err.println("新建时出错：");
 	// e.printStackTrace();
 	// }
@@ -78,7 +76,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + City2D + "`(name,x,y) " + "values('" + po.getName() + "','" + po.getX()
 				+ "','" + po.getY() + "')";
@@ -86,7 +83,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -101,14 +97,12 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + City2D + "` where `name` = '" + name + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -123,7 +117,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteCity2D(po.getName()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应城市");
@@ -135,7 +128,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + City2D + "` where `name` = '" + name + "'";
 		ResultSet rs = null;
 		City2DPO result = null;
@@ -154,7 +146,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + City2D + "`";
 		ResultSet rs = null;
 		City2DPO temp = null;
@@ -176,14 +167,12 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + City2D + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -193,7 +182,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + SalaryStrategy + "`";
 		ResultSet rs = null;
 		SalaryStrategyPO temp = null;
@@ -224,7 +212,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错");
 			e.printStackTrace();
 		}
@@ -237,20 +224,17 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '" + po.getStaff().toString() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			return this.newSalaryStrategy(po);
 		}
 		return this.newSalaryStrategy(po);
 	}
 
 	public PackPO getPack() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Pack + "`";
 		ResultSet rs = null;
 		PackPO result = null;
@@ -285,7 +269,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add(
@@ -302,7 +285,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "更新时出错：");
 			System.err.println("更新时出错：");
 			e.printStackTrace();
@@ -316,7 +298,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public PricePO getPrice() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Price + "`";
 		ResultSet rs = null;
 		PricePO result = null;
@@ -348,7 +329,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.SLOW)
@@ -363,7 +343,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "更新时出错：");
 			System.err.println("更新时出错：");
 			e.printStackTrace();
@@ -377,7 +356,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public ProportionPO getProportion() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Proportion + "`";
 		ResultSet rs = null;
 		ProportionPO result = null;
@@ -409,7 +387,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
 		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.SLOW)
@@ -424,7 +401,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "更新时出错：");
 			System.err.println("更新时出错：");
 			e.printStackTrace();
@@ -437,10 +413,9 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return result;
 	}
 
-	
+
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> pos) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		for (SalaryStrategyPO tmp : pos) {
 			String insert = "insert into `" + SalaryStrategy + "`(staff,base,commission,bonus) " + "values('"
@@ -449,7 +424,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				result = new OperationMessage(false, "新建时出错：");
 				System.err.println("新建时出错：");
 				e.printStackTrace();
@@ -461,7 +435,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String new1 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.PACKAGE + "','"
 				+ po.getByType(PackEnum.PACKAGE) + "')";
@@ -481,7 +454,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(new4);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -506,7 +478,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(new3);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -516,7 +487,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String new1 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.FAST + "','"
 				+ po.getByType(DeliverTypeEnum.FAST) + "')";
@@ -532,7 +502,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(new3);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -542,7 +511,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Warningline + "` where `centerID` = '" + centerID + "'";
 		ResultSet rs = null;
 		double result = -1;
@@ -560,7 +528,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (this.getWarningline(centerID) != -1) {
 			String operation = "update `" + Warningline + "` set `value` ='" + value + "' where `centerID` = "
@@ -569,7 +536,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement = conn.prepareStatement(operation);
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				result = new OperationMessage(false, "更新时出错：");
 				System.err.println("更新时出错：");
 				e.printStackTrace();
@@ -581,7 +547,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				result = new OperationMessage(false, "更新时出错：");
 				System.err.println("更新时出错：");
 				e.printStackTrace();
@@ -599,7 +564,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	 */
 	@Override
 	public long getLatestVersionID() throws RemoteException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -609,7 +573,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public List<Operation> getOperation(long localVersion)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -21,13 +21,11 @@ public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindSer
 	static Map<String, ArrayList<ChatMessage>> map;
 
 	public ChatRemindImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		map = new HashMap<String, ArrayList<ChatMessage>>();
 	}
 
 	public OperationMessage checkMessage(String ID) {
-		// TODO Auto-generated method stub
 		ArrayList<ChatMessage> list = map.get(ID);
 		if (list == null)
 			return new OperationMessage(false, "没有消息");
@@ -37,7 +35,6 @@ public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindSer
 	}
 
 	public ArrayList<ChatMessage> getMessage(String ID) {
-		// TODO Auto-generated method stub
 		ArrayList<ChatMessage> list = map.get(ID);
 		if(list==null)
 			list = new ArrayList<ChatMessage>();

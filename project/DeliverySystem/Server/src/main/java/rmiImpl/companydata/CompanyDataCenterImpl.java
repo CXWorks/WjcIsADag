@@ -31,7 +31,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	private PreparedStatement statement = null;
 
 	public CompanyDataCenterImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "center";
 		conn = ConnecterHelper.getConn();
@@ -42,7 +41,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public ArrayList<CenterPO> getCenter() throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		CenterPO temp = null;
@@ -62,7 +60,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public String newCenterID(String cityID) {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
@@ -86,7 +83,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public OperationMessage addCenter(CenterPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String s = "";
 		String c = "";
@@ -98,7 +94,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -113,14 +108,12 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public OperationMessage deleteCenter(CenterPO center) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + center.getCenterID() + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -135,7 +128,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public OperationMessage modifyCenter(CenterPO center) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.deleteCenter(center).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应中转中心");
@@ -147,7 +139,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 
 	@Override
 	public CenterPO getCenterByID(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `centerID` = '" + ID + "'";
 		ResultSet rs = null;
 		CenterPO result = null;

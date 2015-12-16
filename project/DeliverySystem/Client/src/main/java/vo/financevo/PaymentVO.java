@@ -26,8 +26,8 @@ public class PaymentVO extends FinanceFormVO {
     // 备注
     private String	note;
     //
-    public PaymentVO(String formID){
-    	super(FormEnum.PAYMENT,FormStateEnum.CONSTRUCTED,formID);
+    public PaymentVO(String formID,String createrID){
+    	super(FormEnum.PAYMENT,FormStateEnum.CONSTRUCTED,formID,createrID);
     }
     //
 	/**
@@ -45,8 +45,8 @@ public class PaymentVO extends FinanceFormVO {
 	public PaymentVO(String formID,Calendar date, String amount, String payerAccID,
 			String payerName, String payerAccount, String receiverAccID,
 			String receiverName, String receiverAccount, FinancePayEnum item,
-			String note) {
-		this(formID);
+			String note,String createrID) {
+		this(formID,createrID);
 		this.date = date;
 		this.amount = amount;
 		this.payerAccID = payerAccID;
@@ -59,12 +59,12 @@ public class PaymentVO extends FinanceFormVO {
 		this.note = note;
 	}
     public PaymentVO(PaymentPO po){
-    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote(),po.getCreaterID());
     	
     }
     //
     public PaymentPO toPO(){
-    	PaymentPO paymentPO= new PaymentPO(formID, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note);
+    	PaymentPO paymentPO= new PaymentPO(formID, (Calendar)date.clone(), amount, payerAccID, payerName, payerAccount, receiverAccID, receiverName, receiverAccount, item, note,createrID);
     	paymentPO.setCache_OperatorID(UserInfo.getUserID());
     	return paymentPO;
     }

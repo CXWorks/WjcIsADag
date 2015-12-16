@@ -18,7 +18,6 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	public InitialDataProxy() throws RemoteException,ClassNotFoundException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public static SystemState getState() {
@@ -31,19 +30,16 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public InitialDataPO getInitialDataPO(String version) throws RemoteException {
-		// TODO Auto-generated method stub
 		return InitialDataService.getInitialDataPO(version);
 	}
 
 	@Override
 	public OperationMessage requestInitData(String staffID) throws RemoteException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		ID = staffID;
 		this.setState(SystemState.INITIALIZING);
 		return InitialDataService.requestInitData(staffID);
@@ -51,7 +47,6 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	@Override
 	public OperationMessage uploadInitialData(String staffID, InitialDataPO newData) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(ID.equalsIgnoreCase(staffID))
 			return InitialDataService.uploadInitialData(staffID, newData);
 		return new OperationMessage(false,"ID不正确");
@@ -59,7 +54,6 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	@Override
 	public OperationMessage abortInitData(String staffID) throws RemoteException {
-		// TODO Auto-generated method stub
 		this.setState(SystemState.NORMAL);
 		if(ID.equalsIgnoreCase(staffID))
 			return InitialDataService.abortInitData(staffID);
@@ -68,7 +62,6 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 
 	@Override
 	public String getLatest_version(String staffID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(ID.equalsIgnoreCase(staffID))
 			return InitialDataService.getLatest_version(staffID);
 		return null;

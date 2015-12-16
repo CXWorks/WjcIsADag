@@ -15,8 +15,8 @@ public abstract class StoreFormVO extends FormVO {
 	protected StoreLocation location;
 	protected String money;
 
-	protected StoreFormVO(FormEnum type, FormStateEnum state, String formID) {
-		super(type, state, formID);
+	protected StoreFormVO(FormEnum type, FormStateEnum state, String formID,String createrID) {
+		super(type, state, formID,createrID);
 	}
 
 	public String getIO() {

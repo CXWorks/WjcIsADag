@@ -113,7 +113,7 @@ public class TransitFormController {
 		return new CenterOutVO(
 				formID, departure_Field.getText(), transNumber_Field.getText(), cargo_Field.getText(),
 				calendar, fee_Label.getText(), arrival_Box.getValue(), supervisor_Field.getText(), ids,
-				transitEnum);
+				transitEnum,UserInfo.getUserID());
 	}
 
 

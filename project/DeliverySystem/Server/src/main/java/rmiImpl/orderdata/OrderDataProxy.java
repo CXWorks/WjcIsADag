@@ -17,12 +17,10 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	public OrderDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public OperationMessage insert(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.insert(po);
 		return null;
@@ -30,7 +28,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OrderPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.getFormPO(id);
 		return null;
@@ -38,7 +35,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.delete(id);
 		return null;
@@ -46,7 +42,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OperationMessage update(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.update(po);
 		return null;
@@ -54,7 +49,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.newID(unitID);
 		return null;
@@ -62,7 +56,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.clear();
 		return null;
@@ -70,7 +63,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public ArrayList<OrderPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.getAll();
 		return null;
@@ -78,7 +70,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

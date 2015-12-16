@@ -14,8 +14,8 @@ public class LoadPO extends TransportPO implements Serializable {
 
 	public LoadPO(String formID,String peopleTransport, Calendar LoadDate,
 			String TransportID, String placeTo, String peopleSee,
-			String expense, ArrayList<String> IDs) {
-		super(FormEnum.TRANSPORT_HALL,formID);
+			String expense, ArrayList<String> IDs,String createrID) {
+		super(FormEnum.TRANSPORT_HALL,formID,createrID);
 
 		this.peopleTransport = peopleTransport;
 		this.LoadDate = LoadDate;

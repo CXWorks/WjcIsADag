@@ -20,8 +20,8 @@ public class RevenueVO extends FinanceFormVO {
     public String hallID;
     private ArrayList<String> orderIDs;
     //
-    public RevenueVO(String formID){
-    	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID);
+    public RevenueVO(String formID,String createrID){
+    	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID,createrID);
     }
     //
 	/**
@@ -32,8 +32,8 @@ public class RevenueVO extends FinanceFormVO {
 	 * @param orderID
 	 */
 	public RevenueVO(String formID,Calendar date, String amount, String deliverName,
-			String hallID, ArrayList<String> orderIDs) {
-		this(formID);
+			String hallID, ArrayList<String> orderIDs,String createrID) {
+		this(formID,createrID);
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;
@@ -41,11 +41,11 @@ public class RevenueVO extends FinanceFormVO {
 		this.orderIDs = orderIDs;
 	}
     public RevenueVO(RevenuePO po){
-    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderIDs());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderIDs(),po.getCreaterID());
     }
     //
     public RevenuePO toPO(){
-    	RevenuePO revenuePO= new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderIDs);
+    	RevenuePO revenuePO= new RevenuePO(formID, (Calendar)date.clone(), amount, deliverName, hallID, orderIDs,createrID);
     	revenuePO.setCache_OperatorID(UserInfo.getUserID());
     	return revenuePO;
     }

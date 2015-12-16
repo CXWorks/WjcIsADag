@@ -17,12 +17,10 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	public ReceiveDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public OperationMessage insert(ReceivePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.insert(po);
 		return null;
@@ -30,7 +28,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public ReceivePO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.getFormPO(id);
 		return null;
@@ -38,7 +35,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.delete(id);
 		return null;
@@ -46,7 +42,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public OperationMessage update(ReceivePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.update(po);
 		return null;
@@ -54,7 +49,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.newID(unitID);
 		return null;
@@ -62,7 +56,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.clear();
 		return null;
@@ -70,7 +63,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.getAll();
 		return null;
@@ -78,7 +70,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

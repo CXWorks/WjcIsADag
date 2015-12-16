@@ -17,6 +17,7 @@ import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import vo.receivevo.ReceiveVO;
@@ -126,7 +127,8 @@ public class NewOrderController {
 						address_From.getText(),address_To.getText(),
 						tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
 						goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),predict_Expense.getText(),
-						goods_Type.getText(),deliverType,packing);
+						goods_Type.getText(),deliverType,packing,
+						UserInfo.getUserID());
 	}
 
 	@FXML

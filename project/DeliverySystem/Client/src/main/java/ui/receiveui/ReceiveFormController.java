@@ -14,6 +14,7 @@ import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
@@ -99,7 +100,7 @@ public class ReceiveFormController{
     private ReceiveVO generateVO(String formID){
         Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
         return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(),
-                calendar, departure_Field.getText(), stateEnum);
+                calendar, departure_Field.getText(), stateEnum,UserInfo.getUserID());
     }
 
     private void fillOrderTable(){

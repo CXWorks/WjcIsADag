@@ -16,11 +16,12 @@ public abstract class FormVO extends CommonVO {
     public String formID;
     /*表单创建者的ID*/
 	protected String createrID;
-    public FormVO(FormEnum type,FormStateEnum state,String formID){
+    protected FormVO(FormEnum type,FormStateEnum state,String formID,String createrID){
     	super(DataType.FORM);
     	this.formType=type;
     	this.state=state;
     	this.formID=formID;
+    	this.createrID=createrID;
     }
 	public String getCreaterID() {
 		return createrID;

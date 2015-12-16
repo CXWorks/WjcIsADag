@@ -52,5 +52,5 @@ public interface ReceiveBLService extends FormBLService<ReceiveVO>{
 	 * 载入中转单信息（已经载入订单信息）
 	 * @return 中转单信息
 	 */
-	public TransitVO getTransitVO();
+//	public TransitVO getTransitVO();
 }

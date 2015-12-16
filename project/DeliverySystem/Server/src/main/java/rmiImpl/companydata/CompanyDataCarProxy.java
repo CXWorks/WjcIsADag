@@ -17,18 +17,15 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	public CompanyDataCarProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.getCars(unitID);
 		return null;
@@ -36,7 +33,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public CarPO getCar(String carID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.getCar(carID);
 		return null;
@@ -44,7 +40,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public String newCarID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.newCarID(unitID);
 		return null;
@@ -52,7 +47,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public OperationMessage addCar(CarPO car) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.addCar(car);
 		return null;
@@ -60,7 +54,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public OperationMessage deleteCar(CarPO car) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.deleteCar(car);
 		return null;
@@ -68,7 +61,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public OperationMessage modifyCar(CarPO car) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.modifyCar(car);
 		return null;
@@ -76,7 +68,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.availableCar(unitID);
 		return null;

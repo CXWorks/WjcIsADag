@@ -56,12 +56,10 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 	}
 
 	public ArrayList<FormPO> getForms() {
-		// TODO Auto-generated method stub
 		return queue.removeForms();
 	}
 
 	public OperationMessage modifyForm(FormPO form) throws RemoteException {
-		// TODO Auto-generated method stub
 		FormEnum type = form.getFormType();
 		OperationMessage result;
 		switch (type) {
@@ -113,7 +111,6 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 
 	public OperationMessage passForm(ArrayList<FormPO> forms)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage mes = new OperationMessage();
 		for (FormPO tmp : forms) {
 			OperationMessage result = new OperationMessage();
@@ -127,21 +124,24 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				result = pass_helper.getOrderDataService().insert((OrderPO) tmp);
 				break;
 			case PAYMENT:
-				result = pass_helper.getPaymentDataService().insert(
-						(PaymentPO) tmp);
+				PaymentPO pay = (PaymentPO) tmp;
+				result = pass_helper.getPaymentDataService().insert(pay);
+				pass_helper.getBankAccountDataService().modifyBalance(pay.getPayerAccID(), Double.parseDouble(pay.getAmount())*(-1));
 				break;
 			case RECEIVE:
 				result = pass_helper.getReceiveDataService().insert(
 						(ReceivePO) tmp);
 				break;
 			case REVENUE:
-				result = pass_helper.getRevenueDataService().insert(
-						(RevenuePO) tmp);
+				RevenuePO rev = (RevenuePO) tmp;
+				result = pass_helper.getRevenueDataService().insert(rev);
+				pass_helper.getBankAccountDataService().modifyBalance(null, Double.parseDouble(rev.getAmount()));
 				break;
 			case STORE_IN:
 				StoreInPO sInPO = (StoreInPO) tmp;
 				sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
 				result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
+				System.out.println("fuck"+sInPO.getLocation().getPosition());
 				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),sInPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case STORE_OUT:
@@ -179,7 +179,6 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 
 	public OperationMessage deleteForm(ArrayList<FormPO> forms)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage mes = new OperationMessage();
 		for (FormPO tmp : forms) {
 			OperationMessage result = new OperationMessage();

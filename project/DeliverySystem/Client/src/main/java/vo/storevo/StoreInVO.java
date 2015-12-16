@@ -14,13 +14,13 @@ import vo.FormVO;
  */
 public class StoreInVO extends StoreFormVO {
 
-	private StoreInVO(String formID){
-		super(FormEnum.STORE_IN,FormStateEnum.CONSTRUCTED,formID);
+	private StoreInVO(String formID,String createrID){
+		super(FormEnum.STORE_IN,FormStateEnum.CONSTRUCTED,formID,createrID);
 	}
 
     public StoreInVO(String formID,String orderID, Calendar date, String destination,
-			StoreLocation location) {
-		this(formID);
+			StoreLocation location,String createrID) {
+		this(formID,createrID);
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;
@@ -28,12 +28,12 @@ public class StoreInVO extends StoreFormVO {
 	}
 
     public StoreInVO(StoreInPO po){
-    	this(po.getFormID(),po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation());
+    	this(po.getFormID(),po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation(),po.getCreaterID());
     	this.setMoney(po.getMoney());
     }
     //
     public StoreInPO toPO(){
-    	StoreInPO storeInPO= new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location);
+    	StoreInPO storeInPO= new StoreInPO(formID, orderID, (Calendar)date.clone(), destination, location,createrID);
     	storeInPO.setCache_OperatorID(UserInfo.getUserID());
     	return storeInPO;
     }

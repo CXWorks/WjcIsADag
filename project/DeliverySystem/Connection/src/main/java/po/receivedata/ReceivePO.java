@@ -36,8 +36,8 @@ public class ReceivePO extends FormPO implements Serializable {
 	}
 
 	public ReceivePO(String formID,String orderID, String transitID, Calendar date,
-			String depature, String state) {
-		super(FormEnum.RECEIVE,formID);
+			String depature, String state,String createrID) {
+		super(FormEnum.RECEIVE,formID,createrID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		this.date = date;

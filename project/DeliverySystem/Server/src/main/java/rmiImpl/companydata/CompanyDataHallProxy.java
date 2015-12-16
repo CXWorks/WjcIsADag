@@ -17,18 +17,15 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	public CompanyDataHallProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public HallPO getHallByID(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.getHallByID(ID);
 		return null;
@@ -36,7 +33,6 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public ArrayList<HallPO> getHall() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.getHall();
 		return null;
@@ -44,7 +40,6 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public OperationMessage addHall(HallPO hall) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.addHall(hall);
 		return null;
@@ -52,7 +47,6 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public OperationMessage deleteHall(HallPO hall) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.deleteHall(hall);
 		return null;
@@ -60,7 +54,6 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public OperationMessage modifyHall(HallPO hall) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.modifyHall(hall);
 		return null;
@@ -68,7 +61,6 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public String newHallID(String city) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.newHallID(city);
 		return null;

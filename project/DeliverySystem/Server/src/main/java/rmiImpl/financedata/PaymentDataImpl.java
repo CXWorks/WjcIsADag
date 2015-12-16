@@ -22,23 +22,26 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public PaymentDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "payment";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return conn;
 	}
 
 	@Override
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name + "`(formID,formState,date,amount,payerAccID,payerName,"
 				+ "payerAccount,receiverAccID,receiverName,receiverAccount,item,note,date_and_unit) " + "values('"
@@ -66,7 +69,6 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public PaymentPO getFormPO(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
 		ResultSet rs = null;
 		PaymentPO result = null;
@@ -89,14 +91,12 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -106,7 +106,6 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public OperationMessage update(PaymentPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应表单");
@@ -118,12 +117,20 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public String newID(String unitID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX++;
+			String added = String.format("%07d", ID_MAX);
+			return "01" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -146,14 +153,12 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String clear = "delete from `" + Table_Name + "`";
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "清空数据库时出错：");
 			System.err.println("清空数据库时出错：");
 			e.printStackTrace();
@@ -163,7 +168,6 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 
 	@Override
 	public ArrayList<PaymentPO> getAll() throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		PaymentPO temp = null;
@@ -188,14 +192,14 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		PaymentDataImpl t = new PaymentDataImpl();
-//		Calendar a = Calendar.getInstance();
-//		Calendar b = Calendar.getInstance();
-//		a.set(Calendar.YEAR, 2014);
-//		b.set(Calendar.YEAR, 2015);
-//		System.out.println(t.getByTime(a, b).size());
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// PaymentDataImpl t = new PaymentDataImpl();
+	// Calendar a = Calendar.getInstance();
+	// Calendar b = Calendar.getInstance();
+	// a.set(Calendar.YEAR, 2014);
+	// b.set(Calendar.YEAR, 2015);
+	// System.out.println(t.getByTime(a, b).size());
+	// }
 
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {

@@ -77,11 +77,6 @@ public class ReceiveblImpl implements ReceiveBLService {
 		
 	}
 
-	public TransitVO getTransitVO() {
-		//TODO discuss with jc
-		return new CenterOutVO("070010001201511230000001");
-	}
-
 	/* (non-Javadoc)
 	 * @see bl.blService.FormBLService#newID()
 	 */

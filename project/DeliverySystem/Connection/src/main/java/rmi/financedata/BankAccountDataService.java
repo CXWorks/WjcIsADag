@@ -40,11 +40,5 @@ public interface BankAccountDataService extends DataService<CommonPO>{
 
     public ArrayList<FormPO> getByAccID(String ID) throws RemoteException;
 
-//    public LinkedList<BankAccountOperation> updateAccountOperations(String staffID) throws RemoteException;
-//
-//    public OperationMessage uploadAccountOperations
-//            (String staffID, LinkedList<BankAccountOperation> operations) throws RemoteException;
-//
-//    public LinkedList<BankAccountPO> downloadAllAccounts() throws RemoteException;
-
+    public OperationMessage modifyBalance(String ID,double money) throws RemoteException;
 }

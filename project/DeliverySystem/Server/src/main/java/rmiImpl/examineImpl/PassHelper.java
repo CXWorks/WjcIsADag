@@ -3,19 +3,8 @@ package rmiImpl.examineImpl;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
-import message.OperationMessage;
-import po.FormEnum;
-import po.deliverdata.DeliverPO;
-import po.financedata.PaymentPO;
-import po.financedata.RevenuePO;
-import po.orderdata.OrderPO;
-import po.receivedata.ReceivePO;
-import po.storedata.StoreInPO;
-import po.storedata.StoreOutPO;
-import po.transportdata.CenterOutPO;
-import po.transportdata.LoadPO;
-import rmi.DataService;
 import rmi.deliverdata.DeliverDataService;
+import rmi.financedata.BankAccountDataService;
 import rmi.financedata.PaymentDataService;
 import rmi.financedata.RevenueDataService;
 import rmi.orderdata.OrderDataService;
@@ -25,6 +14,7 @@ import rmi.storedata.StoreModelDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
 import rmiImpl.deliverdata.DeliverDataImpl;
+import rmiImpl.financedata.BankAccountDataImpl;
 import rmiImpl.financedata.PaymentDataImpl;
 import rmiImpl.financedata.RevenueDataImpl;
 import rmiImpl.orderdata.OrderDataImpl;
@@ -44,6 +34,7 @@ public class PassHelper {
 	private static StoreModelDataService storeModelDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
+	private static BankAccountDataService bankAccountDataService;
 
 	public PassHelper() throws RemoteException, MalformedURLException{
 		orderDataService = new OrderDataImpl();
@@ -55,6 +46,7 @@ public class PassHelper {
 		storeModelDataService = new StoreModelDataImpl();
 		transportDataService = new CenterOutDataImpl();
 		loadDataService = new LoadDataImpl();
+		bankAccountDataService = new BankAccountDataImpl();
 	}
 
 	public OrderDataService getOrderDataService() {
@@ -91,6 +83,10 @@ public class PassHelper {
 
 	public LoadDataService getLoadDataService() {
 		return loadDataService;
+	}
+
+	public BankAccountDataService getBankAccountDataService() {
+		return bankAccountDataService;
 	}
 
 }

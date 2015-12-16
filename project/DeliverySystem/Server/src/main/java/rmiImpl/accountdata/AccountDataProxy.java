@@ -17,18 +17,15 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	public AccountDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AccountPO getAccountPO(String accountID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.getAccountPO(accountID);
 		return null;
@@ -36,7 +33,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public ArrayList<AccountPO> getAccountPOs() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.getAccountPOs();
 		return null;
@@ -44,7 +40,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public OperationMessage insert(AccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.insert(po);
 		return null;
@@ -52,7 +47,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public OperationMessage delete(String accountID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.delete(accountID);
 		return null;
@@ -60,7 +54,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public OperationMessage update(AccountPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.update(po);
 		return null;
@@ -68,7 +61,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public OperationMessage checkAccount(String id, String password) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.checkAccount(id,password);
 		return null;
@@ -76,7 +68,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 
 	@Override
 	public OperationMessage setAccount(String id, boolean isOnline) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.setAccount(id,isOnline);
 		return null;

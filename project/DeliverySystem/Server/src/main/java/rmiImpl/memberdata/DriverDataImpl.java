@@ -28,7 +28,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	private PreparedStatement statement = null;
 
 	public DriverDataImpl() throws RemoteException {
-		// TODO Auto-generated constructor stub
 		super();
 		Table_Name = "driver";
 		conn = ConnecterHelper.getConn();
@@ -36,13 +35,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return conn;
 	}
 
 	@Override
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "`";
 		ResultSet rs = null;
 		DriverPO temp = null;
@@ -67,7 +64,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage modifyStaff(DriverPO after) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		if (!this.dismissStaff(after).operationResult)
 			return result = new OperationMessage(false, "数据库中没有对应司机");
@@ -79,7 +75,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage addStaff(DriverPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String add = "insert into `" + Table_Name
 				+ "`(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) " + "values('" + po.getID()
@@ -91,7 +86,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			statement = conn.prepareStatement(add);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "新建时出错：");
 			System.err.println("新建时出错：");
 			e.printStackTrace();
@@ -106,14 +100,12 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage dismissStaff(DriverPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		OperationMessage result = new OperationMessage();
 		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + po.getID() + "'";
 		try {
 			statement = conn.prepareStatement(dismiss);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			result = new OperationMessage(false, "删除时出错：");
 			System.err.println("删除时出错：");
 			e.printStackTrace();
@@ -128,7 +120,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String institutionID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
 		ResultSet rs = null;
 		int ID_MAX = 0;
@@ -159,14 +150,12 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 //			System.out.println("hhh:" + po.getLove());
 //
 //		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //	}
 
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID + "'";
 		ResultSet rs = null;
 		DriverPO result = null;
