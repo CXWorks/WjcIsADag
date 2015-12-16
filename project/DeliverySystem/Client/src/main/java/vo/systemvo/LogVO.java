@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import po.InfoEnum;
 import po.systemdata.LogPO;
+import tool.time.TimeConvert;
 import vo.InfoVO;
 
 public class LogVO extends InfoVO implements Serializable{
@@ -37,7 +38,7 @@ public class LogVO extends InfoVO implements Serializable{
 		if (info.contains(key)) {
 			return true;
 		}
-		if (time.toString().contains(key)) {
+		if (TimeConvert.getDisplayDate(time).contains(key)) {
 			return true;
 		}
 		return false;

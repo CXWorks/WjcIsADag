@@ -37,13 +37,11 @@ public class RevenuePO extends FormPO{
 		return orderIDs;
 	}
 	/**
-	 * @param formEnum
 	 * @param formID
 	 * @param date
 	 * @param amount
 	 * @param deliverName
 	 * @param hallID
-	 * @param orderID
 	 */
 	public RevenuePO(String formID, Calendar date,
 			String amount, String deliverName, String hallID, ArrayList<String> orderIDs) {

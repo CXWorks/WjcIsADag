@@ -128,7 +128,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
 
-        primaryStage.setTitle("Demo");
+        primaryStage.setTitle("2333快递物流管理系统");
         primaryStage.setX(150);
         primaryStage.setY(150);
 

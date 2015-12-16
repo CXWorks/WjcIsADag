@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.sun.javafx.scene.control.skin.TitledPaneSkin.TitleRegion?>
+<?import com.sun.javafx.scene.control.skin.TabPaneSkin.TabHeaderArea?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.salary.ManageSalaryController">
    <children>
       <TabPane fx:id="tabPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">

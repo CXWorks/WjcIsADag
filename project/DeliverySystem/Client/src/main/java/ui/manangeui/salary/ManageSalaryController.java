@@ -63,7 +63,6 @@ public class ManageSalaryController {
 		try {
 			this.seletedChange();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

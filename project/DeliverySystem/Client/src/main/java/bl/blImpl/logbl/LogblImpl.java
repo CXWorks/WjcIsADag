@@ -3,10 +3,12 @@ package bl.blImpl.logbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
+import po.CommonPO;
 import po.systemdata.LogPO;
 import rmi.systemdata.LogDataService;
-import sun.util.logging.resources.logging;
 import tool.vopo.VOPOFactory;
 import message.OperationMessage;
 import vo.systemvo.LogVO;
@@ -20,54 +22,47 @@ import bl.clientNetCache.CacheHelper;
  * @version 1.0
  */
 public class LogblImpl implements LogblService {
-	private LogDataService LogDataService;
+
+	private LogDataService logDataService;
 	private VOPOFactory vopoFactory;
-	private ArrayList<LogVO> now;
+	private ArrayList<LogPO> now;
 	private TXTHelper txtHelper;
+
 	public LogblImpl(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		LogDataService=CacheHelper.getLogDataService();
+		this.logDataService =CacheHelper.getLogDataService();
 		this.txtHelper=new TXTHelper();
-		this.now=null;
+		this.now=new ArrayList<>();
 	}
 
-	/* (non-Javadoc)
-	 * @see bl.blService.logblService.LogblService#fuzzyQuery(java.lang.String)
-	 */
 	@Override
-	public ArrayList<LogVO> fuzzyQuery(String info) {
-		ArrayList<LogVO> ans=new ArrayList<LogVO>();
-		for (LogVO logVO : now) {
-			if (logVO.fuzzyCheck(info)) {
-				ans.add(logVO);
-			}
-		}
-		return ans;
-	}
+	public ArrayList<LogVO> search(String keyword, Calendar start, Calendar end) {
 
-	/* (non-Javadoc)
-	 * @see bl.blService.logblService.LogblService#dateSearch(java.util.Calendar, java.util.Calendar)
-	 */
-	@Override
-	public ArrayList<LogVO> dateSearch(Calendar start, Calendar end) {
-		if (start==null||end==null) {
-			end=Calendar.getInstance();
-			start=Calendar.getInstance();
-			start.set(Calendar.YEAR, 2014);
-		}
-		try {
-			ArrayList<LogPO> logPOs=LogDataService.getByTime(start, end);
-			ArrayList<LogVO> now=new ArrayList<LogVO>(logPOs.size());
-			for (LogPO logPO : logPOs) {
-				LogVO temp=(LogVO)vopoFactory.transPOtoVO(logPO);
-				now.add(temp);
+		// first step : get datas from server
+		try{
+			if(start == null || end == null){	// if want all data
+				// make new request, in case new data is inserted
+				now = logDataService.getAll();
+			}else{
+				now = logDataService.getByTime(start, end);
 			}
-			return now;
-		} catch (RemoteException e) {
+		}catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
-		
+
+		ArrayList<LogVO> ans = new ArrayList<>();
+        LinkedList<LogPO> notFit = new LinkedList<>();
+		for (LogPO logPO : now) {
+			LogVO logVO = (LogVO)vopoFactory.transPOtoVO(logPO);
+			if (logVO.fuzzyCheck(keyword)) {
+				ans.add(logVO);
+			}else{
+				notFit.add(logPO);
+			}
+		}
+        now.removeAll(notFit);
+
+		return ans;
 	}
 
 	/* (non-Javadoc)
@@ -75,8 +70,7 @@ public class LogblImpl implements LogblService {
 	 */
 	@Override
 	public OperationMessage exportToTXT(String path) {
-		// TODO Auto-generated method stub
-		return this.txtHelper.exportToTXT(now, path);
+		return this.txtHelper.exportToTXT((List<LogVO>)vopoFactory.transPOtoVO(now), path);
 	}
 
 }

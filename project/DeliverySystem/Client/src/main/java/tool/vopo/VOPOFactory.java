@@ -54,6 +54,10 @@ import po.storedata.StoreOutPO;
 import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
+
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Client//tool.vopo//VOPOFactory.java
  * @author CXWorks
@@ -191,6 +195,22 @@ public class VOPOFactory {
 				return null;
 			}
 		}
+	}
+
+	public List<? extends CommonVO> transPOtoVO(List<? extends CommonPO> pos){
+		List<CommonVO> vos = new LinkedList<>();
+		for (CommonPO po : pos) {
+			vos.add(transPOtoVO(po));
+		}
+		return vos;
+	}
+
+	public List<? extends CommonPO> transVOtoPO(List<? extends CommonVO> vos){
+		List<CommonPO> pos = new LinkedList<>();
+		for (CommonVO vo : vos) {
+			pos.add(transVOtoPO(vo));
+		}
+		return pos;
 	}
 
 }

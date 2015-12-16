@@ -18,18 +18,15 @@ public class LogDataProxy extends UnicastRemoteObject implements LogDataService 
 
 	public LogDataProxy() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public OperationMessage insert(LogPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return logDataService.insert(po);
 		return null;
@@ -37,15 +34,20 @@ public class LogDataProxy extends UnicastRemoteObject implements LogDataService 
 
 	@Override
 	public ArrayList<LogPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return logDataService.getByTime(start, end);
 		return null;
 	}
 
 	@Override
+	public ArrayList<LogPO> getAll() throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return logDataService.getAll();
+		return null;
+	}
+
+	@Override
 	public OperationMessage clear() throws RemoteException {
-		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return logDataService.clear();
 		return null;

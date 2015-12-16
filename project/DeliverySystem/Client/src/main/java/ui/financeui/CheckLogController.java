@@ -48,6 +48,7 @@ public class CheckLogController {
         // TODO 记下用户上次存文件的位置
         FileChooser fileChooser = new FileChooser();
         //fileChooser.setInitialDirectory(new File("g:/develop"));
+        
         fileChooser.setInitialFileName("Log--"
                 + TimeConvert.getDisplayDate(begin_DatePicker.getValue())
                 + "--"
@@ -67,9 +68,9 @@ public class CheckLogController {
         if(logVOs!=null)
         	logVOs.clear();
         else {
-			logVOs=new ArrayList<LogVO>();
+			logVOs = new ArrayList<>();
 		}
-        logVOs.addAll(logblService.dateSearch(begin, end));
+        logVOs.addAll(logblService.search(keyword_Field.getText(), begin, end));
         log_TableView.getItems().clear();
         log_TableView.getItems().addAll(logVOs);
     }

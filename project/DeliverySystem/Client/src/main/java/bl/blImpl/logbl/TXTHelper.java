@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.systemvo.LogVO;
 import message.OperationMessage;
@@ -17,7 +18,7 @@ import message.OperationMessage;
  */
 public class TXTHelper {
 	private static final String fileName="log.txt";
-	public  OperationMessage exportToTXT(ArrayList<LogVO> logVOs,String path ){
+	public  OperationMessage exportToTXT(List<LogVO> logVOs,String path ){
 		try {
 			PrintWriter writer=new PrintWriter(new FileOutputStream(path+fileName)) ;
 			for (LogVO logVO : logVOs) {
@@ -27,7 +28,6 @@ public class TXTHelper {
 			writer.close();
 			return new OperationMessage();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		}

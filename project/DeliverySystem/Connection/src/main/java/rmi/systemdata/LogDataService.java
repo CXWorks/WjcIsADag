@@ -21,4 +21,6 @@ public interface LogDataService extends DataService<LogPO>{
 	public OperationMessage clear() throws RemoteException;
 
 	public ArrayList<LogPO> getByTime(Calendar start,Calendar end) throws RemoteException;
+
+	public ArrayList<LogPO> getAll() throws RemoteException;
 }

@@ -2,6 +2,8 @@ package ui.financeui;
 
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.financeblService.RevenueBLService;
+import factory.FinanceBLFactory;
+import factory.FormatCheckFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import tool.time.TimeConvert;
 import userinfo.Services;
 import vo.financevo.RevenueVO;
+import vo.ordervo.OrderVO;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -25,13 +28,18 @@ public class CheckRevenueFormController {
 
     public Label sum_Label;
     public DatePicker revenue_DatePicker;
-    public TableView<RevenueVO> revenue_TableView;
     public TextField hall_Field;
     public Label hall_errLabel;
     public Label date_errLabel;
-    public TableColumn<RevenueVO, String> orderID_Column;
+
+    public TableView<RevenueVO> revenue_TableView;
     public TableColumn<RevenueVO, String> deliver_Column;
-    public TableColumn<RevenueVO, String> money_Column;
+    public TableColumn<RevenueVO, String> sum_money_Column;
+    public TableColumn<RevenueVO, String> revenueID_TableColumn;
+
+    public TableView<OrderVO> detail_TableView;
+    public TableColumn<OrderVO, String> orderID_Column;
+    public TableColumn<OrderVO, String> money_Column;
 
     FormatCheckService formatCheckService;
     RevenueBLService revenueBLService;
@@ -46,30 +54,36 @@ public class CheckRevenueFormController {
     public void initialize(){
         ObservableList<RevenueVO> revenueVOs = FXCollections.observableArrayList();
 
-        formatCheckService = Services.formatCheckService;
-        revenueBLService = Services.revenueBLService;
+        formatCheckService = FormatCheckFactory.getFormatCheckService();
+        revenueBLService = FinanceBLFactory.getRevenueBLService();
 
-        revenueVOs.add(new RevenueVO("1235", Calendar.getInstance(), "450","wjr" ,"321" , null));
-        revenueVOs.add(new RevenueVO("1234", Calendar.getInstance(), "4670", "wjc", "233", null));
-
-//        orderID_Column.setCellValueFactory(
-//                cellData -> new SimpleStringProperty(cellData.getValue().orderID)
-//        );
+        // Revenue Form TableView
+        revenueID_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
+        );
         deliver_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().deliverName)
         );
-        money_Column.setCellValueFactory(
+        sum_money_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().amount)
+        );
+
+        // Detail Form TableView
+        orderID_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
+        );
+        money_Column.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
         );
 
         revenue_TableView.setItems(revenueVOs);
     }
 
     public void search(ActionEvent actionEvent) {
-        // TODO check
 
         List<RevenueVO> revenueVOs = revenueBLService.getRevenueVOs
                 (TimeConvert.convertDate(revenue_DatePicker.getValue()), hall_Field.getText());
+
 
         revenue_TableView.setItems(FXCollections.observableArrayList(revenueVOs));
     }
