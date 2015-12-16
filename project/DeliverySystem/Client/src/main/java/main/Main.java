@@ -67,7 +67,7 @@ public class Main extends Application {
 //                }
 //        ).start();
 
-//        CacheHelper.initializeCache();
+        CacheHelper.initializeCache();
         launch(args);
     }
 

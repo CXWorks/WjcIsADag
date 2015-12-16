@@ -150,6 +150,9 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				sOutPO.setMoney(orderPO.getMoney());
 				ArrayList<String> IDs = orderPO.getFormIDs();
 				String inID = IDs.get(IDs.size()-1);
+				for (int i = 0; i < IDs.size(); i++) {
+					System.out.println(IDs.get(i));
+				}
 				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
 				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),sOutPO.getLocation());//改变数据库中这个位置的状态

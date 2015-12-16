@@ -92,7 +92,6 @@ public class StoreOutFormController {
 	private StoreOutVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(storeOut_DatePicker.getValue());
 		StoreOutVO vo = new StoreOutVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), tran,transitID_Field.getText(),UserInfo.getUserID());
-		vo.setCreaterID(UserInfo.getUserID());
 		return vo;
 	}
 	public void clear(ActionEvent actionEvent) {

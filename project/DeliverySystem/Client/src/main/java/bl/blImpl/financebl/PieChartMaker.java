@@ -2,10 +2,13 @@ package bl.blImpl.financebl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.print.attribute.HashAttributeSet;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import po.financedata.FinancePayEnum;
 import po.financedata.PaymentPO;
@@ -20,12 +23,18 @@ import vo.financevo.PieChartVO;
  */
 public class PieChartMaker {
 	private boolean comp(Calendar src,Calendar tar){
-		return src.get(Calendar.YEAR)<=tar.get(Calendar.YEAR)&&src.get(Calendar.MONTH)<=tar.get(Calendar.MONTH);
+		return src.before(tar);
 	}
 	
 	public PieChartVO monthPay(ArrayList<PaymentPO> paymentPO){
-		Calendar begin=paymentPO.get(0).getDate();
-		Calendar end=paymentPO.get(paymentPO.size()-1).getDate();
+		Calendar begin=paymentPO.stream()
+				.map(pay->pay.getDate())
+				.min(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
+				.get();
+		Calendar end=paymentPO.stream()
+				.map(pay->pay.getDate())
+				.max(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
+				.get();
 		PieChartVO pieChartVO=new PieChartVO();
 		pieChartVO.title="各个月支出统计";
 		pieChartVO.valueType="月份";
@@ -36,6 +45,7 @@ public class PieChartMaker {
 		int enMonth=end.get(Calendar.MONTH)+1;
 		//
 		int total=(enYear-beYear)*12+enMonth-beMonth;
+		System.out.println(total);
 		//
 		if (total==0) {
 			pieChartVO.originMap=new HashMap<String, Double>(1);
@@ -51,13 +61,13 @@ public class PieChartMaker {
 		int nowYear=beYear;
 		int nowMonth=beMonth;
 		double io=0.0;
-		int index=0;
 		Calendar use=Calendar.getInstance();
-		for (int i = 0; i < total; i++) {
+		for (int i = 0; i <= total; i++) {
 			use.set(nowYear, nowMonth, 0);
-			for (;index<paymentPO.size(); index++) {
+			for (int index=0;index<paymentPO.size(); index++) {
 				PaymentPO temp=paymentPO.get(index);
 				if (this.comp(temp.getDate(), use)) {
+					//TODO refactor
 					io+=Double.parseDouble(temp.getAmount());
 				}
 			}
@@ -83,8 +93,14 @@ public class PieChartMaker {
 			pieChartVO.originMap=new HashMap<String, Double>();
 			return pieChartVO;
 		}
-		Calendar begin=revenuePO.get(0).getDate();
-		Calendar end=revenuePO.get(revenuePO.size()-1).getDate();
+		Calendar begin=revenuePO.stream()
+				.map(pay->pay.getDate())
+				.min(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
+				.get();
+		Calendar end=revenuePO.stream()
+				.map(pay->pay.getDate())
+				.max(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
+				.get();
 		PieChartVO pieChartVO=new PieChartVO();
 		pieChartVO.title="各个月收入统计";
 		pieChartVO.valueType="月份";
@@ -106,15 +122,16 @@ public class PieChartMaker {
 			return pieChartVO;
 		}
 		//
+		total++;
 		pieChartVO.originMap=new HashMap<String, Double>(total);
 		int nowYear=beYear;
 		int nowMonth=beMonth;
 		double io=0.0;
-		int index=0;
 		Calendar use=Calendar.getInstance();
-		for (int i = 0; i < total; i++) {
+		for (int i = 0; i <= total; i++) {
 			use.set(nowYear, nowMonth, 0);
-			for (;index<revenuePO.size(); index++) {
+			for (int index=0;index<revenuePO.size(); index++) {
+				//TODO refactor
 				RevenuePO temp=revenuePO.get(index);
 				if (this.comp(temp.getDate(), use)) {
 					io+=Double.parseDouble(temp.getAmount());
