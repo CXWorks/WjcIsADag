@@ -20,6 +20,30 @@ public enum StaffTypeEnum implements Serializable, EnumObservable<StaffTypeEnum>
 
     StaffTypeEnum(String c){this.chinese = c;}
 
+    public int getNum(){
+    	switch (this) {
+		case DRIVER:
+			return 0;
+		case MANAGER:
+			return 1;
+		case ADMINISTRATOR:
+			return 2;
+		case DELIVER:
+			return 3;
+		case HALL_COUNTERMAN:
+			return 4;
+		case STOREMAN:
+			return 5;
+		case CENTER_COUNTERMAN:
+			return 6;
+		case BURSAR:
+			return 7;
+		default:
+			return -1;
+		}
+    }
+
+    @Override
     public String getChinese(){
         return this.chinese;
     }

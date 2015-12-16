@@ -80,7 +80,6 @@
                         <Label text="身份证号" GridPane.rowIndex="5" />
                         <Label text="恋爱情况" GridPane.rowIndex="6" />
                         <Label text="机构编号" GridPane.rowIndex="7" />
-                        <TextField fx:id="staffType" prefHeight="30.0" prefWidth="32.0" GridPane.columnIndex="1" />
                         <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="sex" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -88,6 +87,7 @@
                         <TextField fx:id="love" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <TextField fx:id="institutionID" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="staffType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane layoutY="355.0" prefHeight="91.0" prefWidth="299.0">
