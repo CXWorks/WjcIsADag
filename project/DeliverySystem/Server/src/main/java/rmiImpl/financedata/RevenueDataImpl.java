@@ -23,11 +23,17 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public RevenueDataImpl() throws RemoteException {
 		super();
 		Table_Name = "revenue";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	@Override
@@ -50,8 +56,8 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 		String insert = "insert into `" + Table_Name
 				+ "`(formID,formState,date,amount,deliverName,hallID,orderIDs,date_and_unit) " + "values('"
 				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL().toString() + "','"
-				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + IDs
-				+ "','" + po.getFormID().substring(2, 17) + "')";
+				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + IDs + "','"
+				+ po.getFormID().substring(2, 17) + "')";
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -61,8 +67,8 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 				this.insert(po);
 			} else {
 				result = new OperationMessage(false, "新建时出错：");
-				 System.err.println("新建时出错：");
-				 e.printStackTrace();
+				System.err.println("新建时出错：");
+				e.printStackTrace();
 			}
 		}
 
@@ -83,7 +89,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 				IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 			}
 			result = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-					rs.getString("deliverName"), rs.getString("hallID"),IDs);
+					rs.getString("deliverName"), rs.getString("hallID"), IDs);
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -122,10 +128,19 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX++;
+			String added = String.format("%07d", ID_MAX);
+			return "02" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);

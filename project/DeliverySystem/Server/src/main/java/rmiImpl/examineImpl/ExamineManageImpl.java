@@ -124,16 +124,18 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				result = pass_helper.getOrderDataService().insert((OrderPO) tmp);
 				break;
 			case PAYMENT:
-				result = pass_helper.getPaymentDataService().insert(
-						(PaymentPO) tmp);
+				PaymentPO pay = (PaymentPO) tmp;
+				result = pass_helper.getPaymentDataService().insert(pay);
+				pass_helper.getBankAccountDataService().modifyBalance(pay.getPayerAccID(), Double.parseDouble(pay.getAmount())*(-1));
 				break;
 			case RECEIVE:
 				result = pass_helper.getReceiveDataService().insert(
 						(ReceivePO) tmp);
 				break;
 			case REVENUE:
-				result = pass_helper.getRevenueDataService().insert(
-						(RevenuePO) tmp);
+				RevenuePO rev = (RevenuePO) tmp;
+				result = pass_helper.getRevenueDataService().insert(rev);
+				pass_helper.getBankAccountDataService().modifyBalance(null, Double.parseDouble(rev.getAmount()));
 				break;
 			case STORE_IN:
 				StoreInPO sInPO = (StoreInPO) tmp;

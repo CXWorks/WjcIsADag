@@ -27,12 +27,18 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public ReceiveDataImpl() throws RemoteException {
 		super();
 
 		Table_Name = "receive";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	public Connection getConn() {
@@ -56,8 +62,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 				this.insert(po);
 			} else {
 				result = new OperationMessage(false, "新建时出错：");
-				 System.err.println("新建时出错：");
-				 e.printStackTrace();
+				System.err.println("新建时出错：");
+				e.printStackTrace();
 			}
 		}
 
@@ -91,10 +97,19 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 	public String newID(String unitID) {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX++;
+			String added = String.format("%07d", ID_MAX);
+			return "03" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);

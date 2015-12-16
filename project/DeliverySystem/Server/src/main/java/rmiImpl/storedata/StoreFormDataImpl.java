@@ -40,12 +40,21 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	private String Store_Out;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX_In;
+	private int ID_MAX_Out;
 
 	public StoreFormDataImpl() throws RemoteException, MalformedURLException {
 		super();
 		Store_In = "store_in";
 		Store_Out = "store_out";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newIDStoreInPO(null);
+		this.newIDStoreOutPO(null);
+		ID_MAX_In--;
+		ID_MAX_Out--;
 	}
 
 	public Connection getConn() {
@@ -191,26 +200,35 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public String newIDStoreInPO(String unitID) throws RemoteException {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX_In++;
+			String added = String.format("%07d", ID_MAX_In);
+			return "05" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Store_In + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
+				ID_MAX_In = Math.max(ID_MAX_In, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
 			e.printStackTrace();
 		}
 
-		ID_MAX++;// 将该数字加一
-		if (ID_MAX > 9999999)
+		ID_MAX_In++;// 将该数字加一
+		if (ID_MAX_In > 9999999)
 			return null;
-		String added = String.format("%07d", ID_MAX);
+		String added = String.format("%07d", ID_MAX_In);
 
 		return "05" + target + added;
 	}
@@ -218,26 +236,35 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public String newIDStoreOutPO(String unitID) throws RemoteException {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX_Out++;
+			String added = String.format("%07d", ID_MAX_Out);
+			return "06" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Store_Out + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				ID_MAX = Math.max(ID_MAX, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
+				ID_MAX_Out = Math.max(ID_MAX_Out, Integer.parseInt(rs.getString("formID").substring(17)));// 最后7位编号
 			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
 			e.printStackTrace();
 		}
 
-		ID_MAX++;// 将该数字加一
-		if (ID_MAX > 9999999)
+		ID_MAX_Out++;// 将该数字加一
+		if (ID_MAX_Out > 9999999)
 			return null;
-		String added = String.format("%07d", ID_MAX);
+		String added = String.format("%07d", ID_MAX_Out);
 
 		return "06" + target + added;
 	}
@@ -339,11 +366,9 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
 		String selectIn = "select * from `" + Store_In + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000
-				+ "' > UNIX_TIMESTAMP(date)";
+				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000 + "' > UNIX_TIMESTAMP(date)";
 		String selectOut = "select * from `" + Store_Out + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000
-				+ "' > UNIX_TIMESTAMP(date)";
+				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000 + "' > UNIX_TIMESTAMP(date)";
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;

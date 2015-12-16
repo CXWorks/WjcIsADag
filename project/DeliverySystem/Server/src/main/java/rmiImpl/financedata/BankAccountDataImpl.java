@@ -3,6 +3,7 @@ package rmiImpl.financedata;
 import message.OperationMessage;
 import model.bankAccount.BankAccountOperation;
 import po.FormPO;
+import po.configurationdata.enums.PackEnum;
 import po.financedata.BankAccountPO;
 import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
@@ -27,6 +28,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private static String CompanyAccount = "001";
 	private int ID_MAX;
 
 	public BankAccountDataImpl() throws RemoteException {
@@ -235,6 +237,33 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		// System.err.println("查找数据库时出错：");
 		// e.printStackTrace();
 		// }
+
+		return result;
+	}
+
+	@Override
+	public OperationMessage modifyBalance(String ID,double money) throws RemoteException {
+		OperationMessage result = new OperationMessage();
+		double balance = 0;
+		if(ID==null){
+			ID = CompanyAccount;
+		}
+		String select = "select * from `" + Table_Name + "` where `bankID` = '" + ID + "'";
+		String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
+
+		ResultSet rs = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			balance = Double.parseDouble(rs.getString("balance")) + money;
+			statement = conn.prepareStatement(operation);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("没有对应账户");
+			e.printStackTrace();
+			result = new OperationMessage(false,"调整账户余额出错");
+		}
 
 		return result;
 	}

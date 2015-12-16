@@ -29,16 +29,23 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public DeliverDataImpl() throws RemoteException {
 		super();
 		Table_Name = "deliver";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	public Connection getConn() {
 		return conn;
 	}
+
 	public OperationMessage insert(DeliverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + Table_Name
@@ -58,8 +65,8 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 				this.insert(po);
 			} else {
 				result = new OperationMessage(false, "新建时出错：");
-				 System.err.println("新建时出错：");
-				 e.printStackTrace();
+				System.err.println("新建时出错：");
+				e.printStackTrace();
 			}
 		}
 		try {
@@ -101,10 +108,19 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public String newID(String unitID) {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String date = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = date.substring(0, 4) + date.substring(5, 7) + date.substring(8);
 		target = unitID + target;// 开具单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (date.equalsIgnoreCase(today)) {
+			this.ID_MAX++;
+			String added = String.format("%07d", ID_MAX);
+			return "04" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = date;
 		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -196,7 +212,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
 				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
 				String last = FormIDs.get(FormIDs.size() - 1);
-//				System.out.println(last);
+				// System.out.println(last);
 				if (last.substring(0, 9).equalsIgnoreCase("03" + HallID)) {
 					result.add(rs.getString("formID"));
 				}

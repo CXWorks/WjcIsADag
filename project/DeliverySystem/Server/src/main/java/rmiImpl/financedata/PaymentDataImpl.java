@@ -22,11 +22,17 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
+	private String today = "";// 格式eg.2015-11-22
+	private int ID_MAX;
 
 	public PaymentDataImpl() throws RemoteException {
 		super();
 		Table_Name = "payment";
 		conn = ConnecterHelper.getConn();
+
+		// 为today和ID_MAX初始化
+		this.newID(null);
+		ID_MAX--;
 	}
 
 	@Override
@@ -112,10 +118,19 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 	@Override
 	public String newID(String unitID) throws RemoteException {
 		ResultSet rs = null;
-		int ID_MAX = 0;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		target = unitID + target;// 单位编号+当天日期
+
+		// 当前日期与缓存日期一致
+		if (temp.equalsIgnoreCase(today)) {
+			this.ID_MAX++;
+			String added = String.format("%07d", ID_MAX);
+			return "01" + target + added;
+		}
+
+		// 当前日期与缓存日期不一致
+		today = temp;
 		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -177,14 +192,14 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		PaymentDataImpl t = new PaymentDataImpl();
-//		Calendar a = Calendar.getInstance();
-//		Calendar b = Calendar.getInstance();
-//		a.set(Calendar.YEAR, 2014);
-//		b.set(Calendar.YEAR, 2015);
-//		System.out.println(t.getByTime(a, b).size());
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// PaymentDataImpl t = new PaymentDataImpl();
+	// Calendar a = Calendar.getInstance();
+	// Calendar b = Calendar.getInstance();
+	// a.set(Calendar.YEAR, 2014);
+	// b.set(Calendar.YEAR, 2015);
+	// System.out.println(t.getByTime(a, b).size());
+	// }
 
 	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {

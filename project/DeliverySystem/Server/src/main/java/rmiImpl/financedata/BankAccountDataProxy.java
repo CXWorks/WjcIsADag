@@ -88,4 +88,11 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 		return null;
 	}
 
+	@Override
+	public OperationMessage modifyBalance(String ID, double money) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return bankAccountDataService.modifyBalance(ID,money);
+		return null;
+	}
+
 }
