@@ -158,9 +158,11 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	public OperationMessage setLocation(String centerID, StoreLocation location) throws RemoteException {
 		this.setTableName(location.getArea());
 		OperationMessage result = new OperationMessage();
-		String updata = "update " + Table_Name + " set orderID= '" + location.getOrderID() + "` where `centerID` = '"
+		
+		String updata = "update `" + Table_Name + "` set `orderID`= '" + location.getOrderID() + "` where `centerID` = '"
 				+ centerID + "' and `area` = '" + area + "' and `row` = '" + location.getRow() + "' and `shelf` = '"
 				+ location.getShelf() + "' and `position` = '" + location.getPosition() + "'";
+		System.out.println(updata);
 		try {
 			statement = conn.prepareStatement(updata);
 			statement.executeUpdate();

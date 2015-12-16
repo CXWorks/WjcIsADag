@@ -141,6 +141,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements
 				StoreInPO sInPO = (StoreInPO) tmp;
 				sInPO.setMoney(pass_helper.getOrderDataService().getFormPO(sInPO.getOrderID()).getMoney());
 				result = pass_helper.getStoreFormDataService().updateStoreInPO(sInPO);
+				System.out.println("fuck"+sInPO.getLocation().getPosition());
 				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),sInPO.getLocation());//改变数据库中这个位置的状态
 				break;
 			case STORE_OUT:

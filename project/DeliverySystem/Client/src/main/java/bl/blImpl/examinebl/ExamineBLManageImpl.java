@@ -63,6 +63,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		}
 		try {
 			return examineManageService.passForm(po);
+			
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
