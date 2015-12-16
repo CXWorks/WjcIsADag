@@ -43,4 +43,16 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLLoginService#logOut()
+	 */
+	@Override
+	public OperationMessage logOut() {
+		try {
+			return this.accountDataService.setAccount(UserInfo.getUserID(), false);
+		} catch (RemoteException e) {
+			return new OperationMessage(false, "net error");
+		}
+	}
+
 }

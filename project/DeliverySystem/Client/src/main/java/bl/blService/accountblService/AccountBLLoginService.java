@@ -15,5 +15,7 @@ public interface AccountBLLoginService {
 	 * @return 返回操作结果
 	 */
 	public OperationMessage checkAccount(String id,String password);
+	
+	public OperationMessage logOut();
 
 }
