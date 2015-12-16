@@ -93,10 +93,10 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	@Override
 	public ArrayList<LogPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		// TODO Auto-generated method stub
 		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
 				+ "' < UNIX_TIMESTAMP(`time`) " + "and '" + end.getTime().getTime() / 1000
 				+ "' > UNIX_TIMESTAMP(`time`)";
+
 		ResultSet rs = null;
 		LogPO log = null;
 		ArrayList<LogPO> result = new ArrayList<LogPO>();

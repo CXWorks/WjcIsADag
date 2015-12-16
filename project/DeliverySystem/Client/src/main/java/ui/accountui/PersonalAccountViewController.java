@@ -29,20 +29,18 @@ public class PersonalAccountViewController {
         return FXMLLoader.load(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
     }
     
-	 @FXML
-	    public void initialize(){
-//		 staff_Label.setText(UserInfo.getStaffType().toString());
-//		 id_Label.setText(UserInfo.getUserID());
-	 }
+	@FXML
+    public void initialize(){
+	    staff_Label.setText(UserInfo.getStaffType().toString());
+	    id_Label.setText(UserInfo.getUserID());
+	}
 	
     
     public void editPassword(ActionEvent actionEvent)  throws IOException {
         AccountVO AccountVO = accountManageService.getAccountVO(UserInfo.getUserID());
-        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog
-                (AccountVO);
+        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO);
 
         controller.stage.showAndWait();
-
     }
 
     public void logout(ActionEvent actionEvent) {

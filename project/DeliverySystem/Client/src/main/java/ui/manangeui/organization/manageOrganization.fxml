@@ -28,9 +28,9 @@
             <Label fx:id="institutionType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="编号" GridPane.rowIndex="2" />
             <Label fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="区域" GridPane.rowIndex="3" />
+            <Label fx:id="areaLabel" text="区域" GridPane.rowIndex="3" />
             <TextField fx:id="area" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="最近中心" GridPane.rowIndex="4" />
+            <Label fx:id="nearCenterLabel" text="最近中心" GridPane.rowIndex="4" />
             <TextField fx:id="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>

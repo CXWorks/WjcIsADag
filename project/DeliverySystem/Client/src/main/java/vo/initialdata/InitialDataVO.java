@@ -68,11 +68,11 @@ public class InitialDataVO extends InfoVO{
     	this.centers=(ArrayList<CenterVO>) this.trans((ArrayList<? extends CommonPO>) po.getCenters());
     	this.priceVO=new PriceVO(po.getPricePO());
     	this.proportionVO=new ProportionVO(po.getProportionPO());
-    	this.salaryStrategyVO=(ArrayList<SalaryStrategyVO>) this.trans((ArrayList<? extends CommonPO>) po.getSalaryStrategyPO());
+    	this.salaryStrategyVO = (ArrayList<SalaryStrategyVO>) this.trans((ArrayList<? extends CommonPO>) po.getSalaryStrategyPO());
     	this.packVO=new PackVO(po.getPackPO());
     	this.accountVOs=(ArrayList<AccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getAccountPOs());
     	this.city2dvos=(ArrayList<City2DVO>) this.trans((ArrayList<? extends CommonPO>) po.getCity2dpos());
-    	this.storeModels=new ArrayList<>(po.getStoreModels());
+		this.storeModels=new ArrayList<>(po.getStoreModels());
     }
 
     private ArrayList<? extends CommonVO> trans(ArrayList<? extends CommonPO> src){
@@ -120,7 +120,6 @@ public class InitialDataVO extends InfoVO{
 		return version;
 	}
 	/**
-	 * @param infoEnum
 	 * @param version
 	 * @param dbName
 	 * @param storeModels

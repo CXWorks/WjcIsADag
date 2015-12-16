@@ -12,6 +12,7 @@ import ui.manangeui.staff.ManageStaffController;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,6 +31,8 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public Label ID;
 	public TextField area;
 	public TextField nearCenter;
+	public Label areaLabel;
+	public Label nearCenterLabel;
 	
 	public InstitutionVO institutionVO;
 	
@@ -61,6 +64,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         controller.outsideTabPane = outsideTabPane;
         controller.staffTab = staffTab;
         controller.staffController = staffController;
+        controller.continueInit();
 
 		if(father == null){
 			pane.getChildren().remove(controller.back_Btn);
@@ -71,23 +75,28 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 						father.getChildren().add(before);}
 			);
 		}
-
+		
 		return pane;
+	}
+	
+	public void continueInit(){
+		institutionVOs=this.getInstitutionVOs();
+		tableView.setItems(FXCollections.observableList(institutionVOs));
+		tableView.getSelectionModel().selectedItemProperty().addListener(this);
+		tableView.getSelectionModel().selectFirst();
+		institutionVO=tableView.getSelectionModel().getSelectedItem();
 	}
 	
 	public void initialize(){
         // TODO test jump
-//		institutionVOs=this.getInstitutionVOs();
-//		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
-//		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
-//		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
-//		tableView.setItems(FXCollections.observableList(institutionVOs));
-//		tableView.getSelectionModel().selectedItemProperty().addListener(this);
-//		tableView.getSelectionModel().selectFirst();
-//		institutionVO=tableView.getSelectionModel().getSelectedItem();
+		
+		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
+		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
+		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
+		this.center_textfield();
 	}
 	private InstitutionVO makeInstitutionVO(){
-		if (institutionType.getText()=="CENTER") {
+		if (institutionType.getText()=="中转中心") {
 			return new CenterVO(manageblCenterService.newCenterID(city.getText()), city.getText());
 		}
 		else {
@@ -97,12 +106,14 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	
 	public void newCenter(){
 		this.clear();
-		this.institutionType.setText(InfoEnum.CENTER.name());
+		this.institutionType.setText(InfoEnum.CENTER.getChinese());
+		this.center_textfield();
 		isNew=true;
 	}
 	public void newHall(){
 		this.clear();
-		this.institutionType.setText(InfoEnum.HALL.name());
+		this.institutionType.setText(InfoEnum.HALL.getChinese());
+		this.hall_textfield();
 		isNew=true;
 	}
 	public void clear(){
@@ -183,7 +194,24 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 		institutionType.setText(src.getInfoEnum().name());
 		city.setText(src.getCity());
 		if (src.getInfoEnum()==InfoEnum.HALL) {
+			this.hall_textfield();
 			area.setText(((HallVO)src).getArea());
 		}
+		else {
+			this.center_textfield();
+		}
+	}
+	//
+	private void hall_textfield(){
+		areaLabel.setVisible(true);
+		nearCenterLabel.setVisible(true);
+		area.setVisible(true);
+		nearCenter.setVisible(true);
+	}
+	private void center_textfield(){
+		areaLabel.setVisible(false);
+		nearCenterLabel.setVisible(false);
+		area.setVisible(false);
+		nearCenter.setVisible(false);
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import message.OperationMessage;
 import bl.blService.manageblService.ManageblCarService;
 import bl.blService.manageblService.ManageblDriverService;
 import factory.CarFactory;
@@ -70,8 +71,8 @@ public class ManageCarDriverController {
 			);
 		}
 
-        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
-        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
+//        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
+//        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
 
 		return pane;
 	}
@@ -79,6 +80,8 @@ public class ManageCarDriverController {
 	@FXML
     // TODO test jump : change the name
 	public void initialize(){
+		carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
+		drivervo_list = manageblDriverService.getStaffByInstitution();
 		for(int i=0;i<carvo_list.size();i++){
 			cars.add(new CarAbstractCheckItem(carvo_list.get(i)));
 		}
@@ -153,8 +156,15 @@ public class ManageCarDriverController {
 		CarAbstractCheckItem selected= new CarAbstractCheckItem(car);
 		controller.stage.showAndWait();
 
-		car_TableView.getItems().add(selected);
-		manageblCarService.addCar(car);
+		;
+		OperationMessage msg = manageblCarService.addCar(car);
+        if(msg.operationResult){
+            System.out.println("add successfully");
+            initialize();
+        }else{
+            System.out.println("add fail: " + msg.getReason());
+        }
+		
 	}
 
 	@FXML
@@ -193,8 +203,15 @@ public class ManageCarDriverController {
 		for (int i = 0; i < cars.size(); i++) {
 			if(cars.get(i).getSelected()){
 				cars.remove(i);
-				car_TableView.getItems().remove(i);
-				manageblCarService.deleteCar(cars.get(i).getVo());
+//				car_TableView.getItems().remove(i);
+				
+				OperationMessage msg =manageblCarService.deleteCar(cars.get(i).getVo());
+		        if(msg.operationResult){
+		            System.out.println("delete successfully");
+		            initialize();
+		        }else{
+		            System.out.println("delete fail: " + msg.getReason());
+		        }
 			}
 		}
 	}
@@ -208,9 +225,17 @@ public class ManageCarDriverController {
 		CarAbstractCheckItem car= new CarAbstractCheckItem(selected);
 		controller.stage.showAndWait();
 
-		car_TableView.getItems().add(car);
+//		car_TableView.getItems().add(car);
 
-		manageblCarService.modifyCar(selected);
+		
+		
+		OperationMessage msg =manageblCarService.modifyCar(selected);
+        if(msg.operationResult){
+            System.out.println("edit successfully");
+            initialize();
+        }else{
+            System.out.println("edit fail: " + msg.getReason());
+        }
 	}
 
 	private boolean isAllCarSelected(){
@@ -274,7 +299,6 @@ public class ManageCarDriverController {
 	}
 
 	public void addDriver(ActionEvent actionEvent) throws IOException {
-		//TODO Problem!!!!!!!!!!!!!!!!
 		DriverVO driver =new DriverVO();
 
 		DriverNewDialogController controller = DriverNewDialogController.newDialog
@@ -282,8 +306,16 @@ public class ManageCarDriverController {
 
 		controller.stage.showAndWait();
 		DriverAbstractCheckItem selected= new DriverAbstractCheckItem(driver);
-		driver_TableView.getItems().add(selected);
-		manageblDriverService.addStaff(driver);
+		
+//		driver_TableView.getItems().add(selected);
+
+		OperationMessage msg =manageblDriverService.addStaff(driver);
+        if(msg.operationResult){
+            System.out.println("add successfully");
+            initialize();
+        }else{
+            System.out.println("add fail: " + msg.getReason());
+        }
 	}
 
 
@@ -321,7 +353,14 @@ public class ManageCarDriverController {
 			if(drivers.get(i).getSelected()){
 				drivers.remove(i);
 				driver_TableView.getItems().remove(i);
-				manageblDriverService.dismissStaff(drivers.get(i).getVo());
+				
+				OperationMessage msg =manageblDriverService.dismissStaff(drivers.get(i).getVo());
+		        if(msg.operationResult){
+		            System.out.println("delete successfully");
+		            initialize();
+		        }else{
+		            System.out.println("delete fail: " + msg.getReason());
+		        }
 			}
 		}
 	}
@@ -334,11 +373,14 @@ public class ManageCarDriverController {
 
 		controller.stage.showAndWait();
 		DriverAbstractCheckItem driver= new DriverAbstractCheckItem(selected);
-
-
-		//以下好像不是这么干的
-		driver_TableView.getItems().add(driver);
-		manageblDriverService.modifyStaff(selected);
+		
+		OperationMessage msg =manageblDriverService.modifyStaff(selected);
+        if(msg.operationResult){
+            System.out.println("edit successfully");
+            initialize();
+        }else{
+            System.out.println("edit fail: " + msg.getReason());
+        }
 	}
 
 	private boolean isAllDriverSelected(){

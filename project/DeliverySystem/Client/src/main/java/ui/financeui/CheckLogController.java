@@ -19,6 +19,7 @@ import vo.systemvo.LogVO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by Sissel on 2015/11/27.
  */
 public class CheckLogController {
-    private List<LogVO> logVOs;
+    private List<LogVO> logVOs = new ArrayList<>();
 
     public TableView<LogVO> log_TableView;
     public DatePicker begin_DatePicker;
@@ -63,8 +64,11 @@ public class CheckLogController {
     public void search(ActionEvent actionEvent) {
         Calendar begin = TimeConvert.convertDate(begin_DatePicker.getValue());
         Calendar end = TimeConvert.convertDate(end_DatePicker.getValue());
-
-        logVOs.clear();
+        if(logVOs!=null)
+        	logVOs.clear();
+        else {
+			logVOs=new ArrayList<LogVO>();
+		}
         logVOs.addAll(logblService.dateSearch(begin, end));
         log_TableView.getItems().clear();
         log_TableView.getItems().addAll(logVOs);

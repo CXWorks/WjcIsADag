@@ -2,7 +2,10 @@ package ui.accountui;
 
 import java.io.IOException;
 
+import bl.blService.accountblService.AccountBLManageService;
+import factory.AccountFactory;
 import main.Main;
+import ui.common.checkFormat.field.PasswordOnlyField;
 import ui.financeui.AccountEditDialogController;
 import ui.financeui.AccountEditDialogController.EditType;
 import vo.accountvo.AccountVO;
@@ -18,13 +21,14 @@ import javafx.stage.Stage;
 
 public class personAccountViewEditDialogController {
 
-	public PasswordField originalPassWord_Field;
-	public PasswordField newPassWord_Field;
-	public PasswordField againNewPassWord_Field;
+	public PasswordOnlyField originalPassWord_Field;
+	public PasswordOnlyField newPassWord_Field;
+	public PasswordOnlyField againNewPassWord_Field;
 
 	public Label attention_Label;
 
 	private AccountVO editVO =  new AccountVO();
+    private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
 	public Stage stage;
 
 	public static personAccountViewEditDialogController newDialog(AccountVO editVO) throws IOException {
@@ -36,7 +40,7 @@ public class personAccountViewEditDialogController {
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 
-		personAccountViewEditDialogController controller = (personAccountViewEditDialogController)loader.getController();
+		personAccountViewEditDialogController controller = loader.getController();
 		controller.editVO = editVO;
 		controller.stage = stage;
 
@@ -44,9 +48,9 @@ public class personAccountViewEditDialogController {
 	}
 
 	public boolean check(String pw0,String pw1,String pw2){
-		if(pw1==pw2&&pw0==editVO.password){
+		if(pw1.equals(pw2) && pw0.equals(editVO.password) ){
 			return true;
-		}if(pw1!=pw2){
+		}if( !pw1.equals(pw2) ){
 			originalPassWord_Field.clear();
 			newPassWord_Field.clear();
 			againNewPassWord_Field.clear();
@@ -70,6 +74,9 @@ public class personAccountViewEditDialogController {
 			editVO.password = newPassWord_Field.getText();
 
 			System.out.println("modify password successfully!");
+
+            editVO.password = newPassWord_Field.getText();
+			accountBLManageService.modifyAccount(editVO);
 
 			stage.close();
 		}else{

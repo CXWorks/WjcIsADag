@@ -55,6 +55,18 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
+
+        // A thread to initialize the net connection
+//        new Thread(
+//                () -> {
+//                    try{
+//
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//        ).start();
+
         CacheHelper.initializeCache();
         launch(args);
     }
