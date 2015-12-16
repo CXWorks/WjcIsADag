@@ -158,13 +158,12 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	public OperationMessage setLocation(String centerID, StoreLocation location) throws RemoteException {
 		this.setTableName(location.getArea());
 		OperationMessage result = new OperationMessage();
-		
-		String updata = "update `" + Table_Name + "` set `orderID`= '" + location.getOrderID() + "` where `centerID` = '"
-				+ centerID + "' and `area` = '" + area + "' and `row` = '" + location.getRow() + "' and `shelf` = '"
-				+ location.getShelf() + "' and `position` = '" + location.getPosition() + "'";
-		System.out.println(updata);
+		String update = "update `" + Table_Name + "` set `orderID` = '" + location.getOrderID()
+				+ "' where `centerID` = '" + centerID + "' and `area` = '" + area + "' and `row` = '" + location.getRow()
+				+ "' and `shelf` = '" + location.getShelf() + "' and `position` = '" + location.getPosition() + "'";
+		System.out.println(update);
 		try {
-			statement = conn.prepareStatement(updata);
+			statement = conn.prepareStatement(update);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "修改时出错：");
@@ -179,7 +178,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			throws RemoteException {
 		this.setTableName(code);
 		ResultSet rs = null;
-		String select = "select * from " + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
+		String select = "select * from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
 				+ "' and `row` = '" + row + "' and `shelf` = '" + shelf + "' and `position` = '" + position + "'";
 		try {
 			statement = conn.prepareStatement(select);
@@ -223,7 +222,9 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	public static void main(String[] args) {
 		try {
 			StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
-			System.out.println(tDataImpl.getModels().size());
+			StoreLocation location = new StoreLocation(StoreAreaCode.ROAD, 1, 1, 1, "1208000001");
+			 tDataImpl.setLocation("0250001", location);
+//			tDataImpl.getLocation("0250001", StoreAreaCode.ROAD, 1, 1, 1);
 
 		} catch (RemoteException e) {
 			e.printStackTrace();
