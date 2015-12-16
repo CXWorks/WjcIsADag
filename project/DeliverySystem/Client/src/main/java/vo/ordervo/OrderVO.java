@@ -2,6 +2,7 @@ package vo.ordervo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 import po.FormEnum;
 import po.FormStateEnum;
@@ -37,11 +38,42 @@ public class OrderVO extends FormVO {
 	private PackingEnum pack;
 	private String receivePeople;
 	private Calendar receiveDate;
+	//
+	private int len;
+	private int wid;
+	private int hei;
+	private int V;
+	private int W;
 
 	public OrderVO(String formID) {
 		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID);
 	}
-
+	public void calculateVolume(){
+		StringTokenizer stringTokenizer=new StringTokenizer(volume, "*, ");
+		len=Integer.parseInt(stringTokenizer.nextToken());
+		wid=Integer.parseInt(stringTokenizer.nextToken());
+		hei=Integer.parseInt(stringTokenizer.nextToken());
+		V=len*wid*hei;
+		W=Integer.parseInt(weight);
+	}
+	public int getV(){
+		return V;
+	}
+	public int getFormIDInt(){
+		return Integer.parseInt(formID);
+	}
+	public int getLen() {
+		return len;
+	}
+	public int getWid() {
+		return wid;
+	}
+	public int getHei() {
+		return hei;
+	}
+	public int getW() {
+		return W;
+	}
 	/**
 	 * @param nameFrom
 	 * @param nameTo
