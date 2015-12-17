@@ -81,7 +81,8 @@ public class ConfigurationController {
     	int cut=src.indexOf(',');
     	double x=Double.parseDouble(src.substring(0, cut));
     	double y=Double.parseDouble(src.substring(cut+1, src.length()));
-    	return new City2DVO(name, x, y);
+    	//TODO 从界面获取城市编号
+    	return new City2DVO(name, x, y,"ID");
     }
 
 	//调整城市距离
@@ -90,7 +91,7 @@ public class ConfigurationController {
 		City2DVO c2=this.makeCity2DVO(city2.getText(), "上海");
 		City2DVO c3=this.makeCity2DVO(city3.getText(), "南京");
 		City2DVO c4=this.makeCity2DVO(city4.getText(), "广州");
-		
+
 		configurationBLService.modify(c1);
 		configurationBLService.modify(c2);
 		configurationBLService.modify(c3);
@@ -210,7 +211,7 @@ public class ConfigurationController {
 		four_Two_Label.setText(Double.toString(city1.distance(city2)));
 		city1=gz;
 		four_Three_Label.setText(Double.toString(city1.distance(city2)));
-		
+
 		//
 		this.city1.setText(bj.getXY());
 		this.city2.setText(sh.getXY());

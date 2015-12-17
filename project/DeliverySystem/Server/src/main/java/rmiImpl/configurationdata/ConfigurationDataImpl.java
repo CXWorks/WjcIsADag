@@ -77,8 +77,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + City2D + "`(name,x,y) " + "values('" + po.getName() + "','" + po.getX()
-				+ "','" + po.getY() + "')";
+		String insert = "insert into `" + City2D + "`(name,x,y,ID) " + "values('" + po.getName() + "','" + po.getX()
+				+ "','" + po.getY()+ "','" + po.getID() + "')";
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -135,7 +135,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"));
+			result = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),rs.getString("ID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -154,7 +154,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"));
+				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),rs.getString("ID"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {

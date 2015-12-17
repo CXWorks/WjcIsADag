@@ -211,4 +211,11 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		return result;
 	}
 
+	@Override
+	public OperationMessage addFormID(String orderID, String formID) throws RemoteException {
+		OrderPO po = this.getFormPO(orderID);
+		po.addFormID(formID);
+		return this.update(po);
+	}
+
 }

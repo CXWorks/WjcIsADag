@@ -31,7 +31,7 @@ public class OrderPO extends FormPO implements Serializable {
 	private String targetHallID;
 	private String receivePeople;
 	private Calendar receiveDate;
-	
+
 	public OrderPO(String formID,String nameFrom, String nameTo, String unitFrom,
 			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
@@ -144,11 +144,11 @@ public class OrderPO extends FormPO implements Serializable {
 	public String getAddressFrom(){
 		return addressFrom;
 	}
-	
+
 	public String getAddressTo(){
 		return addressTo;
 	}
-	
+
 	public String getPhoneNumFrom() {
 		return phoneNumFrom;
 	}
@@ -188,12 +188,12 @@ public class OrderPO extends FormPO implements Serializable {
 	public DeliverTypeEnum getType() {
 		return type;
 	}
-	
+
 	public PackingEnum getPack(){
 		return pack;
 	}
-	
-	
+
+
 	public String getMoney() {
 		return money;
 	}
@@ -211,7 +211,7 @@ public class OrderPO extends FormPO implements Serializable {
 			break;
 		}
 	}
-	
+
 	public void setPack(String pack) {
 		switch (pack) {
 		case "PAPER":
@@ -228,7 +228,7 @@ public class OrderPO extends FormPO implements Serializable {
 			break;
 		}
 	}
-	
+
 	public ArrayList<String> getFormIDs() {
 		return FormIDs;
 	}
@@ -264,6 +264,9 @@ public class OrderPO extends FormPO implements Serializable {
 		ans.set(Calendar.MONTH, m);
 		ans.set(Calendar.DAY_OF_MONTH, d);
 		return ans;
+	}
+	public void addFormID(String formID){
+		this.FormIDs.add(formID);
 	}
 
 }
