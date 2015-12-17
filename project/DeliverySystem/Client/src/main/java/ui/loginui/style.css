@@ -1,6 +1,7 @@
 .background {
 
 	-fx-background-image : url(login/background.png);
+	-fx-background-size: cover;
 	
 }
 
@@ -27,9 +28,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #c9c8c8;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -137,7 +138,6 @@
     -fx-font-size: 10pt;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 	-fx-size:13;
-	
 }
 
 .button:hover {
