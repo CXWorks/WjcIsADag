@@ -154,7 +154,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),rs.getString("ID"));
+				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),"011");
 				result.add(temp);
 			}
 		} catch (SQLException e) {

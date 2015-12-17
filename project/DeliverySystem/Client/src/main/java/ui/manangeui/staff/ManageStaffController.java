@@ -32,10 +32,10 @@ import vo.managevo.staff.StaffVO;
 
 public class ManageStaffController implements ChangeListener<StaffVO> {
 	public ChoiceBox<SimpleEnumProperty<StaffTypeEnum>> staffType_ChoiceBox;
+	public ChoiceBox<SimpleEnumProperty<SexEnum>> sex_ChoiceBox;
 	public Label ID;
 	public TextField name;
 	public TextField age;
-	public TextField sex;
 	public TextField personID;
 	public TextField love;
 	public TextField institutionID;
@@ -58,7 +58,10 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 	private boolean isNew = false;
 	private Pane selfPane;
 
-	private StaffTypeEnum type = StaffTypeEnum.BURSAR;
+	private StaffTypeEnum staffTypeEnumType = StaffTypeEnum.BURSAR;
+	private SexEnum sexEnum=SexEnum.MAN;
+	
+	private InstitutionVO institutionVO;
 
 	@FXML
 	public static ManageStaffController launch(Pane father, Pane before, ManageblStaffService service)
@@ -91,12 +94,17 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		// staffVOs =
 		// manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
 		// staffTable.setItems(FXCollections.observableList(staffVOs));
-
+		
 		// initialize the choice box
 		staffType_ChoiceBox.setItems(Enum2ObservableList.transit(StaffTypeEnum.values()));
 		staffType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			type = newValue.getEnum();
+			staffTypeEnumType = newValue.getEnum();
 		});
+		staffType_ChoiceBox.getSelectionModel().selectFirst();
+		sex_ChoiceBox.setItems(Enum2ObservableList.transit(SexEnum.values()));
+		sex_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((obser,old,New)
+				->sexEnum=New.getEnum());
+		sex_ChoiceBox.getSelectionModel().selectFirst();
 
 		typeColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
@@ -115,8 +123,11 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 
 	//
 	public void fillStaffTable() {
-		staffVOs = manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
-		this.staffTable.setItems(FXCollections.observableList(staffVOs));
+		if (this.institutionVO!=null) {
+			staffVOs = manageblStaffService.getStaffByInstitution(this.institutionVO.getInstitutionID());
+			this.staffTable.setItems(FXCollections.observableList(staffVOs));
+		}
+		
 	}
 
 	//
@@ -137,7 +148,6 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		ID.setText(null);
 		name.clear();
 		age.clear();
-		sex.clear();
 		personID.clear();
 		love.clear();
 		institutionID.clear();
@@ -148,6 +158,9 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 	public void newStaff() {
 		this.cancel();
 		this.isNew = true;
+		if (this.institutionVO!=null) {
+			institutionID.setText(institutionVO.getInstitutionID());
+		}
 	}
 
 	public void deleteStaff() {
@@ -164,17 +177,15 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		String nID = ID.getText();
 		String nName = name.getText();
 		String nAge = age.getText();
-		String nSex = sex.getText();
 		String nPersonID = personID.getText();
 		String nLove = love.getText();
 		String nInstitutionID = institutionID.getText();
 		//
-		if ( nName.length() * nAge.length() * nSex.length() * nPersonID.length() * nLove.length()
+		if ( nName.length() * nAge.length() * nPersonID.length() * nLove.length()
 				* nInstitutionID.length() == 0) {
 			return null;
 		}
-		StaffVO ans = new StaffVO(type, nID, nName, Integer.parseInt(nAge), nPersonID, null, nLove, nInstitutionID);
-		ans.setSex(nSex);
+		StaffVO ans = new StaffVO(staffTypeEnumType, nID, nName, Integer.parseInt(nAge), nPersonID, sexEnum, nLove, nInstitutionID);
 		return ans;
 	}
 
@@ -182,19 +193,17 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		String nID = ID.getText();
 		String nName = name.getText();
 		String nAge = age.getText();
-		String nSex = sex.getText();
 		String nPersonID = personID.getText();
 		String nLove = love.getText();
 		String nInstitutionID = institutionID.getText();
 		//
-		if ( nName.length() * nAge.length() * nSex.length() * nPersonID.length() * nLove.length()
+		if ( nName.length() * nAge.length() * nPersonID.length() * nLove.length()
 				* nInstitutionID.length() == 0) {
 			return null;
 		}
 		//
-		StaffVO staffVO = new StaffVO(type, null, nName, Integer.parseInt(nAge), nPersonID,
-				SexEnum.MAN, nLove, nInstitutionID);
-		staffVO.setSex(nSex);
+		StaffVO staffVO = new StaffVO(staffTypeEnumType, null, nName, Integer.parseInt(nAge), nPersonID,
+				sexEnum, nLove, nInstitutionID);
 		staffVO.setID(manageblStaffService.newStaffID(staffVO.getStaff(), staffVO.getInstitutionID()));
 		return staffVO;
 	}
@@ -216,18 +225,20 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		if (src == null) {
 			return;
 		}
-		type = src.getStaff();
-		this.staffType_ChoiceBox.getSelectionModel().clearAndSelect(type.getNum());
+		staffTypeEnumType = src.getStaff();
+		this.staffType_ChoiceBox.getSelectionModel().clearAndSelect(staffTypeEnumType.getNum());
 		this.age.setText(Integer.toString(src.getAge()));
 		this.ID.setText(src.getID());
 		this.institutionID.setText(src.getInstitutionID());
 		this.love.setText(src.getLove());
 		this.name.setText(src.getName());
 		this.personID.setText(src.getPersonID());
-		this.sex.setText(src.getSex().getChinese());
+		sexEnum=src.getSex();
+		this.sex_ChoiceBox.getSelectionModel().clearAndSelect(sexEnum.getNum());
 	}
 
 	public void initLabel(InstitutionVO institutionVO) {
+		this.institutionVO=institutionVO;
 		if (institutionVO.getInfoEnum() == InfoEnum.CENTER) {
 			CenterVO centerVO = (CenterVO) institutionVO;
 			this.setLabel(centerVO.getCenterID(), centerVO.getCity(), null);
@@ -235,6 +246,7 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 			HallVO hallVO = (HallVO) institutionVO;
 			this.setLabel(hallVO.getHallID(), hallVO.getCity(), hallVO.getArea());
 		}
+		this.fillStaffTable();
 	}
 
 	private void setLabel(String ID, String city, String area) {
