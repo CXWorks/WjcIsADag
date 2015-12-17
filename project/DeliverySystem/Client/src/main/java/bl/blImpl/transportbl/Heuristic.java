@@ -70,15 +70,51 @@ public class Heuristic implements LoadService {
 				out.add(i-1);
 			}
 		}
+		LinkedList<Integer> in=new LinkedList<Integer>();
 		//之后为二维平面问题
 		LinkedList<int[]> position=new LinkedList<int[]>();
 		int[] init={0,0,CAR_LEN,CAR_WIDTH};
 		position.add(init);
 		for (int i = 0; i < head.size(); i++) {
-			//TODO last step
+			int[] temp=src[head.get(i)];
+			boolean flag=false;
+			for (int j = 0; j < position.size()&&!flag; j++) {
+				int[] posit=position.get(i);
+				if (this.checkIn(posit, temp)) {
+					flag=true;
+					position.remove(posit);
+					int[][] ttemp=this.generateLo(posit, temp);
+					position.add(ttemp[0]);
+					position.add(ttemp[1]);
+					in.add(head.get(i));
+				}
+			}
+			if (!flag) {
+				out.add(head.get(i));
+			}
 		}
 		//
+		for (int i = 1; i < used.length; i++) {
+			if (used[i]>=1) {
+				if (in.contains(used[i]-1)) {
+					in.add(i-1);
+				}
+				else {
+					out.add(i-1);
+				}
+			}
+		}
+		//
+		ans.put(true, in);
+		ans.put(false, out);
 		return ans;
+	}
+	
+	private boolean checkIn(int[] posit,int[] src){
+		if (src[0]+posit[0]<posit[2]&&posit[1]+src[1]<posit[3]) {
+			return true;
+		}
+		return false;
 	}
 	
 	private boolean check(int sq,int[] info,int h){
@@ -86,5 +122,33 @@ public class Heuristic implements LoadService {
 			return true;	
 		}
 		return false;
+	}
+	
+	private int[][] generateLo(int[] posit,int[] src){
+		int[][] ans=new int[2][4];
+		if ((posit[2]-posit[0]-src[0])*src[1]>=(posit[3]-posit[1]-src[1])*src[0]) {
+			ans[0][0]=src[0]+posit[0];
+			ans[0][1]=posit[1];
+			ans[0][2]=posit[2];
+			ans[0][3]=posit[3];
+			//
+			ans[1][0]=posit[0];
+			ans[1][1]=posit[1]+src[1];
+			ans[1][2]=src[0]+posit[0];
+			ans[1][3]=posit[3];
+			
+		}
+		else {
+			ans[0][0]=src[0]+posit[0];
+			ans[0][1]=posit[1];
+			ans[0][2]=posit[2];
+			ans[0][3]=posit[1]+src[1];
+			//
+			ans[1][0]=posit[0];
+			ans[1][1]=posit[1]+src[1];
+			ans[1][2]=posit[2];
+			ans[1][3]=posit[3];
+		}
+		return ans;
 	}
 }
