@@ -1,4 +1,4 @@
-package bl.blImpl.transportbl;
+package bl.blImpl.transportbl.loadhelp;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,84 +8,23 @@ import java.util.Map;
 import vo.ordervo.OrderVO;
 
 /** 
- * Client//bl.blImpl.transportbl//LoadHelper.java
+ * Client//bl.blImpl.transportbl.loadhelp//Greedy.java
  * @author CXWorks
- * @date 2015年12月16日 下午4:17:42
+ * @date 2015年12月17日 下午5:09:19
  * @version 1.0 
  */
-public class LoadHelper {
-	private static final int CAR_H=20;
-	private static final int CAR_LEN=40;
-	private static final int CAR_WIDTH=30;
-	private static final int MAX_LOAD=3000;
-	public Map<Boolean, List<Integer>> greedy(List<OrderVO> src){
-		int[][] num=new int[src.size()][6];
-		int index=0;
-		for (OrderVO orderVO:src) {
-			orderVO.calculateVolume();
-			num[index][0]=orderVO.getLen();
-			num[index][1]=orderVO.getWid();
-			num[index][2]=orderVO.getHei();
-			num[index][3]=orderVO.getV();
-			num[index][4]=orderVO.getW();
-			num[index][5]=orderVO.getFormIDInt();
-			this.weihu(num[index]);
-		}
-		//bubble sort
-		for (int i = 0; i < num.length-1; i++) {
-			for (int j = i+1; j < num.length; j++) {
-				if (!this.comp(num[i], num[j])) {
-					this.swap(num[i], num[j]);
-				}
-			}
-		}
-		//
-		return this.greedyImpl(num);
-	}
-	private void weihu(int[] src){
-		for (int i = 0; i < 2; i++) {
-			for (int j = i+1; j < 3; j++) {
-				if (src[i]<src[j]) {
-					int te=src[i];
-					src[i]=src[j];
-					src[j]=te;
-				}
-			}
-		}
-	}
-	
-	private boolean comp(int[] a,int[] b){
-		if (a[3]>b[3]) {
-			return true;
-		}
-		else if (a[3]<b[3]) {
-			return false;
-		}
-		else {
-			return a[4]>=b[4];
-		}
-	}
-	
-	//
-	private void swap(int[] a,int[] b){
-		int[] tep=new int[a.length];
-		for (int i = 0; i < tep.length; i++) {
-			tep[i]=a[i];
-		}
-		for (int i = 0; i < a.length; i++) {
-			a[i]=b[i];
-		}
-		for (int i = 0; i < b.length; i++) {
-			b[i]=tep[i];
-		}
-	}
-	
+public class Greedy implements LoadService {
+
+	/* (non-Javadoc)
+	 * @see bl.blImpl.transportbl.loadhelp.LoadService#algorithm()
+	 */
+	@Override
 	/**
 	 * 贪心实现
 	 * @param src 第一行为商品，接着为长、宽、高、体积\重量\ID
 	 * @return 返回车辆编号与商品顺序的map
 	 */
-	private Map<Boolean, List<Integer>> greedyImpl(int src[][]){
+	public Map<Boolean, List<Integer>> algorithm(int src[][]){
 		Map<Boolean, List<Integer>> ans=new HashMap<Boolean, List<Integer>>();
 		LinkedList<int[]> avaliable=new LinkedList<int[]>();
 		int w=0;//质量已占用
@@ -135,6 +74,33 @@ public class LoadHelper {
 		ans.put(false, out);
 		return ans;
 	}
+	private boolean comp(int[] a,int[] b){
+		if (a[3]>b[3]) {
+			return true;
+		}
+		else if (a[3]<b[3]) {
+			return false;
+		}
+		else {
+			return a[4]>=b[4];
+		}
+	}
+	
+	//
+	private void swap(int[] a,int[] b){
+		int[] tep=new int[a.length];
+		for (int i = 0; i < tep.length; i++) {
+			tep[i]=a[i];
+		}
+		for (int i = 0; i < a.length; i++) {
+			a[i]=b[i];
+		}
+		for (int i = 0; i < b.length; i++) {
+			b[i]=tep[i];
+		}
+	}
+	
+	
 	
 	//
 	private boolean checkWeight(int now,int tar){
