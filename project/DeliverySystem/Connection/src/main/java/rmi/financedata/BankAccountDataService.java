@@ -28,7 +28,7 @@ public interface BankAccountDataService extends DataService<CommonPO>{
 
     public BankAccountPO getBankAccount(String bankID) throws RemoteException;
     /**
-     * 
+     *
      * @param bankName账户的姓名
      * @return 所对应的银行账号
      * @throws RemoteException
@@ -49,5 +49,4 @@ public interface BankAccountDataService extends DataService<CommonPO>{
 
     public OperationMessage modifyBalance(String ID,double money) throws RemoteException;
 
-    public String getBankIDByName(String name) throws RemoteException;
 }
