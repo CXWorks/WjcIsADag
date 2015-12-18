@@ -23,8 +23,15 @@ public class PaymentPO extends FormPO {
     // 备注
     private String	note;
     //
+    
 	public Calendar getDate() {
 		return date;
+	}
+	public void setPayerAccID(String payerAccID) {
+		this.payerAccID = payerAccID;
+	}
+	public void setReceiverAccID(String receiverAccID) {
+		this.receiverAccID = receiverAccID;
 	}
 	public Timestamp getDateForSQL() {
 		return new Timestamp(this.date.getTimeInMillis());

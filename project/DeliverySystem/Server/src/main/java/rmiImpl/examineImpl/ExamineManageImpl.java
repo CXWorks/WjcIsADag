@@ -121,6 +121,8 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				result = pass_helper.getPaymentDataService().insert(pay);
 				pass_helper.getBankAccountDataService().modifyBalance(pay.getPayerAccID(),
 						Double.parseDouble(pay.getAmount()) * (-1));
+				pass_helper.getBankAccountDataService().modifyBalance(pay.getReceiverAccID(),
+						Double.parseDouble(pay.getAmount()));
 				break;
 			case RECEIVE:
 				ReceivePO rPo = (ReceivePO) tmp;

@@ -268,4 +268,13 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see rmi.financedata.BankAccountDataService#getBankIDByName(java.lang.String)
+	 */
+	@Override
+	public String getBankIDByName(String bankName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
