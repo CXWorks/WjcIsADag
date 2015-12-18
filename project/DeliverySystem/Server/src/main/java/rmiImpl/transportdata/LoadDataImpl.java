@@ -56,6 +56,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				+ po.getFormState().toString() + "','" + po.getLoadDateForSQL().toString() + "','" + po.getTransportID()
 				+ "','" + po.getPlaceTo() + "','" + po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs + "','"
 				+ po.getFormID().substring(2, 17) + "','" + po.getPeopleTransport() + "')";
+		System.out.println(insert);
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();

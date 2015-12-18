@@ -95,4 +95,11 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 		return null;
 	}
 
+	@Override
+	public String getBankIDByName(String name) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return bankAccountDataService.getBankIDByName(name);
+		return null;
+	}
+
 }

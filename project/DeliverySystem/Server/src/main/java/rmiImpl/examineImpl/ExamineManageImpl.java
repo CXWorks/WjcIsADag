@@ -112,6 +112,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				DeliverPO dPo = (DeliverPO) tmp;
 				result = pass_helper.getDeliverDataService().insert(dPo);
 				pass_helper.getOrderDataService().addFormID(dPo.getOrderID(), tmp.getFormID());
+				pass_helper.getOrderDataService().setFinish(dPo.getOrderID());
 				break;
 			case ORDER:
 				result = pass_helper.getOrderDataService().insert((OrderPO) tmp);
@@ -157,7 +158,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			case TRANSPORT_CENTER:
 				CenterOutPO cPo = (CenterOutPO) tmp;
 				result = pass_helper.getTransportDataService().insert(cPo);
-				if (!result.operationResult) {
+				if (result.operationResult) {
 					for (String ope : cPo.getIDs())
 						pass_helper.getOrderDataService().addFormID(ope, tmp.getFormID());
 				}
@@ -165,7 +166,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			case TRANSPORT_HALL:
 				LoadPO hPo = (LoadPO) tmp;
 				result = pass_helper.getLoadDataService().insert(hPo);
-				if (!result.operationResult) {
+				if (result.operationResult) {
 					for (String ope : hPo.getIDs())
 						pass_helper.getOrderDataService().addFormID(ope, tmp.getFormID());
 				}

@@ -50,9 +50,25 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		return conn;
 	}
 
+	public static void main(String[] args) throws RemoteException {
+		OrderDataImpl t = new OrderDataImpl();
+		OrderPO po = t.getFormPO("1209000019");
+		po.addFormID("HHHH");
+		t.update(po);
+
+	}
+
 	public OperationMessage insert(OrderPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String formIDs = "";
+		ArrayList<String> list = po.getFormIDs();
+		for (int i = 0; i < list.size(); i++) {
+			if (i != list.size() - 1) {
+				formIDs = formIDs + list.get(i) + " ";
+			} else {
+				formIDs = formIDs + list.get(i);
+			}
+		}
 		String insert = "insert into `" + Table_Name
 				+ "`(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
 				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
@@ -216,6 +232,21 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		OrderPO po = this.getFormPO(orderID);
 		po.addFormID(formID);
 		return this.update(po);
+	}
+
+	@Override
+	public OperationMessage setFinish(String orderID) throws RemoteException {
+		OperationMessage result = new OperationMessage();
+		String setFinished = "updata `" + Table_Name + "` set `finished` = '1' where `formID` = '" + orderID + "'";
+		try {
+			statement = conn.prepareStatement(setFinished);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			result = new OperationMessage(false, "修改order时时出错：");
+			System.err.println("修改order时时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

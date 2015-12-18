@@ -75,7 +75,10 @@ public class DeliverVO extends FormVO{
 	}
 	public DeliverVO(DeliverPO po){
 		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman(),po.getCreaterID());
-		this.finished=po.isFinished();
+		if(po.isFinished()==1)
+			this.finished=true;
+		else
+			this.finished=false;
 		this.receiveDate=po.getReceiveDate();
 		this.receivePeople=po.getReceivePeople();
 	}
@@ -89,7 +92,7 @@ public class DeliverVO extends FormVO{
 		return po;
 	}
 	//
-	
+
 	/* (non-Javadoc)
 	 * @see vo.FormVO#getMainInfo()
 	 */

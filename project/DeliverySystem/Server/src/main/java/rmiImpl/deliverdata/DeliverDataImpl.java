@@ -54,8 +54,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 				+ po.getDateForSQL().toString() + "','" + po.isFinished() + "','" + po.getFormID().substring(2, 17)
 				+ "')";
 
-		String setFinished = "updata `order` set `finished` = '1' where `formID` = '" + po.getOrderID() + "'";
-
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -68,16 +66,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 				System.err.println("新建时出错：");
 				e.printStackTrace();
 			}
-		}
-		try {
-			if (po.isFinished()) {
-				statement = conn.prepareStatement(setFinished);
-				statement.executeUpdate();
-			}
-		} catch (SQLException e) {
-			result = new OperationMessage(false, "修改order时时出错：");
-			System.err.println("修改order时时出错：");
-			e.printStackTrace();
 		}
 		return result;
 	}
@@ -212,7 +200,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
 				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
 				String last = FormIDs.get(FormIDs.size() - 1);
-				// System.out.println(last);
+				 System.out.println(last +"hhh");
 				if (last.substring(0, 9).equalsIgnoreCase("03" + HallID)) {
 					result.add(rs.getString("formID"));
 				}

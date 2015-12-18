@@ -21,4 +21,6 @@ public interface OrderDataService extends CommonDataService<OrderPO>{
 
 	public OperationMessage addFormID(String orderID,String formID) throws RemoteException;
 
+	public OperationMessage setFinish(String orderID) throws RemoteException;
+
 }

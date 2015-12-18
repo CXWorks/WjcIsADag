@@ -84,8 +84,8 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 
 	public OperationMessage insert(AccountPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(ID,password,authority) " + "values('" + po.getID() + "','"
-				+ po.getPassword() + "','" + po.getAuthority().toString() + "')";
+		String insert = "insert into `" + Table_Name + "`(ID,password,authority,online) " + "values('" + po.getID() + "','"
+				+ po.getPassword() + "','" + po.getAuthority().toString() + "','" + "0" + "')";
 
 		try {
 			statement = conn.prepareStatement(insert);

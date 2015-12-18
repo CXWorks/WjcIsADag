@@ -1,18 +1,5 @@
 package rmiImpl.financedata;
 
-import message.OperationMessage;
-import model.bankAccount.BankAccountOperation;
-import po.FormPO;
-import po.configurationdata.enums.PackEnum;
-import po.financedata.BankAccountPO;
-import po.financedata.PaymentPO;
-import po.financedata.RevenuePO;
-import po.receivedata.ReceivePO;
-import po.systemdata.LogPO;
-import rmi.financedata.BankAccountDataService;
-import database.ConnecterHelper;
-import database.RMIHelper;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
@@ -21,7 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
+
+import database.ConnecterHelper;
+import database.RMIHelper;
+import message.OperationMessage;
+import po.FormPO;
+import po.financedata.BankAccountPO;
+import po.financedata.PaymentPO;
+import po.financedata.RevenuePO;
+import po.systemdata.LogPO;
+import rmi.financedata.BankAccountDataService;
 
 public class BankAccountDataImpl extends UnicastRemoteObject implements BankAccountDataService {
 
@@ -170,11 +166,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		BankAccountDataImpl t = new BankAccountDataImpl();
-//		ArrayList<BankAccountPO> s = t.getAll();
-//		System.out.println(s.size());
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// BankAccountDataImpl t = new BankAccountDataImpl();
+	// ArrayList<BankAccountPO> s = t.getAll();
+	// System.out.println(s.size());
+	// }
 
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
@@ -242,10 +238,10 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	}
 
 	@Override
-	public OperationMessage modifyBalance(String ID,double money) throws RemoteException {
+	public OperationMessage modifyBalance(String ID, double money) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		double balance = 0;
-		if(ID==null){
+		if (ID == null) {
 			ID = CompanyAccount;
 		}
 		String select = "select * from `" + Table_Name + "` where `bankID` = '" + ID + "'";
@@ -262,10 +258,26 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		} catch (SQLException e) {
 			System.err.println("没有对应账户");
 			e.printStackTrace();
-			result = new OperationMessage(false,"调整账户余额出错");
+			result = new OperationMessage(false, "调整账户余额出错");
 		}
 
 		return result;
+	}
+
+	@Override
+	public String getBankIDByName(String name) throws RemoteException {
+		String select = "select * from `" + Table_Name + "` where `accountName` = '" + name + "'";
+		ResultSet rs = null;
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			return rs.getString("bankID");
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
