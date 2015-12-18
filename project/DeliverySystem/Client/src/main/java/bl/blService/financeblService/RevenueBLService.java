@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface RevenueBLService extends FormBLService<RevenueVO> {
 
-    public OrderVO loadOrder(String orderNumber);
+    public List<OrderVO> getOrders(RevenueVO revenueVO);
 
     public String getNewRevenueID(Calendar date);
 

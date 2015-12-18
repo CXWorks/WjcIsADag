@@ -18,7 +18,7 @@ public class RevenueVO extends FinanceFormVO {
     public String amount;
     public String deliverName;
     public String hallID;
-    private ArrayList<String> orderIDs;
+    public ArrayList<String> orderIDs;
     //
     public RevenueVO(String formID,String createrID){
     	super(FormEnum.REVENUE,FormStateEnum.CONSTRUCTED,formID,createrID);
@@ -29,7 +29,6 @@ public class RevenueVO extends FinanceFormVO {
 	 * @param amount
 	 * @param deliverName
 	 * @param hallID
-	 * @param orderID
 	 */
 	public RevenueVO(String formID,Calendar date, String amount, String deliverName,
 			String hallID, ArrayList<String> orderIDs,String createrID) {

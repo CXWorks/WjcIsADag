@@ -19,6 +19,7 @@ import vo.financevo.RevenueVO;
 import vo.ordervo.OrderVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -74,18 +75,30 @@ public class CheckRevenueFormController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
         );
         money_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
+                cellData -> new SimpleStringProperty(cellData.getValue().getMoney())
         );
 
         revenue_TableView.setItems(revenueVOs);
+        revenue_TableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if(newValue != null){
+                        detail_TableView.getItems().clear();
+                        detail_TableView.getItems().addAll(revenueBLService.getOrders(newValue));
+                    }
+                }
+        );
     }
 
     public void search(ActionEvent actionEvent) {
 
+        // TODO test
+        hall_Field.setText("0251001");
+        revenue_DatePicker.setValue(LocalDate.of(2015, 12, 12));
+
         List<RevenueVO> revenueVOs = revenueBLService.getRevenueVOs
                 (TimeConvert.convertDate(revenue_DatePicker.getValue()), hall_Field.getText());
 
-
-        revenue_TableView.setItems(FXCollections.observableArrayList(revenueVOs));
+        revenue_TableView.getItems().clear();
+        revenue_TableView.getItems().addAll(revenueVOs);
     }
 }
