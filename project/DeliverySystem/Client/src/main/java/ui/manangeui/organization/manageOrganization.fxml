@@ -24,7 +24,6 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="城市" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="类型" GridPane.rowIndex="1" />
-            <TextField fx:id="city" GridPane.columnIndex="1" />
             <Label fx:id="institutionType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="编号" GridPane.rowIndex="2" />
             <Label fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -32,6 +31,7 @@
             <TextField fx:id="area" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="nearCenterLabel" text="最近中心" GridPane.rowIndex="4" />
             <TextField fx:id="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="cityChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Text layoutX="413.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="机构信息" underline="true" />
@@ -49,5 +49,6 @@
         </columns>
       </TableView>
       <Button fx:id="back_Btn" layoutX="7.0" layoutY="425.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <Label fx:id="cityID" layoutX="725.0" layoutY="82.0" />
    </children>
 </AnchorPane>

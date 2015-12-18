@@ -18,6 +18,7 @@ import java.util.List;
 import po.FormEnum;
 import po.financedata.PaymentPO;
 import rmi.examineService.ExamineSubmitService;
+import rmi.financedata.BankAccountDataService;
 import rmi.financedata.PaymentDataService;
 
 /**
@@ -87,8 +88,20 @@ public class PaymentBLImpl implements PaymentBLService {
     public OperationMessage submit(PaymentVO form) {
         ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
         PaymentPO po=(PaymentPO)vopoFactory.transVOtoPO(form);
+        
         try {
-			return examineSubmitService.submit(po);
+        	//complete bank ID
+            BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
+            String payerAccID=bankAccountDataService.getBankIDByName(po.getPayerName());
+            String receiverAccID=bankAccountDataService.getBankIDByName(po.getReceiverName());
+            if (payerAccID!=null&&receiverAccID!=null) {
+            	po.setPayerAccID(payerAccID);
+            	po.setReceiverAccID(receiverAccID);
+            	return examineSubmitService.submit(po);
+			}else {
+				return new OperationMessage(false, "account not exist");
+			}
+			
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}

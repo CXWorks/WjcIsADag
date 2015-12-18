@@ -27,6 +27,13 @@ public interface BankAccountDataService extends DataService<CommonPO>{
     public OperationMessage checkIsNameUsed(String name) throws RemoteException;
 
     public BankAccountPO getBankAccount(String bankID) throws RemoteException;
+    /**
+     * 
+     * @param bankName账户的姓名
+     * @return 所对应的银行账号
+     * @throws RemoteException
+     */
+    public String getBankIDByName(String bankName) throws RemoteException;
 
     public OperationMessage insert(BankAccountPO po) throws RemoteException;
 

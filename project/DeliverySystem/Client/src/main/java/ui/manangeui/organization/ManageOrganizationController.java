@@ -2,13 +2,18 @@ package ui.manangeui.organization;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import po.InfoEnum;
+import bl.blService.configurationblService.ConfigurationBLService;
 import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblHallService;
 import ui.manangeui.staff.ManageStaffController;
+import vo.configurationvo.City2DVO;
+import vo.configurationvo.ConfigurationVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
@@ -26,13 +31,15 @@ import javafx.scene.Parent;
  * @version 1.0 
  */
 public class ManageOrganizationController implements ChangeListener<InstitutionVO>{
-	public TextField city;
 	public Label institutionType;
 	public Label ID;
 	public TextField area;
 	public TextField nearCenter;
 	public Label areaLabel;
 	public Label nearCenterLabel;
+	
+	public ChoiceBox<String> cityChoiceBox;
+	public Label cityID;
 	
 	public InstitutionVO institutionVO;
 	
@@ -46,13 +53,16 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	public Button back_Btn;
 	private ManageblHallService manageblHallService;
 	private ManageblCenterService manageblCenterService;
+	private ConfigurationBLService configurationBLService;
     private TabPane outsideTabPane;
     private Tab staffTab;
     private ManageStaffController staffController;
+    private ArrayList<City2DVO> cities;
+    private String selectedCityID;
 	
 	public static Parent launch
 			(Pane father, Pane before, TabPane outsideTabPane, Tab staffTab, ManageStaffController staffController,
-			 ManageblHallService hallService, ManageblCenterService centerService) throws IOException
+			 ManageblHallService hallService, ManageblCenterService centerService,ConfigurationBLService configurationBLService) throws IOException
     {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(ManageOrganizationController.class.getResource("manageOrganization.fxml"));
@@ -61,6 +71,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         ManageOrganizationController controller = fxmlLoader.getController();
         controller.manageblHallService = hallService;
         controller.manageblCenterService = centerService;
+        controller.configurationBLService = configurationBLService;
         controller.outsideTabPane = outsideTabPane;
         controller.staffTab = staffTab;
         controller.staffController = staffController;
@@ -80,27 +91,53 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	
 	public void continueInit(){
+		this.initCityChoice();
 		institutionVOs=this.getInstitutionVOs();
 		tableView.setItems(FXCollections.observableList(institutionVOs));
 		tableView.getSelectionModel().selectedItemProperty().addListener(this);
 		tableView.getSelectionModel().selectFirst();
 		institutionVO=tableView.getSelectionModel().getSelectedItem();
+		
 	}
 	
 	public void initialize(){
         // TODO test jump
 		
 		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
-		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().name()));
+		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().getChinese()));
 		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
+		//
 		this.center_textfield();
 	}
 	private InstitutionVO makeInstitutionVO(){
 		if (institutionType.getText()=="中转中心") {
-			return new CenterVO(manageblCenterService.newCenterID(city.getText()), city.getText());
+			return new CenterVO(manageblCenterService.newCenterID(cityID.getText()), cityID.getText());
 		}
 		else {
-			return new HallVO(manageblHallService.newHallID(nearCenter.getText()), city.getText(), area.getText(), nearCenter.getText());
+			return new HallVO(manageblHallService.newHallID(nearCenter.getText()), cityID.getText(), area.getText(), nearCenter.getText());
+		}
+	}
+	private void initCityChoice(){
+		this.refreshCityData();
+		cityChoiceBox.setItems(FXCollections
+				.observableList(cities.stream()
+						.map(city->city.getName()).collect(Collectors.toList())));
+		cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+				(obser,old,New)->{
+					selectedCityID=cities.stream()
+							.filter(city->{return city.getName().equalsIgnoreCase(New);})
+							.findFirst().get().getID();
+				cityID.setText(selectedCityID);
+				});
+		//
+		
+	}
+	
+	private void refreshCityData(){
+		ArrayList<ConfigurationVO> temp=configurationBLService.get(InfoEnum.CITY_2D);
+		cities=new ArrayList<City2DVO>(temp.size());
+		for (ConfigurationVO configurationVO : temp) {
+			cities.add((City2DVO)configurationVO);
 		}
 	}
 	
@@ -120,7 +157,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 		this.ID.setText(null);
 		this.institutionType.setText(null);
 		this.area.clear();
-		this.city.clear();
+		this.cityChoiceBox.getSelectionModel().clearAndSelect(0);
 		this.nearCenter.clear();
 	}
 	public void sure(){
@@ -135,7 +172,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 			isNew=false;
 		}
 		else {
-			institutionVO.setCity(city.getText());
+			institutionVO.setCity(cityID.getText());
 			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
 				((HallVO) institutionVO).setArea(area.getText());
 			}
@@ -181,7 +218,6 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	@Override
 	public void changed(ObservableValue<? extends InstitutionVO> observable,
 			InstitutionVO oldValue, InstitutionVO newValue) {
-		// TODO Auto-generated method stub
 		institutionVO =newValue;
 		this.setText(institutionVO);
 	}
@@ -191,8 +227,15 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 			return;
 		}
 		ID.setText(src.getInstitutionID());
-		institutionType.setText(src.getInfoEnum().name());
-		city.setText(src.getCity());
+		institutionType.setText(src.getInfoEnum().getChinese());
+		int index=0;
+		while (index<cities.size()) {
+			if (cities.get(index).getName().equalsIgnoreCase(src.getCity())) {
+				break;
+			}
+			index++;
+		}
+		cityChoiceBox.getSelectionModel().clearAndSelect(index);
 		if (src.getInfoEnum()==InfoEnum.HALL) {
 			this.hall_textfield();
 			area.setText(((HallVO)src).getArea());

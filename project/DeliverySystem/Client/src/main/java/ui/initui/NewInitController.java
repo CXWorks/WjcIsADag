@@ -50,7 +50,7 @@ public class NewInitController {
     @FXML
     public void manageInstitution(ActionEvent actionEvent) throws IOException {
         jumpTo(ManageOrganizationController.launch
-                (father, selfPane, null, null, null, initializationBLService, initializationBLService));
+                (father, selfPane, null, null, null, initializationBLService, initializationBLService,initializationBLService));
     }
 
     @FXML

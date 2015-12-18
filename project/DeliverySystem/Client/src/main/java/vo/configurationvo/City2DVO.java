@@ -66,6 +66,11 @@ public class City2DVO extends ConfigurationVO {
 		city2dpo.setCache_OperatorID(UserInfo.getUserID());
 		return city2dpo;
 	}
+	
+	public String getID() {
+		return ID;
+	}
+
 	//
 	public double distance(City2DVO target){
 		double dis=Math.sqrt(Math.pow((this.x-target.x), 2)+Math.pow((this.y-target.y), 2))*SCALE;

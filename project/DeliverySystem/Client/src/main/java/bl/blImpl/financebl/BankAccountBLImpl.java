@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import po.financedata.BankAccountPO;
 
@@ -47,12 +48,9 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public List<BankAccountVO> filterAccounts(List<BankAccountVO> list, String s) {
-        LinkedList<BankAccountVO> ans=new LinkedList<BankAccountVO>();
-        for (BankAccountVO bankAccountVO : list) {
-			if (bankAccountVO.quzzySearch(s)) {
-				ans.add(bankAccountVO);
-			}
-		}
+        List<BankAccountVO> ans=list.stream()
+        		.filter(bankAcc->{return bankAcc.quzzySearch(s);})
+        		.collect(Collectors.toList());
         return ans;
     }
 
