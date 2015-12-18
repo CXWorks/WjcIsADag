@@ -1,5 +1,6 @@
 package ui.navigationui;
 
+import factory.ConfigurationFactory;
 import factory.InstitutionFactory;
 import factory.StaffFactory;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +45,7 @@ public class ManagerNavigation {
         Tab organizationTab = new Tab("管理机构");
         organizationTab.setContent(ManageOrganizationController.launch
                 (null, null, tabPane, staffTab, staffController,
-                        InstitutionFactory.getManageblHallService(), InstitutionFactory.getManageblCenterService()));
+                        InstitutionFactory.getManageblHallService(), InstitutionFactory.getManageblCenterService(),ConfigurationFactory.getConfigurationBLService()));
 
         tabPane.getTabs().addAll(staffTab, organizationTab);
 
