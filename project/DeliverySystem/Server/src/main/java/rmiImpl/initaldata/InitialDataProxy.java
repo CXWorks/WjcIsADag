@@ -8,8 +8,9 @@ import message.OperationMessage;
 import po.initialdata.InitialDataPO;
 import po.systemdata.SystemState;
 import rmi.initialdata.InitialDataService;
+import rmi.systemdata.SystemDataService;
 
-public class InitialDataProxy extends UnicastRemoteObject implements InitialDataService {
+public class InitialDataProxy extends UnicastRemoteObject implements InitialDataService,SystemDataService {
 
 	private InitialDataService InitialDataService = new InitialDataImpl();
 	private static SystemState state = SystemState.NORMAL;
@@ -65,6 +66,14 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 		if(ID.equalsIgnoreCase(staffID))
 			return InitialDataService.getLatest_version(staffID);
 		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.systemdata.SystemDataService#checkSystemState()
+	 */
+	@Override
+	public SystemState checkSystemState() throws RemoteException {
+		return this.state;
 	}
 
 }

@@ -1,5 +1,10 @@
 package bl.blImpl.storebl;
 
+import java.rmi.RemoteException;
+
+import bl.clientNetCache.CacheHelper;
+import rmi.configurationdata.ConfigurationDataService;
+import userinfo.UserInfo;
 import message.OperationMessage;
 
 /** 
@@ -10,8 +15,14 @@ import message.OperationMessage;
  */
 public class StoreWarningChecker {
 	private double warningLine;
-	public StoreWarningChecker(double line){
-		this.warningLine=line;
+	private ConfigurationDataService configurationDataService;
+	public StoreWarningChecker(){
+		configurationDataService=CacheHelper.getConfigurationDataService();
+		try {
+			this.warningLine=configurationDataService.getWarningline(UserInfo.getInstitutionID());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	//
 	public OperationMessage checkOperation(){
@@ -20,5 +31,19 @@ public class StoreWarningChecker {
 	}
 	public double getWarningLine(){
 		return warningLine;
+	}
+	public OperationMessage setWarningLine(double warningLine){
+		try {
+			OperationMessage res= configurationDataService.setWarningline(UserInfo.getInstitutionID(), warningLine);
+			if (res.operationResult) {
+				this.warningLine=warningLine;
+				return res;
+			}
+			return new OperationMessage(false, "unknown error");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new OperationMessage(false, e.getMessage());
+		}
 	}
 }

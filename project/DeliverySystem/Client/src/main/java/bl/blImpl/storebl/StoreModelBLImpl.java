@@ -29,11 +29,10 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	public StoreModelBLImpl(){
 		
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
-		this.storeWarningChecker=new StoreWarningChecker(0.8);
+		this.storeWarningChecker=new StoreWarningChecker();
 	}
     public OperationMessage setWarningLine(double percent) {
-    	this.storeWarningChecker=new StoreWarningChecker(percent);
-        return new OperationMessage();
+    	return this.storeWarningChecker.setWarningLine(percent);
     }
     //
     private boolean checkCondition(int first,int second){

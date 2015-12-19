@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
 import rmi.memberdata.MemberDataService;
+import rmi.systemdata.SystemDataService;
 import userinfo.UserInfo;
 import message.OperationMessage;
 import bl.blService.accountblService.AccountBLLoginService;
@@ -31,8 +32,10 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 			if (check.operationResult) {
 				MemberDataService< StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 				StaffPO user=memberDataService.getPerson(id);
+				//
+				
 				UserInfo.setInfo(user.getID(), user.getStaff(), user.getInititutionID(),user.getName());
-				System.out.println(UserInfo.getStaffType());
+				UserInfo.changeSystermState();
 				return new OperationMessage();
 			} else {
 				return check;

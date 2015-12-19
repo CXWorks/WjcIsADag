@@ -1,5 +1,6 @@
 package rmi.systemdata;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 
 import po.CommonPO;
@@ -15,8 +16,6 @@ public interface SystemDataService extends DataService<InitialDataPO>{
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "SystemData";
 
-    public InitialDataPO getAccountBook(String version);
-
-    public SystemState checkSystemState();
+    public SystemState checkSystemState() throws RemoteException;
 
 }
