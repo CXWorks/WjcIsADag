@@ -91,10 +91,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "新增司机:" + po.getID()));
-
 		return result;
 	}
 
@@ -110,10 +106,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理司机的人", Calendar.getInstance(), "解雇司机:" + po.getID()));
 
 		return result;
 	}

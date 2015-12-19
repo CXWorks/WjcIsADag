@@ -112,10 +112,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("仓库管理人员", Calendar.getInstance(), "新增货架"));
-
 		return result;
 	}
 
@@ -134,10 +130,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			result = new OperationMessage(false, "删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("仓库管理人员", Calendar.getInstance(), "移除货架"));
 
 		return result;
 	}

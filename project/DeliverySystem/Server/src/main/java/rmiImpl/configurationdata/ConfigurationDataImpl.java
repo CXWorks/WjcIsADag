@@ -78,7 +78,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String insert = "insert into `" + City2D + "`(name,x,y,ID) " + "values('" + po.getName() + "','" + po.getX()
-				+ "','" + po.getY()+ "','" + po.getID() + "')";
+				+ "','" + po.getY() + "','" + po.getID() + "')";
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -87,10 +87,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			System.err.println("新建时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新增城市信息" + po.getName()));
 
 		return result;
 	}
@@ -107,10 +103,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除城市信息" + name));
 
 		return result;
 	}
@@ -135,7 +127,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),rs.getString("ID"));
+			result = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"), rs.getString("ID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
@@ -154,7 +146,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
-				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"),rs.getString("ID"));
+				temp = new City2DPO(rs.getString("name"), rs.getDouble("x"), rs.getDouble("y"), rs.getString("ID"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -215,10 +207,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			result = new OperationMessage(false, "新建时出错");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改薪水策略"));
 
 		return result;
 	}
@@ -290,10 +278,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改包装价格"));
-
 		return result;
 	}
 
@@ -347,10 +331,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			System.err.println("更新时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费价格"));
 
 		return result;
 	}
@@ -406,13 +386,9 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费比例"));
 
 		return result;
 	}
-
 
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> pos) throws RemoteException {
@@ -541,8 +517,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				e.printStackTrace();
 			}
 		} else {
-			String insert = "insert into `" + Warningline + "`(centerID,value) " + "values('" + centerID + "','"
-					+ value + "')";
+			String insert = "insert into `" + Warningline + "`(centerID,value) " + "values('" + centerID + "','" + value
+					+ "')";
 			try {
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
@@ -552,14 +528,13 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				e.printStackTrace();
 			}
 		}
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("库存管理人员", Calendar.getInstance(), "修改库存警戒比例"));
 
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
 	 */
 	@Override
@@ -567,12 +542,13 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see rmi.cachedata.CacheDataService#getOperation(long)
 	 */
 	@Override
-	public List<Operation> getOperation(long localVersion)
-			throws RemoteException {
+	public List<Operation> getOperation(long localVersion) throws RemoteException {
 		return null;
 	}
 

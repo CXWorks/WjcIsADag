@@ -113,10 +113,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + po.getBankID()));
-
 		return result;
 	}
 
@@ -132,10 +128,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + id));
 
 		return result;
 	}
