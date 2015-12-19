@@ -37,6 +37,10 @@ public class Excel {
 		dataStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER_SELECTION);
 		for (int i = 0; i < area.size(); i++) {
 			StoreArea storeArea=area.get(i);
+			//
+			if (storeArea==null) {
+				continue;
+			}
 			HSSFSheet sheet=workbook.createSheet(storeArea.getAreaID().name());
 			//head line
 			HSSFRow head=sheet.createRow(0);

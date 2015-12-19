@@ -1,7 +1,11 @@
 package userinfo;
 
+import java.rmi.RemoteException;
+
+import bl.clientNetCache.CacheHelper;
 import po.memberdata.StaffTypeEnum;
 import po.systemdata.SystemState;
+import rmi.systemdata.SystemDataService;
 
 /**
  * Client//userinfo//UserInfo.java
@@ -50,16 +54,25 @@ public class UserInfo {
 	}
 
 	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID
-			,String userName,SystemState systemState){
+			,String userName){
 		UserInfo.userID = userID;
 		UserInfo.staffType = staffTypeEnum;
 		UserInfo.institutionID = institutionID;
 		UserInfo.logined = true;
 		UserInfo.userName=userName;
-		UserInfo.systemState=systemState;
 	}
 
 	public static void setSystemState(SystemState state){
 		systemState = state;
+	}
+	
+	public static void changeSystermState(){
+		SystemDataService systemDataService=CacheHelper.getSystemDataService();
+		try {
+			UserInfo.systemState=systemDataService.checkSystemState();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

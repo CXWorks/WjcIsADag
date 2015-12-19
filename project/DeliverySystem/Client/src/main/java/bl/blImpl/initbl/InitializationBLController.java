@@ -234,6 +234,7 @@ public class InitializationBLController implements InitializationBLService {
 			String lastVersion=initialDataService.getLatest_version(UserInfo.getUserID());
 			this.lastPO=initialDataService.getInitialDataPO(lastVersion);
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(lastPO);
+			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -245,6 +246,7 @@ public class InitializationBLController implements InitializationBLService {
     	InitialDataPO po=(InitialDataPO)vopoFactory.transVOtoPO(initialDataVO);
         try {
 			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(),po);
+			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -254,7 +256,9 @@ public class InitializationBLController implements InitializationBLService {
 
     public OperationMessage abortInitData() {
        try {
-		return initialDataService.abortInitData(UserInfo.getUserID());
+		OperationMessage res= initialDataService.abortInitData(UserInfo.getUserID());
+		UserInfo.changeSystermState();
+		return res;
 	} catch (RemoteException e) {
 		e.printStackTrace();
 		return new OperationMessage(false, e.getMessage());
