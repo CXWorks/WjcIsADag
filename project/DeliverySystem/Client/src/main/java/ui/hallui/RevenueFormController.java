@@ -5,20 +5,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import factory.FinanceBLFactory;
 import factory.FormFactory;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.financeblService.RevenueBLService;
-import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
-import tool.ui.SimpleEnumProperty;
-import ui.accountui.ManageAccountController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
-import vo.financevo.BankAccountVO;
-import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
-import vo.managevo.staff.StaffVO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -41,16 +37,23 @@ public class RevenueFormController {
     public Label total_Label;
     public ChoiceBox<String> deliver_ChoiceBox;
 
-    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
+    private RevenueBLService revenueBLService = FinanceBLFactory.getRevenueBLService();
     DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
-    String institutionID=UserInfo.getInstitutionID();
+    String institutionID = UserInfo.getInstitutionID();
 	ArrayList<String> postmans;
-	ArrayList<String> orderIDs=new ArrayList<String>();
-    int money=0;
+	ArrayList<String> orderIDs = new ArrayList<String>();
+    int money = 0;
 
-	public static Parent launch() throws IOException {
-        return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
+    private InformController informController;
+
+    public static Parent launch() throws IOException {
+        FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
+        Pane pane = loader.load();
+        RevenueFormController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
 	@FXML
@@ -80,7 +83,8 @@ public class RevenueFormController {
     	}
 
     public void saveDraft(ActionEvent actionEvent) {
-    	revenueBLService.saveDraft(generateRevenueVO(null));
+        //revenueBLService.saveDraft(generateRevenueVO(null));
+        informController.inform("save successfully");
     }
 
     public void commit(ActionEvent actionEvent) {

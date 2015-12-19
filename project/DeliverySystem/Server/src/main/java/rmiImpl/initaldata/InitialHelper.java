@@ -68,8 +68,12 @@ public class InitialHelper {
 
 	public int getVersion() throws ClassNotFoundException {
 		String file_path = ROOT;
-		System.out.println(new File(file_path).listFiles().length + 1);
-		return new File(file_path).listFiles().length + 1;
+		File dir = new File(file_path);
+		if(!dir.exists()){
+			dir.mkdir();
+		}
+		System.out.println(dir.listFiles().length + 1);
+		return dir.listFiles().length + 1;
 	}
 
 	public OperationMessage saveFile(InitialDataPO po) throws ClassNotFoundException {
