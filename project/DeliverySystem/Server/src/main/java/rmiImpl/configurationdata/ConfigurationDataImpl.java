@@ -517,13 +517,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				e.printStackTrace();
 			}
 		} else {
-<<<<<<< HEAD
 			String insert = "insert into `" + Warningline + "`(name,value) " + "values('" + centerID + "','"
 					+ value + "')";
-=======
-			String insert = "insert into `" + Warningline + "`(centerID,value) " + "values('" + centerID + "','" + value
-					+ "')";
->>>>>>> origin/master
 			try {
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
