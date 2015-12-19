@@ -245,7 +245,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			ID = CompanyAccount;
 		}
 		String select = "select * from `" + Table_Name + "` where `bankID` = '" + ID + "'";
-		String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
 
 		ResultSet rs = null;
 		try {
@@ -253,6 +252,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			rs = statement.executeQuery(select);
 			rs.next();
 			balance = Double.parseDouble(rs.getString("balance")) + money;
+			String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
 			statement = conn.prepareStatement(operation);
 			statement.executeUpdate();
 		} catch (SQLException e) {

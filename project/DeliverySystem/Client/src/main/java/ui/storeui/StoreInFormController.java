@@ -108,6 +108,10 @@ public class StoreInFormController {
 
 	public void fillPosition(ActionEvent actionEvent) {
 		StoreLocation location = storeInBLService.getAvailableLocation(area);
+		if(location == null){
+            System.out.println("no available location");
+            return;
+        }
 		row_Field.setText("" + location.getRow());
 		shelf_Field.setText("" + location.getShelf());
 		position_Field.setText("" + location.getPosition());

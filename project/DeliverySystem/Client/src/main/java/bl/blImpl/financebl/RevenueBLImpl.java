@@ -94,7 +94,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			ArrayList<RevenuePO> po=revenueDataService.getByHallID(hallID);
 			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
 			for (RevenuePO revenuePO : po) {
-				if (revenuePO.getDate().equals(date)) {
+				if (TimeCompare.compareCalendar(revenuePO.getDate(), date)) {
 					RevenueVO temp=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
 					vo.add(temp);
 				}

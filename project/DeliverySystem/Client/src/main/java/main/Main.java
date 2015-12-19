@@ -50,8 +50,8 @@ public class Main extends Application {
 
     private static Map<StaffTypeEnum, Parent> panes = new HashMap<>();
 
-    private static Scene loginScene;
-    private static Scene personScene;
+    public static Scene loginScene;
+    public static Scene personScene;
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
@@ -135,26 +135,6 @@ public class Main extends Application {
         loginScene = new Scene((Pane)LoginController.launch());
 
         primaryStage.setScene(loginScene);
-//        primaryStage.setScene(new Scene(
-//        		NewOrderController.launch()
-//        		CheckFormController.launch()
-//                ManageBankAccountController.launch()
-                //CheckFinanceChartController.launch()
-//        		ManageOrganizationController.launch()
-//                CheckLogController.launch()
-//                deliverController.launch()
-        		//ManageStaffController.launch()
-//               StockTackController.launch()
-        		//ConfigurationController.launch()
-//        		ManageSalaryController.launch()
-//       		LoadCarController.launch()
-//        		TransitFormController.launch()
-        		//StorePartitionController.launch()
-//                FinanceNavigation.launch()
-//        		PaymentFormController.launch()
-//        		ReceiveFormController.launch()
-//        		StoreSummaryController.launch()
-//        ));
         primaryStage.show();
     }
 }

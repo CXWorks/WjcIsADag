@@ -63,7 +63,7 @@ public class PaymentFormController {
         payment_DatePicker.setValue(LocalDate.now());
         item_ChoiceBox.setValue(item_ChoiceBox.getItems().get(0));
 
-        // test
+        // TODO test
         payerAccount_Field.setText("bill_gates");
         payerName_Field.setText("biergaici");
         receiverName_Field.setText("吴君如");

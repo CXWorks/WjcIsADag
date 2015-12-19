@@ -10,10 +10,10 @@ import po.systemdata.SystemState;
  * @version 1.0
  */
 public class UserInfo {
-	private static String userID = "01000001";
+	private static String userID;
 	private static SystemState systemState = SystemState.NORMAL;
 	private static StaffTypeEnum staffType;
-	private static String institutionID = "0251001";
+	private static String institutionID;
 	private static String userName;
 	private UserInfo(){
 	}
@@ -44,6 +44,7 @@ public class UserInfo {
 	public static String getUserName() {
 		return userName;
 	}
+
 	public static SystemState getSystemState() {
 		return systemState;
 	}
