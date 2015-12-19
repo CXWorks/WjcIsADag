@@ -9,6 +9,7 @@ import java.util.Calendar;
 import message.ChatMessage;
 import message.OperationMessage;
 import model.examine.ExamineQueue;
+import model.store.StoreLocation;
 import po.FormEnum;
 import po.FormPO;
 import po.deliverdata.DeliverPO;
@@ -152,8 +153,9 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				String inID = IDs.get(IDs.size() - 1);
 				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
-				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),
-						sOutPO.getLocation());// 改变数据库中这个位置的状态
+				StoreLocation location = sOutPO.getLocation();
+				location.setOrderID("");
+				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9), location);// 改变数据库中这个位置的状态
 				pass_helper.getOrderDataService().addFormID(sOutPO.getOrderID(), tmp.getFormID());
 
 				break;

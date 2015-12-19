@@ -161,7 +161,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		String update = "update `" + Table_Name + "` set `orderID` = '" + location.getOrderID()
 				+ "' where `centerID` = '" + centerID + "' and `area` = '" + area + "' and `row` = '" + location.getRow()
 				+ "' and `shelf` = '" + location.getShelf() + "' and `position` = '" + location.getPosition() + "'";
-		System.out.println(update);
 		try {
 			statement = conn.prepareStatement(update);
 			statement.executeUpdate();
