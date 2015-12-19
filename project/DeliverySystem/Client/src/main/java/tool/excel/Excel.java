@@ -76,13 +76,15 @@ public class Excel {
 			}
 		}
 		try {
-			FileOutputStream out=new FileOutputStream(new File("dump/dump.xls"));
+			FileOutputStream out=new FileOutputStream(new File(path));
 			workbook.write(out);
 			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		} catch (IOException e) {
+			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		}
 		//
