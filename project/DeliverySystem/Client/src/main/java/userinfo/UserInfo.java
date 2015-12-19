@@ -49,12 +49,14 @@ public class UserInfo {
 		return systemState;
 	}
 
-	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID,String userName){
+	public static void setInfo(String userID, StaffTypeEnum staffTypeEnum, String institutionID
+			,String userName,SystemState systemState){
 		UserInfo.userID = userID;
 		UserInfo.staffType = staffTypeEnum;
 		UserInfo.institutionID = institutionID;
 		UserInfo.logined = true;
 		UserInfo.userName=userName;
+		UserInfo.systemState=systemState;
 	}
 
 	public static void setSystemState(SystemState state){

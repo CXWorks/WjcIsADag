@@ -64,6 +64,7 @@ public class RMIHelper {
 	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
+	private static SystemDataService systemDataService;
 
 
 
@@ -103,7 +104,7 @@ public class RMIHelper {
 		logDataService=(LogDataService)Naming.lookup(url+"LogDataService");
 		transportDataService=(CenterOutDataService)Naming.lookup(url+"CenterOutDataService");
 		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
-
+		systemDataService=(SystemDataService)Naming.lookup(url+systemDataService.NAME);
 
 	}
 	public static LogDataService getLogDataService(){
@@ -179,5 +180,7 @@ public class RMIHelper {
 	public static MemberDataService<StaffPO> getMemberDataService_staff() {
 		return memberDataService_staff;
 	}
-
+	public static SystemDataService getSystemDataService(){
+		return systemDataService;
+	}
 }

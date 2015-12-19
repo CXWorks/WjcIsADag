@@ -58,6 +58,7 @@ public class CacheHelper {
 	private static LoadDataService loadDataService;
 
 	private static LogDataService logDataService;
+	private static SystemDataService systemDataService;
 
 	public static void  initializeCache() throws NetInitException{
 		RMIHelper.init();
@@ -100,11 +101,13 @@ public class CacheHelper {
 		transportDataService=RMIHelper.getTransportDataService();
 		loadDataService=RMIHelper.getLoadDataService();
 		initialDataService=RMIHelper.getInitialDataService();
-
+		systemDataService=RMIHelper.getSystemDataService();
 	}
 	//
 	//
-
+	public static SystemDataService getSystemDataService(){
+		return systemDataService;
+	}
 	public static OrderDataService getOrderDataService() {
 		return orderDataService;
 	}
