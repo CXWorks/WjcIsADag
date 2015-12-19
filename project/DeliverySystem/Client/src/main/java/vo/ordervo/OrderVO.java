@@ -130,7 +130,7 @@ public class OrderVO extends FormVO {
 						.getAddressTo(), po.getPhoneNumFrom(), po
 						.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(),
 				po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po
-						.getVolume(), po.getMoney(), po.getGoodsType(), po
+						.getVolume(),  po.getGoodsType(),po.getMoney(), po
 						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate(),po.getCreaterID());
 
 	}
@@ -142,7 +142,7 @@ public class OrderVO extends FormVO {
 		OrderPO orderPO= new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
 				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
 				telNumTo, goodsNum, goodsName, weight, volume, 
-				goodsType,money, type.name(), pack.name(), null, null,receivePeople,receiveDate,createrID);
+				money,goodsType, type.name(), pack.name(), new ArrayList<String>(), null,receivePeople,receiveDate,createrID);
 		orderPO.setCache_OperatorID(UserInfo.getUserID());
 		return orderPO;
 	}
