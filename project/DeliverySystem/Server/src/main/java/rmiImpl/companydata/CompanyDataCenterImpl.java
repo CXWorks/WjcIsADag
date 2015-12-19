@@ -99,11 +99,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService()
-					.insert(new LogPO("总经理", Calendar.getInstance(), "新建中转中心:" + po.getCenterID()));
-
 		return result;
 	}
 
@@ -118,11 +113,6 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService()
-					.insert(new LogPO("总经理", Calendar.getInstance(), "删除中转中心:" + center.getCenterID()));
 
 		return result;
 	}
