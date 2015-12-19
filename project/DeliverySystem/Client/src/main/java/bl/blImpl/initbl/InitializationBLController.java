@@ -628,8 +628,11 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public DriverVO searchDriver(String driverID) {
-		// TODO Auto-generated method stub
-		return null;
+		DriverVO ans=this.initialDataVO.getDrivers()
+				.stream()
+				.filter(dri->{return dri.getID().equalsIgnoreCase(driverID);})
+				.findAny().get();
+		return ans;
 	}
 
 	/* (non-Javadoc)
@@ -637,8 +640,7 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public ArrayList<DriverVO> getStaffByInstitution() {
-		// TODO Auto-generated method stub
-		return null;
+		return initialDataVO.getDrivers();
 	}
 
 	/* (non-Javadoc)
@@ -646,8 +648,9 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage modifyStaff(DriverVO after) {
-		// TODO Auto-generated method stub
-		return null;
+		this.dismissStaff(after);
+		this.addStaff(after);
+		return new OperationMessage();
 	}
 
 	/* (non-Javadoc)
@@ -655,8 +658,8 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage addStaff(DriverVO staff) {
-		// TODO Auto-generated method stub
-		return null;
+		this.initialDataVO.getDrivers().add(staff);
+		return new OperationMessage(true, "succeed");
 	}
 
 	/* (non-Javadoc)
@@ -664,7 +667,8 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OperationMessage dismissStaff(DriverVO staff) {
-		// TODO Auto-generated method stub
-		return null;
+		this.initialDataVO.getDrivers()
+		.removeIf(dri->{return dri.getID().equalsIgnoreCase(staff.getID());});
+		return new OperationMessage();
 	}
 }
