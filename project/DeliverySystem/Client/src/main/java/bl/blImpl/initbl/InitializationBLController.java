@@ -33,6 +33,7 @@ import vo.initialdata.InitialDataVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 import vo.storevo.StoreAreaInfoVO;
 import vo.storevo.StoreShelfVO;
@@ -620,5 +621,50 @@ public class InitializationBLController implements InitializationBLService {
 		StoreArea storeArea=storeModel.getArea(anEnum);
 		storeArea.addShelves(rowNum, shelvesNum);
 
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblDriverService#searchDriver(java.lang.String)
+	 */
+	@Override
+	public DriverVO searchDriver(String driverID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblDriverService#getStaffByInstitution()
+	 */
+	@Override
+	public ArrayList<DriverVO> getStaffByInstitution() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblDriverService#modifyStaff(vo.managevo.staff.DriverVO)
+	 */
+	@Override
+	public OperationMessage modifyStaff(DriverVO after) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblDriverService#addStaff(vo.managevo.staff.DriverVO)
+	 */
+	@Override
+	public OperationMessage addStaff(DriverVO staff) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblDriverService#dismissStaff(vo.managevo.staff.DriverVO)
+	 */
+	@Override
+	public OperationMessage dismissStaff(DriverVO staff) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
