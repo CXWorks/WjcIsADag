@@ -96,10 +96,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理员", Calendar.getInstance(), "新建账号:" + po.getID()));
-
 		return result;
 	}
 
@@ -114,10 +110,6 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理员", Calendar.getInstance(), "删除账号:" + accountID));
 
 		return result;
 	}

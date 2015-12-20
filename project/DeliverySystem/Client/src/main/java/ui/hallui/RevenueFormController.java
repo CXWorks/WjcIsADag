@@ -88,7 +88,8 @@ public class RevenueFormController {
     }
 
     public void commit(ActionEvent actionEvent) {
-    	OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.newID()));
+    	RevenueVO revenueVO=generateRevenueVO(revenueBLService.getNewRevenueID(Calendar.getInstance()));
+    	OperationMessage msg = revenueBLService.submit(revenueVO);
     	clear(null);
         if(msg.operationResult){
             System.out.println("commit successfully");
@@ -115,7 +116,9 @@ public class RevenueFormController {
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
     	orderIDs.clear();
 
-    	revenues_TableView.setItems(null);
+    	revenues_TableView.getItems().clear();
+    	money=0;
+    	total_Label.setText(money+"");
     }
 
 

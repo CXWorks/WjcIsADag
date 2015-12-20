@@ -81,10 +81,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "新建营业厅:" + po.getHallID()));
-
 		return result;
 	}
 
@@ -99,10 +95,6 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除营业厅:" + hall.getHallID()));
 
 		return result;
 	}

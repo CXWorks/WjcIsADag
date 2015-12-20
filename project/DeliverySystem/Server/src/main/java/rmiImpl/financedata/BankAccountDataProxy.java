@@ -4,10 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import database.RMIHelper;
 import message.OperationMessage;
 import po.FormPO;
 import po.financedata.BankAccountPO;
+import po.systemdata.LogPO;
 import po.systemdata.SystemState;
 import rmi.financedata.BankAccountDataService;
 import rmiImpl.initaldata.InitialDataProxy;
@@ -48,15 +51,27 @@ public class BankAccountDataProxy extends UnicastRemoteObject implements BankAcc
 
 	@Override
 	public OperationMessage insert(BankAccountPO po) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return bankAccountDataService.insert(po);
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage message = bankAccountDataService.insert(po);
+			// 系统日志
+			if (message.operationResult == true)
+				RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + po.getBankID()));
+
+			return message;
+		}
 		return null;
 	}
 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return bankAccountDataService.delete(id);
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage message = bankAccountDataService.delete(id);
+			// 系统日志
+			if (message.operationResult == true)
+				RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + id));
+
+			return message;
+		}
 		return null;
 	}
 

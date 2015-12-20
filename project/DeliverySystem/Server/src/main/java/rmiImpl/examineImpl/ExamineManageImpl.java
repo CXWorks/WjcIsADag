@@ -27,6 +27,7 @@ import rmi.examineService.ExamineManageService;
 import rmi.systemdata.LogDataService;
 import rmiImpl.chatRemindImpl.Reminder;
 import rmiImpl.systemdata.LogDataImpl;
+import util.R;
 
 public class ExamineManageImpl extends UnicastRemoteObject implements ExamineManageService {
 	private static final long serialVersionUID = 1L;
@@ -134,7 +135,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			case REVENUE:
 				RevenuePO rev = (RevenuePO) tmp;
 				result = pass_helper.getRevenueDataService().insert(rev);
-				pass_helper.getBankAccountDataService().modifyBalance(null, Double.parseDouble(rev.getAmount()));
+				pass_helper.getBankAccountDataService().modifyBalance(R.string.CompanyAccount, Double.parseDouble(rev.getAmount()));
 				break;
 			case STORE_IN:
 				StoreInPO sInPO = (StoreInPO) tmp;

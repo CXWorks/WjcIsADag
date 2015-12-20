@@ -16,6 +16,7 @@ import vo.financevo.BankAccountVO;
 import vo.managevo.car.CarVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
+import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.financedata.BankAccountPO;
 import po.initialdata.InitialDataPO;
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 
 /**
@@ -50,6 +52,7 @@ public class InitialDataVO extends InfoVO{
     ArrayList<HallVO> halls;
     ArrayList<CenterVO> centers;
     ArrayList<City2DVO> city2dvos;
+    ArrayList<DriverVO> drivers;
     PriceVO priceVO;
     ProportionVO proportionVO;
     ArrayList< SalaryStrategyVO> salaryStrategyVO;
@@ -61,21 +64,22 @@ public class InitialDataVO extends InfoVO{
     }
     public InitialDataVO(InitialDataPO po){
     	this();
-    	this.bankAccounts=(ArrayList<BankAccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getBankAccounts());
-    	this.cars=(ArrayList<CarVO>) this.trans((ArrayList<? extends CommonPO>) po.getCars());
-    	this.staffs=(ArrayList<StaffVO>) this.trans((ArrayList<? extends CommonPO>) po.getStaffs());
-    	this.halls=(ArrayList<HallVO>)this.trans((ArrayList<? extends CommonPO>) po.getHalls());
-    	this.centers=(ArrayList<CenterVO>) this.trans((ArrayList<? extends CommonPO>) po.getCenters());
+    	this.bankAccounts=(ArrayList<BankAccountVO>) this.trans(po.getBankAccounts());
+    	this.cars=(ArrayList<CarVO>) this.trans(po.getCars());
+    	this.staffs=(ArrayList<StaffVO>) this.trans(po.getStaffs());
+    	this.halls=(ArrayList<HallVO>)this.trans( po.getHalls());
+    	this.centers=(ArrayList<CenterVO>) this.trans( po.getCenters());
     	this.priceVO=new PriceVO(po.getPricePO());
     	this.proportionVO=new ProportionVO(po.getProportionPO());
-    	this.salaryStrategyVO = (ArrayList<SalaryStrategyVO>) this.trans((ArrayList<? extends CommonPO>) po.getSalaryStrategyPO());
+    	this.salaryStrategyVO = (ArrayList<SalaryStrategyVO>) this.trans( po.getSalaryStrategyPO());
     	this.packVO=new PackVO(po.getPackPO());
-    	this.accountVOs=(ArrayList<AccountVO>) this.trans((ArrayList<? extends CommonPO>) po.getAccountPOs());
-    	this.city2dvos=(ArrayList<City2DVO>) this.trans((ArrayList<? extends CommonPO>) po.getCity2dpos());
+    	this.accountVOs=(ArrayList<AccountVO>) this.trans( po.getAccountPOs());
+    	this.city2dvos= (ArrayList<City2DVO>) this.trans( po.getCity2dpos());
+    	this.drivers=(ArrayList<DriverVO>) this.trans(po.getDriverPOs());
 		this.storeModels=new ArrayList<>(po.getStoreModels());
     }
 
-    private ArrayList<? extends CommonVO> trans(ArrayList<? extends CommonPO> src){
+    private ArrayList<? extends CommonVO> trans(List<? extends CommonPO> src){
     	VOPOFactory vopoFactory=new VOPOFactory();
     	ArrayList<CommonVO> ans=new ArrayList<CommonVO>(src.size());
     	for(int i=0;i<src.size();i++){
@@ -103,11 +107,9 @@ public class InitialDataVO extends InfoVO{
     	ArrayList<CenterPO> centerPOs=(ArrayList<CenterPO>) this.tranVO(centers);
     	ArrayList<AccountPO> accountPOs=(ArrayList<AccountPO>) this.tranVO((ArrayList<? extends CommonVO>) accountVOs);
     	ArrayList<City2DPO> city2dpos=(ArrayList<City2DPO>) this.tranVO((ArrayList<? extends CommonVO>) city2dvos);
-    	List< SalaryStrategyPO> salaryStrategyPO = new ArrayList< SalaryStrategyPO>();
-    	for(SalaryStrategyVO tmp:this.salaryStrategyVO){
-    		salaryStrategyPO.add( tmp.toPO());
-    	}
-    	InitialDataPO initialDataPO= new InitialDataPO(version, dbName, storeModels, bankAccountPOs, carPOs, staffPOs, hallPOs, centerPOs, city2dpos, priceVO.toPO(), proportionVO.toPO(), salaryStrategyPO, packVO.toPO(), accountPOs);
+    	List<SalaryStrategyPO> salaryStrategyPO=(List<SalaryStrategyPO>) this.tranVO(salaryStrategyVO);
+    	List<DriverPO> driverPO=(List<DriverPO>) this.tranVO(drivers);
+    	InitialDataPO initialDataPO= new InitialDataPO(version, dbName, storeModels, bankAccountPOs, carPOs, staffPOs, hallPOs, centerPOs, city2dpos, priceVO.toPO(), proportionVO.toPO(), salaryStrategyPO, packVO.toPO(), accountPOs,driverPO);
     	initialDataPO.setCache_OperatorID(UserInfo.getUserID());
     	return initialDataPO;
     }
@@ -140,7 +142,7 @@ public class InitialDataVO extends InfoVO{
 			ArrayList<StaffVO> staffs, ArrayList<HallVO> halls,
 			ArrayList<CenterVO> centers, PriceVO priceVO,
 			ProportionVO proportionVO, ArrayList<SalaryStrategyVO> salaryStrategyVO,
-			PackVO packVO, ArrayList<AccountVO> accountVOs,ArrayList<City2DVO> city2dvos) {
+			PackVO packVO, ArrayList<AccountVO> accountVOs,ArrayList<City2DVO> city2dvos,ArrayList<DriverVO> driverVOs) {
 		this();
 		this.version = version;
 		this.dbName = dbName;
@@ -156,6 +158,7 @@ public class InitialDataVO extends InfoVO{
 		this.packVO = packVO;
 		this.accountVOs = accountVOs;
 		this.city2dvos=city2dvos;
+		this.drivers=driverVOs;
 	}
 	public String getDbName() {
 		return dbName;
@@ -208,5 +211,9 @@ public class InitialDataVO extends InfoVO{
 		this.packVO = packVO;
 		return new OperationMessage();
 	}
+	public ArrayList<DriverVO> getDrivers() {
+		return drivers;
+	}
+	
 
 }

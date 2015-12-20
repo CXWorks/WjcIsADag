@@ -4,10 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import database.RMIHelper;
 import message.OperationMessage;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
+import po.systemdata.LogPO;
 import po.systemdata.SystemState;
 import rmi.memberdata.MemberDataService;
 import rmiImpl.initaldata.InitialDataProxy;
@@ -55,15 +58,27 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public OperationMessage addStaff(StaffPO staff) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return staffDataService.addStaff(staff);
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage message = staffDataService.addStaff(staff);
+			//系统日志
+			if(message.operationResult==true)
+				RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "新增员工:" + staff.getID()));
+
+			return message;
+		}
 		return null;
 	}
 
 	@Override
 	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return staffDataService.dismissStaff(staff);
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage message = staffDataService.dismissStaff(staff);
+			//系统日志
+			if(message.operationResult==true)
+				RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "解雇员工:" + staff.getID()));
+
+			return message;
+		}
 		return null;
 	}
 
