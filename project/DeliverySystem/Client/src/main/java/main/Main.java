@@ -6,6 +6,7 @@ package main;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,27 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
-import ui.accountui.ManageAccountController;
-import ui.configurationui.ConfigurationController;
-import ui.deliverui.deliverController;
-import ui.examineui.CheckFormController;
-import ui.financeui.CheckFinanceChartController;
-import ui.financeui.CheckLogController;
-import ui.financeui.ManageBankAccountController;
-import ui.financeui.PaymentFormController;
-import ui.hallui.ManageCarDriverController;
-import ui.initui.CheckInitInfoController;
 import ui.loginui.LoginController;
-import ui.manangeui.organization.ManageOrganizationController;
-import ui.manangeui.salary.ManageSalaryController;
-import ui.manangeui.staff.ManageStaffController;
 import ui.navigationui.*;
-import ui.orderui.NewOrderController;
-import ui.receiveui.ReceiveFormController;
-import ui.storeui.StockTackController;
-import ui.storeui.StoreSummaryController;
-import ui.transportui.LoadCarController;
-import ui.transportui.TransitFormController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -117,10 +99,15 @@ public class Main extends Application {
         setDraggable();
     }
 
-    private static double initX;
-    private static double initY;
+    private static double calX;
+    private static double calY;
+    private static double oldPosX;
+    private static double oldPosY;
+    private static double oldWidth;
+    private static double oldHeight;
     private static boolean dragging = false;
     private static boolean resizing = false;
+    private static CURSOR_AREA pressedArea = CURSOR_AREA.CENTER;
     private static final int padding = 14;
     private static final int titleHeight = 50;
 
@@ -181,33 +168,78 @@ public class Main extends Application {
         }
     }
 
+    private static void setBounds(Stage stage, double x, double y, double w, double h){
+        stage.setWidth(w);
+        stage.setHeight(h);
+        stage.setX(x);
+        stage.setY(y);
+    }
+
+    /**
+     * ！！！！！！！！！ 我必须要写注释，千万不要搞混 sceneX 和 screenX ！！！！！！！！！
+     */
     private static void setDraggable(){
         primaryStage.getScene().setOnMousePressed(
                 me -> {
-                    CURSOR_AREA area = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
-                    if(area == CURSOR_AREA.TITLE){
+                    pressedArea = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
+                    if(pressedArea == CURSOR_AREA.TITLE){
                         resizing = false;
                         dragging = true;
-                        initX = me.getScreenX() - primaryStage.getX();
-                        initY = me.getScreenY() - primaryStage.getY();
-                    }else if(area == CURSOR_AREA.CENTER){
+                        calX = me.getScreenX() - primaryStage.getX();
+                        calY = me.getScreenY() - primaryStage.getY();
+                    }else if(pressedArea == CURSOR_AREA.CENTER){
                         resizing = false;
                         dragging = false;
                     }else{
                         resizing = true;
                         dragging = false;
-                        initX = me.getSceneX();
-                        initY = me.getSceneY();
+                        oldPosX = primaryStage.getX();
+                        oldPosY = primaryStage.getY();
+                        oldWidth = primaryStage.getWidth();
+                        oldHeight = primaryStage.getHeight();
+                        calX = me.getScreenX();
+                        calY = me.getScreenY();
                     }
                 }
         );
         primaryStage.getScene().setOnMouseDragged(
                 me -> {
                     if (dragging) {
-                        primaryStage.setX(me.getScreenX() - initX);
-                        primaryStage.setY(me.getScreenY() - initY);
+                        primaryStage.setX(me.getScreenX() - calX);
+                        primaryStage.setY(me.getScreenY() - calY);
                     } else if (resizing) {
-
+                        double dx = me.getScreenX() - calX;
+                        double dy = me.getScreenY() - calY;
+                        switch (pressedArea) {
+                            case NORTH_WEST:
+                                setBounds(primaryStage, oldPosX + dx, oldPosY + dy, oldWidth - dx, oldHeight - dy);
+                                break;
+                            case NORTH_EAST:
+                                setBounds(primaryStage, oldPosX, oldPosY + dy, oldWidth + dx, oldHeight - dy);
+                                break;
+                            case SOUTH_WEST:
+                                setBounds(primaryStage, oldPosX + dx, oldPosY, oldWidth - dx, oldHeight + dy);
+                                break;
+                            case SOUTH_EAST:
+                                setBounds(primaryStage, oldPosX, oldPosY, oldWidth + dx, oldHeight + dy);
+                                break;
+                            case NORTH:
+                                setBounds(primaryStage, oldPosX, oldPosY + dy, oldWidth, oldHeight - dy);
+                                break;
+                            case SOUTH:
+                                setBounds(primaryStage, oldPosX, oldPosY, oldWidth, oldHeight + dy);
+                                break;
+                            case WEST:
+                                setBounds(primaryStage, oldPosX + dx, oldPosY, oldWidth - dx, oldHeight);
+                                break;
+                            case EAST:
+                                setBounds(primaryStage, oldPosX, oldPosY, oldWidth + dx, oldHeight);
+                                break;
+                            case TITLE:
+                                break;
+                            case CENTER:
+                                break;
+                        }
                     }
                 }
         );
@@ -216,7 +248,7 @@ public class Main extends Application {
                 me -> {
                     CURSOR_AREA area = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
                     Cursor cursor = Cursor.DEFAULT;
-                    switch (area){
+                    switch (area) {
                         case NORTH_WEST:
                             cursor = Cursor.NW_RESIZE;
                             break;

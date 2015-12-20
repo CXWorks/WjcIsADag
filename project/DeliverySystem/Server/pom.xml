@@ -31,7 +31,9 @@
                 <directory>src/main/java/ui</directory>
                 <targetPath>ui</targetPath>
                 <includes>
-                    <include>*.fxml</include>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
                 </includes>
             </resource>
         </resources>
