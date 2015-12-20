@@ -5,4 +5,4 @@
 <?import javafx.scene.layout.*?>
 
 
-<TabPane fx:id="general_TabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" styleClass="background" stylesheets="@../../../../../dump/css/main.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<TabPane fx:id="general_TabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" styleClass="background" stylesheets="@../css/main.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
