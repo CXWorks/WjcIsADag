@@ -18,6 +18,7 @@ import model.store.StoreModel;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import ui.informui.InformController;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
 
@@ -60,6 +61,8 @@ public class StockTackPaneController {
     public IntegerProperty selectedShelf = new SimpleIntegerProperty();
     public IntegerProperty selectedPosition = new SimpleIntegerProperty();
     public SelectingItem selecting = null;
+
+    private InformController informController;
 
     public void setStoreModel(StoreModel model){
         storeModel = model;

@@ -24,6 +24,7 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
@@ -60,8 +61,10 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 
 	private StaffTypeEnum staffTypeEnumType = StaffTypeEnum.BURSAR;
 	private SexEnum sexEnum=SexEnum.MAN;
-	
+
 	private InstitutionVO institutionVO;
+
+	private InformController informController;
 
 	@FXML
 	public static ManageStaffController launch(Pane father, Pane before, ManageblStaffService service)
@@ -74,6 +77,8 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		ManageStaffController controller = fxmlLoader.getController();
 		controller.manageblStaffService = service;
 		controller.selfPane = selfPane;
+
+		controller.informController = InformController.newInformController(selfPane);
 
 		if (father == null) {
 			selfPane.getChildren().remove(controller.back_Btn);
@@ -94,7 +99,7 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 		// staffVOs =
 		// manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
 		// staffTable.setItems(FXCollections.observableList(staffVOs));
-		
+
 		// initialize the choice box
 		staffType_ChoiceBox.setItems(Enum2ObservableList.transit(StaffTypeEnum.values()));
 		staffType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -127,7 +132,7 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 			staffVOs = manageblStaffService.getStaffByInstitution(this.institutionVO.getInstitutionID());
 			this.staffTable.setItems(FXCollections.observableList(staffVOs));
 		}
-		
+
 	}
 
 	//

@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
@@ -28,6 +29,8 @@ import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.TransitVO2ColumnHelper;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
@@ -56,11 +59,15 @@ public class StoreOutFormController {
 
 	StoreOutBLService storeOutBLService = FormFactory.getStoreOutBLService();
 
-	public static Parent launch() throws IOException {
+	private InformController informController;
 
-		FXMLLoader contentLoader = new FXMLLoader();
-		contentLoader.setLocation(StoreInFormController.class.getResource("storeOutForm.fxml"));
-		return contentLoader.load();
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(StoreOutFormController.class.getResource("storeOutForm.fxml"));
+		Pane pane = loader.load();
+		StoreOutFormController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
 
 	@FXML
@@ -89,11 +96,14 @@ public class StoreOutFormController {
 	public void saveDraft(ActionEvent actionEvent) {
 		storeOutBLService.saveDraft(generateVO(null));
 	}
+
 	private StoreOutVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(storeOut_DatePicker.getValue());
-		StoreOutVO vo = new StoreOutVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), tran,transitID_Field.getText(),UserInfo.getUserID());
+		StoreOutVO vo = new StoreOutVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), tran,
+				transitID_Field.getText(), UserInfo.getUserID());
 		return vo;
 	}
+
 	public void clear(ActionEvent actionEvent) {
 		storeOut_DatePicker.setValue(LocalDate.now());
 		orderID_Field.clear();
@@ -114,6 +124,7 @@ public class StoreOutFormController {
 			System.out.println("commit fail: " + msg.getReason());
 		}
 	}
+
 	private void fillOrderTable() {
 		OrderVO orderVO = storeOutBLService.loadOrder(orderID_Field.getText());
 
@@ -125,8 +136,10 @@ public class StoreOutFormController {
 
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
+
 	private void fillTransitTable() {
 		TransitVO transitVO = storeOutBLService.getTransportVO(transitID_Field.getText());
-		transit_TableView.setItems(FXCollections.observableArrayList(new TransitVO2ColumnHelper().VO2Entries(transitVO)));
+		transit_TableView
+				.setItems(FXCollections.observableArrayList(new TransitVO2ColumnHelper().VO2Entries(transitVO)));
 	}
 }

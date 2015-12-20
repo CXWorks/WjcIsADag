@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
 import model.store.StoreModel;
+import ui.informui.InformController;
 import ui.storeui.StockTackPaneController;
 
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class ManageInitialStoreController {
     private Pane father;
     private Pane before;
 
+    private InformController informController;
+
     public static Pane launch(Pane father, Pane before) throws IOException {
         FXMLLoader outLoader = new FXMLLoader();
         outLoader.setLocation(ManageInitialStoreController.class.getResource("manageInitialStore.fxml"));
@@ -42,11 +45,13 @@ public class ManageInitialStoreController {
         Pane content = contentLoader.load();
 
         outController.contentController = contentLoader.getController();
+        outController.informController = InformController.newInformController(pane);
+
         outController.father = father;
         outController.before = before;
         outController.content_Pane.getChildren().add(content);
 
-        return pane;
+        return outController.informController.stackPane;
     }
 
     @FXML

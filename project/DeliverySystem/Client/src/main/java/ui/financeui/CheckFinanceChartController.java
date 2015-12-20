@@ -12,9 +12,12 @@ import javafx.scene.chart.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import vo.financevo.*;
 
 import java.io.IOException;
@@ -43,8 +46,15 @@ public class CheckFinanceChartController {
     public ChoiceBox<SimpleEnumProperty<FinanceBaseChartType>> barType_ChoiceBox;
     public ChoiceBox<SimpleEnumProperty<FinanceBaseChartType>> lineType_ChoiceBox;
 
+    private InformController informController;
+
     public static Parent launch() throws IOException {
-        return FXMLLoader.load(CheckFinanceChartController.class.getResource("checkFinanceChart.fxml"));
+        FXMLLoader loader = new FXMLLoader(CheckFinanceChartController.class.getResource("checkFinanceChart.fxml"));
+        Pane pane = loader.load();
+        CheckFinanceChartController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     @FXML
@@ -77,12 +87,12 @@ public class CheckFinanceChartController {
         outcome_Label.setText(calculateVO.companyPayment + "元");
         income_Label.setText(calculateVO.companyRevenue + "元");
         profit_Label.setText(calculateVO.companyProfit + "元");
-        
+
         	refreshPieChart();
             refreshBarChart();
             refreshLineChart();
-		
-        
+
+
 
     }
 

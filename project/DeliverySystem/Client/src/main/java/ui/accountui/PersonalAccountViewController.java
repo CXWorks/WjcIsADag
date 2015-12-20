@@ -6,6 +6,8 @@ import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
 import main.Main;
 import ui.financeui.AccountEditDialogController;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
 import vo.financevo.BankAccountVO;
@@ -15,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -24,18 +27,25 @@ public class PersonalAccountViewController {
     public Label staff_Label;
     public Label id_Label;
 
+    private InformController informController;
+
     AccountBLManageService accountManageService = AccountFactory.getManageService();
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
+		FXMLLoader loader = new FXMLLoader(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
+        Pane pane = loader.load();
+        PersonalAccountViewController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
-    
+
 	@FXML
     public void initialize(){
 	    staff_Label.setText(UserInfo.getStaffType().toString());
 	    id_Label.setText(UserInfo.getUserID());
 	}
-	
-    
+
+
     public void editPassword(ActionEvent actionEvent)  throws IOException {
         AccountVO AccountVO = accountManageService.getAccountVO(UserInfo.getUserID());
         personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO);

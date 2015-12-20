@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
 import po.FormEnum;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
@@ -23,10 +19,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.Pane;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import ui.loginui.LoginController;
 import vo.FormVO;
 
-public class CheckFormController implements EventHandler<Event>{
+public class CheckFormController implements EventHandler<Event> {
 
 	public Tab all_Tab;
 	public Tab order_Tab;
@@ -54,70 +53,78 @@ public class CheckFormController implements EventHandler<Event>{
 	public ObservableList<Tab> tabs;
 
 	@FXML
-	public ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
+	public ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	@FXML
 	public FormTableController formTableController;
-	
-	
+
 	public Parent son;
-	
-	public FormEnum nowFormEnum=null;
 
+	public FormEnum nowFormEnum = null;
 
-	 public static Parent launch() throws IOException {
-	       FXMLLoader fxmlLoader=new FXMLLoader();
-	       fxmlLoader.setLocation(CheckFormController.class.getResource("checkForm.fxml"));
-	       return fxmlLoader.load();
-	 }
-	 private void initSon() throws IOException{
-		 FXMLLoader fxmlLoader=new FXMLLoader();
-		 fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
-		 son=(Parent)fxmlLoader.load();
-			this.formTableController=(FormTableController)fxmlLoader.getController();
-	 }
+	private InformController informController;
 
-	 public void initialize(){
-		 tabs=tabPane.getTabs();
-			for (Tab tab : tabs) {
-				tab.setOnSelectionChanged(this);
-//				tab.setContent(son);
-			}
-			tabPane.getSelectionModel().selectFirst();
-			selectedTab=tabPane.getSelectionModel().getSelectedItem();
-			this.handleSelection();
-		
-	 }
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(CheckFormController.class.getResource("checkForm.fxml"));
+		Pane pane = loader.load();
+		CheckFormController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
 
-	public void pass(){
-		ArrayList<FormVO> temp=formTableController.getSelected();
+		return controller.informController.stackPane;
+	}
+
+	private void initSon() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
+		son = (Parent) fxmlLoader.load();
+		this.formTableController = (FormTableController) fxmlLoader.getController();
+	}
+
+	public void initialize() {
+		tabs = tabPane.getTabs();
+		for (Tab tab : tabs) {
+			tab.setOnSelectionChanged(this);
+			// tab.setContent(son);
+		}
+		tabPane.getSelectionModel().selectFirst();
+		selectedTab = tabPane.getSelectionModel().getSelectedItem();
+		this.handleSelection();
+
+	}
+
+	public void pass() {
+		ArrayList<FormVO> temp = formTableController.getSelected();
 		examineblManageService.passForm(temp);
 		formTableController.change(nowFormEnum);
 		this.changeCheckBox();
 	}
-	private void changeCheckBox(){
+
+	private void changeCheckBox() {
 		chooseAll_Box.setSelected(false);
 	}
-	public void delete(){
-		ArrayList<FormVO> temp=formTableController.getSelected();
+
+	public void delete() {
+		ArrayList<FormVO> temp = formTableController.getSelected();
 		examineblManageService.deleteForm(temp);
 		formTableController.change(nowFormEnum);
 	}
-	public void selectAll(){
+
+	public void selectAll() {
 		formTableController.selectAll();
 	}
+
 	//
-	public void refresh(){
+	public void refresh() {
 		examineblManageService.refresh();
 		formTableController.change(nowFormEnum);
 	}
-	
-	public void oneKey(){
+
+	public void oneKey() {
 		this.selectAll();
 		this.pass();
 	}
-	
-	private FormEnum getFormEnum(String text){
-		if (text==null) {
+
+	private FormEnum getFormEnum(String text) {
+		if (text == null) {
 			return null;
 		}
 		//
@@ -148,33 +155,36 @@ public class CheckFormController implements EventHandler<Event>{
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
 	 */
 	@Override
 	public void handle(Event event) {
-		Tab unknown=(Tab)event.getSource();
-//		System.out.println(unknown.getText());
+		Tab unknown = (Tab) event.getSource();
+		// System.out.println(unknown.getText());
 		if (unknown.getText().equalsIgnoreCase(selectedTab.getText())) {
 			return;
-		}else {
-			selectedTab=unknown;
+		} else {
+			selectedTab = unknown;
 			this.handleSelection();
 		}
 	}
+
 	//
-	private void handleSelection(){
+	private void handleSelection() {
 		try {
 			this.initSon();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String text=selectedTab.getText();
-		nowFormEnum=this.getFormEnum(text);
+		String text = selectedTab.getText();
+		nowFormEnum = this.getFormEnum(text);
 		formTableController.change(nowFormEnum);
 		selectedTab.setContent(son);
-		if (son==null) {
+		if (son == null) {
 			System.out.println("null");
 		}
 	}
