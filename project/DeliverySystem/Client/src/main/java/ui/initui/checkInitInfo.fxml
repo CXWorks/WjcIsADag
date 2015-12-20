@@ -5,13 +5,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.CheckInitInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.CheckInitInfoController">
    <children>
-      <Label layoutX="26.0" layoutY="36.0" text="系统状态" />
-      <Label layoutX="269.0" layoutY="36.0" text="查看分支" />
-      <Button layoutX="590.0" layoutY="32.0" mnemonicParsing="false" onAction="#applyForInitialization" text="申请建账" />
+      <Label layoutX="74.0" layoutY="36.0" text="系统状态" />
+      <Label layoutX="331.0" layoutY="35.0" text="查看分支" />
+      <Button layoutX="592.0" layoutY="35.0" mnemonicParsing="false" onAction="#applyForInitialization" text="申请建账" />
       <AnchorPane fx:id="content_Pane" layoutX="26.0" layoutY="85.0" prefHeight="337.0" prefWidth="747.0" />
-      <Label fx:id="systemState_Label" layoutX="102.0" layoutY="36.0" text="正常运行" />
-      <ChoiceBox fx:id="initType_ChoiceBox" layoutX="329.0" layoutY="32.0" prefHeight="23.0" prefWidth="112.0" />
+      <Label fx:id="systemState_Label" layoutX="150.0" layoutY="36.0" text="正常运行" />
+      <ChoiceBox fx:id="initType_ChoiceBox" layoutX="404.0" layoutY="31.0" prefHeight="23.0" prefWidth="112.0" />
    </children>
 </AnchorPane>

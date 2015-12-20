@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import message.ChatMessage;
 import tool.time.TimeConvert;
 import ui.financeui.ManageBankAccountController;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
 import bl.blService.accountblService.AccountBLRemindService;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -32,9 +35,15 @@ public class CheckMessageController {
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
     ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getUserID());
 
+    private InformController informController;
 
     public static Parent launch() throws IOException {
-        return FXMLLoader.load(CheckMessageController.class.getResource("checkMessage.fxml"));
+        FXMLLoader loader = new FXMLLoader(CheckMessageController.class.getResource("checkMessage.fxml"));
+        Pane pane = loader.load();
+        CheckMessageController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     @FXML

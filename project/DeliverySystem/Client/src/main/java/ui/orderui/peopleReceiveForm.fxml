@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.PeopleReceiveFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.PeopleReceiveFormController">
    <children>
-      <TextField fx:id="id_Field" layoutX="54.0" layoutY="59.0" promptText="快递单号输入框" />
-      <Button layoutX="225.0" layoutY="59.0" mnemonicParsing="false" onAction="#search" text="确认" />
-      <GridPane layoutX="604.0" layoutY="152.0" prefHeight="147.0" prefWidth="187.0">
+      <TextField fx:id="id_Field" layoutX="67.0" layoutY="73.0" promptText="快递单号输入框" />
+      <Button layoutX="276.0" layoutY="76.0" mnemonicParsing="false" onAction="#search" text="确认" />
+      <GridPane layoutX="668.0" layoutY="209.0" prefHeight="147.0" prefWidth="214.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,17 +26,17 @@
             <DatePicker fx:id="receive_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <HBox alignment="BOTTOM_RIGHT" layoutX="186.0" layoutY="396.0" prefWidth="600.0" spacing="8.0">
+      <HBox alignment="BOTTOM_RIGHT" layoutX="292.0" layoutY="473.0" prefWidth="600.0" spacing="8.0">
          <children>
             <Button mnemonicParsing="false" onAction="#clear" prefHeight="23.0" prefWidth="52.0" text="清空" textAlignment="CENTER" />
             <Button fx:id="ok_Btn" defaultButton="true" mnemonicParsing="false" onAction="#commit" prefHeight="23.0" prefWidth="52.0" text="确认" />
          </children>
       </HBox>
-      <TableView fx:id="order_TableView" layoutX="54.0" layoutY="89.0" prefHeight="330.0" prefWidth="533.0">
+      <TableView fx:id="order_TableView" layoutX="67.0" layoutY="122.0" prefHeight="385.0" prefWidth="556.0">
          <columns>
             <TableColumn fx:id="id_Column" minWidth="0.0" prefWidth="152.0" text="订单号" />
             <TableColumn fx:id="address_Column" prefWidth="271.0" text="目的地" />
-            <TableColumn fx:id="name_Column" minWidth="0.0" prefWidth="109.0" text="收件人" />
+            <TableColumn fx:id="name_Column" minWidth="0.0" prefWidth="128.0" text="收件人" />
          </columns>
       </TableView>
    </children>

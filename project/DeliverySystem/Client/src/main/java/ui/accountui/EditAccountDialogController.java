@@ -11,6 +11,7 @@ import main.Main;
 import message.OperationMessage;
 import po.accountdata.AuthorityEnum;
 import ui.common.checkFormat.field.EngOnlyField;
+import ui.informui.InformController;
 import vo.accountvo.AccountVO;
 import javafx.scene.control.TextField;
 
@@ -31,6 +32,8 @@ public class EditAccountDialogController {
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
 
+	 private InformController informController;
+
     public static EditAccountDialogController newDialog(Stage stage, EditType type, AccountVO editVO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(EditAccountDialogController.class.getResource("editAccountDialog.fxml"));
@@ -43,6 +46,8 @@ public class EditAccountDialogController {
         stage.setScene(new Scene(pane));
 
         EditAccountDialogController controller = (EditAccountDialogController)loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
         controller.editVO = editVO == null ? new AccountVO() : editVO;
         controller.stage = stage;
         controller.type = type;

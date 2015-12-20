@@ -8,30 +8,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="893.0" styleClass="background" stylesheets="@../../../../../Client/dump/css/server.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
    <children>
-      <Region layoutX="47.0" layoutY="32.0" prefHeight="386.0" prefWidth="281.0">
+      <Region layoutX="56.0" layoutY="122.0" prefHeight="386.0" prefWidth="281.0">
          <effect>
             <Shadow />
          </effect>
       </Region>
-      <Label layoutX="84.0" layoutY="32.0" prefHeight="36.0" prefWidth="74.0" text="服务器" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Button layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#start" prefHeight="36.0" prefWidth="102.0" text="启动服务" />
-      <Button layoutX="70.0" layoutY="196.0" mnemonicParsing="false" onAction="#stop" prefHeight="36.0" prefWidth="102.0" text="关闭服务" />
-      <Label fx:id="state" layoutX="70.0" layoutY="269.0" prefHeight="36.0" prefWidth="150.0" text="当前状态：停止" textAlignment="CENTER">
+      <Button layoutX="79.0" layoutY="186.0" mnemonicParsing="false" onAction="#start" prefHeight="55.0" prefWidth="158.0" styleClass="begin" />
+      <Button layoutX="79.0" layoutY="286.0" mnemonicParsing="false" onAction="#stop" prefHeight="55.0" prefWidth="158.0" styleClass="stop" />
+      <Label fx:id="state" layoutX="347.0" layoutY="233.0" prefHeight="55.0" prefWidth="224.0" styleClass="label-header" text="当前状态：停止" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="70.0" layoutY="323.0" prefHeight="36.0" prefWidth="102.0" text="开始时间：" textAlignment="CENTER">
+      <Label layoutX="347.0" layoutY="286.0" prefHeight="71.0" prefWidth="224.0" styleClass="label-header" text="开始时间：" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="start_time" layoutX="172.0" layoutY="323.0" prefHeight="36.0" prefWidth="224.0" textAlignment="CENTER">
+      <Label fx:id="start_time" layoutX="467.0" layoutY="294.0" prefHeight="55.0" prefWidth="270.0" styleClass="label-header" textAlignment="CENTER">
          <font>
             <Font size="10.0" />
          </font>

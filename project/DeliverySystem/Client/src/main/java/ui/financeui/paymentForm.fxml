@@ -4,17 +4,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.PaymentFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.PaymentFormController">
    <children>
       <Label layoutX="39.0" layoutY="50.0" text="付款人信息" />
-      <Label layoutX="39.0" layoutY="85.0" prefHeight="15.0" prefWidth="24.0" text="姓名" />
+      <Label layoutX="39.0" layoutY="85.0" prefHeight="19.0" prefWidth="44.0" text="姓名" />
       <Label layoutX="39.0" layoutY="128.0" text="账户" />
       <TextField fx:id="payerName_Field" layoutX="110.0" layoutY="81.0" />
       <TextField fx:id="payerAccount_Field" layoutX="110.0" layoutY="124.0" />
       <TextField fx:id="receiverAccount_Field" layoutX="110.0" layoutY="312.0" />
       <TextField fx:id="receiverName_Field" layoutX="110.0" layoutY="269.0" />
       <Label layoutX="39.0" layoutY="316.0" text="账户" />
-      <Label layoutX="39.0" layoutY="273.0" prefHeight="15.0" prefWidth="24.0" text="姓名" />
+      <Label layoutX="39.0" layoutY="273.0" prefHeight="19.0" prefWidth="44.0" text="姓名" />
       <Label layoutX="39.0" layoutY="238.0" text="收款人信息" />
       <Label layoutX="359.0" layoutY="50.0" text="款项信息" />
       <Label layoutX="359.0" layoutY="85.0" text="金额" />
@@ -22,10 +22,10 @@
       <TextField fx:id="money_Field" layoutX="390.0" layoutY="81.0" prefHeight="23.0" prefWidth="132.0" />
       <DatePicker fx:id="payment_DatePicker" layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
       <Label layoutX="359.0" layoutY="128.0" text="条目" />
-      <Label layoutX="359.0" layoutY="171.0" text="备注" />
-      <TextArea fx:id="note_TextArea" layoutX="359.0" layoutY="199.0" prefHeight="199.0" prefWidth="425.0" />
+      <Label layoutX="358.0" layoutY="169.0" text="备注" />
+      <TextArea fx:id="note_TextArea" layoutX="359.0" layoutY="200.0" prefHeight="224.0" prefWidth="509.0" />
       <ChoiceBox fx:id="item_ChoiceBox" layoutX="390.0" layoutY="124.0" prefHeight="23.0" prefWidth="132.0" />
-      <HBox layoutX="577.0" layoutY="407.0" spacing="16.0">
+      <HBox layoutX="689.0" layoutY="460.0" spacing="16.0">
          <children>
             <Button layoutX="577.0" layoutY="407.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#clear" text="清空" />

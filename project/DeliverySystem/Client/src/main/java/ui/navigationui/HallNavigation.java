@@ -1,6 +1,7 @@
 package ui.navigationui;
 
 import factory.CarFactory;
+import factory.StaffFactory;
 import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.accountui.PersonalAccountViewController;
@@ -21,7 +22,7 @@ public class HallNavigation {
     public static Parent launch() throws IOException {
         Parent node = TabMaker.newTabPane(Arrays.asList(
                 new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch
-                        (null, null, CarFactory.getCarService())),
+                        (null, null, CarFactory.getCarService(), StaffFactory.getManageblDriverService())),
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
                 new Pair<String ,Parent>("填写派件单",deliverController.launch()),

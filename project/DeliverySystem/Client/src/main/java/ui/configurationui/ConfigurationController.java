@@ -17,6 +17,8 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import bl.blService.configurationblService.ConfigurationBLService;
 import factory.ConfigurationFactory;
 import vo.configurationvo.City2DVO;
@@ -36,6 +38,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 
@@ -87,10 +90,16 @@ public class ConfigurationController {
 	private City2DVO city1;
 	private City2DVO city2;
 
+	private InformController informController;
 
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
+        FXMLLoader loader = new FXMLLoader(ConfigurationController.class.getResource("configuration.fxml"));
+        Pane pane = loader.load();
+        ConfigurationController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     public void initialize(){

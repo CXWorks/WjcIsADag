@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
@@ -129,6 +130,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         primaryStage.setTitle("2333快递物流管理系统");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setX(150);
         primaryStage.setY(150);
 

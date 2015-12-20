@@ -1,6 +1,6 @@
 .background {
 
-	-fx-background-image : url(login/background.png);
+	-fx-background-image : url(login/back.png);
 	-fx-background-size: cover;
 	
 }
@@ -94,10 +94,11 @@
 
 .text-field.id {
 
-    -fx-background-image : url(login/ID.png);
+    -fx-background-image : url(login/id.png);
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
+	-fx-color: black;
     -fx-font-family: "方正幼线简体 常规";
 	
 }
@@ -110,10 +111,11 @@
 
 .text-field.password {
 
-    -fx-background-image : url(login/password.png);
+    -fx-background-image : url(login/pass.png);
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
+	-fx-color:#cc6600;
     -fx-font-family: "方正幼线简体 常规";
 	
 }

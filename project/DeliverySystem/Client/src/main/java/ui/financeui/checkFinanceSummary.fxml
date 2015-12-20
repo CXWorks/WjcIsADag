@@ -5,20 +5,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.CheckFinanceSummaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.CheckFinanceSummaryController">
    <children>
-      <Label layoutX="26.0" layoutY="36.0" text="开始日期" />
-      <Label layoutX="269.0" layoutY="36.0" text="结束日期" />
-      <Button onAction="#search" layoutX="524.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
-      <DatePicker fx:id="begin_DatePicker" layoutX="86.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
-      <DatePicker fx:id="end_DatePicker" layoutX="327.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
-      <Label layoutX="368.0" layoutY="408.0" text="总支出" />
-      <Label fx:id="outcome_Label" layoutX="417.0" layoutY="408.0" text="Label" />
-      <Label layoutX="515.0" layoutY="408.0" text="总收入" />
-      <Label fx:id="income_Label" layoutX="564.0" layoutY="408.0" text="Label" />
-      <Label layoutX="673.0" layoutY="408.0" text="净利润" />
-      <Label fx:id="profit_Label" layoutX="724.0" layoutY="408.0" text="Label" />
-      <TableView fx:id="finance_TableView" layoutX="26.0" layoutY="85.0" prefHeight="306.0" prefWidth="755.0">
+      <Label layoutX="102.0" layoutY="36.0" text="开始日期" />
+      <Label layoutX="345.0" layoutY="36.0" text="结束日期" />
+      <Button layoutX="601.0" layoutY="33.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <DatePicker fx:id="begin_DatePicker" layoutX="167.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
+      <DatePicker fx:id="end_DatePicker" layoutX="408.0" layoutY="32.0" prefHeight="23.0" prefWidth="129.0" />
+      <Label layoutX="418.0" layoutY="484.0" text="总支出" />
+      <Label fx:id="outcome_Label" layoutX="467.0" layoutY="484.0" text="Label" />
+      <Label layoutX="565.0" layoutY="484.0" text="总收入" />
+      <Label fx:id="income_Label" layoutX="614.0" layoutY="484.0" text="Label" />
+      <Label layoutX="723.0" layoutY="484.0" text="净利润" />
+      <Label fx:id="profit_Label" layoutX="774.0" layoutY="484.0" text="Label" />
+      <TableView fx:id="finance_TableView" layoutX="98.0" layoutY="78.0" prefHeight="373.0" prefWidth="787.0">
         <columns>
           <TableColumn fx:id="date_Column" prefWidth="75.0" text="日期" />
           <TableColumn fx:id="type_Column" prefWidth="75.0" text="类别" />

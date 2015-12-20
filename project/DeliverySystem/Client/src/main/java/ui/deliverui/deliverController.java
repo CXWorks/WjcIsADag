@@ -11,6 +11,8 @@ import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
@@ -26,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class deliverController {
 
@@ -52,8 +55,15 @@ public class deliverController {
 //	ArrayList<String> toSend = new ArrayList<String>();
 //	ArrayList<String> postmans = new ArrayList<String>();
 
+	private InformController informController;
+
 	public static Parent launch() throws IOException {
-		return FXMLLoader.load(deliverController.class.getResource("deliver.fxml"));
+		FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
+        Pane pane = loader.load();
+        deliverController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
 	}
 
 
@@ -65,7 +75,7 @@ public class deliverController {
 //		postmans.add("wjc");postmans.add("cx");
 
 		postman_Box.setItems(FXCollections.observableArrayList(postmans));
-//		postman_Box.setValue(postman_Box.getItems().get(0));
+		postman_Box.setValue(postman_Box.getItems().get(0));
 		postman_Box.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					postman = newValue.toString();
@@ -86,6 +96,7 @@ public class deliverController {
         OrderVO2ColumnHelper.setKeyColumn(key_Column);
         OrderVO2ColumnHelper.setValueColumn(value_Column);
 	}
+	
     private void fillOrderTable(){
         OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
 
@@ -132,6 +143,7 @@ public class deliverController {
 		if(msg.operationResult){
 			System.out.println("commit successfully");
 			clear(null);
+			refresh(null);
 		}else{
 			System.out.println("commit fail: " + msg.getReason());
 		}
@@ -150,6 +162,7 @@ public class deliverController {
 
 	public void saveDraft(ActionEvent actionEvent) {
 		deliverBLService.saveDraft(generateVO(null));
+		clear(null);
 	}
 
 }

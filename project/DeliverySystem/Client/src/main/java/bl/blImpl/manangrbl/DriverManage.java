@@ -22,6 +22,7 @@ import bl.clientNetCache.CacheHelper;
 public class DriverManage implements ManageblDriverService {
 	private MemberDataService<DriverPO> memberDataService_driver;
 	private VOPOFactory vopoFactory;
+
 	public DriverManage(VOPOFactory vopoFactory){
 		memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		this.vopoFactory=vopoFactory;
@@ -48,8 +49,8 @@ public class DriverManage implements ManageblDriverService {
 	@Override
 	public ArrayList<DriverVO> getStaffByInstitution() {
 		try {
-			ArrayList<DriverPO> driverPOs=memberDataService_driver.getStaffByInstitution(UserInfo.getInstitutionID());
-			ArrayList<DriverVO> vo=new ArrayList<DriverVO>(driverPOs.size());
+			ArrayList<DriverPO> driverPOs = memberDataService_driver.getStaffByInstitution(UserInfo.getInstitutionID());
+			ArrayList<DriverVO> vo = new ArrayList<DriverVO>(driverPOs.size());
 			for (DriverPO driverPO : driverPOs) {
 				System.out.println(")))))"+driverPO.getInfoEnum());
 				DriverVO temp=(DriverVO)vopoFactory.transPOtoVO(driverPO);

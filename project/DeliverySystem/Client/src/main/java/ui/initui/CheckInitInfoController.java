@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import util.EnumObservable;
 import vo.financevo.BankAccountVO;
@@ -62,13 +63,16 @@ public class CheckInitInfoController {
     private InitialDataVO initialDataVO;
     private Pane father;
 
+    private InformController informController;
+
     public static Parent launch(Pane father) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CheckInitInfoController.class.getResource("checkInitInfo.fxml"));
         Pane pane = loader.load();
         CheckInitInfoController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
         controller.father = father;
-        return pane;
+        return controller.informController.stackPane;
     }
 
     @FXML

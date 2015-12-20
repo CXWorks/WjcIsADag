@@ -1,32 +1,49 @@
 .background {
-    -fx-background:url(..\..\..\..\..\..\..\..\UI图片\login\background.png);
+
+	-fx-background-color: #e8e8e8;
+	-fx-background-size: cover;
+	
 }
+
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 0.6;
-}
-
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
+
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: black;
     -fx-opacity: 1;
+}
+
+.date-picker{
+
+
+}
+
+
+.list-view{
+    -fx-base:gray;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
+
+}
+
+.text-area{
+    -fx-base:gray;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base:gray;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -37,8 +54,8 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-size: 20;
+    -fx-border-width: 1 1 1 1;
     -fx-background-color: transparent;
     -fx-border-color: 
         transparent
@@ -49,10 +66,10 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 10pt;
+    -fx-font-family: "方正幼线简体 常规";
     -fx-text-fill: white;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
     -fx-opacity: 1;
 }
 
@@ -89,43 +106,50 @@
 }
 
 .text-field {
-    -fx-border-style: none;
+
+	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
+	-fx-color: black;
     -fx-font-family: "方正幼线简体 常规";
-
 	
 }
 
-/* 
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
+.text-field:focused{
+
+     -fx-border-style :none;
+
+}
 
 .button {
-    -fx-padding: 5 22 5 22;   
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-size:13;
+    -fx-border-sty :none;
+    -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
-    -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 	-fx-size:13;
 }
 
-.button:hover {
+.button-sure {
+    -fx-size:13;
+	-fx-background-image: url (../pic/important/sure.png);
+    -fx-border-sty :none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-sure:hover {
     -fx-background-color: #3a3a3a;
 }
 
-.button:pressed, .button:default:hover:pressed {
+.button-sure:pressed, .button-sure:default:hover:pressed {
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
 
-.button:focused {
+.button-sure:focused {
     -fx-border-color: black, black;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
