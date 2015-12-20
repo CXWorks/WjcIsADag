@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="840.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="840.0" styleClass="background" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginui.LoginController">
    <children>
       <TextField fx:id="id_Field" layoutX="345.0" layoutY="219.0" prefHeight="36.0" prefWidth="247.0" promptText="员工编号输入框" styleClass="id" />
       <PasswordField fx:id="password_Field" layoutX="345.0" layoutY="272.0" onAction="#login" prefHeight="36.0" prefWidth="247.0" promptText="密码输入框" styleClass="password" />
