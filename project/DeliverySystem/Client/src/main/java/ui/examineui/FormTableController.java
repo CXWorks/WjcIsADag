@@ -7,6 +7,8 @@ import java.util.Calendar;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import po.FormEnum;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
 import vo.FormVO;
@@ -20,16 +22,18 @@ import javafx.scene.Parent;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.TableView;
 
 /**
  * Client//ui.examineui//FormTableController.java
+ *
  * @author CXWorks
  * @date 2015年12月3日 下午7:56:11
  * @version 1.0
  */
 public class FormTableController {
-	public boolean loaded=false;
+	public boolean loaded = false;
 	public TableView<FormVO> tableView;
 	public TableColumn<FormVO, String> calendarColumn;
 	public TableColumn<FormVO, String> typeColumn;
@@ -38,65 +42,75 @@ public class FormTableController {
 	public TableColumn<FormVO, String> infoColumn;
 	//
 	public ArrayList<FormVO> formVOs;
-	private ExamineblManageService examineblManageService=ExamineFactory.getExamineblManageService();
+	private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	//
-	public static Parent launch() throws IOException{
-		FXMLLoader fxmlLoader=new FXMLLoader();
-		fxmlLoader.setLocation(FormTableController.class.getResource("FormTableView.fxml"));
-		return fxmlLoader.load();
+	private InformController informController;
+
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(FormTableController.class.getResource("FormTableView.fxml"));
+		Pane pane = loader.load();
+		FormTableController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
-	private  void setColumn(FormEnum formEnum){
-		this.formVOs=examineblManageService.getForms(formEnum);
+
+	private void setColumn(FormEnum formEnum) {
+		this.formVOs = examineblManageService.getForms(formEnum);
 		this.tableView.setItems(FXCollections.observableList(formVOs));
-		if (formVOs==null||formVOs.size()==0) {
+		if (formVOs == null || formVOs.size() == 0) {
 			return;
 		}
 		if (tableView.getColumns().contains(infoColumn)) {
 			return;
 		}
-		infoColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getMainInfo()));
+		infoColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMainInfo()));
 		tableView.getColumns().add(infoColumn);
 	}
-	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList){
-		ArrayList<FormVO> ans=new ArrayList<FormVO>(observableList.size());
+
+	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList) {
+		ArrayList<FormVO> ans = new ArrayList<FormVO>(observableList.size());
 		for (FormVO formVO : observableList) {
 			ans.add(formVO);
 		}
 		return ans;
 	}
+
 	//
-	public void initialize(){
+	public void initialize() {
 		this.tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		infoColumn=new TableColumn<FormVO, String>("信息摘要");
+		infoColumn = new TableColumn<FormVO, String>("信息摘要");
 		//
-		calendarColumn.setCellValueFactory(cell->{
-			FormEnum type=cell.getValue().formType;
-			String formID=cell.getValue().formID;
+		calendarColumn.setCellValueFactory(cell -> {
+			FormEnum type = cell.getValue().formType;
+			String formID = cell.getValue().formID;
 			String ans;
-			if (type==FormEnum.ORDER) {
-				Calendar now=Calendar.getInstance();
-				ans=Integer.toString(now.get(Calendar.YEAR))+formID.substring(0, 4);
-			}
-			else {
-				ans=formID.substring(9, 17);
+			if (type == FormEnum.ORDER) {
+				Calendar now = Calendar.getInstance();
+				ans = Integer.toString(now.get(Calendar.YEAR)) + formID.substring(0, 4);
+			} else {
+				ans = formID.substring(9, 17);
 			}
 			return new SimpleStringProperty(ans);
 		});
-		creatorIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCreaterID()));
-		formIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formID));
-		typeColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().formType.getChinese()));
+		creatorIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCreaterID()));
+		formIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().formID));
+		typeColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().formType.getChinese()));
 	}
+
 	//
-	public void change(FormEnum formEnum){
+	public void change(FormEnum formEnum) {
 		this.setColumn(formEnum);
 	}
+
 	//
-	public void selectAll(){
+	public void selectAll() {
 		this.tableView.getSelectionModel().selectAll();
 	}
+
 	//
-	public ArrayList<FormVO> getSelected(){
-		ObservableList<FormVO> selected= this.tableView.getSelectionModel().getSelectedItems();
+	public ArrayList<FormVO> getSelected() {
+		ObservableList<FormVO> selected = this.tableView.getSelectionModel().getSelectedItems();
 		return this.transObervableList2List(selected);
 	}
 }

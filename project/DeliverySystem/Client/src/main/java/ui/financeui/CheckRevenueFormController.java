@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.Services;
 import userinfo.UserInfo;
 import vo.financevo.RevenueVO;
@@ -46,10 +49,15 @@ public class CheckRevenueFormController {
     FormatCheckService formatCheckService;
     RevenueBLService revenueBLService;
 
+    private InformController informController;
+
     public static Parent launch() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(CheckRevenueFormController.class.getResource("checkRevenueForm.fxml"));
-        return loader.load();
+        FXMLLoader loader = new FXMLLoader(CheckRevenueFormController.class.getResource("checkRevenueForm.fxml"));
+        Pane pane = loader.load();
+        CheckRevenueFormController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     @FXML

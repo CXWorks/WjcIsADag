@@ -16,11 +16,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.time.TimeConvert;
 import tool.ui.StoreAreaVO2ColumnHelper;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.storevo.StoreAreaInfoVO;
 import vo.storevo.StoreFormVO;
@@ -47,10 +50,15 @@ public class StorePartitionController {
 
 	private StoreAreaCode area;
 
+	private InformController informController;
+
 	public static Parent launch() throws IOException {
-		FXMLLoader contentLoader = new FXMLLoader();
-		contentLoader.setLocation(StoreInFormController.class.getResource("storePartition.fxml"));
-		return contentLoader.load();
+		FXMLLoader loader = new FXMLLoader(StorePartitionController.class.getResource("storePartition.fxml"));
+		Pane pane = loader.load();
+		StorePartitionController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
 
 	@FXML
@@ -62,8 +70,6 @@ public class StorePartitionController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getShelfID() + ""));
 		rate_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getUsedProportion() + ""));
-
-
 
 		StoreAreaVO2ColumnHelper.setKeyColumn(key_TableColumn);
 		StoreAreaVO2ColumnHelper.setValueColumn(value_TableColumn);
@@ -102,40 +108,41 @@ public class StorePartitionController {
 	}
 
 	private void setView() {
-		rows_TableView.setItems(FXCollections.observableArrayList(storeModelBLService.getShelfInfo(UserInfo.getInstitutionID(),area)));
+		rows_TableView.setItems(
+				FXCollections.observableArrayList(storeModelBLService.getShelfInfo(UserInfo.getInstitutionID(), area)));
 
-		area_TableView.setItems(FXCollections.observableArrayList(
-				new StoreAreaVO2ColumnHelper().VO2Entries(storeModelBLService.getStoreAreaInfo(UserInfo.getInstitutionID(),area))));
+		area_TableView.setItems(FXCollections.observableArrayList(new StoreAreaVO2ColumnHelper()
+				.VO2Entries(storeModelBLService.getStoreAreaInfo(UserInfo.getInstitutionID(), area))));
 	}
 
 	public void expandArea(ActionEvent actionEvent) {
-        Stage dialogStage = new Stage();
-        try {
-            EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
-            dialogStage.showAndWait();
-            int num = dialog.getShelfNum();
-            if(num != 0){
-                storeModelBLService.expandPartition(UserInfo.getInstitutionID(),area, num);
-            }
-            this.setView();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		Stage dialogStage = new Stage();
+		try {
+			EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
+			dialogStage.showAndWait();
+			int num = dialog.getShelfNum();
+			if (num != 0) {
+				storeModelBLService.expandPartition(UserInfo.getInstitutionID(), area, num);
+			}
+			this.setView();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void reduceArea(ActionEvent actionEvent) {
-        Stage dialogStage = new Stage();
-        try {
-            EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
-            dialogStage.showAndWait();
-            int num = dialog.getShelfNum();
-            if(num != 0){
-                storeModelBLService.reducePartition(UserInfo.getInstitutionID(),area, num);
-            }
-            this.setView();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		Stage dialogStage = new Stage();
+		try {
+			EditShelfDialogController dialog = EditShelfDialogController.newDialog(dialogStage);
+			dialogStage.showAndWait();
+			int num = dialog.getShelfNum();
+			if (num != 0) {
+				storeModelBLService.reducePartition(UserInfo.getInstitutionID(), area, num);
+			}
+			this.setView();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void reajust(ActionEvent actionEvent) {

@@ -4,13 +4,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transportui.TransitFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transportui.TransitFormController">
    <children>
-      <Label layoutX="40.0" layoutY="33.0" text="中转单信息" />
-      <GridPane layoutX="40.0" layoutY="61.0" prefHeight="364.0" prefWidth="291.0">
+      <Label layoutX="54.0" layoutY="30.0" styleClass="label-header" text="中转单信息" />
+      <GridPane layoutX="55.0" layoutY="73.0" prefHeight="395.0" prefWidth="291.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.3333282470703" minWidth="10.0" prefWidth="147.3333282470703" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6666717529297" minWidth="10.0" prefWidth="143.6666717529297" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -38,18 +38,18 @@
             <ChoiceBox fx:id="arrival_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="415.0" layoutY="33.0" text="所有订单号" />
-      <Label layoutX="415.0" layoutY="398.0" text="总运费" />
-      <Label fx:id="fee_Label" layoutX="476.0" layoutY="398.0" text="Label" />
-      <HBox layoutX="566.0" layoutY="394.0" prefHeight="23.0" spacing="20.0">
+      <Label layoutX="504.0" layoutY="68.0" text="所有订单号" />
+      <Label layoutX="569.0" layoutY="483.0" text="总运费" />
+      <Label fx:id="fee_Label" layoutX="630.0" layoutY="483.0" text="Label" />
+      <HBox layoutX="720.0" layoutY="479.0" prefHeight="23.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
-      <TextField fx:id="id_Field" layoutX="415.0" layoutY="70.0" />
-      <Button layoutX="586.0" layoutY="70.0" mnemonicParsing="false" onAction="#add" text="添加" />
-      <ListView fx:id="orders_ListView" layoutX="415.0" layoutY="115.0" prefHeight="253.0" prefWidth="336.0" />
+      <TextField fx:id="id_Field" layoutX="504.0" layoutY="105.0" />
+      <Button layoutX="709.0" layoutY="107.0" mnemonicParsing="false" onAction="#add" text="添加" />
+      <ListView fx:id="orders_ListView" layoutX="494.0" layoutY="154.0" prefHeight="296.0" prefWidth="416.0" />
    </children>
 </AnchorPane>

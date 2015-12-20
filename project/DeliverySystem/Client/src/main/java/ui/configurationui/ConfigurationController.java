@@ -2,12 +2,23 @@ package ui.configurationui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+
+
+import java.util.stream.Collectors;
 
 import com.sun.org.apache.bcel.internal.generic.RETURN;
+
+
+
+
 
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import bl.blService.configurationblService.ConfigurationBLService;
 import factory.ConfigurationFactory;
 import vo.configurationvo.City2DVO;
@@ -15,13 +26,21 @@ import vo.configurationvo.ConfigurationVO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
 import vo.configurationvo.ProportionVO;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
 
 
 
@@ -35,19 +54,21 @@ public class ConfigurationController {
 	public Tab expense_Tab;
 	public Tab pack_Tab;
 	public Tab proportion_Tab;
-
+	
 	//城市距离
-	public TextField city1;
-	public TextField city2;
-	public TextField city3;
-	public TextField city4;
+	public TableView<City2DVO> cityTableView;
+	public TableColumn<City2DVO, String> cityNameColumn;
+	public TableColumn<City2DVO, String> cityIDColumn;
+	public TableColumn<City2DVO, String> cityLocationcColumn;
+	public TextField cityNameTextField;
+	public TextField cityIDTextField;
+	public TextField cityXTextField;
+	public TextField cityYTextField;
+	public GridPane distancePane;
+	public ChoiceBox<City2DVO> cityChoiceBox;
+	public Label cityDistanceLabel;
+	
 
-	public Label two_One_Label;
-	public Label three_One_Label;
-	public Label three_Two_Label;
-	public Label four_One_Label;
-	public Label four_Two_Label;
-	public Label four_Three_Label;
 
 	//快递费
 	public TextField factor_Field; //后面的那个比例（原来是23）
@@ -65,15 +86,23 @@ public class ConfigurationController {
 	private PriceVO priceVO;
 	private ProportionVO proportionVO;
 	private PackVO packVO;
+	private List<City2DVO> city2dvos;
+	private City2DVO city1;
+	private City2DVO city2;
 
+	private InformController informController;
 
 	ConfigurationBLService configurationBLService= ConfigurationFactory.getConfigurationBLService();
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(ConfigurationController.class.getResource("configuration.fxml"));
+        FXMLLoader loader = new FXMLLoader(ConfigurationController.class.getResource("configuration.fxml"));
+        Pane pane = loader.load();
+        ConfigurationController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     public void initialize(){
-    	//one_Two_Field.setText();
     	this.selectedChanged();
     }
 
@@ -84,21 +113,6 @@ public class ConfigurationController {
     	//TODO 从界面获取城市编号
     	return new City2DVO(name, x, y,"ID");
     }
-
-	//调整城市距离
-	public void submitDistance(){
-		City2DVO c1=this.makeCity2DVO(city1.getText(), "北京");
-		City2DVO c2=this.makeCity2DVO(city2.getText(), "上海");
-		City2DVO c3=this.makeCity2DVO(city3.getText(), "南京");
-		City2DVO c4=this.makeCity2DVO(city4.getText(), "广州");
-
-		configurationBLService.modify(c1);
-		configurationBLService.modify(c2);
-		configurationBLService.modify(c3);
-		configurationBLService.modify(c4);
-		this.initializeDistance();
-
-	}
 
     //调整快递费
 	public void submitExpense(){
@@ -180,43 +194,50 @@ public class ConfigurationController {
 			}
 		}
 	}
+	private void initChoiceBox(){
+		this.cityChoiceBox.getSelectionModel().clearSelection();
+		this.cityChoiceBox.getItems().clear();
+		
+	}
 	//
 	private void initializeDistance(){
-		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.CITY_2D);
-		if (configurationVOs.size()==0) {
-			return ;
-		}
-		ArrayList<City2DVO> vo=new ArrayList<City2DVO>(configurationVOs.size());
-		for (ConfigurationVO configurationVO : configurationVOs) {
-			City2DVO city2dvo=(City2DVO)configurationVO;
-			vo.add(city2dvo);
-		}
-		City2DVO bj=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("北京");}).findFirst().get();
-		City2DVO sh=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("上海");}).findFirst().get();
-		City2DVO gz=vo.stream().filter(cell->{return cell.getName().equalsIgnoreCase("广州");}).findFirst().get();
-		City2DVO nj=vo.stream().filter(city->{return city.getName().equalsIgnoreCase("南京");}).findFirst().get();
-		City2DVO city1=bj;
-		City2DVO city2=sh;
+		this.city2dvos=configurationBLService.getCity();
+		cityTableView.setItems(FXCollections.observableList(this.city2dvos));
+		cityNameColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getName()));
+		cityIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getID()));
+		cityLocationcColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getXY()));
+		cityTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		cityTableView.getSelectionModel().selectFirst();
+		cityTableView.getSelectionModel().selectedItemProperty().addListener(
+				(obser,old,New)->{
+					this.initChoiceBox();
+						this.city1=New;
+						if (city1!=null) {
+							this.setCityInfo(city1);
+						}
+						
+		});
+		
+	}
+	//
+	private void setCityInfo(City2DVO city2dvo){
+		this.cityNameTextField.setText(city2dvo.getName());
+		this.cityIDTextField.setText(city2dvo.getID());
+		this.cityXTextField.setText(Double.toString(city2dvo.getX()));
+		this.cityYTextField.setText(Double.toString(city2dvo.getY()));
 		//
-		two_One_Label.setText(Double.toString(city1.distance(city2)));
-		city2=gz;
-		three_One_Label.setText(Double.toString(city1.distance(city2)));
-		city2=nj;
-		four_One_Label.setText(Double.toString(city1.distance(city2)));
-		//
-		city1=sh;
-		city2=gz;
-		three_Two_Label.setText(Double.toString(city1.distance(city2)));
-		city2=nj;
-		four_Two_Label.setText(Double.toString(city1.distance(city2)));
-		city1=gz;
-		four_Three_Label.setText(Double.toString(city1.distance(city2)));
-
-		//
-		this.city1.setText(bj.getXY());
-		this.city2.setText(sh.getXY());
-		this.city3.setText(gz.getXY());
-		this.city4.setText(nj.getXY());
+		List<City2DVO> chosable=city2dvos.stream().filter(city->{
+			return !city.getID().equalsIgnoreCase(city2dvo.getID());
+		}).collect(Collectors.toList());
+		this.distancePane.setVisible(true);
+		this.cityChoiceBox.setItems(FXCollections.observableList(chosable));
+		this.cityChoiceBox.getSelectionModel().selectedItemProperty().addListener((obser,old,New)->{
+			this.city2=New;
+			if (city1!=null) {
+				this.cityDistanceLabel.setText(Double.toString(city1.distance(city2)));
+			}
+			
+		});
 	}
 	//
 	private void initializePrice(){
@@ -239,5 +260,38 @@ public class ConfigurationController {
 		paper_Field.setText(Double.toString(packVO.getByType(PackEnum.PAPER)));
 		wood_Field.setText(Double.toString(packVO.getByType(PackEnum.WOOD)));
 		bag_Field.setText(Double.toString(packVO.getByType(PackEnum.PACKAGE)));
+	}
+	public void clearCity(){
+		this.distancePane.setVisible(false);
+		this.cityNameTextField.clear();
+		this.cityIDTextField.clear();
+		this.cityXTextField.clear();
+		this.cityYTextField.clear();
+		this.city1=null;
+		this.city2=null;
+	}
+	//
+	public void deleteCity(){
+		configurationBLService.deleteCity(city1);
+		this.initializeDistance();
+	}
+	private City2DVO generateCity(){
+		String cityName=cityNameTextField.getText();
+		String cityID=cityIDTextField.getText();
+		double x=Double.parseDouble(cityXTextField.getText());
+		double y=Double.parseDouble(cityYTextField.getText());
+		return new City2DVO(cityName, x, y, cityID);
+	}
+	public void submitCity(){
+		City2DVO city2dvo=this.generateCity();
+		boolean isNew=!city2dvos.stream().anyMatch(city->{
+			return city.getID().equalsIgnoreCase(city2dvo.getID())||city.getName().equalsIgnoreCase(city2dvo.getName());
+		});
+		if (isNew) {
+			configurationBLService.newCity(city2dvo);
+		}else {
+			configurationBLService.modifyCity(city2dvo);
+		}
+		this.initializeDistance();
 	}
 }

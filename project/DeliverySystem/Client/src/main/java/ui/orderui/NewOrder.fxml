@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.NewOrderController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.NewOrderController">
    <children>
-      <GridPane layoutX="64.0" layoutY="101.0" prefHeight="341.0" prefWidth="200.0">
+      <GridPane layoutX="131.0" layoutY="131.0" prefHeight="341.0" prefWidth="200.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -59,22 +59,22 @@
             <TextField fx:id="phone_From" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Label layoutX="64.0" layoutY="50.0" text="寄件人信息" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="50.0">
+      <Label layoutX="131.0" layoutY="70.0" styleClass="label-header" text="寄件人信息" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="298.0" layoutY="52.0" text="收件人信息" AnchorPane.leftAnchor="298.0" AnchorPane.topAnchor="52.0">
+      <Label layoutX="385.0" layoutY="70.0" styleClass="label-header" text="收件人信息" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="528.0" layoutY="50.0" text="货物信息" AnchorPane.leftAnchor="528.0" AnchorPane.topAnchor="50.0">
+      <Label layoutX="672.0" layoutY="75.0" styleClass="label-header" text="货物信息" AnchorPane.leftAnchor="672.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <GridPane layoutX="298.0" layoutY="101.0" prefHeight="341.0" prefWidth="200.0">
+      <GridPane layoutX="385.0" layoutY="131.0" prefHeight="341.0" prefWidth="200.0">
          <children>
             <Label text="姓名">
                <font>
@@ -124,7 +124,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <GridPane layoutX="528.0" layoutY="101.0" prefHeight="300.0" prefWidth="200.0">
+      <GridPane layoutX="672.0" layoutY="131.0" prefHeight="300.0" prefWidth="200.0">
          <children>
             <Label text="原件数" GridPane.rowIndex="2">
                <font>
@@ -200,19 +200,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="413.0" prefWidth="600.0" spacing="8.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#fillPrediction" text="计算运费日期" />
-            <Button mnemonicParsing="false" onAction="#clear" prefWidth="72.0" text="清空" textAlignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#saveDraft" prefWidth="72.0" text="保存草稿" />
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#commit" prefWidth="72.0" text="确认" />
-         </children>
-      </HBox>
-      <Label layoutX="64.0" layoutY="24.0" text="订单编号">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="OrderID" layoutX="129.0" layoutY="26.0" text="Label" />
+      <Button defaultButton="true" layoutX="844.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="105.0" text="确认" />
+      <Button layoutX="754.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="73.0" text="保存草稿" />
+      <Button layoutX="662.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="73.0" text="清空" textAlignment="CENTER" />
+      <Button layoutX="524.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="39.0" prefWidth="118.0" text="计算运费日期" />
    </children>
 </AnchorPane>

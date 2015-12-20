@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
@@ -21,6 +22,8 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
@@ -45,11 +48,15 @@ public class StoreInFormController {
 
 	private StoreInBLService storeInBLService = FormFactory.getStoreInBLService();
 
-	public static Parent launch() throws IOException {
+	private InformController informController;
 
-		FXMLLoader contentLoader = new FXMLLoader();
-		contentLoader.setLocation(StoreInFormController.class.getResource("storeInForm.fxml"));
-		return contentLoader.load();
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(StoreInFormController.class.getResource("storeInForm.fxml"));
+		Pane pane = loader.load();
+		StoreInFormController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
 
 	@FXML
@@ -100,18 +107,18 @@ public class StoreInFormController {
 		StoreLocation loc = new StoreLocation(area, Integer.parseInt(row_Field.getText()),
 				Integer.parseInt(shelf_Field.getText()), Integer.parseInt(position_Field.getText()),
 				orderID_Field.getText());
-		StoreInVO vo = new StoreInVO(formID, orderID_Field.getText(), calendar,
-				destination_Field.getText(), loc,UserInfo.getUserID());
+		StoreInVO vo = new StoreInVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), loc,
+				UserInfo.getUserID());
 		vo.setCreaterID(UserInfo.getUserID());
 		return vo;
 	}
 
 	public void fillPosition(ActionEvent actionEvent) {
 		StoreLocation location = storeInBLService.getAvailableLocation(area);
-		if(location == null){
-            System.out.println("no available location");
-            return;
-        }
+		if (location == null) {
+			System.out.println("no available location");
+			return;
+		}
 		row_Field.setText("" + location.getRow());
 		shelf_Field.setText("" + location.getShelf());
 		position_Field.setText("" + location.getPosition());

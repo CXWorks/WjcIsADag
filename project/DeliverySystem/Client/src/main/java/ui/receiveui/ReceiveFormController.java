@@ -9,11 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
@@ -27,86 +30,86 @@ import java.util.Map;
  * Created by Sissel on 2015/11/21.
  */
 public class ReceiveFormController {
-    
-    public DatePicker arrive_DatePicker;
-    public TextField transitID_Field;
-    public TextField departure_Field;
-    public ChoiceBox<SimpleEnumProperty<StateEnum>> arriveState_Box;
-    public TableView<Map.Entry<String, String>> order_Table;
-    public TextField order_Field;
-    public Label date_ErrLabel;
-    public Label transit_errLabel;
-    public Label departure_errLabel;
-    public TableColumn<Map.Entry<String, String>, String> key_Column;
-    public TableColumn<Map.Entry<String, String>, String> value_Column;
-    public Label err_Label;
 
-    private StateEnum stateEnum = StateEnum.Complete;
+	public DatePicker arrive_DatePicker;
+	public TextField transitID_Field;
+	public TextField departure_Field;
+	public ChoiceBox<SimpleEnumProperty<StateEnum>> arriveState_Box;
+	public TableView<Map.Entry<String, String>> order_Table;
+	public TextField order_Field;
+	public Label date_ErrLabel;
+	public Label transit_errLabel;
+	public Label departure_errLabel;
+	public TableColumn<Map.Entry<String, String>, String> key_Column;
+	public TableColumn<Map.Entry<String, String>, String> value_Column;
+	public Label err_Label;
 
-    ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+	private StateEnum stateEnum = StateEnum.Complete;
 
-    public static Parent launch() throws IOException {
+	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
-        FXMLLoader contentLoader = new FXMLLoader();
-        contentLoader.setLocation(ReceiveFormController.class.getResource("ReceiveForm.fxml"));
-        return contentLoader.load();
-    }
+	private InformController informController;
 
-    @FXML
-    public void initialize(){
-        // initialize the choice box
-        arriveState_Box.setItems(Enum2ObservableList.transit(StateEnum.values()));
-        arriveState_Box.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    stateEnum = newValue.getEnum();
-                }
-        );
-        clear(null);
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(ReceiveFormController.class.getResource("ReceiveForm.fxml"));
+		Pane pane = loader.load();
+		ReceiveFormController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
 
-        order_Field.setOnAction(
-                uselessParam -> {
-                    fillOrderTable();
-                }
-        );
+		return controller.informController.stackPane;
+	}
 
-        OrderVO2ColumnHelper.setKeyColumn(key_Column); 
-        OrderVO2ColumnHelper.setValueColumn(value_Column);
-    }
+	@FXML
+	public void initialize() {
+		// initialize the choice box
+		arriveState_Box.setItems(Enum2ObservableList.transit(StateEnum.values()));
+		arriveState_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			stateEnum = newValue.getEnum();
+		});
+		clear(null);
 
-    public void commit(ActionEvent actionEvent) {
-        OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
+		order_Field.setOnAction(uselessParam -> {
+			fillOrderTable();
+		});
 
-        if(msg.operationResult){
-            System.out.println("commit successfully");
-            clear(null);
-        }else{
-            System.out.println("commit fail: " + msg.getReason());
-        }
-    }
+		OrderVO2ColumnHelper.setKeyColumn(key_Column);
+		OrderVO2ColumnHelper.setValueColumn(value_Column);
+	}
 
-    public void clear(ActionEvent actionEvent) {
-        arrive_DatePicker.setValue(LocalDate.now());
-        transitID_Field.clear();
-        departure_Field.clear();
-        order_Field.clear();
-        order_Table.setItems(null);
-        arriveState_Box.setValue(arriveState_Box.getItems().get(0));
-    }
+	public void commit(ActionEvent actionEvent) {
+		OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
 
-    public void saveDraft(ActionEvent actionEvent) {
-        receiveBLService.saveDraft(generateVO(null));
-    }
+		if (msg.operationResult) {
+			System.out.println("commit successfully");
+			clear(null);
+		} else {
+			System.out.println("commit fail: " + msg.getReason());
+		}
+	}
 
-    private ReceiveVO generateVO(String formID){
-        Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
-        return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(),
-                calendar, departure_Field.getText(), stateEnum,UserInfo.getUserID());
-    }
+	public void clear(ActionEvent actionEvent) {
+		arrive_DatePicker.setValue(LocalDate.now());
+		transitID_Field.clear();
+		departure_Field.clear();
+		order_Field.clear();
+		order_Table.setItems(null);
+		arriveState_Box.setValue(arriveState_Box.getItems().get(0));
+	}
 
-    private void fillOrderTable(){
-        OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
+	public void saveDraft(ActionEvent actionEvent) {
+		receiveBLService.saveDraft(generateVO(null));
+	}
 
-        order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
-    }
+	private ReceiveVO generateVO(String formID) {
+		Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
+		return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(), calendar,
+				departure_Field.getText(), stateEnum, UserInfo.getUserID());
+	}
+
+	private void fillOrderTable() {
+		OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
+
+		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+	}
 
 }

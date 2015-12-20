@@ -23,6 +23,14 @@ public class TimeConvert {
         return calendar;
     }
 
+    public static LocalDate convertCalendar(Calendar calendar) {
+    	int year = calendar.get(Calendar.YEAR);
+    	int month = calendar.get(Calendar.MONTH);
+    	int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+		LocalDate localDate = LocalDate.of(year, month, dayOfMonth);
+		return localDate;
+	}
+
     public static String getDisplayDate(Calendar calendar){
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);

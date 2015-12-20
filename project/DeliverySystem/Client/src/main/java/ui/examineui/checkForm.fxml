@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.examineui.CheckFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.examineui.CheckFormController">
    <children>
-      <SplitPane dividerPositions="0.07366071428571429" orientation="VERTICAL" prefHeight="450.0" prefWidth="800.0">
+      <SplitPane dividerPositions="0.07366071428571429" orientation="VERTICAL" prefHeight="541.0" prefWidth="800.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="23.0" prefWidth="800.0">
                <children>
                   <CheckBox fx:id="chooseAll_Box" layoutX="172.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="全选" />
                   <Button layoutX="37.0" layoutY="1.0" mnemonicParsing="false" onAction="#refresh" text="刷新" />

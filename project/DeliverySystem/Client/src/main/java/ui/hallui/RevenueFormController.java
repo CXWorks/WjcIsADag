@@ -5,16 +5,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import factory.FinanceBLFactory;
 import factory.FormFactory;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.blService.financeblService.RevenueBLService;
+import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
+import tool.ui.SimpleEnumProperty;
+import ui.accountui.ManageAccountController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.financevo.BankAccountVO;
+import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
+import vo.managevo.staff.StaffVO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -22,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -37,17 +43,17 @@ public class RevenueFormController {
     public Label total_Label;
     public ChoiceBox<String> deliver_ChoiceBox;
 
-    private RevenueBLService revenueBLService = FinanceBLFactory.getRevenueBLService();
+    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
     DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
-    String institutionID = UserInfo.getInstitutionID();
+    String institutionID=UserInfo.getInstitutionID();
 	ArrayList<String> postmans;
-	ArrayList<String> orderIDs = new ArrayList<String>();
-    int money = 0;
+	ArrayList<String> orderIDs=new ArrayList<String>();
+    int money=0;
 
     private InformController informController;
 
-    public static Parent launch() throws IOException {
+	public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
         Pane pane = loader.load();
         RevenueFormController controller = loader.getController();
@@ -83,13 +89,11 @@ public class RevenueFormController {
     	}
 
     public void saveDraft(ActionEvent actionEvent) {
-        //revenueBLService.saveDraft(generateRevenueVO(null));
-        informController.inform("save successfully");
+    	revenueBLService.saveDraft(generateRevenueVO(null));
     }
 
     public void commit(ActionEvent actionEvent) {
-    	RevenueVO revenueVO=generateRevenueVO(revenueBLService.getNewRevenueID(Calendar.getInstance()));
-    	OperationMessage msg = revenueBLService.submit(revenueVO);
+    	OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.newID()));
     	clear(null);
         if(msg.operationResult){
             System.out.println("commit successfully");
@@ -115,10 +119,10 @@ public class RevenueFormController {
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
     	orderIDs.clear();
-
-    	revenues_TableView.getItems().clear();
     	money=0;
     	total_Label.setText(money+"");
+
+    	revenues_TableView.getItems().clear();
     }
 
 

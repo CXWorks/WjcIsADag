@@ -5,14 +5,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.CheckRevenueFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.CheckRevenueFormController">
    <children>
-      <Label layoutX="26.0" layoutY="24.0" text="营业厅" />
-      <Label layoutX="334.0" layoutY="24.0" text="收款日期" />
-      <Button layoutX="593.0" layoutY="20.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <DatePicker fx:id="revenue_DatePicker" layoutX="392.0" layoutY="20.0" prefHeight="23.0" prefWidth="144.0" />
-      <Label fx:id="sum_Label" layoutX="743.0" layoutY="408.0" text="999" />
-      <TableView fx:id="revenue_TableView" layoutX="26.0" layoutY="85.0" prefHeight="306.0" prefWidth="443.0">
+      <Label layoutX="26.0" layoutY="58.0" text="营业厅" />
+      <Label layoutX="248.0" layoutY="56.0" text="收款日期" />
+      <Button layoutX="505.0" layoutY="56.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <DatePicker fx:id="revenue_DatePicker" layoutX="311.0" layoutY="52.0" prefHeight="23.0" prefWidth="144.0" />
+      <Label fx:id="sum_Label" layoutX="734.0" layoutY="485.0" text="999" />
+      <TableView fx:id="revenue_TableView" layoutX="26.0" layoutY="116.0" prefHeight="326.0" prefWidth="443.0">
         <columns>
             <TableColumn fx:id="revenueID_TableColumn" prefWidth="75.0" text="收款单号" />
           <TableColumn fx:id="deliver_Column" prefWidth="75.0" text="收款快递员" />
@@ -22,10 +22,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="664.0" layoutY="408.0" text="总计" />
-      <TextField fx:id="hall_Field" layoutX="86.0" layoutY="20.0" />
-      <Label fx:id="hall_errLabel" layoutX="214.0" layoutY="55.0" text="Label" textAlignment="RIGHT" />
-      <TableView fx:id="detail_TableView" layoutX="498.0" layoutY="85.0" prefHeight="306.0" prefWidth="268.0">
+      <Label layoutX="668.0" layoutY="485.0" text="总计" />
+      <TextField fx:id="hall_Field" layoutX="86.0" layoutY="54.0" prefHeight="28.0" prefWidth="113.0" />
+      <Label fx:id="hall_errLabel" layoutX="214.0" layoutY="89.0" text="Label" textAlignment="RIGHT" />
+      <TableView fx:id="detail_TableView" layoutX="498.0" layoutY="116.0" prefHeight="326.0" prefWidth="268.0">
         <columns>
           <TableColumn fx:id="orderID_Column" prefWidth="75.0" text="订单列表" />
           <TableColumn fx:id="money_Column" prefWidth="75.0" text="金额" />
@@ -34,6 +34,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label fx:id="date_errLabel" layoutX="505.0" layoutY="55.0" text="Label" />
+      <Label fx:id="date_errLabel" layoutX="505.0" layoutY="89.0" text="Label" />
    </children>
 </AnchorPane>

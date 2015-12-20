@@ -19,6 +19,7 @@ import main.Main;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.informui.InformController;
 import vo.managevo.staff.DriverVO;
 
 public class DriverEditDialogController {
@@ -30,17 +31,17 @@ public class DriverEditDialogController {
 	public TextField carUnit_Field;
 	public DatePicker birth_Picker;
 	public DatePicker licencePeriod_Picker;
-	
-	ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
-	
+
+	public ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
+
 	public static Label age_Label;
-	
-	SexEnum sexEnum = SexEnum.MAN;
-	private DriverVO editVO =new DriverVO(null);
+
+	private SexEnum sexEnum = SexEnum.MAN;
+	private DriverVO editVO =new DriverVO();
 	public Stage stage;
 
 	TimeConvert timeconvert = new TimeConvert();
-	
+
 	public static DriverEditDialogController newDialog(DriverVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(DriverEditDialogController.class.getResource("driverEditDialog.fxml"));
@@ -51,19 +52,20 @@ public class DriverEditDialogController {
 		stage.setScene(new Scene(pane));
 
 		DriverEditDialogController controller = (DriverEditDialogController)loader.getController();
+
 		controller.editVO = editVO;
 		controller.stage = stage;
 		controller.init();
-		
-		
+
+
 		return controller;
-		
+
 	}
-	
+
     private void init() {
-    	
+
     	sexEnum=editVO.getSex();
-    	
+
     	sex_Box.setItems(
                 Enum2ObservableList.transit(SexEnum.values())
         );
@@ -72,15 +74,15 @@ public class DriverEditDialogController {
 					sexEnum = newValue.getEnum();
                 }
 		);
-    	
+
     	ID_Field.setText(editVO.getID());
     	name_Field.setText(editVO.getName());
     	personID_Field.setText(editVO.getPersonID());
     	tel_Field.setText(editVO.getTel());
     	carUnit_Field.setText(editVO.getInstitutionID());
-    	birth_Picker.setValue(LocalDate.parse(editVO.getBirth().toString()));
-    	licencePeriod_Picker.setValue(LocalDate.parse(editVO.getLicence_period().toString()));
-    	
+    	birth_Picker.setValue(timeconvert.convertCalendar(editVO.getBirth()));
+    	licencePeriod_Picker.setValue(timeconvert.convertCalendar(editVO.getLicence_period()));
+
 	}
 
 
@@ -95,7 +97,7 @@ public class DriverEditDialogController {
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());
 		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));
-		
+
 		stage.close();
 	}
 

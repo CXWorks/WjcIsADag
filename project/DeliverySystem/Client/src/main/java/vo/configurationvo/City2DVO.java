@@ -73,6 +73,9 @@ public class City2DVO extends ConfigurationVO {
 
 	//
 	public double distance(City2DVO target){
+		if (target==null) {
+			return 0.0;
+		}
 		double dis=Math.sqrt(Math.pow((this.x-target.x), 2)+Math.pow((this.y-target.y), 2))*SCALE;
 		BigDecimal ans=new BigDecimal(dis);
 		return ans.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -80,5 +83,9 @@ public class City2DVO extends ConfigurationVO {
 	}
 	public String getXY(){
 		return Double.toString(x)+","+Double.toString(y);
+	}
+	@Override
+	public String toString(){
+		return this.name;
 	}
 }

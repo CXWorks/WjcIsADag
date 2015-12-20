@@ -1,6 +1,7 @@
 package bl.blImpl.configurationbl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.InfoEnum;
@@ -46,9 +47,6 @@ public class ConfigurationBLController implements ConfigurationBLService {
 			return money.getPrice();
 		case SALARY:
 			return salary.getSalary();
-		case CITY_2D:
-			return distance.getCityDistance();
-
 		default:
 			return null;
 		}
@@ -71,12 +69,41 @@ public class ConfigurationBLController implements ConfigurationBLService {
 		case SALARY:
 			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
 			return salary.modify(salaryStrategyVO);
-		case CITY_2D:
-			City2DVO city2dvo=(City2DVO)after;
-			return distance.modifyCityDistance(city2dvo);
 		default:
 			return new OperationMessage(false, "unknown type");
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#getCity()
+	 */
+	@Override
+	public List<City2DVO> getCity() {
+		return distance.getCityDistance();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#modifyCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage modifyCity(City2DVO city2dvo) {
+		return distance.modifyCityDistance(city2dvo);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#newCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage newCity(City2DVO city2dvo) {
+		return distance.newCity(city2dvo);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#deleteCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage deleteCity(City2DVO city2dvo) {
+		return distance.deleteCity(city2dvo);
 	}
 
 }

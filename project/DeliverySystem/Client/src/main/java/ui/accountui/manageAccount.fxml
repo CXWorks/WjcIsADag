@@ -4,14 +4,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
    <children>
-      <CheckBox fx:id="all_CheckBox" layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
-      <Button layoutX="528.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" text="查找" />
-      <Button layoutX="172.0" layoutY="35.0" mnemonicParsing="false" onAction="#delete" text="删除" />
-      <TextField fx:id="search_Field" layoutX="344.0" layoutY="35.0" />
-      <Button layoutX="236.0" layoutY="35.0" mnemonicParsing="false" onAction="#edit" text="修改" />
-      <TableView fx:id="accounts_TableView" layoutX="33.0" layoutY="82.0" prefHeight="348.0" prefWidth="699.0">
+      <CheckBox fx:id="all_CheckBox" layoutX="159.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
+      <Button layoutX="701.0" layoutY="62.0" mnemonicParsing="false" onAction="#search" text="查找" />
+      <Button layoutX="298.0" layoutY="62.0" mnemonicParsing="false" onAction="#delete" text="删除" />
+      <TextField fx:id="search_Field" layoutX="517.0" layoutY="62.0" />
+      <Button layoutX="362.0" layoutY="62.0" mnemonicParsing="false" onAction="#edit" text="修改" />
+      <TableView fx:id="accounts_TableView" layoutX="84.0" layoutY="110.0" prefHeight="399.0" prefWidth="801.0">
         <columns>
           <TableColumn fx:id="check_TableColumn" prefWidth="75.0" text="勾选" />
           <TableColumn fx:id="id_TableColumn" prefWidth="75.0" text="ID" />
@@ -22,7 +22,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="106.0" layoutY="35.0" mnemonicParsing="false" onAction="#add" text="新建" />
-      <Label fx:id="err_Label" layoutX="598.0" layoutY="39.0" text="Label" />
+      <Button layoutX="232.0" layoutY="62.0" mnemonicParsing="false" onAction="#add" text="新建" />
+      <Label fx:id="err_Label" layoutX="771.0" layoutY="66.0" text="Label" />
    </children>
 </AnchorPane>

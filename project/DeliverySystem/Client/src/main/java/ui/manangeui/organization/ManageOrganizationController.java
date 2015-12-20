@@ -2,6 +2,7 @@ package ui.manangeui.organization;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
     private TabPane outsideTabPane;
     private Tab staffTab;
     private ManageStaffController staffController;
-    private ArrayList<City2DVO> cities;
+    private List<City2DVO> cities;
     private String selectedCityID;
 	
 	public static Parent launch
@@ -118,7 +119,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 		}
 	}
 	private void initCityChoice(){
-		this.refreshCityData();
+		this.cities=configurationBLService.getCity();
 		cityChoiceBox.setItems(FXCollections
 				.observableList(cities.stream()
 						.map(city->city.getName()).collect(Collectors.toList())));
@@ -131,14 +132,6 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 				});
 		//
 		
-	}
-	
-	private void refreshCityData(){
-		ArrayList<ConfigurationVO> temp=configurationBLService.get(InfoEnum.CITY_2D);
-		cities=new ArrayList<City2DVO>(temp.size());
-		for (ConfigurationVO configurationVO : temp) {
-			cities.add((City2DVO)configurationVO);
-		}
 	}
 	
 	public void newCenter(){

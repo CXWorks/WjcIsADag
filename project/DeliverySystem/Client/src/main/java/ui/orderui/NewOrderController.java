@@ -17,6 +17,8 @@ import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
@@ -49,60 +51,54 @@ public class NewOrderController {
 	public TextField goods_Volume;
 	public TextField goods_Name;
 	public TextField goods_Type;
-	
+
 	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
 	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
 
 	public Label predict_Expense;
 	public Label predict_Date;
-    public Label date_ErrLabel;
-    public Label transit_errLabel;
-    public Label departure_errLabel;
-    public Label date_ErrLabel1;
-    public Label transit_errLabel1;
-    public Label departure_errLabel1;
-    public Label date_ErrLabel2;
-    public Label transit_errLabel2;
-    public Label departure_errLabel2;
+	public Label date_ErrLabel;
+	public Label transit_errLabel;
+	public Label departure_errLabel;
+	public Label date_ErrLabel1;
+	public Label transit_errLabel1;
+	public Label departure_errLabel1;
+	public Label date_ErrLabel2;
+	public Label transit_errLabel2;
+	public Label departure_errLabel2;
 
-    private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
+	private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
 
-	int money=0;//预计运费
-	int day=0;
-	String predictDate;//预计送达日期
+	int money = 0;// 预计运费
+	int day = 0;
+	String predictDate;// 预计送达日期
 
 	OrderBLService obl = FormFactory.getOrderBLService();
 
-	 public static Parent launch() throws IOException {
+	private InformController informController;
 
-	        FXMLLoader contentLoader = new FXMLLoader();
-	        contentLoader.setLocation(NewOrderController.class.getResource("NewOrder.fxml"));
-	        Pane pane = contentLoader.load();
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(NewOrderController.class.getResource("NewOrder.fxml"));
+        Pane pane = loader.load();
+        NewOrderController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
 
-	        return pane;
-	 }
+        return controller.informController.stackPane;
+	}
 
 	@FXML
-	public void initialize(){
+	public void initialize() {
 		// initialize the choice box
-		type_Box.setItems(
-                Enum2ObservableList.transit(DeliverTypeEnum.values())
-        );
-		type_Box.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-                    deliverType = newValue.getEnum();
-                }
-		);
+		type_Box.setItems(Enum2ObservableList.transit(DeliverTypeEnum.values()));
+		type_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			deliverType = newValue.getEnum();
+		});
 
-		pack_Box.setItems(
-                Enum2ObservableList.transit(PackingEnum.values())
-        );
-		pack_Box.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-                    packing = newValue.getEnum();
-                }
-		);
+		pack_Box.setItems(Enum2ObservableList.transit(PackingEnum.values()));
+		pack_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			packing = newValue.getEnum();
+		});
 
 		clear(null);
 
@@ -112,27 +108,25 @@ public class NewOrderController {
 
 		OperationMessage msg = obl.submit(generateVO(obl.newID()));
 
-        if(msg.operationResult){
-            System.out.println("commit successfully");
-            clear(null);
-        }else{
-            System.out.println("commit fail: " + msg.getReason());
-        }
+		if (msg.operationResult) {
+			System.out.println("commit successfully");
+			clear(null);
+		} else {
+			System.out.println("commit fail: " + msg.getReason());
+		}
 
 	}
 
-	private OrderVO generateVO(String FormID){
-		return new OrderVO
-				(FormID,name_From.getText(),name_To.getText() ,unit_From.getText(),unit_To.getText(),
-						address_From.getText(),address_To.getText(),
-						tel_From.getText(),tel_To.getText(),phone_From.getText(),phone_To.getText(),
-						goods_Number.getText(),goods_Name.getText(),goods_Weight.getText(),goods_Volume.getText(),predict_Expense.getText(),
-						goods_Type.getText(),deliverType,packing,
-						UserInfo.getUserID());
+	private OrderVO generateVO(String FormID) {
+		return new OrderVO(FormID, name_From.getText(), name_To.getText(), unit_From.getText(), unit_To.getText(),
+				address_From.getText(), address_To.getText(), tel_From.getText(), tel_To.getText(),
+				phone_From.getText(), phone_To.getText(), goods_Number.getText(), goods_Name.getText(),
+				goods_Weight.getText(), goods_Volume.getText(), predict_Expense.getText(), goods_Type.getText(),
+				deliverType, packing, UserInfo.getUserID());
 	}
 
 	@FXML
-    private void fillPrediction(){
+	private void fillPrediction() {
 
 		PredictVO predictVO = obl.predict(generateVO(null));
 		predict_Date.setText(TimeConvert.getDisplayDate(predictVO.getPredictDate()));
@@ -158,12 +152,12 @@ public class NewOrderController {
 		goods_Name.clear();
 		goods_Type.clear();
 
-        SimpleEnumProperty<PackingEnum> pe = pack_Box.getItems().get(0);
+		SimpleEnumProperty<PackingEnum> pe = pack_Box.getItems().get(0);
 		pack_Box.setValue(pe);
-        packing = pe.getEnum();
+		packing = pe.getEnum();
 
-        SimpleEnumProperty<DeliverTypeEnum> dte = type_Box.getItems().get(0);
-        type_Box.setValue(dte);
+		SimpleEnumProperty<DeliverTypeEnum> dte = type_Box.getItems().get(0);
+		type_Box.setValue(dte);
 		deliverType = dte.getEnum();
 	}
 
