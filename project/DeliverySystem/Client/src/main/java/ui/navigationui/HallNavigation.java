@@ -20,7 +20,7 @@ import java.util.Arrays;
  */
 public class HallNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.newTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch
                         (null, null, CarFactory.getCarService(), StaffFactory.getManageblDriverService())),
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),

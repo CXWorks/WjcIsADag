@@ -16,7 +16,7 @@ import java.util.Arrays;
  */
 public class CenterNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.newTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("新建到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("新建装车单", LoadCarController.launch()),
                 new Pair<String, Parent>("新建中转单", TransitFormController.launch()),

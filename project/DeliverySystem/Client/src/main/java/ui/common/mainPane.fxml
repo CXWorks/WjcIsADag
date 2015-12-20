@@ -4,13 +4,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
    <top>
       <AnchorPane fx:id="title_Pane" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="555.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" text="X" />
-            <Button layoutX="515.0" layoutY="17.0" mnemonicParsing="false" onAction="#maximizeStage" text="口" />
-            <Button layoutX="475.0" layoutY="17.0" mnemonicParsing="false" onAction="#minimizeStage" text="—" />
+            <Button layoutX="1095.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" text="X" />
+            <Button layoutX="1055.0" layoutY="17.0" mnemonicParsing="false" onAction="#maximizeStage" text="口" />
+            <Button layoutX="1015.0" layoutY="17.0" mnemonicParsing="false" onAction="#minimizeStage" text="—" />
          </children></AnchorPane>
    </top>
    <center>

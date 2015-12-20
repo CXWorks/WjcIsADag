@@ -6,6 +6,7 @@ package main;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -118,6 +119,10 @@ public class Main extends Application {
 
     private static double initX;
     private static double initY;
+    private static boolean dragging = false;
+    private static boolean resizing = false;
+    private static final int padding = 14;
+    private static final int titleHeight = 50;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -126,6 +131,7 @@ public class Main extends Application {
         primaryStage.setTitle("2333快递物流管理系统");
         primaryStage.setX(150);
         primaryStage.setY(150);
+
         primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene((Pane)LoginController.launch());
         primaryStage.setScene(loginScene);
@@ -135,17 +141,108 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * the following is the implementation of resizing without frame, so ugly that I don't recommend you read the code (T_T)
+     */
+    private static enum CURSOR_AREA{
+        NORTH_WEST,
+        NORTH_EAST,
+        SOUTH_WEST,
+        SOUTH_EAST,
+        NORTH,
+        SOUTH,
+        WEST,
+        EAST,
+        TITLE,
+        CENTER
+    }
+
+    private static CURSOR_AREA getCursorArea(double x, double y, double width, double height){
+        if(y < padding && x < padding){
+            return CURSOR_AREA.NORTH_WEST;
+        }else if(y < padding && x > width - padding){
+            return CURSOR_AREA.NORTH_EAST;
+        }else if(y > height - padding && x < padding){
+            return CURSOR_AREA.SOUTH_WEST;
+        }else if(y > height - padding && x > width - padding){
+            return CURSOR_AREA.SOUTH_EAST;
+        }else if(y> height - padding){
+            return CURSOR_AREA.SOUTH;
+        }else if(x> width - padding){
+            return CURSOR_AREA.EAST;
+        }else if(y < padding){
+            return CURSOR_AREA.NORTH;
+        }else if(x < padding){
+            return CURSOR_AREA.WEST;
+        }else if(y < titleHeight){
+            return CURSOR_AREA.TITLE;
+        }else{
+            return CURSOR_AREA.CENTER;
+        }
+    }
+
     private static void setDraggable(){
         primaryStage.getScene().setOnMousePressed(
                 me -> {
-                    initX = me.getScreenX() - primaryStage.getX();
-                    initY = me.getScreenY() - primaryStage.getY();
+                    CURSOR_AREA area = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
+                    if(area == CURSOR_AREA.TITLE){
+                        resizing = false;
+                        dragging = true;
+                        initX = me.getScreenX() - primaryStage.getX();
+                        initY = me.getScreenY() - primaryStage.getY();
+                    }else if(area == CURSOR_AREA.CENTER){
+                        resizing = false;
+                        dragging = false;
+                    }else{
+                        resizing = true;
+                        dragging = false;
+                        initX = me.getSceneX();
+                        initY = me.getSceneY();
+                    }
                 }
         );
         primaryStage.getScene().setOnMouseDragged(
                 me -> {
-                    primaryStage.setX(me.getScreenX() - initX);
-                    primaryStage.setY(me.getScreenY() - initY);
+                    if (dragging) {
+                        primaryStage.setX(me.getScreenX() - initX);
+                        primaryStage.setY(me.getScreenY() - initY);
+                    } else if (resizing) {
+
+                    }
+                }
+        );
+        // change the look of the mouse when it is moved to the sides
+        primaryStage.getScene().setOnMouseMoved(
+                me -> {
+                    CURSOR_AREA area = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
+                    Cursor cursor = Cursor.DEFAULT;
+                    switch (area){
+                        case NORTH_WEST:
+                            cursor = Cursor.NW_RESIZE;
+                            break;
+                        case NORTH_EAST:
+                            cursor = Cursor.NE_RESIZE;
+                            break;
+                        case SOUTH_WEST:
+                            cursor = Cursor.SW_RESIZE;
+                            break;
+                        case SOUTH_EAST:
+                            cursor = Cursor.SE_RESIZE;
+                            break;
+                        case NORTH:
+                        case SOUTH:
+                            cursor = Cursor.V_RESIZE;
+                            break;
+                        case WEST:
+                        case EAST:
+                            cursor = Cursor.H_RESIZE;
+                            break;
+                        case TITLE:
+                        case CENTER:
+                            cursor = Cursor.DEFAULT;
+                            break;
+                    }
+                    primaryStage.getScene().setCursor(cursor);
                 }
         );
     }

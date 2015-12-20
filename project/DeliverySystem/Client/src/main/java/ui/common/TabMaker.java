@@ -41,12 +41,25 @@ public class TabMaker {
 
     // The above is the old version
 
+    public static void addLeftTabs(MainPaneController mainPane, List<Pair<String, Parent>> list){
+        for (Pair<String, Parent> stringParentPair : list) {
+            addLeftTab(mainPane, stringParentPair);
+        }
+    }
+
+    public static void addLeftTab(MainPaneController mainPane, Pair<String, Parent> pair){
+        mainPane.addTabButton(pair.getKey(), pair.getValue());
+    }
+
+    public static MainPaneController newMainPaneController() throws IOException {
+        MainPaneController controller = MainPaneController.launch();
+        return controller;
+    }
+
     public static Pane newLeftTabPane(List<Pair<String, Parent>> list){
         try {
-            MainPaneController controller = MainPaneController.launch();
-            for (Pair<String, Parent> stringPanePair : list) {
-                controller.addTabButton(stringPanePair.getKey(), stringPanePair.getValue());
-            }
+            MainPaneController controller = newMainPaneController();
+            addLeftTabs(controller, list);
             return controller.getBorderPane();
         } catch (IOException e) {
             e.printStackTrace();

@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class AdminNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.newTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("管理账户", ManageAccountController.launch()),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
                 new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
