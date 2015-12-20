@@ -49,6 +49,14 @@
                     <include>**/*.png</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>dump</directory>
+                <targetPath>dump</targetPath>
+                <includes>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>

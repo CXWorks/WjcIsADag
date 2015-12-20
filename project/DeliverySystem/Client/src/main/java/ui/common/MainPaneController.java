@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.Main;
 
 import java.io.IOException;
@@ -23,11 +24,33 @@ public class MainPaneController {
     public AnchorPane content_Pane;
     private BorderPane borderPane;
 
+    private double offsetX;
+    private double offsetY;
+
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
         BorderPane pane = loader.load();
         MainPaneController controller = loader.getController();
         controller.borderPane = pane;
+
+//        controller.title_Pane.setOnMousePressed(
+//                event -> {
+//                    controller.offsetX = event.getSceneX();
+//                    controller.offsetY = event.getScreenY();
+//                    event.consume();
+//                }
+//        );
+//        controller.title_Pane.setOnMouseDragged(
+//                event -> {
+//                    Stage primary = Main.primaryStage;
+//                    double dx = event.getSceneX() - controller.offsetX;
+//                    double dy = event.getSceneY() - controller.offsetY;
+//                    primary.setX(primary.getX() + dx);
+//                    primary.setY(primary.getY() + dy);
+//                    event.consume();
+//                }
+//        );
+
         return controller;
     }
 

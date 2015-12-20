@@ -56,18 +56,6 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-
-        // A thread to initialize the net connection
-//        new Thread(
-//                () -> {
-//                    try{
-//
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//        ).start();
-
         CacheHelper.initializeCache();
         launch(args);
     }
@@ -77,6 +65,7 @@ public class Main extends Application {
      */
     public static void logOut(){
         primaryStage.setScene(loginScene);
+        setDraggable();
     }
 
     private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
@@ -123,20 +112,40 @@ public class Main extends Application {
         }
 
         primaryStage.setScene(personScene);
+        setDraggable();
     }
+
+    private static double initX;
+    private static double initY;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
 
         primaryStage.setTitle("2333快递物流管理系统");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setX(150);
         primaryStage.setY(150);
-
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene((Pane)LoginController.launch());
-
         primaryStage.setScene(loginScene);
+
+        setDraggable();
+
         primaryStage.show();
+    }
+
+    private static void setDraggable(){
+        primaryStage.getScene().setOnMousePressed(
+                me -> {
+                    initX = me.getScreenX() - primaryStage.getX();
+                    initY = me.getScreenY() - primaryStage.getY();
+                }
+        );
+        primaryStage.getScene().setOnMouseDragged(
+                me -> {
+                    primaryStage.setX(me.getScreenX() - initX);
+                    primaryStage.setY(me.getScreenY() - initY);
+                }
+        );
     }
 }
