@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import ui.informui.InformController;
 
 import java.io.IOException;
 
@@ -22,6 +23,8 @@ public class EditShelfDialogController {
     private Stage stage;
     private int shelfNum;
 
+    private InformController informController;
+
     /**
      *
      * @param stage where dialog is in
@@ -34,6 +37,8 @@ public class EditShelfDialogController {
         Pane pane = loader.load();
 
         EditShelfDialogController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
         controller.stage = stage;
         stage.initOwner(Main.primaryStage);
         stage.setScene(new Scene(pane));

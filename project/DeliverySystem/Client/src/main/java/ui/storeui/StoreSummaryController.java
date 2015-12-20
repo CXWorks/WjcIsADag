@@ -17,11 +17,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import model.store.StoreAreaCode;
 import po.FormEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import vo.financevo.BankAccountVO;
 import vo.storevo.GoodsVO;
 import vo.storevo.StoreFormVO;
@@ -45,48 +48,40 @@ public class StoreSummaryController {
 
 	private StoreIOBLService storeIOBLService = FormFactory.getStoreIOBLService();
 
+	private InformController informController;
+
 	public static Parent launch() throws IOException {
-		FXMLLoader contentLoader = new FXMLLoader();
-		contentLoader.setLocation(StoreInFormController.class.getResource("storeSum.fxml"));
-		return contentLoader.load();
+		FXMLLoader loader = new FXMLLoader(StoreSummaryController.class.getResource("storeSum.fxml"));
+		Pane pane = loader.load();
+		StoreSummaryController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
 
 	@FXML
 	public void initialize() {
-		time_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getTime())
-        );
-		orderID_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getOrderID())
-        );
-		location_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getLocationForLog())
-        );
-		io_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getIO())
-        );
-		money_Column.setCellValueFactory(
-                cellData->new SimpleStringProperty(cellData.getValue().getMoney())
-        );
+		time_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTime()));
+		orderID_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderID()));
+		location_Column
+				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLocationForLog()));
+		io_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIO()));
+		money_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMoney()));
 	}
 
 	public void search(ActionEvent actionEvent) {
 		List<StoreFormVO> list = storeIOBLService.getGoodsInfo(TimeConvert.convertDate(begin_DatePicker.getValue()),
 				TimeConvert.convertDate(end_DatePicker.getValue()));
-		summary_TableView.setItems(
-                FXCollections.observableArrayList(
-                        new ArrayList<StoreFormVO>(list)
-                )
-        );
+		summary_TableView.setItems(FXCollections.observableArrayList(new ArrayList<StoreFormVO>(list)));
 		double in_money = 0;
 		double out_money = 0;
 		int in_num = 0;
 		int out_num = 0;
-		for(StoreFormVO tmp:list){
-			if(tmp.getFormType()==FormEnum.STORE_IN){
+		for (StoreFormVO tmp : list) {
+			if (tmp.getFormType() == FormEnum.STORE_IN) {
 				in_num++;
 				in_money += Double.parseDouble(tmp.getMoney());
-			} else if(tmp.getFormType()==FormEnum.STORE_OUT){
+			} else if (tmp.getFormType() == FormEnum.STORE_OUT) {
 				out_num++;
 				out_money += Double.parseDouble(tmp.getMoney());
 			}

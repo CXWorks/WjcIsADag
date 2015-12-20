@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -18,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import ui.common.checkFormat.field.FloatOnlyField;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import vo.accountvo.AccountVO;
 
 public class ManageAccountController {
@@ -34,8 +37,15 @@ public class ManageAccountController {
     public CheckBox all_CheckBox;
     public Label err_Label;
 
+    private InformController informController;
+
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(ManageAccountController.class.getResource("manageAccount.fxml"));
+		FXMLLoader loader = new FXMLLoader(ManageAccountController.class.getResource("manageAccount.fxml"));
+        Pane pane = loader.load();
+        ManageAccountController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
     @FXML

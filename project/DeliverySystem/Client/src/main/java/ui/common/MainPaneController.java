@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.informui.InformController;
 
 import java.io.IOException;
 import java.util.Map;
@@ -23,11 +24,16 @@ public class MainPaneController {
     public AnchorPane content_Pane;
     private BorderPane borderPane;
 
+    private InformController informController;
+
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
         BorderPane pane = loader.load();
         MainPaneController controller = loader.getController();
         controller.borderPane = pane;
+
+        controller.informController = InformController.newInformController(pane);
+
         return controller;
     }
 

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import main.Main;
 import tool.time.TimeConvert;
+import ui.informui.InformController;
 import vo.managevo.car.CarVO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 
 public class CarEditDialogController {
 
@@ -26,8 +26,10 @@ public class CarEditDialogController {
 	public static DatePicker useTime_Picker;
 
 	TimeConvert timeconvert = new TimeConvert();
-	private CarVO editVO =new CarVO();
+	private CarVO editVO = new CarVO();
 	public Stage stage;
+
+	private InformController informController;
 
 	public static CarEditDialogController newDialog(CarVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -38,18 +40,16 @@ public class CarEditDialogController {
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 
-		CarEditDialogController controller = (CarEditDialogController)loader.getController();
+		CarEditDialogController controller = (CarEditDialogController) loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
 		controller.editVO = editVO;
 		controller.stage = stage;
-	    controller.init();
-		
+		controller.init();
 
-		
 		return controller;
-		
+
 	}
-
-
 
 	private void init() {
 		carID_Field.setText(editVO.getCarID());
@@ -58,24 +58,20 @@ public class CarEditDialogController {
 		chassisID_Label.setText(editVO.getChassisID());
 		buyTime_Label.setText(editVO.getBuyTime().toString());
 		useTime_Picker.setValue(LocalDate.parse(editVO.getUseTime().toString()));
-		
+
 	}
 
-
-
-	
 	@SuppressWarnings("static-access")
-	public void ok(ActionEvent actionEvent){
-		
+	public void ok(ActionEvent actionEvent) {
+
 		editVO.setCarID(carID_Field.getText());
 		editVO.setNameID(nameID_Field.getText());
 		editVO.setUseTime(timeconvert.convertDate(useTime_Picker.getValue()));
 		stage.close();
-		
-		
+
 	}
 
-	public void cancel(ActionEvent actionEvent){
+	public void cancel(ActionEvent actionEvent) {
 		stage.close();
 	}
 }

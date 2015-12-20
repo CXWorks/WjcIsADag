@@ -24,6 +24,8 @@ import model.store.StoreModel;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.StockTackVO;
@@ -47,63 +49,66 @@ import java.util.Map;
  * Created by Sissel on 2015/11/26.
  */
 public class StockTackController {
-    public Label location_Label;
-    public Label time_Label;
-    public Label orderNumber_Label;
-    public AnchorPane content_Pane;
+	public Label location_Label;
+	public Label time_Label;
+	public Label orderNumber_Label;
+	public AnchorPane content_Pane;
 
-    private StockTackBLService stockTackBLService = FormFactory.getStockTackBLService();
-    private StockTackPaneController stockTackPaneController;
+	private StockTackBLService stockTackBLService = FormFactory.getStockTackBLService();
+	private StockTackPaneController stockTackPaneController;
 
-    public static Parent launch() throws IOException {
-        return FXMLLoader.load(StockTackController.class.getResource("stockTack.fxml"));
-    }
+	private InformController informController;
 
-    public void initialize(){
-        //  initialize the stockTackPane
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(StockTackPaneController.class.getResource("stockTackPane.fxml"));
-        try {
-            Pane content = loader.load();
-            content_Pane.getChildren().add(content);
-            stockTackPaneController = loader.getController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	public static Parent launch() throws IOException {
+		FXMLLoader loader = new FXMLLoader(StockTackController.class.getResource("stockTack.fxml"));
+		Pane pane = loader.load();
+		StockTackController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
 
-        // TODO call back, interaction between subpane and parent
-        stockTackPaneController.selectedPosition.addListener(
-                (observable, oldValue, newValue) -> {
-                    location_Label.setText(stockTackPaneController.generatePath());
-                }
-        );
+		return controller.informController.stackPane;
+	}
 
-        makeStockTack(null);
-    }
+	public void initialize() {
+		// initialize the stockTackPane
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(StockTackPaneController.class.getResource("stockTackPane.fxml"));
+		try {
+			Pane content = loader.load();
+			content_Pane.getChildren().add(content);
+			stockTackPaneController = loader.getController();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    @FXML
-    public void makeStockTack(ActionEvent actionEvent) {
-        StockTackVO stockTackVO = stockTackBLService.getStockTack(UserInfo.getInstitutionID());
+		// TODO call back, interaction between subpane and parent
+		stockTackPaneController.selectedPosition.addListener((observable, oldValue, newValue) -> {
+			location_Label.setText(stockTackPaneController.generatePath());
+		});
 
-        time_Label.setText(TimeConvert.getDisplayDate(stockTackVO.date));
-        orderNumber_Label.setText(stockTackVO.id);
+		makeStockTack(null);
+	}
 
-        stockTackPaneController.setStoreModel(stockTackVO.storeModel);
-    }
+	@FXML
+	public void makeStockTack(ActionEvent actionEvent) {
+		StockTackVO stockTackVO = stockTackBLService.getStockTack(UserInfo.getInstitutionID());
 
-    @FXML
-    public void exportExcel(ActionEvent actionEvent) {
-        // TODO 记下用户上次存文件的位置
-        FileChooser fileChooser = new FileChooser();
-        //fileChooser.setInitialDirectory(new File("g:/develop"));
-        fileChooser.setInitialFileName("StockTack--"
-                + time_Label.getText()
-                + "--" + orderNumber_Label.getText()
-                + ".xls");
-        File file = fileChooser.showSaveDialog(Main.primaryStage);
+		time_Label.setText(TimeConvert.getDisplayDate(stockTackVO.date));
+		orderNumber_Label.setText(stockTackVO.id);
 
-        if(file != null){
-            stockTackBLService.makeExcel(file.getAbsolutePath());
-        }
-    }
+		stockTackPaneController.setStoreModel(stockTackVO.storeModel);
+	}
+
+	@FXML
+	public void exportExcel(ActionEvent actionEvent) {
+		// TODO 记下用户上次存文件的位置
+		FileChooser fileChooser = new FileChooser();
+		// fileChooser.setInitialDirectory(new File("g:/develop"));
+		fileChooser
+				.setInitialFileName("StockTack--" + time_Label.getText() + "--" + orderNumber_Label.getText() + ".xls");
+		File file = fileChooser.showSaveDialog(Main.primaryStage);
+
+		if (file != null) {
+			stockTackBLService.makeExcel(file.getAbsolutePath());
+		}
+	}
 }

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.informui.InformController;
 
 import java.io.IOException;
 
@@ -29,15 +31,19 @@ public class AddInitialRowDialogController {
     private Stage stage;
     private String modelID;
 
-    public static Pane launch(String modelID, StoreAreaCode areaCode, Stage stage) throws IOException {
+    private InformController informController;
+
+    public static Parent launch(String modelID, StoreAreaCode areaCode, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(AddInitialRowDialogController.class.getResource("addInitialRowDialog.fxml"));
         Pane pane = loader.load();
         AddInitialRowDialogController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
         controller.defaultAreaCode = areaCode;
         controller.stage = stage;
         controller.modelID = modelID;
 
-        return pane;
+        return controller.informController.stackPane;
     }
 
     @FXML

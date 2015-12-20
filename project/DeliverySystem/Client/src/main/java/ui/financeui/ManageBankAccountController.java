@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
+import ui.informui.InformController;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
 
@@ -41,12 +42,15 @@ public class ManageBankAccountController {
     public TableColumn<PaymentVO, String> date_TableColumn;
     public TableColumn<PaymentVO, String> amount_TableColumn;
 
+    private InformController informController;
+
     public static Parent launch(Pane father, Pane before, BankAccountBLService service) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ManageBankAccountController.class.getResource("manageBankAccount.fxml"));
         Pane pane = loader.load();
         ManageBankAccountController controller = loader.getController();
         controller.bankAccountBLService = service;
+        controller.informController = InformController.newInformController(pane);
 
         if(father == null){
             pane.getChildren().remove(controller.back_Btn);
@@ -58,7 +62,7 @@ public class ManageBankAccountController {
             );
         }
 
-        return pane;
+        return controller.informController.stackPane;
     }
 
     @FXML
@@ -102,7 +106,7 @@ public class ManageBankAccountController {
         if (paymentVOs!=null) {
         	history_TableView.getItems().addAll(paymentVOs);
 		}
-        
+
     }
 
     @FXML

@@ -11,6 +11,8 @@ import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
@@ -26,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class deliverController {
 
@@ -52,8 +55,15 @@ public class deliverController {
 //	ArrayList<String> toSend = new ArrayList<String>();
 //	ArrayList<String> postmans = new ArrayList<String>();
 
+	private InformController informController;
+
 	public static Parent launch() throws IOException {
-		return FXMLLoader.load(deliverController.class.getResource("deliver.fxml"));
+		FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
+        Pane pane = loader.load();
+        deliverController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
 	}
 
 

@@ -14,6 +14,7 @@ import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
 import tool.ui.SimpleEnumProperty;
 import ui.accountui.ManageAccountController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
@@ -26,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -49,8 +51,15 @@ public class RevenueFormController {
 	ArrayList<String> orderIDs=new ArrayList<String>();
     int money=0;
 
+    private InformController informController;
+
 	public static Parent launch() throws IOException {
-        return FXMLLoader.load(RevenueFormController.class.getResource("revenueForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
+        Pane pane = loader.load();
+        RevenueFormController controller = loader.getController();
+        controller.informController = InformController.newInformController(pane);
+
+        return controller.informController.stackPane;
     }
 
 	@FXML

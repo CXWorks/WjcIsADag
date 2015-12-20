@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import ui.informui.InformController;
 import vo.accountvo.AccountVO;
 import vo.financevo.BankAccountVO;
 
@@ -36,6 +37,8 @@ public class AccountEditDialogController {
     private BankAccountVO editVO;
     private BankAccountBLService bankAccountBLService = FinanceBLFactory.getBankAccountBLService();
 
+    private InformController informController;
+
     /**
      *
      * @param type
@@ -56,6 +59,7 @@ public class AccountEditDialogController {
         stage.setScene(new Scene(pane));
 
         AccountEditDialogController controller = (AccountEditDialogController)loader.getController();
+        controller.informController = InformController.newInformController(pane);
         controller.editVO = editVO;
         controller.stage = stage;
         controller.type = type;

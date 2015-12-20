@@ -9,6 +9,8 @@ import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
 import tool.time.TimeConvert;
+import ui.hallui.RevenueFormController;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
@@ -28,60 +30,55 @@ public class PeopleReceiveFormController {
 	public TextField name_Field;
 	public DatePicker receive_DatePicker;
 	public TableView<OrderVO> order_TableView;
-	public TableColumn<OrderVO,String> id_Column;
-	public TableColumn<OrderVO,String> address_Column;
-	public TableColumn<OrderVO,String> name_Column;
+	public TableColumn<OrderVO, String> id_Column;
+	public TableColumn<OrderVO, String> address_Column;
+	public TableColumn<OrderVO, String> name_Column;
 
 	public TextField id_Field;
 
 	private OrderVO selected = null;
 	private List<OrderVO> orderVOs;
 
+	private InformController informController;
+
 	CheckDeliverForm checkDeliver = DeliverFactory.getCheckDeliverForm();
-	//	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
+	// ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
 	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(PeopleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
-		Pane pane=loader.load();
-		return pane;
+		FXMLLoader loader = new FXMLLoader(PeopleReceiveFormController.class.getResource("peopleReceiveForm.fxml"));
+		Pane pane = loader.load();
+		PeopleReceiveFormController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
+
+		return controller.informController.stackPane;
 	}
 
 	@FXML
-	public void initialize(){
-		id_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getFormID())
-		);
-		address_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getAddressTo())
-        );
-		name_Column.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getNameTo())
-        );
-		order_TableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    name_Field.clear();
-                    receive_DatePicker.setValue(LocalDate.now());
-                    selected = newValue;
-                }
-        );
+	public void initialize() {
+		id_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormID()));
+		address_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddressTo()));
+		name_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNameTo()));
+		order_TableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			name_Field.clear();
+			receive_DatePicker.setValue(LocalDate.now());
+			selected = newValue;
+		});
 	}
 
-	public void search(ActionEvent actionEvent){
+	public void search(ActionEvent actionEvent) {
 		String id = id_Field.getText();
-        if(id.isEmpty()){
-            orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());
-            order_TableView.getItems().clear();
-            order_TableView.getItems().addAll(orderVOs);
-        }
+		if (id.isEmpty()) {
+			orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());
+			order_TableView.getItems().clear();
+			order_TableView.getItems().addAll(orderVOs);
+		}
 	}
-
 
 	public void commit(ActionEvent actionEvent) {
-        // TODO check
-        DeliverVO deliverVO = new DeliverVO(null, selected.formID,
-                TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText(),UserInfo.getUserID());
-        checkDeliver.finishDelivery(deliverVO);
+		// TODO check
+		DeliverVO deliverVO = new DeliverVO(null, selected.formID,
+				TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText(), UserInfo.getUserID());
+		checkDeliver.finishDelivery(deliverVO);
 	}
 
 	public void clear(ActionEvent actionEvent) {
