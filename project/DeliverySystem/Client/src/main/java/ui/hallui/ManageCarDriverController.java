@@ -43,7 +43,7 @@ public class ManageCarDriverController {
 	public Button back_Btn;
 
 	private ManageblCarService manageblCarService;
-	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
+	private ManageblDriverService manageblDriverService;
 
 	private ArrayList<CarVO> carvo_list;
 	private ArrayList<DriverVO> drivervo_list;
@@ -54,12 +54,14 @@ public class ManageCarDriverController {
 	private CarAbstractCheckItem carVO = new CarAbstractCheckItem(null);
 	private DriverAbstractCheckItem driverVO = new DriverAbstractCheckItem(null);
 
-	public static Parent launch(Pane father, Pane before, ManageblCarService service) throws IOException {
+	public static Parent launch(Pane father, Pane before, ManageblCarService carService, ManageblDriverService driverService) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
 		Pane pane = loader.load();
+
 		ManageCarDriverController controller = loader.getController();
-		controller.manageblCarService = service;
+		controller.manageblCarService = carService;
+        controller.manageblDriverService = driverService;
 
 		if(father == null){
 			pane.getChildren().remove(controller.back_Btn);

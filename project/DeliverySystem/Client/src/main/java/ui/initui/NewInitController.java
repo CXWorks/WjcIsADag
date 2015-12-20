@@ -55,7 +55,8 @@ public class NewInitController {
 
     @FXML
     public void manageCars(ActionEvent actionEvent) throws IOException {
-        jumpTo(ManageCarDriverController.launch(father, selfPane, initializationBLService));
+        // TODO replace with initservice
+        jumpTo(ManageCarDriverController.launch(father, selfPane, initializationBLService, null));
     }
 
     @FXML

@@ -511,7 +511,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		String select = "select * from `" + Warningline + "` where `centerID` = '" + centerID + "'";
+		String select = "select * from `" + Warningline + "` where `name` = '" + centerID + "'";
 		ResultSet rs = null;
 		double result = -1;
 		try {
