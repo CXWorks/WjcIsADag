@@ -100,6 +100,7 @@ public class Main extends Application {
         StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
 
         Parent pane = panes.get(staffTypeEnum);
+
         if(pane == null){
             pane = launchByStaff(staffTypeEnum);
             panes.put(staffTypeEnum, pane);
