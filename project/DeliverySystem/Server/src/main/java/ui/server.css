@@ -1,6 +1,6 @@
 .background {
 
-	-fx-background-image : url(../pic/server/server.png);
+	-fx-background-image : url(server/server.png);
 
 	-fx-background-size: cover;
 	
@@ -124,7 +124,7 @@
 
 .button.begin {
 	
-	-fx-background-image : url(../pic/server/begin.png);
+	-fx-background-image : url(server/begin.png);
 	-fx-background-color: #282828;
    
     -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
@@ -134,16 +134,16 @@
 }
 
 .button.begin:hover {
-   -fx-background-image : url(../pic/server/beginHover.png);
+   -fx-background-image : url(server/beginHover.png);
 }
 
 .button.begin:pressed, .button.begin:default:hover:pressed {
-   -fx-background-image : url(../pic/server/beginPressed.png);
+   -fx-background-image : url(server/beginPressed.png);
 }
 
 .button.stop {
     -fx-size:cover;
-    -fx-background-image : url(../pic/server/stop.png);
+    -fx-background-image : url(server/stop.png);
     -fx-background-color: #282828;
     -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
     -fx-font-size: 15pt;
@@ -152,11 +152,11 @@
 }
 
 .button.stop :hover {
-   -fx-background-image : url(../pic/server/stopHover.png);
+   -fx-background-image : url(server/stopHover.png);
 }
 
 .button.stop :pressed, .button.stop :default:hover:pressed {
-   -fx-background-image : url(../pic/server/stopPressed.png);
+   -fx-background-image : url(server/stopPressed.png);
 }
 
 
