@@ -37,6 +37,10 @@ public class Excel {
 		dataStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER_SELECTION);
 		for (int i = 0; i < area.size(); i++) {
 			StoreArea storeArea=area.get(i);
+			//
+			if (storeArea==null) {
+				continue;
+			}
 			HSSFSheet sheet=workbook.createSheet(storeArea.getAreaID().name());
 			//head line
 			HSSFRow head=sheet.createRow(0);
@@ -72,13 +76,15 @@ public class Excel {
 			}
 		}
 		try {
-			FileOutputStream out=new FileOutputStream(new File("dump/dump.xls"));
+			FileOutputStream out=new FileOutputStream(new File(path));
 			workbook.write(out);
 			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		} catch (IOException e) {
+			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		}
 		//

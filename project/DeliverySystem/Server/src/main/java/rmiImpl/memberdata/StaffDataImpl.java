@@ -89,10 +89,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "新增员工:" + po.getID()));
-
 		return result;
 	}
 
@@ -107,10 +103,6 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("管理员工的人", Calendar.getInstance(), "解雇员工:" + staff.getID()));
 
 		return result;
 	}

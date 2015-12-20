@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
+   <top>
+      <AnchorPane fx:id="title_Pane" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="555.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" text="X" />
+            <Button layoutX="515.0" layoutY="17.0" mnemonicParsing="false" onAction="#maximizeStage" text="口" />
+            <Button layoutX="475.0" layoutY="17.0" mnemonicParsing="false" onAction="#minimizeStage" text="—" />
+         </children></AnchorPane>
+   </top>
+   <center>
+      <AnchorPane fx:id="content_Pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <FlowPane fx:id="left_TabsPane" prefHeight="344.0" prefWidth="107.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

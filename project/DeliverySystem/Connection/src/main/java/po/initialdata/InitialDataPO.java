@@ -16,6 +16,7 @@ import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.financedata.BankAccountPO;
+import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 
 /**
@@ -34,6 +35,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
     List<BankAccountPO> bankAccounts;
     List<CarPO> cars;
     List<StaffPO> staffs;
+    List<DriverPO> drivers;
     List<HallPO> halls;
     List<CenterPO> centers;
     List<City2DPO> city2dpos;
@@ -111,6 +113,10 @@ public class InitialDataPO extends InfoPO implements Serializable{
 	public List<AccountPO> getAccountPOs() {
 		return accountPOs;
 	}
+	
+	public List<DriverPO> getDriverPOs(){
+		return this.drivers;
+	}
 
 	/**
 	 * @param infoEnum
@@ -134,7 +140,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
 			List<CarPO> cars, List<StaffPO> staffs, List<HallPO> halls,
 			List<CenterPO> centers, List<City2DPO> city2dpos, PricePO pricePO,
 			ProportionPO proportionPO, List<SalaryStrategyPO> salaryStrategyPO,
-			PackPO packPO, List<AccountPO> accountPOs) {
+			PackPO packPO, List<AccountPO> accountPOs,List<DriverPO> drivers) {
 		this();
 		this.version = version;
 		this.dbName = dbName;
@@ -150,6 +156,7 @@ public class InitialDataPO extends InfoPO implements Serializable{
 		this.salaryStrategyPO = salaryStrategyPO;
 		this.packPO = packPO;
 		this.accountPOs = accountPOs;
+		this.drivers=drivers;
 	}
 
 }

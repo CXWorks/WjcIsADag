@@ -102,7 +102,6 @@ public class StorePartitionController {
 	}
 
 	private void setView() {
-//		System.out.println(storeModelBLService.getShelfInfo(area)==null);
 		rows_TableView.setItems(FXCollections.observableArrayList(storeModelBLService.getShelfInfo(UserInfo.getInstitutionID(),area)));
 
 		area_TableView.setItems(FXCollections.observableArrayList(

@@ -74,11 +74,11 @@ public class StockTackBLImpl implements StockTackBLService {
         	ArrayList<StoreArea> storeArea=new ArrayList<StoreArea>(4);
 			StoreArea storeArea1=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
 			storeArea.add(storeArea1);
-			StoreArea storeArea2=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
+			StoreArea storeArea2=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.FLEX);
 			storeArea.add(storeArea2);
-			StoreArea storeArea3=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
+			StoreArea storeArea3=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.RAIL);
 			storeArea.add(storeArea3);
-			StoreArea storeArea4=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
+			StoreArea storeArea4=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.ROAD);
 			storeArea.add(storeArea4);
 			return Excel.exportToExcel(path, storeArea);
 		} catch (RemoteException e) {

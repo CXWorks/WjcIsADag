@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane prefHeight="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.informui.InformController">
+   <children>
+      <Label fx:id="content_Label" alignment="CENTER" layoutX="189.0" layoutY="5.0" text="这是一条通知" textAlignment="CENTER">
+         <effect>
+            <Glow level="0.54" />
+         </effect></Label>
+   </children>
+</Pane>

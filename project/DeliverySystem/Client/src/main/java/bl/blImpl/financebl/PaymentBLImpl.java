@@ -92,8 +92,8 @@ public class PaymentBLImpl implements PaymentBLService {
         try {
         	//complete bank ID
             BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
-            String payerAccID=bankAccountDataService.getBankIDByName(po.getPayerName());
-            String receiverAccID=bankAccountDataService.getBankIDByName(po.getReceiverName());
+            String payerAccID=bankAccountDataService.getBankIDByName(po.getPayerAccount());
+            String receiverAccID=bankAccountDataService.getBankIDByName(po.getReceiverAccount());
             if (payerAccID!=null&&receiverAccID!=null) {
             	po.setPayerAccID(payerAccID);
             	po.setReceiverAccID(receiverAccID);

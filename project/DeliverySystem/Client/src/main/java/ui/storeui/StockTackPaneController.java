@@ -98,6 +98,12 @@ public class StockTackPaneController {
         order_TableColumn.setCellValueFactory(
                 cell -> new SimpleStringProperty(cell.getValue().getOrderID() + "")
         );
+        key_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getKey())
+        );
+        value_TableColumn.setCellValueFactory(
+                cell -> new SimpleStringProperty(cell.getValue().getValue())
+        );
 
         // set onClickListener
         area_TableView.getSelectionModel().selectedItemProperty().addListener(
@@ -141,9 +147,11 @@ public class StockTackPaneController {
                     selectedPosition.setValue(newValue.getPosition());
                     selecting = SelectingItem.POSITION;
                     OrderVO orderVO = stockTackBLService.getOrder(newValue.getOrderID());
-                    message_TableView.setItems(FXCollections.observableArrayList(
-                            new OrderVO2ColumnHelper().VO2Entries(orderVO)
-                    ));
+                    if(orderVO != null){
+                        message_TableView.setItems(FXCollections.observableArrayList(
+                                new OrderVO2ColumnHelper().VO2Entries(orderVO)
+                        ));
+                    }
                 }
         );
 

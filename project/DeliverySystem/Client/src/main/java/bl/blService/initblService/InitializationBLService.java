@@ -36,7 +36,7 @@ import java.util.Observer;
 public interface InitializationBLService extends BankAccountBLService,
 		StoreModelBLService, ManageblCarService, ManageblStaffService, 
 		ManageblCenterService, ManageblHallService, ConfigurationBLService, 
-		AccountBLManageService
+		AccountBLManageService,ManageblDriverService
 {
     // Store Manage
     

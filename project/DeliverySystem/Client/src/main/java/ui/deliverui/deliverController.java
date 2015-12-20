@@ -97,6 +97,24 @@ public class deliverController {
         info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
     }
 
+    public void refresh(ActionEvent actionEvent){
+
+    	ids_ListView.getItems().clear();
+    	ids_ListView.setItems(FXCollections.observableArrayList(toSend));
+		ids_ListView.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					// TODO test
+					System.out.println("selected " + newValue.toString());
+					idToSend = newValue;
+					id_Field.setText(newValue.toString());
+					fillOrderTable();
+				}
+				);
+
+    }
+
+
+
 	public void search(ActionEvent actionEvent){
 		String filter = id_Search_Field.getText();
 

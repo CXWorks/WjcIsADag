@@ -113,10 +113,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			e.printStackTrace();
 		}
 
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + po.getBankID()));
-
 		return result;
 	}
 
@@ -132,10 +128,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		// 系统日志
-		if (result.operationResult == true)
-			RMIHelper.getLogDataService().insert(new LogPO("财务人员", Calendar.getInstance(), "新建银行账户:" + id));
 
 		return result;
 	}
@@ -245,7 +237,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			ID = CompanyAccount;
 		}
 		String select = "select * from `" + Table_Name + "` where `bankID` = '" + ID + "'";
-		String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
 
 		ResultSet rs = null;
 		try {
@@ -253,6 +244,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			rs = statement.executeQuery(select);
 			rs.next();
 			balance = Double.parseDouble(rs.getString("balance")) + money;
+			String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
 			statement = conn.prepareStatement(operation);
 			statement.executeUpdate();
 		} catch (SQLException e) {

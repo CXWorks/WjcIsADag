@@ -56,7 +56,7 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsType = goodsType;
 		this.setType(type);
 		this.setPack(pack);
-		FormIDs = formIDs;
+		FormIDs = formIDs == null ? new ArrayList<>() : formIDs;
 		this.targetHallID = targetHallID;
 		this.formType = FormEnum.ORDER;
 	}
@@ -124,7 +124,7 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsType = goodsType;
 		this.setType(type);
 		this.setPack(pack);
-		FormIDs = formIDs;
+        FormIDs = formIDs == null ? new ArrayList<>() : formIDs;
 		this.targetHallID = targetHallID;
 		this.receivePeople = receivePeople;
 		this.receiveDate = receiveDate;

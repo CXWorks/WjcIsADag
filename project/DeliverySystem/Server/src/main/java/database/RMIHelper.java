@@ -28,6 +28,7 @@ import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmi.systemdata.LogDataService;
+import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
 import rmiImpl.accountdata.AccountDataProxy;
@@ -87,6 +88,7 @@ public class RMIHelper {
 	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
+	public static SystemDataService systemDataService;
 
 	public static void createService() throws RemoteException, MalformedURLException, ClassNotFoundException {
 		accountDataService = new AccountDataProxy();
@@ -101,7 +103,12 @@ public class RMIHelper {
 		bankAccountDataService = new BankAccountDataProxy();
 		paymentDataService = new PaymentDataProxy();
 		revenueDataService = new RevenueDataProxy();
-		initialDataService = new InitialDataProxy();
+		//initial 特殊....
+		InitialDataProxy initialDataProxy=new InitialDataProxy();
+		initialDataService = initialDataProxy;
+		systemDataService=initialDataProxy;
+		//
+		
 		memberDataService_driver = new DriverDataProxy();
 		memberDataService_staff = new StaffDataProxy();
 		orderDataService = new OrderDataProxy();
@@ -140,6 +147,7 @@ public class RMIHelper {
 		Naming.rebind(url + "LogDataService",logDataService);
 		Naming.rebind(url + "CenterOutDataService",transportDataService);
 		Naming.rebind(url + "LoadDataService",loadDataService);
+		Naming.rebind(url+systemDataService.NAME, systemDataService);
 	}
 
 	public static void closeServer() throws RemoteException, MalformedURLException, NotBoundException {

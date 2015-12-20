@@ -9,6 +9,7 @@ import java.util.Calendar;
 import message.ChatMessage;
 import message.OperationMessage;
 import model.examine.ExamineQueue;
+import model.store.StoreLocation;
 import po.FormEnum;
 import po.FormPO;
 import po.deliverdata.DeliverPO;
@@ -26,6 +27,7 @@ import rmi.examineService.ExamineManageService;
 import rmi.systemdata.LogDataService;
 import rmiImpl.chatRemindImpl.Reminder;
 import rmiImpl.systemdata.LogDataImpl;
+import util.R;
 
 public class ExamineManageImpl extends UnicastRemoteObject implements ExamineManageService {
 	private static final long serialVersionUID = 1L;
@@ -133,7 +135,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			case REVENUE:
 				RevenuePO rev = (RevenuePO) tmp;
 				result = pass_helper.getRevenueDataService().insert(rev);
-				pass_helper.getBankAccountDataService().modifyBalance(null, Double.parseDouble(rev.getAmount()));
+				pass_helper.getBankAccountDataService().modifyBalance(R.string.CompanyAccount, Double.parseDouble(rev.getAmount()));
 				break;
 			case STORE_IN:
 				StoreInPO sInPO = (StoreInPO) tmp;
@@ -152,8 +154,9 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				String inID = IDs.get(IDs.size() - 1);
 				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
-				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9),
-						sOutPO.getLocation());// 改变数据库中这个位置的状态
+				StoreLocation location = sOutPO.getLocation();
+				location.setOrderID("");
+				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9), location);// 改变数据库中这个位置的状态
 				pass_helper.getOrderDataService().addFormID(sOutPO.getOrderID(), tmp.getFormID());
 
 				break;

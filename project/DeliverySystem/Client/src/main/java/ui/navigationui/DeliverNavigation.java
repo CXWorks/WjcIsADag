@@ -16,9 +16,8 @@ import java.util.Arrays;
  */
 public class DeliverNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.newTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
-                new Pair<String, Parent>("查看派送单", deliverController.launch()),
                 new Pair<String, Parent>("新建订单", NewOrderController.launch()),
                 new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));

@@ -41,14 +41,13 @@ public class StoreInBLImpl implements StoreInBLService {
         try {
 			StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
 			ArrayList<StoreLocation> storeLocation=storeArea.getList();
-			StoreLocation ans=null;
-			for (int i = 0; i < storeLocation.size(); i++) {
-				ans=storeLocation.get(i);
-				if (ans.getOrderID()==null) {
+			StoreLocation ans = null;
+			for (StoreLocation location : storeLocation) {
+				if(location.getOrderID() == null || location.getOrderID().equals("")){
+					ans = location;
 					break;
 				}
 			}
-			//
 			return ans;
 		} catch (RemoteException e) {
 			return null;

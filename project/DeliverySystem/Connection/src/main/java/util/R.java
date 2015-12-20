@@ -6,8 +6,7 @@ package util;
 public class R {
     public static class string{
         public final static String LocalHost = "127.0.0.1";
-        public final static String FinanceDataService = "FinanceDataService";
-        public final static String StoreDataService = "StoreDataService";
+        public final static String CompanyAccount = "001";
     }
 
     public static class path{

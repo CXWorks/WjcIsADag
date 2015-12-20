@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -36,5 +37,20 @@ public class TabMaker {
         tab.setText(pair.getKey());
         tab.setContent(pair.getValue());
         tabPane.getTabs().add(tab);
+    }
+
+    // The above is the old version
+
+    public static Pane newLeftTabPane(List<Pair<String, Parent>> list){
+        try {
+            MainPaneController controller = MainPaneController.launch();
+            for (Pair<String, Parent> stringPanePair : list) {
+                controller.addTabButton(stringPanePair.getKey(), stringPanePair.getValue());
+            }
+            return controller.getBorderPane();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

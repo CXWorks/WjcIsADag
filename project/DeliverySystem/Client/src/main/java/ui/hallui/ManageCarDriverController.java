@@ -42,11 +42,11 @@ public class ManageCarDriverController {
 	public TextField search_Driver_Field;
 	public Button back_Btn;
 
-	private ManageblCarService manageblCarService = CarFactory.getCarService();
-	private ManageblDriverService manageblDriverService = StaffFactory.getManageblDriverService();
+	private ManageblCarService manageblCarService;
+	private ManageblDriverService manageblDriverService;
 
-	private ArrayList<CarVO> carvo_list=manageblCarService.getCar(UserInfo.getInstitutionID());
-	private ArrayList<DriverVO> drivervo_list=manageblDriverService.getStaffByInstitution();
+	private ArrayList<CarVO> carvo_list;
+	private ArrayList<DriverVO> drivervo_list;
 
 	private List<CarAbstractCheckItem> cars = new ArrayList<CarAbstractCheckItem>();
 	private List<DriverAbstractCheckItem> drivers = new ArrayList<DriverAbstractCheckItem>();
@@ -54,12 +54,14 @@ public class ManageCarDriverController {
 	private CarAbstractCheckItem carVO = new CarAbstractCheckItem(null);
 	private DriverAbstractCheckItem driverVO = new DriverAbstractCheckItem(null);
 
-	public static Parent launch(Pane father, Pane before, ManageblCarService service) throws IOException {
+	public static Parent launch(Pane father, Pane before, ManageblCarService carService, ManageblDriverService driverService) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(ManageCarDriverController.class.getResource("manageCarDriver.fxml"));
 		Pane pane = loader.load();
+
 		ManageCarDriverController controller = loader.getController();
-		controller.manageblCarService = service;
+		controller.manageblCarService = carService;
+        controller.manageblDriverService = driverService;
 
 		if(father == null){
 			pane.getChildren().remove(controller.back_Btn);
@@ -71,8 +73,7 @@ public class ManageCarDriverController {
 			);
 		}
 
-//        controller.carvo_list = service.getCar(UserInfo.getInstitutionID());
-//        controller.drivervo_list = controller.manageblDriverService.getStaffByInstitution();
+        controller.refresh();
 
 		return pane;
 	}
@@ -80,17 +81,6 @@ public class ManageCarDriverController {
 	@FXML
     // TODO test jump : change the name
 	public void initialize(){
-		carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
-		drivervo_list = manageblDriverService.getStaffByInstitution();
-		for(int i=0;i<carvo_list.size();i++){
-			cars.add(new CarAbstractCheckItem(carvo_list.get(i)));
-		}
-		for(int j=0;j<drivervo_list.size();j++){
-			drivers.add(new DriverAbstractCheckItem(drivervo_list.get(j)));
-		}
-
-		car_TableView.setItems(FXCollections.observableArrayList(cars));
-
 		carID_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getCarID())
 				);
@@ -99,25 +89,23 @@ public class ManageCarDriverController {
 				);
 		serveTime_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getUseTime().toString())
-				);
+		);
 		carCheck_TableColumn.setCellFactory(
 				o -> new CarTableCell()
-				);
+		);
 		carCheck_TableColumn.setCellValueFactory(
 				cellData -> new SimpleObjectProperty<>(cellData.getValue())
-				);
+		);
 		car_TableView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					System.out.println("selected " + newValue);
 					carVO = newValue;
 				}
-				);
-
-		driver_TableView.setItems(FXCollections.observableArrayList(drivers));
+		);
 
 		driverID_TableColumn.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getID())
-				);
+                cellData -> new SimpleStringProperty(cellData.getValue().getVo().getID())
+        );
 		driverName_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getVo().getName())
 				);
@@ -136,6 +124,20 @@ public class ManageCarDriverController {
 				}
 				);
 	}
+
+    public void refresh(){
+        carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
+        drivervo_list = manageblDriverService.getStaffByInstitution();
+        for(int i=0;i<carvo_list.size();i++){
+            cars.add(new CarAbstractCheckItem(carvo_list.get(i)));
+        }
+        for(int j=0;j<drivervo_list.size();j++){
+            drivers.add(new DriverAbstractCheckItem(drivervo_list.get(j)));
+        }
+        driver_TableView.setItems(FXCollections.observableArrayList(drivers));
+
+        car_TableView.setItems(FXCollections.observableArrayList(cars));
+    }
 
 	public void selectAllCar(ActionEvent actionEvent) {
 		if((!all_Car_CheckBox.isSelected()) && isAllCarSelected()){
@@ -227,8 +229,6 @@ public class ManageCarDriverController {
 
 //		car_TableView.getItems().add(car);
 
-		
-		
 		OperationMessage msg =manageblCarService.modifyCar(selected);
         if(msg.operationResult){
             System.out.println("edit successfully");

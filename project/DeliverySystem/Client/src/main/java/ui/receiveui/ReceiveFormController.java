@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * Created by Sissel on 2015/11/21.
  */
-public class ReceiveFormController{
+public class ReceiveFormController {
     
     public DatePicker arrive_DatePicker;
     public TextField transitID_Field;

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
 import ui.accountui.ManageAccountController;
 import ui.configurationui.ConfigurationController;
@@ -50,8 +51,8 @@ public class Main extends Application {
 
     private static Map<StaffTypeEnum, Parent> panes = new HashMap<>();
 
-    private static Scene loginScene;
-    private static Scene personScene;
+    public static Scene loginScene;
+    public static Scene personScene;
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
@@ -129,32 +130,13 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         primaryStage.setTitle("2333快递物流管理系统");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setX(150);
         primaryStage.setY(150);
 
         loginScene = new Scene((Pane)LoginController.launch());
 
         primaryStage.setScene(loginScene);
-//        primaryStage.setScene(new Scene(
-//        		NewOrderController.launch()
-//        		CheckFormController.launch()
-//                ManageBankAccountController.launch()
-                //CheckFinanceChartController.launch()
-//        		ManageOrganizationController.launch()
-//                CheckLogController.launch()
-//                deliverController.launch()
-        		//ManageStaffController.launch()
-//               StockTackController.launch()
-        		//ConfigurationController.launch()
-//        		ManageSalaryController.launch()
-//       		LoadCarController.launch()
-//        		TransitFormController.launch()
-        		//StorePartitionController.launch()
-//                FinanceNavigation.launch()
-//        		PaymentFormController.launch()
-//        		ReceiveFormController.launch()
-//        		StoreSummaryController.launch()
-//        ));
         primaryStage.show();
     }
 }

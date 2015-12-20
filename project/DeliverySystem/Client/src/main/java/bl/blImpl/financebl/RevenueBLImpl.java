@@ -45,7 +45,9 @@ public class RevenueBLImpl implements RevenueBLService {
 		this.draftService=draftService;
 		this.revenueDataService=CacheHelper.getRevenueDataService();
 	}
-    public OrderVO loadOrder(String orderNumber) {
+
+
+    private OrderVO loadOrder(String orderNumber) {
     	OrderDataService orderDataService=CacheHelper.getOrderDataService();
         try {
 			OrderPO orderPO=orderDataService.getFormPO(orderNumber);
@@ -54,10 +56,21 @@ public class RevenueBLImpl implements RevenueBLService {
 		} catch (RemoteException e) {
 			return null;
 		}
-        
     }
 
-    public String getNewRevenueID(Calendar date) {
+	@Override
+	public List<OrderVO> getOrders(RevenueVO revenueVO) {
+        List<OrderVO> orderVOs = new LinkedList<>();
+        for (String orderID : revenueVO.orderIDs) {
+            OrderVO orderVO = loadOrder(orderID);
+            if(orderVO != null){
+                orderVOs.add(orderVO);
+            }
+        }
+        return orderVOs;
+	}
+
+	public String getNewRevenueID(Calendar date) {
         try {
 			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
 			return ID;
@@ -81,7 +94,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			ArrayList<RevenuePO> po=revenueDataService.getByHallID(hallID);
 			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
 			for (RevenuePO revenuePO : po) {
-				if (revenuePO.getDate().equals(date)) {
+				if (TimeCompare.compareCalendar(revenuePO.getDate(), date)) {
 					RevenueVO temp=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
 					vo.add(temp);
 				}
