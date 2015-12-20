@@ -126,17 +126,9 @@ public class ManageCarDriverController {
 	}
 
     public void refresh(){
-        carvo_list = manageblCarService.getCar(UserInfo.getInstitutionID());
-        drivervo_list = manageblDriverService.getStaffByInstitution();
-        for(int i=0;i<carvo_list.size();i++){
-            cars.add(new CarAbstractCheckItem(carvo_list.get(i)));
-        }
-        for(int j=0;j<drivervo_list.size();j++){
-            drivers.add(new DriverAbstractCheckItem(drivervo_list.get(j)));
-        }
-        driver_TableView.setItems(FXCollections.observableArrayList(drivers));
-
-        car_TableView.setItems(FXCollections.observableArrayList(cars));
+    	car_TableView.getItems().clear();
+    	driver_TableView.getItems().clear();
+    	initialize();
     }
 
 	public void selectAllCar(ActionEvent actionEvent) {
@@ -162,18 +154,22 @@ public class ManageCarDriverController {
 		OperationMessage msg = manageblCarService.addCar(car);
         if(msg.operationResult){
             System.out.println("add successfully");
-            initialize();
+            refresh();
         }else{
             System.out.println("add fail: " + msg.getReason());
         }
-		
+        
 	}
 
 	@FXML
 	public void searchCar(ActionEvent actionEvent) {
 		String filter = search_Car_Field.getText();
+		if(filter.equals(null)){
+		refresh();
+		}
 		CarVO car=manageblCarService.searchCar(filter);
 		CarAbstractCheckItem select = new CarAbstractCheckItem(car);
+		car_TableView.getItems().clear();
 		car_TableView.setItems(FXCollections.observableArrayList(select));
 
 		carID_TableColumn.setCellValueFactory(
@@ -197,6 +193,7 @@ public class ManageCarDriverController {
 					carVO = newValue;
 				}
 				);
+		
 
 	}
 
@@ -210,7 +207,7 @@ public class ManageCarDriverController {
 				OperationMessage msg =manageblCarService.deleteCar(cars.get(i).getVo());
 		        if(msg.operationResult){
 		            System.out.println("delete successfully");
-		            initialize();
+		            refresh();
 		        }else{
 		            System.out.println("delete fail: " + msg.getReason());
 		        }
@@ -232,7 +229,7 @@ public class ManageCarDriverController {
 		OperationMessage msg =manageblCarService.modifyCar(selected);
         if(msg.operationResult){
             System.out.println("edit successfully");
-            initialize();
+            refresh();
         }else{
             System.out.println("edit fail: " + msg.getReason());
         }
@@ -312,7 +309,7 @@ public class ManageCarDriverController {
 		OperationMessage msg =manageblDriverService.addStaff(driver);
         if(msg.operationResult){
             System.out.println("add successfully");
-            initialize();
+            refresh();
         }else{
             System.out.println("add fail: " + msg.getReason());
         }
@@ -322,9 +319,14 @@ public class ManageCarDriverController {
 	@FXML
 	public void searchDriver(ActionEvent actionEvent) {
 		String filter = search_Driver_Field.getText();
+		if(filter.equals(null)){
+			refresh();
+			}
 		DriverVO driver =manageblDriverService.searchDriver(filter);
 		DriverAbstractCheckItem selected= new DriverAbstractCheckItem(driver);
 
+	
+		driver_TableView.getItems().clear();
 		driver_TableView.setItems(FXCollections.observableArrayList(selected));
 		driverID_TableColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(driver.getID())
@@ -357,7 +359,7 @@ public class ManageCarDriverController {
 				OperationMessage msg =manageblDriverService.dismissStaff(drivers.get(i).getVo());
 		        if(msg.operationResult){
 		            System.out.println("delete successfully");
-		            initialize();
+		            refresh();
 		        }else{
 		            System.out.println("delete fail: " + msg.getReason());
 		        }
@@ -372,12 +374,11 @@ public class ManageCarDriverController {
 				(selected);
 
 		controller.stage.showAndWait();
-		DriverAbstractCheckItem driver= new DriverAbstractCheckItem(selected);
 		
 		OperationMessage msg =manageblDriverService.modifyStaff(selected);
         if(msg.operationResult){
             System.out.println("edit successfully");
-            initialize();
+            refresh();
         }else{
             System.out.println("edit fail: " + msg.getReason());
         }
