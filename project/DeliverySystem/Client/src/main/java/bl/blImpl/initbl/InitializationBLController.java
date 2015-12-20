@@ -671,4 +671,45 @@ public class InitializationBLController implements InitializationBLService {
 		.removeIf(dri->{return dri.getID().equalsIgnoreCase(staff.getID());});
 		return new OperationMessage();
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#getCity()
+	 */
+	@Override
+	public List<City2DVO> getCity() {
+		return initialDataVO.getCity2dvos();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#modifyCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage modifyCity(City2DVO city2dvo) {
+		this.deleteCity(city2dvo);
+		this.newCity(city2dvo);
+		return new OperationMessage();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#newCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage newCity(City2DVO city2dvo) {
+		initialDataVO.getCity2dvos().add(city2dvo);
+		return new OperationMessage();
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.configurationblService.ConfigurationBLService#deleteCity(vo.configurationvo.City2DVO)
+	 */
+	@Override
+	public OperationMessage deleteCity(City2DVO city2dvo) {
+		initialDataVO.getCity2dvos()
+		.removeIf(city->{
+			return city.getName().equalsIgnoreCase(city2dvo.getName())
+					||city.getID().equalsIgnoreCase(city2dvo.getID());
+			});
+		return new OperationMessage();
+		
+	}
 }
