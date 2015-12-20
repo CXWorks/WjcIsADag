@@ -1,10 +1,16 @@
 package bl.blService.configurationblService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import po.InfoEnum;
 import message.OperationMessage;
+import vo.configurationvo.City2DVO;
 import vo.configurationvo.ConfigurationVO;
+import vo.configurationvo.PackVO;
+import vo.configurationvo.PriceVO;
+import vo.configurationvo.ProportionVO;
+import vo.configurationvo.SalaryStrategyVO;
 
 /** 
  * Client//bl.blService.configurationblService//ConfigurationBLServicet.java
@@ -13,6 +19,11 @@ import vo.configurationvo.ConfigurationVO;
  * @version 1.0 
  */
 public interface ConfigurationBLService {
+	public List<City2DVO> getCity();
+	public OperationMessage modifyCity(City2DVO city2dvo);
+	public OperationMessage newCity(City2DVO city2dvo);
+	public OperationMessage deleteCity(City2DVO city2dvo);
+	//
 	/**
 	 * 获取信息
 	 * @param type

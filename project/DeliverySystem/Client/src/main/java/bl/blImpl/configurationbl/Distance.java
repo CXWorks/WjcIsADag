@@ -25,14 +25,33 @@ public class Distance {
 		this.configurationDataService=configurationDataService;
 		this.vopoFactory=vopoFactory;
 	}
+	public OperationMessage newCity(City2DVO city2dvo){
+		City2DPO city2dpo=(City2DPO)vopoFactory.transVOtoPO(city2dvo);
+		try {
+			return configurationDataService.newCity2D(city2dpo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new OperationMessage(false, "net error");
+		}
+	}
+	//
+	public OperationMessage deleteCity(City2DVO city2dvo){
+		try {
+			return configurationDataService.deleteCity2D(city2dvo.getName());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new OperationMessage(false, "net error");
+		}
+	}
 	/*
 	 * get methods
 	 */
-	public ArrayList<ConfigurationVO> getCityDistance(){
+	public ArrayList<City2DVO> getCityDistance(){
 		try {
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
-			System.out.println(city2dpos.get(0).getX());
-			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(city2dpos.size());
+			ArrayList<City2DVO> ans=new ArrayList<City2DVO>(city2dpos.size());
 			for (int i = 0; i < city2dpos.size(); i++) {
 				City2DVO city2dvo=(City2DVO)vopoFactory.transPOtoVO(city2dpos.get(i));
 				ans.add(city2dvo);
