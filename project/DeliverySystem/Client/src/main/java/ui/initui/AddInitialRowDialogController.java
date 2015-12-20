@@ -31,19 +31,16 @@ public class AddInitialRowDialogController {
     private Stage stage;
     private String modelID;
 
-    private InformController informController;
-
     public static Parent launch(String modelID, StoreAreaCode areaCode, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(AddInitialRowDialogController.class.getResource("addInitialRowDialog.fxml"));
         Pane pane = loader.load();
         AddInitialRowDialogController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
 
         controller.defaultAreaCode = areaCode;
         controller.stage = stage;
         controller.modelID = modelID;
 
-        return controller.informController.stackPane;
+        return pane;
     }
 
     @FXML

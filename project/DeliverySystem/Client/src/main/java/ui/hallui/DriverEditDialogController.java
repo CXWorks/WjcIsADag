@@ -32,17 +32,15 @@ public class DriverEditDialogController {
 	public DatePicker birth_Picker;
 	public DatePicker licencePeriod_Picker;
 
-	ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
+	public ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
 
 	public static Label age_Label;
 
-	SexEnum sexEnum = SexEnum.MAN;
-	private DriverVO editVO =new DriverVO(null);
+	private SexEnum sexEnum = SexEnum.MAN;
+	private DriverVO editVO =new DriverVO();
 	public Stage stage;
 
 	TimeConvert timeconvert = new TimeConvert();
-
-	private InformController informController;
 
 	public static DriverEditDialogController newDialog(DriverVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -54,7 +52,6 @@ public class DriverEditDialogController {
 		stage.setScene(new Scene(pane));
 
 		DriverEditDialogController controller = (DriverEditDialogController)loader.getController();
-		controller.informController = InformController.newInformController(pane);
 
 		controller.editVO = editVO;
 		controller.stage = stage;
@@ -83,8 +80,8 @@ public class DriverEditDialogController {
     	personID_Field.setText(editVO.getPersonID());
     	tel_Field.setText(editVO.getTel());
     	carUnit_Field.setText(editVO.getInstitutionID());
-    	birth_Picker.setValue(LocalDate.parse(editVO.getBirth().toString()));
-    	licencePeriod_Picker.setValue(LocalDate.parse(editVO.getLicence_period().toString()));
+    	birth_Picker.setValue(timeconvert.convertCalendar(editVO.getBirth()));
+    	licencePeriod_Picker.setValue(timeconvert.convertCalendar(editVO.getLicence_period()));
 
 	}
 

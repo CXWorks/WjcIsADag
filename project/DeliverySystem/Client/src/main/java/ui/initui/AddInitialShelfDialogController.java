@@ -32,20 +32,17 @@ public class AddInitialShelfDialogController {
     private String modelID;
     private String defaultRowNum;
 
-    private InformController informController;
-
     public static Parent launch(String modelID, StoreAreaCode areaCode, String rowNum, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(AddInitialShelfDialogController.class.getResource("addInitialShelfDialog.fxml"));
         Pane pane = loader.load();
         AddInitialShelfDialogController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
 
         controller.defaultAreaCode = areaCode;
         controller.stage = stage;
         controller.modelID = modelID;
         controller.defaultRowNum = rowNum;
 
-        return controller.informController.stackPane;
+        return pane;
     }
 
     @FXML

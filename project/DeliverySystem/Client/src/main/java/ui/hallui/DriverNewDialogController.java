@@ -29,12 +29,12 @@ public class DriverNewDialogController {
 	public TextField carUnit_Field;
 	public DatePicker birth_Picker;
 	public DatePicker licencePeriod_Picker;
-	
-	ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
-	
+
+	public ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
+
 	public  Label age_Label;
 	TimeConvert timeconvert = new TimeConvert();
-	SexEnum sexEnum = SexEnum.MAN;
+	private SexEnum sexEnum = SexEnum.MAN;
 	private DriverVO editVO =new DriverVO();
 	public Stage stage;
 
@@ -51,12 +51,12 @@ public class DriverNewDialogController {
 		controller.editVO = editVO;
 		controller.stage = stage;
 		controller.init();
-		
-		
+
+
 		return controller;
-		
+
 	}
-	
+
     public void init(){
     	sex_Box.setItems(
                 Enum2ObservableList.transit(SexEnum.values())
@@ -66,24 +66,24 @@ public class DriverNewDialogController {
 					sexEnum = newValue.getEnum();
                 }
 		);
-    	
+
     }
 
 
 	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent){
 		//TODO solve sex and Picker
-		
+
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
 		editVO.setSex(sexEnum);
 		editVO.setBirth(timeconvert.convertDate(birth_Picker.getValue()));
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());
-		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));		
+		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));
 		stage.close();
-		
-		
+
+
 	}
 
 	public void cancel(ActionEvent actionEvent){

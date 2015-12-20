@@ -27,8 +27,6 @@ public class CarNewDialogController {
 	private CarVO editVO = new CarVO();
 	public Stage stage;
 
-	private InformController informController;
-
 	TimeConvert timeconvert = new TimeConvert();
 
 	public static CarNewDialogController newDialog(CarVO editVO) throws IOException {
@@ -41,7 +39,6 @@ public class CarNewDialogController {
 		stage.setScene(new Scene(pane));
 
 		CarNewDialogController controller = (CarNewDialogController) loader.getController();
-		controller.informController = InformController.newInformController(pane);
 
 		controller.editVO = editVO;
 		controller.stage = stage;

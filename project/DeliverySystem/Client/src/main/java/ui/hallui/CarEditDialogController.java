@@ -18,18 +18,17 @@ import javafx.stage.Stage;
 
 public class CarEditDialogController {
 
-	public static TextField carID_Field;
-	public static TextField nameID_Field;
-	public static Label engineID_Label;
-	public static Label chassisID_Label;
-	public static Label buyTime_Label;
-	public static DatePicker useTime_Picker;
+	public  TextField carID_Field;
+	public  TextField nameID_Field;
+	public  Label engineID_Label;
+	public  Label chassisID_Label;
+	public  Label buyTime_Label;
+	public  DatePicker useTime_Picker;
 
 	TimeConvert timeconvert = new TimeConvert();
 	private CarVO editVO = new CarVO();
 	public Stage stage;
 
-	private InformController informController;
 
 	public static CarEditDialogController newDialog(CarVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -41,7 +40,6 @@ public class CarEditDialogController {
 		stage.setScene(new Scene(pane));
 
 		CarEditDialogController controller = (CarEditDialogController) loader.getController();
-		controller.informController = InformController.newInformController(pane);
 
 		controller.editVO = editVO;
 		controller.stage = stage;
@@ -56,8 +54,8 @@ public class CarEditDialogController {
 		nameID_Field.setText(editVO.getNameID());
 		engineID_Label.setText(editVO.getEngineID());
 		chassisID_Label.setText(editVO.getChassisID());
-		buyTime_Label.setText(editVO.getBuyTime().toString());
-		useTime_Picker.setValue(LocalDate.parse(editVO.getUseTime().toString()));
+		buyTime_Label.setText(timeconvert.getDisplayDate(editVO.getBuyTime()));
+		useTime_Picker.setValue(timeconvert.convertCalendar(editVO.getUseTime()));
 
 	}
 

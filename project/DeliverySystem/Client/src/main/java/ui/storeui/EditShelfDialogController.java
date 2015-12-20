@@ -23,7 +23,6 @@ public class EditShelfDialogController {
     private Stage stage;
     private int shelfNum;
 
-    private InformController informController;
 
     /**
      *
@@ -37,7 +36,6 @@ public class EditShelfDialogController {
         Pane pane = loader.load();
 
         EditShelfDialogController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
 
         controller.stage = stage;
         stage.initOwner(Main.primaryStage);

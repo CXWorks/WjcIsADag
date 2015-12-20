@@ -37,7 +37,6 @@ public class AccountEditDialogController {
     private BankAccountVO editVO;
     private BankAccountBLService bankAccountBLService = FinanceBLFactory.getBankAccountBLService();
 
-    private InformController informController;
 
     /**
      *
@@ -59,7 +58,6 @@ public class AccountEditDialogController {
         stage.setScene(new Scene(pane));
 
         AccountEditDialogController controller = (AccountEditDialogController)loader.getController();
-        controller.informController = InformController.newInformController(pane);
         controller.editVO = editVO;
         controller.stage = stage;
         controller.type = type;
