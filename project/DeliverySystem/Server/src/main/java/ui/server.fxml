@@ -8,15 +8,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="893.0" styleClass="background" stylesheets="@../../../../../Client/dump/css/server.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="893.0" styleClass="background" stylesheets="@server.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
    <children>
-      <Region layoutX="56.0" layoutY="122.0" prefHeight="386.0" prefWidth="281.0">
+      <Region layoutX="79.0" layoutY="157.0" prefHeight="19.0" prefWidth="158.0">
          <effect>
             <Shadow />
          </effect>
       </Region>
       <Button layoutX="79.0" layoutY="186.0" mnemonicParsing="false" onAction="#start" prefHeight="55.0" prefWidth="158.0" styleClass="begin" />
-      <Button layoutX="79.0" layoutY="286.0" mnemonicParsing="false" onAction="#stop" prefHeight="55.0" prefWidth="158.0" styleClass="stop" />
+      <Button layoutX="79.0" layoutY="294.0" mnemonicParsing="false" onAction="#stop" prefHeight="55.0" prefWidth="158.0" styleClass="stop" />
       <Label fx:id="state" layoutX="347.0" layoutY="233.0" prefHeight="55.0" prefWidth="224.0" styleClass="label-header" text="当前状态：停止" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
@@ -27,7 +27,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="start_time" layoutX="467.0" layoutY="294.0" prefHeight="55.0" prefWidth="270.0" styleClass="label-header" textAlignment="CENTER">
+      <Label fx:id="start_time" layoutX="482.0" layoutY="294.0" prefHeight="55.0" prefWidth="270.0" styleClass="label-header" textAlignment="CENTER">
          <font>
             <Font size="10.0" />
          </font>

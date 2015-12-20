@@ -87,50 +87,13 @@
     -fx-background-color: black;
 }
 
-.text-field.id {
-
-    -fx-background-image : url(login/id.png);
-	-fx-border-style :none;
-    -fx-size:13;
-    -fx-font-size: 10pt;
-	-fx-color: black;
-    -fx-font-family: "方正幼线简体 常规";
-	
-}
-
-.text-field.id:focused{
-
-     -fx-border-style :none;
-
-}
-
-.text-field.password {
-
-    -fx-background-image : url(login/pass.png);
-	-fx-border-style :none;
-    -fx-size:13;
-    -fx-font-size: 10pt;
-	-fx-color:#cc6600;
-    -fx-font-family: "方正幼线简体 常规";
-	
-}
-
-.text-field.password:focused{
-
-     -fx-border-style :none;
-
-}
 
 
 .button.begin {
 	
 	-fx-background-image : url(server/begin.png);
 	-fx-background-color: #282828;
-   
-    -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
-    -fx-font-size: 15pt;
-	-fx-text-color: yellow ;
-	-fx-size:13;
+	-fx-border-style:none;
 }
 
 .button.begin:hover {
@@ -141,14 +104,12 @@
    -fx-background-image : url(server/beginPressed.png);
 }
 
+
 .button.stop {
-    -fx-size:cover;
-    -fx-background-image : url(server/stop.png);
-    -fx-background-color: #282828;
-    -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
-    -fx-font-size: 15pt;
-	-fx-text-color: yellow ;
-	-fx-size:13;
+	
+	-fx-background-image : url(server/stop.png);
+	-fx-background-color: #282828;
+	-fx-border-style:none;
 }
 
 .button.stop :hover {
@@ -160,25 +121,3 @@
 }
 
 
-.button:focused {
-    -fx-border-color: black, black;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
-}
