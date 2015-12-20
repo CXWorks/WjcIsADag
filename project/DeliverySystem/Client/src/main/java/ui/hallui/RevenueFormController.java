@@ -110,8 +110,10 @@ public class RevenueFormController {
     	order_Field.clear();
     	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
     	orderIDs.clear();
+    	money=0;
+    	total_Label.setText(money+"");
 
-    	revenues_TableView.setItems(null);
+    	revenues_TableView.getItems().clear();
     }
 
 

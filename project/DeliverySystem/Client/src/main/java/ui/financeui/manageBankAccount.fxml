@@ -4,12 +4,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.ManageBankAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.ManageBankAccountController">
    <children>
-      <TextField fx:id="name_Field" layoutX="86.0" layoutY="29.0" onAction="#search" prefHeight="23.0" prefWidth="150.0" />
-      <Label layoutX="36.0" layoutY="33.0" text="账户名" />
-      <Button layoutX="277.0" layoutY="29.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <TableView fx:id="accounts_TableView" layoutX="36.0" layoutY="66.0" prefHeight="353.0" prefWidth="296.0">
+      <TextField fx:id="name_Field" layoutX="153.0" layoutY="52.0" onAction="#search" prefHeight="23.0" prefWidth="150.0" />
+      <Label layoutX="103.0" layoutY="56.0" text="账户名" />
+      <Button layoutX="344.0" layoutY="52.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <TableView fx:id="accounts_TableView" layoutX="56.0" layoutY="108.0" prefHeight="392.0" prefWidth="352.0">
         <columns>
           <TableColumn fx:id="name_Column" prefWidth="75.0" text="账户名" />
           <TableColumn fx:id="balance_Column" prefWidth="75.0" text="余额" />
@@ -18,11 +18,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#checkHistory" text="查看交易记录" />
-      <Button layoutX="564.0" layoutY="29.0" mnemonicParsing="false" onAction="#editAccount" text="修改名字" />
-      <Button layoutX="464.0" layoutY="29.0" mnemonicParsing="false" onAction="#deleteAccount" text="删除账户" />
-      <Button layoutX="368.0" layoutY="29.0" mnemonicParsing="false" onAction="#newAccount" text="新建账户" />
-      <TableView fx:id="history_TableView" layoutX="364.0" layoutY="66.0" prefHeight="353.0" prefWidth="398.0">
+      <Button layoutX="741.0" layoutY="52.0" mnemonicParsing="false" onAction="#checkHistory" text="查看交易记录" />
+      <Button layoutX="631.0" layoutY="52.0" mnemonicParsing="false" onAction="#editAccount" text="修改名字" />
+      <Button layoutX="531.0" layoutY="52.0" mnemonicParsing="false" onAction="#deleteAccount" text="删除账户" />
+      <Button layoutX="435.0" layoutY="52.0" mnemonicParsing="false" onAction="#newAccount" text="新建账户" />
+      <TableView fx:id="history_TableView" layoutX="440.0" layoutY="106.0" prefHeight="392.0" prefWidth="433.0">
         <columns>
           <TableColumn fx:id="type_TableColumn" prefWidth="75.0" text="类别" />
           <TableColumn fx:id="date_TableColumn" prefWidth="75.0" text="时间" />
@@ -32,6 +32,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="back_Btn" layoutY="439.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" />
+      <Button fx:id="back_Btn" layoutX="21.0" layoutY="16.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="502.0" AnchorPane.leftAnchor="21.0" />
    </children>
 </AnchorPane>

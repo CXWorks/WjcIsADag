@@ -4,39 +4,39 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.ManageCarDriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.ManageCarDriverController">
    <children>
-      <TableView fx:id="car_TableView" layoutX="27.0" layoutY="65.0" prefHeight="358.0" prefWidth="426.0">
+      <TableView fx:id="car_TableView" layoutX="91.0" layoutY="100.0" prefHeight="383.0" prefWidth="470.0">
         <columns>
           <TableColumn fx:id="carCheck_TableColumn" prefWidth="45.0" text="勾选" />
           <TableColumn fx:id="carID_TableColumn" prefWidth="167.0" text="车辆代号" />
             <TableColumn fx:id="carLicense_TableColumn" prefWidth="134.0" text="车牌号" />
-            <TableColumn fx:id="serveTime_TableColumn" prefWidth="79.0" text="服役时间" />
+            <TableColumn fx:id="serveTime_TableColumn" prefWidth="119.0" text="服役时间" />
         </columns>
       </TableView>
-      <TableView fx:id="driver_TableView" layoutX="491.0" layoutY="65.0" prefHeight="358.0" prefWidth="285.0">
+      <TableView fx:id="driver_TableView" layoutX="599.0" layoutY="97.0" prefHeight="383.0" prefWidth="326.0">
         <columns>
-          <TableColumn fx:id="driverCheck_TableColumn" prefWidth="57.0" text="勾选" />
-          <TableColumn fx:id="driverID_TableColumn" prefWidth="108.0" text="司机编号" />
-            <TableColumn fx:id="driverName_TableColumn" prefWidth="119.0" text="姓名" />
+          <TableColumn fx:id="driverCheck_TableColumn" prefWidth="63.6666259765625" text="勾选" />
+          <TableColumn fx:id="driverID_TableColumn" prefWidth="114.0" text="司机编号" />
+            <TableColumn fx:id="driverName_TableColumn" prefWidth="144.0" text="姓名" />
         </columns>
       </TableView>
-      <HBox layoutX="293.0" layoutY="27.0" spacing="20.0">
+      <HBox layoutX="367.0" layoutY="58.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#addCar" text="新增" />
             <Button mnemonicParsing="false" onAction="#editCar" text="修改" />
             <Button mnemonicParsing="false" onAction="#deleteCar" text="删除" />
          </children>
       </HBox>
-      <TextField fx:id="search_Car_Field" layoutX="78.0" layoutY="27.0" />
-      <TextField fx:id="search_Driver_Field" layoutX="536.0" layoutY="27.0" prefHeight="23.0" prefWidth="79.0" />
-      <Button layoutX="615.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchDriver" prefHeight="23.0" prefWidth="42.0" text="搜索" />
-      <Button layoutX="246.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchCar" text="搜索" />
-      <CheckBox fx:id="all_Car_CheckBox" layoutX="27.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectAllCar" text="全选" />
-      <CheckBox fx:id="all_Driver_CheckBox" layoutX="491.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectAllDriver" text="全选" />
-      <Button layoutX="739.0" layoutY="27.0" mnemonicParsing="false" onAction="#deleteDriver" text="删除" />
-      <Button layoutX="699.0" layoutY="27.0" mnemonicParsing="false" onAction="#editDriver" text="修改" />
-      <Button layoutX="657.0" layoutY="27.0" mnemonicParsing="false" onAction="#addDriver" prefHeight="23.0" prefWidth="42.0" text="新增" />
-      <Button fx:id="back_Btn" layoutX="7.0" layoutY="423.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <TextField fx:id="search_Car_Field" layoutX="152.0" layoutY="58.0" prefHeight="28.0" prefWidth="153.0" />
+      <TextField fx:id="search_Driver_Field" layoutX="649.0" layoutY="56.0" prefHeight="28.0" prefWidth="69.0" />
+      <Button layoutX="728.0" layoutY="56.0" mnemonicParsing="false" onAction="#searchDriver" prefHeight="23.0" prefWidth="42.0" text="搜索" />
+      <Button layoutX="320.0" layoutY="58.0" mnemonicParsing="false" onAction="#searchCar" text="搜索" />
+      <CheckBox fx:id="all_Car_CheckBox" layoutX="101.0" layoutY="62.0" mnemonicParsing="false" onAction="#selectAllCar" text="全选" />
+      <CheckBox fx:id="all_Driver_CheckBox" layoutX="604.0" layoutY="60.0" mnemonicParsing="false" onAction="#selectAllDriver" text="全选" />
+      <Button layoutX="871.0" layoutY="56.0" mnemonicParsing="false" onAction="#deleteDriver" text="删除" />
+      <Button layoutX="825.0" layoutY="56.0" mnemonicParsing="false" onAction="#editDriver" text="修改" />
+      <Button layoutX="777.0" layoutY="56.0" mnemonicParsing="false" onAction="#addDriver" prefHeight="23.0" prefWidth="42.0" text="新增" />
+      <Button fx:id="back_Btn" layoutX="24.0" layoutY="18.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="24.0" />
    </children>
 </AnchorPane>

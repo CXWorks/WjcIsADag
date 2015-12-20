@@ -1,6 +1,6 @@
 .background {
 
-	-fx-background-image : url(login/back.png);
+	-fx-background-color: gray;
 	-fx-background-size: cover;
 	
 }
@@ -8,27 +8,21 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 0.6;
-}
-
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
+
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .table-view {
-    -fx-base: #c9c8c8;
+    -fx-base:gray;
     -fx-control-inner-background: #c9c8c8;
     -fx-background-color: #c9c8c8;
     -fx-table-cell-border-color: transparent;
@@ -41,8 +35,8 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-size: 20;
+    -fx-border-width: 1 1 1 1;
     -fx-background-color: transparent;
     -fx-border-color: 
         transparent
@@ -53,10 +47,10 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 10pt;
+    -fx-font-family: "方正幼线简体 常规";
     -fx-text-fill: white;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
     -fx-opacity: 1;
 }
 
@@ -92,9 +86,8 @@
     -fx-background-color: black;
 }
 
-.text-field.id {
+.text-field {
 
-    -fx-background-image : url(login/id.png);
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
@@ -103,46 +96,25 @@
 	
 }
 
-.text-field.id:focused{
+.text-field:focused{
 
      -fx-border-style :none;
 
 }
 
-.text-field.password {
 
-    -fx-background-image : url(login/pass.png);
-	-fx-border-style :none;
-    -fx-size:13;
-    -fx-font-size: 10pt;
-	-fx-color:#cc6600;
-    -fx-font-family: "方正幼线简体 常规";
-	
-}
-
-.text-field.password:focused{
-
-     -fx-border-style :none;
-
-}
-
-/* 
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
 
 .button.sure {
     -fx-size:13;
--fx-background-image:url(login/sure.png);
-    -fx-border-color: green;
+	-fx-background-color:white;
+    -fx-border-sty :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 	-fx-size:13;
 }
 
-.button:hover {
+.button.sure:hover {
     -fx-background-color: #3a3a3a;
 }
 

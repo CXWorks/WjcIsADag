@@ -4,17 +4,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.messageui.CheckMessageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.messageui.CheckMessageController">
    <children>
-      <TableView fx:id="message_View" layoutX="40.0" layoutY="47.0" prefHeight="349.0" prefWidth="722.0">
+      <TableView fx:id="message_View" layoutX="40.0" layoutY="103.0" prefHeight="406.0" prefWidth="890.0">
         <columns>
           <TableColumn fx:id="check_TableColumn" prefWidth="53.0" text="勾选" />
-          <TableColumn fx:id="time_TableColumn" prefWidth="141.0" text="时间" />
-            <TableColumn fx:id="message_TableColumn" prefWidth="526.0" text="消息" />
+          <TableColumn fx:id="time_TableColumn" prefWidth="175.6666717529297" text="时间" />
+            <TableColumn fx:id="message_TableColumn" prefWidth="656.3333282470703" text="消息" />
         </columns>
       </TableView>
-      <CheckBox layoutX="40.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
-      <HBox layoutX="117.0" layoutY="11.0" prefHeight="16.0" spacing="20.0">
+      <CheckBox layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onAction="#selectAll" text="全选" />
+      <HBox layoutX="130.0" layoutY="59.0" prefHeight="16.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#markChecked" text="标记为查看" />
             <Button mnemonicParsing="false" onAction="#delete" text="删除" />

@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.examineui.FormTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@../../../../../dump/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.examineui.FormTableController">
    <children>
-      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0">
+      <TableView fx:id="tableView" prefHeight="450.0" prefWidth="700.0">
         <columns>
           <TableColumn prefWidth="34.0" />
           <TableColumn fx:id="calendarColumn" prefWidth="96.0" text="时间" />
