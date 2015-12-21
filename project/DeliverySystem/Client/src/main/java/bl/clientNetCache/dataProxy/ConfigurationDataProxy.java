@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
+import bl.clientNetCache.save.CacheSaver;
 import message.OperationMessage;
 import operation.Operation;
 import po.configurationdata.City2DPO;
@@ -21,6 +24,23 @@ import rmi.configurationdata.ConfigurationDataService;
  * @version 1.0 
  */
 public class ConfigurationDataProxy implements ConfigurationDataService {
+	//
+	private static final String VERSION_NAME="configurationCacheVersion";
+	private static final String CITY="cityCache";
+	private static final String SALARY="salaryCache";
+	private static final String PROPORTION="proportionCache";
+	private static final String PACK="packCache";
+	private static final String PRICE="priceCache";
+	//
+	private ConfigurationDataService configurationDataService;
+	private CacheSaver saver;
+	//
+	private ArrayList<City2DPO> city;
+	private ArrayList<SalaryStrategyPO> salary;
+	private PricePO price;
+	private ProportionPO proportion;
+	private PackPO pack;
+	private double warningLine;
 
 	/* (non-Javadoc)
 	 * @see rmi.DataService#getConn()
@@ -55,8 +75,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		city.add(po);
+		return configurationDataService.newCity2D(po);
 	}
 
 	/* (non-Javadoc)
@@ -64,8 +84,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		city.removeIf(ci->{return ci.getName().equalsIgnoreCase(name);});
+		return configurationDataService.deleteCity2D(name);
 	}
 
 	/* (non-Javadoc)
@@ -73,8 +93,9 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.deleteCity2D(po.getName());
+		this.city.add(po);
+		return configurationDataService.modifyCity2D(po);
 	}
 
 	/* (non-Javadoc)
@@ -82,8 +103,9 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return city.stream()
+				.filter(ci->{return ci.getName().equalsIgnoreCase(name);})
+				.findFirst().get();
 	}
 
 	/* (non-Javadoc)
@@ -91,8 +113,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.city;
 	}
 
 	/* (non-Javadoc)
@@ -100,8 +121,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.city.clear();
+		return configurationDataService.clearCity2D();
 	}
 
 	/* (non-Javadoc)
@@ -110,8 +131,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.salary;
 	}
 
 	/* (non-Javadoc)
@@ -120,8 +140,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.salary.addAll(po);
+		return configurationDataService.newSalaryStrategy(po);
 	}
 
 	/* (non-Javadoc)
@@ -130,8 +150,9 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		salary.removeIf(sal->{return sal.getStaff().equals(salaryStrategy.getStaff());});
+		salary.add(salaryStrategy);
+		return configurationDataService.modifySalaryStrategy(salaryStrategy);
 	}
 
 	/* (non-Javadoc)
@@ -139,8 +160,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public PackPO getPack() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pack;
 	}
 
 	/* (non-Javadoc)
@@ -148,8 +168,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.pack=po;
+		return configurationDataService.newPack(po);
 	}
 
 	/* (non-Javadoc)
@@ -157,8 +177,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.pack=pack;
+		return configurationDataService.modifyPack(pack);
 	}
 
 	/* (non-Javadoc)
@@ -166,8 +186,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public PricePO getPrice() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.price;
 	}
 
 	/* (non-Javadoc)
@@ -175,8 +194,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage newPrice(PricePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.price=po;
+		return configurationDataService.newPrice(po);
 	}
 
 	/* (non-Javadoc)
@@ -184,8 +203,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.price=price;
+		return configurationDataService.modifyPrice(price);
 	}
 
 	/* (non-Javadoc)
@@ -193,8 +212,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public ProportionPO getProportion() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.proportion;
 	}
 
 	/* (non-Javadoc)
@@ -203,8 +221,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public OperationMessage modifyProportion(ProportionPO proportion)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.proportion=proportion;
+		return configurationDataService.modifyProportion(proportion);
 	}
 
 	/* (non-Javadoc)
@@ -213,8 +231,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public OperationMessage newProportion(ProportionPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.proportion=po;
+		return configurationDataService.newProportion(po);
 	}
 
 	/* (non-Javadoc)
@@ -222,8 +240,7 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	 */
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.warningLine;
 	}
 
 	/* (non-Javadoc)
@@ -232,8 +249,8 @@ public class ConfigurationDataProxy implements ConfigurationDataService {
 	@Override
 	public OperationMessage setWarningline(String centerID, double value)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.warningLine=value;
+		return configurationDataService.setWarningline(centerID, value);
 	}
 
 }
