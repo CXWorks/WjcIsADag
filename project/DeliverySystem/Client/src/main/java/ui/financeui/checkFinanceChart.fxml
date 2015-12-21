@@ -18,7 +18,7 @@
       <Label fx:id="income_Label" layoutX="614.0" layoutY="446.0" text="Label" />
       <Label layoutX="723.0" layoutY="446.0" text="净利润" />
       <Label fx:id="profit_Label" layoutX="774.0" layoutY="446.0" text="Label" />
-      <PieChart fx:id="pieChart" layoutX="74.0" layoutY="191.0" prefHeight="196.0" prefWidth="140.0" />
+      <PieChart fx:id="pieChart" layoutX="74.0" layoutY="191.0" prefHeight="196.0" prefWidth="140.0" stylesheets="@../css/pie.css" />
       <BarChart fx:id="barChart" layoutX="290.0" layoutY="191.0" prefHeight="196.0" prefWidth="249.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />

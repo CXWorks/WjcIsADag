@@ -1,0 +1,115 @@
+/*
+.tabs {
+   -fx-width: 100%;
+   -fx-min-width: 400px;
+   -fx-margin: 0 auto;
+   -fx-margin-bottom: 68px;
+   -fx-border-bottom: 4px solid #000;
+   -fx-overflow: hidden;
+   -fx-transition: border 250ms ease;
+}
+.tabs-ul {
+   -fx-margin: 0px;
+   -fx-padding: 0px;
+   -fx-overflow: hidden;
+   -fx-float: left;
+   -fx-padding-left: 48px;
+   -fx-list-style-type: none;
+}
+.tabs-ul * {
+   -fx-margin: 0px;
+   -fx-padding: 0px;
+}
+.tabs-ul.li {
+   -fx-display: block;
+   -fx-float: right;
+   -fx-padding: 10px 24px 8px;
+   -fx-background-color: #FFF;
+   -fx-margin-right: 46px;
+   -fx-z-index: 2;
+   -fx-position: relative;
+   -fx-cursor: pointer;
+   -fx-color: #777;
+   -fx-text-transform: uppercase;
+   -fx-font: 600 13px/20px roboto, "Open Sans", Helvetica, sans-serif;
+   -fx-transition: all 250ms ease;
+}
+.tabs-ul.li:before,
+.tabs-ul.li:after {
+   -fx-display: block;
+   -fx-content: " ";
+   -fx-position: absolute;
+   -fx-top: 0;
+   -fx-height: 100%;
+   -fx-width: 44px;  
+   -fx-background-color: #FFF;
+   -fx-transition: all 250ms ease;
+}
+.tabs-ul.li:before {
+   -fx-right: -24px;
+   -fx-transform: skew(30deg, 0deg);
+   -fx-box-shadow: rgba(0,0,0,.1) 3px 2px 5px, inset rgba(255,255,255,.09) -1px 0;
+}
+.tabs-ul.li:after {
+   -fx-left: -24px;
+   -fx-transform: skew(-30deg, 0deg);
+   -fx-box-shadow: rgba(0,0,0,.1) -3px 2px 5px, inset rgba(255,255,255,.09) 1px 0;
+}
+.tabs-ul.li:hover,
+.tabs-ul.li:hover:before,
+.tabs-ul.li:hover:after {
+   -fx-background-color: #F4F7F9;
+   -fx-color: #444;
+}
+.tabs-ul.li.active {
+   -fx-z-index: 3;
+}
+.tabs-ul.li.active,
+.tabs-ul.liactive:before,
+.tabs-ul.li.active:after {
+   -fx-background-color: #000;
+  -fx-color: #fff;
+}
+ 
+/* Round Tabs */
+/*
+.tabs.round-ul.li{
+  -fx-border-radius: 8px 8px 0 0;
+}
+.tabs.round-ul.li:before {
+  -fx-border-radius: 0 8px 0 0;
+}
+.tabs.round-ul.li:after {
+  -fx-border-radius: 8px 0 0 0;
+}   
+*/
+
+
+
+
+
+
+/*
+.tabs{
+	-fx-background-color: #e8e8e8;
+}
+.tabs-label {
+  -fx-display: block;
+  -fx-padding: 14px 21px;
+  -fx-border-style:none;
+  -fx-border-radius: 2px 2px 0 0;
+  -fx-font-size: 15px;
+  -fx-font-weight: normal;
+  -fx-text-transform: uppercase;
+  -fx-background:#c9c8c8;
+  -fx-cursor: pointer;
+  -fx-position: relative;
+  -fx-top: 4px;
+}
+.tabs-label:hover{
+  -fx-border-style:none;
+}
+.tabs-label:pressed{
+  -fx-border-style:none;
+}
+*/
