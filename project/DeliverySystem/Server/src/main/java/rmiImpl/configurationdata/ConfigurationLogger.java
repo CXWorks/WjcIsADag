@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import cache.VersionSaver;
 import operation.Operation;
 import rmi.cachedata.CacheDataService;
 import rmiImpl.Logger;
@@ -18,11 +19,14 @@ import rmiImpl.Logger;
  * @version 1.0 
  */
 public class ConfigurationLogger extends Logger {
+	private static final String FILE_NAME="configuration";
 	private long version ;
 	private List<Operation> cacheData;
 	
 	public ConfigurationLogger(){
 		this.version=0;
+		VersionSaver versionSaver=new VersionSaver();
+		this.version=versionSaver.loadVersion(FILE_NAME);
 		this.cacheData=new ArrayList<Operation>(20);
 	}
 

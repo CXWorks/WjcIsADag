@@ -1,6 +1,8 @@
 package bl.clientNetCache.dataProxy;
 
+import java.rmi.RemoteException;
 import java.util.List;
+
 import operation.Operation;
 
 /** 
@@ -10,5 +12,5 @@ import operation.Operation;
  * @version 1.0 
  */
 public abstract class DataProxy {
-	protected abstract void dealOperation(List<Operation> operations);
+	protected abstract void dealOperation(List<Operation> operations) throws RemoteException;
 }

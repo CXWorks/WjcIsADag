@@ -52,8 +52,7 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 
 		}
 		if (res != null && res.operationResult) {
-			long version = cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
-			res.setCacheVersion(version);
+			cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
 			return res;
 		}
 		return new OperationMessage(false, "system is " + InitialDataProxy.getState().getChinese());
@@ -62,21 +61,32 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.deleteCity2D(name);
+			OperationMessage res = configurationDataService.deleteCity2D(name);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "删除城市信息" + name));
-
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.DELETE, new City2DPO(name, 0, 0, null)));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
 
 	@Override
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
-		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return configurationDataService.modifyCity2D(po);
-		return null;
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage res =configurationDataService.modifyCity2D(po);
+		
+		
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(
+						OperationTypeEnum.MODIFY, po));
+				return res;
+			}
+		}
+		return new OperationMessage(false, "system is "+InitialDataProxy.getState().getChinese());
 	}
 
 	@Override
@@ -109,9 +119,14 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 
 	@Override
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy) throws RemoteException {
-		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return configurationDataService.modifySalaryStrategy(salaryStrategy);
-		return null;
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage res = configurationDataService.modifySalaryStrategy(salaryStrategy);
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.MODIFY, salaryStrategy));
+				return res;
+			}
+		}
+		return new OperationMessage(false, "system is "+InitialDataProxy.getState().getChinese());
 	}
 
 	@Override
@@ -124,12 +139,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.modifyPack(pack);
+			OperationMessage res = configurationDataService.modifyPack(pack);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改包装价格"));
-
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.MODIFY, pack));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -144,11 +162,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.modifyPrice(price);
+			OperationMessage res = configurationDataService.modifyPrice(price);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费价格"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.MODIFY, price));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -163,11 +185,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.modifyProportion(proportion);
+			OperationMessage res = configurationDataService.modifyProportion(proportion);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费比例"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.MODIFY, proportion));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -175,11 +201,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> po) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.newSalaryStrategy(po);
+			OperationMessage res = configurationDataService.newSalaryStrategy(po);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改薪水策略"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po.get(0)));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -187,11 +217,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.newPack(po);
+			OperationMessage res = configurationDataService.newPack(po);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改包装价格"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -199,11 +233,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newPrice(PricePO po) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.newPrice(po);
+			OperationMessage res = configurationDataService.newPrice(po);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费价格"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -211,11 +249,15 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.newProportion(po);
+			OperationMessage res = configurationDataService.newProportion(po);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("总经理", Calendar.getInstance(), "修改运费比例"));
-			return message;
+			if (res != null && res.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, po));
+				return res;
+			}
+			return res;
 		}
 		return null;
 	}
@@ -230,12 +272,11 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	@Override
 	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
-			OperationMessage message = configurationDataService.setWarningline(centerID, value);
+			OperationMessage res = configurationDataService.setWarningline(centerID, value);
 			// 系统日志
-			if (message.operationResult == true)
+			if (res.operationResult == true)
 				RMIHelper.getLogDataService().insert(new LogPO("库存管理人员", Calendar.getInstance(), "修改库存警戒比例"));
-
-			return message;
+			return res;
 		}
 		return null;
 	}

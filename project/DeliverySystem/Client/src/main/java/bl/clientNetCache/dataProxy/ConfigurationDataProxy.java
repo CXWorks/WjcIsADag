@@ -75,6 +75,14 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			proxy.dealOperation(operations);
 			proxy.clientVersion=serverVersion;
 		}
+		else if (serverVersion<proxy.clientVersion) {
+			proxy.city=proxy.configurationDataService.getAllCity2D();
+			proxy.pack=proxy.configurationDataService.getPack();
+			proxy.price=proxy.configurationDataService.getPrice();
+			proxy.proportion=proxy.configurationDataService.getProportion();
+			proxy.warningLine=proxy.configurationDataService.getWarningline(UserInfo.getInstitutionID());
+			proxy.clientVersion=serverVersion;
+		}
 		//
 		return proxy;
 	}
@@ -306,9 +314,59 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 * @see bl.clientNetCache.dataProxy.DataProxy#dealOperation(java.util.List)
 	 */
 	@Override
-	protected void dealOperation(List<Operation> operations) {
+	protected void dealOperation(List<Operation> operations) throws RemoteException {
+		//TODO 这次大作业写得最差的代码QAQ
 		for (Operation operation : operations) {
-			
+			switch (operation.operationTypeEnum) {
+			case NEW:
+				switch (operation.infoEnum) {
+				case CITY_2D:
+					this.newCity2D((City2DPO)operation.src);
+					break;
+				case PRICE:
+					this.newPrice((PricePO)operation.src);
+					break;
+				case PROPORTION:
+					this.newProportion((ProportionPO)operation.src);
+					break;
+				case PACK:
+					this.newPack((PackPO)operation.src);
+					break;
+				default:
+					break;
+				}
+				break;
+			case MODIFY:
+				switch (operation.infoEnum) {
+				case CITY_2D:
+					this.modifyCity2D((City2DPO)operation.src);
+					break;
+				case PRICE:
+					this.modifyPrice((PricePO)operation.src);
+					break;
+				case PROPORTION:
+					this.modifyProportion((ProportionPO)operation.src);
+					break;
+				case PACK:
+					this.modifyPack((PackPO)operation.src);
+					break;
+				default:
+					break;
+				}
+				break;
+			case DELETE:
+				switch (operation.infoEnum) {
+				case CITY_2D:
+					this.deleteCity2D(((City2DPO)operation.src).getName());
+					break;
+				default:
+					break;
+				}
+				break;
+
+			default:
+				//do nothing
+			}
 		}
 		
 	}
