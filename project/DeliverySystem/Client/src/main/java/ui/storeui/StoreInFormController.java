@@ -94,12 +94,7 @@ public class StoreInFormController {
 	public void commit(ActionEvent actionEvent) {
 		OperationMessage msg = storeInBLService.submit(generateVO(storeInBLService.newID()));
 
-		if (msg.operationResult) {
-			System.out.println("commit successfully");
-			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
-		}
+		informController.inform(msg, "单据提交成功");
 	}
 
 	private StoreInVO generateVO(String formID) {
@@ -116,6 +111,7 @@ public class StoreInFormController {
 	public void fillPosition(ActionEvent actionEvent) {
 		StoreLocation location = storeInBLService.getAvailableLocation(area);
 		if (location == null) {
+			informController.inform("该区域无空缺位置");
 			System.out.println("no available location");
 			return;
 		}

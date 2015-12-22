@@ -15,7 +15,7 @@
             <Label text="请再次输入新密码以确认" GridPane.rowIndex="4" />
             <PasswordOnlyField fx:id="originalPassWord_Field" GridPane.rowIndex="1" />
             <PasswordOnlyField fx:id="newPassWord_Field" GridPane.rowIndex="3" />
-            <PasswordOnlyField fx:id="againNewPassWord_Field" GridPane.rowIndex="5" />
+            <PasswordOnlyField fx:id="againNewPassWord_Field" GridPane.rowIndex="5" onAction="#ok" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

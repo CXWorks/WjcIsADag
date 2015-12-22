@@ -73,15 +73,15 @@ public class PaymentFormController {
 		payment_DatePicker.setValue(LocalDate.now());
 		item_ChoiceBox.setValue(item_ChoiceBox.getItems().get(0));
 
-		// TODO test
-		payerAccount_Field.setText("bill_gates");
-		payerName_Field.setText("biergaici");
-		receiverName_Field.setText("吴君如");
-		receiverAccount_Field.setText("wjr");
-		money_Field.setText("99");
-		payment_DatePicker.setValue(LocalDate.of(2015, 12, 9));
-		item_ChoiceBox.getSelectionModel().select(3);
-		note_TextArea.setText("I have too much money");
+		//  test
+//		payerAccount_Field.setText("bill_gates");
+//		payerName_Field.setText("biergaici");
+//		receiverName_Field.setText("吴君如");
+//		receiverAccount_Field.setText("wjr");
+//		money_Field.setText("99");
+//		payment_DatePicker.setValue(LocalDate.of(2015, 12, 9));
+//		item_ChoiceBox.getSelectionModel().select(3);
+//		note_TextArea.setText("I have too much money");
 	}
 
 	public void commit(ActionEvent actionEvent) {

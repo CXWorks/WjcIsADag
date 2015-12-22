@@ -48,7 +48,7 @@ public class PersonalAccountViewController {
 
     public void editPassword(ActionEvent actionEvent)  throws IOException {
         AccountVO AccountVO = accountManageService.getAccountVO(UserInfo.getUserID());
-        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO);
+        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO, informController);
 
         controller.stage.showAndWait();
     }

@@ -117,7 +117,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("2333快递物流管理系统");
         primaryStage.setX(150);
-        primaryStage.setY(150);
+        primaryStage.setY(100);
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene((Pane)LoginController.launch());

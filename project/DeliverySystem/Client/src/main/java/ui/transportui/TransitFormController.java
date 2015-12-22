@@ -79,8 +79,9 @@ public class TransitFormController {
 				});
 
 		arrival_Box.setItems(FXCollections.observableArrayList(arrivals));
-		arrival_Box.setValue(arrival_Box.getItems().get(0));
-		;
+		if(arrival_Box.getItems().size() != 0){
+			arrival_Box.setValue(arrival_Box.getItems().get(0));
+		}
 	}
 
 	public void add(ActionEvent actionEvent) {
@@ -102,8 +103,10 @@ public class TransitFormController {
 		transit_DatePicker.setValue(LocalDate.now());
 		transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));
 		departure_Field.clear();
-		arrival_Box.setValue(arrival_Box.getItems().get(0));
-		;
+		if(arrival_Box.getItems().size() != 0){
+			arrival_Box.setValue(arrival_Box.getItems().get(0));
+		}
+
 		supervisor_Field.clear();
 		transNumber_Field.clear();
 		cargo_Field.clear();

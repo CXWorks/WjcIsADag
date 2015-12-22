@@ -22,7 +22,7 @@
             <Label text="账户名" />
             <Label text="余额" GridPane.rowIndex="2" />
             <TextField fx:id="editName_Field" GridPane.rowIndex="1" />
-            <TextField fx:id="editBalance_Field" GridPane.rowIndex="3" />
+            <TextField fx:id="editBalance_Field" GridPane.rowIndex="3" onAction="#ok" />
          </children>
       </GridPane>
       <HBox layoutX="126.0" layoutY="245.0" spacing="20.0">

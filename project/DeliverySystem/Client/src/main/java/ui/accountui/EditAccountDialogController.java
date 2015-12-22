@@ -67,6 +67,8 @@ public class EditAccountDialogController {
                 password_Field.setText(editVO.getPassword());
                 break;
         }
+
+        id_Field.requestFocus();
     }
 
 	public void cancel(ActionEvent actionEvent) {

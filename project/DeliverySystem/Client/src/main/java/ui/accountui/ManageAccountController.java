@@ -78,7 +78,7 @@ public class ManageAccountController {
                     }
                 }
         );
-        refreshItems();
+        refreshItems(accountBLManageService.getAccountVOs());
     }
 
     @FXML
@@ -88,7 +88,7 @@ public class ManageAccountController {
             EditAccountDialogController controller = EditAccountDialogController.newDialog
                     (dialogStage, EditAccountDialogController.EditType.NEW, null, informController);
             dialogStage.showAndWait();
-            refreshItems();
+            refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class ManageAccountController {
     @FXML
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
-        // TODO filter accountBLManageService
+        // TODO inform cx to add search interface
     }
 
     @FXML
@@ -111,13 +111,14 @@ public class ManageAccountController {
                 --i;
             }
         }
-        refreshItems();
+        refreshItems(accountBLManageService.getAccountVOs());
     }
 
     @FXML
 	public void edit(ActionEvent actionEvent) {
         ObservableList<AccountCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
         if(checkItems.size() != 1){
+            informController.inform("请选择一个账户");
             System.out.println("please choose one item");
             return;
         }
@@ -126,7 +127,7 @@ public class ManageAccountController {
             EditAccountDialogController controller = EditAccountDialogController.newDialog
                     (dialogStage, EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo(), informController);
             dialogStage.showAndWait();
-            refreshItems();
+            refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -183,10 +184,10 @@ public class ManageAccountController {
         }
     }
 
-    private void refreshItems(){
+    private void refreshItems(List<AccountVO> accountVOs){
         accounts.clear();
         accounts_TableView.getItems().clear();
-        for (AccountVO accountVO : accountBLManageService.getAccountVOs()) {
+        for (AccountVO accountVO : accountVOs) {
             accounts.add(new AccountCheckItem(accountVO));
         }
         accounts_TableView.getItems().addAll(accounts);
