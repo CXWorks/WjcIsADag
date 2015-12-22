@@ -86,7 +86,7 @@ public class ManageAccountController {
         try {
             Stage dialogStage = new Stage();
             EditAccountDialogController controller = EditAccountDialogController.newDialog
-                    (dialogStage, EditAccountDialogController.EditType.NEW, null);
+                    (dialogStage, EditAccountDialogController.EditType.NEW, null, informController);
             dialogStage.showAndWait();
             refreshItems();
         } catch (IOException e) {
@@ -124,7 +124,7 @@ public class ManageAccountController {
         try {
             Stage dialogStage = new Stage();
             EditAccountDialogController controller = EditAccountDialogController.newDialog
-                    (dialogStage, EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo());
+                    (dialogStage, EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo(), informController);
             dialogStage.showAndWait();
             refreshItems();
         } catch (IOException e) {

@@ -14,8 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import main.Main;
 import message.OperationMessage;
+import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.managevo.staff.StaffVO;
 
@@ -37,12 +39,17 @@ public class LoginController {
 //    public ImageView password_ImageView;
 //    public ImageView sure_ImageView;
 
-    AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
-    AccountBLManageService manageService = AccountFactory.getManageService();
-    ManageblStaffService manageblStaffService = StaffFactory.getManageService();
+    private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
+    private ManageblStaffService manageblStaffService = StaffFactory.getManageService();
+    private InformController informController;
 
     public static Parent launch() throws IOException {
-        return FXMLLoader.load(LoginController.class.getResource("logIn.fxml"));
+        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
+        Pane content = loader.load();
+        LoginController selfController = loader.getController();
+        selfController.informController = InformController.newInformController(content);
+
+        return selfController.informController.stackPane;
     }
 
 
@@ -50,7 +57,6 @@ public class LoginController {
 //    public void initialize(){
 //    	back_ImageView.setImage(Image_Back);
 //    }
-
 
     public void login(ActionEvent actionEvent) {
 
@@ -64,9 +70,10 @@ public class LoginController {
                 System.out.println("ask the manager to new a staff for you");
             }
 
-            Main.logIn();
             // TODO : display tips
+            informController.inform("login successfully");
             System.out.println("login successfully");
+            Main.logIn();
         }else{
             // TODO : display tips
             System.out.println("login fail: " + msg.getReason());

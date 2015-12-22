@@ -5,6 +5,7 @@ import java.io.IOException;
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
 import main.Main;
+import message.OperationMessage;
 import ui.common.checkFormat.field.PasswordOnlyField;
 import ui.financeui.AccountEditDialogController;
 import ui.financeui.AccountEditDialogController.EditType;
@@ -34,7 +35,7 @@ public class personAccountViewEditDialogController {
 
 	private InformController informController;
 
-	public static personAccountViewEditDialogController newDialog(AccountVO editVO) throws IOException {
+	public static personAccountViewEditDialogController newDialog(AccountVO editVO, InformController informController) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(personAccountViewEditDialogController.class.getResource("personAccountViewEditDialog.fxml"));
 		Pane pane = loader.load();
@@ -44,7 +45,7 @@ public class personAccountViewEditDialogController {
 		stage.setScene(new Scene(pane));
 
 		personAccountViewEditDialogController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+		controller.informController = informController;
 
 		controller.editVO = editVO;
 		controller.stage = stage;
@@ -74,25 +75,23 @@ public class personAccountViewEditDialogController {
 
 
 	public void ok(ActionEvent actionEvent) {
-		if(check(originalPassWord_Field.getText(),
-				newPassWord_Field.getText(),againNewPassWord_Field.getText())){
+		if(check(originalPassWord_Field.getText(), newPassWord_Field.getText(),againNewPassWord_Field.getText())){
 			editVO.password = newPassWord_Field.getText();
 
-			System.out.println("modify password successfully!");
-
             editVO.password = newPassWord_Field.getText();
-			accountBLManageService.modifyAccount(editVO);
+			OperationMessage msg = accountBLManageService.modifyAccount(editVO);
+
+            informController.inform(msg, "密码修改成功");
 
 			stage.close();
 		}else{
-			System.out.println("modify password failed!");
+			//
+			System.out.println("wrong input");
 		}
 	}
 
 	public void cancel(ActionEvent actionEvent) {
 		stage.close();
 	}
-
-
 
 }

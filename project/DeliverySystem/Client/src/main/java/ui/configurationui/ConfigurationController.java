@@ -67,8 +67,6 @@ public class ConfigurationController {
 	public GridPane distancePane;
 	public ChoiceBox<City2DVO> cityChoiceBox;
 	public Label cityDistanceLabel;
-	
-
 
 	//快递费
 	public TextField factor_Field; //后面的那个比例（原来是23）

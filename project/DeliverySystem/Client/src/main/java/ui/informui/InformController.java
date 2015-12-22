@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import main.Main;
+import message.OperationMessage;
 
 import java.io.IOException;
 
@@ -48,6 +49,14 @@ public class InformController {
                     }
                 }
         ).start();
+    }
+
+    public void inform(OperationMessage msg, String successWord){
+        if(msg.operationResult){
+            this.inform(successWord);
+        }else{
+            this.inform("操作失败： " + msg.getReason());
+        }
     }
 
 }

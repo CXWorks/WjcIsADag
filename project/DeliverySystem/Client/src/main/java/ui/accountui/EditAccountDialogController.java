@@ -31,10 +31,9 @@ public class EditAccountDialogController {
 	public EngOnlyField password_Field;
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-
 	 private InformController informController;
 
-    public static EditAccountDialogController newDialog(Stage stage, EditType type, AccountVO editVO) throws IOException {
+    public static EditAccountDialogController newDialog(Stage stage, EditType type, AccountVO editVO, InformController informController) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(EditAccountDialogController.class.getResource("editAccountDialog.fxml"));
         Pane pane = loader.load();
@@ -43,10 +42,10 @@ public class EditAccountDialogController {
                 type == EditType.EDIT ? "修改账户" : "新建账户"
         );
         stage.initOwner(Main.primaryStage);
-        stage.setScene(new Scene(pane));
 
         EditAccountDialogController controller = (EditAccountDialogController)loader.getController();
-        controller.informController = InformController.newInformController(pane);
+        controller.informController = informController;
+        stage.setScene(new Scene(pane));
 
         controller.editVO = editVO == null ? new AccountVO() : editVO;
         controller.stage = stage;
@@ -81,10 +80,12 @@ public class EditAccountDialogController {
         }else{
             msg  = accountBLManageService.addAccount(editAccountVO());
         }
-        // TODO : feedback
+
         if(msg.operationResult){
+            informController.inform("账户修改成功");
             System.out.println("commit successfully");
         }else{
+            informController.inform("账户修改失败: " + msg.getReason());
             System.out.println("fail: " + msg.getReason());
         }
         stage.close();
