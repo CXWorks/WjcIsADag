@@ -1,5 +1,7 @@
 package bl.clientNetCache.dataProxy;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -37,7 +39,6 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	private static final String PRICE="priceCache";
 	//
 	private ConfigurationDataService configurationDataService;
-	private CacheSaver saver;
 	private long clientVersion;
 	//
 	private ArrayList<City2DPO> city;
@@ -61,14 +62,20 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 		proxy.configurationDataService=RMIHelper.getConfigurationDataService();
 		long serverVersion=proxy.configurationDataService.getLatestVersionID();
 		//cache data
-		proxy.saver=new CacheSaver();
-		proxy.city=(ArrayList<City2DPO>) proxy.saver.loadCache(CITY, true);
-		proxy.salary=(ArrayList<SalaryStrategyPO>) proxy.saver.loadCache(SALARY, true);
-		proxy.pack=(PackPO) proxy.saver.loadCache(PACK);
-		proxy.price=(PricePO) proxy.saver.loadCache(PRICE);
-		proxy.proportion=(ProportionPO) proxy.saver.loadCache(PROPORTION);
-		proxy.warningLine=proxy.configurationDataService.getWarningline(UserInfo.getInstitutionID());
-		
+		CacheSaver saver=new CacheSaver();
+		try {
+			proxy.city = (ArrayList<City2DPO>) saver.loadCache(CITY, true);
+			proxy.salary = (ArrayList<SalaryStrategyPO>) saver.loadCache(
+					SALARY, true);
+			proxy.pack = (PackPO) saver.loadCache(PACK);
+			proxy.price = (PricePO) saver.loadCache(PRICE);
+			proxy.proportion = (ProportionPO) saver.loadCache(PROPORTION);
+			proxy.warningLine = proxy.configurationDataService
+					.getWarningline(UserInfo.getInstitutionID());
+		} catch (IOException e) {
+			System.out.println(serverVersion);
+			proxy.clientVersion = Long.MAX_VALUE;
+		}
 		//
 		if (serverVersion>proxy.clientVersion) {
 			List<Operation> operations=proxy.configurationDataService.getOperation(proxy.clientVersion);
@@ -80,11 +87,23 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			proxy.pack=proxy.configurationDataService.getPack();
 			proxy.price=proxy.configurationDataService.getPrice();
 			proxy.proportion=proxy.configurationDataService.getProportion();
+			proxy.salary=proxy.configurationDataService.getSalaryStrategy();
 			proxy.warningLine=proxy.configurationDataService.getWarningline(UserInfo.getInstitutionID());
 			proxy.clientVersion=serverVersion;
 		}
 		//
 		return proxy;
+	}
+	//
+	public static void Close(){
+		VersionSaver versionSaver=new VersionSaver();
+		versionSaver.saveVersion(proxy.clientVersion, VERSION_NAME);
+		CacheSaver cacheSaver=new CacheSaver();
+		cacheSaver.saveCache(proxy.pack, PACK);
+		cacheSaver.saveCache(proxy.price, PRICE);
+		cacheSaver.saveCache(proxy.proportion, PROPORTION);
+		cacheSaver.saveCache(proxy.city, CITY);
+		cacheSaver.saveCache(proxy.salary, SALARY);
 	}
 
 	/* (non-Javadoc)
@@ -121,7 +140,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		city.add(po);
-		this.clientVersion++;
+		proxy.clientVersion++;
 		return configurationDataService.newCity2D(po);
 	}
 
@@ -130,8 +149,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
-		city.removeIf(ci->{return ci.getName().equalsIgnoreCase(name);});
-		this.clientVersion++;
+		proxy.city.removeIf(ci->{return ci.getName().equalsIgnoreCase(name);});
+		proxy.clientVersion++;
 		return configurationDataService.deleteCity2D(name);
 	}
 
@@ -140,9 +159,9 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
-		this.deleteCity2D(po.getName());
-		this.city.add(po);
-		this.clientVersion++;
+		proxy.deleteCity2D(po.getName());
+		proxy.city.add(po);
+		proxy.clientVersion++;
 		return configurationDataService.modifyCity2D(po);
 	}
 
@@ -151,7 +170,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
-		return city.stream()
+		return proxy.city.stream()
 				.filter(ci->{return ci.getName().equalsIgnoreCase(name);})
 				.findFirst().get();
 	}
@@ -161,7 +180,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
-		return this.city;
+		return proxy.city;
 	}
 
 	/* (non-Javadoc)
@@ -169,8 +188,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
-		this.city.clear();
-		this.clientVersion++;
+		proxy.city.clear();
+		proxy.clientVersion++;
 		return configurationDataService.clearCity2D();
 	}
 
@@ -180,7 +199,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy()
 			throws RemoteException {
-		return this.salary;
+		return proxy.salary;
 	}
 
 	/* (non-Javadoc)
@@ -189,8 +208,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> po)
 			throws RemoteException {
-		this.salary.addAll(po);
-		this.clientVersion++;
+		proxy.salary.addAll(po);
+		proxy.clientVersion++;
 		return configurationDataService.newSalaryStrategy(po);
 	}
 
@@ -200,9 +219,9 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO salaryStrategy)
 			throws RemoteException {
-		salary.removeIf(sal->{return sal.getStaff().equals(salaryStrategy.getStaff());});
-		salary.add(salaryStrategy);
-		this.clientVersion++;
+		proxy.salary.removeIf(sal->{return sal.getStaff().equals(salaryStrategy.getStaff());});
+		proxy.salary.add(salaryStrategy);
+		proxy.clientVersion++;
 		return configurationDataService.modifySalaryStrategy(salaryStrategy);
 	}
 
@@ -211,7 +230,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public PackPO getPack() throws RemoteException {
-		return this.pack;
+		return proxy.pack;
 	}
 
 	/* (non-Javadoc)
@@ -219,8 +238,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
-		this.pack=po;
-		this.clientVersion++;
+		proxy.pack=po;
+		proxy.clientVersion++;
 		return configurationDataService.newPack(po);
 	}
 
@@ -229,8 +248,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
-		this.pack=pack;
-		this.clientVersion++;
+		proxy.pack=pack;
+		proxy.clientVersion++;
 		return configurationDataService.modifyPack(pack);
 	}
 
@@ -239,7 +258,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public PricePO getPrice() throws RemoteException {
-		return this.price;
+		return proxy.price;
 	}
 
 	/* (non-Javadoc)
@@ -247,8 +266,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage newPrice(PricePO po) throws RemoteException {
-		this.price=po;
-		this.clientVersion++;
+		proxy.price=po;
+		proxy.clientVersion++;
 		return configurationDataService.newPrice(po);
 	}
 
@@ -257,8 +276,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
-		this.price=price;
-		this.clientVersion++;
+		proxy.price=price;
+		proxy.clientVersion++;
 		return configurationDataService.modifyPrice(price);
 	}
 
@@ -267,7 +286,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public ProportionPO getProportion() throws RemoteException {
-		return this.proportion;
+		return proxy.proportion;
 	}
 
 	/* (non-Javadoc)
@@ -276,8 +295,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage modifyProportion(ProportionPO proportion)
 			throws RemoteException {
-		this.proportion=proportion;
-		this.clientVersion++;
+		proxy.proportion=proportion;
+		proxy.clientVersion++;
 		return configurationDataService.modifyProportion(proportion);
 	}
 
@@ -287,8 +306,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage newProportion(ProportionPO po)
 			throws RemoteException {
-		this.proportion=po;
-		this.clientVersion++;
+		proxy.proportion=po;
+		proxy.clientVersion++;
 		return configurationDataService.newProportion(po);
 	}
 
@@ -297,7 +316,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	 */
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		return this.warningLine;
+		return proxy.warningLine;
 	}
 
 	/* (non-Javadoc)
@@ -306,8 +325,8 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	@Override
 	public OperationMessage setWarningline(String centerID, double value)
 			throws RemoteException {
-		this.warningLine=value;
-		this.clientVersion++;
+		proxy.warningLine=value;
+		proxy.clientVersion++;
 		return configurationDataService.setWarningline(centerID, value);
 	}
 	/* (non-Javadoc)
@@ -321,16 +340,16 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			case NEW:
 				switch (operation.infoEnum) {
 				case CITY_2D:
-					this.newCity2D((City2DPO)operation.src);
+					proxy.newCity2D((City2DPO)operation.src);
 					break;
 				case PRICE:
-					this.newPrice((PricePO)operation.src);
+					proxy.newPrice((PricePO)operation.src);
 					break;
 				case PROPORTION:
-					this.newProportion((ProportionPO)operation.src);
+					proxy.newProportion((ProportionPO)operation.src);
 					break;
 				case PACK:
-					this.newPack((PackPO)operation.src);
+					proxy.newPack((PackPO)operation.src);
 					break;
 				default:
 					break;
@@ -339,16 +358,16 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			case MODIFY:
 				switch (operation.infoEnum) {
 				case CITY_2D:
-					this.modifyCity2D((City2DPO)operation.src);
+					proxy.modifyCity2D((City2DPO)operation.src);
 					break;
 				case PRICE:
-					this.modifyPrice((PricePO)operation.src);
+					proxy.modifyPrice((PricePO)operation.src);
 					break;
 				case PROPORTION:
-					this.modifyProportion((ProportionPO)operation.src);
+					proxy.modifyProportion((ProportionPO)operation.src);
 					break;
 				case PACK:
-					this.modifyPack((PackPO)operation.src);
+					proxy.modifyPack((PackPO)operation.src);
 					break;
 				default:
 					break;
@@ -357,7 +376,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			case DELETE:
 				switch (operation.infoEnum) {
 				case CITY_2D:
-					this.deleteCity2D(((City2DPO)operation.src).getName());
+					proxy.deleteCity2D(((City2DPO)operation.src).getName());
 					break;
 				default:
 					break;
