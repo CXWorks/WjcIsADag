@@ -1,27 +1,20 @@
 package rmiImpl.accountdata;
 
-import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
 
-import message.OperationMessage;
-import po.FormEnum;
-import po.accountdata.AccountPO;
-import po.companydata.CenterPO;
-import po.configurationdata.enums.PackEnum;
-import po.receivedata.ReceivePO;
-import po.systemdata.LogPO;
-import rmi.accountdata.AccountDataService;
 import database.ConnecterHelper;
-import database.RMIHelper;
+import database.MySql;
+import database.enums.TableEnum;
+import message.OperationMessage;
+import po.accountdata.AccountPO;
+import rmi.accountdata.AccountDataService;
 
 /**
  *
@@ -30,13 +23,11 @@ import database.RMIHelper;
 
 public class AccountDataImpl extends UnicastRemoteObject implements AccountDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public AccountDataImpl() throws RemoteException {
 		super();
-		Table_Name = "account";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -45,7 +36,11 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public AccountPO getAccountPO(String accountID) {
-		String select = "select * from `" + Table_Name + "` where `ID`= '" + accountID + "'";
+		String select = MySql.select(TableEnum.ACCOUNT, new HashMap<String, String>() {
+			{
+				put("ID", accountID);
+			}
+		});
 		ResultSet rs = null;
 		AccountPO result = null;
 		try {
@@ -62,7 +57,7 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	}
 
 	public ArrayList<AccountPO> getAccountPOs() {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.ACCOUNT, null);
 		ResultSet rs = null;
 		AccountPO temp = null;
 		ArrayList<AccountPO> result = new ArrayList<AccountPO>();
@@ -84,9 +79,14 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 
 	public OperationMessage insert(AccountPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(ID,password,authority,online) " + "values('" + po.getID() + "','"
-				+ po.getPassword() + "','" + po.getAuthority().toString() + "','" + "0" + "')";
-
+		String insert = MySql.insert(TableEnum.ACCOUNT, new HashMap<String, String>() {
+			{
+				put("ID", po.getID());
+				put("password", po.getPassword());
+				put("authority", po.getAuthority().toString());
+				put("online", "0");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -101,7 +101,11 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 
 	public OperationMessage delete(String accountID) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `ID` = '" + accountID + "'";
+		String delete = MySql.delete(TableEnum.ACCOUNT, new HashMap<String, String>() {
+			{
+				put("ID", accountID);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -138,10 +142,18 @@ public class AccountDataImpl extends UnicastRemoteObject implements AccountDataS
 	@Override
 	public OperationMessage setAccount(String id, boolean isOnline) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String operation = "update `" + Table_Name + "` set `online` ='" + isOnline + "' where `ID` = '" + id + "'";
+		String online = "0";
+		if (isOnline) {
+			online = "1";
+		}
+		String operation = MySql.update(TableEnum.ACCOUNT, "online", online, new HashMap<String, String>() {
+			{
+				put("ID", id);
+			}
+		});
 		try {
-				statement = conn.prepareStatement(operation);
-				statement.executeUpdate();
+			statement = conn.prepareStatement(operation);
+			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "更新账户状态出错：");
 			System.err.println("更新账户状态出错：");
