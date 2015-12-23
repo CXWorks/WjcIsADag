@@ -2,6 +2,7 @@ package rmi.cachedata;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import operation.Operation;
@@ -18,14 +19,18 @@ public interface CacheDataService extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public long getLatestVersionID() throws RemoteException;
+	public default long getLatestVersionID() throws RemoteException{
+		return 0;
+	};
 	/**
 	 * 通过本地版本号获取操作
 	 * @param localVersion
 	 * @return	
 	 * @throws RemoteException
 	 */
-	public List<Operation> getOperation(long localVersion) throws RemoteException;
+	public default List<Operation> getOperation(long localVersion) throws RemoteException{
+		return null;
+	};
 	
 	
 }

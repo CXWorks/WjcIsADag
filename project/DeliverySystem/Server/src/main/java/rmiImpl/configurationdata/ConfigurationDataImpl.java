@@ -532,24 +532,4 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
-	 */
-	@Override
-	public long getLatestVersionID() throws RemoteException {
-		return 0;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see rmi.cachedata.CacheDataService#getOperation(long)
-	 */
-	@Override
-	public List<Operation> getOperation(long localVersion) throws RemoteException {
-		return null;
-	}
-
 }

@@ -7,21 +7,31 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import cache.CacheLogService;
 import operation.Operation;
+import operation.OperationTypeEnum;
 import database.RMIHelper;
 import message.OperationMessage;
 import po.companydata.HallPO;
 import po.systemdata.LogPO;
 import po.systemdata.SystemState;
+import rmi.cachedata.CacheDataService;
 import rmi.companydata.CompanyDataHallService;
+import rmiImpl.Logger;
 import rmiImpl.initaldata.InitialDataProxy;
 
 public class CompanyDataHallProxy extends UnicastRemoteObject implements CompanyDataHallService {
 
 	CompanyDataHallService companyDataHallService = new CompanyDataHallImpl();
+	CacheLogService cacheLogService;
+	CacheDataService cacheDataService;
+	
 
 	public CompanyDataHallProxy() throws RemoteException {
 		super();
+		Logger logger=new CompanyDataHallLogger();
+		this.cacheDataService=logger;
+		this.cacheLogService=logger;
 	}
 
 	@Override
@@ -48,10 +58,11 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
 			OperationMessage message = companyDataHallService.addHall(hall);
 			// 系统日志
-			if (message.operationResult == true)
+			if (message.operationResult == true){
 				RMIHelper.getLogDataService()
 						.insert(new LogPO("总经理", Calendar.getInstance(), "新建营业厅:" + hall.getHallID()));
-
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.NEW, hall));
+			}
 			return message;
 		}
 		return null;
@@ -62,10 +73,11 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
 			OperationMessage message = companyDataHallService.deleteHall(hall);
 			// 系统日志
-			if (message.operationResult == true)
+			if (message.operationResult == true){
 				RMIHelper.getLogDataService()
 						.insert(new LogPO("总经理", Calendar.getInstance(), "删除营业厅:" + hall.getHallID()));
-
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.DELETE, hall));
+			}
 			return message;
 		}
 		return null;
@@ -73,8 +85,13 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 
 	@Override
 	public OperationMessage modifyHall(HallPO hall) throws RemoteException {
-		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return companyDataHallService.modifyHall(hall);
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL)){
+			OperationMessage message = companyDataHallService.modifyHall(hall);
+			if (message.operationResult) {
+				cacheLogService.addNewOperation(Operation.build(OperationTypeEnum.MODIFY, hall));
+			}
+			return message;
+		}
 		return null;
 	}
 
@@ -90,8 +107,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	 */
 	@Override
 	public long getLatestVersionID() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		return cacheDataService.getLatestVersionID();
 	}
 
 	/* (non-Javadoc)
@@ -100,8 +116,7 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	@Override
 	public List<Operation> getOperation(long localVersion)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return cacheDataService.getOperation(localVersion);
 	}
 
 }
