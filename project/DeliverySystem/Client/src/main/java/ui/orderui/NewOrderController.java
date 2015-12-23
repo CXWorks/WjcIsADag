@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import message.OperationMessage;
@@ -24,6 +26,7 @@ import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import vo.receivevo.ReceiveVO;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,7 +36,6 @@ import java.util.Date;
  * Created by Charles_M on 2015/11/22.
  */
 public class NewOrderController {
-
 	public TextField name_From;
 	public TextField address_From;
 	public TextField unit_From;
@@ -66,8 +68,9 @@ public class NewOrderController {
 	public Label date_ErrLabel2;
 	public Label transit_errLabel2;
 	public Label departure_errLabel2;
+    public AnchorPane outerPane;
 
-	private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
+    private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
 
 	int money = 0;// 预计运费
@@ -89,16 +92,27 @@ public class NewOrderController {
 
 	@FXML
 	public void initialize() {
+        outerPane.setOnKeyTyped(
+                event -> {
+                    if(event.getCharacter().equals("\r")){
+                        System.out.println("key press ENTER");
+                    }
+                    if(event.isControlDown() && event.getCharacter().equals("k")){
+                        System.out.println("key press K");
+                    }
+                }
+        );
+
 		// initialize the choice box
 		type_Box.setItems(Enum2ObservableList.transit(DeliverTypeEnum.values()));
 		type_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			deliverType = newValue.getEnum();
-		});
+            deliverType = newValue.getEnum();
+        });
 
 		pack_Box.setItems(Enum2ObservableList.transit(PackingEnum.values()));
 		pack_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			packing = newValue.getEnum();
-		});
+            packing = newValue.getEnum();
+        });
 
 		clear(null);
 

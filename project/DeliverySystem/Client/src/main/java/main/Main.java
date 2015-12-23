@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,7 +41,7 @@ public class Main extends Application {
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
-        CacheHelper.initializeCache();
+//        CacheHelper.initializeCache();
         launch(args);
     }
 
@@ -121,11 +122,13 @@ public class Main extends Application {
         primaryStage.setY(100);
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        loginScene = new Scene((Pane)LoginController.launch());
+//        loginScene = new Scene((Pane)LoginController.launch());
+        // Test
+        UserInfo.setInfo("06000001", StaffTypeEnum.DELIVER, "0251001", "wjr");
+        loginScene = new Scene((Pane)DeliverNavigation.launch());
+
         primaryStage.setScene(loginScene);
-
         setDraggable();
-
         primaryStage.show();
     }
 
