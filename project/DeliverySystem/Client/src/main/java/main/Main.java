@@ -122,10 +122,10 @@ public class Main extends Application {
         primaryStage.setY(100);
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
-//        loginScene = new Scene((Pane)LoginController.launch());
+        loginScene = new Scene((Pane)LoginController.launch());
         // Test
-        UserInfo.setInfo("06000001", StaffTypeEnum.DELIVER, "0251001", "wjr");
-        loginScene = new Scene((Pane)DeliverNavigation.launch());
+//        UserInfo.setInfo("06000001", StaffTypeEnum.DELIVER, "0251001", "wjr");
+//        loginScene = new Scene((Pane)DeliverNavigation.launch());
 
         primaryStage.setScene(loginScene);
         setDraggable();

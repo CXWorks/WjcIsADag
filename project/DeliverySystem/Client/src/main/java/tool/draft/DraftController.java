@@ -18,7 +18,7 @@ import vo.FormVO;
  * @version 1.0 
  */
 public class DraftController implements DraftService {
-	private static final String ROOT="draft/";
+	private static final String ROOT=DraftController.class.getResource("").getPath();
 	private ObjectOutputStream writer;
 	private ObjectInputStream reader;
 

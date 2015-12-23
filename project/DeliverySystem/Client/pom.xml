@@ -49,6 +49,20 @@
                     <include>**/*.png</include>
                 </includes>
             </resource>
+            <resource>
+            	<directory>draft</directory>
+            	<targetPath>tool/draft</targetPath>
+            	<includes>
+            		<include>**/*.2333</include>
+            	</includes>
+            </resource>
+            <resource>
+            	<directory>cache</directory>
+            	<targetPath>bl/clientNetCache/save</targetPath>
+            	<includes>
+            		<include>**/*.2333</include>
+            	</includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>
