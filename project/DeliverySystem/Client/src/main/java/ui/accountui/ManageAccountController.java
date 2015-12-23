@@ -97,7 +97,8 @@ public class ManageAccountController {
     @FXML
 	public void search(ActionEvent actionEvent) {
         String filter = search_Field.getText();
-        // TODO inform cx to add search interface
+        List<AccountVO> results = accountBLManageService.fuzzySearch(filter);
+        refreshItems(results);
     }
 
     @FXML

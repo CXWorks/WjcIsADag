@@ -20,7 +20,7 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class VersionSaver {
-	private final String path="cache/version/";
+	private final String path=VersionSaver.class.getResource("version/").getPath();
 	private final String tail=".2333";
 	//
 	public OperationMessage saveVersion(long version,String fileName){

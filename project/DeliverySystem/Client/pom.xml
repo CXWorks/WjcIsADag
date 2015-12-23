@@ -50,12 +50,18 @@
                 </includes>
             </resource>
             <resource>
-                <directory>dump</directory>
-                <targetPath>dump</targetPath>
-                <includes>
-                    <include>**/*.css</include>
-                    <include>**/*.png</include>
-                </includes>
+            	<directory>draft</directory>
+            	<targetPath>tool/draft</targetPath>
+            	<includes>
+            		<include>**/*.2333</include>
+            	</includes>
+            </resource>
+            <resource>
+            	<directory>cache</directory>
+            	<targetPath>bl/clientNetCache/save</targetPath>
+            	<includes>
+            		<include>**/*.2333</include>
+            	</includes>
             </resource>
         </resources>
         <plugins>

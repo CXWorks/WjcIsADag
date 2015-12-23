@@ -5,7 +5,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import operation.Operation;
 import database.RMIHelper;
 import message.OperationMessage;
 import po.companydata.HallPO;
@@ -80,6 +82,25 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	public String newHallID(String city) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataHallService.newHallID(city);
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
+	 */
+	@Override
+	public long getLatestVersionID() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getOperation(long)
+	 */
+	@Override
+	public List<Operation> getOperation(long localVersion)
+			throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -36,6 +36,7 @@ public class ServerMain extends Application {
 		primaryStage.setY(150);
 
         primaryStage.setOnCloseRequest(
+        		
                 event -> {
                     System.exit(0);
                 }

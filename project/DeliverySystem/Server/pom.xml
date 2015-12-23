@@ -36,6 +36,13 @@
                     <include>**/*.png</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>serverCacheVersion</directory>
+                <targetPath>cache</targetPath>
+                <includes>
+                    <include>**/*.2333</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>

@@ -23,7 +23,7 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class CacheSaver {
-	private final String path="cache/";
+	private final String path=CacheSaver.class.getResource("").getPath();
 	private final String tail=".2333";
 	
 	public OperationMessage saveCache(CommonPO commonPO,String fileName){
