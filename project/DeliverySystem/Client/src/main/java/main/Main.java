@@ -18,6 +18,7 @@ import ui.loginui.LoginController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -168,11 +169,23 @@ public class Main extends Application {
         }
     }
 
+    private static final double minWidth = 300;
+    private static final double minHeight = 500;
     private static void setBounds(Stage stage, double x, double y, double w, double h){
-        stage.setWidth(w);
-        stage.setHeight(h);
-        stage.setX(x);
-        stage.setY(y);
+        if(w > minWidth){
+            stage.setWidth(w);
+            stage.setX(x);
+            stage.setY(y);
+        }else{
+            stage.setWidth(minWidth);
+        }
+        if(h > minHeight){
+            stage.setHeight(h);
+            stage.setX(x);
+            stage.setY(y);
+        }else{
+            stage.setHeight(minHeight);
+        }
     }
 
     /**
@@ -182,15 +195,15 @@ public class Main extends Application {
         primaryStage.getScene().setOnMousePressed(
                 me -> {
                     pressedArea = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
-                    if(pressedArea == CURSOR_AREA.TITLE){
+                    if (pressedArea == CURSOR_AREA.TITLE) {
                         resizing = false;
                         dragging = true;
                         calX = me.getScreenX() - primaryStage.getX();
                         calY = me.getScreenY() - primaryStage.getY();
-                    }else if(pressedArea == CURSOR_AREA.CENTER){
+                    } else if (pressedArea == CURSOR_AREA.CENTER) {
                         resizing = false;
                         dragging = false;
-                    }else{
+                    } else {
                         resizing = true;
                         dragging = false;
                         oldPosX = primaryStage.getX();
