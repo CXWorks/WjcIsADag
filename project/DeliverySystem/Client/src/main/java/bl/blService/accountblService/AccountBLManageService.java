@@ -1,6 +1,7 @@
 package bl.blService.accountblService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import po.accountdata.AccountPO;
 import message.OperationMessage;
@@ -46,7 +47,12 @@ public interface AccountBLManageService {
 	 * @return 返回操作结果
 	 */
 	public OperationMessage modifyAccount(AccountVO vo);
-	
+	/**
+	 * 模糊查找
+	 * @param key 关键字
+	 * @return
+	 */
+	public List<AccountVO> fuzzySearch(String key);
 	
 	
 

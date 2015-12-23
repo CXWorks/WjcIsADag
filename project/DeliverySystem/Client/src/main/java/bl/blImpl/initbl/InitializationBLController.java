@@ -42,6 +42,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Sissel on 2015/10/26.
@@ -711,5 +712,13 @@ public class InitializationBLController implements InitializationBLService {
 			});
 		return new OperationMessage();
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#fuzzySearch(java.lang.String)
+	 */
+	@Override
+	public List<AccountVO> fuzzySearch(String key) {
+		return this.initialDataVO.getAccountVOs().stream().filter(acc->{return acc.fuzzyCheck(key);}).collect(Collectors.toList());
 	}
 }

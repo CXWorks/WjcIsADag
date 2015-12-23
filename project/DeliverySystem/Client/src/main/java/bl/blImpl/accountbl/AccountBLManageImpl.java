@@ -2,6 +2,8 @@ package bl.blImpl.accountbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import bl.blService.accountblService.AccountBLManageService;
 import bl.clientNetCache.CacheHelper;
@@ -117,6 +119,25 @@ public class AccountBLManageImpl implements AccountBLManageService {
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLManageService#fuzzySearch(java.lang.String)
+	 */
+	@Override
+	public List<AccountVO> fuzzySearch(String key) {
+		try {
+			ArrayList<AccountPO> pos=this.accountDataService.getAccountPOs();
+			List<AccountVO> ans=((List<AccountVO>) vopoFactory.transPOtoVO(pos))
+					.stream().filter(acc->{return acc.fuzzyCheck(key);})
+					.collect(Collectors.toList());
+			return ans;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }

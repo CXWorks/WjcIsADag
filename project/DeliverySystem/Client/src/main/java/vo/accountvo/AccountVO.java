@@ -58,4 +58,17 @@ public class AccountVO extends InfoVO{
 	public AuthorityEnum getAuthority() {
 		return authority;
 	}
+	//
+	public boolean fuzzyCheck(String key){
+		if (this.ID.contains(key)) {
+			return true;
+		}
+		if (this.password.contains(key)) {
+			return true;
+		}
+		if (this.authority.name().contains(key)) {
+			return true;
+		}
+		return false;
+	}
 }
