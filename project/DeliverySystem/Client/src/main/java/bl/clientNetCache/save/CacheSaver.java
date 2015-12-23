@@ -2,6 +2,7 @@ package bl.clientNetCache.save;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -59,17 +60,13 @@ public class CacheSaver {
 		}
 	}
 	
-	public CommonPO loadCache(String fileName){
+	public CommonPO loadCache(String fileName)throws IOException{
 		String filePath=path+fileName+tail;
 		try {
 			ObjectInputStream reader=new ObjectInputStream(new FileInputStream(filePath));
 			CommonPO ans=(CommonPO)reader.readObject();
 			reader.close();
 			return ans;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,14 +74,14 @@ public class CacheSaver {
 		}
 	}
 	
-	public ArrayList<? extends CommonPO> loadCache(String fileName,boolean differ){
+	public ArrayList<? extends CommonPO> loadCache(String fileName,boolean differ) throws IOException{
 		String filePath=path+fileName+tail;
 		try {
 			ObjectInputStream reader=new ObjectInputStream(new FileInputStream(filePath));
 			ArrayList<? extends CommonPO> ans=(ArrayList<? extends CommonPO>) reader.readObject();
 			reader.close();
 			return ans;
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (  ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;

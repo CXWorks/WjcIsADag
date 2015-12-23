@@ -1,11 +1,15 @@
 package bl.clientNetCache.save;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 
 import message.OperationMessage;
 
@@ -21,9 +25,14 @@ public class VersionSaver {
 	//
 	public OperationMessage saveVersion(long version,String fileName){
 		String filePath=path+fileName+tail;
+		
 		try {
-			ObjectOutputStream writer=new ObjectOutputStream(new FileOutputStream(new File(filePath),false));
-			writer.writeObject(version);
+			File file=new File(filePath);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			PrintWriter writer=new PrintWriter(new FileOutputStream(file,false));
+			writer.println(version);
 			writer.close();
 			return new OperationMessage();
 		} catch (IOException e) {
@@ -36,13 +45,17 @@ public class VersionSaver {
 	public long loadVersion(String fileName){
 		String filePath=path+fileName+tail;
 		try {
-			ObjectInputStream reader=new ObjectInputStream(new FileInputStream(new File(filePath)));
-			Long ans=(Long)reader.readObject();
+			BufferedReader reader=new BufferedReader(new FileReader(new File(filePath)));
+			long ans=Long.parseLong(reader.readLine());
 			return ans;
-		} catch (IOException | ClassNotFoundException e) {
+		}catch(FileNotFoundException e){
+			return 0L;
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0L;
 		}
+		
 	}
 }

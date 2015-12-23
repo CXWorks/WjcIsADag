@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
+import bl.clientNetCache.CacheHelper;
+import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
+
 /**
  * Created by Sissel on 2015/12/19.
  */
@@ -50,6 +53,7 @@ public class MainPaneController {
     }
 
     public void closeStage(ActionEvent actionEvent) {
+    	ConfigurationDataProxy.Close();
         Main.primaryStage.close();
     }
 

@@ -1,5 +1,8 @@
 package bl.clientNetCache;
 
+import java.rmi.RemoteException;
+
+import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
 import bl.clientRMI.NetInitException;
 import bl.clientRMI.RMIHelper;
 import po.memberdata.DriverPO;
@@ -60,46 +63,50 @@ public class CacheHelper {
 	private static LogDataService logDataService;
 	private static SystemDataService systemDataService;
 
-	public static void  initializeCache() throws NetInitException{
+	public static void  initializeLogin() throws NetInitException{
 		RMIHelper.init();
-		if(initStoredData()){
-			updateCache();
-		}
-		initCacheService();
-
-	}
-	//
-	private static boolean initStoredData(){
-		return true;
-	}
-	//
-	private static void updateCache(){
-
-	}
-	//
-	private static void initCacheService(){
-		orderDataService=RMIHelper.getOrderDataService();
 		accountDataService=RMIHelper.getAccountDataService();
+		orderDataService=RMIHelper.getOrderDataService();
+		deliverDataService=RMIHelper.getDeliverDataService();
+		revenueDataService=RMIHelper.getRevenueDataService();
+		receiveDataService=RMIHelper.getReceiveDataService();
+		storeFormDataService=RMIHelper.getStoreFormDataService();
+		transportDataService=RMIHelper.getTransportDataService();
+		loadDataService=RMIHelper.getLoadDataService();
+		memberDataService_driver=RMIHelper.getMemberDataService_driver();
+		memberDataService_staff=RMIHelper.getMemberDataService_staff();
+	}
+	
+	//
+	public static void initCacheService(){
+		
 		chatRemindService=RMIHelper.getChatRemindService();
 		companyDataCarService=RMIHelper.getCompanyDataCarService();
 		companyDataCenterService=RMIHelper.getCompanyDataCenterService();
 		companyDataHallService=RMIHelper.getCompanyDataHallService();
-		configurationDataService=RMIHelper.getConfigurationDataService();
-		deliverDataService=RMIHelper.getDeliverDataService();
+		if (true) {
+			try {
+				configurationDataService=ConfigurationDataProxy.getInstance();
+			} catch (RemoteException e) {
+				configurationDataService=RMIHelper.getConfigurationDataService();
+			}
+		}else {
+			configurationDataService=RMIHelper.getConfigurationDataService();
+		}
+		
+		//
+		
 		examineManageService=RMIHelper.getExamineManageService();
 		examineSubmitService=RMIHelper.getExamineSubmitService();
 		bankAccountDataService=RMIHelper.getBankAccountDataService();
 		paymentDataService=RMIHelper.getPaymentDataService();
-		revenueDataService=RMIHelper.getRevenueDataService();
+		
 		initialDataService=RMIHelper.getInitialDataService();
-		memberDataService_driver=RMIHelper.getMemberDataService_driver();
-		memberDataService_staff=RMIHelper.getMemberDataService_staff();
-		receiveDataService=RMIHelper.getReceiveDataService();
-		storeFormDataService=RMIHelper.getStoreFormDataService();
+		
+		
 		storeModelDataService=RMIHelper.getStoreModelDataService();
 		logDataService=RMIHelper.getLogDataService();
-		transportDataService=RMIHelper.getTransportDataService();
-		loadDataService=RMIHelper.getLoadDataService();
+		
 		initialDataService=RMIHelper.getInitialDataService();
 		systemDataService=RMIHelper.getSystemDataService();
 	}
