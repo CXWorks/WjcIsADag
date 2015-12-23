@@ -4,9 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import database.RMIHelper;
 import message.OperationMessage;
 import po.companydata.CarPO;
+import po.systemdata.LogPO;
 import po.systemdata.SystemState;
 import rmi.companydata.CompanyDataCarService;
 import rmiImpl.initaldata.InitialDataProxy;
@@ -47,15 +50,27 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public OperationMessage addCar(CarPO car) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return companyDataCarService.addCar(car);
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
+			OperationMessage message = companyDataCarService.addCar(car);
+			//系统日志
+			if(message.operationResult==true)
+				RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "新建车辆:" + car.getCarID()));
+
+			return message;
+		}
 		return null;
 	}
 
 	@Override
 	public OperationMessage deleteCar(CarPO car) throws RemoteException {
-		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return companyDataCarService.deleteCar(car);
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
+			OperationMessage message = companyDataCarService.deleteCar(car);
+			//系统日志
+			if(message.operationResult==true)
+				RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "删除车辆:" + car.getCarID()));
+
+			return message;
+		}
 		return null;
 	}
 

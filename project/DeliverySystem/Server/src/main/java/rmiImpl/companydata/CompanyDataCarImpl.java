@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.companydata.CarPO;
@@ -15,7 +16,9 @@ import po.receivedata.ReceivePO;
 import po.systemdata.LogPO;
 import rmi.companydata.CompanyDataCarService;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 
 /**
  * Server//rmiImpl.companydata//CompanyDataCarImpl.java
@@ -27,13 +30,11 @@ import database.RMIHelper;
 public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDataCarService {
 	private static final long serialVersionUID = 1L;
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public CompanyDataCarImpl() throws RemoteException {
 		super();
-		Table_Name = "car";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -42,7 +43,11 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
+		String selectAll = MySql.select(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("unitID", unitID);
+			}
+		});
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -64,7 +69,11 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 	}
 
 	public String newCarID(String unitID) {
-		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
+		String selectAll = MySql.select(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("unitID", unitID);
+			}
+		});
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -88,10 +97,18 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 
 	public OperationMessage addCar(CarPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(carID,free,useTime,nameID,chassisID,buyTime,unitID,engineID) "
-				+ "values('" + po.getCarID() + "','" + po.isFreeForSql() + "','" + po.getUseTimeForSQL() + "','"
-				+ po.getNameID() + "','" + po.getChassisID() + "','" + po.getBuyTimeForSQL() + "','"
-				+ po.getCarID().substring(0, 7) + "','" + po.getEngineID() + "')";
+		String insert = MySql.insert(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("carID", po.getCarID());
+				put("free", po.isFreeForSql() + "");
+				put("useTime", po.getUseTimeForSQL().toString());
+				put("nameID", po.getNameID());
+				put("chassisID", po.getChassisID());
+				put("buyTime", po.getBuyTimeForSQL().toString());
+				put("unitID", po.getCarID().substring(0, 7));
+				put("engineID", po.getEngineID());
+			}
+		});
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -102,16 +119,16 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			e.printStackTrace();
 		}
 
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "新建车辆:" + po.getCarID()));
-
 		return result;
 	}
 
 	public OperationMessage deleteCar(CarPO car) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `carID` = '" + car.getCarID() + "'";
+		String delete = MySql.delete(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("carID", car.getCarID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -120,10 +137,6 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 			System.err.println("删除时出错：");
 			e.printStackTrace();
 		}
-
-		//系统日志
-		if(result.operationResult==true)
-			RMIHelper.getLogDataService().insert(new LogPO("业务员", Calendar.getInstance(), "删除车辆:" + car.getCarID()));
 
 		return result;
 	}
@@ -140,7 +153,11 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 
 	@Override
 	public ArrayList<CarPO> availableCar(String unitID) throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "` where `unitID` = '" + unitID + "'";
+		String selectAll = MySql.select(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("unitID", unitID);
+			}
+		});
 		ResultSet rs = null;
 		CarPO temp = null;
 		ArrayList<CarPO> result = new ArrayList<CarPO>();
@@ -166,7 +183,11 @@ public class CompanyDataCarImpl extends UnicastRemoteObject implements CompanyDa
 
 	@Override
 	public CarPO getCar(String carID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `carID` = '" + carID + "'";
+		String select = MySql.select(TableEnum.CAR, new HashMap<String, String>() {
+			{
+				put("carID", carID);
+			}
+		});
 		ResultSet rs = null;
 		CarPO result = null;
 		try {

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
@@ -19,20 +20,20 @@ import po.transportdata.CenterOutPO;
 import rmi.companydata.CompanyDataCenterService;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
 
 public class CompanyDataCenterImpl extends UnicastRemoteObject implements CompanyDataCenterService {
 	private static final long serialVersionUID = 1L;
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public CompanyDataCenterImpl() throws RemoteException {
 		super();
-		Table_Name = "center";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -41,7 +42,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public ArrayList<CenterPO> getCenter() throws RemoteException {
-		String select = "select * from `" + Table_Name + "`";
+		String select = MySql.select(TableEnum.CENTER, null);
 		ResultSet rs = null;
 		CenterPO temp = null;
 		ArrayList<CenterPO> result = new ArrayList<CenterPO>();
@@ -60,7 +61,11 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 	}
 
 	public String newCenterID(String cityID) {
-		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
+		String selectAll = MySql.select(TableEnum.CENTER, new HashMap<String, String>() {
+			{
+				put("cityID", cityID);
+			}
+		});
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -84,11 +89,14 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 
 	public OperationMessage addCenter(CenterPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String s = "";
-		String c = "";
 
-		String insert = "insert into `" + Table_Name + "`(centerID,city,cityID) " + "values('" + po.getCenterID()
-				+ "','" + po.getCity() + "','" + po.getCenterID().substring(0, 3) + "')";
+		String insert = MySql.insert(TableEnum.CENTER, new HashMap<String, String>() {
+			{
+				put("centerID", po.getCenterID());
+				put("city", po.getCity());
+				put("cityID", po.getCenterID().substring(0, 3));
+			}
+		});
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -104,7 +112,11 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 
 	public OperationMessage deleteCenter(CenterPO center) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + center.getCenterID() + "'";
+		String delete = MySql.delete(TableEnum.CENTER, new HashMap<String, String>() {
+			{
+				put("centerID", center.getCenterID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -129,7 +141,11 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 
 	@Override
 	public CenterPO getCenterByID(String ID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `centerID` = '" + ID + "'";
+		String select = MySql.select(TableEnum.CENTER, new HashMap<String, String>() {
+			{
+				put("centerID", ID);
+			}
+		});
 		ResultSet rs = null;
 		CenterPO result = null;
 		try {

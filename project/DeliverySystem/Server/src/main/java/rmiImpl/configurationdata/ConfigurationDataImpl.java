@@ -13,7 +13,9 @@ import java.util.List;
 
 import operation.Operation;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
 import po.configurationdata.PackPO;
@@ -61,24 +63,17 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		return conn;
 	}
 
-	// public static void main(String[] args) throws RemoteException {
-	// ConfigurationDataImpl t = new ConfigurationDataImpl();
-	// String insert = "insert into `city2d`(name,x,y) " +
-	// "values('广州','113.27','23.12')";
-	// try {
-	// t.statement = t.conn.prepareStatement(insert);
-	// t.statement.executeUpdate();
-	// } catch (SQLException e) {
-	// System.err.println("新建时出错：");
-	// e.printStackTrace();
-	// }
-	// }
-
 	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + City2D + "`(name,x,y,ID) " + "values('" + po.getName() + "','" + po.getX()
-				+ "','" + po.getY() + "','" + po.getID() + "')";
+		String insert = MySql.insert(TableEnum.CITY2D, new HashMap<String, String>() {
+			{
+				put("name", po.getName());
+				put("x", po.getX() + "");
+				put("y", po.getY() + "");
+				put("ID", po.getID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -94,7 +89,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage deleteCity2D(String name) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + City2D + "` where `name` = '" + name + "'";
+		String delete = MySql.delete(TableEnum.CITY2D, new HashMap<String, String>() {
+			{
+				put("name", name);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -120,7 +119,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public City2DPO getCity2D(String name) throws RemoteException {
-		String select = "select * from `" + City2D + "` where `name` = '" + name + "'";
+		String select = MySql.select(TableEnum.CITY2D, new HashMap<String, String>() {
+			{
+				put("name", name);
+			}
+		});
 		ResultSet rs = null;
 		City2DPO result = null;
 		try {
@@ -138,7 +141,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public ArrayList<City2DPO> getAllCity2D() throws RemoteException {
-		String selectAll = "select * from `" + City2D + "`";
+		String selectAll = MySql.select(TableEnum.CITY2D, null);
 		ResultSet rs = null;
 		City2DPO temp = null;
 		ArrayList<City2DPO> result = new ArrayList<City2DPO>();
@@ -160,7 +163,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage clearCity2D() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + City2D + "`";
+		String clear = MySql.delete(TableEnum.CITY2D, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -174,7 +177,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public ArrayList<SalaryStrategyPO> getSalaryStrategy() throws RemoteException {
-		String selectAll = "select * from `" + SalaryStrategy + "`";
+		String selectAll = MySql.select(TableEnum.SALARY_STRATEGY, null);
 		ResultSet rs = null;
 		SalaryStrategyPO temp = null;
 		ArrayList<SalaryStrategyPO> result = new ArrayList<SalaryStrategyPO>();
@@ -196,9 +199,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	private OperationMessage newSalaryStrategy(SalaryStrategyPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into " + SalaryStrategy + "(staff,base,commission,bonus) " + "values('"
-				+ po.getStaff().toString() + "','" + po.getBase() + "','" + po.getCommission() + "','" + po.getBonus()
-				+ "')";
+		String insert = MySql.insert(TableEnum.SALARY_STRATEGY, new HashMap<String, String>() {
+			{
+				put("staff", po.getStaff().toString());
+				put("base", po.getBase() + "");
+				put("commission", po.getCommission() + "");
+				put("bonus", po.getBonus() + "");
+			}
+		});
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -212,7 +220,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public OperationMessage modifySalaryStrategy(SalaryStrategyPO po) throws RemoteException {
-		String delete = "delete from `" + SalaryStrategy + "` where `staff` = '" + po.getStaff().toString() + "'";
+		String delete = MySql.delete(TableEnum.SALARY_STRATEGY, new HashMap<String, String>() {
+			{
+				put("staff", po.getStaff().toString());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -223,7 +235,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public PackPO getPack() throws RemoteException {
-		String selectAll = "select * from `" + Pack + "`";
+		String selectAll = MySql.select(TableEnum.PACK, null);
 		ResultSet rs = null;
 		PackPO result = null;
 		HashMap<PackEnum, Double> packPrice = new HashMap();
@@ -259,14 +271,30 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage modifyPack(PackPO pack) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add(
-				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.OTHER) + "' where `name` = 'OTHER'");
-		operations.add("update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.PACKAGE)
-				+ "' where `name` = 'PACKAGE'");
-		operations.add(
-				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.PAPER) + "' where `name` = 'PAPER'");
-		operations.add(
-				"update `" + Pack + "` set `money` ='" + pack.getByType(PackEnum.WOOD) + "' where `name` = 'WOOD'");
+		operations.add(MySql.update(TableEnum.PACK, "money", pack.getByType(PackEnum.OTHER) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "OTHER");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PACK, "money", pack.getByType(PackEnum.PACKAGE) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "PACKAGE");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PACK, "money", pack.getByType(PackEnum.PAPER) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "PAPER");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PACK, "money", pack.getByType(PackEnum.WOOD) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "WOOD");
+					}
+				}));
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -282,7 +310,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public PricePO getPrice() throws RemoteException {
-		String selectAll = "select * from `" + Price + "`";
+		String selectAll = MySql.select(TableEnum.PRICE, null);
 		ResultSet rs = null;
 		PricePO result = null;
 		HashMap<DeliverTypeEnum, Integer> price = new HashMap();
@@ -315,12 +343,24 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage modifyPrice(PricePO price) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.SLOW)
-				+ "' where `name` = 'SLOW'");
-		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where `name` = 'NORMAL'");
-		operations.add("update `" + Price + "` set `money` ='" + price.getByType(DeliverTypeEnum.FAST)
-				+ "' where `name` = 'FAST'");
+		operations.add(MySql.update(TableEnum.PRICE, "money", price.getByType(DeliverTypeEnum.FAST) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "FAST");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PRICE, "money", price.getByType(DeliverTypeEnum.NORMAL) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "NORMAL");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PRICE, "money", price.getByType(DeliverTypeEnum.SLOW) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "SLOW");
+					}
+				}));
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -336,7 +376,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	}
 
 	public ProportionPO getProportion() throws RemoteException {
-		String selectAll = "select * from `" + Proportion + "`";
+		String selectAll = MySql.select(TableEnum.PROPORTION, null);
 		ResultSet rs = null;
 		ProportionPO result = null;
 		HashMap<DeliverTypeEnum, Integer> target = new HashMap();
@@ -369,12 +409,24 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage modifyProportion(ProportionPO proportion) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		ArrayList<String> operations = new ArrayList<String>();
-		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.SLOW)
-				+ "' where `name` = 'SLOW'");
-		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.NORMAL)
-				+ "' where `name` = 'NORMAL'");
-		operations.add("update `" + Proportion + "` set `num` ='" + proportion.getByType(DeliverTypeEnum.FAST)
-				+ "' where `name` = 'FAST'");
+		operations.add(MySql.update(TableEnum.PROPORTION, "num", proportion.getByType(DeliverTypeEnum.FAST) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "FAST");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PROPORTION, "num", proportion.getByType(DeliverTypeEnum.NORMAL) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "NORMAL");
+					}
+				}));
+		operations.add(MySql.update(TableEnum.PROPORTION, "num", proportion.getByType(DeliverTypeEnum.SLOW) + "",
+				new HashMap<String, String>() {
+					{
+						put("name", "SLOW");
+					}
+				}));
 		try {
 			for (String tmp : operations) {
 				statement = conn.prepareStatement(tmp);
@@ -386,7 +438,6 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 			e.printStackTrace();
 		}
 
-
 		return result;
 	}
 
@@ -394,8 +445,14 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage newSalaryStrategy(List<SalaryStrategyPO> pos) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		for (SalaryStrategyPO tmp : pos) {
-			String insert = "insert into `" + SalaryStrategy + "`(staff,base,commission,bonus) " + "values('"
-					+ tmp.getStaff() + "','" + tmp.getBase() + "','" + tmp.getBonus() + "','" + tmp.getBonus() + "')";
+			String insert = MySql.insert(TableEnum.SALARY_STRATEGY, new HashMap<String, String>() {
+				{
+					put("staff", tmp.getStaff().toString());
+					put("base", tmp.getBase() + "");
+					put("commission", tmp.getCommission() + "");
+					put("bonus", tmp.getBonus() + "");
+				}
+			});
 			try {
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
@@ -412,14 +469,30 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage newPack(PackPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String new1 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.PACKAGE + "','"
-				+ po.getByType(PackEnum.PACKAGE) + "')";
-		String new2 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.PAPER + "','"
-				+ po.getByType(PackEnum.PAPER) + "')";
-		String new3 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.WOOD + "','"
-				+ po.getByType(PackEnum.WOOD) + "')";
-		String new4 = "insert into `" + Pack + "`(name,money) " + "values('" + PackEnum.OTHER + "','"
-				+ po.getByType(PackEnum.OTHER) + "')";
+		String new1 = MySql.insert(TableEnum.PACK, new HashMap<String, String>() {
+			{
+				put("name", PackEnum.PACKAGE + "");
+				put("money", po.getByType(PackEnum.PACKAGE) + "");
+			}
+		});
+		String new2 = MySql.insert(TableEnum.PACK, new HashMap<String, String>() {
+			{
+				put("name", PackEnum.PAPER + "");
+				put("money", po.getByType(PackEnum.PAPER) + "");
+			}
+		});
+		String new3 = MySql.insert(TableEnum.PACK, new HashMap<String, String>() {
+			{
+				put("name", PackEnum.WOOD + "");
+				put("money", po.getByType(PackEnum.WOOD) + "");
+			}
+		});
+		String new4 = MySql.insert(TableEnum.PACK, new HashMap<String, String>() {
+			{
+				put("name", PackEnum.OTHER + "");
+				put("money", po.getByType(PackEnum.OTHER) + "");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(new1);
 			statement.executeUpdate();
@@ -440,12 +513,24 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage newPrice(PricePO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String new1 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.FAST + "','"
-				+ po.getByType(DeliverTypeEnum.FAST) + "')";
-		String new2 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.NORMAL + "','"
-				+ po.getByType(DeliverTypeEnum.NORMAL) + "')";
-		String new3 = "insert into `" + Price + "`(name,money) " + "values('" + DeliverTypeEnum.SLOW + "','"
-				+ po.getByType(DeliverTypeEnum.SLOW) + "')";
+		String new1 = MySql.insert(TableEnum.PRICE, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.FAST + "");
+				put("money", po.getByType(DeliverTypeEnum.FAST) + "");
+			}
+		});
+		String new2 = MySql.insert(TableEnum.PRICE, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.NORMAL + "");
+				put("money", po.getByType(DeliverTypeEnum.NORMAL) + "");
+			}
+		});
+		String new3 = MySql.insert(TableEnum.PRICE, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.SLOW + "");
+				put("money", po.getByType(DeliverTypeEnum.SLOW) + "");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(new1);
 			statement.executeUpdate();
@@ -464,12 +549,24 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	@Override
 	public OperationMessage newProportion(ProportionPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String new1 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.FAST + "','"
-				+ po.getByType(DeliverTypeEnum.FAST) + "')";
-		String new2 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.NORMAL + "','"
-				+ po.getByType(DeliverTypeEnum.NORMAL) + "')";
-		String new3 = "insert into `" + Proportion + "`(name,num) " + "values('" + DeliverTypeEnum.SLOW + "','"
-				+ po.getByType(DeliverTypeEnum.SLOW) + "')";
+		String new1 = MySql.insert(TableEnum.PROPORTION, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.SLOW + "");
+				put("num", po.getByType(DeliverTypeEnum.SLOW) + "");
+			}
+		});
+		String new2 = MySql.insert(TableEnum.PROPORTION, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.FAST + "");
+				put("num", po.getByType(DeliverTypeEnum.FAST) + "");
+			}
+		});
+		String new3 = MySql.insert(TableEnum.PROPORTION, new HashMap<String, String>() {
+			{
+				put("name", DeliverTypeEnum.NORMAL + "");
+				put("num", po.getByType(DeliverTypeEnum.NORMAL) + "");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(new1);
 			statement.executeUpdate();
@@ -487,7 +584,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 
 	@Override
 	public double getWarningline(String centerID) throws RemoteException {
-		String select = "select * from `" + Warningline + "` where `name` = '" + centerID + "'";
+		String select = MySql.select(TableEnum.WARNINGLINE, new HashMap<String, String>() {
+			{
+				put("name", centerID);
+			}
+		});
 		ResultSet rs = null;
 		double result = -1;
 		try {
@@ -506,8 +607,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	public OperationMessage setWarningline(String centerID, double value) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		if (this.getWarningline(centerID) != -1) {
-			String operation = "update `" + Warningline + "` set `value` ='" + value + "' where `name` = "
-					+ centerID + "'";
+			String operation = MySql.update(TableEnum.WARNINGLINE, "value", value + "", new HashMap<String, String>() {
+				{
+					put("name", "centerID");
+				}
+			});
 			try {
 				statement = conn.prepareStatement(operation);
 				statement.executeUpdate();
@@ -517,8 +621,8 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				e.printStackTrace();
 			}
 		} else {
-			String insert = "insert into `" + Warningline + "`(name,value) " + "values('" + centerID + "','"
-					+ value + "')";
+			String insert = "insert into `" + Warningline + "`(name,value) " + "values('" + centerID + "','" + value
+					+ "')";
 			try {
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();

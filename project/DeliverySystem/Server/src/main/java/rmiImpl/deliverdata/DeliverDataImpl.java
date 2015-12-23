@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.FormEnum;
@@ -18,6 +19,8 @@ import po.receivedata.ReceivePO;
 import rmi.deliverdata.DeliverDataService;
 import rmiImpl.CommonData;
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 
 /**
  *
@@ -26,7 +29,6 @@ import database.ConnecterHelper;
 
 public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private String today = "";// 格式eg.2015-11-22
@@ -34,7 +36,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public DeliverDataImpl() throws RemoteException {
 		super();
-		Table_Name = "deliver";
 		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
@@ -48,12 +49,17 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public OperationMessage insert(DeliverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,orderID,postman,date,finished,date_and_unit) " + "values('" + po.getFormID()
-				+ "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','" + po.getPostman() + "','"
-				+ po.getDateForSQL().toString() + "','" + po.isFinished() + "','" + po.getFormID().substring(2, 17)
-				+ "')";
-
+		String insert = MySql.insert(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("orderID", po.getOrderID());
+				put("postman", po.getPostman());
+				put("date", po.getDateForSQL().toString());
+				put("finished", po.isFinished() + "");
+				put("date_and_unit", po.getFormID().substring(2, 17));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -72,7 +78,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public OperationMessage delete(String id) {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -97,8 +107,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	public String newID(String unitID) {
 		ResultSet rs = null;
 		String date = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = date.substring(0, 4) + date.substring(5, 7) + date.substring(8);
-		target = unitID + target;// 开具单位编号+当天日期
+		final String target = unitID + date.substring(0, 4) + date.substring(5, 7) + date.substring(8);// 开具单位编号+当天日期
 
 		// 当前日期与缓存日期一致
 		if (date.equalsIgnoreCase(today)) {
@@ -109,7 +118,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 		// 当前日期与缓存日期不一致
 		today = date;
-		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
+		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -131,7 +144,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 	public OperationMessage clear() {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.DELIVER, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -144,7 +157,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public DeliverPO getFormPO(String id) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		DeliverPO result = null;
 		try {
@@ -164,7 +181,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public ArrayList<DeliverPO> getAll() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.DELIVER,null);
 		ResultSet rs = null;
 		DeliverPO temp = null;
 		ArrayList<DeliverPO> result = new ArrayList<DeliverPO>();
@@ -190,8 +207,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	@Override
 	public ArrayList<String> available(String HallID) throws RemoteException {
 		ArrayList<String> result = new ArrayList<String>();
-		String select = "select * from " + "`order`" + " where `targetHallID` = '" + HallID + "' and `finished` = '" + 0
-				+ "'";
+		String select = MySql.select(TableEnum.ORDER, new HashMap<String, String>() {
+			{
+				put("targetHallID", HallID);
+				put("finished", "0");
+			}
+		});
 		ResultSet rs = null;
 
 		try {
@@ -216,8 +237,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	@Override
 	public ArrayList<String> searchAsPerson(String ID) throws RemoteException {
 		ArrayList<String> result = new ArrayList<String>();
-		String select = "select * from `" + Table_Name + "` where `postman` = '" + ID + "' and `finished` = '" + 0
-				+ "'";
+		String select = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("postman", ID);
+				put("finished", "0");
+			}
+		});
 		ResultSet rs = null;
 
 		try {

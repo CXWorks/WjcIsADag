@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.financedata.PaymentPO;
@@ -17,10 +18,11 @@ import po.financedata.RevenuePO;
 import po.receivedata.ReceivePO;
 import rmi.financedata.RevenueDataService;
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 
 public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private String today = "";// 格式eg.2015-11-22
@@ -28,7 +30,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	public RevenueDataImpl() throws RemoteException {
 		super();
-		Table_Name = "revenue";
 		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
@@ -52,12 +53,19 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			else
 				IDs += list.get(i) + " ";
 		;
-
-		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,date,amount,deliverName,hallID,orderIDs,date_and_unit) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getDateForSQL().toString() + "','"
-				+ po.getAmount() + "','" + po.getDeliverName() + "','" + po.getHallID() + "','" + IDs + "','"
-				+ po.getFormID().substring(2, 17) + "')";
+		final String ids = IDs;
+		String insert = MySql.insert(TableEnum.REVENUE, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("date", po.getDateForSQL().toString());
+				put("amount", po.getAmount());
+				put("deliverName", po.getDeliverName());
+				put("hallID", po.getHallID());
+				put("orderIDs", ids);
+				put("date_and_unit", po.getFormID().substring(2, 17));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -77,7 +85,11 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public RevenuePO getFormPO(String id) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.REVENUE, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		RevenuePO result = null;
 		try {
@@ -102,7 +114,11 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.REVENUE, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -129,8 +145,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	public String newID(String unitID) throws RemoteException {
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
-		target = unitID + target;// 单位编号+当天日期
+		final String target = unitID + temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// 当前日期与缓存日期一致
 		if (temp.equalsIgnoreCase(today)) {
@@ -141,7 +156,11 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 		// 当前日期与缓存日期不一致
 		today = temp;
-		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
+		String selectAll = MySql.select(TableEnum.REVENUE, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -164,7 +183,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.REVENUE, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -178,7 +197,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getAll() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.REVENUE, null);
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
@@ -206,7 +225,11 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `hallID` = '" + ID + "'";
+		String select = MySql.select(TableEnum.REVENUE, new HashMap<String, String>() {
+			{
+				put("hallID", ID);
+			}
+		});
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
@@ -234,9 +257,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 
 	@Override
 	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(`date`) " + "and '" + end.getTime().getTime() / 1000
-				+ "' > UNIX_TIMESTAMP(`date`)";
+		String select = MySql.time(TableEnum.REVENUE, "date", start, end);
 		ResultSet rs = null;
 		RevenuePO temp = null;
 		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
