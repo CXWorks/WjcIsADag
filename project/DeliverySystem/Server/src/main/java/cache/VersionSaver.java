@@ -18,8 +18,8 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class VersionSaver {
-	private static final String PATH="serverCacheVersion/";
-	private static final String TAIL=".2333";
+	private static final String PATH = VersionSaver.class.getResource("/cache/").getPath();
+	private static final String TAIL = ".2333";
 	public OperationMessage saveVersion(long version,String fileName){
 		String filePath = PATH+fileName+TAIL;
 		File file=new File(filePath);
@@ -27,7 +27,6 @@ public class VersionSaver {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return new OperationMessage(false, e.getMessage());
 			}
@@ -38,7 +37,6 @@ public class VersionSaver {
 			writer.close();
 			return new OperationMessage();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new OperationMessage(false, e.getMessage());
 		}
@@ -53,7 +51,6 @@ public class VersionSaver {
 			long ans=Long.parseLong(re);
 			return ans;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0L;
 		}
