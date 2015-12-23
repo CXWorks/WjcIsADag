@@ -7,32 +7,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
+import java.util.HashMap;
 
-import message.OperationMessage;
-import po.companydata.CenterPO;
-import po.companydata.HallPO;
-import po.memberdata.DriverPO;
-import po.memberdata.StaffPO;
-import po.systemdata.LogPO;
-import rmi.companydata.CompanyDataHallService;
-import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
-import database.RMIHelper;
-import rmiImpl.memberdata.DriverDataImpl;
-import rmiImpl.memberdata.StaffDataImpl;
+import database.MySql;
+import database.enums.TableEnum;
+import message.OperationMessage;
+import po.companydata.HallPO;
+import rmi.companydata.CompanyDataHallService;
 
 public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyDataHallService {
 	private static final long serialVersionUID = 1L;
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public CompanyDataHallImpl() throws RemoteException {
 		super();
-		Table_Name = "hall";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -41,7 +32,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public ArrayList<HallPO> getHall() throws RemoteException {
-		String select = "select * from `" + Table_Name + "`";
+		String select = MySql.select(TableEnum.HALL, null);
 		ResultSet rs = null;
 		HallPO temp = null;
 		ArrayList<HallPO> result = new ArrayList<HallPO>();
@@ -60,17 +51,17 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		return result;
 	}
 
-	// public static void main(String[] args) throws RemoteException {
-	// CompanyDataHallImpl tCompanyDataHallImpl = new CompanyDataHallImpl();
-	// HallPO po = new HallPO(0251001, "南京", "鼓楼", driver2, deliver, counterman,
-	// nearCenterID)
-	// }
-
 	public OperationMessage addHall(HallPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(hallID,city,area,nearCenterID,cityID) " + "values('"
-				+ po.getHallID() + "','" + po.getCity() + "','" + po.getArea() + "','" + po.getNearCenterID() + "','"
-				+ po.getCity().substring(0, 3) + "')";
+		String insert = MySql.insert(TableEnum.HALL, new HashMap<String, String>() {
+			{
+				put("hallID", po.getHallID());
+				put("city", po.getCity());
+				put("area", po.getArea());
+				put("nearCenterID", po.getNearCenterID());
+				put("cityID", po.getCity().substring(0, 3));
+			}
+		});
 
 		try {
 			statement = conn.prepareStatement(insert);
@@ -86,7 +77,11 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 
 	public OperationMessage deleteHall(HallPO hall) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `hallID` = '" + hall.getHallID() + "'";
+		String delete = MySql.delete(TableEnum.HALL, new HashMap<String, String>() {
+			{
+				put("hallID", hall.getHallID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -110,7 +105,11 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 	}
 
 	public String newHallID(String cityID) {
-		String selectAll = "select * from `" + Table_Name + "` where `cityID` = '" + cityID + "'";
+		String selectAll = MySql.select(TableEnum.HALL, new HashMap<String, String>() {
+			{
+				put("cityID", cityID);
+			}
+		});
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -134,7 +133,11 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 
 	@Override
 	public HallPO getHallByID(String ID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "`";
+		String select = MySql.select(TableEnum.HALL, new HashMap<String, String>() {
+			{
+				put("hallID", ID);
+			}
+		});
 		ResultSet rs = null;
 		HallPO result = null;
 		try {

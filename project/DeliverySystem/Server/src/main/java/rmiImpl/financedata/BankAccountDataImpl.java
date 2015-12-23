@@ -8,9 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 import message.OperationMessage;
 import po.FormPO;
 import po.financedata.BankAccountPO;
@@ -21,7 +24,6 @@ import rmi.financedata.BankAccountDataService;
 
 public class BankAccountDataImpl extends UnicastRemoteObject implements BankAccountDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private static String CompanyAccount = "001";
@@ -29,7 +31,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	public BankAccountDataImpl() throws RemoteException {
 		super();
-		Table_Name = "bank_account";
 		conn = ConnecterHelper.getConn();
 		this.getNewBankID();
 		ID_MAX--;
@@ -41,7 +42,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public String getNewBankID() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.BANK_ACCOUNT, null);
 		ResultSet rs = null;
 		try {
 			statement = conn.prepareStatement(selectAll);
@@ -64,7 +65,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public OperationMessage checkIsNameUsed(String name) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `accountName` = '" + name + "'";
+		String select = MySql.select(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("accountName", name);
+			}
+		});
 		ResultSet rs = null;
 		OperationMessage result = new OperationMessage(false, "没有被使用");
 		try {
@@ -83,7 +88,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public BankAccountPO getBankAccount(String bankID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + bankID + "'";
+		String select = MySql.select(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("formID", bankID);
+			}
+		});
 		ResultSet rs = null;
 		BankAccountPO result = null;
 		try {
@@ -102,8 +111,13 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	@Override
 	public OperationMessage insert(BankAccountPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(bankID,accountName,balance) " + "values('" + po.getBankID()
-				+ "','" + po.getAccountName() + "','" + po.getBalance() + "')";
+		String insert = MySql.insert(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("bankID", po.getBankID());
+				put("accountName", po.getAccountName());
+				put("balance", po.getBalance());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -119,7 +133,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `bankID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("bankID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -146,7 +164,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.BANK_ACCOUNT, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -166,7 +184,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public ArrayList<BankAccountPO> getAll() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.BANK_ACCOUNT, null);
 		ResultSet rs = null;
 		BankAccountPO temp = null;
 		ArrayList<BankAccountPO> result = new ArrayList<BankAccountPO>();
@@ -187,7 +205,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public ArrayList<FormPO> getByAccID(String accID) throws RemoteException {
-		String select_pay = "select * from `payment` where `payerAccID` = '" + accID + "'";
+		String select_pay = MySql.select(TableEnum.PAYMENT, new HashMap<String, String>() {
+			{
+				put("payerAccID", accID);
+			}
+		});
 		// String select_rev = "select * from `revenue` where `payerAccID` = '"
 		// + accID + "'";//这地方不知道怎么搞
 		ResultSet rs = null;
@@ -210,22 +232,6 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			e.printStackTrace();
 		}
 
-		// try {
-		// statement = conn.prepareStatement(select_rev);
-		// rs = statement.executeQuery(select_rev);
-		// while (rs.next()) {
-		// rev = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"),
-		// rs.getString("amount"),
-		// rs.getString("deliverName"), rs.getString("hallID"),
-		// rs.getString("orderID"));
-		// rev.setFormState(rs.getString("formState"));
-		// result.add(rev);
-		// }
-		// } catch (SQLException e) {
-		// System.err.println("查找数据库时出错：");
-		// e.printStackTrace();
-		// }
-
 		return result;
 	}
 
@@ -236,7 +242,12 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 		if (ID == null) {
 			ID = CompanyAccount;
 		}
-		String select = "select * from `" + Table_Name + "` where `bankID` = '" + ID + "'";
+		final String accID = ID;
+		String select = MySql.select(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("bankID", accID);
+			}
+		});
 
 		ResultSet rs = null;
 		try {
@@ -244,7 +255,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 			rs = statement.executeQuery(select);
 			rs.next();
 			balance = Double.parseDouble(rs.getString("balance")) + money;
-			String operation = "update `" + Table_Name + "` set `balance` ='" + balance + "' where `bankID` = '" + ID + "'";
+			String operation = MySql.update(TableEnum.BANK_ACCOUNT,"balance",balance + "", new HashMap<String, String>() {
+				{
+					put("bankID", accID);
+				}
+			});
 			statement = conn.prepareStatement(operation);
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -258,7 +273,11 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 
 	@Override
 	public String getBankIDByName(String name) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `accountName` = '" + name + "'";
+		String select = MySql.select(TableEnum.BANK_ACCOUNT, new HashMap<String, String>() {
+			{
+				put("accountName", name);
+			}
+		});
 		ResultSet rs = null;
 		try {
 			statement = conn.prepareStatement(select);
