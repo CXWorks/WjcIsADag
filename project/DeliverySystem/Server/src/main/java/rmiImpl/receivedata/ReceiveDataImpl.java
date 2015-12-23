@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.FormEnum;
@@ -15,6 +16,8 @@ import po.receivedata.ReceivePO;
 import rmi.receivedata.ReceiveDataService;
 import rmiImpl.CommonData;
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 import rmiImpl.orderdata.OrderDataImpl;
 
 /**
@@ -47,12 +50,18 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 	public OperationMessage insert(ReceivePO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,orderID,transitID,date,depature,state,date_and_unit) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
-				+ po.getTransitID() + "','" + po.getDateForSQL().toString() + "','" + po.getDepature() + "','"
-				+ po.getState() + "','" + po.getFormID().substring(2, 17) + "')";
-
+		String insert = MySql.insert(TableEnum.RECEIVE, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("orderID", po.getOrderID());
+				put("transitID", po.getTransitID());
+				put("date", po.getDateForSQL().toString());
+				put("depature", po.getDepature());
+				put("state", po.getState().toString());
+				put("date_and_unit", po.getFormID().substring(2, 17));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -72,7 +81,11 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 	public OperationMessage delete(String id) {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.RECEIVE, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -98,8 +111,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	public String newID(String unitID) {
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
-		target = unitID + target;// 开具单位编号+当天日期
+		final String target = unitID + temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// 当前日期与缓存日期一致
 		if (temp.equalsIgnoreCase(today)) {
@@ -110,7 +122,11 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 		// 当前日期与缓存日期不一致
 		today = temp;
-		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
+		String selectAll = MySql.select(TableEnum.RECEIVE, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -132,7 +148,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 
 	public OperationMessage clear() {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.RECEIVE, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -145,7 +161,11 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	}
 
 	public ReceivePO getFormPO(String id) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.RECEIVE, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		ReceivePO result = null;
 		try {
@@ -164,7 +184,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	}
 
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.RECEIVE,null);
 		ResultSet rs = null;
 		ReceivePO temp = null;
 		ArrayList<ReceivePO> result = new ArrayList<ReceivePO>();

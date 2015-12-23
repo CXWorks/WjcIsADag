@@ -8,18 +8,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.systemdata.LogPO;
 import rmi.systemdata.LogDataService;
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 
 /**
  * Created by WJC on 2015/11/29.
  */
 public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private static int ID;
@@ -31,7 +33,6 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	public LogDataImpl() throws RemoteException {
 		super();
-		Table_Name = "log";
 		conn = ConnecterHelper.getConn();
 		ID = this.getMaxID();
 	}
@@ -42,7 +43,7 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	}
 
 	public int getMaxID() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.LOG,null);
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -62,9 +63,14 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	@Override
 	public OperationMessage insert(LogPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Table_Name + "`(ID,personID,time,info) " + "values('" + ++ID + "','"
-				+ po.getPersonID() + "','" + po.getTimeForSQL() + "','" + po.getInfo() + "')";
-
+		String insert = MySql.insert(TableEnum.LOG, new HashMap<String, String>() {
+			{
+				put("ID", ++ID + "");
+				put("personID", po.getPersonID());
+				put("time", po.getTimeForSQL().toString());
+				put("info", po.getInfo());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -77,20 +83,9 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 		return result;
 	}
 
-	public static void main(String[] args) throws RemoteException {
-		LogDataImpl t = new LogDataImpl();
-		Calendar a = Calendar.getInstance();
-		Calendar b = Calendar.getInstance();
-		a.set(Calendar.YEAR, 2014);
-		b.set(Calendar.YEAR, 2015);
-		System.out.println(t.getByTime(a,b).size());
-	}
-
 	@Override
 	public ArrayList<LogPO> getByTime(Calendar start, Calendar end) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(`time`) " + "and '" + end.getTime().getTime() / 1000
-				+ "' > UNIX_TIMESTAMP(`time`)";
+		String select = MySql.time(TableEnum.LOG, "time", start, end);
 
 		ResultSet rs = null;
 		LogPO log = null;
@@ -112,7 +107,7 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 
 	@Override
 	public ArrayList<LogPO> getAll() throws RemoteException {
-		String select = "select * from `" + Table_Name;
+		String select = MySql.select(TableEnum.LOG,null);
 
 		ResultSet rs = null;
 		LogPO log = null;
@@ -135,7 +130,7 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.LOG, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();

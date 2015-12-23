@@ -1,7 +1,6 @@
 package rmiImpl.orderdata;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,19 +8,15 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
+import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 import message.OperationMessage;
-import po.FormEnum;
-import po.memberdata.StaffPO;
-import po.memberdata.StaffTypeEnum;
-import po.orderdata.DeliverTypeEnum;
 import po.orderdata.OrderPO;
-import po.receivedata.ReceivePO;
-import rmi.memberdata.MemberDataService;
 import rmi.orderdata.OrderDataService;
 import rmiImpl.CommonData;
-import database.ConnecterHelper;
 
 /**
  *
@@ -30,7 +25,6 @@ import database.ConnecterHelper;
 
 public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private String today = "";// 格式eg.2015-11-22
@@ -38,7 +32,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	public OrderDataImpl() throws RemoteException {
 		super();
-		Table_Name = "order";
 		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
@@ -48,14 +41,6 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	public Connection getConn() {
 		return conn;
-	}
-
-	public static void main(String[] args) throws RemoteException {
-		OrderDataImpl t = new OrderDataImpl();
-		OrderPO po = t.getFormPO("1209000019");
-		po.addFormID("HHHH");
-		t.update(po);
-
 	}
 
 	public OperationMessage insert(OrderPO po) throws RemoteException {
@@ -69,18 +54,33 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 				formIDs = formIDs + list.get(i);
 			}
 		}
-		String insert = "insert into `" + Table_Name
-				+ "`(formID,formState,nameFrom,nameTo,unitFrom,unitTo,addressFrom,addressTo,"
-				+ "phoneNumFrom,phoneNumTo,telNumFrom,telNumTo,goodsNum,goodsName,weight,volume,"
-				+ "money,type,targetHallID,FormIDs,goodsType,pack) " + "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getNameFrom() + "','" + po.getNameTo() + "','"
-				+ po.getUnitFrom() + "','" + po.getUnitTo() + "','" + po.getAddressFrom() + "','" + po.getAddressTo()
-				+ "','" + po.getPhoneNumFrom() + "','" + po.getPhoneNumTo() + "','" + po.getTelNumFrom() + "','"
-				+ po.getTelNumTo() + "','" + po.getGoodsNum() + "','" + po.getGoodsName() + "','" + po.getWeight()
-				+ "','" + po.getVolume() + "','" + po.getMoney() + "','" + po.getType().toString() + "','"
-				+ po.getTargetHallID() + "','" + formIDs + "','" + po.getGoodsType() + "','" + po.getPack().toString()
-				+ "')";
-
+		final String final_IDs = formIDs;
+		String insert = MySql.insert(TableEnum.ORDER, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("nameFrom", po.getNameFrom());
+				put("nameTo", po.getNameTo());
+				put("unitFrom", po.getUnitFrom());
+				put("unitTo", po.getUnitTo());
+				put("addressFrom", po.getAddressFrom());
+				put("addressTo", po.getAddressTo());
+				put("phoneNumFrom", po.getPhoneNumFrom());
+				put("phoneNumTo", po.getPhoneNumTo());
+				put("telNumFrom", po.getTelNumFrom());
+				put("telNumTo", po.getTelNumTo());
+				put("goodsNum", po.getGoodsNum());
+				put("goodsName", po.getGoodsName());
+				put("weight", po.getWeight());
+				put("volume", po.getVolume());
+				put("money", po.getMoney());
+				put("type", po.getType().toString());
+				put("targetHallID", po.getTargetHallID());
+				put("FormIDs", final_IDs);
+				put("goodsType", po.getGoodsType());
+				put("pack", po.getPack().toString());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -95,7 +95,11 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	public OperationMessage delete(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.ORDER, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -119,9 +123,9 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	public OperationMessage clear() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.ORDER, null);
 		try {
-			statement = conn.prepareStatement(delete);
+			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "清空时出错：");
@@ -132,7 +136,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public String newID(String unitID) throws RemoteException {// 成员变量成员持有ID信息
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.ORDER, null);
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
 		String date = temp.substring(5, 7) + temp.substring(8);// 当天日期
@@ -168,7 +172,11 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public OrderPO getFormPO(String id) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.ORDER, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		OrderPO result = null;
 
@@ -197,7 +205,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	public ArrayList<OrderPO> getAll() throws RemoteException {
-		String select = "select * from `" + Table_Name + "`";
+		String select = MySql.select(TableEnum.ORDER, null);
 		ResultSet rs = null;
 		OrderPO temp = null;
 		ArrayList<OrderPO> result = new ArrayList<OrderPO>();
@@ -237,7 +245,11 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	@Override
 	public OperationMessage setFinish(String orderID) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String setFinished = "updata `" + Table_Name + "` set `finished` = '1' where `formID` = '" + orderID + "'";
+		String setFinished = MySql.update(TableEnum.ORDER, "finished", "1", new HashMap<String, String>() {
+			{
+				put("formID", orderID);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(setFinished);
 			statement.executeUpdate();

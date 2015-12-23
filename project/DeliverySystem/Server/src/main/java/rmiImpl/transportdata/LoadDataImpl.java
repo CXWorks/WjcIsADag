@@ -8,18 +8,18 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
+import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 import message.OperationMessage;
-import po.FormEnum;
-import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import rmi.transportdata.LoadDataService;
 import rmiImpl.CommonData;
-import database.ConnecterHelper;
 
 public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService {
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private String today = "";// 格式eg.2015-11-22
@@ -27,7 +27,6 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	public LoadDataImpl() throws RemoteException {
 		super();
-		Table_Name = "load";
 		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
@@ -50,13 +49,21 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			else
 				IDs += list.get(i) + " ";
 		;
-
-		String insert = "insert into `" + Table_Name + "`(formID,formState,LoadDate,TransportID,placeTo,"
-				+ "peopleSee,expense,IDs,date_and_unit,peopleTrans) " + "values('" + po.getFormID() + "','"
-				+ po.getFormState().toString() + "','" + po.getLoadDateForSQL().toString() + "','" + po.getTransportID()
-				+ "','" + po.getPlaceTo() + "','" + po.getPeopleSee() + "','" + po.getExpense() + "','" + IDs + "','"
-				+ po.getFormID().substring(2, 17) + "','" + po.getPeopleTransport() + "')";
-		System.out.println(insert);
+		final String final_IDs = IDs;
+		String insert = MySql.insert(TableEnum.LOAD, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("LoadDate", po.getLoadDateForSQL().toString());
+				put("TransportID", po.getTransportID());
+				put("placeTo", po.getPlaceTo().toString());
+				put("peopleSee", po.getPeopleSee());
+				put("expense", po.getExpense());
+				put("IDs", final_IDs);
+				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("peopleTrans", po.getPeopleTransport());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -76,7 +83,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public LoadPO getFormPO(String id) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.LOAD, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		LoadPO result = null;
 
@@ -103,7 +114,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public OperationMessage delete(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Table_Name + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.LOAD, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -130,8 +145,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	public String newID(String unitID) throws RemoteException {
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
-		target = unitID + target;// 开具单位编号+当天日期
+		final String target = unitID + temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// 当前日期与缓存日期一致
 		if (temp.equalsIgnoreCase(today)) {
@@ -142,7 +156,11 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 		// 当前日期与缓存日期不一致
 		today = temp;
-		String selectAll = "select * from `" + Table_Name + "` where `date_and_unit` = '" + target + "'";
+		String selectAll = MySql.select(TableEnum.LOAD, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -165,7 +183,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 	@Override
 	public OperationMessage clear() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Table_Name + "`";
+		String clear = MySql.delete(TableEnum.LOAD, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -179,7 +197,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 
 	@Override
 	public ArrayList<LoadPO> getAll() throws RemoteException {
-		String select = "select * from `" + Table_Name + "`";
+		String select = MySql.select(TableEnum.LOAD, null);
 		ResultSet rs = null;
 		LoadPO temp = null;
 		ArrayList<LoadPO> result = new ArrayList<LoadPO>();

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.memberdata.DriverPO;
@@ -18,18 +19,18 @@ import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 
 public class DriverDataImpl extends UnicastRemoteObject implements MemberDataService<DriverPO> {
 	private static final long serialVersionUID = 1L;
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public DriverDataImpl() throws RemoteException {
 		super();
-		Table_Name = "driver";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -40,7 +41,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.DELIVER, null);
 		ResultSet rs = null;
 		DriverPO temp = null;
 		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
@@ -76,12 +77,20 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	@Override
 	public OperationMessage addStaff(DriverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String add = "insert into `" + Table_Name
-				+ "`(ID,name,age,personID,sex,love,institutionID,birth,tel,licence_period) " + "values('" + po.getID()
-				+ "','" + po.getName() + "','" + po.getAge() + "','" + po.getPersonID() + "','" + po.getSex() + "','"
-				+ po.getLove() + "','" + po.getInititutionID() + "','" + po.getBirthForSQL() + "','" + po.getTel()
-				+ "','" + po.getLicence_periodForSQL() + "')";
-
+		String add = MySql.insert(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("ID", po.getID());
+				put("name", po.getName());
+				put("age", po.getAge() + "");
+				put("personID", po.getPersonID());
+				put("sex", po.getSex().toString());
+				put("love", po.getLove());
+				put("institutionID", po.getInititutionID());
+				put("birth", po.getBirthForSQL().toString());
+				put("tel", po.getTel());
+				put("licence_period", po.getLicence_periodForSQL().toString());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(add);
 			statement.executeUpdate();
@@ -97,7 +106,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	@Override
 	public OperationMessage dismissStaff(DriverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + po.getID() + "'";
+		String dismiss = MySql.delete(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("ID", po.getID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(dismiss);
 			statement.executeUpdate();
@@ -112,7 +125,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String institutionID) throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
+		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("institutionID", institutionID);
+			}
+		});
 		ResultSet rs = null;
 		int ID_MAX = 0;
 		try {
@@ -148,7 +165,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID + "'";
+		String select = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("ID", ID);
+			}
+		});
 		ResultSet rs = null;
 		DriverPO result = null;
 		try {
@@ -174,7 +195,11 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	 */
 	@Override
 	public ArrayList<DriverPO> getStaffByInstitution(String institutionID) {
-		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
+		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("institutionID", institutionID);
+			}
+		});
 		ResultSet rs = null;
 		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
 		DriverPO temp = null;

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import message.OperationMessage;
 import po.memberdata.DriverPO;
@@ -18,19 +19,19 @@ import po.receivedata.ReceivePO;
 import po.systemdata.LogPO;
 import rmi.memberdata.MemberDataService;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 import rmiImpl.receivedata.ReceiveDataImpl;
 
 public class StaffDataImpl extends UnicastRemoteObject implements MemberDataService<StaffPO> {
 	private static final long serialVersionUID = 1L;
 
-	private String Table_Name;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public StaffDataImpl() throws RemoteException {
 		super();
-		Table_Name = "staff";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -39,7 +40,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 	}
 
 	public ArrayList<StaffPO> getStaff(StaffTypeEnum staffTypeEnum) {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.STAFF, null);
 		ResultSet rs = null;
 		StaffPO temp = null;
 		ArrayList<StaffPO> result = new ArrayList<StaffPO>();
@@ -75,11 +76,18 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	public OperationMessage addStaff(StaffPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String add = "insert into `" + Table_Name + "`(ID,staff,name,age,personID,sex,love,institutionID,typeID) "
-				+ "values('" + po.getID() + "','" + po.getStaff().toString() + "','" + po.getName() + "','"
-				+ po.getAge() + "','" + po.getPersonID().toString() + "','" + po.getSex() + "','" + po.getLove() + "','"
-				+ po.getInititutionID() + "','" + po.getID().substring(0, 2) + "')";
-
+		String add = MySql.insert(TableEnum.STAFF, new HashMap<String, String>() {
+			{
+				put("ID", po.getID());
+				put("name", po.getName());
+				put("age", po.getAge() + "");
+				put("personID", po.getPersonID());
+				put("sex", po.getSex().toString());
+				put("love", po.getLove());
+				put("institutionID", po.getInititutionID());
+				put("typeID", po.getID().substring(0, 2));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(add);
 			statement.executeUpdate();
@@ -94,7 +102,11 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	public OperationMessage dismissStaff(StaffPO staff) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String dismiss = "delete from `" + Table_Name + "` where `ID` = '" + staff.getID() + "'";
+		String dismiss = MySql.delete(TableEnum.STAFF, new HashMap<String, String>() {
+			{
+				put("ID", staff.getID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(dismiss);
 			statement.executeUpdate();
@@ -133,7 +145,12 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		default:
 			return null;
 		}
-		String selectAll = "select * from `" + Table_Name + "` where `typeID` = '" + target + "'";
+		final String target_type = target;
+		String selectAll = MySql.select(TableEnum.STAFF, new HashMap<String, String>() {
+			{
+				put("typeID", target_type);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -155,7 +172,11 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	@Override
 	public StaffPO getPerson(String ID) throws RemoteException {
-		String select = "select * from `" + Table_Name + "` where `ID` = '" + ID + "'";
+		String select = MySql.select(TableEnum.STAFF, new HashMap<String, String>() {
+			{
+				put("ID", ID);
+			}
+		});
 		ResultSet rs = null;
 		StaffPO result = null;
 		try {
@@ -174,7 +195,11 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 
 	@Override
 	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) {
-		String selectAll = "select * from `" + Table_Name + "` where `institutionID` = '" + institutionID + "'";
+		String selectAll = MySql.select(TableEnum.STAFF, new HashMap<String, String>() {
+			{
+				put("institutionID", institutionID);
+			}
+		});
 		ResultSet rs = null;
 		ArrayList<StaffPO> result = new ArrayList<StaffPO>();
 		StaffPO temp = null;
