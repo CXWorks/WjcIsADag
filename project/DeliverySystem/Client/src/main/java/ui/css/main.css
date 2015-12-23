@@ -1,62 +1,21 @@
-.background {
+﻿.background{
 
-    -fx-background-color: gray;
+}
+
+.background-head {
+
+	-fx-background-image : url(pic/top.png);
 	-fx-background-size: cover;
 	
 }
 
+.background-left {
 
-.label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: black;
-    -fx-opacity: 1;
+	-fx-background-image : url(pic/left.png);
+	-fx-background-size: cover;
+	
 }
 
-
-.label-header {
-    -fx-font-size: 20pt;
-    -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: black;
-    -fx-opacity: 1;
-}
-
-.table-view {
-    -fx-base:gray;
-    -fx-control-inner-background: #c9c8c8;
-    -fx-background-color: #c9c8c8;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 20;
-    -fx-border-width: 1 1 1 1;
-    -fx-background-color: transparent;
-    -fx-border-color: 
-        transparent
-        transparent
-        derive(-fx-base, 80%) 
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 10pt;
-    -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: white;
-    -fx-alignment: center;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
 
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
@@ -102,33 +61,80 @@
 
 }
 
-
-
-.button.sure {
+.button {
     -fx-size:13;
-	-fx-background-color:white;
     -fx-border-sty :none;
+    -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-close {
+    -fx-size:13;
+	-fx-background-image:url(pic/close.png);
+    -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 	-fx-size:13;
 }
 
-.button.sure:hover {
-    -fx-background-color: #3a3a3a;
+.button-close:hover {
+	-fx-background-image:url(pic/closeHover.png);
 }
 
-.button.sure:pressed, .button.sure:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+.button-close:pressed, .button-sure:default:hover:pressed {
+	-fx-background-image:url(pic/closePressed.png);
 }
 
-.button.sure:focused {
-    -fx-border-color: black, black;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+.button-close:focused {
+
+    -fx-border-style: none;
+
+}
+
+.button-max {
+    -fx-size:13;
+	-fx-background-image:url(pic/max.png);
+    -fx-border-style :none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-max:hover {
+	-fx-background-image:url(pic/maxHover.png);
+}
+
+.button-max:pressed, .button-sure:default:hover:pressed {
+	-fx-background-image:url(pic/maxPressed.png);
+}
+
+.button-max:focused {
+    -fx-border-style: none;
+}
+.button-min {
+    -fx-size:13;
+	-fx-background-image:url(pic/min.png);
+    -fx-border-style :none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-min:hover {
+	-fx-background-image:url(pic/minHover.png);
+}
+
+.button-min:pressed, .button-sure:default:hover:pressed {
+	-fx-background-image:url(pic/minPressed.png);
+}
+
+.button-min:focused {
+    -fx-border-style: none;
 }
 
 .button:disabled, .button:default:disabled {
