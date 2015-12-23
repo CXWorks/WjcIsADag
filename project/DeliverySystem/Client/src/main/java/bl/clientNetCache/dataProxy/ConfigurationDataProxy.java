@@ -50,7 +50,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	
 	private ConfigurationDataProxy(){}
 	//
-	public static ConfigurationDataProxy getInstance() throws RemoteException{
+	public static ConfigurationDataService getInstance() throws RemoteException{
 		if (proxy!=null) {
 			return proxy;
 		}
@@ -73,7 +73,6 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 			proxy.warningLine = proxy.configurationDataService
 					.getWarningline(UserInfo.getInstitutionID());
 		} catch (IOException e) {
-			System.out.println(serverVersion);
 			proxy.clientVersion = Long.MAX_VALUE;
 		}
 		//
@@ -161,7 +160,6 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
 		proxy.deleteCity2D(po.getName());
 		proxy.city.add(po);
-		proxy.clientVersion++;
 		return configurationDataService.modifyCity2D(po);
 	}
 

@@ -46,6 +46,7 @@ public class VersionSaver {
 	public long loadVersion(String fileName){
 		String filePath=PATH+fileName+TAIL;
 		try {
+			System.out.println(filePath);
 			BufferedReader reader=new BufferedReader(new FileReader(new File(filePath)));
 			String re=reader.readLine();
 			long ans=Long.parseLong(re);

@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
+import operation.Operation;
 import message.OperationMessage;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
@@ -149,6 +151,25 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getLatestVersionID()
+	 */
+	@Override
+	public long getLatestVersionID() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see rmi.cachedata.CacheDataService#getOperation(long)
+	 */
+	@Override
+	public List<Operation> getOperation(long localVersion)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
