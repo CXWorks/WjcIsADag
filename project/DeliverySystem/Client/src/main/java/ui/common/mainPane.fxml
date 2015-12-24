@@ -6,17 +6,24 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
    <top>
-      <AnchorPane fx:id="title_Pane" prefHeight="70.0" prefWidth="1146.0" styleClass="background-head" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="title_Pane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="1146.0" styleClass="background-head" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="1095.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-close" />
-            <Button layoutX="1055.0" layoutY="17.0" mnemonicParsing="false" onAction="#maximizeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-max" />
-            <Button layoutX="1015.0" layoutY="17.0" mnemonicParsing="false" onAction="#minimizeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-min" />
+            <HBox layoutX="1015.0" layoutY="17.0" spacing="7.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="17.0">
+               <children>
+                  <Button layoutX="1015.0" layoutY="17.0" mnemonicParsing="false" onAction="#minimizeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-min" />
+                  <Button layoutX="1057.0" layoutY="18.0" mnemonicParsing="false" onAction="#maximizeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-max" />
+                  <Button layoutX="1095.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-close" AnchorPane.topAnchor="17.0" />
+               </children>
+            </HBox>
          </children></AnchorPane>
    </top>
    <center>
-      <AnchorPane fx:id="content_Pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="content_Pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <FlowPane fx:id="left_TabsPane" prefHeight="541.0" prefWidth="179.0" styleClass="background-left" BorderPane.alignment="CENTER" />
+      <FlowPane fx:id="left_TabsPane" alignment="CENTER" prefHeight="541.0" prefWidth="179.0" styleClass="background-left" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="tabs_VBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="180.0" />
+         </children></FlowPane>
    </left>
 </BorderPane>

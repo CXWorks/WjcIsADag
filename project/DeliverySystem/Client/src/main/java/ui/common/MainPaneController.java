@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.Main;
 import ui.informui.InformController;
@@ -26,6 +23,7 @@ public class MainPaneController {
     public AnchorPane title_Pane;
     public FlowPane left_TabsPane;
     public AnchorPane content_Pane;
+    public VBox tabs_VBox;
     private BorderPane borderPane;
 
     public static MainPaneController launch() throws IOException {
@@ -39,7 +37,7 @@ public class MainPaneController {
 
     public void addTabButton(String name, Parent content){
         Button tabButton = new Button(name);
-        left_TabsPane.getChildren().add(tabButton);
+        tabs_VBox.getChildren().add(tabButton);
         tabButton.setOnAction(
                 actionEvent -> {
                     content_Pane.getChildren().clear();

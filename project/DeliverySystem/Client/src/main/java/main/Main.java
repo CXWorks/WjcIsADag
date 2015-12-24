@@ -111,7 +111,7 @@ public class Main extends Application {
     private static boolean resizing = false;
     private static CURSOR_AREA pressedArea = CURSOR_AREA.CENTER;
     private static final int padding = 14;
-    private static final int titleHeight = 50;
+    private static final int titleHeight = 70;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -172,8 +172,8 @@ public class Main extends Application {
         }
     }
 
-    private static final double minWidth = 300;
-    private static final double minHeight = 500;
+    private static final double minWidth = 1146;
+    private static final double minHeight = 611;
     private static void setBounds(Stage stage, double x, double y, double w, double h){
         if(w > minWidth){
             stage.setWidth(w);
