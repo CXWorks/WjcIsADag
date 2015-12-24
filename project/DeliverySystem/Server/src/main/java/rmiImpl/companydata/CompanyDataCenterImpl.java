@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -97,9 +98,17 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 				put("cityID", po.getCenterID().substring(0, 3));
 			}
 		});
-
+		String tack = MySql.insert(TableEnum.TACK, new HashMap<String, String>() {
+			{
+				put("centerID", po.getCenterID());
+				put("num", "0");
+				put("date", new Timestamp(System.currentTimeMillis()).toString());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(tack);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "新建时出错：");

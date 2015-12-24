@@ -157,8 +157,6 @@ public class RMIHelper {
 	}
 
 	public static void closeServer() throws RemoteException, MalformedURLException, NotBoundException {
-		ConnecterHelper.deconnSQL();
-
 		java.rmi.server.UnicastRemoteObject.unexportObject(reg, true);
 		reg = null;
 	}
