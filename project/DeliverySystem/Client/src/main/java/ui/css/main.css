@@ -16,7 +16,6 @@
 	
 }
 
-
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
     -fx-background-color: transparent, derive(#1d1d1d,20%);
@@ -26,24 +25,6 @@
     -fx-padding: 1 0 0 0;
 }
 
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d,50%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
 
 .text-field {
 
@@ -58,18 +39,55 @@
 .text-field:focused{
 
      -fx-border-style :none;
-
+	 -fx-color: gray;
 }
 
-.button {
-    -fx-size:13;
-    -fx-border-sty :none;
-    -fx-font-family: "方正幼线简体 常规", Helvetica, Arial, sans-serif;
-    -fx-font-size: 10pt;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-	-fx-size:13;
+.button{
+    -fx-border-top-left-radius:0px;
+	-fx-border-top-right-radius:0px;
+    -fx-border-bottom-left-radius:0px;
+	-fx-border-bottom-right-radius:0px;
+    -fx-size:150;
+	-fx-background-color:#393939;
+    -fx-border-style :none;
+    -fx-font-size: 15pt;
+	-fx-text-fill:#dcdbdb;
+}
+.button:hover{
+-fx-background-color:#181818;
 }
 
+.button:pressed{
+-fx-background-color:#e8e8e8;
+-fx-text-fill:#181818;
+}
+
+.button:focused{
+-fx-text-fill:#181818;
+-fx-background-color:#e8e8e8;
+-fx-border-style:none;
+}
+/*
+.button-left{
+    -fx-size:80;
+	-fx-background-color:#393939;
+    -fx-border-style :none;
+    -fx-font-size: 15pt;
+	-fx-font-color:#ffffff;
+}
+.button-left:hover{
+-fx-background-color:#e9e9e9;
+}
+
+.button-left:pressed{
+-fx-background-color:#0397c9;
+}
+
+.button-left:focused{
+-fx-background-color:#0397c9;
+-fx-border-style:none;
+}
+*/
 .button-close {
     -fx-size:13;
 	-fx-background-image:url(pic/close.png);

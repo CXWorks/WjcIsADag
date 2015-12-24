@@ -201,7 +201,7 @@
          </rowConstraints>
       </GridPane>
       <Button defaultButton="true" layoutX="844.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="105.0" text="确认" />
-      <Button layoutX="754.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="73.0" text="保存草稿" />
+      <Button layoutX="748.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="40.0" prefWidth="80.0" text="保存草稿" />
       <Button layoutX="662.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="73.0" text="清空" textAlignment="CENTER" />
       <Button layoutX="524.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="39.0" prefWidth="118.0" text="计算运费日期" />
    </children>
