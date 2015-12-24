@@ -13,6 +13,8 @@ import vo.storevo.StoreInVO;
 public interface StockTackBLService {
 
     public StockTackVO getStockTack(String centerID);
+    
+    public StockTackVO reStockTack(String centerID);
 
     public OrderVO getOrder(String orderNumber);
 

@@ -111,12 +111,18 @@ public class CacheHelper {
 
 		initialDataService=RMIHelper.getInitialDataService();
 		systemDataService=RMIHelper.getSystemDataService();
+		tackDataService=RMIHelper.getTackDataService();
 	}
 	//
 	//
+	
 	public static SystemDataService getSystemDataService(){
 		return systemDataService;
 	}
+	public static TackDataService getTackDataService() {
+		return tackDataService;
+	}
+
 	public static OrderDataService getOrderDataService() {
 		return orderDataService;
 	}

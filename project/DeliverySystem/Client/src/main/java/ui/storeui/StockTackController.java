@@ -90,7 +90,7 @@ public class StockTackController {
 
 	@FXML
 	public void makeStockTack(ActionEvent actionEvent) {
-		StockTackVO stockTackVO = stockTackBLService.getStockTack(UserInfo.getInstitutionID());
+		StockTackVO stockTackVO = stockTackBLService.reStockTack(UserInfo.getInstitutionID());
 
 		time_Label.setText(TimeConvert.getDisplayDate(stockTackVO.date));
 		orderNumber_Label.setText(stockTackVO.id);

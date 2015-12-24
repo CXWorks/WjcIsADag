@@ -10,6 +10,7 @@ import po.storedata.StoreInPO;
 import rmi.orderdata.OrderDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.storedata.TackDataService;
 import tool.excel.Excel;
 import userinfo.UserInfo;
 import bl.blService.storeblService.StockTackBLService;
@@ -28,23 +29,25 @@ import vo.storevo.StoreInVO;
 public class StockTackBLImpl implements StockTackBLService {
 	private StoreModelDataService storeModelDataService;
 	private StoreFormDataService storeFormDataService;
-	private int i;
+	private TackDataService tackDataService;
+	private int localTimes;
+	private StoreModel currentModel;
 	//
 	public StockTackBLImpl(){
 		this.storeFormDataService=CacheHelper.getStoreFormDataService();
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
-		i=0;
+		this.tackDataService=CacheHelper.getTackDataService();
+		try {
+			localTimes=tackDataService.getTack(UserInfo.getInstitutionID());
+			currentModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			localTimes=0;
+		}
 	}
     public StockTackVO getStockTack(String centerID) {
-       try {
-		StoreModel storeModel=storeModelDataService.getModel(centerID);
-		i++;
-		return new StockTackVO(Calendar.getInstance(), Integer.toString(i), storeModel);
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return null;
-	}
+    	return new StockTackVO(Calendar.getInstance(), Integer.toString(localTimes), this.currentModel);
     }
 
 
@@ -52,6 +55,9 @@ public class StockTackBLImpl implements StockTackBLService {
 		OrderDataService orderDataService = CacheHelper.getOrderDataService();
 		try {
 			OrderPO po = orderDataService.getFormPO(orderNumber);
+			if (po==null) {
+				return null;
+			}
 			OrderVO vo = new OrderVO(po);
 			return vo;
 		} catch (RemoteException e) {
@@ -85,4 +91,20 @@ public class StockTackBLImpl implements StockTackBLService {
 			return new OperationMessage(false,"net error");
 		}
     }
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#reStockTack(java.lang.String)
+	 */
+	@Override
+	public StockTackVO reStockTack(String centerID) {
+		try {
+			this.currentModel=storeModelDataService.getModel(centerID);
+			this.localTimes++;
+			tackDataService.setTack(centerID, Integer.toString(localTimes));
+			return new StockTackVO(Calendar.getInstance(), Integer.toString(localTimes), currentModel);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

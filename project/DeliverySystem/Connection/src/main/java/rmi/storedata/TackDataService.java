@@ -25,10 +25,4 @@ public interface TackDataService extends DataService<CommonPO>{
 	 */
 	public OperationMessage setTack(String centerID,String num) throws RemoteException;
 
-	/**
-	 * 获得新编号
-	 * @param centerID 仓库编号
-	 * @return 新的编号
-	 */
-	public int newTackNum(String centerID) throws RemoteException;
 }

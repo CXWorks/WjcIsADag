@@ -39,11 +39,4 @@ public class TackDataProxy extends UnicastRemoteObject implements TackDataServic
 		return null;
 	}
 
-	@Override
-	public int newTackNum(String centerID) throws RemoteException {
-		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return tackDataService.newTackNum(centerID);
-		return 0;
-	}
-
 }

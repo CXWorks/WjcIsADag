@@ -39,45 +39,6 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 	@Override
 	public int getTack(String centerID) throws RemoteException {
 		ResultSet rs = null;
-		String select = MySql.select(TableEnum.TACK, new HashMap<String, String>() {
-			{
-				put("centerID", centerID);
-			}
-		});
-		try {
-			statement = conn.prepareStatement(select);
-			rs = statement.executeQuery(select);
-			rs.next();
-			return Integer.parseInt(rs.getString("num"));
-		} catch (SQLException e) {
-			System.err.println("访问数据库时出错：");
-			e.printStackTrace();
-		}
-		return -1;
-	}
-
-	@Override
-	public OperationMessage setTack(String centerID, String num) throws RemoteException {
-		OperationMessage result = new OperationMessage();
-		String update = MySql.update(TableEnum.TACK, "num", num, new HashMap<String, String>() {
-			{
-				put("centerID", "centerID");
-			}
-		});
-		try {
-			statement = conn.prepareStatement(update);
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			result = new OperationMessage(false, "更新时出错：");
-			System.err.println("设置序号时出错：");
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public int newTackNum(String centerID) throws RemoteException {
-		ResultSet rs = null;
 		Timestamp date = null;
 		String select = MySql.select(TableEnum.TACK, new HashMap<String, String>() {
 			{
@@ -123,9 +84,29 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return num++;
+			return num;
 		} else {// 当前日期与缓存日期不一致
 			return 1;
 		}
 	}
+
+	@Override
+	public OperationMessage setTack(String centerID, String num) throws RemoteException {
+		OperationMessage result = new OperationMessage();
+		String update = MySql.update(TableEnum.TACK, "num", num, new HashMap<String, String>() {
+			{
+				put("centerID", "centerID");
+			}
+		});
+		try {
+			statement = conn.prepareStatement(update);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			result = new OperationMessage(false, "更新时出错：");
+			System.err.println("设置序号时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
