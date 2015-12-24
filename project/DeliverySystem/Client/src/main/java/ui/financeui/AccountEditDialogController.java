@@ -35,8 +35,7 @@ public class AccountEditDialogController {
 
     // VO that is passed in by the creator
     private BankAccountVO editVO;
-    private BankAccountBLService bankAccountBLService = FinanceBLFactory.getBankAccountBLService();
-
+    private BankAccountBLService bankAccountBLService;
 
     /**
      *
@@ -45,7 +44,7 @@ public class AccountEditDialogController {
      * @return
      * @throws IOException
      */
-    public static AccountEditDialogController newDialog(EditType type, BankAccountVO editVO) throws IOException {
+    public static AccountEditDialogController newDialog(EditType type, BankAccountVO editVO, BankAccountBLService bankAccountBLService) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(AccountEditDialogController.class.getResource("accountEditDialog.fxml"));
         Pane pane = loader.load();
@@ -61,6 +60,7 @@ public class AccountEditDialogController {
         controller.editVO = editVO;
         controller.stage = stage;
         controller.type = type;
+        controller.bankAccountBLService = bankAccountBLService;
         controller.init();
 
         return controller;

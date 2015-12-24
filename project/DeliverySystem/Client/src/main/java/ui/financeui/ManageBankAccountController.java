@@ -69,7 +69,7 @@ public class ManageBankAccountController {
     public void newAccount(ActionEvent actionEvent) throws IOException {
         BankAccountVO bankAccountVO = new BankAccountVO(null, null, null);
         AccountEditDialogController controller = AccountEditDialogController.newDialog
-                (AccountEditDialogController.EditType.NEW, bankAccountVO);
+                (AccountEditDialogController.EditType.NEW, bankAccountVO, bankAccountBLService);
 
         controller.stage.showAndWait();
 
@@ -87,7 +87,7 @@ public class ManageBankAccountController {
     public void editAccount(ActionEvent actionEvent) throws IOException {
         BankAccountVO bankAccountVO = this.bankAccountVO;
         AccountEditDialogController dialog = AccountEditDialogController.newDialog
-                (AccountEditDialogController.EditType.EDIT, bankAccountVO);
+                (AccountEditDialogController.EditType.EDIT, bankAccountVO, bankAccountBLService);
 
         dialog.stage.showAndWait();
 

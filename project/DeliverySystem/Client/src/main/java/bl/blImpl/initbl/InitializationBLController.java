@@ -97,16 +97,16 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage editAccount(BankAccountVO avo, String newName) {
-        String ID=avo.bankID;
+        String name=avo.accountName;
         ArrayList<BankAccountVO> bankAccountVOs=initialDataVO.getBankAccounts();
         int i;
         for (i = 0; i < bankAccountVOs.size(); i++) {
-			if (bankAccountVOs.get(i).bankID.equalsIgnoreCase(ID)) {
+			if (bankAccountVOs.get(i).accountName.equalsIgnoreCase(name)) {
+				bankAccountVOs.get(i).accountName = newName;
 				break;
 			}
 		}
-        bankAccountVOs.remove(i);
-        bankAccountVOs.add(avo);
+
         return new OperationMessage();
     }
 
