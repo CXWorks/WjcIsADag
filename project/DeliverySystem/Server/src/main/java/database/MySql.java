@@ -56,7 +56,7 @@ public class MySql {
 				delete += " where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 				isFirst = false;
 			} else {
-				delete += " and where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
+				delete += " and `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 			}
 
 		}
@@ -79,10 +79,12 @@ public class MySql {
 				update += " where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 				isFirst = false;
 			} else {
-				update += " and where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
+				update += " and `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 			}
 
 		}
+		System.out.println(update);
+
 		return update;
 	}
 
@@ -101,7 +103,7 @@ public class MySql {
 				select += " where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 				isFirst = false;
 			} else {
-				select += " and where `" + entry.getKey() + "` = '" + entry.getValue() + "'";
+				select += " and `" + entry.getKey() + "` = '" + entry.getValue() + "'";
 			}
 
 		}

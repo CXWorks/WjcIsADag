@@ -11,6 +11,8 @@ import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
 import rmiImpl.financedata.PaymentDataImpl;
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 import util.R;
 
 import java.net.MalformedURLException;
@@ -25,6 +27,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,8 +39,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	/** 接口的名称，RMI绑定时候的名称 */
 	public static final String NAME = "StoreData";
 
-	private String Store_In;
-	private String Store_Out;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 	private String today = "";// 格式eg.2015-11-22
@@ -46,8 +47,6 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	public StoreFormDataImpl() throws RemoteException, MalformedURLException {
 		super();
-		Store_In = "store_in";
-		Store_Out = "store_out";
 		conn = ConnecterHelper.getConn();
 
 		// 为today和ID_MAX初始化
@@ -64,13 +63,18 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage insertStoreInPO(StoreInPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Store_In
-				+ "`(formID,formState,orderID,date,destination,location,money,date_and_unit) " + "values('"
-				+ po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
-				+ po.getDateForSQL().toString() + "','" + po.getDestination() + "','"
-				+ po.getLocation().getLocationForSQL() + "','" + po.getMoney() + "','" + po.getFormID().substring(2, 17)
-				+ "')";
-
+		String insert = MySql.insert(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("orderID", po.getOrderID());
+				put("date", po.getDateForSQL().toString());
+				put("destination", po.getDestination());
+				put("location", po.getLocation().getLocationForSQL());
+				put("money", po.getMoney());
+				put("date_and_unit", po.getFormID().substring(2, 17));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -91,13 +95,20 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage insertStoreOutPO(StoreOutPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String insert = "insert into `" + Store_Out
-				+ "`(formID,formState,orderID,date,destination,transportation,transID,money,location,date_and_unit) "
-				+ "values('" + po.getFormID() + "','" + po.getFormState().toString() + "','" + po.getOrderID() + "','"
-				+ po.getDateForSQL().toString() + "','" + po.getDestination() + "','"
-				+ po.getTransportation().toString() + "','" + po.getTransID() + "','" + po.getMoney() + "','"
-				+ po.getLocation().getLocationForSQL() + "','" + po.getFormID().substring(2, 17) + "')";
-
+		String insert = MySql.insert(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("formID", po.getFormID());
+				put("formState", po.getFormState().toString());
+				put("orderID", po.getOrderID());
+				put("date", po.getDateForSQL().toString());
+				put("destination", po.getDestination());
+				put("transportation", po.getTransportation().toString());
+				put("transID", po.getTransID());
+				put("money", po.getMoney());
+				put("location", po.getLocation().getLocationForSQL());
+				put("date_and_unit", po.getFormID().substring(2, 17));
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
@@ -118,7 +129,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage deleteStoreInPO(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Store_In + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -133,7 +148,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage deleteStoreOutPO(String id) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String delete = "delete from `" + Store_Out + "` where `formID` = '" + id + "'";
+		String delete = MySql.delete(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -170,7 +189,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage clearStoreInPO() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Store_In + "`";
+		String clear = MySql.delete(TableEnum.STORE_IN, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -185,7 +204,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	@Override
 	public OperationMessage clearStoreOutPO() throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String clear = "delete from `" + Store_Out + "`";
+		String clear = MySql.delete(TableEnum.STORE_OUT, null);
 		try {
 			statement = conn.prepareStatement(clear);
 			statement.executeUpdate();
@@ -201,8 +220,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	public String newIDStoreInPO(String unitID) throws RemoteException {
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
-		target = unitID + target;// 开具单位编号+当天日期
+		final String target = unitID + temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// 当前日期与缓存日期一致
 		if (temp.equalsIgnoreCase(today)) {
@@ -213,7 +231,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 		// 当前日期与缓存日期不一致
 		today = temp;
-		String selectAll = "select * from `" + Store_In + "` where `date_and_unit` = '" + target + "'";
+		String selectAll = MySql.select(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
@@ -237,8 +259,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	public String newIDStoreOutPO(String unitID) throws RemoteException {
 		ResultSet rs = null;
 		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String target = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
-		target = unitID + target;// 开具单位编号+当天日期
+		final String target = unitID + temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// 当前日期与缓存日期一致
 		if (temp.equalsIgnoreCase(today)) {
@@ -249,8 +270,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 		// 当前日期与缓存日期不一致
 		today = temp;
-		String selectAll = "select * from `" + Store_Out + "` where `date_and_unit` = '" + target + "'";
-		try {
+		String selectAll = MySql.select(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("date_and_unit", target);
+			}
+		});		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
@@ -271,7 +295,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public StoreInPO getStoreInPO(String id) throws RemoteException {
-		String select = "select * from `" + Store_In + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		StoreInPO result = null;
 		try {
@@ -292,7 +320,11 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public StoreOutPO getStoreOutPO(String id) throws RemoteException {
-		String select = "select * from `" + Store_Out + "` where `formID` = '" + id + "'";
+		String select = MySql.select(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("formID", id);
+			}
+		});
 		ResultSet rs = null;
 		StoreOutPO result = null;
 		try {
@@ -314,7 +346,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
-		String selectAll = "select * from `" + Store_In + "`";
+		String selectAll = MySql.select(TableEnum.STORE_IN,null);
 		ResultSet rs = null;
 		StoreInPO temp = null;
 		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
@@ -339,7 +371,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
-		String selectAll = "select * from `" + Store_Out + "`";
+		String selectAll = MySql.select(TableEnum.STORE_OUT,null);
 		ResultSet rs = null;
 		StoreOutPO temp = null;
 		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
@@ -365,10 +397,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
-		String selectIn = "select * from `" + Store_In + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000 + "' > UNIX_TIMESTAMP(date)";
-		String selectOut = "select * from `" + Store_Out + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(date) " + "and '" + end.getTime().getTime() / 1000 + "' > UNIX_TIMESTAMP(date)";
+		String selectIn = MySql.time(TableEnum.STORE_IN, "date", start, end);
+		String selectOut = MySql.time(TableEnum.STORE_OUT, "date", start, end);
 		ResultSet rs = null;
 		StoreInPO in = null;
 		StoreOutPO out = null;

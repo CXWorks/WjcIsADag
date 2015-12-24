@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,11 +24,12 @@ import model.store.StoreModel;
 import model.store.StoreModelOperation;
 import rmi.storedata.StoreModelDataService;
 import database.ConnecterHelper;
+import database.MySql;
 import database.RMIHelper;
+import database.enums.TableEnum;
 
 public class StoreModelDataImpl extends UnicastRemoteObject implements StoreModelDataService {
 
-	private String Table_Name = "";
 	private String area = "";
 	private Connection conn = null;
 	private PreparedStatement statement = null;
@@ -36,7 +38,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	public StoreModelDataImpl() throws RemoteException {
 		super();
-		Table_Name = "store_model";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -60,8 +61,12 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	@Override
 	public StoreArea getArea(String centerID, StoreAreaCode code) throws RemoteException {
 		this.setTableName(code);
-		String selectAll = "select * from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '"
-				+ area + "'";
+		String selectAll = MySql.select(TableEnum.STORE_MODEL, new HashMap<String, String>() {
+			{
+				put("centerID", centerID);
+				put("area", area);
+			}
+		});
 		ResultSet rs = null;
 		StoreArea result = null;
 		StoreLocation tmp = null;
@@ -101,8 +106,17 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		OperationMessage result = new OperationMessage();
 		try {
 			for (int i = 1; i <= NUM; i++) {
-				String insert = "insert into " + Table_Name + "(centerID,area,row,shelf,position,orderID) " + "values('"
-						+ centerID + "','" + area + "','" + row + "','" + shelf + "','" + i + "','" + "" + "')";
+				final String tmp = i + "";
+				String insert = MySql.insert(TableEnum.STORE_MODEL, new HashMap<String, String>() {
+					{
+						put("centerID", centerID);
+						put("area", area);
+						put("row", row + "");
+						put("shelf", shelf + "");
+						put("position", tmp + "");
+						put("orderID", "");
+					}
+				});
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();
 			}
@@ -120,8 +134,14 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 			throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		this.setTableName(code);
-		String delete = "delete from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
-				+ "' and `row` = '" + row + "' and `shelf` = '" + shelf + "'";
+		String delete = MySql.delete(TableEnum.STORE_MODEL, new HashMap<String, String>() {
+			{
+				put("centerID", centerID);
+				put("area", area);
+				put("row", row + "");
+				put("shelf", shelf + "");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
@@ -150,9 +170,16 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 	public OperationMessage setLocation(String centerID, StoreLocation location) throws RemoteException {
 		this.setTableName(location.getArea());
 		OperationMessage result = new OperationMessage();
-		String update = "update `" + Table_Name + "` set `orderID` = '" + location.getOrderID()
-				+ "' where `centerID` = '" + centerID + "' and `area` = '" + area + "' and `row` = '" + location.getRow()
-				+ "' and `shelf` = '" + location.getShelf() + "' and `position` = '" + location.getPosition() + "'";
+		String update = MySql.update(TableEnum.STORE_MODEL, "orderID", location.getOrderID(),
+				new HashMap<String, String>() {
+					{
+						put("centerID", centerID);
+						put("area", area);
+						put("row", location.getRow() + "");
+						put("shelf", location.getShelf() + "");
+						put("position", location.getPosition() + "");
+					}
+				});
 		try {
 			statement = conn.prepareStatement(update);
 			statement.executeUpdate();
@@ -164,13 +191,27 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		return result;
 	}
 
+	public static void main(String[] args) throws RemoteException {
+		StoreModelDataImpl t = new StoreModelDataImpl();
+
+		StoreLocation location = new StoreLocation(StoreAreaCode.FLEX, 1, 1, 1, "hhh");
+		t.setLocation("0250001", location);
+	}
+
 	@Override
 	public String getLocation(String centerID, StoreAreaCode code, int row, int shelf, int position)
 			throws RemoteException {
 		this.setTableName(code);
 		ResultSet rs = null;
-		String select = "select * from `" + Table_Name + "` where `centerID` = '" + centerID + "' and `area` = '" + area
-				+ "' and `row` = '" + row + "' and `shelf` = '" + shelf + "' and `position` = '" + position + "'";
+		String select = MySql.select(TableEnum.STORE_MODEL, new HashMap<String, String>() {
+			{
+				put("centerID", centerID);
+				put("area", area);
+				put("row", row + "");
+				put("shelf", shelf + "");
+				put("position", position + "");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
@@ -185,7 +226,7 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 
 	@Override
 	public List<StoreModel> getModels() throws RemoteException {
-		String selectAll = "select * from `" + Table_Name + "`";
+		String selectAll = MySql.select(TableEnum.STORE_MODEL, null);
 		ResultSet rs = null;
 		StoreModel temp = null;
 		List<StoreModel> result = new ArrayList<StoreModel>();
@@ -210,16 +251,17 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		return result;
 	}
 
-	public static void main(String[] args) {
-		try {
-			StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
-			StoreLocation location = new StoreLocation(StoreAreaCode.ROAD, 1, 1, 1, "1208000001");
-			 tDataImpl.setLocation("0250001", location);
-//			tDataImpl.getLocation("0250001", StoreAreaCode.ROAD, 1, 1, 1);
+	// public static void main(String[] args) {
+	// try {
+	// StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
+	// StoreLocation location = new StoreLocation(StoreAreaCode.ROAD, 1, 1, 1,
+	// "1208000001");
+	// tDataImpl.setLocation("0250001", location);
+	//// tDataImpl.getLocation("0250001", StoreAreaCode.ROAD, 1, 1, 1);
+	//
+	// } catch (RemoteException e) {
+	// e.printStackTrace();
+	// }
 
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-
-	}
+	// }
 }
