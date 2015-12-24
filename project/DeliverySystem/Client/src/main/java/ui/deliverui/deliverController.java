@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import message.OperationMessage;
 import bl.blService.deliverblService.DeliverBLService;
@@ -14,6 +15,7 @@ import tool.ui.OrderVO2ColumnHelper;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R.string;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import javafx.beans.property.SimpleStringProperty;
@@ -44,105 +46,101 @@ public class deliverController {
 	public DatePicker date_DatePicker;
 	public ChoiceBox<String> postman_Box;
 
-	private String idToSend="";
-	private String postman= new String();
+	private String idToSend = "";
+	private String postman = new String();
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
-
 	ArrayList<String> toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
-	ArrayList<String> postmans= deliverBLService.getPostman(UserInfo.getInstitutionID());
+	private ArrayList<String> alreadySend = new ArrayList<String>();
+	ArrayList<String> postmans = deliverBLService.getPostman(UserInfo.getInstitutionID());
 
-//	ArrayList<String> toSend = new ArrayList<String>();
-//	ArrayList<String> postmans = new ArrayList<String>();
+	// ArrayList<String> toSend = new ArrayList<String>();
+	// ArrayList<String> postmans = new ArrayList<String>();
 
 	private InformController informController;
 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
-        Pane pane = loader.load();
-        deliverController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
+		Pane pane = loader.load();
+		deliverController controller = loader.getController();
+		controller.informController = InformController.newInformController(pane);
 
-        return controller.informController.stackPane;
+		return controller.informController.stackPane;
 	}
 
-
-
-
 	@FXML
-	public void initialize(){
-//		toSend.add("123"); toSend.add("456");toSend.add("789");
-//		postmans.add("wjc");postmans.add("cx");
+	public void initialize() {
+		// toSend.add("123"); toSend.add("456");toSend.add("789");
+		// postmans.add("wjc");postmans.add("cx");
 
 		postman_Box.setItems(FXCollections.observableArrayList(postmans));
 		postman_Box.setValue(postman_Box.getItems().get(0));
-		postman_Box.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					postman = newValue.toString();
-				}
-				);
-//		clear(null);
+		postman_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			postman = newValue.toString();
+		});
+		// clear(null);
 		date_DatePicker.setValue(LocalDate.now());
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
-		ids_ListView.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					// TODO test
-					System.out.println("selected " + newValue.toString());
-					idToSend = newValue;
-					id_Field.setText(newValue.toString());
-					fillOrderTable();
-				}
-				);
-        OrderVO2ColumnHelper.setKeyColumn(key_Column);
-        OrderVO2ColumnHelper.setValueColumn(value_Column);
+		ids_ListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			// TODO test
+			System.out.println("selected " + newValue.toString());
+			idToSend = newValue;
+			id_Field.setText(newValue.toString());
+			fillOrderTable();
+		});
+		OrderVO2ColumnHelper.setKeyColumn(key_Column);
+		OrderVO2ColumnHelper.setValueColumn(value_Column);
 	}
 
-    private void fillOrderTable(){
-        OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
+	private void fillOrderTable() {
+		OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
 
-//        OrderVO orderVO =
-//                new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
-//                        "18351890356", "13724456739", "3", "图书", "", "", "", null, null, null,
-//                        DeliverTypeEnum.NORMAL, PackingEnum.BAG);
+		// OrderVO orderVO =
+		// new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
+		// "18351890356", "13724456739", "3", "图书", "", "", "", null, null,
+		// null,
+		// DeliverTypeEnum.NORMAL, PackingEnum.BAG);
 
-        info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
-    }
+		info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+	}
 
-    public void refresh(ActionEvent actionEvent){
+	public void refresh(ActionEvent actionEvent) {
 
-    	ids_ListView.getItems().clear();
-    	toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
-    	ids_ListView.setItems(FXCollections.observableArrayList(toSend));
-    }
+		ids_ListView.getItems().clear();
+		toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
+		toSend = new ArrayList<String>(toSend.stream().filter(string -> {
+			return !alreadySend.contains(string);
+		}).collect(Collectors.toList()));
+		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
+	}
 
-
-
-	public void search(ActionEvent actionEvent){
+	public void search(ActionEvent actionEvent) {
 		String filter = id_Search_Field.getText();
 
-        OrderVO orderVO = deliverBLService.getOrderVO(filter);
-        info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+		OrderVO orderVO = deliverBLService.getOrderVO(filter);
+		info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 
-        ids_ListView.setItems(FXCollections.observableArrayList(filter));
-
+		ids_ListView.setItems(FXCollections.observableArrayList(filter));
 
 	}
 
 	public void commit(ActionEvent actionEvent) {
-		OperationMessage msg = deliverBLService.submit(generateVO(deliverBLService.newID()));
-
-		if(msg.operationResult){
+		DeliverVO vo = generateVO(deliverBLService.newID());
+		OperationMessage msg = deliverBLService.submit(vo);
+		alreadySend.add(vo.getOrderID());
+		if (msg.operationResult) {
 			System.out.println("commit successfully");
 			clear(null);
 			refresh(null);
-		}else{
+		} else {
 			System.out.println("commit fail: " + msg.getReason());
 		}
 	}
 
-	private DeliverVO generateVO(String formID){
+	private DeliverVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(date_DatePicker.getValue());
-		return new DeliverVO(formID, id_Field.getText(),calendar,postman_Box.getValue().toString(),UserInfo.getUserID());
+		return new DeliverVO(formID, id_Field.getText(), calendar, postman_Box.getValue().toString(),
+				UserInfo.getUserID());
 	}
 
 	public void clear(ActionEvent actionEvent) {
