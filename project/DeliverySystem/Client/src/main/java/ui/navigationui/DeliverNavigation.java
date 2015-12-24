@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.deliverui.deliverController;
+import ui.messageui.CheckMessageController;
 import ui.orderui.NewOrderController;
 import ui.orderui.PeopleReceiveFormController;
 
@@ -19,7 +20,8 @@ public class DeliverNavigation {
         Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
                 new Pair<String, Parent>("新建订单", NewOrderController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
+                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch()),
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         return node;

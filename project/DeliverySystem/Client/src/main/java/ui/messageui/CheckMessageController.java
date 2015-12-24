@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import message.ChatMessage;
+import message.OperationMessage;
 import tool.time.TimeConvert;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.RevenueFormController;
@@ -25,7 +26,7 @@ import javafx.scene.layout.Pane;
 /**
  * Created by Sissel on 2015/11/27.
  */
-public class CheckMessageController {
+public class CheckMessageController implements Runnable{
 	public TableView<ChatMessage> message_View;
 //    public TableColumn<ChatMessage,String> check_TableColumn;
     public TableColumn<ChatMessage,String> time_TableColumn;
@@ -33,7 +34,6 @@ public class CheckMessageController {
 
 
     AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
-    ArrayList<ChatMessage> chatMessage=accountblremindService.receive(UserInfo.getUserID());
 
     private InformController informController;
 
@@ -49,15 +49,15 @@ public class CheckMessageController {
     @FXML
     public void initialize(){
 
-    	message_View.setItems(
-                FXCollections.observableArrayList(chatMessage)
-                		);
+    	
     	time_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(TimeConvert.getDisplayDate(cellData.getValue().getTime()))
                 );
     	message_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getMessage())
                 );
+    	Thread checkThread=new Thread(this);
+    	checkThread.start();
     }
 
 
@@ -72,4 +72,26 @@ public class CheckMessageController {
     public void delete(ActionEvent actionEvent) {
 
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(30000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			OperationMessage res = accountblremindService.checkMessage(UserInfo
+					.getUserID());
+			if (res.operationResult) {
+				ArrayList<ChatMessage> chatMessages = accountblremindService
+						.receive(UserInfo.getUserID());
+				message_View.setItems(FXCollections
+						.observableList(chatMessages));
+			}
+		}
+	}
 }
