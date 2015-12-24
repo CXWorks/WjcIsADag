@@ -3,6 +3,7 @@ package bl.blImpl.transportbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
@@ -100,18 +101,16 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 			CompanyDataHallService companyDataHallService=CacheHelper.getCompanyDataHallService();
 			try {
 				ArrayList<CenterPO> centerPOs=companyDataCenterService.getCenter();
-				for (CenterPO centerPO : centerPOs) {
-					if (centerPO.getCenterID()!=centerID) {
-						ans.add(centerPO.getCenterID());
-					}
-				}
+				ans.addAll(centerPOs.stream()
+						.map(cen->cen.getCenterID())
+						.filter(id->!id.equalsIgnoreCase(centerID))
+						.collect(Collectors.toList()));
 				//
 				ArrayList<HallPO> hallPOs=companyDataHallService.getHall();
-				for (HallPO hallPO : hallPOs) {
-					if (hallPO.getNearCenterID()==centerID) {
-						ans.add(hallPO.getHallID());
-					}
-				}
+				ans.addAll(hallPOs.stream()
+						.map(hall->hall.getNearCenterID())
+						.filter(id->id.equalsIgnoreCase(centerID))
+						.collect(Collectors.toList()));
 				return ans;
 			} catch (RemoteException e) {
 				e.printStackTrace();
