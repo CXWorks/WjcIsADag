@@ -72,6 +72,7 @@ public class InitializationBLController implements InitializationBLService {
 
     public List<BankAccountVO> getAllAccounts() {
     	ArrayList<BankAccountVO> bankAccountVOs=initialDataVO.getBankAccounts();
+
     	return bankAccountVOs;
     }
 
@@ -86,6 +87,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
+    	System.out.println("_____________________________________________---------------------------");
         boolean re=initialDataVO.getBankAccounts().add(avo);
         return new OperationMessage(re,null);
 
@@ -711,7 +713,7 @@ public class InitializationBLController implements InitializationBLService {
 					||city.getID().equalsIgnoreCase(city2dvo.getID());
 			});
 		return new OperationMessage();
-		
+
 	}
 
 	/* (non-Javadoc)

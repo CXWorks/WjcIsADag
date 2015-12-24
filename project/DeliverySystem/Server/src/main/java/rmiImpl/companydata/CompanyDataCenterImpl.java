@@ -105,10 +105,18 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 				put("date", new Timestamp(System.currentTimeMillis()).toString());
 			}
 		});
+		String warningline = MySql.insert(TableEnum.WARNINGLINE, new HashMap<String, String>() {
+			{
+				put("name", po.getCenterID());
+				put("value", "80");
+			}
+		});
 		try {
 			statement = conn.prepareStatement(insert);
 			statement.executeUpdate();
 			statement = conn.prepareStatement(tack);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(warningline);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "新建时出错：");

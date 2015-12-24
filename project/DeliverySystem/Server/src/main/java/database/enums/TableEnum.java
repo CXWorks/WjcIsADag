@@ -7,6 +7,7 @@ public enum TableEnum {
 	CENTER("center"),
 	CENTEROUT("centerout"),
 	CITY2D("city2d"),
+	DRIVER("driver"),
 	DELIVER("deliver"),
 	HALL("hall"),
 	LOAD("load"),

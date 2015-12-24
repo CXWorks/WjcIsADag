@@ -9,8 +9,8 @@ public class StoreArea implements Serializable {
 	private ArrayList<StoreLocation> list;
 	private int rowNum = 50;
 	private final int shelfForEachRow = 50;
-	
-	
+
+
 
 	public double getUsedProportion() {
 		int total = list.size();
@@ -20,7 +20,7 @@ public class StoreArea implements Serializable {
 		int used=(int) list.stream().filter(loca->{return loca.getOrderID().length()>0;}).count();
 		return used/(double)total;
 	}
-	
+
 	public void addShelves(String rowNum,String shelvesNum){
 		int rowN=Integer.parseInt(rowNum);
 		int shelvesN=Integer.parseInt(rowNum);
@@ -31,7 +31,7 @@ public class StoreArea implements Serializable {
 				list.add(new StoreLocation(areaType, rowN, shelvesN, j+1));
 			}
 		}
-		
+
 	}
 
 	public StoreArea(StoreAreaCode areaID, ArrayList<StoreLocation> list) {
@@ -123,12 +123,12 @@ public class StoreArea implements Serializable {
 	public ArrayList<String> getShelfLabel() {
 		ArrayList<String> result = new ArrayList<String>();
 		for (StoreLocation tmp : list) {
-			if(list.indexOf(tmp.getRow() + "-" + tmp.getShelf())==-1)
+			if(result.indexOf(tmp.getRow() + "-" + tmp.getShelf())==-1)
 				result.add(tmp.getRow() + "-" + tmp.getShelf());
 		}
 		return result;
 	}
-	
+
 	public void addRows(String rowNum,String shelvesNum){
 		int row=this.getRowNumber();
 		for (int i = 0; i < Integer.parseInt(rowNum); i++) {

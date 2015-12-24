@@ -61,7 +61,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 				put("city", po.getCity());
 				put("area", po.getArea());
 				put("nearCenterID", po.getNearCenterID());
-				put("cityID", po.getCity().substring(0, 3));
+				put("cityID", po.getHallID().substring(0, 3));
 			}
 		});
 

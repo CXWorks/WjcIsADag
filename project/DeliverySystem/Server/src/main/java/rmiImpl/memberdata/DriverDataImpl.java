@@ -41,7 +41,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
-		String selectAll = MySql.select(TableEnum.DELIVER, null);
+		String selectAll = MySql.select(TableEnum.DRIVER, null);
 		ResultSet rs = null;
 		DriverPO temp = null;
 		ArrayList<DriverPO> result = new ArrayList<DriverPO>();
@@ -77,7 +77,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	@Override
 	public OperationMessage addStaff(DriverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String add = MySql.insert(TableEnum.DELIVER, new HashMap<String, String>() {
+		String add = MySql.insert(TableEnum.DRIVER, new HashMap<String, String>() {
 			{
 				put("ID", po.getID());
 				put("name", po.getName());
@@ -106,7 +106,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	@Override
 	public OperationMessage dismissStaff(DriverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
-		String dismiss = MySql.delete(TableEnum.DELIVER, new HashMap<String, String>() {
+		String dismiss = MySql.delete(TableEnum.DRIVER, new HashMap<String, String>() {
 			{
 				put("ID", po.getID());
 			}
@@ -125,7 +125,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String institutionID) throws RemoteException {
-		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+		String selectAll = MySql.select(TableEnum.DRIVER, new HashMap<String, String>() {
 			{
 				put("institutionID", institutionID);
 			}
@@ -165,7 +165,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	@Override
 	public DriverPO getPerson(String ID) throws RemoteException {
-		String select = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+		String select = MySql.select(TableEnum.DRIVER, new HashMap<String, String>() {
 			{
 				put("ID", ID);
 			}
@@ -195,7 +195,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	 */
 	@Override
 	public ArrayList<DriverPO> getStaffByInstitution(String institutionID) {
-		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+		String selectAll = MySql.select(TableEnum.DRIVER, new HashMap<String, String>() {
 			{
 				put("institutionID", institutionID);
 			}

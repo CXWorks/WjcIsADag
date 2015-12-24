@@ -79,6 +79,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements MemberDataServ
 		String add = MySql.insert(TableEnum.STAFF, new HashMap<String, String>() {
 			{
 				put("ID", po.getID());
+				put("staff", po.getStaff().toString());
 				put("name", po.getName());
 				put("age", po.getAge() + "");
 				put("personID", po.getPersonID());
