@@ -23,6 +23,7 @@ public enum TableEnum {
 	STORE_IN("store_in"),
 	STORE_MODEL("store_model"),
 	STORE_OUT("store_out"),
+	TACK("tack"),
 	WARNINGLINE("warningline");
 
 	private String name;

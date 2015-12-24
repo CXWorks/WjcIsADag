@@ -26,6 +26,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.storedata.TackDataService;
 import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
@@ -65,8 +66,7 @@ public class RMIHelper {
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
 	private static SystemDataService systemDataService;
-
-
+	private static TackDataService tackDataService;
 
 
 	public synchronized static void	init() throws NetInitException {
@@ -105,6 +105,7 @@ public class RMIHelper {
 		transportDataService=(CenterOutDataService)Naming.lookup(url+"CenterOutDataService");
 		loadDataService=(LoadDataService)Naming.lookup(url+"LoadDataService");
 		systemDataService=(SystemDataService)Naming.lookup(url+systemDataService.NAME);
+		tackDataService=(TackDataService)Naming.lookup(url+"TackDataService");
 
 	}
 	public static LogDataService getLogDataService(){
@@ -183,4 +184,8 @@ public class RMIHelper {
 	public static SystemDataService getSystemDataService(){
 		return systemDataService;
 	}
+	public static TackDataService getTackDataService() {
+		return tackDataService;
+	}
+
 }

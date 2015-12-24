@@ -25,6 +25,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.storedata.TackDataService;
 import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
@@ -62,6 +63,7 @@ public class CacheHelper {
 
 	private static LogDataService logDataService;
 	private static SystemDataService systemDataService;
+	private static TackDataService tackDataService;
 
 	public static void  initializeLogin() throws NetInitException{
 		RMIHelper.init();
@@ -76,10 +78,10 @@ public class CacheHelper {
 		memberDataService_driver=RMIHelper.getMemberDataService_driver();
 		memberDataService_staff=RMIHelper.getMemberDataService_staff();
 	}
-	
+
 	//
 	public static void initCacheService(){
-		
+
 		chatRemindService=RMIHelper.getChatRemindService();
 		companyDataCarService=RMIHelper.getCompanyDataCarService();
 		companyDataCenterService=RMIHelper.getCompanyDataCenterService();
@@ -93,20 +95,20 @@ public class CacheHelper {
 		}else {
 			configurationDataService=RMIHelper.getConfigurationDataService();
 		}
-		
+
 		//
-		
+
 		examineManageService=RMIHelper.getExamineManageService();
 		examineSubmitService=RMIHelper.getExamineSubmitService();
 		bankAccountDataService=RMIHelper.getBankAccountDataService();
 		paymentDataService=RMIHelper.getPaymentDataService();
-		
+
 		initialDataService=RMIHelper.getInitialDataService();
-		
-		
+
+
 		storeModelDataService=RMIHelper.getStoreModelDataService();
 		logDataService=RMIHelper.getLogDataService();
-		
+
 		initialDataService=RMIHelper.getInitialDataService();
 		systemDataService=RMIHelper.getSystemDataService();
 	}

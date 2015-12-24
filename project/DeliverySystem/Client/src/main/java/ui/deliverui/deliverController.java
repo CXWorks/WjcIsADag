@@ -108,9 +108,10 @@ public class deliverController {
 
 		ids_ListView.getItems().clear();
 		toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
-		toSend = new ArrayList<String>(toSend.stream().filter(string -> {
-			return !alreadySend.contains(string);
-		}).collect(Collectors.toList()));
+		toSend = new ArrayList<String>(
+		toSend.stream().filter(string ->
+			!alreadySend.contains(string)
+		).collect(Collectors.toList()));
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 	}
 

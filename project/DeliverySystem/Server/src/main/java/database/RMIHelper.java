@@ -7,6 +7,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import javafx.scene.control.Tab;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
@@ -27,6 +28,7 @@ import rmi.orderdata.OrderDataService;
 import rmi.receivedata.ReceiveDataService;
 import rmi.storedata.StoreFormDataService;
 import rmi.storedata.StoreModelDataService;
+import rmi.storedata.TackDataService;
 import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
@@ -50,6 +52,7 @@ import rmiImpl.orderdata.OrderDataProxy;
 import rmiImpl.receivedata.ReceiveDataProxy;
 import rmiImpl.storedata.StoreFormDataProxy;
 import rmiImpl.storedata.StoreModelDataProxy;
+import rmiImpl.storedata.TackDataProxy;
 import rmiImpl.systemdata.LogDataProxy;
 import rmiImpl.transportdata.CenterOutDataProxy;
 import rmiImpl.transportdata.LoadDataProxy;
@@ -88,7 +91,8 @@ public class RMIHelper {
 	private static LogDataService logDataService;
 	private static CenterOutDataService transportDataService;
 	private static LoadDataService loadDataService;
-	public static SystemDataService systemDataService;
+	private static SystemDataService systemDataService;
+	private static TackDataService tackDataService;
 
 	public static void createService() throws RemoteException, MalformedURLException, ClassNotFoundException {
 		accountDataService = new AccountDataProxy();
@@ -108,7 +112,7 @@ public class RMIHelper {
 		initialDataService = initialDataProxy;
 		systemDataService=initialDataProxy;
 		//
-		
+
 		memberDataService_driver = new DriverDataProxy();
 		memberDataService_staff = new StaffDataProxy();
 		orderDataService = new OrderDataProxy();
@@ -118,6 +122,7 @@ public class RMIHelper {
 		logDataService = new LogDataProxy();
 		transportDataService = new CenterOutDataProxy();
 		loadDataService = new LoadDataProxy();
+		tackDataService = new TackDataProxy();
 	}
 
 	public static void initializeRMI() throws RemoteException, MalformedURLException, ClassNotFoundException {
@@ -148,6 +153,7 @@ public class RMIHelper {
 		Naming.rebind(url + "CenterOutDataService",transportDataService);
 		Naming.rebind(url + "LoadDataService",loadDataService);
 		Naming.rebind(url+systemDataService.NAME, systemDataService);
+		Naming.rebind(url + "TackDataService",tackDataService);
 	}
 
 	public static void closeServer() throws RemoteException, MalformedURLException, NotBoundException {
