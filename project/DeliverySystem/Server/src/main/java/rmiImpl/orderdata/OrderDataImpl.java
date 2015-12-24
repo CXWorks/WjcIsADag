@@ -243,7 +243,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 	}
 
 	@Override
-	public OperationMessage setFinish(String orderID) throws RemoteException {
+	public OperationMessage setFinished(String orderID) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String setFinished = MySql.update(TableEnum.ORDER, "finished", "1", new HashMap<String, String>() {
 			{

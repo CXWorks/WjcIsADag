@@ -94,6 +94,13 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return result;
 	}
 
+//	public static void main(String[] args) throws RemoteException {
+//		DeliverDataImpl t = new DeliverDataImpl();
+//		DeliverPO po = t.getFormPO("040251001201512240000006");
+//		po.setFinished(false);
+//		t.update(po);
+//	}
+
 	public OperationMessage update(DeliverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		if (!this.delete(po.getFormID()).operationResult)
@@ -181,7 +188,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 	}
 
 	public ArrayList<DeliverPO> getAll() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.DELIVER,null);
+		String selectAll = MySql.select(TableEnum.DELIVER, null);
 		ResultSet rs = null;
 		DeliverPO temp = null;
 		ArrayList<DeliverPO> result = new ArrayList<DeliverPO>();
@@ -221,7 +228,6 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
 				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
 				String last = FormIDs.get(FormIDs.size() - 1);
-				 System.out.println(last +"hhh");
 				if (last.substring(0, 9).equalsIgnoreCase("03" + HallID)) {
 					result.add(rs.getString("formID"));
 				}
@@ -258,4 +264,5 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 
 		return result;
 	}
+
 }

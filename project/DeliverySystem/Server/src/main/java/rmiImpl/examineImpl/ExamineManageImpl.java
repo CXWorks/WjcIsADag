@@ -114,7 +114,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				DeliverPO dPo = (DeliverPO) tmp;
 				result = pass_helper.getDeliverDataService().insert(dPo);
 				pass_helper.getOrderDataService().addFormID(dPo.getOrderID(), tmp.getFormID());
-				pass_helper.getOrderDataService().setFinish(dPo.getOrderID());
+				pass_helper.getOrderDataService().setFinished(dPo.getOrderID());
 				break;
 			case ORDER:
 				result = pass_helper.getOrderDataService().insert((OrderPO) tmp);

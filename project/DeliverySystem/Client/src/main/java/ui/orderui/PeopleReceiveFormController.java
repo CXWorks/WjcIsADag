@@ -66,12 +66,16 @@ public class PeopleReceiveFormController {
 	}
 
 	public void search(ActionEvent actionEvent) {
-		String id = id_Field.getText();
-		if (id.isEmpty()) {
-			orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());
-			order_TableView.getItems().clear();
-			order_TableView.getItems().addAll(orderVOs);
-		}
+//		String id = id_Field.getText();
+//		if (id.isEmpty()) {
+//		}
+//		// TODO
+	}
+
+	public void refresh(ActionEvent actionEvent) {
+		orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());
+		order_TableView.getItems().clear();
+		order_TableView.getItems().addAll(orderVOs);
 	}
 
 	public void commit(ActionEvent actionEvent) {

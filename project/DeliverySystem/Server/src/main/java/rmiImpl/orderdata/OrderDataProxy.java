@@ -82,10 +82,10 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 	}
 
 	@Override
-	public OperationMessage setFinish(String orderID) throws RemoteException {
+	public OperationMessage setFinished(String orderID) throws RemoteException {
 		// TODO Auto-generated method stub
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return orderDataService.setFinish(orderID);
+			return orderDataService.setFinished(orderID);
 		return null;
 	}
 

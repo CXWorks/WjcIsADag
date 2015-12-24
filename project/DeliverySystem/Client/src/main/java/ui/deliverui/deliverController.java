@@ -96,7 +96,7 @@ public class deliverController {
         OrderVO2ColumnHelper.setKeyColumn(key_Column);
         OrderVO2ColumnHelper.setValueColumn(value_Column);
 	}
-	
+
     private void fillOrderTable(){
         OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
 
@@ -111,17 +111,8 @@ public class deliverController {
     public void refresh(ActionEvent actionEvent){
 
     	ids_ListView.getItems().clear();
+    	toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
     	ids_ListView.setItems(FXCollections.observableArrayList(toSend));
-		ids_ListView.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					// TODO test
-					System.out.println("selected " + newValue.toString());
-					idToSend = newValue;
-					id_Field.setText(newValue.toString());
-					fillOrderTable();
-				}
-				);
-
     }
 
 

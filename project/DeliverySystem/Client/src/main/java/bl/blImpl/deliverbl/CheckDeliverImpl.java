@@ -14,16 +14,16 @@ import bl.blService.deliverblService.CheckDeliverForm;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
 
-/** 
+/**
  * Client//bl.blImpl.deliverbl//CheckDeliverImpl.java
  * @author CXWorks
  * @date 2015年11月15日 下午4:52:45
- * @version 1.0 
+ * @version 1.0
  */
 public class CheckDeliverImpl implements CheckDeliverForm {
 	private DeliverDataService deliverDataService;
 	private VOPOFactory vopoFactory;
-	
+
 	public CheckDeliverImpl(VOPOFactory vopoFactory){
 		this.deliverDataService=CacheHelper.getDeliverDataService();
 		this.vopoFactory=vopoFactory;
@@ -47,11 +47,11 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	}
 	public OperationMessage finishDelivery(DeliverVO each) {
 		DeliverPO po;
-		
+
 			po=(DeliverPO)vopoFactory.transVOtoPO(each);
 			po.setFinished(true);
 			try {
-				OperationMessage op=deliverDataService.update(po);
+				deliverDataService.update(po);
 				OrderDataService orderDataService=CacheHelper.getOrderDataService();
 				OrderPO orderPO=orderDataService.getFormPO(each.getOrderID());
 				orderPO.finfished(each.getReceiveDate()	, each.getReceivePeople());
@@ -59,7 +59,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			} catch (RemoteException e) {
 				return new OperationMessage(false, "net error");
 			}
-		
+
 		//
 		return new OperationMessage();
 	}
@@ -90,7 +90,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	/* (non-Javadoc)
 	 * @see bl.blService.deliverblService.CheckDeliverForm#finishDelivery(vo.ordervo.OrderVO)
 	 */
-	
+
 	public OperationMessage finishDelivery(OrderVO orderVO) {
 		OrderDataService orderDataService=CacheHelper.getOrderDataService();
 		OrderPO orderPO=(OrderPO)vopoFactory.transVOtoPO(orderVO);
