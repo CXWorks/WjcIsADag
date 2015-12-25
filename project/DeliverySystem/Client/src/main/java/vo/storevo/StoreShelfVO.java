@@ -38,5 +38,7 @@ public class StoreShelfVO extends InfoVO {
 	public double getUsedProportion() {
 		return usedProportion;
 	}
-
+	public int getUsedNum() {
+		return (int)(usedProportion * 50);
+	}
 }

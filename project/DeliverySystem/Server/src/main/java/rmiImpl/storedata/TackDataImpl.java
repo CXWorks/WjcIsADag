@@ -45,6 +45,7 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 				put("centerID", centerID);
 			}
 		});
+		System.out.println(select);
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);

@@ -60,7 +60,7 @@ public class StoreArea implements Serializable {
 	public ArrayList<StoreLocation> getByShelf(int rowID, int shelf) {
 		ArrayList<StoreLocation> result = new ArrayList<StoreLocation>();
 		for (StoreLocation tmp : list) {
-			if (tmp.getRow() == rowID || tmp.getShelf() == shelf)
+			if (tmp.getRow() == rowID && tmp.getShelf() == shelf)
 				result.add(tmp);
 		}
 		return result;
@@ -68,7 +68,7 @@ public class StoreArea implements Serializable {
 
 	public StoreLocation getByPosition(int rowID, int shelf, int position) {
 		for (StoreLocation tmp : list) {
-			if (tmp.getRow() == rowID || tmp.getShelf() == shelf || tmp.getPosition() == position)
+			if (tmp.getRow() == rowID && tmp.getShelf() == shelf && tmp.getPosition() == position)
 				return tmp;
 		}
 		return null;

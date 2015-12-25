@@ -76,6 +76,18 @@ public class TransitFormController {
 		transitType_ChoiceBox.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> {
 					transitEnum = newValue.getEnum();
+					if(transitEnum==TransportationEnum.TRAIN){
+						transNumber_Label.setText("车次号");
+						cargo_Label.setText("车厢号");
+					}
+					if(transitEnum==TransportationEnum.PLANE){
+						transNumber_Label.setText("航班号");
+						cargo_Label.setText("货柜号");
+					}
+					if(transitEnum==TransportationEnum.CAR){
+						transNumber_Label.setText("车次号");
+						cargo_Label.setText("押运员");
+					}
 				});
 
 		arrival_Box.setItems(FXCollections.observableArrayList(arrivals));

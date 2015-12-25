@@ -27,7 +27,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	private StoreModelDataService storeModelDataService;
 	private StoreWarningChecker storeWarningChecker;
 	public StoreModelBLImpl(){
-		
+
 		this.storeModelDataService=CacheHelper.getStoreModelDataService();
 		this.storeWarningChecker=new StoreWarningChecker();
 	}
@@ -154,5 +154,5 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	public double getWarningLine() {
 		return storeWarningChecker.getWarningLine();
 	}
-	
+
 }
