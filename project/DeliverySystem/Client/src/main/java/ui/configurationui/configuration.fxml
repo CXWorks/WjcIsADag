@@ -14,25 +14,33 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.40601503759398494" layoutY="1.0" prefHeight="410.0" prefWidth="800.0">
+                        <SplitPane dividerPositions="0.4" layoutY="1.0" prefHeight="515.0" prefWidth="970.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView fx:id="cityTableView" layoutX="17.0" layoutY="41.0" prefHeight="323.0" prefWidth="274.0">
+                                    <TableView fx:id="cityTableView" layoutX="45.0" layoutY="57.0" prefHeight="323.0" prefWidth="274.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">
                                       <columns>
                                         <TableColumn fx:id="cityNameColumn" prefWidth="81.0" text="城市" />
                                         <TableColumn fx:id="cityIDColumn" prefWidth="64.0" text="编号" />
                                           <TableColumn fx:id="cityLocationcColumn" prefWidth="128.0" text="坐标" />
                                       </columns>
                                     </TableView>
+                                    <HBox alignment="CENTER" layoutX="80.0" layoutY="443.0" spacing="16.0">
+                                       <children>
+                                          <Label text="距离" />
+                                          <ChoiceBox fx:id="cityChoiceBox" prefHeight="29.0" prefWidth="106.0" GridPane.columnIndex="1" />
+                                          <Label fx:id="cityDistanceLabel" text="0" GridPane.columnIndex="2" />
+                                          <Label text="公里" GridPane.columnIndex="3" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="558.0">
                                  <children>
-                                    <GridPane layoutX="70.0" layoutY="29.0" prefHeight="225.0" prefWidth="208.0">
+                                    <GridPane layoutX="53.0" layoutY="159.0" prefHeight="225.0" prefWidth="208.0">
                                       <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="82.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -51,49 +59,14 @@
                                           <TextField fx:id="cityYTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <GridPane fx:id="distancePane" layoutX="35.0" layoutY="282.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                    <VBox layoutX="372.0" layoutY="174.0" spacing="28.0">
                                        <children>
-                                          <Label text="距离" />
-                                          <ChoiceBox fx:id="cityChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                                          <Label fx:id="cityDistanceLabel" text="0" GridPane.columnIndex="2" />
-                                          <Label text="公里" GridPane.columnIndex="3" />
+                                          <Button layoutX="383.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearCity" text="清空" />
+                                          <Button layoutX="383.0" layoutY="118.0" mnemonicParsing="false" onAction="#clearCity" text="新建" />
+                                          <Button layoutX="383.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteCity" text="删除" />
+                                          <Button layoutX="383.0" layoutY="219.0" mnemonicParsing="false" onAction="#submitCity" text="确认" />
                                        </children>
-                                    </GridPane>
-                                    <GridPane layoutX="35.0" layoutY="340.0" prefHeight="30.0" prefWidth="144.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#clearCity" text="新建" />
-                                          <Button mnemonicParsing="false" onAction="#deleteCity" text="删除" GridPane.columnIndex="1" />
-                                       </children>
-                                    </GridPane>
-                                    <GridPane layoutX="256.0" layoutY="340.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#clearCity" text="清空" />
-                                          <Button mnemonicParsing="false" onAction="#submitCity" text="确认" GridPane.columnIndex="1" />
-                                       </children>
-                                    </GridPane>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                           </items>
@@ -140,11 +113,11 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button layoutX="532.0" layoutY="337.0" mnemonicParsing="false" onAction="#submitPack" text="确认" />
-                        <GridPane layoutX="243.0" layoutY="126.0" prefHeight="159.0" prefWidth="314.0">
+                        <GridPane layoutX="263.0" layoutY="128.0" prefHeight="159.0" prefWidth="314.0">
                           <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

@@ -4,16 +4,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0"  styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StockTackController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StockTackController">
    <children>
-      <Label layoutX="32.0" layoutY="21.0" text="位置" />
-      <Label fx:id="location_Label" layoutX="82.0" layoutY="21.0" text="Label" />
-      <Label layoutX="205.0" layoutY="421.0" text="盘点时间" />
-      <Label fx:id="time_Label" layoutX="271.0" layoutY="421.0" text="2015-11-26 17:32" />
-      <Label fx:id="orderNumber_Label" layoutX="509.0" layoutY="421.0" text="2" />
-      <Label layoutX="437.0" layoutY="421.0" text="当天序号" />
-      <Button layoutX="588.0" layoutY="417.0" mnemonicParsing="false" onAction="#makeStockTack" text="重新盘点" />
-      <Button layoutX="703.0" layoutY="417.0" mnemonicParsing="false" onAction="#exportExcel" text="导出Excel" />
-      <AnchorPane fx:id="content_Pane" layoutX="32.0" layoutY="48.0" />
+      <HBox layoutX="48.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="32.0" layoutY="21.0" text="位置" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
+            <Label fx:id="location_Label" layoutX="94.0" layoutY="48.0" text="Label" />
+         </children>
+      </HBox>
+      <HBox layoutX="399.0" layoutY="482.0" spacing="36.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="268.0">
+         <children>
+            <HBox layoutX="205.0" layoutY="421.0" spacing="8.0">
+               <children>
+                  <Label layoutX="205.0" layoutY="421.0" text="盘点时间" />
+                  <Label fx:id="time_Label" layoutX="271.0" layoutY="421.0" text="2015-11-26 17:32" />
+               </children>
+            </HBox>
+            <HBox layoutX="437.0" layoutY="421.0" spacing="8.0">
+               <children>
+                  <Label layoutX="437.0" layoutY="421.0" text="当天序号" />
+                  <Label fx:id="orderNumber_Label" layoutX="509.0" layoutY="421.0" text="2" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox layoutX="588.0" layoutY="417.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
+         <children>
+            <Button layoutX="588.0" layoutY="417.0" mnemonicParsing="false" onAction="#makeStockTack" text="重新盘点" />
+            <Button layoutX="703.0" layoutY="417.0" mnemonicParsing="false" onAction="#exportExcel" text="导出Excel" />
+         </children>
+      </HBox>
+      <AnchorPane fx:id="content_Pane" layoutX="48.0" layoutY="87.0" prefHeight="364.0" prefWidth="817.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="87.0" />
    </children>
 </AnchorPane>

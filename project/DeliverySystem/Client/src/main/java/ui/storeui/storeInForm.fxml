@@ -4,13 +4,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreInFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreInFormController">
    <children>
-      <Label layoutX="39.0" layoutY="48.0" text="入库信息" />
-      <GridPane layoutX="39.0" layoutY="74.0" prefHeight="273.0" prefWidth="201.0">
+      <Label layoutX="39.0" layoutY="48.0" text="入库信息" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
+      <GridPane layoutX="48.0" layoutY="134.0" prefHeight="273.0" prefWidth="256.0" AnchorPane.bottomAnchor="164.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="104.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="111.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -21,13 +21,13 @@
             <Label text="订单号" />
             <Label fx:id="storeout_DatePicker" text="入库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
-            <DatePicker fx:id="storeIn_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="storeIn_DatePicker" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label layoutX="288.0" layoutY="48.0" text="库存位置" />
-      <TableView fx:id="order_TableView" layoutX="572.0" layoutY="75.0" prefHeight="273.0" prefWidth="201.0">
+      <Label layoutX="387.0" layoutY="48.0" text="库存位置" AnchorPane.leftAnchor="387.0" AnchorPane.topAnchor="48.0" />
+      <TableView fx:id="order_TableView" layoutX="631.0" layoutY="115.0" prefHeight="318.0" prefWidth="201.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="721.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="115.0">
         <columns>
           <TableColumn fx:id="key_Column" prefWidth="75.0" text="项目" />
           <TableColumn fx:id="value_Column" prefWidth="75.0" text="信息" />
@@ -36,11 +36,16 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="572.0" layoutY="48.0" text="订单预览" />
-      <Button layoutX="532.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-      <Button layoutX="653.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-      <Button layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
-      <GridPane layoutX="288.0" layoutY="74.0" prefHeight="273.0" prefWidth="250.0">
+      <Label layoutX="721.0" layoutY="48.0" text="订单预览" AnchorPane.leftAnchor="721.0" AnchorPane.topAnchor="48.0" />
+      <HBox layoutX="519.0" layoutY="467.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
+         <children>
+            <Button layoutX="394.0" layoutY="398.0" mnemonicParsing="false" onAction="#fillPosition" text="自动填充位置" />
+            <Button layoutX="532.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button layoutX="653.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+         </children>
+      </HBox>
+      <GridPane layoutX="387.0" layoutY="104.0" prefHeight="273.0" prefWidth="250.0" AnchorPane.bottomAnchor="164.0" AnchorPane.leftAnchor="387.0" AnchorPane.topAnchor="104.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -62,6 +67,5 @@
             <ChoiceBox fx:id="area_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="394.0" layoutY="398.0" mnemonicParsing="false" onAction="#fillPosition" text="自动填充位置" />
    </children>
 </AnchorPane>

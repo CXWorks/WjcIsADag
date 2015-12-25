@@ -64,7 +64,6 @@ public class ConfigurationController {
 	public TextField cityIDTextField;
 	public TextField cityXTextField;
 	public TextField cityYTextField;
-	public GridPane distancePane;
 	public ChoiceBox<City2DVO> cityChoiceBox;
 	public Label cityDistanceLabel;
 
@@ -227,7 +226,6 @@ public class ConfigurationController {
 		List<City2DVO> chosable=city2dvos.stream().filter(city->{
 			return !city.getID().equalsIgnoreCase(city2dvo.getID());
 		}).collect(Collectors.toList());
-		this.distancePane.setVisible(true);
 		this.cityChoiceBox.setItems(FXCollections.observableList(chosable));
 		this.cityChoiceBox.getSelectionModel().selectedItemProperty().addListener((obser,old,New)->{
 			this.city2=New;
@@ -260,7 +258,6 @@ public class ConfigurationController {
 		bag_Field.setText(Double.toString(packVO.getByType(PackEnum.PACKAGE)));
 	}
 	public void clearCity(){
-		this.distancePane.setVisible(false);
 		this.cityNameTextField.clear();
 		this.cityIDTextField.clear();
 		this.cityXTextField.clear();

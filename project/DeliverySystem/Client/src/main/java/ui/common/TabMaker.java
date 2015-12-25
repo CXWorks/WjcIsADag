@@ -60,7 +60,7 @@ public class TabMaker {
         try {
             MainPaneController controller = newMainPaneController();
             addLeftTabs(controller, list);
-            return controller.getBorderPane();
+            return controller.getOuterPane();
         } catch (IOException e) {
             e.printStackTrace();
             return null;

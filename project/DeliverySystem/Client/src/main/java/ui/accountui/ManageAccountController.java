@@ -3,14 +3,17 @@ package ui.accountui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,6 +27,7 @@ import ui.informui.InformController;
 import vo.accountvo.AccountVO;
 
 public class ManageAccountController {
+    public AnchorPane outerPane;
     private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
     private List<AccountCheckItem> accounts = new ArrayList<>();
 
@@ -71,14 +75,26 @@ public class ManageAccountController {
 
         accounts_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    if(newValue == null){
+                    if (newValue == null) {
                         System.out.println("selected empty");
-                    }else{
+                    } else {
                         System.out.println("selected " + newValue.getVo().getID());
                     }
                 }
         );
         refreshItems(accountBLManageService.getAccountVOs());
+
+        // column width
+        outerPane.widthProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    System.out.println("inner width change to : " + newValue);
+                }
+        );
+
+        ObservableValue<Number> width =  accounts_TableView.widthProperty().subtract(50).divide(3);
+        id_TableColumn.prefWidthProperty().bind(width);
+        password_TableColumn.prefWidthProperty().bind(width);
+        staff_TableColumn.prefWidthProperty().bind(width);
     }
 
     @FXML

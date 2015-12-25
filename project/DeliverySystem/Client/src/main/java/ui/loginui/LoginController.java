@@ -41,15 +41,12 @@ public class LoginController {
 
     private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     private ManageblStaffService manageblStaffService = StaffFactory.getManageService();
-    private InformController informController;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
         Pane content = loader.load();
-        LoginController selfController = loader.getController();
-        selfController.informController = InformController.newInformController(content);
 
-        return selfController.informController.stackPane;
+        return content;
     }
 
 
@@ -71,7 +68,6 @@ public class LoginController {
             }
 
             // TODO : display tips
-            informController.inform("login successfully");
             System.out.println("login successfully");
             Main.logIn();
         }else{

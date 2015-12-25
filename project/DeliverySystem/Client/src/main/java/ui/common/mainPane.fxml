@@ -5,9 +5,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
-   <top>
-      <AnchorPane fx:id="title_Pane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="1146.0" styleClass="background-head" BorderPane.alignment="CENTER">
+
+<AnchorPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
+   <children>
+      <AnchorPane fx:id="title_Pane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="1146.0" styleClass="background-head" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox layoutX="1015.0" layoutY="17.0" spacing="7.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="17.0">
                <children>
@@ -21,15 +22,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-         </children></AnchorPane>
-   </top>
-   <center>
-      <AnchorPane fx:id="content_Pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <FlowPane fx:id="left_TabsPane" alignment="CENTER" prefHeight="541.0" prefWidth="179.0" styleClass="background-left" BorderPane.alignment="CENTER">
+         </children>
+      </AnchorPane>
+      <FlowPane fx:id="left_TabsPane" alignment="CENTER" layoutX="10.0" layoutY="63.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="179.0" styleClass="background-left" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <VBox fx:id="tabs_VBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="179.0" stylesheets="@../css/main.css" />
-         </children></FlowPane>
-   </left>
-</BorderPane>
+         </children>
+      </FlowPane>
+      <AnchorPane fx:id="content_Pane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="70.0" />
+   </children>
+</AnchorPane>

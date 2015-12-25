@@ -1,27 +1,18 @@
 package ui.common;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import main.Main;
-import ui.informui.InformController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
 
-import javax.swing.BorderFactory;
-
-import com.sun.javafx.css.Size;
-
-import bl.clientNetCache.CacheHelper;
 import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
+import util.R;
 
 /**
  * Created by Sissel on 2015/12/19.
@@ -31,43 +22,70 @@ public class MainPaneController {
     public FlowPane left_TabsPane;
     public AnchorPane content_Pane;
     public VBox tabs_VBox;
-    private BorderPane borderPane;
+    public AnchorPane outerPane;
     public Label name_Label;
 
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
-        BorderPane pane = loader.load();
+        AnchorPane pane = loader.load();
         MainPaneController controller = loader.getController();
         controller.init();
-        controller.borderPane = pane;
+        controller.outerPane = pane;;
+
+        // resize setting
+        controller.content_Pane.prefWidthProperty()
+                .bind(Main.primaryStage.widthProperty().subtract(R.ui.LeftTabsWidth));
+        controller.content_Pane.prefHeightProperty()
+                .bind(Main.primaryStage.heightProperty().subtract(R.ui.TitleHeight));
+        controller.left_TabsPane.prefHeightProperty()
+                .bind(Main.primaryStage.heightProperty().subtract(R.ui.TitleHeight));
+        controller.title_Pane.prefWidthProperty()
+                .bind(Main.primaryStage.widthProperty());
 
         return controller;
     }
 
 	public void init() {
-		name_Label.setText(UserInfo.getStaffType().getChinese()+":"+UserInfo.getUserName());
+		name_Label.setText(UserInfo.getStaffType().getChinese() + ":" + UserInfo.getUserName());
 	}
     
     public void addTabButton(String name, Parent content){
         Button tabButton = new Button(name);
 //    tabButton.setStyle(".button-left");
-        tabButton.setMaxWidth(999999);
+        tabButton.setMaxWidth(9999999);
         tabs_VBox.getChildren().add(tabButton);
         tabButton.setOnAction(
                 actionEvent -> {
                     content_Pane.getChildren().clear();
                     content_Pane.getChildren().add(content);
+//                    ((Pane)content).prefWidthProperty().bind(content_Pane.widthProperty());
+//                    ((Pane)content).prefHeightProperty().bind(content_Pane.heightProperty());
+                    AnchorPane.setTopAnchor(content, 0.0);
+                    AnchorPane.setLeftAnchor(content, 0.0);
+                    AnchorPane.setRightAnchor(content, 0.0);
+                    AnchorPane.setBottomAnchor(content, 0.0);
+                    ((Pane) content).widthProperty().addListener(
+                            (observable, oldValue, newValue) -> {
+                                System.out.println("stack width change to : " + newValue);
+                            }
+                    );
+                    content_Pane.widthProperty().addListener(
+                            (observable, oldValue, newValue) -> {
+                                System.out.println("border center change to : " + newValue);
+                            }
+                    );
                 }
         );
     }
 
-    public BorderPane getBorderPane() {
-        return borderPane;
+    public AnchorPane getOuterPane() {
+        return outerPane;
     }
 
     public void closeStage(ActionEvent actionEvent) {
     	ConfigurationDataProxy.Close();
         Main.primaryStage.close();
+        System.exit(0);
     }
 
     public void maximizeStage(ActionEvent actionEvent) {

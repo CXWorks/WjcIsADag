@@ -15,9 +15,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
+import ui.accountui.ManageAccountController;
 import ui.loginui.LoginController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
+import util.R;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -50,7 +52,6 @@ public class Main extends Application {
      */
     public static void logOut(){
         primaryStage.setScene(loginScene);
-        setDraggable();
     }
 
     private static Parent launchByStaff(StaffTypeEnum staffTypeEnum){
@@ -110,25 +111,23 @@ public class Main extends Application {
     private static boolean dragging = false;
     private static boolean resizing = false;
     private static CURSOR_AREA pressedArea = CURSOR_AREA.CENTER;
-    private static final int padding = 14;
-    private static final int titleHeight = 70;
+    private static final double padding = R.ui.ResizePadding;
+    private static final double titleHeight = R.ui.TitleHeight;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
 
-        primaryStage.setTitle("2333快递物流管理系统");
         primaryStage.setX(150);
-        primaryStage.setY(100);
+        primaryStage.setY(80);
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        loginScene = new Scene((Pane)LoginController.launch());
+        loginScene = new Scene(LoginController.launch());
         // Test
 //        UserInfo.setInfo("06000001", StaffTypeEnum.DELIVER, "0251001", "wjr");
-//        loginScene = new Scene((Pane)DeliverNavigation.launch());
+//        loginScene = new Scene((Pane) ManageAccountController.launch());
 
         primaryStage.setScene(loginScene);
-        setDraggable();
         primaryStage.show();
     }
 
@@ -172,8 +171,8 @@ public class Main extends Application {
         }
     }
 
-    private static final double minWidth = 1146;
-    private static final double minHeight = 611;
+    private static final double minWidth = R.ui.MinStageWidth;
+    private static final double minHeight = R.ui.MinStageHeight;
     private static void setBounds(Stage stage, double x, double y, double w, double h){
         if(w > minWidth){
             stage.setWidth(w);

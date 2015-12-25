@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
@@ -70,7 +71,7 @@ public class StockTackPaneController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize(Pane outerPane){
         // set cell value factories
         area_Column.setCellValueFactory(
                 cell -> new SimpleStringProperty(cell.getValue().getEnum().getChinese())
@@ -157,6 +158,9 @@ public class StockTackPaneController {
                     }
                 }
         );
+
+        // set resize property
+
 
         area_TableView.setItems(Enum2ObservableList.transit(StoreAreaCode.values()));
     }

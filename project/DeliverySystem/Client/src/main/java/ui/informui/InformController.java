@@ -24,6 +24,8 @@ public class InformController {
             Pane informPane = loader.load();
             InformController controller = loader.getController();
             controller.stackPane = new StackPane(contentPane);
+            contentPane.prefWidthProperty().bind(controller.stackPane.widthProperty());
+            contentPane.prefHeightProperty().bind(controller.stackPane.heightProperty());
             controller.informPane = informPane;
 
             return controller;
