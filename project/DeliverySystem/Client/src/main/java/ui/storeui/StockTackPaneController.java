@@ -24,6 +24,7 @@ import vo.storevo.StockTackVO;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Sissel on 2015/12/8.
@@ -54,7 +55,7 @@ public class StockTackPaneController {
     public TableColumn<StoreLocation, String> position_TableColumn;
     public TableColumn<StoreLocation, String> order_TableColumn;
 
-    public StockTackBLService stockTackBLService = FormFactory.getStockTackBLService();
+    public StockTackBLService stockTackBLService;//通过setStoreModel初始化
     public StoreModel storeModel;
     public StoreArea storeArea;
     public IntegerProperty selectedRow = new SimpleIntegerProperty();
@@ -64,10 +65,14 @@ public class StockTackPaneController {
 
     private InformController informController;
 
-    public void setStoreModel(StoreModel model){
+	public void setStoreModel(StoreModel model){
         storeModel = model;
         redirectArea(StoreAreaCode.AIR);
     }
+
+    public void setStockTackBLService(StockTackBLService stockTackBLService) {
+		this.stockTackBLService = stockTackBLService;
+	}
 
     @FXML
     public void initialize(){

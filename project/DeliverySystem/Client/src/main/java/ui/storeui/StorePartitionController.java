@@ -69,7 +69,7 @@ public class StorePartitionController {
 		shelfNum_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getShelfID() + ""));
 		rate_TableColumn.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getUsedProportion() + ""));
+				cellData -> new SimpleStringProperty(cellData.getValue().getUsedNum() + ""));
 
 		StoreAreaVO2ColumnHelper.setKeyColumn(key_TableColumn);
 		StoreAreaVO2ColumnHelper.setValueColumn(value_TableColumn);

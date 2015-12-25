@@ -4,21 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0"  styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreSummaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreSummaryController">
    <children>
       <Label layoutX="42.0" layoutY="27.0" text="开始时间" />
-      <Label layoutX="318.0" layoutY="27.0" text="结束时间" />
+      <Label layoutX="329.0" layoutY="27.0" text="结束时间" />
       <Label layoutX="42.0" layoutY="415.0" text="出库数量" />
       <Label layoutX="257.0" layoutY="415.0" text="出库金额" />
       <Label layoutX="467.0" layoutY="415.0" text="入库数量" />
-      <Label layoutX="646.0" layoutY="415.0" text="入库金额" />
-      <Label fx:id="outNum_Label" layoutX="107.0" layoutY="415.0" text="Label" />
-      <Label fx:id="outMoney_Label" layoutX="312.0" layoutY="415.0" text="Label" />
+      <Label layoutX="644.0" layoutY="415.0" text="入库金额" />
+      <Label fx:id="outNum_Label" layoutX="112.0" layoutY="415.0" text="Label" />
+      <Label fx:id="outMoney_Label" layoutX="329.0" layoutY="415.0" text="Label" />
       <Label fx:id="InNum_Label" layoutX="534.0" layoutY="415.0" text="Label" />
       <Label fx:id="InMoney_Label" layoutX="715.0" layoutY="415.0" text="Label" />
-      <DatePicker fx:id="begin_DatePicker" layoutX="95.0" layoutY="23.0" />
-      <DatePicker fx:id="end_DatePicker" layoutX="374.0" layoutY="23.0" />
-      <Button layoutX="703.0" layoutY="23.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <DatePicker fx:id="begin_DatePicker" layoutX="112.0" layoutY="23.0" />
+      <DatePicker fx:id="end_DatePicker" layoutX="400.0" layoutY="23.0" />
+      <Button layoutX="692.0" layoutY="23.0" mnemonicParsing="false" onAction="#search" text="搜索" />
       <TableView fx:id="summary_TableView" layoutX="42.0" layoutY="57.0" prefHeight="341.0" prefWidth="716.0">
         <columns>
             <TableColumn fx:id="time_Column" prefWidth="75.0" text="时间" />
