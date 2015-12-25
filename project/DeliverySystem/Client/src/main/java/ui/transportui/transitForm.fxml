@@ -27,8 +27,8 @@
             <Label text="出发地" GridPane.rowIndex="2" />
             <Label text="到达地" GridPane.rowIndex="3" />
             <Label text="监装员" GridPane.rowIndex="4" />
-            <Label fx:id="transNumber_Label" text="航班号" GridPane.rowIndex="5" />
-            <Label fx:id="cargo_Label" text="货柜号" GridPane.rowIndex="6" />
+            <Label fx:id="transNumber_Label" text="车次号" GridPane.rowIndex="5" />
+            <Label fx:id="cargo_Label" text="车厢号" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="transitType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
             <DatePicker fx:id="transit_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />

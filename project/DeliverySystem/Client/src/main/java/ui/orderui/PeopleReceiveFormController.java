@@ -38,6 +38,7 @@ public class PeopleReceiveFormController {
 
 	private OrderVO selected = null;
 	private List<OrderVO> orderVOs;
+	private OrderVO ordervo = new OrderVO(null);
 
 	private InformController informController;
 
@@ -66,10 +67,11 @@ public class PeopleReceiveFormController {
 	}
 
 	public void search(ActionEvent actionEvent) {
-//		String id = id_Field.getText();
-//		if (id.isEmpty()) {
-//		}
-//		// TODO
+		String id = id_Field.getText();
+		if (id.isEmpty()) {
+			refresh(null);
+		}
+//		ordervo=checkDeliver.
 	}
 
 	public void refresh(ActionEvent actionEvent) {

@@ -45,7 +45,7 @@ public class MainPaneController {
     }
 
 	public void init() {
-		name_Label.setText(UserInfo.getStaffType().getChinese()+":"+UserInfo.getUserName());
+		name_Label.setText(UserInfo.getStaffType().getChinese()+" : "+UserInfo.getUserName());
 	}
     
     public void addTabButton(String name, Parent content){
