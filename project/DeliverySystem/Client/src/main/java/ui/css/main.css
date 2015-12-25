@@ -42,6 +42,13 @@
 	 -fx-color: gray;
 }
 
+
+.toggle{
+-fx-text-fill:#181818;
+-fx-background-color:#e8e8e8;
+-fx-border-style:none;
+}
+
 .button{
     -fx-border-top-left-radius:0px;
 	-fx-border-top-right-radius:0px;
@@ -102,7 +109,7 @@
 	-fx-background-image:url(pic/closeHover.png);
 }
 
-.button-close:pressed, .button-sure:default:hover:pressed {
+.button-close:pressed, .button-close:default:hover:pressed {
 	-fx-background-image:url(pic/closePressed.png);
 }
 
@@ -126,7 +133,7 @@
 	-fx-background-image:url(pic/maxHover.png);
 }
 
-.button-max:pressed, .button-sure:default:hover:pressed {
+.button-max:pressed, .button-max:default:hover:pressed {
 	-fx-background-image:url(pic/maxPressed.png);
 }
 
@@ -147,7 +154,7 @@
 	-fx-background-image:url(pic/minHover.png);
 }
 
-.button-min:pressed, .button-sure:default:hover:pressed {
+.button-min:pressed, .button-min:default:hover:pressed {
 	-fx-background-image:url(pic/minPressed.png);
 }
 

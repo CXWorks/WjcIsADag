@@ -112,6 +112,7 @@ public class NewOrderController {
 		pack_Box.setItems(Enum2ObservableList.transit(PackingEnum.values()));
 		pack_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             packing = newValue.getEnum();
+            fillPrediction();
         });
 
 		clear(null);

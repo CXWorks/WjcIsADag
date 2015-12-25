@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
@@ -200,9 +201,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button defaultButton="true" layoutX="844.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="105.0" text="确认" />
-      <Button layoutX="748.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="40.0" prefWidth="80.0" text="保存草稿" />
-      <Button layoutX="662.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="73.0" text="清空" textAlignment="CENTER" />
-      <Button layoutX="524.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="39.0" prefWidth="118.0" text="计算运费日期" />
+      <Button defaultButton="true" layoutX="820.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="28.0" prefWidth="73.0" styleClass="button-commit" />
+      <Button layoutX="736.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="28.0" prefWidth="73.0" styleClass="button-save" />
+      <Button layoutX="653.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="28.0" prefWidth="73.0" styleClass="button-clear" textAlignment="CENTER" />
+      <Button layoutX="509.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="28.0" prefWidth="107.0" text="计算运费日期" />
    </children>
 </AnchorPane>
