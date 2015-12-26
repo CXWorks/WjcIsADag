@@ -32,7 +32,7 @@
             <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="order_TableView" layoutX="712.0" layoutY="94.0" prefHeight="338.0" prefWidth="201.0" AnchorPane.bottomAnchor="109.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="94.0">
+      <TableView fx:id="order_TableView" layoutX="712.0" layoutY="94.0" prefHeight="338.0" prefWidth="201.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="721.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="94.0">
         <columns>
           <TableColumn fx:id="key_Column_o" prefWidth="75.0" text="项目" />
           <TableColumn fx:id="value_Column_o" prefWidth="75.0" text="信息" />
