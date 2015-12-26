@@ -32,8 +32,7 @@ public class FinanceNavigation {
                 new Pair<String, Parent>("查看收款单", CheckRevenueFormController.launch()),
                 new Pair<String, Parent>("查看系统日志", CheckLogController.launch()),
 //                new Pair<String, Parent>("查看期初建账", initPane),
-                new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         return node;

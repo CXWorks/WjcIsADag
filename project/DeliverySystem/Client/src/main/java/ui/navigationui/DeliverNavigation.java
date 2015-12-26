@@ -22,7 +22,6 @@ public class DeliverNavigation {
                 new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
                 new Pair<String, Parent>("新建订单", NewOrderController.launch()),
                 new Pair<String, Parent>("物流信息查询", CheckLogisticsController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch()),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 

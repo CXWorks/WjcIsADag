@@ -37,8 +37,7 @@ public class ManagerNavigation {
                 new Pair<String, Parent>("管理薪水策略", ManageSalaryController.launch()),
                 new Pair<String, Parent>("成本收益表", CheckFinanceSummaryController.launch()),
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
-                new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         ManageStaffController staffController = ManageStaffController.launch(null, null, StaffFactory.getManageService());

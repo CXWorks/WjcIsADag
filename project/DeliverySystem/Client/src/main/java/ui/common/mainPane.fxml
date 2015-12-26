@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1146.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.common.MainPaneController">
    <children>
@@ -22,13 +22,22 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label layoutX="63.0" layoutY="17.0" onMouseClicked="#popUpPersonView" prefHeight="42.0" prefWidth="45.0" />
          </children>
       </AnchorPane>
-      <FlowPane fx:id="left_TabsPane" alignment="CENTER" layoutX="10.0" layoutY="63.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="179.0" styleClass="background-left" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-         <children>
-            <VBox fx:id="tabs_VBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="179.0" stylesheets="@../css/main.css" />
-         </children>
-      </FlowPane>
       <AnchorPane fx:id="content_Pane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="70.0" />
+      <StackPane fx:id="left_TabsPane" layoutX="7.0" layoutY="70.0" prefHeight="150.0" prefWidth="179.0" styleClass="background-left" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <VBox fx:id="tabs_VBox" alignment="CENTER" prefHeight="435.0" prefWidth="91.0" stylesheets="@../css/main.css" StackPane.alignment="CENTER" />
+            <AnchorPane fx:id="personGFatherPane" prefHeight="200.0" prefWidth="179.0">
+               <children>
+                  <AnchorPane fx:id="personFatherPane" prefHeight="288.0" prefWidth="200.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="233.0" />
+               </StackPane.margin>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

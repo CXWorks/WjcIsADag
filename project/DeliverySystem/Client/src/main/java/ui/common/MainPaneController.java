@@ -1,13 +1,16 @@
 package ui.common;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
 import main.Main;
+import ui.accountui.PersonalAccountViewController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
@@ -20,11 +23,13 @@ import util.R;
  */
 public class MainPaneController {
     public AnchorPane title_Pane;
-    public FlowPane left_TabsPane;
+    public StackPane left_TabsPane;
     public AnchorPane content_Pane;
     public VBox tabs_VBox;
     public AnchorPane outerPane;
     public Label name_Label;
+    public AnchorPane personGFatherPane;
+    public AnchorPane personFatherPane;
 
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
@@ -47,7 +52,17 @@ public class MainPaneController {
     }
 
 	public void init() {
-		name_Label.setText(UserInfo.getStaffType().getChinese()+" : "+UserInfo.getUserName());
+		name_Label.setText(UserInfo.getStaffType().getChinese() + " : " + UserInfo.getUserName());
+
+        try {
+            Pane personView = (Pane)PersonalAccountViewController.launch();
+            personFatherPane.getChildren().add(personView);
+            setAnchor(personView, 0.0, 0.0, 0.0, 0.0);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        personGFatherPane.setVisible(false);
 	}
     
     public void addTabButton(String name, Parent content){
@@ -58,10 +73,7 @@ public class MainPaneController {
                 actionEvent -> {
                     content_Pane.getChildren().clear();
                     content_Pane.getChildren().add(content);
-                    AnchorPane.setTopAnchor(content, 0.0);
-                    AnchorPane.setLeftAnchor(content, 0.0);
-                    AnchorPane.setRightAnchor(content, 0.0);
-                    AnchorPane.setBottomAnchor(content, 0.0);
+                    setAnchor(content, 0.0, 0.0, 0.0, 0.0);
                     ((Pane) content).widthProperty().addListener(
                             (observable, oldValue, newValue) -> {
                                 System.out.println("stack width change to : " + newValue);
@@ -79,10 +91,7 @@ public class MainPaneController {
     public void jumpTo(Pane content){
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(content);
-        AnchorPane.setTopAnchor(content, 0.0);
-        AnchorPane.setLeftAnchor(content, 0.0);
-        AnchorPane.setRightAnchor(content, 0.0);
-        AnchorPane.setBottomAnchor(content, 0.0);
+        setAnchor(content, 0.0, 0.0, 0.0, 0.0);
     }
 
     public AnchorPane getOuterPane() {
@@ -101,5 +110,17 @@ public class MainPaneController {
 
     public void minimizeStage(ActionEvent actionEvent) {
         Main.primaryStage.toBack();
+    }
+
+    public void popUpPersonView(Event event) {
+        boolean now = personGFatherPane.isVisible();
+        personGFatherPane.setVisible(!now);
+    }
+
+    private static void setAnchor(Node node, double top, double bottom, double left, double right){
+        AnchorPane.setTopAnchor(node, top);
+        AnchorPane.setBottomAnchor(node, bottom);
+        AnchorPane.setLeftAnchor(node, left);
+        AnchorPane.setRightAnchor(node, right);
     }
 }

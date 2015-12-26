@@ -20,8 +20,7 @@ public class CenterNavigation {
         Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("新建到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("新建中转单", TransitFormController.launch()),
-                new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         return node;

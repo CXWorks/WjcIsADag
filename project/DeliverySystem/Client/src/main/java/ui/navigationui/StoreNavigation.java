@@ -21,8 +21,7 @@ public class StoreNavigation {
                 new Pair<String, Parent>("出入库汇总", StoreSummaryController.launch()),
                 new Pair<String, Parent>("分区管理", StorePartitionController.launch()),
                 new Pair<String, Parent>("库存盘点", StockTackController.launch()),
-                new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
-                new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         return node;
