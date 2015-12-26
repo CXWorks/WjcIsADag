@@ -45,13 +45,8 @@
 }
 
 
-.toggle-button{
--fx-text-fill:#181818;
--fx-background-color:#e8e8e8;
--fx-border-style:none;
-}
 
-.button{
+.toggle-button{
     -fx-border-top-left-radius:0px;
 	-fx-border-top-right-radius:0px;
     -fx-border-bottom-left-radius:0px;
@@ -62,16 +57,16 @@
     -fx-font-size: 15pt;
 	-fx-text-fill:#dcdbdb;
 }
-.button:hover{
+.toggle-button:hover{
 -fx-background-color:#181818;
 }
 
-.button:pressed{
+.toggle-button:pressed{
 -fx-background-color:#e8e8e8;
 -fx-text-fill:#181818;
 }
 
-.button:focused{
+.toggle-button:focused{
 -fx-text-fill:#181818;
 -fx-background-color:#e8e8e8;
 -fx-border-style:none;
