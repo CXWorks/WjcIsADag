@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.store.StoreArea;
 import model.store.StoreAreaCode;
@@ -39,6 +40,7 @@ public class StockTackPaneController {
         POSITION
     }
 
+    public AnchorPane fatherPane;
     public TableView<Map.Entry<String, String>> message_TableView;
     public TableColumn<Map.Entry<String, String>, String> key_TableColumn;
     public TableColumn<Map.Entry<String, String>, String> value_TableColumn;
@@ -76,7 +78,7 @@ public class StockTackPaneController {
 	}
 
     @FXML
-    public void initialize(Pane outerPane){
+    public void initialize(){
         // set cell value factories
         area_Column.setCellValueFactory(
                 cell -> new SimpleStringProperty(cell.getValue().getEnum().getChinese())
@@ -149,14 +151,14 @@ public class StockTackPaneController {
         );
         position_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    if(newValue == null){
+                    if (newValue == null) {
                         return;
                     }
                     clear(message_TableView);
                     selectedPosition.setValue(newValue.getPosition());
                     selecting = SelectingItem.POSITION;
                     OrderVO orderVO = stockTackBLService.getOrder(newValue.getOrderID());
-                    if(orderVO != null){
+                    if (orderVO != null) {
                         message_TableView.setItems(FXCollections.observableArrayList(
                                 new OrderVO2ColumnHelper().VO2Entries(orderVO)
                         ));
@@ -164,10 +166,16 @@ public class StockTackPaneController {
                 }
         );
 
-        // set resize property
-
-
         area_TableView.setItems(Enum2ObservableList.transit(StoreAreaCode.values()));
+
+        // set resize properties
+        AnchorPane.setTopAnchor(fatherPane, 0.0);
+        AnchorPane.setBottomAnchor(fatherPane, 0.0);
+        AnchorPane.setLeftAnchor(fatherPane, 0.0);
+        AnchorPane.setRightAnchor(fatherPane, 0.0);
+
+        position_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(4));
+        message_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(3));
     }
 
     public void clear(TableView...tableViews){

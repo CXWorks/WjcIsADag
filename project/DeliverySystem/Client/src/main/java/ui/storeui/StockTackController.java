@@ -76,12 +76,12 @@ public class StockTackController {
 			Pane content = loader.load();
 			content_Pane.getChildren().add(content);
 			stockTackPaneController = loader.getController();
+            stockTackPaneController.setStockTackBLService(stockTackBLService);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		// TODO call back, interaction between subpane and parent
-		stockTackPaneController.selectedPosition.addListener((observable, oldValue, newValue) -> {
+        stockTackPaneController.selectedPosition.addListener((observable, oldValue, newValue) -> {
 			location_Label.setText(stockTackPaneController.generatePath());
 		});
 
