@@ -38,7 +38,6 @@ public class PeopleReceiveFormController {
 
 	private OrderVO selected = null;
 	private List<OrderVO> orderVOs;
-	private OrderVO ordervo = new OrderVO(null);
 
 	private InformController informController;
 
