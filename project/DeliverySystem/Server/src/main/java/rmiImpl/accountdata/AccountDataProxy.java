@@ -77,7 +77,7 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	public OperationMessage checkAccount(String id, String password) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.checkAccount(id, password);
-		return null;
+		return new OperationMessage(false, "system is initializing");
 	}
 
 	@Override

@@ -89,8 +89,7 @@ public class CheckMessageController implements Runnable{
 			if (res.operationResult) {
 				ArrayList<ChatMessage> chatMessages = accountblremindService
 						.receive(UserInfo.getUserID());
-				message_View.setItems(FXCollections
-						.observableList(chatMessages));
+				message_View.getItems().addAll(chatMessages);
 			}
 		}
 	}

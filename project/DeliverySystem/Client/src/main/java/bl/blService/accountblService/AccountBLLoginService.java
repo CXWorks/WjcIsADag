@@ -17,5 +17,7 @@ public interface AccountBLLoginService {
 	public OperationMessage checkAccount(String id,String password);
 	
 	public OperationMessage logOut();
+	
+	
 
 }

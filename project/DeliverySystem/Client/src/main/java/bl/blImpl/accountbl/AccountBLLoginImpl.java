@@ -37,6 +37,8 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 				
 				UserInfo.setInfo(user.getID(), user.getStaff(), user.getInititutionID(),user.getName());
 				UserInfo.changeSystermState();
+				//
+				accountDataService.setAccount(id, true);
 				return new OperationMessage();
 			} else {
 				return check;
