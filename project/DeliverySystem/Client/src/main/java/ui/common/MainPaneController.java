@@ -51,15 +51,12 @@ public class MainPaneController {
     
     public void addTabButton(String name, Parent content){
         Button tabButton = new Button(name);
-//    tabButton.setStyle(".button-left");
         tabButton.setMaxWidth(9999999);
         tabs_VBox.getChildren().add(tabButton);
         tabButton.setOnAction(
                 actionEvent -> {
                     content_Pane.getChildren().clear();
                     content_Pane.getChildren().add(content);
-//                    ((Pane)content).prefWidthProperty().bind(content_Pane.widthProperty());
-//                    ((Pane)content).prefHeightProperty().bind(content_Pane.heightProperty());
                     AnchorPane.setTopAnchor(content, 0.0);
                     AnchorPane.setLeftAnchor(content, 0.0);
                     AnchorPane.setRightAnchor(content, 0.0);
@@ -76,6 +73,15 @@ public class MainPaneController {
                     );
                 }
         );
+    }
+
+    public void jumpTo(Pane content){
+        content_Pane.getChildren().clear();
+        content_Pane.getChildren().add(content);
+        AnchorPane.setTopAnchor(content, 0.0);
+        AnchorPane.setLeftAnchor(content, 0.0);
+        AnchorPane.setRightAnchor(content, 0.0);
+        AnchorPane.setBottomAnchor(content, 0.0);
     }
 
     public AnchorPane getOuterPane() {

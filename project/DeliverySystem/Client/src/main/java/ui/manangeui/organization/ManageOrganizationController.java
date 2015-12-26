@@ -3,6 +3,7 @@ package ui.manangeui.organization;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import po.InfoEnum;
 import bl.blService.configurationblService.ConfigurationBLService;
 import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblHallService;
+import ui.common.MainPaneController;
 import ui.manangeui.staff.ManageStaffController;
 import vo.configurationvo.City2DVO;
 import vo.configurationvo.ConfigurationVO;
@@ -55,14 +57,13 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	private ManageblHallService manageblHallService;
 	private ManageblCenterService manageblCenterService;
 	private ConfigurationBLService configurationBLService;
-    private TabPane outsideTabPane;
-    private Tab staffTab;
     private ManageStaffController staffController;
     private List<City2DVO> cities;
     private String selectedCityID;
-	
+	private MainPaneController mpc;
+
 	public static Parent launch
-			(Pane father, Pane before, TabPane outsideTabPane, Tab staffTab, ManageStaffController staffController,
+			(Pane father, Pane before, ManageStaffController staffController, MainPaneController mpc,
 			 ManageblHallService hallService, ManageblCenterService centerService,ConfigurationBLService configurationBLService) throws IOException
     {
 		FXMLLoader fxmlLoader = new FXMLLoader();
@@ -73,9 +74,8 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         controller.manageblHallService = hallService;
         controller.manageblCenterService = centerService;
         controller.configurationBLService = configurationBLService;
-        controller.outsideTabPane = outsideTabPane;
-        controller.staffTab = staffTab;
         controller.staffController = staffController;
+		controller.mpc = mpc;
         controller.continueInit();
 
 		if(father == null){
@@ -102,8 +102,6 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 	
 	public void initialize(){
-        // TODO test jump
-		
 		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
 		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().getChinese()));
 		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
@@ -111,7 +109,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 		this.center_textfield();
 	}
 	private InstitutionVO makeInstitutionVO(){
-		if (institutionType.getText()=="中转中心") {
+		if (Objects.equals(institutionType.getText(), "中转中心")) {
 			return new CenterVO(manageblCenterService.newCenterID(cityID.getText()), cityID.getText());
 		}
 		else {
@@ -186,7 +184,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 	}
 
 	public void manageStaff(){
-        outsideTabPane.getSelectionModel().select(staffTab);
+        mpc.jumpTo(staffController.getSelfPane());
         staffController.initLabel(institutionVO);
 	}
 	

@@ -9,6 +9,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.util.Pair;
 import ui.accountui.PersonalAccountViewController;
+import ui.common.MainPaneController;
 import ui.common.TabMaker;
 import ui.configurationui.ConfigurationController;
 import ui.examineui.CheckFormController;
@@ -28,9 +29,9 @@ import java.util.Arrays;
 public class ManagerNavigation {
     public static Parent launch() throws IOException {
 
-        TabPane tabPane = TabMaker.newTabPane();
+        MainPaneController mpc = TabMaker.newMainPaneController();
 
-        TabMaker.addTabs(tabPane, Arrays.asList(
+        TabMaker.addLeftTabs(mpc, Arrays.asList(
                 new Pair<String, Parent>("管理系统常量", ConfigurationController.launch()),
                 new Pair<String, Parent>("审批表单", CheckFormController.launch()),
                 new Pair<String, Parent>("管理薪水策略", ManageSalaryController.launch()),
@@ -40,17 +41,14 @@ public class ManagerNavigation {
                 new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));
 
-        Tab staffTab = new Tab("管理员工");
         ManageStaffController staffController = ManageStaffController.launch(null, null, StaffFactory.getManageService());
-        staffTab.setContent(staffController.getSelfPane());
+        TabMaker.addLeftTab(mpc, new Pair<String, Parent>("管理员工", staffController.getSelfPane()));
 
         Tab organizationTab = new Tab("管理机构");
         organizationTab.setContent(ManageOrganizationController.launch
-                (null, null, tabPane, staffTab, staffController,
-                        InstitutionFactory.getManageblHallService(), InstitutionFactory.getManageblCenterService(),ConfigurationFactory.getConfigurationBLService()));
+                (null, null, staffController, mpc,
+                        InstitutionFactory.getManageblHallService(), InstitutionFactory.getManageblCenterService(), ConfigurationFactory.getConfigurationBLService()));
 
-        tabPane.getTabs().addAll(staffTab, organizationTab);
-
-        return tabPane;
+        return mpc.getOuterPane();
     }
 }
