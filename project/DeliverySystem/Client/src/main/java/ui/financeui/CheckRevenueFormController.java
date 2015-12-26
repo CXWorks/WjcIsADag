@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
 import ui.hallui.RevenueFormController;
@@ -45,6 +46,7 @@ public class CheckRevenueFormController {
     public TableView<OrderVO> detail_TableView;
     public TableColumn<OrderVO, String> orderID_Column;
     public TableColumn<OrderVO, String> money_Column;
+    public AnchorPane fatherPane;
 
     FormatCheckService formatCheckService;
     RevenueBLService revenueBLService;
@@ -95,6 +97,10 @@ public class CheckRevenueFormController {
                     }
                 }
         );
+
+        // set resize properties
+        revenue_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(2));
+        detail_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(4));
     }
 
     public void search(ActionEvent actionEvent) {

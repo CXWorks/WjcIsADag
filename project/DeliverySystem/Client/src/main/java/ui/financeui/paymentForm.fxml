@@ -6,26 +6,70 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.PaymentFormController">
    <children>
-      <Label layoutX="39.0" layoutY="50.0" text="付款人信息" />
-      <Label layoutX="39.0" layoutY="85.0" prefHeight="19.0" prefWidth="44.0" text="姓名" />
-      <Label layoutX="39.0" layoutY="128.0" text="账户" />
-      <TextField fx:id="payerName_Field" layoutX="110.0" layoutY="81.0" />
-      <TextField fx:id="payerAccount_Field" layoutX="110.0" layoutY="124.0" />
-      <TextField fx:id="receiverAccount_Field" layoutX="110.0" layoutY="312.0" />
-      <TextField fx:id="receiverName_Field" layoutX="110.0" layoutY="269.0" />
-      <Label layoutX="39.0" layoutY="316.0" text="账户" />
-      <Label layoutX="39.0" layoutY="273.0" prefHeight="19.0" prefWidth="44.0" text="姓名" />
-      <Label layoutX="39.0" layoutY="238.0" text="收款人信息" />
-      <Label layoutX="359.0" layoutY="50.0" text="款项信息" />
-      <Label layoutX="359.0" layoutY="85.0" text="金额" />
-      <Label layoutX="572.0" layoutY="85.0" text="付款日期" />
-      <TextField fx:id="money_Field" layoutX="390.0" layoutY="81.0" prefHeight="23.0" prefWidth="132.0" />
-      <DatePicker fx:id="payment_DatePicker" layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
-      <Label layoutX="359.0" layoutY="128.0" text="条目" />
-      <Label layoutX="358.0" layoutY="169.0" text="备注" />
-      <TextArea fx:id="note_TextArea" layoutX="359.0" layoutY="200.0" prefHeight="224.0" prefWidth="509.0" />
-      <ChoiceBox fx:id="item_ChoiceBox" layoutX="390.0" layoutY="124.0" prefHeight="23.0" prefWidth="132.0" />
-      <HBox layoutX="689.0" layoutY="460.0" spacing="16.0">
+      <AnchorPane layoutX="46.0" layoutY="24.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <GridPane hgap="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="48.0">
+               <children>
+                  <Label layoutX="39.0" layoutY="128.0" text="账户" GridPane.rowIndex="1" />
+                  <TextField fx:id="payerName_Field" layoutX="110.0" layoutY="81.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="payerAccount_Field" layoutX="110.0" layoutY="124.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label layoutX="39.0" layoutY="85.0" prefHeight="19.0" prefWidth="31.0" text="姓名" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" valignment="BASELINE" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="BASELINE" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label text="付款人信息" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="46.0" layoutY="248.0" prefHeight="218.0" prefWidth="234.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="46.0">
+         <children>
+            <Label text="收款人信息" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <GridPane hgap="24.0" layoutY="31.0" prefHeight="168.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="48.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" valignment="BASELINE" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="BASELINE" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label layoutX="39.0" layoutY="316.0" text="账户" GridPane.rowIndex="1" />
+                  <Label layoutX="39.0" layoutY="273.0" prefHeight="19.0" prefWidth="31.0" text="姓名" />
+                  <TextField fx:id="receiverAccount_Field" layoutX="110.0" layoutY="312.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="receiverName_Field" layoutX="110.0" layoutY="269.0" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="359.0" layoutY="50.0" text="款项信息" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="48.0" />
+      <HBox alignment="CENTER" layoutX="359.0" layoutY="81.0" spacing="8.0" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="90.0">
+         <children>
+            <Label layoutX="359.0" layoutY="85.0" text="金额" />
+            <TextField fx:id="money_Field" layoutX="390.0" layoutY="81.0" prefHeight="23.0" prefWidth="132.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="596.0" layoutY="90.0" spacing="8.0" AnchorPane.leftAnchor="596.0" AnchorPane.topAnchor="90.0">
+         <children>
+            <Label layoutX="572.0" layoutY="85.0" text="付款日期" />
+            <DatePicker fx:id="payment_DatePicker" layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="360.0" layoutY="134.0" spacing="8.0" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="134.0">
+         <children>
+            <Label layoutX="359.0" layoutY="128.0" text="条目" />
+            <ChoiceBox fx:id="item_ChoiceBox" layoutX="390.0" layoutY="124.0" prefHeight="23.0" prefWidth="132.0" />
+         </children>
+      </HBox>
+      <Label layoutX="360.0" layoutY="180.0" text="备注" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="180.0" />
+      <TextArea fx:id="note_TextArea" layoutX="359.0" layoutY="206.0" prefHeight="242.0" prefWidth="562.0" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="206.0" />
+      <HBox layoutX="689.0" layoutY="460.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
             <Button layoutX="577.0" layoutY="407.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#clear" text="清空" />

@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.RevenueFormController">
    <children>
-      <TableView fx:id="revenues_TableView" layoutX="34.0" layoutY="118.0" prefHeight="343.0" prefWidth="637.0">
+      <TableView fx:id="revenues_TableView" layoutX="411.0" layoutY="110.0" prefHeight="343.0" prefWidth="509.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="110.0">
         <columns>
             <TableColumn fx:id="order_TableColumn" prefWidth="233.0" text="订单号" />
             <TableColumn fx:id="money_TableColumn" prefWidth="318.0" text="收款金额" />
@@ -17,23 +17,46 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="34.0" layoutY="14.0" text="新建收款单">
+      <Label layoutX="34.0" layoutY="14.0" text="新建收款单" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font></Label>
-      <Button layoutX="560.0" layoutY="82.0" mnemonicParsing="false" onAction="#add" text="确认添加" />
-      <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-      <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" text="提交" />
-      <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-      <Text layoutX="559.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="总金额" />
-      <Label fx:id="total_Label" layoutX="620.0" layoutY="488.0" text="Label" />
-      <Label layoutX="34.0" layoutY="47.0" text="收款快递员" />
-      <ChoiceBox fx:id="deliver_ChoiceBox" layoutX="134.0" layoutY="43.0" prefHeight="23.0" prefWidth="109.0" />
-      <Label layoutX="283.0" layoutY="47.0" text="收款日期" />
-      <DatePicker fx:id="revenue_DatePicker" layoutX="383.0" layoutY="43.0" prefHeight="23.0" prefWidth="155.0" />
-      <Label layoutX="283.0" layoutY="86.0" text="收款金额" />
-      <TextField fx:id="money_Field" layoutX="383.0" layoutY="82.0" prefHeight="23.0" prefWidth="155.0" />
-      <Label layoutX="40.0" layoutY="85.0" text="订单号" />
-      <TextField fx:id="order_Field" layoutX="133.0" layoutY="81.0" prefHeight="23.0" prefWidth="109.0" />
+      <Button layoutX="229.0" layoutY="477.0" mnemonicParsing="false" onAction="#add" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="229.0" />
+      <HBox layoutX="684.0" layoutY="484.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
+         <children>
+            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" text="提交" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="760.0" layoutY="48.0" spacing="16.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Text layoutX="760.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="总金额" />
+            <Label fx:id="total_Label" layoutX="843.0" layoutY="48.0" text="Label" textAlignment="RIGHT" />
+         </children>
+      </HBox>
+      <GridPane hgap="24.0" layoutX="25.0" layoutY="127.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="96.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label layoutX="25.0" layoutY="204.0" text="收款日期" GridPane.rowIndex="2" />
+            <DatePicker fx:id="revenue_DatePicker" layoutX="99.0" layoutY="200.0" prefHeight="23.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label layoutX="25.0" layoutY="252.0" text="收款金额" GridPane.rowIndex="3" />
+            <TextField fx:id="money_Field" layoutX="99.0" layoutY="248.0" prefHeight="23.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label layoutX="25.0" layoutY="127.0" text="订单号" />
+            <Label layoutX="25.0" layoutY="169.0" text="收款快递员" GridPane.rowIndex="1" />
+            <TextField fx:id="order_Field" layoutX="108.0" layoutY="132.0" prefHeight="23.0" prefWidth="109.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="deliver_ChoiceBox" layoutX="117.0" layoutY="164.0" prefHeight="29.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label layoutX="411.0" layoutY="48.0" text="订单表" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="48.0" />
    </children>
 </AnchorPane>

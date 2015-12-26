@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
@@ -28,10 +29,12 @@ import java.util.List;
  * Created by Sissel on 2015/11/24.
  */
 public class ManageBankAccountController {
+
     private BankAccountBLService bankAccountBLService;
     private BankAccountVO bankAccountVO = null;
     private List<BankAccountVO> bankAccountVOList = new ArrayList<>();
 
+    public AnchorPane fatherPane;
     public Button back_Btn;
     public TextField name_Field;
     public TableColumn<BankAccountVO, String> name_Column;
@@ -52,9 +55,10 @@ public class ManageBankAccountController {
         controller.bankAccountBLService = service;
         controller.informController = InformController.newInformController(pane);
 
-        if(father == null){
+        if(father == null) {
             pane.getChildren().remove(controller.back_Btn);
-        }else{
+            controller.back_Btn.setVisible(false);
+        } else {
             controller.back_Btn.setOnAction(
                     o -> {
                         father.getChildren().clear();
@@ -168,5 +172,8 @@ public class ManageBankAccountController {
         amount_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().amount)
         );
+
+        accounts_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(3));
+        history_TableView.prefWidthProperty().bind(fatherPane.widthProperty().multiply(0.446));
     }
 }

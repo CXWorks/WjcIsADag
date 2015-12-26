@@ -19,9 +19,9 @@ import java.util.Arrays;
 public class FinanceNavigation {
 
     public static Parent launch() throws IOException {
-        Pane initPane = new Pane();
-        initPane.getChildren().add(
-                CheckInitInfoController.launch(initPane));
+//        Pane initPane = new Pane();
+//        initPane.getChildren().add(
+//                CheckInitInfoController.launch(initPane));
 
         Parent node = TabMaker.newLeftTabPane(Arrays.asList(
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
@@ -31,7 +31,7 @@ public class FinanceNavigation {
                 new Pair<String, Parent>("新建付款单", PaymentFormController.launch()),
                 new Pair<String, Parent>("查看收款单", CheckRevenueFormController.launch()),
                 new Pair<String, Parent>("查看系统日志", CheckLogController.launch()),
-                new Pair<String, Parent>("查看期初建账", initPane),
+//                new Pair<String, Parent>("查看期初建账", initPane),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch()),
                 new Pair<String, Parent>("个人信息", PersonalAccountViewController.launch())
         ));
