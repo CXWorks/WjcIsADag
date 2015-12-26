@@ -2,6 +2,8 @@
 
 }
 
+
+
 .background-head {
 
 	-fx-background-image : url(pic/top.png);
@@ -43,7 +45,7 @@
 }
 
 
-.toggle{
+.toggle-button{
 -fx-text-fill:#181818;
 -fx-background-color:#e8e8e8;
 -fx-border-style:none;

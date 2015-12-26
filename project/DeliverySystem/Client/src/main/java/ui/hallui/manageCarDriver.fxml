@@ -4,9 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.ManageCarDriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.ManageCarDriverController">
    <children>
-      <TableView fx:id="car_TableView" layoutX="91.0" layoutY="100.0" prefHeight="398.0" prefWidth="445.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="107.0">
+      <TableView fx:id="car_TableView" layoutX="91.0" layoutY="100.0" opacity="0.7" prefHeight="398.0" prefWidth="445.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="107.0">
         <columns>
           <TableColumn fx:id="carCheck_TableColumn" prefWidth="45.0" text="勾选" />
           <TableColumn fx:id="carID_TableColumn" prefWidth="167.0" text="车辆代号" />
@@ -14,7 +14,7 @@
             <TableColumn fx:id="serveTime_TableColumn" prefWidth="119.0" text="服役时间" />
         </columns>
       </TableView>
-      <TableView fx:id="driver_TableView" layoutX="525.0" layoutY="107.0" prefHeight="398.0" prefWidth="397.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="107.0">
+      <TableView fx:id="driver_TableView" layoutX="525.0" layoutY="107.0" opacity="0.7" prefHeight="398.0" prefWidth="397.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="107.0">
         <columns>
           <TableColumn fx:id="driverCheck_TableColumn" prefWidth="63.6666259765625" text="勾选" />
           <TableColumn fx:id="driverID_TableColumn" prefWidth="114.0" text="司机编号" />
