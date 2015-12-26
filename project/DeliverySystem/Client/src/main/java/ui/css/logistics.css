@@ -1,31 +1,10 @@
 .background {
 
-	-fx-background-image : url(login/back.png);
+	-fx-background-image : url(login/logistics/search-background.png);
 	-fx-background-size: cover;
 	
 }
 
-
-.label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 0.6;
-}
-
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
-
-.label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
 
 .table-view {
     -fx-base: #c9c8c8;
@@ -94,7 +73,7 @@
 
 .text-field.id {
 
-    -fx-background-image : url(login/id.png);
+    -fx-background-image : url(pic/logistics/search-text-field.png);
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
@@ -104,32 +83,16 @@
 }
 
 .text-field.id:focused{
-
+-fx-background-image : url(pic/logistics/search-text-field-focus.png);
      -fx-border-style :none;
 
 }
 
-.text-field.password {
-
-    -fx-background-image : url(login/pass.png);
-	-fx-border-style :none;
-    -fx-size:13;
-    -fx-font-size: 10pt;
-	-fx-color:#cc6600;
-    -fx-font-family: "方正幼线简体 常规";
-	
-}
-
-.text-field.password:focused{
-
-     -fx-border-style :none;
-
-}
 
 
 .button.sure {
     -fx-size:13;
-    -fx-background-image:url(login/sure.png);
+    -fx-background-image:url(pic/logistics/search.png);
     -fx-border-style:none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -138,11 +101,11 @@
 }
 
 .button.sure:hover {
-        -fx-background-image:url(login/sureHover.png);
+    -fx-background-image:url(pic/logistics/search-hover.png);
 }
 
 .button.sure:pressed, .button.sure:default:hover:pressed {
-       -fx-background-image:url(login/surePressed.png);
+    -fx-background-image:url(pic/logistics/search-pressed.png);
 }
 
 .button.sure:focused {

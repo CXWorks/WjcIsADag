@@ -66,7 +66,12 @@
 -fx-text-fill:#181818;
 }
 
-.toggle-button:focused{
+.toggle-button:released{
+-fx-background-color:black;
+-fx-text-fill:white;
+}
+
+.toggle-button:active{
 -fx-text-fill:#181818;
 -fx-background-color:blue;
 -fx-border-style:none;
