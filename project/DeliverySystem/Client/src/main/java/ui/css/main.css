@@ -52,23 +52,23 @@
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
     -fx-size:150;
-	-fx-background-color:#393939;
+	-fx-background-color:purple;
     -fx-border-style :none;
     -fx-font-size: 15pt;
 	-fx-text-fill:#dcdbdb;
 }
 .toggle-button:hover{
--fx-background-color:#181818;
+-fx-background-color:#eeeeee;
 }
 
 .toggle-button:pressed{
--fx-background-color:#e8e8e8;
+-fx-background-color:green;
 -fx-text-fill:#181818;
 }
 
 .toggle-button:focused{
 -fx-text-fill:#181818;
--fx-background-color:#e8e8e8;
+-fx-background-color:blue;
 -fx-border-style:none;
 }
 /*
@@ -159,17 +159,3 @@
     -fx-border-style: none;
 }
 
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
-}

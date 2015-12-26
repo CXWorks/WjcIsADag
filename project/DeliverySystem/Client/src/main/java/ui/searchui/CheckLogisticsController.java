@@ -13,6 +13,7 @@ import vo.logisticsvo.LogisticsVO;
 import bl.blService.searchblService.SearchBLService;
 import factory.SearchFactory;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +32,7 @@ public class CheckLogisticsController {
 
 	SearchBLService searchblService = SearchFactory.getSearchBLService();
 
-	private LogisticsVO logisticsvo=null;
+	private LogisticsVO logisticsvo=new LogisticsVO();
 	public static Parent launch() throws IOException {
 
 		FXMLLoader contentLoader = new FXMLLoader();
@@ -46,11 +47,15 @@ public class CheckLogisticsController {
 
 
 	public void search(ActionEvent atcionEvent){
-		logisticsvo=searchblService.searchOrder(id_Field.getText());
+		logistics_TableView.getItems().clear();
+		System.out.println("hhhhhhhhhhhh"+id_Field.getText());
+		logisticsvo=searchblService.searchOrder(
+				id_Field.getText());
+		System.out.println("logistics=="+logisticsvo);
         if(this.logisticsvo == null){
             return;
         }
-        logistics_TableView.getItems().clear();
+        logistics_TableView.setItems(FXCollections.observableArrayList(logisticsvo));
         // TODO test
         time_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTime().toString())
