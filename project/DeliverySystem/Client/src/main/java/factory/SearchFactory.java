@@ -10,7 +10,7 @@ import bl.blService.searchblService.SearchBLService;
  * @version 1.0 
  */
 public class SearchFactory extends BLFactory {
-	private static SearchBLService searchBLService;
+	private static SearchBLService searchBLService=new SearchBLController();;
 	public SearchFactory(){
 		searchBLService=new SearchBLController();
 	}

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
 import main.Main;
 import userinfo.UserInfo;
@@ -50,7 +51,7 @@ public class MainPaneController {
 	}
     
     public void addTabButton(String name, Parent content){
-        Button tabButton = new Button(name);
+        ToggleButton tabButton = new ToggleButton(name);
         tabButton.setMaxWidth(9999999);
         tabs_VBox.getChildren().add(tabButton);
         tabButton.setOnAction(

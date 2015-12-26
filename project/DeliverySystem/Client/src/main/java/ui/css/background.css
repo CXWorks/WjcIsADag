@@ -1,0 +1,5 @@
+.background{
+
+	-fx-background-image : url(pic/banner1.png);
+	-fx-background-size: cover;
+}
