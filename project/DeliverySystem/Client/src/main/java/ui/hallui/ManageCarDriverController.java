@@ -72,6 +72,7 @@ public class ManageCarDriverController {
 
 		if (father == null) {
 			pane.getChildren().remove(controller.back_Btn);
+			controller.back_Btn.setVisible(false);
 		} else {
 			controller.back_Btn.setOnAction(o -> {
 				father.getChildren().clear();

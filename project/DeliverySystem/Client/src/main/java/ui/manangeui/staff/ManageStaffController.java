@@ -82,7 +82,7 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 
 		if (father == null) {
 			selfPane.getChildren().remove(controller.back_Btn);
-
+			controller.back_Btn.setVisible(false);
 		} else {
 			controller.back_Btn.setOnAction(actionEvent -> {
 				father.getChildren().clear();
