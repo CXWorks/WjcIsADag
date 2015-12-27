@@ -47,6 +47,12 @@
     -fx-padding: 5;
 }
 
+
+.table-column{
+-fx-alignment : center;
+
+}
+
 .table-view .column-header-background {
     -fx-background-color: transparent;
 }

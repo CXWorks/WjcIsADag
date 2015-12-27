@@ -1,18 +1,23 @@
 .background {
 
-	-fx-background-image : url(login/logistics/search-background.png);
-	-fx-background-size: cover;
+	-fx-background-image : url(pic/logistics/search-back.png);
+	-fx-background-repeat:no-repeat;
 	
 }
 
 
 .table-view {
-    -fx-base: #c9c8c8;
-    -fx-control-inner-background: #c9c8c8;
-    -fx-background-color: #c9c8c8;
+    -fx-base: #1e1e1e;
+    -fx-control-inner-background: #131313;
+    -fx-background-color:  #1e1e1e;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
+}
+
+.table-column{
+-fx-alignment : center;
+
 }
 
 .table-view .column-header-background {
@@ -21,20 +26,15 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-style:none;
     -fx-background-color: transparent;
-    -fx-border-color: 
-        transparent
-        transparent
-        derive(-fx-base, 80%) 
-        transparent;
-    -fx-border-insets: 0 10 1 0;
+	
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 15pt;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: #ba4f00;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -52,31 +52,16 @@
     -fx-padding: 1 0 0 0;
 }
 
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
-}
 
-.context-menu {
-    -fx-background-color: derive(#1d1d1d,50%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
 
 .text-field.id {
 
-    -fx-background-image : url(pic/logistics/search-text-field.png);
+-fx-background-image : url(pic/logistics/search-text-field-focus.png);
+	-fx-background-color:#000000;
 	-fx-border-style :none;
     -fx-size:13;
-    -fx-font-size: 10pt;
+	-fx-text-fill:#fc6c02;
+	-fx-font-size:16pt;
 	-fx-color: black;
     -fx-font-family: "方正幼线简体 常规";
 	
@@ -87,6 +72,8 @@
      -fx-border-style :none;
 
 }
+
+
 
 
 
@@ -114,17 +101,28 @@
 
 }
 
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
+
+
+.button.log {
+    -fx-size:13;
+    -fx-background-image:url(pic/logistics/to-login.png);
+    -fx-border-style:none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
 }
 
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+.button.log:hover {
+    -fx-background-image:url(pic/logistics/to-login-hoverr.png);
 }
 
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
+.button.log:pressed, .button.log:default:hover:pressed {
+    -fx-background-image:url(pic/logistics/to-login-pressed.png);
+}
+
+.button.log:focused {
+
+    -fx-border-style:none;
+
 }
