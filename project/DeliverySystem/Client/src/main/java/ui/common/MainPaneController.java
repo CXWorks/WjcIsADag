@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import main.Main;
 import ui.accountui.PersonalAccountViewController;
 import userinfo.UserInfo;
@@ -122,5 +123,11 @@ public class MainPaneController {
         AnchorPane.setBottomAnchor(node, bottom);
         AnchorPane.setLeftAnchor(node, left);
         AnchorPane.setRightAnchor(node, right);
+    }
+
+    public void showSettingDialog(Event event) {
+        Stage stage = SettingDialogController.newDialog();
+        stage.initOwner(Main.primaryStage);
+        stage.showAndWait();
     }
 }

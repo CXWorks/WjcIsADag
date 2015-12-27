@@ -23,6 +23,7 @@
                </font>
             </Label>
             <Label layoutX="63.0" layoutY="17.0" onMouseClicked="#popUpPersonView" prefHeight="42.0" prefWidth="45.0" />
+            <Label layoutX="491.0" layoutY="17.0" onMouseClicked="#showSettingDialog" prefHeight="42.0" prefWidth="45.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="content_Pane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="70.0" />

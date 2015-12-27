@@ -102,7 +102,6 @@ public class StockTackController {
 	public void exportExcel(ActionEvent actionEvent) {
 		// TODO 记下用户上次存文件的位置
 		FileChooser fileChooser = new FileChooser();
-		// fileChooser.setInitialDirectory(new File("g:/develop"));
 		fileChooser
 				.setInitialFileName("StockTack--" + time_Label.getText() + "--" + orderNumber_Label.getText() + ".xls");
 		File file = fileChooser.showSaveDialog(Main.primaryStage);
