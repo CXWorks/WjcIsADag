@@ -36,14 +36,13 @@ import po.orderdata.OrderPO;
  * Created by Sissel on 2015/10/26.
  */
 public class RevenueBLImpl implements RevenueBLService {
-	private RevenueDataService revenueDataService;
 	private VOPOFactory vopoFactory;
 	private DraftService draftService;
 
 	public RevenueBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.vopoFactory=vopoFactory;
 		this.draftService=draftService;
-		this.revenueDataService=CacheHelper.getRevenueDataService();
+		
 	}
 
 
@@ -71,6 +70,7 @@ public class RevenueBLImpl implements RevenueBLService {
 	}
 
 	public String getNewRevenueID(Calendar date) {
+		RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
         try {
 			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
 			return ID;
@@ -80,6 +80,7 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public RevenueVO getRevenueVO(String revenueID) {
+    	RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
         try {
 			RevenuePO revenuePO=revenueDataService.getFormPO(revenueID);
 			RevenueVO vo=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
@@ -90,6 +91,7 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar date, String hallID) {
+    	RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
     	try {
 			ArrayList<RevenuePO> po=revenueDataService.getByHallID(hallID);
 			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
@@ -107,6 +109,7 @@ public class RevenueBLImpl implements RevenueBLService {
     }
 
     public List<RevenueVO> getRevenueVOs(Calendar startDate, Calendar endDate) {
+    	RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
     	try {
 			ArrayList<RevenuePO> po=revenueDataService.getByHallID(UserInfo.getInstitutionID());
 			LinkedList<RevenueVO> vo=new LinkedList<RevenueVO>();
@@ -160,6 +163,7 @@ public class RevenueBLImpl implements RevenueBLService {
 	 * @see bl.blService.financeblService.RevenueBLService#sum(java.lang.String)
 	 */
 	public double sum(String revenueID) {
+		RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
 		try {
 			RevenuePO po=revenueDataService.getFormPO(revenueID);
 			String num=po.getAmount();

@@ -20,11 +20,10 @@ import bl.clientNetCache.CacheHelper;
  * @version 1.0
  */
 public class DriverManage implements ManageblDriverService {
-	private MemberDataService<DriverPO> memberDataService_driver;
 	private VOPOFactory vopoFactory;
 
 	public DriverManage(VOPOFactory vopoFactory){
-		memberDataService_driver=CacheHelper.getMemberDataService_driver();
+		
 		this.vopoFactory=vopoFactory;
 	}
 
@@ -33,6 +32,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public DriverVO searchDriver(String driverID) {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		try {
 			DriverPO po=memberDataService_driver.getPerson(driverID);
 			DriverVO vo=(DriverVO)vopoFactory.transPOtoVO(po);
@@ -48,6 +48,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public ArrayList<DriverVO> getStaffByInstitution() {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		try {
 			ArrayList<DriverPO> driverPOs = memberDataService_driver.getStaffByInstitution(UserInfo.getInstitutionID());
 			ArrayList<DriverVO> vo = new ArrayList<DriverVO>(driverPOs.size());
@@ -69,6 +70,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public OperationMessage modifyStaff(DriverVO after) {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		DriverPO po=(DriverPO)vopoFactory.transVOtoPO(after);
 		try {
 			return memberDataService_driver.modifyStaff(po);
@@ -85,6 +87,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public OperationMessage addStaff(DriverVO staff) {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		DriverPO po=(DriverPO)vopoFactory.transVOtoPO(staff);
 		try {
 			return memberDataService_driver.addStaff(po);
@@ -99,6 +102,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public OperationMessage dismissStaff(DriverVO staff) {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		DriverPO po=(DriverPO)vopoFactory.transVOtoPO(staff);
 		try {
 			return memberDataService_driver.dismissStaff(po);
@@ -113,6 +117,7 @@ public class DriverManage implements ManageblDriverService {
 	 */
 	@Override
 	public String newStaffID(StaffTypeEnum staffType, String unitID) {
+		MemberDataService<DriverPO> memberDataService_driver=CacheHelper.getMemberDataService_driver();
 		try {
 			String ID=memberDataService_driver.newStaffID(staffType, unitID);
 			return ID;

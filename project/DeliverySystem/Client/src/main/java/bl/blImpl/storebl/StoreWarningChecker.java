@@ -15,9 +15,8 @@ import message.OperationMessage;
  */
 public class StoreWarningChecker {
 	private double warningLine;
-	private ConfigurationDataService configurationDataService;
 	public StoreWarningChecker(){
-		configurationDataService=CacheHelper.getConfigurationDataService();
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			this.warningLine=configurationDataService.getWarningline(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
@@ -33,6 +32,7 @@ public class StoreWarningChecker {
 		return warningLine;
 	}
 	public OperationMessage setWarningLine(double warningLine){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			OperationMessage res= configurationDataService.setWarningline(UserInfo.getInstitutionID(), warningLine);
 			if (res.operationResult) {

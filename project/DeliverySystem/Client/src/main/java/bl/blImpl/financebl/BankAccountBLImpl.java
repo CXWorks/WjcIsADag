@@ -24,12 +24,13 @@ import po.financedata.BankAccountPO;
  * Created by Sissel on 2015/10/26.
  */
 public class BankAccountBLImpl implements BankAccountBLService {
-	private BankAccountDataService bankAccountDataService;
-	private VOPOFactory vopoFactory = new VOPOFactory();
-	public BankAccountBLImpl(){
-		this.bankAccountDataService=CacheHelper.getBankAccountDataService();
+	private VOPOFactory vopoFactory ;
+	public BankAccountBLImpl(VOPOFactory vopoFactory){
+		this.vopoFactory=vopoFactory;
+		
 	}
     public List<BankAccountVO> getAllAccounts() {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
         try {
 			ArrayList<BankAccountPO> po=bankAccountDataService.getAll();
 			ArrayList<BankAccountVO> vo=new ArrayList<BankAccountVO>(po.size());
@@ -55,6 +56,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
         BankAccountPO po=(BankAccountPO)vopoFactory.transVOtoPO(avo);
         
         try {
@@ -67,6 +69,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public OperationMessage deleteAccount(BankAccountVO avo) {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
     	String ID=avo.getBankID();
         try {
 			return bankAccountDataService.delete(ID);
@@ -76,6 +79,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public OperationMessage editAccount(BankAccountVO avo, String newName) {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
     	BankAccountPO po=(BankAccountPO)vopoFactory.transVOtoPO(avo);
     	po.setAccountName(newName);
         try {
@@ -90,6 +94,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public OperationMessage pay(String bankAccID, String amount) {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
         try {
 			BankAccountPO po=bankAccountDataService.getBankAccount(bankAccID);
 			po.balanceOut(amount);
@@ -100,6 +105,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
     }
 
     public OperationMessage receive(String bankAccID, String amount) {
+    	BankAccountDataService bankAccountDataService=CacheHelper.getBankAccountDataService();
     	 try {
  			BankAccountPO po=bankAccountDataService.getBankAccount(bankAccID);
  			po.balanceIn(amount);

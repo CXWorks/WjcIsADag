@@ -28,10 +28,10 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	private Money money;
 	private Salary salary;
 	public ConfigurationBLController(VOPOFactory vopoFactory){
-		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
-		this.distance=new Distance(configurationDataService,vopoFactory);
-		this.money=new Money(configurationDataService,vopoFactory);
-		this.salary=new Salary(configurationDataService,vopoFactory);
+		
+		this.distance=new Distance(vopoFactory);
+		this.money=new Money(vopoFactory);
+		this.salary=new Salary(vopoFactory);
 	}
 
 	/* (non-Javadoc)

@@ -30,11 +30,10 @@ import po.transportdata.CenterOutPO;
 public class TransportCenterBLImpl implements TransportCenterBLService {
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
-	private CenterOutDataService centerOutDataService;
 	public TransportCenterBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
-		this.centerOutDataService=CacheHelper.getTransportDataService();
+		
 	}
 
 		
@@ -67,6 +66,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		 * @see bl.blService.FormBLService#newID()
 		 */
 		public String newID() {
+			CenterOutDataService centerOutDataService=CacheHelper.getTransportDataService();
 			String ID;
 			try {
 				ID = centerOutDataService.newID(UserInfo.getInstitutionID());

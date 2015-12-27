@@ -21,11 +21,10 @@ import tool.vopo.VOPOFactory;
  * @version 1.0
  */
 public class ExamineBLManageImpl implements ExamineblManageService {
-	private ExamineManageService examineManageService;
 	private VOPOFactory vopoFactory;
 	private ArrayList<FormVO> formVOs;
 	public ExamineBLManageImpl(VOPOFactory vopoFactory){
-		this.examineManageService=CacheHelper.getExamineManageService();
+		
 		this.vopoFactory=vopoFactory;
 		formVOs=new ArrayList<FormVO>();
 	}
@@ -54,6 +53,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see blService.examineblService.ExamineblManageService#passForm(java.util.ArrayList)
 	 */
 	public OperationMessage passForm(ArrayList<FormVO> form) {
+		ExamineManageService examineManageService=CacheHelper.getExamineManageService();
 		this.maintainData(form);
 		ArrayList<FormPO> po=new ArrayList<FormPO>(form.size());
 		for (int i = 0; i < form.size(); i++) {
@@ -74,6 +74,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see blService.examineblService.ExamineblManageService#deleteForm(java.util.ArrayList)
 	 */
 	public OperationMessage deleteForm(ArrayList<FormVO> form) {
+		ExamineManageService examineManageService=CacheHelper.getExamineManageService();
 		this.maintainData(form);
 		ArrayList<FormPO> po=new ArrayList<FormPO>(form.size());
 		for (int i = 0; i < form.size(); i++) {
@@ -106,6 +107,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 */
 	@Override
 	public OperationMessage modifyForm(FormVO form) {
+		ExamineManageService examineManageService=CacheHelper.getExamineManageService();
 		ArrayList<FormVO> temp=new ArrayList<FormVO>(1);
 		temp.add(form);
 		this.maintainData(temp);
@@ -148,6 +150,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 */
 	@Override
 	public OperationMessage refresh() {
+		ExamineManageService examineManageService=CacheHelper.getExamineManageService();
 		try {
 			ArrayList<FormPO> formPOs=examineManageService.getForms();
 			for (FormPO formPO : formPOs) {

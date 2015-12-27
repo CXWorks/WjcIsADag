@@ -29,7 +29,7 @@ public class TestOrder {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		orderBLService = new OrderBLController(new VOPOFactory(),new DraftController(),new FormatCheckImpl());
+		orderBLService = new OrderBLController(new VOPOFactory(),new DraftController());
 		o = new OrderVO("11","程翔","孟鑫","南京仙林","南京鼓楼","南京仙林厅","南京鼓楼厅","0411-87620011","025-84561234",
 				"186999988888","15699998888","2","iPhone 6s","1",null, null, null, DeliverTypeEnum.NORMAL, PackingEnum.OTHER,null);
 	}

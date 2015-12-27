@@ -24,13 +24,9 @@ import vo.accountvo.AccountVO;
  */
 public class AccountBLManageImpl implements AccountBLManageService {
 	VOPOFactory vopoFactory;
-	AccountDataService accountDataService;
-	MemberDataService<StaffPO> staffDataService;
 
 	public AccountBLManageImpl(VOPOFactory vopoFactory) {
 		this.vopoFactory = vopoFactory;
-		this.accountDataService = CacheHelper.getAccountDataService();
-		this.staffDataService = CacheHelper.getMemberDataService_staff();
 	}
 
 	/*
@@ -40,6 +36,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	public ArrayList<AccountVO> getAccountVOs() {
 		try {
+			AccountDataService accountDataService = CacheHelper.getAccountDataService();
 			ArrayList<AccountPO> po = accountDataService.getAccountPOs();
 			ArrayList<AccountVO> vo = new ArrayList<AccountVO>(po.size());
 			for (int i = 0; i < po.size(); i++) {
@@ -62,6 +59,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	public AccountVO getAccountVO(String accountID) {
 		try {
+			AccountDataService accountDataService = CacheHelper.getAccountDataService();
 			AccountPO po = accountDataService.getAccountPO(accountID);
 			AccountVO vo = (AccountVO) vopoFactory.transPOtoVO(po);
 			return vo;
@@ -78,6 +76,8 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	public OperationMessage addAccount(AccountVO vo) {
 		try {
+			AccountDataService accountDataService = CacheHelper.getAccountDataService();
+			MemberDataService<StaffPO> staffDataService = CacheHelper.getMemberDataService_staff();
 			if (staffDataService.getPerson(vo.getID()) != null || vo.getID().equals("admin")) {
 				AccountPO po = (AccountPO) vopoFactory.transVOtoPO(vo);
 				return accountDataService.insert(po);
@@ -98,6 +98,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	public OperationMessage deleteAccount(AccountVO vo) {
 		String ID = vo.getID();
+		AccountDataService accountDataService = CacheHelper.getAccountDataService();
 		try {
 			return accountDataService.delete(ID);
 		} catch (RemoteException e) {
@@ -114,6 +115,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	public OperationMessage modifyAccount(AccountVO vo) {
 		AccountPO po = (AccountPO) vopoFactory.transVOtoPO(vo);
+		AccountDataService accountDataService = CacheHelper.getAccountDataService();
 		try {
 			return accountDataService.update(po);
 		} catch (RemoteException e) {
@@ -126,8 +128,9 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 */
 	@Override
 	public List<AccountVO> fuzzySearch(String key) {
+		AccountDataService accountDataService = CacheHelper.getAccountDataService();
 		try {
-			ArrayList<AccountPO> pos=this.accountDataService.getAccountPOs();
+			ArrayList<AccountPO> pos=accountDataService.getAccountPOs();
 			List<AccountVO> ans=((List<AccountVO>) vopoFactory.transPOtoVO(pos))
 					.stream().filter(acc->{return acc.fuzzyCheck(key);})
 					.collect(Collectors.toList());

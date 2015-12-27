@@ -23,20 +23,20 @@ import bl.clientNetCache.CacheHelper;
  */
 public class LogblImpl implements LogblService {
 
-	private LogDataService logDataService;
 	private VOPOFactory vopoFactory;
 	private ArrayList<LogPO> now;
 	private TXTHelper txtHelper;
 
 	public LogblImpl(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		this.logDataService =CacheHelper.getLogDataService();
+		
 		this.txtHelper=new TXTHelper();
 		this.now=new ArrayList<>();
 	}
 
 	@Override
 	public ArrayList<LogVO> search(String keyword, Calendar start, Calendar end) {
+		LogDataService logDataService =CacheHelper.getLogDataService();
 
 		// first step : get datas from server
 		try{

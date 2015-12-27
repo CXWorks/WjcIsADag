@@ -37,15 +37,15 @@ import po.transportdata.LoadPO;
  * Created by Sissel on 2015/10/26.
  */
 public class StoreOutBLImpl implements StoreOutBLService {
-	private StoreFormDataService storeFormDataService;
 	private VOPOFactory vopoFactory;
 	private DraftService draftService;
 	public StoreOutBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
-		this.storeFormDataService=CacheHelper.getStoreFormDataService();
+		
 	}
     public String getNewStoreOutID(String date) {
+    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         try {
 			String ID=storeFormDataService.newIDStoreOutPO(UserInfo.getInstitutionID());
 			return ID;
@@ -109,7 +109,6 @@ public class StoreOutBLImpl implements StoreOutBLService {
     public OperationMessage submit(StoreOutVO form) {
         StoreOutPO po=(StoreOutPO)vopoFactory.transVOtoPO(form);
         ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
-        StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         try {
 			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {

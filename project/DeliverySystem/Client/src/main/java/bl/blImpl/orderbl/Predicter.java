@@ -19,14 +19,14 @@ import vo.ordervo.PredictVO;
  * @version 1.0
  */
 public class Predicter {
-	private ConfigurationDataService configurationDataService;
 	private VOPOFactory vopoFactory;
 	public Predicter(VOPOFactory vopoFactory){
-		this.configurationDataService=CacheHelper.getConfigurationDataService();
+		
 		this.vopoFactory=vopoFactory;
 	}
 	//
 	public PredictVO calculatePredict(OrderVO orderVO){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			PricePO pricePO=configurationDataService.getPrice();
 			int priceKM=pricePO.getByType(orderVO.getType());

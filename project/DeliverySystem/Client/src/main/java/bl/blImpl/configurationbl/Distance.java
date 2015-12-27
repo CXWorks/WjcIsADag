@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
 import po.configurationdata.CityDistancePO;
@@ -19,13 +20,15 @@ import vo.configurationvo.ConfigurationVO;
  * @version 1.0 
  */
 public class Distance {
-	private ConfigurationDataService configurationDataService;
 	private VOPOFactory vopoFactory;
-	public Distance(ConfigurationDataService configurationDataService,VOPOFactory vopoFactory){
-		this.configurationDataService=configurationDataService;
+	public Distance(VOPOFactory vopoFactory){
+		
 		this.vopoFactory=vopoFactory;
 	}
 	public OperationMessage newCity(City2DVO city2dvo){
+		//
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
+		//
 		City2DPO city2dpo=(City2DPO)vopoFactory.transVOtoPO(city2dvo);
 		try {
 			return configurationDataService.newCity2D(city2dpo);
@@ -37,6 +40,7 @@ public class Distance {
 	}
 	//
 	public OperationMessage deleteCity(City2DVO city2dvo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			return configurationDataService.deleteCity2D(city2dvo.getName());
 		} catch (RemoteException e) {
@@ -49,6 +53,7 @@ public class Distance {
 	 * get methods
 	 */
 	public ArrayList<City2DVO> getCityDistance(){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
 			ArrayList<City2DVO> ans=new ArrayList<City2DVO>(city2dpos.size());
@@ -68,6 +73,7 @@ public class Distance {
 	 * modify methods
 	 */
 	public OperationMessage modifyCityDistance(City2DVO vo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		City2DPO city2dpo=(City2DPO)vopoFactory.transVOtoPO(vo);
 		try {
 			return configurationDataService.modifyCity2D(city2dpo);

@@ -19,17 +19,17 @@ import bl.clientNetCache.CacheHelper;
  * @version 1.0 
  */
 public class HallManage implements ManageblHallService {
-	private CompanyDataHallService hallService;
 	private VOPOFactory vopoFactory;
 	public HallManage(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		this.hallService=CacheHelper.getCompanyDataHallService();
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblHallService#getHall()
 	 */
 	public ArrayList<HallVO> getHall() {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		try {
 			ArrayList<HallPO> po=hallService.getHall();
 			ArrayList<HallVO> result=new ArrayList<HallVO>(po.size());
@@ -48,6 +48,7 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#addHall(vo.managevo.institution.HallVO)
 	 */
 	public OperationMessage addHall(HallVO hall) {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
 		try {
 			return hallService.addHall(po);
@@ -60,6 +61,7 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#modifyHall(vo.managevo.institution.HallVO)
 	 */
 	public OperationMessage modifyHall(HallVO hall) {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
 		try {
 			return hallService.modifyHall(po);
@@ -72,6 +74,7 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#deleteHall(po.companydata.HallPO)
 	 */
 	public OperationMessage deleteHall(HallVO hall) {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
 		try {
 			return hallService.deleteHall(po);
@@ -84,6 +87,7 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#searchHall(vo.managevo.institution.HallVO)
 	 */
 	public HallVO searchHall(String hall) {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		String ID=hall;
 		ArrayList<HallPO> po;
 		try {
@@ -113,6 +117,7 @@ public class HallManage implements ManageblHallService {
 	 * @see blService.manageblService.ManageblHallService#newHallID()
 	 */
 	public String newHallID(String centerID) {
+		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
 		try {
 			String ID=hallService.newHallID(centerID.substring(0, 3));
 			return ID;

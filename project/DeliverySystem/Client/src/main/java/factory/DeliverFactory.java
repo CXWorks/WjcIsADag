@@ -12,13 +12,12 @@ public class DeliverFactory extends BLFactory{
 
 	private static DeliverBLService deliverBLService;
 	private static CheckDeliverForm checkDeliverForm;
-	private static FormatCheckService formatCheckService = new FormatCheckImpl();
 	
 	private DeliverFactory(){}
 
 	public static DeliverBLService getDeliverBLService() {
 		if(deliverBLService == null){
-			deliverBLService = new DeliverBLImpl(vopoFactory,draftService,formatCheckService);
+			deliverBLService = new DeliverBLImpl(vopoFactory,draftService);
 		}
 		return deliverBLService;
 	}

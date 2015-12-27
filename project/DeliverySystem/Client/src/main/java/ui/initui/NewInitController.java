@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
+import tool.ui.AnchorSet;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.ManageCarDriverController;
 import ui.informui.InformController;
@@ -38,9 +39,9 @@ public class NewInitController {
 		controller.informController = InformController.newInformController(pane);
 
 		controller.father = father;
-		controller.selfPane = pane;
+		controller.selfPane = controller.informController.stackPane;
 
-		return controller.informController.stackPane;
+		return controller.selfPane;
 	}
 
 	@FXML
@@ -92,6 +93,7 @@ public class NewInitController {
 
 	private void jumpTo(Node pane) {
 		father.getChildren().clear();
+        AnchorSet.set0(pane);
 		father.getChildren().add(pane);
 	}
 }

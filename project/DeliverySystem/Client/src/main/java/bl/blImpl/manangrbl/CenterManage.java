@@ -19,17 +19,17 @@ import bl.clientNetCache.CacheHelper;
  * @version 1.0 
  */
 public class CenterManage implements ManageblCenterService{
-	private CompanyDataCenterService centerService;
 	private VOPOFactory vopoFactory;
 	public CenterManage(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		this.centerService=CacheHelper.getCompanyDataCenterService();
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see blService.manageblService.ManageblCenterService#getCenter()
 	 */
 	public ArrayList<CenterVO> getCenter() {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		try {
 			ArrayList<CenterPO> po=centerService.getCenter();
 			ArrayList<CenterVO> result=new ArrayList<CenterVO>(po.size());
@@ -48,6 +48,7 @@ public class CenterManage implements ManageblCenterService{
 	 * @see blService.manageblService.ManageblCenterService#addCenter(vo.managevo.institution.CenterVO)
 	 */
 	public OperationMessage addCenter(CenterVO center) {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		CenterPO po=(CenterPO)vopoFactory.transVOtoPO(center);
 		try {
 			return centerService.addCenter(po);
@@ -60,6 +61,7 @@ public class CenterManage implements ManageblCenterService{
 	 * @see blService.manageblService.ManageblCenterService#deleteCenter(vo.managevo.institution.CenterVO)
 	 */
 	public OperationMessage deleteCenter(CenterVO center) {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		CenterPO po=(CenterPO)vopoFactory.transVOtoPO(center);
 		try {
 			return centerService.deleteCenter(po);
@@ -72,6 +74,7 @@ public class CenterManage implements ManageblCenterService{
 	 * @see blService.manageblService.ManageblCenterService#modifyCenter(vo.managevo.institution.CenterVO)
 	 */
 	public OperationMessage modifyCenter(CenterVO center) {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		CenterPO po=(CenterPO)vopoFactory.transVOtoPO(center);
 		try {
 			return centerService.modifyCenter(po);
@@ -84,6 +87,7 @@ public class CenterManage implements ManageblCenterService{
 	 * @see blService.manageblService.ManageblCenterService#searchCenter(vo.managevo.institution.CenterVO)
 	 */
 	public CenterVO searchCenter(String center) {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		String ID=center;
 		try {
 			ArrayList<CenterPO> po=centerService.getCenter();
@@ -121,6 +125,7 @@ public class CenterManage implements ManageblCenterService{
 	 */
 	@Override
 	public String newCenterID(String city) {
+		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		try {
 			String ID=centerService.newCenterID(city);
 			return ID;
