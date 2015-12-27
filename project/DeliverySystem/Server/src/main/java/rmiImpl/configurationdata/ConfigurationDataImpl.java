@@ -7,14 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import operation.Operation;
 import database.ConnecterHelper;
 import database.MySql;
-import database.RMIHelper;
 import database.enums.TableEnum;
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
@@ -24,7 +21,6 @@ import po.configurationdata.ProportionPO;
 import po.configurationdata.SalaryStrategyPO;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
-import po.systemdata.LogPO;
 import rmi.configurationdata.ConfigurationDataService;
 
 /**
@@ -39,23 +35,11 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String City2D;
-	private String SalaryStrategy;
-	private String Pack;
-	private String Price;
-	private String Proportion;
-	private String Warningline;
 	private Connection conn = null;
 	private PreparedStatement statement = null;
 
 	public ConfigurationDataImpl() throws RemoteException {
 		super();
-		City2D = "city2d";
-		SalaryStrategy = "salary_strategy";
-		Pack = "pack";
-		Price = "price";
-		Proportion = "proportion";
-		Warningline = "warningline";
 		conn = ConnecterHelper.getConn();
 	}
 
@@ -609,7 +593,7 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 		if (this.getWarningline(centerID) != -1) {
 			String operation = MySql.update(TableEnum.WARNINGLINE, "value", value + "", new HashMap<String, String>() {
 				{
-					put("name", "centerID");
+					put("name", centerID);
 				}
 			});
 			try {
@@ -621,8 +605,12 @@ public class ConfigurationDataImpl extends UnicastRemoteObject implements Config
 				e.printStackTrace();
 			}
 		} else {
-			String insert = "insert into `" + Warningline + "`(name,value) " + "values('" + centerID + "','" + value
-					+ "')";
+			String insert = MySql.insert(TableEnum.WARNINGLINE, new HashMap<String, String>() {
+				{
+					put("name", centerID);
+					put("value", value + "");
+				}
+			});
 			try {
 				statement = conn.prepareStatement(insert);
 				statement.executeUpdate();

@@ -21,6 +21,10 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 		super();
 	}
 
+	public static String getID() {
+		return ID;
+	}
+
 	public static SystemState getState() {
 		return state;
 	}

@@ -12,9 +12,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import database.ConnecterHelper;
+import database.MySql;
+import database.enums.TableEnum;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreModel;
@@ -69,20 +72,18 @@ public class InitialHelper {
 	public int getVersion() throws ClassNotFoundException {
 		String file_path = ROOT;
 		File dir = new File(file_path);
-		if(!dir.exists()){
+		if (!dir.exists()) {
 			dir.mkdir();
 		}
 		System.out.println(dir.listFiles().length + 1);
 		return dir.listFiles().length + 1;
 	}
 
-	public OperationMessage saveFile(InitialDataPO po)
-			throws ClassNotFoundException {
+	public OperationMessage saveFile(InitialDataPO po) throws ClassNotFoundException {
 		int num = this.getVersion();
 		po.setVersion(num + "");
 		try {
-			ObjectOutputStream oo = new ObjectOutputStream(
-					new FileOutputStream(new File(ROOT + num + ".txt")));
+			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(new File(ROOT + num + ".txt")));
 			oo.writeObject(po);
 			oo.close();
 		} catch (FileNotFoundException e) {
@@ -101,8 +102,7 @@ public class InitialHelper {
 		InitialDataPO po = null;
 		try {
 			System.out.println("version = " + version);
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
-					new File(ROOT + version + ".txt")));
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(ROOT + version + ".txt")));
 			po = (InitialDataPO) ois.readObject();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -134,7 +134,6 @@ public class InitialHelper {
 				add("hall");
 				add("load");
 				add("log");
-				add("order");
 				add("pack");
 				add("payment");
 				add("price");
@@ -151,6 +150,11 @@ public class InitialHelper {
 			}
 
 		};
+		list.add(MySql.delete(TableEnum.ORDER, new HashMap<String, String>() {
+			{
+				put("finished", "1");
+			}
+		}));
 		OperationMessage result = new OperationMessage();
 		for (String tmp : list) {
 			String delete = "delete from `" + tmp + "`";
@@ -166,27 +170,26 @@ public class InitialHelper {
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException,
-//			ClassNotFoundException {
-//		InitialHelper p = new InitialHelper();
-//		ArrayList<AccountPO> list = new ArrayList<AccountPO>();
-//		list.add(new AccountPO("admin", "HAVE", "admin"));
-//		InitialDataPO po = new InitialDataPO("0", "空版本",
-//				p.storeModelDataService.getModels(),
-//				new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(),
-//				new ArrayList<StaffPO>(), new ArrayList<HallPO>(),
-//				new ArrayList<CenterPO>(),
-//				p.configurationDataService.getAllCity2D(),
-//				p.configurationDataService.getPrice(),
-//				p.configurationDataService.getProportion(),
-//				p.configurationDataService.getSalaryStrategy(),
-//				p.configurationDataService.getPack(), list,
-//				new ArrayList<DriverPO>());
-//		p.saveFile(po);
-//	}
+	// public static void main(String[] args) throws RemoteException,
+	// ClassNotFoundException {
+	// InitialHelper p = new InitialHelper();
+	// ArrayList<AccountPO> list = new ArrayList<AccountPO>();
+	// list.add(new AccountPO("admin", "HAVE", "admin"));
+	// InitialDataPO po = new InitialDataPO("0", "空版本",
+	// p.storeModelDataService.getModels(),
+	// new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(),
+	// new ArrayList<StaffPO>(), new ArrayList<HallPO>(),
+	// new ArrayList<CenterPO>(),
+	// p.configurationDataService.getAllCity2D(),
+	// p.configurationDataService.getPrice(),
+	// p.configurationDataService.getProportion(),
+	// p.configurationDataService.getSalaryStrategy(),
+	// p.configurationDataService.getPack(), list,
+	// new ArrayList<DriverPO>());
+	// p.saveFile(po);
+	// }
 
-	public InitialDataPO saveMysql(String dbName)
-			throws ClassNotFoundException, RemoteException {
+	public InitialDataPO saveMysql(String dbName) throws ClassNotFoundException, RemoteException {
 		ArrayList<HallPO> halls = companyDataHallService.getHall();
 		ArrayList<String> hallIDs = new ArrayList<String>();
 		ArrayList<CarPO> cars = new ArrayList<CarPO>();
@@ -199,51 +202,37 @@ public class InitialHelper {
 		ArrayList<DriverPO> drivers = new ArrayList<DriverPO>();
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.ADMINISTRATOR));
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.BURSAR));
-		staffs.addAll(staffDatalService
-				.getStaff(StaffTypeEnum.CENTER_COUNTERMAN));
+		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.CENTER_COUNTERMAN));
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.DELIVER));
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.HALL_COUNTERMAN));
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.MANAGER));
 		staffs.addAll(staffDatalService.getStaff(StaffTypeEnum.STOREMAN));
 		drivers.addAll(driverDatalService.getStaff(StaffTypeEnum.DRIVER));
 
-		return new InitialDataPO(getVersion() + "", dbName,
-				storeModelDataService.getModels(),
-				bankAccountDataService.getAll(), cars, staffs, halls,
-				companyDataCenterService.getCenter(),
-				configurationDataService.getAllCity2D(),
-				configurationDataService.getPrice(),
-				configurationDataService.getProportion(),
-				configurationDataService.getSalaryStrategy(),
-				configurationDataService.getPack(),
-				accountDataService.getAccountPOs(), drivers);
+		return new InitialDataPO(getVersion() + "", dbName, storeModelDataService.getModels(),
+				bankAccountDataService.getAll(), cars, staffs, halls, companyDataCenterService.getCenter(),
+				configurationDataService.getAllCity2D(), configurationDataService.getPrice(),
+				configurationDataService.getProportion(), configurationDataService.getSalaryStrategy(),
+				configurationDataService.getPack(), accountDataService.getAccountPOs(), drivers);
 	}
 
 	public OperationMessage loadMysql(InitialDataPO po) throws RemoteException {
 		for (StoreModel tmp : po.getStoreModels()) {
 			for (String label : tmp.getArea(StoreAreaCode.AIR).getShelfLabel()) {
-				storeModelDataService.newShelf(tmp.getCenterID(),
-						StoreAreaCode.AIR,
-						Integer.parseInt(label.split("-")[0]),
-						Integer.parseInt(label.split("-")[1]));
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.AIR,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
 			for (String label : tmp.getArea(StoreAreaCode.FLEX).getShelfLabel()) {
-				storeModelDataService.newShelf(tmp.getCenterID(),
-						StoreAreaCode.FLEX,
-						Integer.parseInt(label.split("-")[0]),
-						Integer.parseInt(label.split("-")[1]));
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.FLEX,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
 			for (String label : tmp.getArea(StoreAreaCode.RAIL).getShelfLabel()) {
-				storeModelDataService.newShelf(tmp.getCenterID(),
-						StoreAreaCode.RAIL,
-						Integer.parseInt(label.split("-")[0]),
-						Integer.parseInt(label.split("-")[1]));
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.RAIL,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
 			for (String label : tmp.getArea(StoreAreaCode.ROAD).getShelfLabel()) {
-				storeModelDataService.newShelf(tmp.getCenterID(),
-						StoreAreaCode.ROAD,
-						Integer.parseInt(label.split("-")[0]),
-						Integer.parseInt(label.split("-")[1]));
+				storeModelDataService.newShelf(tmp.getCenterID(), StoreAreaCode.ROAD,
+						Integer.parseInt(label.split("-")[0]), Integer.parseInt(label.split("-")[1]));
 			}
 		}
 		for (BankAccountPO tmp : po.getBankAccounts()) {
