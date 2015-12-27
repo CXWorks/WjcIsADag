@@ -43,7 +43,7 @@ public class FinanceBLFactory extends BLFactory{
 
     public static BankAccountBLService getBankAccountBLService() {
         if(bankAccountBLService == null){
-            bankAccountBLService = new BankAccountBLImpl();
+            bankAccountBLService = new BankAccountBLImpl(vopoFactory);
         }
         return bankAccountBLService;
     }

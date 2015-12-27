@@ -23,11 +23,10 @@ import tool.vopo.VOPOFactory;
  * @version 1.0
  */
 public class StaffManage implements ManageblStaffService {
-	private MemberDataService<StaffPO> memberDataService;
 
 	private VOPOFactory vopoFactory;
 	public StaffManage(VOPOFactory vopoFactory){
-		memberDataService=CacheHelper.getMemberDataService_staff();
+		
 		this.vopoFactory=vopoFactory;
 	}
 
@@ -35,6 +34,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#modifyStaff(vo.managevo.staff.StaffVO)
 	 */
 	public OperationMessage modifyStaff(StaffVO after) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		StaffPO po=(StaffPO)vopoFactory.transVOtoPO(after);
 		try {
 			return memberDataService.modifyStaff(po);
@@ -47,6 +47,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#addStaff(vo.managevo.staff.StaffVO)
 	 */
 	public OperationMessage addStaff(StaffVO staff) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		StaffPO po=(StaffPO)vopoFactory.transVOtoPO(staff);
 		try {
 			return memberDataService.addStaff(po);
@@ -59,6 +60,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#dismissStaff(vo.managevo.staff.StaffVO)
 	 */
 	public OperationMessage dismissStaff(StaffVO staff) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		StaffPO po=(StaffPO)vopoFactory.transVOtoPO(staff);
 		try {
 			return memberDataService.dismissStaff(po);
@@ -71,6 +73,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#searchStaff(vo.managevo.staff.StaffVO)
 	 */
 	public StaffVO searchStaff(String staffID) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		try {
 			StaffPO po=memberDataService.getPerson(staffID);
 			StaffVO vo=(StaffVO)vopoFactory.transPOtoVO(po);
@@ -84,6 +87,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#newStaffID()
 	 */
 	public String newStaffID(StaffTypeEnum staffType,String unitID) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		try {
 			String newStaffID=memberDataService.newStaffID(staffType, unitID);
 			return newStaffID;
@@ -96,6 +100,7 @@ public class StaffManage implements ManageblStaffService {
 	 * @see bl.blService.manageblService.ManageblStaffService#getStaff(po.memberdata.StaffTypeEnum)
 	 */
 	public ArrayList<StaffVO> getStaff(StaffTypeEnum staffType) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		try {
 			ArrayList<StaffPO> po=memberDataService.getStaff(staffType);
 			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
@@ -115,9 +120,8 @@ public class StaffManage implements ManageblStaffService {
 	 */
 	@Override
 	public ArrayList<StaffVO> getStaffByInstitution(String hallID) {
+		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		try {
-			if (memberDataService==null) {
-			}
 			ArrayList<StaffPO> po=memberDataService.getStaffByInstitution(hallID);
 			ArrayList<StaffVO> result=new ArrayList<StaffVO>(po.size());
 			for(int i=0;i<po.size();i++){

@@ -32,14 +32,11 @@ import tool.vopo.VOPOFactory;
 public class ReceiveblImpl implements ReceiveBLService {
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
-	private FormatCheckService formatCheckService;
-	private ReceiveDataService receiveDataService;
 	//
-	public ReceiveblImpl(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
+	public ReceiveblImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
-		this.formatCheckService=formatCheckService;
-		this.receiveDataService=CacheHelper.getReceiveDataService();
+		
 	}
 
 	
@@ -81,6 +78,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
+		ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
 		try {
 			return receiveDataService.newID(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {

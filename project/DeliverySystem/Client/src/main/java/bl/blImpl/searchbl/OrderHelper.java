@@ -15,15 +15,15 @@ import vo.logisticsvo.LogisticsVO;
  * @version 1.0 
  */
 public class OrderHelper {
-	private OrderDataService orderDataService;
 	private OrderPO toSearch;
 	private Intergrate intergrate;
 	public OrderHelper(){
-		orderDataService=CacheHelper.getOrderDataService();
+		
 		intergrate=new Intergrate();
 	}
 	
 	public LogisticsVO searchOrder(String orderID){
+		OrderDataService orderDataService=CacheHelper.getOrderDataService();
 		try {
 			this.toSearch=orderDataService.getFormPO(orderID);
 			//

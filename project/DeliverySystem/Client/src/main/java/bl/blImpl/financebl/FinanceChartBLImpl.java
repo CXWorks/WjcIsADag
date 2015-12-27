@@ -18,13 +18,10 @@ import rmi.financedata.RevenueDataService;
  * Created by Sissel on 2015/10/26.
  */
 public class FinanceChartBLImpl implements FinanceChartBLService {
-	private PaymentDataService paymentDataService;
-	private RevenueDataService revenueDataService;
 	private BarChartMaker barChartMaker;
 	private PieChartMaker pieChartMaker;
 	public FinanceChartBLImpl(){
-		this.paymentDataService=CacheHelper.getPaymentDataService();
-		revenueDataService=CacheHelper.getRevenueDataService();
+		
 		barChartMaker=new BarChartMaker();
 		pieChartMaker=new PieChartMaker();
 	}	
@@ -142,6 +139,8 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
         
     }
     private ArrayList<PaymentPO> smartGetPaymentPO(Calendar start,Calendar end) throws RemoteException{
+    	PaymentDataService paymentDataService=CacheHelper.getPaymentDataService();
+		
     	if (start==null||end==null) {
 			return paymentDataService.getAll();
 		}
@@ -151,6 +150,7 @@ public class FinanceChartBLImpl implements FinanceChartBLService {
     }
     
     private ArrayList<RevenuePO> smartGetRevenuePO(Calendar start,Calendar end) throws RemoteException{
+    	RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
     	if (start==null||end==null) {
 			return revenueDataService.getAll();
 		}

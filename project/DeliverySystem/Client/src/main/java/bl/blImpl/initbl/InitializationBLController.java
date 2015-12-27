@@ -59,15 +59,14 @@ public class InitializationBLController implements InitializationBLService {
     String version;
 
     // manageServices
-    InitialDataService initialDataService;
 
     public InitializationBLController(VOPOFactory vopoFactory){
     	this.vopoFactory=vopoFactory;
-    	this.initialDataService=CacheHelper.getInitialDataService();
+    	InitialDataService initialDataService=CacheHelper.getInitialDataService();
     	try {
-			version=this.initialDataService.getLatest_version(UserInfo.getUserID());
+			version=initialDataService.getLatest_version(UserInfo.getUserID());
 			System.out.println(version);
-			InitialDataPO initialDataPO=this.initialDataService.getInitialDataPO(version);
+			InitialDataPO initialDataPO=initialDataService.getInitialDataPO(version);
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -225,6 +224,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public InitialDataVO getInitialDataVO() {
+    	InitialDataService initialDataService = CacheHelper.getInitialDataService();
        try {
 		String version=initialDataService.getLatest_version(UserInfo.getUserID());
 		InitialDataPO initialDataPO=initialDataService.getInitialDataPO(version);
@@ -237,6 +237,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage requestInitData() {
+    	InitialDataService initialDataService = CacheHelper.getInitialDataService();
         try {
 			OperationMessage re=initialDataService.requestInitData(UserInfo.getUserID());
 			String lastVersion=initialDataService.getLatest_version(UserInfo.getUserID());
@@ -251,6 +252,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage uploadInitialData() {
+    	InitialDataService initialDataService = CacheHelper.getInitialDataService();
     	InitialDataPO po=(InitialDataPO)vopoFactory.transVOtoPO(initialDataVO);
         try {
 			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(),po);
@@ -263,6 +265,7 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage abortInitData() {
+    	InitialDataService initialDataService = CacheHelper.getInitialDataService();
        try {
 		OperationMessage res= initialDataService.abortInitData(UserInfo.getUserID());
 		UserInfo.changeSystermState();

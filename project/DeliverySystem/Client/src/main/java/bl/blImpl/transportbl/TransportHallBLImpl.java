@@ -31,12 +31,11 @@ import bl.blService.transportblService.TransportHallBLService;
 import bl.clientNetCache.CacheHelper;
 
 public class TransportHallBLImpl implements TransportHallBLService {
-	private LoadDataService loadDataService;
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 
 	public TransportHallBLImpl(VOPOFactory vopoFactory, DraftService draftService) {
-		this.loadDataService = CacheHelper.getLoadDataService();
+		
 		this.draftService = draftService;
 		this.vopoFactory = vopoFactory;
 	}
@@ -75,6 +74,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
+		LoadDataService loadDataService = CacheHelper.getLoadDataService();
 		String ID;
 		try {
 			ID = loadDataService.newID(UserInfo.getInstitutionID());

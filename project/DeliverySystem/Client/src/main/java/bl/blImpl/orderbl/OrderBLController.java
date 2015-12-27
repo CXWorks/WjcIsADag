@@ -27,14 +27,12 @@ import tool.vopo.VOPOFactory;
 public class OrderBLController implements OrderBLService{
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
-	private FormatCheckService formatCheckService;
 	private Predicter predicter;
 	private String localCity;
 	//
-	public OrderBLController(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
+	public OrderBLController(VOPOFactory vopoFactory,DraftService draftService){
 		this.vopoFactory=vopoFactory;
 		this.draftService=draftService;
-		this.formatCheckService=formatCheckService;
 		this.predicter=new Predicter(vopoFactory);
 	}
 	public OrderVO loadDraft() {

@@ -21,17 +21,17 @@ import tool.vopo.VOPOFactory;
  * @version 1.0
  */
 public class CheckDeliverImpl implements CheckDeliverForm {
-	private DeliverDataService deliverDataService;
 	private VOPOFactory vopoFactory;
 
 	public CheckDeliverImpl(VOPOFactory vopoFactory){
-		this.deliverDataService=CacheHelper.getDeliverDataService();
+		
 		this.vopoFactory=vopoFactory;
 	}
 	/* (non-Javadoc)
 	 * @see bl.blService.deliverblService.CheckDeliverForm#getDeliverForms(java.lang.String)
 	 */
 	public ArrayList<DeliverVO> getDeliverForms(String postmanID) {
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 		try {
 			ArrayList<String> ID=deliverDataService.searchAsPerson(postmanID);
 			ArrayList<DeliverVO> vo=new ArrayList<DeliverVO>(ID.size());
@@ -47,7 +47,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	}
 	public OperationMessage finishDelivery(DeliverVO each) {
 		DeliverPO po;
-
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 			po=(DeliverPO)vopoFactory.transVOtoPO(each);
 			po.setFinished(true);
 			try {
@@ -68,6 +68,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 	 */
 	@Override
 	public ArrayList<OrderVO> getDeliverOrder(String postmanID) {
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 		try {
 			OrderDataService orderDataService=CacheHelper.getOrderDataService();
 			ArrayList<String> ID=deliverDataService.searchAsPerson(postmanID);

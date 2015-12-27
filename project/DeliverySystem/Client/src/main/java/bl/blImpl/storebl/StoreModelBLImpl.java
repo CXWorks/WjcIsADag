@@ -24,11 +24,10 @@ import java.util.Observer;
  * Created by Sissel on 2015/10/26.
  */
 public class StoreModelBLImpl implements StoreModelBLService {
-	private StoreModelDataService storeModelDataService;
 	private StoreWarningChecker storeWarningChecker;
 	public StoreModelBLImpl(){
 
-		this.storeModelDataService=CacheHelper.getStoreModelDataService();
+		
 		this.storeWarningChecker=new StoreWarningChecker();
 	}
     public OperationMessage setWarningLine(double percent) {
@@ -40,6 +39,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
     }
 
     public OperationMessage expandPartition(String centerID,StoreAreaCode area, int number) {
+    	StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
     	 try {
  			StoreArea flex=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.FLEX);
  			int row=flex.getRowNumber();
@@ -66,6 +66,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
     }
 
     public OperationMessage reducePartition(String centerID,StoreAreaCode area, int number) {
+    	StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
     	 try {
  			StoreArea target=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
  			int row=target.getRowNumber();
@@ -97,6 +98,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	@Override
 	public OperationMessage moveShelf(String centerID,StoreAreaCode code_now, int row_now,
 			int shelf_now, StoreAreaCode code, int row, int shelf) {
+		StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
 		try {
 			return storeModelDataService.moveShelf(UserInfo.getInstitutionID(),code_now, row_now, shelf_now, code, row, shelf);
 		} catch (RemoteException e) {
@@ -108,6 +110,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	 */
 	@Override
 	public ArrayList<StoreShelfVO> getShelfInfo(String centerID,StoreAreaCode storeAreaCode) {
+		StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
 		try {
 			StoreArea area=storeModelDataService.getArea(UserInfo.getInstitutionID(),storeAreaCode);
 			int totalShelf=area.getShelfNumber();
@@ -139,6 +142,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
 	 */
 	@Override
 	public StoreAreaInfoVO getStoreAreaInfo(String centerID,StoreAreaCode storeAreaCode) {
+		StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
 		try {
 			StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),storeAreaCode);
 			StoreAreaInfoVO storeAreaInfoVO=new StoreAreaInfoVO(storeArea);

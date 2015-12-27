@@ -17,15 +17,16 @@ import bl.clientNetCache.CacheHelper;
  * @version 1.0 
  */
 public class AccountBLRemindImpl implements AccountBLRemindService {
-	ChatRemindService chatRemindService;
+
 	public AccountBLRemindImpl(){
-		this.chatRemindService=CacheHelper.getChatRemindService();
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLRemindService#checkMessage(java.lang.String)
 	 */
 	public OperationMessage checkMessage(String ID) {
+		ChatRemindService chatRemindService=CacheHelper.getChatRemindService();
 		try {
 			return chatRemindService.checkMessage(ID);
 		} catch (RemoteException e) {
@@ -37,6 +38,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 	 * @see bl.blService.accountblService.AccountBLRemindService#receive(java.lang.String)
 	 */
 	public ArrayList<ChatMessage> receive(String ID) {
+		ChatRemindService chatRemindService=CacheHelper.getChatRemindService();
 		try {
 			return chatRemindService.getMessage(ID);
 		} catch (RemoteException e) {

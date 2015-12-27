@@ -35,8 +35,6 @@ import tool.vopo.VOPOFactory;
  */
 public class FormFactory extends BLFactory {
 	//
-	private static FormatCheckService formatCheckService = new FormatCheckImpl();
-	//
 	private static ReceiveBLService receiveBLService;
 	private static OrderBLService orderBLService;
 	private static DeliverBLService deliverBlService;
@@ -54,20 +52,20 @@ public class FormFactory extends BLFactory {
 
 	public static ReceiveBLService getReceiveBLService() {
 		if(receiveBLService == null){
-			receiveBLService = new ReceiveblImpl(vopoFactory, draftService, formatCheckService);
+			receiveBLService = new ReceiveblImpl(vopoFactory, draftService);
 		}
 		return receiveBLService;
 	}
 
 	public static OrderBLService getOrderBLService() {
 		if(orderBLService == null){
-			orderBLService = new OrderBLController(vopoFactory, draftService, formatCheckService);
+			orderBLService = new OrderBLController(vopoFactory, draftService);
 		}
 		return orderBLService;
 	}
 	public static DeliverBLService getDeliverBLService() {
 		if(deliverBlService == null){
-			deliverBlService = new DeliverBLImpl(vopoFactory, draftService, formatCheckService);
+			deliverBlService = new DeliverBLImpl(vopoFactory, draftService);
 		}
 		return deliverBlService;
 	}

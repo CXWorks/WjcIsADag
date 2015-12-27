@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
@@ -23,14 +24,14 @@ import vo.configurationvo.ProportionVO;
  * @version 1.0
  */
 public class Money {
-	private ConfigurationDataService configurationDataService;
+
 	private VOPOFactory vopoFactory;
-	public Money(ConfigurationDataService configurationDataService,VOPOFactory vopoFactory){
-		this.configurationDataService=configurationDataService;
+	public Money(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
 	}
 	//
 	public ArrayList<ConfigurationVO> getPrice(){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			PricePO po=configurationDataService.getPrice();
 			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(1);
@@ -44,6 +45,7 @@ public class Money {
 	}
 	//
 	public ArrayList<ConfigurationVO> getProportion(){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			ProportionPO po=configurationDataService.getProportion();
 			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(1);
@@ -56,6 +58,7 @@ public class Money {
 	}
 	//
 	public ArrayList<ConfigurationVO> getPack(){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			PackPO po=configurationDataService.getPack();
 			ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>(1);
@@ -70,6 +73,7 @@ public class Money {
 	 * modify methods
 	 */
 	public OperationMessage modifyPrice(PriceVO vo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		PricePO po=(PricePO)vopoFactory.transVOtoPO(vo);
 		try {
 			return configurationDataService.modifyPrice(po);
@@ -79,6 +83,7 @@ public class Money {
 	}
 	//
 	public OperationMessage modifyProportion(ProportionVO vo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		ProportionPO po=(ProportionPO)vopoFactory.transVOtoPO(vo);
 		try {
 			return configurationDataService.modifyProportion(po);
@@ -88,6 +93,7 @@ public class Money {
 	}
 	//
 	public OperationMessage modifyPack(PackVO vo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		PackPO po=(PackPO)vopoFactory.transVOtoPO(vo);
 		try {
 			return configurationDataService.modifyPack(po);

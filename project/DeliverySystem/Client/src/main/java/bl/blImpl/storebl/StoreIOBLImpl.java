@@ -26,15 +26,13 @@ import rmi.storedata.StoreFormDataService;
  * Created by Sissel on 2015/10/26.
  */
 public class StoreIOBLImpl implements StoreIOBLService {
-	private OrderDataService orderDataService;
-	private StoreFormDataService storeFormDataService;
 	private VOPOFactory vopoFactory;
 	public StoreIOBLImpl(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		this.orderDataService=CacheHelper.getOrderDataService();
-		this.storeFormDataService=CacheHelper.getStoreFormDataService();
+		
 	}
     public List<StoreFormVO> getGoodsInfo(Calendar startDate,Calendar endDate) {
+    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         LinkedList<StoreFormVO> answer=new LinkedList<StoreFormVO>();
         try {
 			ArrayList<StoreInPO> storeInPOs=storeFormDataService.getAllStoreInPO();
@@ -63,6 +61,7 @@ public class StoreIOBLImpl implements StoreIOBLService {
 
     public List<StoreFormVO> filterGoods(String orderNumber) {
         LinkedList<StoreFormVO> answer=new LinkedList<StoreFormVO>();
+        StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
 		try {
 			StoreInPO storeInPO=storeFormDataService.getStoreInPO(orderNumber);
 	        StoreOutPO storeOutPO=storeFormDataService.getStoreOutPO(orderNumber);

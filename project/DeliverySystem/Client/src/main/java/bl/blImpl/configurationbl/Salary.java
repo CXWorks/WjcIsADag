@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.SalaryStrategyPO;
 import tool.vopo.VOPOFactory;
@@ -17,15 +18,15 @@ import vo.configurationvo.SalaryStrategyVO;
  * @version 1.0 
  */
 public class Salary {
-	private ConfigurationDataService configurationDataService;
 	private VOPOFactory vopoFactory;
-	public Salary(ConfigurationDataService configurationDataService,VOPOFactory vopoFactory){
-		this.configurationDataService=configurationDataService;
+	public Salary(VOPOFactory vopoFactory){
+
 		this.vopoFactory=vopoFactory;
 	}
 	public ArrayList<ConfigurationVO> getSalary(){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
-			ArrayList<SalaryStrategyPO> po= this.configurationDataService.getSalaryStrategy();
+			ArrayList<SalaryStrategyPO> po= configurationDataService.getSalaryStrategy();
 			ArrayList<ConfigurationVO> vo=new ArrayList<ConfigurationVO>(po.size());
 			
 			for (int i = 0; i < po.size(); i++) {
@@ -41,6 +42,7 @@ public class Salary {
 	}
 	//
 	public OperationMessage modify(SalaryStrategyVO vo){
+		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		SalaryStrategyPO po=(SalaryStrategyPO)vopoFactory.transVOtoPO(vo);
 		try {
 			return configurationDataService.modifySalaryStrategy(po);

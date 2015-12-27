@@ -25,15 +25,15 @@ import rmi.financedata.PaymentDataService;
  * Created by Sissel on 2015/10/26.
  */
 public class PaymentBLImpl implements PaymentBLService {
-	private PaymentDataService paymentDataService;
 	private VOPOFactory vopoFactory;
 	private DraftService draftService;
 	public PaymentBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
-		this.paymentDataService=CacheHelper.getPaymentDataService();
+		
 	}
     public String getNewPaymentID(String date) {
+    	PaymentDataService paymentDataService=CacheHelper.getPaymentDataService();
         try {
 			String ID=paymentDataService.newID(UserInfo.getInstitutionID());
 			return ID;
@@ -44,6 +44,7 @@ public class PaymentBLImpl implements PaymentBLService {
     }
 
     public PaymentVO getPaymentVO(String paymentID) {
+    	PaymentDataService paymentDataService=CacheHelper.getPaymentDataService();
         try {
 			PaymentPO po=paymentDataService.getFormPO(paymentID);
 			PaymentVO vo=(PaymentVO)vopoFactory.transPOtoVO(po);
@@ -54,6 +55,7 @@ public class PaymentBLImpl implements PaymentBLService {
     }
 
     public List<PaymentVO> getPaymentVOs(Calendar startDate, Calendar endDate) {
+    	PaymentDataService paymentDataService=CacheHelper.getPaymentDataService();
     	try {
 			ArrayList<PaymentPO> po=paymentDataService.getAll();
 			ArrayList<PaymentVO> vo=new ArrayList<PaymentVO>();

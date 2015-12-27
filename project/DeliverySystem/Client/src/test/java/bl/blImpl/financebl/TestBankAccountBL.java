@@ -7,6 +7,7 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import tool.vopo.VOPOFactory;
 import vo.financevo.BankAccountVO;
 import bl.blService.financeblService.BankAccountBLService;
 
@@ -26,7 +27,7 @@ public class TestBankAccountBL {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		bankAccountBLService=new BankAccountBLImpl();
+		bankAccountBLService=new BankAccountBLImpl(new VOPOFactory());
 		list=new LinkedList<BankAccountVO>();
 		b=new BankAccountVO("42084", "2333", "1000000");
 		list.add(b);

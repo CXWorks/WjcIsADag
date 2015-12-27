@@ -27,16 +27,13 @@ import vo.storevo.StoreInVO;
  * Created by Sissel on 2015/10/26.
  */
 public class StockTackBLImpl implements StockTackBLService {
-	private StoreModelDataService storeModelDataService;
-	private StoreFormDataService storeFormDataService;
-	private TackDataService tackDataService;
 	private int localTimes;
 	private StoreModel currentModel;
 	//
 	public StockTackBLImpl(){
-		this.storeFormDataService=CacheHelper.getStoreFormDataService();
-		this.storeModelDataService=CacheHelper.getStoreModelDataService();
-		this.tackDataService=CacheHelper.getTackDataService();
+		
+		StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
+		TackDataService tackDataService=CacheHelper.getTackDataService();
 		try {
 			localTimes=tackDataService.getTack(UserInfo.getInstitutionID());
 			currentModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
@@ -66,6 +63,7 @@ public class StockTackBLImpl implements StockTackBLService {
 	}
 
     public StoreInVO getStoreInVO(String orderNumber) {
+    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         try {
 			StoreInPO storeInPO=storeFormDataService.getStoreInPO(orderNumber);
 			StoreInVO storeInVO=new StoreInVO(storeInPO);
@@ -76,6 +74,7 @@ public class StockTackBLImpl implements StockTackBLService {
     }
 
     public OperationMessage makeExcel(String path) {
+    	StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
         try {
         	ArrayList<StoreArea> storeArea=new ArrayList<StoreArea>(4);
 			StoreArea storeArea1=storeModelDataService.getArea(UserInfo.getInstitutionID(),StoreAreaCode.AIR);
@@ -96,6 +95,8 @@ public class StockTackBLImpl implements StockTackBLService {
 	 */
 	@Override
 	public StockTackVO reStockTack(String centerID) {
+		TackDataService tackDataService=CacheHelper.getTackDataService();
+		StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
 		try {
 			this.currentModel=storeModelDataService.getModel(centerID);
 			this.localTimes++;

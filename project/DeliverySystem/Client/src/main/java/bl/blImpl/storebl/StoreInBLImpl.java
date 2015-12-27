@@ -28,11 +28,10 @@ import po.storedata.StoreInPO;
  * Created by Sissel on 2015/10/26.
  */
 public class StoreInBLImpl implements StoreInBLService {
-	private StoreFormDataService storeFormDataService;
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
 	public StoreInBLImpl(VOPOFactory vopoFactory, DraftService draftService){
-		this.storeFormDataService=CacheHelper.getStoreFormDataService();
+		
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
 	}
@@ -55,6 +54,7 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public String getNewStoreInID(String date) {
+    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
        try {
 		String ID=storeFormDataService.newIDStoreInPO(UserInfo.getInstitutionID());
 		return ID;

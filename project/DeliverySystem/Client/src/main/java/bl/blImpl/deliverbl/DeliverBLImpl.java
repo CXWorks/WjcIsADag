@@ -31,19 +31,17 @@ import tool.vopo.VOPOFactory;
 public class DeliverBLImpl implements DeliverBLService {
 	private DraftService draftService;
 	private VOPOFactory vopoFactory;
-	private FormatCheckService formatCheckService;
-	private DeliverDataService deliverDataService;
 	//
-	public DeliverBLImpl(VOPOFactory vopoFactory,DraftService draftService,FormatCheckService formatCheckService){
+	public DeliverBLImpl(VOPOFactory vopoFactory,DraftService draftService){
 		this.draftService=draftService;
 		this.vopoFactory=vopoFactory;
-		this.formatCheckService=formatCheckService;
-		this.deliverDataService=CacheHelper.getDeliverDataService();
+		
 	}
 	/* (non-Javadoc)
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 		String unitID=UserInfo.getInstitutionID();
 		try {
 			String ID=deliverDataService.newID(unitID);
@@ -106,6 +104,7 @@ public class DeliverBLImpl implements DeliverBLService {
 	 */
 	@Override
 	public ArrayList<String> getUnhandledOrderID(String hallID) {
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 		try {
 			ArrayList<String> order=deliverDataService.available(hallID);
 			return order;
