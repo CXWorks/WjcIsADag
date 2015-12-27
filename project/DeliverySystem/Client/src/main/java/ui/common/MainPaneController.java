@@ -15,6 +15,8 @@ import ui.accountui.PersonalAccountViewController;
 import userinfo.UserInfo;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
 import util.R;
@@ -31,6 +33,8 @@ public class MainPaneController {
     public Label name_Label;
     public AnchorPane personGFatherPane;
     public AnchorPane personFatherPane;
+
+    List<ToggleButton> toggleTabs = new LinkedList<>();
 
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
@@ -59,7 +63,6 @@ public class MainPaneController {
             Pane personView = (Pane)PersonalAccountViewController.launch();
             personFatherPane.getChildren().add(personView);
             setAnchor(personView, 0.0, 0.0, 0.0, 0.0);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,24 +72,23 @@ public class MainPaneController {
     public void addTabButton(String name, Parent content){
         ToggleButton tabButton = new ToggleButton(name);
         tabButton.setMaxWidth(9999999);
+        toggleTabs.add(tabButton);
         tabs_VBox.getChildren().add(tabButton);
         tabButton.setOnAction(
                 actionEvent -> {
+                    disSelectAllTabs();
+                    tabButton.setSelected(true);
                     content_Pane.getChildren().clear();
                     content_Pane.getChildren().add(content);
                     setAnchor(content, 0.0, 0.0, 0.0, 0.0);
-                    ((Pane) content).widthProperty().addListener(
-                            (observable, oldValue, newValue) -> {
-                                System.out.println("stack width change to : " + newValue);
-                            }
-                    );
-                    content_Pane.widthProperty().addListener(
-                            (observable, oldValue, newValue) -> {
-                                System.out.println("border center change to : " + newValue);
-                            }
-                    );
                 }
         );
+    }
+
+    private void disSelectAllTabs(){
+        for (ToggleButton toggleTab : toggleTabs) {
+            toggleTab.setSelected(false);
+        }
     }
 
     public void jumpTo(Pane content){
