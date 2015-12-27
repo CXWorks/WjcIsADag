@@ -17,7 +17,9 @@ import model.store.StoreModel;
 import po.InfoEnum;
 import po.initialdata.InitialDataPO;
 import po.memberdata.StaffTypeEnum;
+import po.orderdata.OrderPO;
 import rmi.initialdata.InitialDataService;
+import rmi.orderdata.OrderDataService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
 import vo.accountvo.AccountVO;
@@ -757,8 +759,17 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public OrderVO getOrder(String orderNumber) {
-		// discuss with jc
-		return null;
+		OrderDataService orderDataService=CacheHelper.getOrderDataService();
+		String key="-";
+		String data=UserInfo.getUserID()+key+orderNumber;
+		try {
+			OrderPO orderPO=orderDataService.getFormPO(data);
+			return (OrderVO) vopoFactory.transPOtoVO(orderPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/* (non-Javadoc)
