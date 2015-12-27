@@ -45,8 +45,7 @@
 }
 
 
-
-.toggle-button{
+.button{
     -fx-border-top-left-radius:0px;
 	-fx-border-top-right-radius:0px;
     -fx-border-bottom-left-radius:0px;
@@ -57,25 +56,46 @@
     -fx-font-size: 15pt;
 	-fx-text-fill:#dcdbdb;
 }
-.toggle-button:hover{
--fx-background-color:#eeeeee;
-}
 
-.toggle-button:pressed{
+.button:hover{
 -fx-background-color:green;
--fx-text-fill:#181818;
 }
 
-.toggle-button:released{
--fx-background-color:black;
--fx-text-fill:white;
-}
-
-.toggle-button:active{
+.button:selected{
 -fx-text-fill:#181818;
 -fx-background-color:blue;
 -fx-border-style:none;
 }
+
+.button:active{
+-fx-text-fill:#181818;
+-fx-background-color:blue;
+-fx-border-style:none;
+}
+
+.toggle-button{
+    -fx-border-top-left-radius:0px;
+	-fx-border-top-right-radius:0px;
+    -fx-border-bottom-left-radius:0px;
+	-fx-border-bottom-right-radius:0px;
+    -fx-size:150;
+	-fx-background-color:#393939;
+    -fx-border-style :none;
+    -fx-font-size: 15pt;
+	-fx-text-fill:#dcdbdb;
+	
+	
+}
+.toggle-button:hover{
+-fx-background-color:#181818;
+}
+
+.toggle-button:selected{
+-fx-text-fill:#181818;
+-fx-background-color:#e3e3e3;
+-fx-border-style:none;
+}
+
 /*
 .button-left{
     -fx-size:80;
