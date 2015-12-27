@@ -141,7 +141,7 @@
         -fx-background-image:url(login/search-hover.png);
 }
 
-.button-search:pressed, .button.search:default:hover:pressed {
+.button-search:pressed {
        -fx-background-image:url(login/search-pressed.png);
 }
 
@@ -165,13 +165,12 @@
         -fx-background-image:url(login/sureHover.png);
 }
 
-.button-sure:pressed, .button.sure:default:hover:pressed {
+.button-sure:pressed{
        -fx-background-image:url(login/surePressed.png);
 }
 
 .button-sure:focused {
-
-    -fx-border-style:none;
+    -fx-background-image:url(login/sure.png);
 
 }
 
