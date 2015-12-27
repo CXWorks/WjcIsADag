@@ -76,9 +76,9 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 
 		ManageStaffController controller = fxmlLoader.getController();
 		controller.manageblStaffService = service;
-		controller.selfPane = selfPane;
 
 		controller.informController = InformController.newInformController(selfPane);
+		controller.selfPane = controller.informController.stackPane;
 
 		if (father == null) {
 			selfPane.getChildren().remove(controller.back_Btn);

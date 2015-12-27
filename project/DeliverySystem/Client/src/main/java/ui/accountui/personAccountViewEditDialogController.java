@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
+import javafx.scene.layout.StackPane;
 import main.Main;
 import message.OperationMessage;
 import ui.common.checkFormat.field.PasswordOnlyField;
@@ -35,20 +36,22 @@ public class personAccountViewEditDialogController {
 
 	private InformController informController;
 
-	public static personAccountViewEditDialogController newDialog(AccountVO editVO, InformController informController) throws IOException {
+	public static personAccountViewEditDialogController newDialog(AccountVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(personAccountViewEditDialogController.class.getResource("personAccountViewEditDialog.fxml"));
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
 		stage.initOwner(Main.primaryStage);
-		stage.setScene(new Scene(pane));
+        InformController informController = InformController.newInformController(pane);
+        StackPane sp = informController.stackPane;
+		stage.setScene(new Scene(sp));
 
 		personAccountViewEditDialogController controller = loader.getController();
-		controller.informController = informController;
 
 		controller.editVO = editVO;
 		controller.stage = stage;
+        controller.informController = informController;
 
 		return controller;
 	}

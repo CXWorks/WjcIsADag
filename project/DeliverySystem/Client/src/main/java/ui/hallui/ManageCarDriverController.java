@@ -82,7 +82,7 @@ public class ManageCarDriverController {
 
 		controller.refresh();
 
-		return pane;
+		return controller.informController.stackPane;
 	}
 
 	@FXML

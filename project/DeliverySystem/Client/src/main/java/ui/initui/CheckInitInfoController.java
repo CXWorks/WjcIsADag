@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import po.systemdata.SystemState;
+import tool.ui.AnchorSet;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import ui.informui.InformController;
@@ -113,7 +114,9 @@ public class CheckInitInfoController {
         initBLService.requestInitData();
         father.getChildren().clear();
         try {
-            father.getChildren().add(NewInitController.launch(father));
+            Pane pane = (Pane)NewInitController.launch(father);
+            AnchorSet.set0(pane);
+            father.getChildren().add(pane);
         } catch (IOException e) {
             e.printStackTrace();
         }

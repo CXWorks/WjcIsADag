@@ -26,6 +26,8 @@ public class InformController {
             controller.stackPane = new StackPane(contentPane);
             contentPane.prefWidthProperty().bind(controller.stackPane.widthProperty());
             contentPane.prefHeightProperty().bind(controller.stackPane.heightProperty());
+            controller.stackPane.getChildren().add(informPane);
+            informPane.setVisible(false);
             controller.informPane = informPane;
 
             return controller;
@@ -37,14 +39,14 @@ public class InformController {
 
     public void inform(String info){
         content_Label.setText(info);
-        stackPane.getChildren().add(informPane);
+        informPane.setVisible(true);
         // sleep for a while
         new Thread(
                 () -> {
                     try {
                         Thread.sleep(1700);
                         Platform.runLater(
-                                () -> stackPane.getChildren().remove(informPane)
+                                () -> informPane.setVisible(false)
                         );
                     } catch (InterruptedException e) {
                         e.printStackTrace();

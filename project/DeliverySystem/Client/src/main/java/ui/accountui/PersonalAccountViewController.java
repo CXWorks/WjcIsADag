@@ -27,16 +27,13 @@ public class PersonalAccountViewController {
     public Label staff_Label;
     public Label id_Label;
 
-    private InformController informController;
-
     AccountBLManageService accountManageService = AccountFactory.getManageService();
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
         Pane pane = loader.load();
         PersonalAccountViewController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
 
-        return controller.informController.stackPane;
+        return pane;
     }
 
 	@FXML
@@ -48,7 +45,7 @@ public class PersonalAccountViewController {
 
     public void editPassword(ActionEvent actionEvent)  throws IOException {
         AccountVO AccountVO = accountManageService.getAccountVO(UserInfo.getUserID());
-        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO, informController);
+        personAccountViewEditDialogController controller = personAccountViewEditDialogController.newDialog(AccountVO);
 
         controller.stage.showAndWait();
     }
