@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
+import javafx.scene.layout.AnchorPane;
 import po.FormEnum;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -42,6 +43,7 @@ public class FormTableController {
 	public TableColumn<FormVO, String> infoColumn;
 	//
 	public ArrayList<FormVO> formVOs;
+	public AnchorPane fatherPane;
 	private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	//
 	private InformController informController;

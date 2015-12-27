@@ -26,7 +26,7 @@
       </HBox>
       <TableView fx:id="accounts_TableView" layoutX="84.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="109.0">
          <columns>
-            <TableColumn fx:id="check_TableColumn" prefWidth="64.0" text="勾选" />
+            <TableColumn fx:id="check_TableColumn" prefWidth="64.0" resizable="false" text="勾选" />
             <TableColumn fx:id="id_TableColumn" prefWidth="75.0" text="账号" />
             <TableColumn fx:id="password_TableColumn" prefWidth="75.0" text="密码" />
             <TableColumn fx:id="staff_TableColumn" prefWidth="75.0" text="身份" />

@@ -5,15 +5,19 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="850.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.CheckStoreInitPane">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="874.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.CheckStoreInitPane">
    <children>
-      <TextField fx:id="storeID_Field" layoutX="118.0" layoutY="14.0" />
-      <Label layoutX="29.0" layoutY="16.0" text="仓库编号">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="319.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadStore" text="Search" />
-      <AnchorPane fx:id="content_Pane" layoutX="3.0" layoutY="44.0" prefHeight="312.0" prefWidth="688.0" AnchorPane.leftAnchor="0.0" />
+      <HBox alignment="CENTER" layoutX="29.0" layoutY="14.0" spacing="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="29.0" layoutY="16.0" text="仓库编号">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="storeID_Field" layoutX="118.0" layoutY="14.0" />
+         </children>
+      </HBox>
+      <Button layoutX="358.0" layoutY="48.0" mnemonicParsing="false" onAction="#loadStore" text="Search" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="content_Pane" layoutX="42.0" layoutY="72.0" prefHeight="312.0" prefWidth="688.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0" />
    </children>
 </AnchorPane>

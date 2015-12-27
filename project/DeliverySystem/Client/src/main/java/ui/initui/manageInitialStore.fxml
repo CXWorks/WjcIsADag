@@ -7,16 +7,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.ManageInitialStoreController">
    <children>
-      <ChoiceBox fx:id="store_ChoiceBox" layoutX="147.0" layoutY="33.0" prefWidth="150.0" />
-      <Label layoutX="87.0" layoutY="35.0" text="仓库">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Pane fx:id="content_Pane" layoutX="46.0" layoutY="26.0" prefHeight="462.0" prefWidth="816.0" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="back" AnchorPane.bottomAnchor="504.0" AnchorPane.leftAnchor="14.0" />
-      <Button layoutX="564.0" layoutY="33.0" mnemonicParsing="false" onAction="#delete" text="删除所选" />
-      <Button layoutX="350.0" layoutY="33.0" mnemonicParsing="false" onAction="#addRow" text="新增排" />
-      <Button layoutX="459.0" layoutY="33.0" mnemonicParsing="false" onAction="#addShelf" text="新增架" />
+      <HBox alignment="CENTER" layoutX="56.0" layoutY="61.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="87.0" layoutY="35.0" text="仓库">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="store_ChoiceBox" layoutX="147.0" layoutY="33.0" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <Pane fx:id="content_Pane" layoutX="44.0" layoutY="65.0" prefHeight="462.0" prefWidth="816.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="back" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+      <HBox layoutX="314.0" layoutY="49.0" spacing="24.0" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Button layoutX="350.0" layoutY="33.0" mnemonicParsing="false" onAction="#addRow" text="新增排" />
+            <Button layoutX="459.0" layoutY="33.0" mnemonicParsing="false" onAction="#addShelf" text="新增架" />
+            <Button layoutX="564.0" layoutY="33.0" mnemonicParsing="false" onAction="#delete" text="删除所选" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

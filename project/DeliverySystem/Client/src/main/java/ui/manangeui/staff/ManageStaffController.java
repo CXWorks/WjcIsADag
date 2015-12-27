@@ -95,12 +95,6 @@ public class ManageStaffController implements ChangeListener<StaffVO> {
 
 	@FXML
 	public void initialize() {
-		// TODO test jump
-		// staffVOs =
-		// manageblStaffService.getStaffByInstitution(UserInfo.getInstitutionID());
-		// staffTable.setItems(FXCollections.observableList(staffVOs));
-
-		// initialize the choice box
 		staffType_ChoiceBox.setItems(Enum2ObservableList.transit(StaffTypeEnum.values()));
 		staffType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			staffTypeEnumType = newValue.getEnum();

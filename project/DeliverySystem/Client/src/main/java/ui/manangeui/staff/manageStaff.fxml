@@ -4,112 +4,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0"  styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
    <children>
-      <SplitPane dividerPositions="0.6203007518796992" prefHeight="450.0" prefWidth="800.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <SplitPane dividerPositions="0.22767857142857142" orientation="VERTICAL" prefHeight="450.0" prefWidth="491.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <GridPane alignment="BOTTOM_CENTER" prefHeight="99.0" prefWidth="489.0">
-                                <columnConstraints>
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label text="机构编号" />
-                                    <Label text="城市" GridPane.columnIndex="1" />
-                                    <Label text="所在区域" GridPane.columnIndex="2" />
-                                    <Label fx:id="institution" GridPane.rowIndex="1" />
-                                    <Label fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="area" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <TableView fx:id="staffTable" prefHeight="312.0" prefWidth="491.0">
-                                <columns>
-                                  <TableColumn fx:id="typeColumn" prefWidth="108.0" text="员工类型" />
-                                    <TableColumn fx:id="IDColumn" prefWidth="77.0" text="编号" />
-                                    <TableColumn fx:id="nameColumn" prefWidth="83.0" text="姓名" />
-                                    <TableColumn fx:id="sexcColumn" prefWidth="65.0" text="性别" />
-                                    <TableColumn fx:id="ageColumn" prefWidth="58.0" text="年龄" />
-                                    <TableColumn fx:id="institutionColumn" prefWidth="99.0" text="所属机构" />
-                                </columns>
-                              </TableView>
-                              <Button fx:id="back_Btn" layoutX="7.0" layoutY="318.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="181.0">
-               <children>
-                  <GridPane layoutY="7.0" prefHeight="348.0" prefWidth="282.0">
-                    <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label text="员工类型" />
-                        <Label text="员工编号" GridPane.rowIndex="1" />
-                        <Label text="姓名" GridPane.rowIndex="2" />
-                        <Label text="年龄" GridPane.rowIndex="3" />
-                        <Label text="性别" GridPane.rowIndex="4" />
-                        <Label text="身份证号" GridPane.rowIndex="5" />
-                        <Label text="恋爱情况" GridPane.rowIndex="6" />
-                        <Label text="机构编号" GridPane.rowIndex="7" />
-                        <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="personID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="love" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField fx:id="institutionID" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ChoiceBox fx:id="staffType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ChoiceBox fx:id="sex_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                     </children>
-                  </GridPane>
-                  <GridPane layoutY="355.0" prefHeight="91.0" prefWidth="299.0">
-                    <columnConstraints>
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#submit" text="确定" GridPane.columnIndex="2" />
-                        <Button mnemonicParsing="false" onAction="#cancel" text="取消" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#newStaff" text="新建" />
-                        <Button mnemonicParsing="false" onAction="#deleteStaff" text="删除" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <TableView fx:id="staffTable" layoutX="63.0" layoutY="173.0" prefHeight="312.0" prefWidth="632.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
+        <columns>
+          <TableColumn fx:id="typeColumn" prefWidth="108.0" text="员工类型" />
+            <TableColumn fx:id="IDColumn" prefWidth="77.0" text="编号" />
+            <TableColumn fx:id="nameColumn" prefWidth="83.0" text="姓名" />
+            <TableColumn fx:id="sexcColumn" prefWidth="65.0" text="性别" />
+            <TableColumn fx:id="ageColumn" prefWidth="58.0" text="年龄" />
+            <TableColumn fx:id="institutionColumn" prefWidth="99.0" text="所属机构" />
+            <TableColumn prefWidth="75.0" text="身份证号" />
+            <TableColumn prefWidth="75.0" text="恋爱情况" />
+        </columns>
+      </TableView>
+      <Button fx:id="back_Btn" layoutX="64.0" layoutY="482.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="-162.0" AnchorPane.leftAnchor="64.0" />
+      <HBox layoutX="445.0" layoutY="44.0" spacing="16.0" AnchorPane.leftAnchor="445.0" AnchorPane.topAnchor="44.0">
+         <children>
+            <Button layoutX="445.0" layoutY="44.0" mnemonicParsing="false" onAction="#newStaff" text="新建" />
+            <Button layoutX="512.0" layoutY="44.0" mnemonicParsing="false" text="修改" />
+            <Button layoutX="570.0" layoutY="44.0" mnemonicParsing="false" onAction="#deleteStaff" text="删除" />
+         </children>
+      </HBox>
+      <HBox layoutX="36.0" layoutY="133.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="36.0" layoutY="133.0" text="机构编号" />
+            <Label fx:id="institution" layoutX="122.0" layoutY="136.0" text="XX" />
+         </children>
+      </HBox>
+      <HBox layoutX="185.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="248.0" layoutY="135.0" text="城市" />
+            <Label fx:id="city" layoutX="309.0" layoutY="132.0" text="YY" />
+         </children>
+      </HBox>
+      <HBox layoutX="300.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="414.0" layoutY="137.0" text="所在区域" />
+            <Label fx:id="area" layoutX="497.0" layoutY="135.0" text="ZZ" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

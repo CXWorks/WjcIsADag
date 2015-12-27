@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 
-
-
-
+import javafx.event.ActionEvent;
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -41,8 +39,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
-
-
 
 //快递费、收费比例、城市距离、包装费、薪资
 
@@ -100,7 +96,10 @@ public class ConfigurationController {
     }
 
     public void initialize(){
-    	this.selectedChanged();
+        this.initializeDistance();
+        this.initializePrice();
+        this.initializeProportion();
+        this.initializePack();
     }
 
     private City2DVO makeCity2DVO(String src,String name){
@@ -119,18 +118,14 @@ public class ConfigurationController {
 			priceVO.setByType(DeliverTypeEnum.NORMAL, price);
 			configurationBLService.modify(priceVO);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		finally{
-			//TODO jump backs
-		}
-
 	}
     //调整包装费
 	public void submitPack(){
 		String papers=paper_Field.getText();
-		String bags=bag_Field.getText();
-		String woods=wood_Field.getText();
+		String bags = bag_Field.getText();
+		String woods= wood_Field.getText();
 		try {
 			double paper=Double.parseDouble(papers);
 			double bag=Double.parseDouble(bags);
@@ -140,10 +135,9 @@ public class ConfigurationController {
 			packVO.setByType(PackEnum.PAPER, paper);
 			configurationBLService.modify(packVO);
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		//TODO jump back
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	//调整收费比例
 	public void submitProportion(){
@@ -159,38 +153,10 @@ public class ConfigurationController {
 			proportionVO.setByType(DeliverTypeEnum.SLOW, slow);
 			configurationBLService.modify(proportionVO);
 		} catch (Exception e) {
-			// TODO: handle exception
+            e.printStackTrace();
 		}
-		//TODO jump back
 	}
 	//
-	public void selectedChanged(){
-		ObservableList<Tab> tabs=tabPane.getTabs();
-//		if (true) {
-//			return;
-//		}
-		for (Tab tab : tabs) {
-			if (tab.isSelected()) {
-				String text=tab.getText();
-				switch (text) {
-				case "城市距离":
-					this.initializeDistance();
-					break;
-				case "快递费":
-					this.initializePrice();
-					break;
-				case "收费比例":
-					this.initializeProportion();
-					break;
-				case "包装费":
-					this.initializePack();
-					break;
-				default:
-					break;
-				}
-			}
-		}
-	}
 	private void initChoiceBox(){
 		this.cityChoiceBox.getSelectionModel().clearSelection();
 		this.cityChoiceBox.getItems().clear();
@@ -206,14 +172,14 @@ public class ConfigurationController {
 		cityTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		cityTableView.getSelectionModel().selectFirst();
 		cityTableView.getSelectionModel().selectedItemProperty().addListener(
-				(obser,old,New)->{
-					this.initChoiceBox();
-						this.city1=New;
-						if (city1!=null) {
-							this.setCityInfo(city1);
-						}
-						
-		});
+                (obser, old, New) -> {
+                    this.initChoiceBox();
+                    this.city1 = New;
+                    if (city1 != null) {
+                        this.setCityInfo(city1);
+                    }
+
+                });
 		
 	}
 	//
@@ -289,4 +255,10 @@ public class ConfigurationController {
 		}
 		this.initializeDistance();
 	}
+
+    public void submitAllExpense(ActionEvent actionEvent) {
+        submitExpense();
+        submitPack();
+        submitProportion();
+    }
 }
