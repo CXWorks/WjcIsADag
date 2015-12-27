@@ -19,6 +19,9 @@ public class UserInfo {
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
 	private static String userName;
+	private static String IP="localhost";
+	private static String Port="2333";
+	private static String workPath;
 	private UserInfo(){
 	}
 	//
@@ -75,4 +78,24 @@ public class UserInfo {
 			e.printStackTrace();
 		}
 	}
+	//
+	public static String getIP() {
+		return IP;
+	}
+	public static void setIP(String iP) {
+		IP = iP;
+	}
+	public static String getPort() {
+		return Port;
+	}
+	public static void setPort(String port) {
+		Port = port;
+	}
+	public static String getWorkPath() {
+		return workPath;
+	}
+	public static void setWorkPath(String workPath) {
+		UserInfo.workPath = workPath;
+	}
+	
 }

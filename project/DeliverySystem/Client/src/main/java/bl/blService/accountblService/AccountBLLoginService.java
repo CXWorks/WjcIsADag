@@ -17,24 +17,5 @@ public interface AccountBLLoginService {
 	public OperationMessage checkAccount(String id,String password);
 	
 	public OperationMessage logOut();
-	/**
-	 * 设置网络IP
-	 * @param ip
-	 * @return
-	 */
-	public OperationMessage setIP(String ip);
-	/**
-	 * 设置端口号
-	 * @param port
-	 * @return
-	 */
-	public OperationMessage setPort(String port);
-	/**
-	 * 设置存储路径
-	 * @warning 可能会很晚才实现
-	 * @param path
-	 * @return
-	 */
-	public OperationMessage setWorkspace(String path);
 
 }

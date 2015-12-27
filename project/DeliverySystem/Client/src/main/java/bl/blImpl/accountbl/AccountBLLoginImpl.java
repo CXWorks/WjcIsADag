@@ -74,29 +74,4 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see bl.blService.accountblService.AccountBLLoginService#setIP(java.lang.String)
-	 */
-	@Override
-	public OperationMessage setIP(String ip) {
-		return RMIHelper.setIP(ip);
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.accountblService.AccountBLLoginService#setPort(java.lang.String)
-	 */
-	@Override
-	public OperationMessage setPort(String port) {
-		return RMIHelper.setPort(port);
-	}
-
-	/* (non-Javadoc)
-	 * @see bl.blService.accountblService.AccountBLLoginService#setWorkspace(java.lang.String)
-	 */
-	@Override
-	public OperationMessage setWorkspace(String path) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

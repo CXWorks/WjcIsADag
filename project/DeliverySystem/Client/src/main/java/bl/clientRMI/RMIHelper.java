@@ -32,6 +32,7 @@ import rmi.systemdata.LogDataService;
 import rmi.systemdata.SystemDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
+import userinfo.UserInfo;
 
 /**
  * Client//bl.clientRMI//RMIHelper.java
@@ -40,8 +41,6 @@ import rmi.transportdata.LoadDataService;
  * @version 1.0
  */
 public class RMIHelper {
-	private static String IP="localhost";
-	private static String PORT="2333";
 	
 
 	private static boolean initialized=false;
@@ -70,18 +69,6 @@ public class RMIHelper {
 	private static LoadDataService loadDataService;
 	private static SystemDataService systemDataService;
 	private static TackDataService tackDataService;
-	
-	public static OperationMessage setIP(String ip){
-		RMIHelper.IP=ip;
-		return new OperationMessage();
-	}
-	
-	public static OperationMessage setPort(String port){
-		RMIHelper.PORT=port;
-		return new OperationMessage();
-	}
-
-
 	public synchronized static void	init() throws NetInitException {
 		if(initialized)
 			return;
@@ -93,7 +80,7 @@ public class RMIHelper {
 	}
 	//
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
-		String url="rmi://"+IP+":"+PORT+"/";
+		String url="rmi://"+UserInfo.getIP()+":"+UserInfo.getPort()+"/";
 		orderDataService=(OrderDataService)Naming.lookup(url+"OrderDataService");
 		accountDataService=(AccountDataService)Naming.lookup(url+"AccountDataService");
 		chatRemindService=(ChatRemindService)Naming.lookup(url+"ChatRemindService");
