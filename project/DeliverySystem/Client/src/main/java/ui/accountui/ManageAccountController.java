@@ -91,7 +91,7 @@ public class ManageAccountController {
                 }
         );
 
-        ObservableValue<Number> width =  accounts_TableView.widthProperty().subtract(50).divide(3);
+        ObservableValue<Number> width =  accounts_TableView.widthProperty().subtract(70).divide(3);
         id_TableColumn.prefWidthProperty().bind(width);
         password_TableColumn.prefWidthProperty().bind(width);
         staff_TableColumn.prefWidthProperty().bind(width);
