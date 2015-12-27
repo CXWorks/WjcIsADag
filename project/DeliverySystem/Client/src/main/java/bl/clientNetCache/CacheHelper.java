@@ -114,6 +114,10 @@ public class CacheHelper {
 		tackDataService=RMIHelper.getTackDataService();
 	}
 	//
+	public static void reconnect() throws NetInitException{
+		CacheHelper.initializeLogin();
+		CacheHelper.initCacheService();
+	}
 	//
 	
 	public static SystemDataService getSystemDataService(){

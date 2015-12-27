@@ -4,9 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.jar.Attributes.Name;
 
-import message.OperationMessage;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
@@ -40,10 +38,7 @@ import userinfo.UserInfo;
  * @date 2015年10月30日 下午5:13:14
  * @version 1.0
  */
-public class RMIHelper {
-	
-
-	private static boolean initialized=false;
+public class RMIHelper{
 
 	private static OrderDataService orderDataService;
 	private static AccountDataService accountDataService;
@@ -70,12 +65,14 @@ public class RMIHelper {
 	private static SystemDataService systemDataService;
 	private static TackDataService tackDataService;
 	public synchronized static void	init() throws NetInitException {
-		if(initialized)
-			return;
 		try {
 			initDataService();
-		} catch (Exception e) {
-			throw new NetInitException(e);
+		} catch (MalformedURLException e) {
+			throw new NetInitException(e,"IP或端口错误");
+		} catch (RemoteException e) {
+			throw new NetInitException(e, "RMI连接错误");
+		} catch (NotBoundException e) {
+			throw new NetInitException(e, "未找到服务，请检查服务是否开始");
 		}
 	}
 	//
@@ -118,9 +115,6 @@ public class RMIHelper {
 	//
 	public static OrderDataService getOrderDataService(){
 		return orderDataService;
-	}
-	public static boolean isInitialized() {
-		return initialized;
 	}
 	public static AccountDataService getAccountDataService() {
 		return accountDataService;
@@ -187,5 +181,6 @@ public class RMIHelper {
 	public static TackDataService getTackDataService() {
 		return tackDataService;
 	}
+	
 
 }

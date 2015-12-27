@@ -6,8 +6,8 @@ package bl.clientRMI;
  * @date 2015年10月30日 下午5:23:19
  * @version 1.0 
  */
-public class NetInitException extends Exception {
-	public NetInitException(Throwable e){
-		super(e);
+public class NetInitException extends NetException {
+	public NetInitException(Throwable e,String reason){
+		super(e,reason);
 	}
 }
