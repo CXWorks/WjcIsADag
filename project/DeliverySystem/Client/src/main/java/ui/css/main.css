@@ -184,3 +184,24 @@
     -fx-border-style: none;
 }
 
+.button-chi {
+    -fx-size:13;
+	-fx-background-image:url(pic/setting.png);
+	-fx-background-color:#1c1c1c;
+    -fx-border-style :none;
+	-fx-size:13;
+}
+
+.button-chi:hover {
+	-fx-background-image:url(pic/settingHover.png);
+		-fx-background-color:#1c1c1c;
+}
+
+.button-chi:pressed, .button-chi:default:hover:pressed {
+	-fx-background-image:url(pic/settingPressed.png);
+		-fx-background-color:#1c1c1c;
+}
+
+.button-chi:focused {
+    -fx-border-style: none;
+}
