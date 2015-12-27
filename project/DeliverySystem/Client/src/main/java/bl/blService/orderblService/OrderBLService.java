@@ -1,6 +1,7 @@
 package bl.blService.orderblService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import bl.blService.FormBLService;
 import message.CheckFormMessage;
@@ -22,4 +23,14 @@ public interface OrderBLService extends FormBLService<OrderVO>{
 	 * @return 运费和预计到达日期
 	 */
 	public PredictVO predict(OrderVO vo);
+	/**
+	 * 获得当前城市
+	 * @return 城市名，不是代号
+	 */
+	public String localCity();
+	/**
+	 * 获得所有城市信息
+	 * @return 城市名
+	 */
+	public List<String> getAvaliableCity();
 }

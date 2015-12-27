@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.jar.Attributes.Name;
 
+import message.OperationMessage;
 import po.memberdata.DriverPO;
 import po.memberdata.StaffPO;
 import rmi.accountdata.AccountDataService;
@@ -39,7 +40,8 @@ import rmi.transportdata.LoadDataService;
  * @version 1.0
  */
 public class RMIHelper {
-	private static String IP="localhost:2333";
+	private static String IP="localhost";
+	private static String PORT="2333";
 	
 
 	private static boolean initialized=false;
@@ -68,6 +70,16 @@ public class RMIHelper {
 	private static LoadDataService loadDataService;
 	private static SystemDataService systemDataService;
 	private static TackDataService tackDataService;
+	
+	public static OperationMessage setIP(String ip){
+		RMIHelper.IP=ip;
+		return new OperationMessage();
+	}
+	
+	public static OperationMessage setPort(String port){
+		RMIHelper.PORT=port;
+		return new OperationMessage();
+	}
 
 
 	public synchronized static void	init() throws NetInitException {
@@ -81,7 +93,7 @@ public class RMIHelper {
 	}
 	//
 	private static void initDataService() throws MalformedURLException, RemoteException, NotBoundException{
-		String url="rmi://"+IP+"/";
+		String url="rmi://"+IP+":"+PORT+"/";
 		orderDataService=(OrderDataService)Naming.lookup(url+"OrderDataService");
 		accountDataService=(AccountDataService)Naming.lookup(url+"AccountDataService");
 		chatRemindService=(ChatRemindService)Naming.lookup(url+"ChatRemindService");

@@ -10,6 +10,8 @@ import userinfo.UserInfo;
 import message.OperationMessage;
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.NetInitException;
+import bl.clientRMI.RMIHelper;
 
 /**
  * Client//bl.blImpl.accountbl//AccountBLLoginServiceImpl.java
@@ -20,7 +22,17 @@ import bl.clientNetCache.CacheHelper;
 public class AccountBLLoginImpl implements AccountBLLoginService {
 	AccountDataService accountDataService;
 	public AccountBLLoginImpl(){
-		this.accountDataService=CacheHelper.getAccountDataService();
+	}
+	
+	private void initNet(){
+		try {
+			CacheHelper.initializeLogin();
+			this.accountDataService=CacheHelper.getAccountDataService();
+		} catch (NetInitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/* (non-Javadoc)
@@ -28,6 +40,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	 */
 	public OperationMessage checkAccount(String id, String password) {
 		try {
+			this.initNet();
 			OperationMessage check=accountDataService.checkAccount(id, password);
 			if (check.operationResult) {
 				CacheHelper.initCacheService();
@@ -59,6 +72,31 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 		} catch (RemoteException e) {
 			return new OperationMessage(false, "net error");
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLLoginService#setIP(java.lang.String)
+	 */
+	@Override
+	public OperationMessage setIP(String ip) {
+		return RMIHelper.setIP(ip);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLLoginService#setPort(java.lang.String)
+	 */
+	@Override
+	public OperationMessage setPort(String port) {
+		return RMIHelper.setPort(port);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.accountblService.AccountBLLoginService#setWorkspace(java.lang.String)
+	 */
+	@Override
+	public OperationMessage setWorkspace(String path) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

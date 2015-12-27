@@ -8,6 +8,7 @@ import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblDriverService;
 import bl.blService.manageblService.ManageblHallService;
 import bl.blService.manageblService.ManageblStaffService;
+import bl.blService.storeblService.StockTackBLService;
 import bl.blService.storeblService.StoreModelBLService;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
@@ -36,7 +37,7 @@ import java.util.Observer;
 public interface InitializationBLService extends BankAccountBLService,
 		StoreModelBLService, ManageblCarService, ManageblStaffService, 
 		ManageblCenterService, ManageblHallService, ConfigurationBLService, 
-		AccountBLManageService,ManageblDriverService
+		AccountBLManageService,ManageblDriverService,StockTackBLService
 {
     // Store Manage
     

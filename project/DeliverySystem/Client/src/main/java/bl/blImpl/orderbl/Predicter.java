@@ -34,7 +34,10 @@ public class Predicter {
 			City2DPO city1=configurationDataService.getCity2D(orderVO.getAddressFrom().substring(0, 2));
 			City2DPO city2=configurationDataService.getCity2D(orderVO.getAddressTo().substring(0, 2));
 			double distance=city1.distance(city2);
-			double price=priceKM*distance;
+			if (distance==0.0) {
+				distance=30;
+			}
+			double price=priceKM*distance/1000;
 			Calendar date=Calendar.getInstance();
 			date.add(Calendar.DAY_OF_MONTH, (int) (distance/400+1));
 			//

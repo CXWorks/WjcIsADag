@@ -40,7 +40,7 @@ public class LoginController {
 //    public ImageView sure_ImageView;
 
     private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
-    private ManageblStaffService manageblStaffService = StaffFactory.getManageService();
+    private ManageblStaffService manageblStaffService;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
@@ -60,6 +60,7 @@ public class LoginController {
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
 
         if(msg.operationResult){
+        	manageblStaffService=StaffFactory.getManageService();
             StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
             if(staffVO == null){
                 // not yet make the staff by manager

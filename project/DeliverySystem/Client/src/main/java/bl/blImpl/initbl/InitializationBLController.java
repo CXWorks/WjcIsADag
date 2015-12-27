@@ -35,11 +35,15 @@ import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
+import vo.ordervo.OrderVO;
+import vo.storevo.StockTackVO;
 import vo.storevo.StoreAreaInfoVO;
+import vo.storevo.StoreInVO;
 import vo.storevo.StoreShelfVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -722,5 +726,53 @@ public class InitializationBLController implements InitializationBLService {
 	@Override
 	public List<AccountVO> fuzzySearch(String key) {
 		return this.initialDataVO.getAccountVOs().stream().filter(acc->{return acc.fuzzyCheck(key);}).collect(Collectors.toList());
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#getStockTack(java.lang.String)
+	 */
+	@Override
+	public StockTackVO getStockTack(String centerID) {
+		StoreModel storeModel=initialDataVO.getStoreModels().stream()
+				.filter(model->model.getCenterID().equalsIgnoreCase(centerID))
+				.findFirst().get();
+		//
+		return new StockTackVO(Calendar.getInstance(), "0", storeModel);
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#reStockTack(java.lang.String)
+	 */
+	@Override
+	public StockTackVO reStockTack(String centerID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#getOrder(java.lang.String)
+	 */
+	@Override
+	public OrderVO getOrder(String orderNumber) {
+		// discuss with jc
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#getStoreInVO(java.lang.String)
+	 */
+	@Override
+	public StoreInVO getStoreInVO(String orderNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.storeblService.StockTackBLService#makeExcel(java.lang.String)
+	 */
+	@Override
+	public OperationMessage makeExcel(String path) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
