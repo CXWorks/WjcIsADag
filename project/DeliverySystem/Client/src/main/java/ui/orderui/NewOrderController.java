@@ -26,9 +26,11 @@ import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import vo.receivevo.ReceiveVO;
 
+import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -56,9 +58,15 @@ public class NewOrderController {
 
 	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
 	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
-
+	public ChoiceBox<String> city_Box;
+	public ArrayList citys;
+	
 	public Label predict_Expense;
 	public Label predict_Date;
+	
+	public Label city_Label;
+	
+	
 	public Label date_ErrLabel;
 	public Label transit_errLabel;
 	public Label departure_errLabel;
@@ -79,6 +87,7 @@ public class NewOrderController {
 
 	OrderBLService obl = FormFactory.getOrderBLService();
 
+	
 	private InformController informController;
 
 	public static Parent launch() throws IOException {
@@ -102,8 +111,12 @@ public class NewOrderController {
                     }
                 }
         );
-
+        
+        city_Label.setText(obl.localCity());
 		// initialize the choice box
+        citys=(ArrayList) obl.getAvaliableCity();
+        city_Box.setItems(FXCollections.observableArrayList(citys));
+        city_Box.setValue(city_Box.getItems().get(0));
 		type_Box.setItems(Enum2ObservableList.transit(DeliverTypeEnum.values()));
 		type_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             deliverType = newValue.getEnum();
@@ -112,7 +125,7 @@ public class NewOrderController {
 		pack_Box.setItems(Enum2ObservableList.transit(PackingEnum.values()));
 		pack_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             packing = newValue.getEnum();
-//            fillPrediction();
+//            fillPrediction(null);
         });
 
 		clear(null);
@@ -134,14 +147,14 @@ public class NewOrderController {
 
 	private OrderVO generateVO(String FormID) {
 		return new OrderVO(FormID, name_From.getText(), name_To.getText(), unit_From.getText(), unit_To.getText(),
-				address_From.getText(), address_To.getText(), tel_From.getText(), tel_To.getText(),
+				city_Label.getText()+address_From.getText(), city_Box.getValue()+address_To.getText(), tel_From.getText(), tel_To.getText(),
 				phone_From.getText(), phone_To.getText(), goods_Number.getText(), goods_Name.getText(),
 				goods_Weight.getText(), goods_Volume.getText(), predict_Expense.getText(), goods_Type.getText(),
 				deliverType, packing, UserInfo.getUserID());
 	}
 
 	@FXML
-	private void fillPrediction() {
+	private void fillPrediction(ActionEvent actionEvent) {
 
 		PredictVO predictVO = obl.predict(generateVO(null));
 		predict_Date.setText(TimeConvert.getDisplayDate(predictVO.getPredictDate()));

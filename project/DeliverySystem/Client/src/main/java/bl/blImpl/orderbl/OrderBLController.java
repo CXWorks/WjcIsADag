@@ -95,9 +95,7 @@ public class OrderBLController implements OrderBLService{
 			try {
 				ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
 				localCity=city2dpos.stream()
-						.map(city->city.getID())
-						.filter(city->city.equalsIgnoreCase(id))
-						.findFirst().get();
+						.filter(city->city.getID().equalsIgnoreCase(id)).findFirst().get().getName();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -113,7 +111,7 @@ public class OrderBLController implements OrderBLService{
 		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
-			return city2dpos.stream().map(city->city.getID()).collect(Collectors.toList());
+			return city2dpos.stream().map(city->city.getName()).collect(Collectors.toList());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
