@@ -45,7 +45,6 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 				put("centerID", centerID);
 			}
 		});
-		System.out.println(select);
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
@@ -64,7 +63,7 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 		String update = MySql.update(TableEnum.TACK, "date", new Timestamp(System.currentTimeMillis()).toString(),
 				new HashMap<String, String>() {
 					{
-						put("centerID", "centerID");
+						put("centerID", centerID);
 					}
 				});
 		try {

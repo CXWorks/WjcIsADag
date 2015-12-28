@@ -73,4 +73,11 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 		return null;
 	}
 
+	@Override
+	public String newTransID(String unitID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return loadDataService.newTransID(unitID);
+		return null;
+	}
+
 }

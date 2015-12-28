@@ -73,4 +73,11 @@ public class CenterOutDataProxy extends CommonData<CenterOutPO> implements Cente
 		return null;
 	}
 
+	@Override
+	public String newTransID(String unitID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return centerOutDataService.newTransID(unitID);
+		return null;
+	}
+
 }

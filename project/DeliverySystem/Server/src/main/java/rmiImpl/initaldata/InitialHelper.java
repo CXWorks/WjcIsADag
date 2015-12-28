@@ -146,6 +146,7 @@ public class InitialHelper {
 				add("store_model");
 				add("store_out");
 				add("tack");
+				add("trans");
 				add("warningline");
 			}
 

@@ -222,4 +222,77 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 		return result;
 	}
 
+	@Override
+	public String newTransID(String unitID) throws RemoteException {
+		ResultSet rs = null;
+		Timestamp date = null;
+		String select = MySql.select(TableEnum.TRANS, new HashMap<String, String>() {
+			{
+				put("unitID", unitID);
+			}
+		});
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			rs.next();
+			date = rs.getTimestamp("date");
+		} catch (SQLException e) {
+			System.err.println("访问数据库时出错：");
+			e.printStackTrace();
+		}
+		String date_in_sql = date.toString().substring(0, 10);
+		date_in_sql = date_in_sql.substring(0, 4) + date_in_sql.substring(5, 7) + date_in_sql.substring(8);
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String today = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
+
+		// update date
+		String update = MySql.update(TableEnum.TRANS, "date", new Timestamp(System.currentTimeMillis()).toString(),
+				new HashMap<String, String>() {
+					{
+						put("unitID", unitID);
+					}
+				});
+		try {
+			statement = conn.prepareStatement(update);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("更新日期时出错：");
+			e.printStackTrace();
+		}
+
+		// 当前日期与缓存日期一致
+		if (date_in_sql.equalsIgnoreCase(today)) {
+			int num = 0;
+			try {
+				num = Integer.parseInt(rs.getString("num"));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			this.setNum(unitID, num + "");
+			return unitID + today + String.format("%05d", num++);
+		} else {// 当前日期与缓存日期不一致
+			this.setNum(unitID, 1 + "");
+			return unitID + today + String.format("%05d", 1);
+		}
+	}
+
+	private boolean setNum(String unitID, String num) throws RemoteException {
+		// update num
+		String update = MySql.update(TableEnum.TRANS, "num", num, new HashMap<String, String>() {
+			{
+				put("unitID", unitID);
+			}
+		});
+		try {
+			statement = conn.prepareStatement(update);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("更新编号时出错：");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
