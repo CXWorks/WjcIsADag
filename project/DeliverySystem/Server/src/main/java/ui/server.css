@@ -1,7 +1,7 @@
 .background {
 
 	-fx-background-image : url(server/server.png);
-
+	-fx-background-color:#ea8827;
 	-fx-background-size: cover;
 	
 }
@@ -22,102 +22,41 @@
     -fx-opacity: 1;
 }
 
-.table-view {
-    -fx-base:gray;
-    -fx-control-inner-background: #c9c8c8;
-    -fx-background-color: #c9c8c8;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
 
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 20;
-    -fx-border-width: 1 1 1 1;
-    -fx-background-color: transparent;
-    -fx-border-color: 
-        transparent
-        transparent
-        derive(-fx-base, 80%) 
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 10pt;
-    -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: white;
-    -fx-alignment: center;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
-.split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
-    -fx-background-color: transparent, derive(#1d1d1d,20%);
-}
-
-.split-pane {
-    -fx-padding: 1 0 0 0;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d,50%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
-
-
-
-.button.begin {
-	
-	-fx-background-image : url(server/begin.png);
-	-fx-background-color: #282828;
-	-fx-border-style:none;
-}
-
-.button.begin:hover {
-   -fx-background-image : url(server/beginHover.png);
-}
-
-.button.begin:pressed, .button.begin:default:hover:pressed {
-   -fx-background-image : url(server/beginPressed.png);
-}
-
-
-.button.stop {
-	
+.button-out {
 	-fx-background-image : url(server/stop.png);
 	-fx-background-color: #282828;
 	-fx-border-style:none;
 }
 
-.button.stop :hover {
+.button-out:hover {
    -fx-background-image : url(server/stopHover.png);
 }
 
-.button.stop :pressed, .button.stop :default:hover:pressed {
+.button-out:pressed, .button-out:default:hover:pressed {
    -fx-background-image : url(server/stopPressed.png);
 }
 
+.button-out:focused{
+   -fx-border-style:none;
+}
+
+
+.button-begin {
+	-fx-background-image : url(server/begin.png);
+	-fx-background-color: #282828;
+	-fx-border-style:none;
+}
+
+.button-begin:hover {
+   -fx-background-image : url(server/beginHover.png);
+}
+
+.button-begin:pressed, .button-begin:default:hover:pressed {
+   -fx-background-image : url(server/beginPressed.png);
+}
+
+.button-begin:focused{
+   -fx-border-style:none;
+}
 

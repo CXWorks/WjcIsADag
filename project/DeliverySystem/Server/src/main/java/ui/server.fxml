@@ -10,13 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="893.0" styleClass="background" stylesheets="@server.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ServerView">
    <children>
-      <Region layoutX="79.0" layoutY="157.0" prefHeight="19.0" prefWidth="158.0">
-         <effect>
-            <Shadow />
-         </effect>
-      </Region>
-      <Button layoutX="79.0" layoutY="186.0" mnemonicParsing="false" onAction="#start" prefHeight="55.0" prefWidth="158.0" styleClass="begin" />
-      <Button layoutX="79.0" layoutY="294.0" mnemonicParsing="false" onAction="#stop" prefHeight="55.0" prefWidth="158.0" styleClass="stop" />
+      <Button layoutX="79.0" layoutY="186.0" mnemonicParsing="false" onAction="#start" prefHeight="55.0" prefWidth="158.0" styleClass="button-begin" />
       <Label fx:id="state" layoutX="347.0" layoutY="233.0" prefHeight="55.0" prefWidth="224.0" styleClass="label-header" text="当前状态：停止" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
@@ -32,5 +26,6 @@
             <Font size="10.0" />
          </font>
       </Label>
+      <Button layoutX="79.0" layoutY="294.0" mnemonicParsing="false" onAction="#out" prefHeight="55.0" prefWidth="158.0" styleClass="button-out" />
    </children>
 </AnchorPane>
