@@ -43,4 +43,10 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	public ArrayList<String> getLocation(String hallID);
 	
 	public OrderVO getOrder(String orderID);
+	/**
+	 * 获得新的汽运编号
+	 * @param unitID 机构编号
+	 * @return 新的汽运编号
+	 */
+	public String newTransID(String unitID);
 }

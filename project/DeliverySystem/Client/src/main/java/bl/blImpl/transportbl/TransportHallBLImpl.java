@@ -177,4 +177,20 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		}
 
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.transportblService.TransportHallBLService#newTransID(java.lang.String)
+	 */
+	@Override
+	public String newTransID(String unitID) {
+		LoadDataService loadDataService=CacheHelper.getLoadDataService();
+		try {
+			String ans=loadDataService.newTransID(unitID);
+			return ans;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

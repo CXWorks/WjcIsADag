@@ -120,5 +120,20 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		}
 
 
+		/* (non-Javadoc)
+		 * @see bl.blService.transportblService.TransportCenterBLService#newTransID(java.lang.String)
+		 */
+		@Override
+		public String newTransID(String unitID) {
+			CenterOutDataService centerOutDataService=CacheHelper.getTransportDataService();
+			try {
+				String ans=centerOutDataService.newTransID(unitID);
+				return ans;
+			} catch (RemoteException e) {
+				return null;
+			}
+		}
+
+
 
 }
