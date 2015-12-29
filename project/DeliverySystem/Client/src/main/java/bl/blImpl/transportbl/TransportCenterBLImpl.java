@@ -60,7 +60,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 			try {
 				return examineSubmitService.submit(po);
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return new OperationMessage(false, "net error");
 			}
 		}
@@ -74,7 +74,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				ID = centerOutDataService.newID(UserInfo.getInstitutionID());
 				return ID;
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return null;
 			}
 			
@@ -89,7 +89,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 				return vo;
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return null;
 			}
 		}
@@ -117,7 +117,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 						.collect(Collectors.toList()));
 				return ans;
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return null;
 			}
 			
@@ -134,7 +134,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				String ans=centerOutDataService.newTransID(unitID);
 				return ans;
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return null;
 			}
 		}

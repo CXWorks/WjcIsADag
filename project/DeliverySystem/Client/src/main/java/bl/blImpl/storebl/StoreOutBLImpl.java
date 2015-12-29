@@ -51,7 +51,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
 			String ID=storeFormDataService.newIDStoreOutPO(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 
@@ -64,7 +64,7 @@ public class StoreOutBLImpl implements StoreOutBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }

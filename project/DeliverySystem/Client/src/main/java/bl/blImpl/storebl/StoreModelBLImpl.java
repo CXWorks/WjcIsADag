@@ -62,7 +62,7 @@ public class StoreModelBLImpl implements StoreModelBLService {
  			OperationMessage step2=storeModelDataService.newShelf(UserInfo.getInstitutionID(),area, rowt, shelft);
  			return new OperationMessage(step1.operationResult&&step2.operationResult,step1.getReason()+step2.getReason());
  		} catch (RemoteException e) {
- 			Reconnect reconnect=new Reconnect();
+ 			Reconnect.ReConnectFactory();
  			return new OperationMessage(false, "not big enough");
  		}
     }

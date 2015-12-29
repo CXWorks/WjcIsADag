@@ -40,7 +40,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.modifyStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -56,7 +56,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.addStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -70,7 +70,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.dismissStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -85,7 +85,7 @@ public class StaffManage implements ManageblStaffService {
 			StaffVO vo=(StaffVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -99,7 +99,7 @@ public class StaffManage implements ManageblStaffService {
 			String newStaffID=memberDataService.newStaffID(staffType, unitID);
 			return newStaffID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -119,7 +119,7 @@ public class StaffManage implements ManageblStaffService {
 			}
 			return result;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -140,7 +140,7 @@ public class StaffManage implements ManageblStaffService {
 			}
 			return result;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

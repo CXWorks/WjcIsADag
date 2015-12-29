@@ -34,7 +34,7 @@ public class Distance {
 		try {
 			return configurationDataService.newCity2D(city2dpo);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -44,7 +44,7 @@ public class Distance {
 		try {
 			return configurationDataService.deleteCity2D(city2dvo.getName());
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -63,7 +63,7 @@ public class Distance {
 			
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -76,7 +76,7 @@ public class Distance {
 		try {
 			return configurationDataService.modifyCity2D(city2dpo);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

@@ -42,7 +42,7 @@ public class CarManage implements ManageblCarService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -56,7 +56,7 @@ public class CarManage implements ManageblCarService {
 		try {
 			return companyDataCarService.addCar(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -70,7 +70,7 @@ public class CarManage implements ManageblCarService {
 		try {
 			return companyDataCarService.modifyCar(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -84,7 +84,7 @@ public class CarManage implements ManageblCarService {
 		try {
 			return companyDataCarService.deleteCar(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -100,7 +100,7 @@ public class CarManage implements ManageblCarService {
 			CarVO ans=(CarVO)vopoFactory.transPOtoVO(po);
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -114,7 +114,7 @@ public class CarManage implements ManageblCarService {
 			String carID=companyDataCarService.newCarID(UserInfo.getInstitutionID());
 			return carID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

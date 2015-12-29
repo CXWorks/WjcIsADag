@@ -45,7 +45,7 @@ public class Predicter {
 			PredictVO vo=new PredictVO(String.format("%.2f", price), date);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

@@ -38,12 +38,11 @@ public class OrderHelper {
 					location.add(ans[0]);
 					time.add(ans[1]);
 				} 
-				System.out.println(each);
 			}
 			//
 			return new LogisticsVO(toSearch, location, time);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

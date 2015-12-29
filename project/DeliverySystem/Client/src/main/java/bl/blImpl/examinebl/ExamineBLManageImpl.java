@@ -66,7 +66,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			return examineManageService.passForm(po);
 			
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 
@@ -87,7 +87,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		try {
 			return examineManageService.deleteForm(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -118,7 +118,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		try {
 			return examineManageService.modifyForm(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -164,7 +164,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			}
 			return new OperationMessage();
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}

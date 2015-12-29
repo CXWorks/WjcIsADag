@@ -47,7 +47,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -66,7 +66,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 			AccountVO vo = (AccountVO) vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -88,7 +88,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 				return new OperationMessage(false, "系统中没有该员工信息");
 			}
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -106,7 +106,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 		try {
 			return accountDataService.delete(ID);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -124,7 +124,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 		try {
 			return accountDataService.update(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -142,7 +142,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 					.collect(Collectors.toList());
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 		

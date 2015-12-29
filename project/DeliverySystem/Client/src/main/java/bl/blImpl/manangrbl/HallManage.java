@@ -41,7 +41,7 @@ public class HallManage implements ManageblHallService {
 			}
 			return result;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -55,7 +55,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.addHall(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -69,7 +69,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.modifyHall(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -83,7 +83,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.deleteHall(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -113,7 +113,7 @@ public class HallManage implements ManageblHallService {
 				return null;
 			}
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 		
@@ -128,7 +128,7 @@ public class HallManage implements ManageblHallService {
 			String ID=hallService.newHallID(centerID.substring(0, 3));
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

@@ -21,7 +21,7 @@ public class StoreWarningChecker {
 		try {
 			this.warningLine=configurationDataService.getWarningline(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 		}
 	}
 	//
@@ -42,7 +42,7 @@ public class StoreWarningChecker {
 			}
 			return new OperationMessage(false, "unknown error");
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}

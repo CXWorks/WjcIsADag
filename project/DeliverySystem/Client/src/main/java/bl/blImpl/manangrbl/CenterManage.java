@@ -41,7 +41,7 @@ public class CenterManage implements ManageblCenterService{
 			}
 			return result;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -55,7 +55,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.addCenter(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -69,7 +69,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.deleteCenter(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -83,7 +83,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.modifyCenter(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -113,7 +113,7 @@ public class CenterManage implements ManageblCenterService{
 				return null;
 			}
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -136,7 +136,7 @@ public class CenterManage implements ManageblCenterService{
 			String ID=centerService.newCenterID(city);
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 		

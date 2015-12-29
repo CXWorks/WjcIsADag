@@ -36,6 +36,7 @@ public class UserInfo {
 	private static String IP=configFileManager.getIp();
 	private static String Port=configFileManager.getPort();
 	private static String workPath=configFileManager.getWorkpath();
+	private static boolean connected=true;
 	private UserInfo(){
 	}
 	//
@@ -114,6 +115,12 @@ public class UserInfo {
 	public static void setWorkPath(String workPath) {
 		UserInfo.workPath = workPath;
 		configFileManager.setWorkpath(workPath);
+	}
+	public static boolean isConnected() {
+		return connected;
+	}
+	public static void setConnected(boolean connected) {
+		UserInfo.connected = connected;
 	}
 	
 }

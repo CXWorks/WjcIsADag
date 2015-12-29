@@ -72,7 +72,7 @@ public class InitializationBLController implements InitializationBLService {
 			InitialDataPO initialDataPO=initialDataService.getInitialDataPO(version);
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 		}
     }
 
@@ -233,7 +233,7 @@ public class InitializationBLController implements InitializationBLService {
 		this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		return this.initialDataVO;
 	} catch (RemoteException e) {
-		Reconnect reconnect=new Reconnect();
+		Reconnect.ReConnectFactory();
 		return null;
 	}
     }
@@ -248,7 +248,7 @@ public class InitializationBLController implements InitializationBLService {
 			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException  e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		} catch (ClassNotFoundException e) {
 			return new OperationMessage(false, e.getMessage());
@@ -263,7 +263,7 @@ public class InitializationBLController implements InitializationBLService {
 			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
     }
@@ -275,7 +275,7 @@ public class InitializationBLController implements InitializationBLService {
 		UserInfo.changeSystermState();
 		return res;
 	} catch (RemoteException e) {
-		Reconnect reconnect=new Reconnect();
+		Reconnect.ReConnectFactory();
 		return new OperationMessage(false, e.getMessage());
 	}
 
@@ -768,7 +768,7 @@ public class InitializationBLController implements InitializationBLService {
 			OrderPO orderPO=orderDataService.getFormPO(data);
 			return (OrderVO) vopoFactory.transPOtoVO(orderPO);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

@@ -43,7 +43,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -59,7 +59,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 				orderPO.finfished(each.getReceiveDate()	, each.getReceivePeople());
 				orderDataService.update(orderPO);
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return new OperationMessage(false, "net error");
 			}
 
@@ -86,7 +86,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			}
 			return orderVOs;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -100,7 +100,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 		try {
 			return orderDataService.update(orderPO);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

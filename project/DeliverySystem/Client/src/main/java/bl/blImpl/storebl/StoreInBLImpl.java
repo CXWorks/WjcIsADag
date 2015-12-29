@@ -50,7 +50,7 @@ public class StoreInBLImpl implements StoreInBLService {
 			}
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -61,7 +61,7 @@ public class StoreInBLImpl implements StoreInBLService {
 		String ID=storeFormDataService.newIDStoreInPO(UserInfo.getInstitutionID());
 		return ID;
 	} catch (RemoteException e) {
-		Reconnect reconnect=new Reconnect();
+		Reconnect.ReConnectFactory();
 		return null;
 	}
     }
@@ -73,7 +73,7 @@ public class StoreInBLImpl implements StoreInBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 
@@ -102,7 +102,7 @@ public class StoreInBLImpl implements StoreInBLService {
         try {
 			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
     }

@@ -39,7 +39,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			localTimes=tackDataService.getTack(UserInfo.getInstitutionID());
 			currentModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			localTimes=0;
 		}
 	}
@@ -58,7 +58,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			OrderVO vo = new OrderVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -70,7 +70,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			StoreInVO storeInVO=new StoreInVO(storeInPO);
 			return storeInVO;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -89,7 +89,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			storeArea.add(storeArea4);
 			return Excel.exportToExcel(path, storeArea);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
     }
@@ -106,7 +106,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			tackDataService.setTack(centerID, Integer.toString(localTimes));
 			return new StockTackVO(Calendar.getInstance(), Integer.toString(localTimes), currentModel);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

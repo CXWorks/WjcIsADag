@@ -48,7 +48,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
 			return examineSubmitService.submit(temp);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -70,7 +70,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 				return vo;
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 				return null;
 			}
 			
@@ -85,7 +85,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 		try {
 			return receiveDataService.newID(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

@@ -54,7 +54,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(orderPO);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -77,7 +77,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -89,7 +89,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			RevenueVO vo=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -107,7 +107,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
         
@@ -126,7 +126,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -153,7 +153,7 @@ public class RevenueBLImpl implements RevenueBLService {
         try {
 			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -176,7 +176,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			String num=po.getAmount();
 			return Double.parseDouble(num);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return 0;
 		}
 	}
@@ -198,8 +198,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

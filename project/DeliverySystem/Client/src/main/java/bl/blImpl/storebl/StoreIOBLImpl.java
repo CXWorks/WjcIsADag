@@ -54,7 +54,7 @@ public class StoreIOBLImpl implements StoreIOBLService {
 			}
 			return answer;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -77,7 +77,7 @@ public class StoreIOBLImpl implements StoreIOBLService {
 	        
 	        return answer;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
         

@@ -41,7 +41,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -55,7 +55,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -69,7 +69,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -82,7 +82,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyPrice(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -93,7 +93,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyProportion(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -104,7 +104,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyPack(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
 	}

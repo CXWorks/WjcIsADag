@@ -21,16 +21,14 @@ import bl.clientRMI.RMIHelper;
  * @version 1.0
  */
 public class AccountBLLoginImpl implements AccountBLLoginService {
-	AccountDataService accountDataService;
 	public AccountBLLoginImpl(){
 	}
 	
 	private void initNet(){
 		try {
 			CacheHelper.initializeLogin();
-			this.accountDataService=CacheHelper.getAccountDataService();
 		} catch (NetInitException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 		}
 		
 	}
@@ -41,6 +39,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	public OperationMessage checkAccount(String id, String password) {
 		try {
 			this.initNet();
+			AccountDataService accountDataService=CacheHelper.getAccountDataService();
 			OperationMessage check=accountDataService.checkAccount(id, password);
 			if (check.operationResult) {
 				CacheHelper.initCacheService();
@@ -58,7 +57,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 			}
 
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -69,9 +68,10 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	@Override
 	public OperationMessage logOut() {
 		try {
-			return this.accountDataService.setAccount(UserInfo.getUserID(), false);
+			AccountDataService accountDataService=CacheHelper.getAccountDataService();
+			return accountDataService.setAccount(UserInfo.getUserID(), false);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}

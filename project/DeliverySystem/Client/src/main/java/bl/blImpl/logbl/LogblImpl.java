@@ -48,7 +48,7 @@ public class LogblImpl implements LogblService {
 				now = logDataService.getByTime(start, end);
 			}
 		}catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 		}
 
 		ArrayList<LogVO> ans = new ArrayList<>();

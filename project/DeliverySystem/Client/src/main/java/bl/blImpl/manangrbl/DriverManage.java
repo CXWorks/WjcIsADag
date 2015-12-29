@@ -39,7 +39,7 @@ public class DriverManage implements ManageblDriverService {
 			DriverVO vo=(DriverVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -59,7 +59,7 @@ public class DriverManage implements ManageblDriverService {
 			}
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 
@@ -75,7 +75,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.modifyStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
 
@@ -91,7 +91,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.addStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}
@@ -106,7 +106,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.dismissStaff(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}
@@ -121,7 +121,7 @@ public class DriverManage implements ManageblDriverService {
 			String ID=memberDataService_driver.newStaffID(staffType, unitID);
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

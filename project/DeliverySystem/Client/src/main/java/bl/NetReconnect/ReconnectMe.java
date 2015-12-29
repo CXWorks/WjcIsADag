@@ -3,45 +3,40 @@ package bl.NetReconnect;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-
-
 import javafx.application.Platform;
+import message.OperationMessage;
 import rmi.accountdata.AccountDataService;
 import ui.connectui.ConnectDialogController;
 import userinfo.UserInfo;
 import bl.blService.accountblService.AccountBLRemindService;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
-import message.OperationMessage;
 
 /** 
- * Client//bl.NetReconnect//Reconnect.java
+ * Client//bl.NetReconnect//ReconnectMe.java
  * @author CXWorks
- * @date Dec 27, 2015 11:33:57 PM
+ * @date Dec 30, 2015 12:40:57 AM
  * @version 1.0 
  */
-public class Reconnect implements Runnable{
+public class ReconnectMe implements Runnable{
 	private boolean reconnected;
 	private ConnectDialogController connectDialogController;
 	public  static void ReConnectFactory(){
 		if (UserInfo.isConnected()) {
-			new Reconnect();
+			new ReconnectMe();
 		}
 	}
 	
-	private Reconnect() {
+	private ReconnectMe() {
 		reconnected=false;
 		UserInfo.setConnected(false);
 		Thread thread=new Thread(this);
 		thread.start();
-		try {
-
-			connectDialogController=ConnectDialogController.newConnectDialog();
-			connectDialogController.showDialog();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		
+		
+		
+		
 	}
 
 	/* (non-Javadoc)
@@ -49,6 +44,16 @@ public class Reconnect implements Runnable{
 	 */
 	@Override
 	public void run() {
+		Platform.runLater(
+			()->{
+				try {
+					connectDialogController=ConnectDialogController.newConnectDialog();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				connectDialogController.showDialog();}
+				);
 		while (true&&!reconnected) {
 			try {
 				Thread.sleep(10000);

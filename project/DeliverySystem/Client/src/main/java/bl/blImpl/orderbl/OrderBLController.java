@@ -59,7 +59,7 @@ public class OrderBLController implements OrderBLService{
 //			OrderDataService orderDataService=CacheHelper.getOrderDataService();
 //			return orderDataService.insert(ready);
 		} catch (Exception e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false,"");
 		}
 	}
@@ -78,7 +78,7 @@ public class OrderBLController implements OrderBLService{
 			String id=orderDataService.newID(UserInfo.getInstitutionID());
 			return id;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 		
@@ -96,7 +96,7 @@ public class OrderBLController implements OrderBLService{
 				localCity=city2dpos.stream()
 						.filter(city->city.getID().equalsIgnoreCase(id)).findFirst().get().getName();
 			} catch (RemoteException e) {
-				Reconnect reconnect=new Reconnect();
+				Reconnect.ReConnectFactory();
 			}
 		}
 		return localCity;
@@ -111,7 +111,7 @@ public class OrderBLController implements OrderBLService{
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
 			return city2dpos.stream().map(city->city.getName()).collect(Collectors.toList());
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}

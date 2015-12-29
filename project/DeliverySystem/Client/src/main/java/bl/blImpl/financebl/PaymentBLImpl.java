@@ -39,7 +39,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			String ID=paymentDataService.newID(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
         
@@ -52,7 +52,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			PaymentVO vo=(PaymentVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -71,7 +71,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			//
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
     }
@@ -109,7 +109,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			}
 			
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
     }

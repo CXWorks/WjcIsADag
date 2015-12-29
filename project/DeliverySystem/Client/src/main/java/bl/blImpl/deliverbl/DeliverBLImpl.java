@@ -48,7 +48,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			String ID=deliverDataService.newID(unitID);
 			return ID;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -70,7 +70,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			DeliverPO po=(DeliverPO)vopoFactory.transVOtoPO(form);
 			return CacheHelper.getExamineSubmitService().submit(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -99,7 +99,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -113,7 +113,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			ArrayList<String> order=deliverDataService.available(hallID);
 			return order;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -131,7 +131,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			}
 			return post;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 

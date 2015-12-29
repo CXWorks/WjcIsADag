@@ -38,7 +38,7 @@ public class Salary {
 			//
 			return vo;
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return null;
 		}
 	}
@@ -49,7 +49,7 @@ public class Salary {
 		try {
 			return configurationDataService.modifySalaryStrategy(po);
 		} catch (RemoteException e) {
-			Reconnect reconnect=new Reconnect();
+			Reconnect.ReConnectFactory();
 			return new OperationMessage(false, "net error");
 		}
 	}
