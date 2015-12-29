@@ -1,10 +1,14 @@
-.background {
-
+﻿.background {
 	-fx-background-image : url(pic/logistics/searchBackground.png);
 	-fx-background-repeat:no-repeat;
-	
 }
 
+
+
+.background-logistics{
+	-fx-background-image : url(pic/logistics/searchBackground.png);
+	-fx-background-repeat:no-repeat;
+}
 
 .table-view {
     -fx-base: #1e1e1e;
@@ -60,7 +64,7 @@
 	-fx-background-color:#000000;
 	-fx-border-style :none;
     -fx-size:13;
-	-fx-text-fill:#fc6c02;
+	-fx-prompt-text-fill:#fc6c02;
 	-fx-font-size:16pt;
 	-fx-color: black;
     -fx-font-family: "方正幼线简体 常规";
