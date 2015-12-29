@@ -3,10 +3,12 @@ package ui.informui;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import main.Main;
 import message.OperationMessage;
+import tool.ui.AnchorSet;
 
 import java.io.IOException;
 
@@ -14,7 +16,7 @@ import java.io.IOException;
  * Created by Sissel on 2015/12/19.
  */
 public class InformController {
-    public StackPane stackPane;
+    public AnchorPane stackPane;
     public Label content_Label;
     public Pane informPane;
 
@@ -23,10 +25,11 @@ public class InformController {
         try {
             Pane informPane = loader.load();
             InformController controller = loader.getController();
-            controller.stackPane = new StackPane(contentPane);
-            contentPane.prefWidthProperty().bind(controller.stackPane.widthProperty());
-            contentPane.prefHeightProperty().bind(controller.stackPane.heightProperty());
+            controller.stackPane = new AnchorPane(contentPane);
+            AnchorSet.set0(contentPane);
+            AnchorSet.set0(controller.stackPane);
             controller.stackPane.getChildren().add(informPane);
+            AnchorPane.setTopAnchor(informPane, 0.0);
             informPane.setVisible(false);
             controller.informPane = informPane;
 

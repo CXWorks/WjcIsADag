@@ -4,6 +4,7 @@ import factory.FinanceBLFactory;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.util.Pair;
+import tool.ui.AnchorSet;
 import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.financeui.*;
@@ -20,6 +21,7 @@ public class FinanceNavigation {
 
     public static Parent launch() throws IOException {
         Pane initPane = new Pane();
+        AnchorSet.set0(initPane);
         initPane.getChildren().add(
                 CheckInitInfoController.launch(initPane));
 

@@ -186,7 +186,7 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 
 	public void manageStaff(){
         mpc.jumpTo(staffController.getSelfPane());
-        staffController.initLabel(institutionVO);
+        staffController.fillStaffTableWithVO(institutionVO);
 	}
 	
 	private ArrayList<InstitutionVO> getInstitutionVOs(){

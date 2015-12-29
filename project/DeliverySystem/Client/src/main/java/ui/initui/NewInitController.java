@@ -67,7 +67,7 @@ public class NewInitController {
 
 	@FXML
 	public void manageStaff(ActionEvent actionEvent) throws IOException {
-		ManageStaffController controller = ManageStaffController.launch(father, selfPane, initializationBLService);
+		ManageStaffController controller = ManageStaffController.launchInInit(father, selfPane);
 		jumpTo(controller.getSelfPane());
 	}
 

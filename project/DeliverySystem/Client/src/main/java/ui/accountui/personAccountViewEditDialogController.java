@@ -44,7 +44,7 @@ public class personAccountViewEditDialogController {
 		Stage stage = new Stage();
 		stage.initOwner(Main.primaryStage);
         InformController informController = InformController.newInformController(pane);
-        StackPane sp = informController.stackPane;
+        Pane sp = informController.stackPane;
 		stage.setScene(new Scene(sp));
 
 		personAccountViewEditDialogController controller = loader.getController();

@@ -2,13 +2,20 @@ package ui.manangeui.staff;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import bl.blService.manageblService.ManageblCenterService;
+import bl.blService.manageblService.ManageblHallService;
 import bl.blService.manageblService.ManageblStaffService;
+import factory.InitBLFactory;
+import factory.InstitutionFactory;
+import factory.StaffFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -44,68 +51,108 @@ public class ManageStaffController  {
 	public TableColumn<StaffVO, String> age_TableColumn;
 	public TableColumn<StaffVO, String> institution_TableColumn;
 	public Button back_Btn;
+	public TableColumn<StaffVO, String> personID_TableColumn;
+	public TableColumn<StaffVO, String> love_TableColumn;
 	//
+    private ManageblHallService manageblHallService;
+    private ManageblCenterService manageblCenterService;
 	private ManageblStaffService manageblStaffService;
-	private ArrayList<StaffVO> staffVOs;
 	private Pane selfPane;
-
-	private InstitutionVO institutionVO;
-
 	private InformController informController;
 
-	@FXML
-	public static ManageStaffController launch(Pane father, Pane before, ManageblStaffService service)
+    private static ManageStaffController launch() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ManageStaffController.class.getResource("manageStaff.fxml"));
+        Pane selfPane = fxmlLoader.load();
+
+        ManageStaffController controller = fxmlLoader.getController();
+        controller.informController = InformController.newInformController(selfPane);
+        controller.selfPane = controller.informController.stackPane;
+
+        return controller;
+    }
+
+	public static ManageStaffController launchInInit(Pane father, Pane before)
 			throws IOException {
-
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(ManageStaffController.class.getResource("manageStaff.fxml"));
-		Pane selfPane = fxmlLoader.load();
-
-		ManageStaffController controller = fxmlLoader.getController();
-		controller.manageblStaffService = service;
-
-		controller.informController = InformController.newInformController(selfPane);
-		controller.selfPane = controller.informController.stackPane;
-
-		if (father == null) {
-			selfPane.getChildren().remove(controller.back_Btn);
-			controller.back_Btn.setVisible(false);
-		} else {
-			controller.back_Btn.setOnAction(actionEvent -> {
-                father.getChildren().clear();
-                father.getChildren().add(before);
-            });
-		}
+        ManageStaffController controller = ManageStaffController.launch();
+        controller.back_Btn.setOnAction(actionEvent -> {
+            father.getChildren().clear();
+            father.getChildren().add(before);
+        });
+        controller.manageblCenterService = InitBLFactory.getInitializationBLService();
+        controller.manageblStaffService = InitBLFactory.getInitializationBLService();
+        controller.manageblHallService = InitBLFactory.getInitializationBLService();
 
 		return controller;
 	}
 
+    public static ManageStaffController launchInManage() throws IOException {
+        ManageStaffController controller = ManageStaffController.launch();
+        controller.selfPane.getChildren().remove(controller.back_Btn);
+        controller.back_Btn.setVisible(false);
+        controller.manageblStaffService = StaffFactory.getManageService();
+        controller.manageblHallService = InstitutionFactory.getManageblHallService();
+        controller.manageblCenterService = InstitutionFactory.getManageblCenterService();
+
+        return controller;
+    }
+
 	@FXML
 	public void initialize() {
-		type_TableColumn
-				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStaff().getChinese()));
-		ID_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getID()));
-		name_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-
-        gender_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSex().toString()));
+		type_TableColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getStaff().getChinese())
+		);
+		ID_TableColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getID())
+		);
+		name_TableColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getName())
+		);
+        gender_TableColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getSex().toString())
+        );
 		age_TableColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getAge())));
-		institution_TableColumn
-				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getInstitutionID()));
+                cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getAge()))
+        );
+		institution_TableColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getInstitutionID())
+		);
+		personID_TableColumn.setCellValueFactory(
+				cell -> new SimpleStringProperty(cell.getValue().getPersonID())
+		);
+		love_TableColumn.setCellValueFactory(
+				cell -> new SimpleStringProperty(cell.getValue().getLove())
+		);
 
 	}
 
-	//
+	@FXML
 	public void fillStaffTable() {
-		if (this.institutionVO!=null) {
-			staffVOs = manageblStaffService.getStaffByInstitution(this.institutionVO.getInstitutionID());
-			this.staff_TableView.setItems(FXCollections.observableList(staffVOs));
-		}
-
+        InstitutionVO vo = manageblCenterService.searchCenter(institution_Field.getText());
+        if(vo == null){ // not in center
+            vo = manageblHallService.searchHall(institution_Field.getText());
+        }
+        if(vo == null){ // neither in center nor in hall
+            informController.inform("请输入正确的机构编号");
+            return;
+        }else{
+            initLabel(vo);
+            List<StaffVO> staffVOs = manageblStaffService.getStaffByInstitution(vo.getInstitutionID());
+            this.staff_TableView.setItems(FXCollections.observableList(staffVOs));
+        }
 	}
 
-	public void initLabel(InstitutionVO institutionVO) {
-		this.institutionVO = institutionVO;
+    public void fillStaffTableWithVO(InstitutionVO vo){
+        if(vo != null){
+            initLabel(vo);
+            List<StaffVO> staffVOs = manageblStaffService.getStaffByInstitution(vo.getInstitutionID());
+            this.staff_TableView.setItems(FXCollections.observableList(staffVOs));
+        }else{
+            System.err.println("wrong in fillStaffTableWithVO : input vo is null");
+        }
+    }
+
+	private void initLabel(InstitutionVO institutionVO) {
 		if (institutionVO.getInfoEnum() == InfoEnum.CENTER) {
 			CenterVO centerVO = (CenterVO) institutionVO;
 			this.setLabel(centerVO.getCenterID(), centerVO.getCity(), null);
@@ -113,7 +160,6 @@ public class ManageStaffController  {
 			HallVO hallVO = (HallVO) institutionVO;
 			this.setLabel(hallVO.getHallID(), hallVO.getCity(), hallVO.getArea());
 		}
-		this.fillStaffTable();
 	}
 
 	private void setLabel(String ID, String city, String area) {
@@ -129,4 +175,14 @@ public class ManageStaffController  {
 	public Pane getSelfPane() {
 		return selfPane;
 	}
+
+    public void newStaff(ActionEvent actionEvent) {
+    }
+
+    public void editStaff(ActionEvent actionEvent) {
+    }
+
+    public void deleteStaff(ActionEvent actionEvent) {
+
+    }
 }

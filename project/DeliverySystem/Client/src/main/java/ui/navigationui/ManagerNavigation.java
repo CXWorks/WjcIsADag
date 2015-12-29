@@ -40,7 +40,7 @@ public class ManagerNavigation {
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
-        ManageStaffController staffController = ManageStaffController.launch(null, null, StaffFactory.getManageService());
+        ManageStaffController staffController = ManageStaffController.launchInManage();
         TabMaker.addLeftTab(mpc, new Pair<String, Parent>("管理员工", staffController.getSelfPane()));
 
         Tab organizationTab = new Tab("管理机构");
