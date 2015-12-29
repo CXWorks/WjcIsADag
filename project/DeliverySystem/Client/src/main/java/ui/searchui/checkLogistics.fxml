@@ -6,16 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="825.0" styleClass="background" stylesheets="@../css/logistics.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.searchui.CheckLogisticsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="825.0" styleClass="background-logistics" stylesheets="@../css/logistics.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.searchui.CheckLogisticsController">
    <children>
-      <TableView fx:id="logistics_TableView" fixedCellSize="1.0" layoutX="66.0" layoutY="197.0" prefHeight="208.0" prefWidth="613.0">
+      <TableView fx:id="logistics_TableView" fixedCellSize="1.0" layoutX="275.0" layoutY="197.0" prefHeight="208.0" prefWidth="404.0">
         <columns>
-          <TableColumn fx:id="time_Column" prefWidth="258.0" text="时间" />
-          <TableColumn fx:id="address_Column" prefWidth="404.0" text="状态" />
+          <TableColumn fx:id="time_Column" prefWidth="154.0" text="时间" />
+          <TableColumn fx:id="address_Column" prefWidth="508.0" text="状态" />
         </columns>
       </TableView>
-      <TextField fx:id="id_Field" layoutX="127.0" layoutY="135.0" prefHeight="49.0" prefWidth="380.0" styleClass="id" text="请输入快递单号以查询" />
+      <TextField fx:id="id_Field" layoutX="127.0" layoutY="135.0" prefHeight="49.0" prefWidth="380.0" promptText="请输入快递单号以查询" styleClass="id" />
       <Button layoutX="531.0" layoutY="136.0" mnemonicParsing="false" onAction="#search" prefHeight="44.0" prefWidth="107.0" styleClass="sure" />
       <Button layoutX="749.0" layoutY="301.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="71.0" styleClass="log" />
+      <TableView fx:id="order_Table" layoutX="68.0" layoutY="197.0" prefHeight="208.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="key_Column" prefWidth="75.0" />
+          <TableColumn fx:id="value_Column" prefWidth="120.0" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

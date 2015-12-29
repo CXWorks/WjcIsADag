@@ -92,7 +92,7 @@ public class DriverEditDialogController {
 		//TODO solve sex and Picker
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
-		//editVO.setSex(sex_Box.getValue());
+		editVO.setSex(sexEnum);
 		editVO.setBirth(timeconvert.convertDate(birth_Picker.getValue()));
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());

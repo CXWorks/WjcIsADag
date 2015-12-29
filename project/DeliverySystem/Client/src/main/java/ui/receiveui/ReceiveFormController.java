@@ -92,7 +92,7 @@ public class ReceiveFormController {
 		transitID_Field.clear();
 		departure_Field.clear();
 		order_Field.clear();
-		order_Table.setItems(null);
+		order_Table.getItems().clear();
 		arriveState_Box.setValue(arriveState_Box.getItems().get(0));
 	}
 

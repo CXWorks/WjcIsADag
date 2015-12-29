@@ -329,9 +329,7 @@ public class ManageCarDriverController {
 	public void deleteDriver(ActionEvent actionEvent) {
 		for (int i = 0; i < drivers.size(); i++) {
 			if (drivers.get(i).getSelected()) {
-				drivers.remove(i);
-				driver_TableView.getItems().remove(i);
-
+				System.out.println("I saw ya !!!"+drivers.get(i).getVo().getName());
 				OperationMessage msg = manageblDriverService.dismissStaff(drivers.get(i).getVo());
 				if (msg.operationResult) {
 					System.out.println("delete successfully");

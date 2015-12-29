@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import po.financedata.FinancePayEnum;
+import tool.ui.LogisticsVO2ColumnHelper;
+import tool.ui.OrderVO2ColumnHelper;
 import ui.receiveui.ReceiveFormController;
 import vo.financevo.PaymentVO;
 import vo.logisticsvo.LogisticsVO;
+import vo.ordervo.OrderVO;
 import bl.blService.searchblService.SearchBLService;
 import factory.SearchFactory;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,6 +32,11 @@ public class CheckLogisticsController {
 	public TableView<LogisticsVO> logistics_TableView;
 	public TableColumn<LogisticsVO, String> time_Column;
 	public TableColumn<LogisticsVO, String> address_Column;
+	
+	public TableView<Map.Entry<String, String>> order_Table;
+	public TableColumn<Map.Entry<String, String>, String> key_Column;
+	public TableColumn<Map.Entry<String, String>, String> value_Column;
+	
 
 	SearchBLService searchblService = SearchFactory.getSearchBLService();
 
@@ -45,9 +53,9 @@ public class CheckLogisticsController {
 		
 	}
 
-
 	public void search(ActionEvent atcionEvent){
 		logistics_TableView.getItems().clear();
+		order_Table.getItems().clear();
 		System.out.println("hhhhhhhhhhhh"+id_Field.getText());
 		logisticsvo=searchblService.searchOrder(
 				id_Field.getText());
@@ -63,7 +71,11 @@ public class CheckLogisticsController {
        address_Column.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getLocation().toString())
         );
+       
+       order_Table.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
 	}
+
+	
 	
 	public void toLogIn(ActionEvent actionEvent){
 		
