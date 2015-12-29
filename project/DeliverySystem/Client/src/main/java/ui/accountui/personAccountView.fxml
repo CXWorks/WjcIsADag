@@ -5,9 +5,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="179.0" styleClass="background" stylesheets="@../css/accountView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.PersonalAccountViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="147.0" styleClass="background" stylesheets="@../css/accountView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.PersonalAccountViewController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="134.0" prefHeight="37.0" prefWidth="149.0" spacing="16.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutY="134.0" prefHeight="134.0" prefWidth="147.0" spacing="16.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
          <children>
             <Label fx:id="staff_Label" text="快递员：MX" />
             <Label fx:id="id_Label" text="ID：141250094" />
@@ -15,6 +15,5 @@
             <Button mnemonicParsing="false" onAction="#logout" text="注销" />
          </children>
       </VBox>
-      <ImageView fx:id="icon_ImageView" fitHeight="100.0" fitWidth="100.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

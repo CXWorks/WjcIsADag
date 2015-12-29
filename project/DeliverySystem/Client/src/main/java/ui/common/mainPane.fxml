@@ -23,23 +23,19 @@
                </font>
             </Label>
             <Label layoutX="63.0" layoutY="17.0" onMouseClicked="#popUpPersonView" prefHeight="42.0" prefWidth="45.0" />
-            <Label layoutX="491.0" layoutY="17.0" onMouseClicked="#showSettingDialog" prefHeight="42.0" prefWidth="45.0" />
-            <Button layoutX="900.0" layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="46.0" styleClass="button-chi" />
+            <Button layoutX="900.0" layoutY="14.0" mnemonicParsing="false" onAction="#showSettingDialog" prefHeight="46.0" prefWidth="46.0" styleClass="button-chi" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="content_Pane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="70.0" />
       <StackPane fx:id="left_TabsPane" layoutX="7.0" layoutY="70.0" prefHeight="150.0" prefWidth="179.0" styleClass="background-left" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <VBox fx:id="tabs_VBox" alignment="CENTER" prefHeight="435.0" prefWidth="91.0" stylesheets="@../css/main.css" StackPane.alignment="CENTER" />
-            <AnchorPane fx:id="personGFatherPane" prefHeight="200.0" prefWidth="179.0">
-               <children>
-                  <AnchorPane fx:id="personFatherPane" prefHeight="288.0" prefWidth="200.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
-               </children>
-               <StackPane.margin>
-                  <Insets bottom="233.0" />
-               </StackPane.margin>
-            </AnchorPane>
          </children>
       </StackPane>
+      <AnchorPane fx:id="personGFatherPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="179.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <AnchorPane fx:id="personFatherPane" prefHeight="140.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
