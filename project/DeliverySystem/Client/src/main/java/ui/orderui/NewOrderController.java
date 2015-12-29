@@ -180,6 +180,8 @@ public class NewOrderController {
 		goods_Name.clear();
 		goods_Type.clear();
 
+		predict_Expense.setText("");
+		predict_Date.setText("");
 		SimpleEnumProperty<PackingEnum> pe = pack_Box.getItems().get(0);
 		pack_Box.setValue(pe);
 		packing = pe.getEnum();

@@ -77,4 +77,22 @@ public class LogisticsVO extends InfoVO{
 	public void setLocal(String local) {
 		this.local = local;
 	}
+	public String getNameFrom() {
+		return nameFrom;
+	}
+	public String getNameTo() {
+		return nameTo;
+	}
+	public String getPhoneNumTo() {
+		return phoneNumTo;
+	}
+	public String getGoodsNum() {
+		return goodsNum;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public DeliverTypeEnum getType() {
+		return type;
+	}
 }

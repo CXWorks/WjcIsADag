@@ -1,6 +1,7 @@
 package ui.hallui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import po.memberdata.SexEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -18,6 +19,7 @@ import main.Main;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import userinfo.UserInfo;
 import vo.managevo.staff.DriverVO;
 
 public class DriverNewDialogController {
@@ -29,7 +31,6 @@ public class DriverNewDialogController {
 	public TextField carUnit_Field;
 	public DatePicker birth_Picker;
 	public DatePicker licencePeriod_Picker;
-
 	public ChoiceBox<SimpleEnumProperty<SexEnum>> sex_Box;
 
 	public  Label age_Label;
@@ -61,11 +62,14 @@ public class DriverNewDialogController {
     	sex_Box.setItems(
                 Enum2ObservableList.transit(SexEnum.values())
         );
+    	sex_Box.setValue(sex_Box.getItems().get(0));
     	sex_Box.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					sexEnum = newValue.getEnum();
                 }
 		);
+    	licencePeriod_Picker.setValue(LocalDate.now());
+    	carUnit_Field.setText(UserInfo.getInstitutionID());
 
     }
 
@@ -79,6 +83,7 @@ public class DriverNewDialogController {
 		editVO.setSex(sexEnum);
 		editVO.setBirth(timeconvert.convertDate(birth_Picker.getValue()));
 		editVO.setPersonID(personID_Field.getText());
+		editVO.setInstitutionID(carUnit_Field.getText());
 		editVO.setTel(tel_Field.getText());
 		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));
 		stage.close();

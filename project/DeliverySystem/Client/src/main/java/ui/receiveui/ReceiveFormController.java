@@ -15,7 +15,6 @@ import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
-import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
@@ -92,7 +91,7 @@ public class ReceiveFormController {
 		transitID_Field.clear();
 		departure_Field.clear();
 		order_Field.clear();
-		order_Table.setItems(null);
+		order_Table.getItems().clear();
 		arriveState_Box.setValue(arriveState_Box.getItems().get(0));
 	}
 
