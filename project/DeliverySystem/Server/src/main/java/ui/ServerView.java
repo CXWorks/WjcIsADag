@@ -44,6 +44,7 @@ public class ServerView {
 
 	public void stop(ActionEvent actionEvent) {
 		try {
+			System.out.println("hhh");
 			if (isON) {
 				isON = false;
 				RMIHelper.closeServer();

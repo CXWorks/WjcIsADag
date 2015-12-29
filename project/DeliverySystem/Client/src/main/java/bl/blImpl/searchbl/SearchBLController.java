@@ -16,6 +16,7 @@ public class SearchBLController implements SearchBLService{
 	}
 
 	public LogisticsVO searchOrder(String orderID) {
+		
 		return orderHelper.searchOrder(orderID);
 	}
 

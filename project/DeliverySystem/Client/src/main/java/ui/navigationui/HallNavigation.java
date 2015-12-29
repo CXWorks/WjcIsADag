@@ -9,6 +9,7 @@ import ui.common.TabMaker;
 import ui.deliverui.deliverController;
 import ui.hallui.ManageCarDriverController;
 import ui.hallui.RevenueFormController;
+import ui.messageui.CheckMessageController;
 import ui.receiveui.ReceiveFormController;
 import ui.transportui.LoadCarController;
 
@@ -26,7 +27,8 @@ public class HallNavigation {
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
                 new Pair<String ,Parent>("填写派件单",deliverController.launch()),
-                new Pair<String, Parent>("填写装车单", LoadCarController.launch())
+                new Pair<String, Parent>("填写装车单", LoadCarController.launch()),
+                new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 
         return node;
