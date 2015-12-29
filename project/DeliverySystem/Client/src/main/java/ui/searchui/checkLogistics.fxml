@@ -16,7 +16,7 @@
       </TableView>
       <TextField fx:id="id_Field" layoutX="127.0" layoutY="135.0" prefHeight="49.0" prefWidth="380.0" promptText="请输入快递单号以查询" styleClass="id" />
       <Button layoutX="531.0" layoutY="136.0" mnemonicParsing="false" onAction="#search" prefHeight="44.0" prefWidth="107.0" styleClass="sure" />
-      <Button layoutX="749.0" layoutY="301.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="71.0" styleClass="log" />
+      <Button layoutX="739.0" layoutY="301.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="71.0" styleClass="log" />
       <TableView fx:id="order_Table" layoutX="68.0" layoutY="197.0" prefHeight="208.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="key_Column" prefWidth="75.0" />
