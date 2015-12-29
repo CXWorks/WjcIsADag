@@ -4,14 +4,17 @@ import java.rmi.RemoteException;
 
 import po.deliverdata.DeliverPO;
 import po.financedata.RevenuePO;
+import po.receivedata.ReceivePO;
 import po.transportdata.CenterOutPO;
 import po.transportdata.LoadPO;
 import bl.blImpl.transportbl.TransportHallBLImpl;
 import bl.clientNetCache.CacheHelper;
 import rmi.deliverdata.DeliverDataService;
 import rmi.financedata.RevenueDataService;
+import rmi.receivedata.ReceiveDataService;
 import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
+import tool.time.TimeConvert;
 
 /** 
  * Client//bl.blImpl.searchbl//Intergrate.java
@@ -47,6 +50,12 @@ public class Intergrate {
 			DeliverPO deliverPO=deliverDataService.getFormPO(ID);
 			ans[0]=deliverPO.getFormID().substring(2, 9);
 			ans[1]=deliverPO.getDate().toString();
+			break;
+		case "03":
+			ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
+			ReceivePO receivePO=receiveDataService.getFormPO(ID);
+			ans[0]=TimeConvert.getDisplayDate(receivePO.getDate());
+			ans[1]=receivePO.getDepature();
 			break;
 
 		default:

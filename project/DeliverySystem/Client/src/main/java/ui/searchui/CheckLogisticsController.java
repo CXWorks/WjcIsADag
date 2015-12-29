@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import po.financedata.FinancePayEnum;
+import tool.ui.LogisticsVO2ColumnHelper;
 import ui.receiveui.ReceiveFormController;
 import vo.financevo.PaymentVO;
 import vo.logisticsvo.LogisticsVO;
@@ -26,9 +27,9 @@ public class CheckLogisticsController {
 
 	public TextField id_Field;
 
-	public TableView<LogisticsVO> logistics_TableView;
-	public TableColumn<LogisticsVO, String> time_Column;
-	public TableColumn<LogisticsVO, String> address_Column;
+	public TableView<Map.Entry<String, String>> logistics_TableView;
+	public TableColumn<Map.Entry<String, String>, String> time_Column;
+	public TableColumn<Map.Entry<String, String>, String> address_Column;
 
 	SearchBLService searchblService = SearchFactory.getSearchBLService();
 
@@ -55,14 +56,11 @@ public class CheckLogisticsController {
         if(this.logisticsvo == null){
             return;
         }
-        logistics_TableView.setItems(FXCollections.observableArrayList(logisticsvo));
-        // TODO test
-        time_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getTime().toString())
-        );
-       address_Column.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getLocation().toString())
-        );
+        
+        LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
+        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
+        logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
+       
 	}
 	
 	public void toLogIn(ActionEvent actionEvent){

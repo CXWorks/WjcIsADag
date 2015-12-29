@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 
 import po.FormEnum;
 import message.OperationMessage;
+import userinfo.UserInfo;
 import vo.FormVO;
 
 /** 
@@ -18,7 +19,7 @@ import vo.FormVO;
  * @version 1.0 
  */
 public class DraftController implements DraftService {
-	private static final String ROOT=DraftController.class.getResource("").getPath();
+	private static final String FOLDER_NAME="draft/";
 	private ObjectOutputStream writer;
 	private ObjectInputStream reader;
 
@@ -28,7 +29,11 @@ public class DraftController implements DraftService {
 	@Override
 	public OperationMessage saveDraft(FormVO vo) {
 		try {
+			String ROOT=UserInfo.getWorkPath()+FOLDER_NAME;
 			File file=new File(ROOT+vo.getFormType().toString()+"/.2333");
+			if (!file.exists()) {
+				file.createNewFile();
+			}
 			writer=new ObjectOutputStream(new FileOutputStream(file,false));
 			writer.writeObject(vo);
 			writer.close();
@@ -48,7 +53,12 @@ public class DraftController implements DraftService {
 	@Override
 	public FormVO getDraft(FormEnum formEnum) {
 		try {
-			reader=new ObjectInputStream(new FileInputStream(ROOT+formEnum.toString()+"/.2333"));
+			String ROOT=UserInfo.getWorkPath()+FOLDER_NAME;
+			File file=new File(ROOT+formEnum.toString()+"/.2333");
+			if (!file.exists()) {
+				return null;
+			}
+			reader=new ObjectInputStream(new FileInputStream(file));
 			FormVO ans=(FormVO)reader.readObject();
 			reader.close();
 			return ans;

@@ -1,6 +1,7 @@
 package vo.logisticsvo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import po.InfoEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -58,10 +59,10 @@ public class LogisticsVO extends InfoVO{
 	public LogisticsVO(OrderPO order,ArrayList<String> location, ArrayList<String> time){
 		this(order.getNameFrom(), order.getNameTo(), location, time, null, order.getPhoneNumTo(), order.getGoodsNum(), order.getGoodsName(), order.getType());
 	}
-	public ArrayList<String> getLocation() {
+	public List<String> getLocation() {
 		return location;
 	}
-	public ArrayList<String> getTime() {
+	public List<String> getTime() {
 		return time;
 	}
 	public String getLocal() {

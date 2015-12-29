@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
+import userinfo.UserInfo;
 import message.OperationMessage;
 
 /** 
@@ -20,10 +21,11 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class VersionSaver {
-	private final String path=VersionSaver.class.getResource("version/").getPath();
+	
 	private final String tail=".2333";
 	//
 	public OperationMessage saveVersion(long version,String fileName){
+		String path=UserInfo.getWorkPath()+"cache/";
 		String filePath=path+fileName+tail;
 		
 		try {
@@ -43,9 +45,14 @@ public class VersionSaver {
 	}
 	//
 	public long loadVersion(String fileName){
+		String path=UserInfo.getWorkPath()+"cache/";
 		String filePath=path+fileName+tail;
 		try {
-			BufferedReader reader=new BufferedReader(new FileReader(new File(filePath)));
+			File file=new File(filePath);
+			if (!file.exists()) {
+				throw new FileNotFoundException();
+			}
+			BufferedReader reader=new BufferedReader(new FileReader(file));
 			long ans=Long.parseLong(reader.readLine());
 			return ans;
 		}catch(FileNotFoundException e){
