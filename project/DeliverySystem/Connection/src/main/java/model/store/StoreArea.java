@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import message.OperationMessage;
+
 public class StoreArea implements Serializable {
 	private StoreAreaCode areaType;
 	private ArrayList<StoreLocation> list;
@@ -19,6 +21,15 @@ public class StoreArea implements Serializable {
 		}
 		int used=(int) list.stream().filter(loca->{return loca.getOrderID().length()>0;}).count();
 		return used/(double)total;
+	}
+	
+	public OperationMessage checkCanIn(double warningline){
+		if (this.getUsedProportion()<warningline) {
+			return new OperationMessage();
+		}
+		else {
+			return new OperationMessage(false, "storge not enough");
+		}
 	}
 
 	public void addShelves(String rowNum,String shelvesNum){

@@ -15,7 +15,7 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class StoreWarningChecker {
-	private double warningLine;
+	private static double warningLine;
 	public StoreWarningChecker(){
 		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
@@ -29,7 +29,7 @@ public class StoreWarningChecker {
 		
 		return new OperationMessage();
 	}
-	public double getWarningLine(){
+	public static double getWarningLine(){
 		return warningLine;
 	}
 	public OperationMessage setWarningLine(double warningLine){

@@ -40,6 +40,9 @@ public class StoreInBLImpl implements StoreInBLService {
         StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
         try {
 			StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),area);
+			if (!storeArea.checkCanIn(StoreWarningChecker.getWarningLine()).operationResult) {
+				return null;
+			}
 			ArrayList<StoreLocation> storeLocation=storeArea.getList();
 			StoreLocation ans = null;
 			for (StoreLocation location : storeLocation) {
@@ -96,10 +99,17 @@ public class StoreInBLImpl implements StoreInBLService {
     }
 
     public OperationMessage submit(StoreInVO form) {
+    	//check warning line
+    	
+    	//
         ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
-    	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
         StoreInPO po=(StoreInPO)vopoFactory.transVOtoPO(form);
         try {
+        	StoreModelDataService storeModelDataService=CacheHelper.getStoreModelDataService();
+        	StoreArea storeArea=storeModelDataService.getArea(UserInfo.getInstitutionID(),form.getLocation().getArea());
+    		if (!storeArea.checkCanIn(StoreWarningChecker.getWarningLine()).operationResult) {
+    			return null;
+    		}
 			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();

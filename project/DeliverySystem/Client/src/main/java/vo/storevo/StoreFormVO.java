@@ -69,4 +69,8 @@ public abstract class StoreFormVO extends FormVO {
 		return destination;
 	}
 
+	public StoreLocation getLocation() {
+		return location;
+	}
+	
 }
