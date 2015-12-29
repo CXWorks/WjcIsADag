@@ -23,7 +23,7 @@ public class FinanceNavigation {
         initPane.getChildren().add(
                 CheckInitInfoController.launch(initPane));
 
-        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane("新建付款单", Arrays.asList(
                 new Pair<String, Parent>("财务报表", CheckFinanceChartController.launch()),
                 new Pair<String, Parent>("管理账户",
                         ManageBankAccountController.launch(null, null, FinanceBLFactory.getBankAccountBLService())),

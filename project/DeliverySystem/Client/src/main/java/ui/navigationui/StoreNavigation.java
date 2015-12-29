@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class StoreNavigation {
     public static Parent launch() throws IOException {
-        Parent node = TabMaker.newLeftTabPane(Arrays.asList(
+        Parent node = TabMaker.newLeftTabPane("填写入库单", Arrays.asList(
                 new Pair<String, Parent>("填写入库单", StoreInFormController.launch()),
                 new Pair<String, Parent>("填写出库单", StoreOutFormController.launch()),
                 new Pair<String, Parent>("出入库汇总", StoreSummaryController.launch()),

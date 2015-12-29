@@ -91,6 +91,14 @@ public class MainPaneController {
         }
     }
 
+    public void selectButton(String tabText){
+        for (ToggleButton toggleTab : toggleTabs) {
+            if(toggleTab.getText().equals(tabText)){
+                toggleTab.getOnAction().handle(null);
+            }
+        }
+    }
+
     public void jumpTo(Pane content){
         content_Pane.getChildren().clear();
         content_Pane.getChildren().add(content);

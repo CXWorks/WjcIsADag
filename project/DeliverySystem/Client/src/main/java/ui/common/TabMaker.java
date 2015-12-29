@@ -56,14 +56,16 @@ public class TabMaker {
         return controller;
     }
 
-    public static Pane newLeftTabPane(List<Pair<String, Parent>> list){
+    public static Pane newLeftTabPane(String defaultTab, List<Pair<String, Parent>> list){
         try {
             MainPaneController controller = newMainPaneController();
             addLeftTabs(controller, list);
+            controller.selectButton(defaultTab);
             return controller.getOuterPane();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
+
 }
