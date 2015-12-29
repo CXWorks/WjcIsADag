@@ -52,7 +52,9 @@ public class NewOrderController {
 
 	public TextField goods_Number;
 	public TextField goods_Weight;
-	public TextField goods_Volume;
+	public TextField goods_V1;
+	public TextField goods_V2;
+	public TextField goods_V3;
 	public TextField goods_Name;
 	public TextField goods_Type;
 
@@ -149,7 +151,7 @@ public class NewOrderController {
 		return new OrderVO(FormID, name_From.getText(), name_To.getText(), unit_From.getText(), unit_To.getText(),
 				city_Label.getText()+address_From.getText(), city_Box.getValue()+address_To.getText(), tel_From.getText(), tel_To.getText(),
 				phone_From.getText(), phone_To.getText(), goods_Number.getText(), goods_Name.getText(),
-				goods_Weight.getText(), goods_Volume.getText(), predict_Expense.getText(), goods_Type.getText(),
+				goods_Weight.getText(), goods_V1.getText()+"*"+goods_V2.getText()+"*"+goods_V3.getText(), predict_Expense.getText(), goods_Type.getText(),
 				deliverType, packing, UserInfo.getUserID());
 	}
 
@@ -176,7 +178,9 @@ public class NewOrderController {
 
 		goods_Number.clear();
 		goods_Weight.clear();
-		goods_Volume.clear();
+		goods_V1.clear();
+		goods_V2.clear();
+		goods_V3.clear();
 		goods_Name.clear();
 		goods_Type.clear();
 
