@@ -10,6 +10,7 @@ import rmi.memberdata.MemberDataService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
 import vo.managevo.staff.DriverVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.manageblService.ManageblDriverService;
 import bl.clientNetCache.CacheHelper;
 
@@ -38,7 +39,7 @@ public class DriverManage implements ManageblDriverService {
 			DriverVO vo=(DriverVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -53,13 +54,12 @@ public class DriverManage implements ManageblDriverService {
 			ArrayList<DriverPO> driverPOs = memberDataService_driver.getStaffByInstitution(UserInfo.getInstitutionID());
 			ArrayList<DriverVO> vo = new ArrayList<DriverVO>(driverPOs.size());
 			for (DriverPO driverPO : driverPOs) {
-				System.out.println(")))))"+driverPO.getInfoEnum());
 				DriverVO temp=(DriverVO)vopoFactory.transPOtoVO(driverPO);
 				vo.add(temp);
 			}
 			return vo;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 
@@ -75,8 +75,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.modifyStaff(po);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
 
@@ -92,7 +91,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.addStaff(po);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}
@@ -107,7 +106,7 @@ public class DriverManage implements ManageblDriverService {
 		try {
 			return memberDataService_driver.dismissStaff(po);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}
@@ -122,7 +121,7 @@ public class DriverManage implements ManageblDriverService {
 			String ID=memberDataService_driver.newStaffID(staffType, unitID);
 			return ID;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

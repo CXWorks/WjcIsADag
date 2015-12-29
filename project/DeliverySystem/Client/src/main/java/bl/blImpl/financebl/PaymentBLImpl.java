@@ -1,5 +1,6 @@
 package bl.blImpl.financebl;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.financeblService.PaymentBLService;
 import bl.clientNetCache.CacheHelper;
 import tool.draft.DraftService;
@@ -38,6 +39,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			String ID=paymentDataService.newID(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
         
@@ -50,6 +52,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			PaymentVO vo=(PaymentVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -68,6 +71,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			//
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -105,6 +109,7 @@ public class PaymentBLImpl implements PaymentBLService {
 			}
 			
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }

@@ -12,6 +12,7 @@ import userinfo.UserInfo;
 import vo.FormVO;
 import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.manageblService.ManageblStaffService;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
@@ -39,6 +40,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.modifyStaff(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -52,6 +54,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.addStaff(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -65,6 +68,7 @@ public class StaffManage implements ManageblStaffService {
 		try {
 			return memberDataService.dismissStaff(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -79,6 +83,7 @@ public class StaffManage implements ManageblStaffService {
 			StaffVO vo=(StaffVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -92,6 +97,7 @@ public class StaffManage implements ManageblStaffService {
 			String newStaffID=memberDataService.newStaffID(staffType, unitID);
 			return newStaffID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -111,6 +117,7 @@ public class StaffManage implements ManageblStaffService {
 			}
 			return result;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -131,6 +138,7 @@ public class StaffManage implements ManageblStaffService {
 			}
 			return result;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

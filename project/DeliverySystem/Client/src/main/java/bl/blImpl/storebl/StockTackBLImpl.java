@@ -13,6 +13,7 @@ import rmi.storedata.StoreModelDataService;
 import rmi.storedata.TackDataService;
 import tool.excel.Excel;
 import userinfo.UserInfo;
+import bl.NetReconnect.Reconnect;
 import bl.blService.storeblService.StockTackBLService;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
@@ -38,8 +39,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			localTimes=tackDataService.getTack(UserInfo.getInstitutionID());
 			currentModel=storeModelDataService.getModel(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			localTimes=0;
 		}
 	}
@@ -58,6 +58,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			OrderVO vo = new OrderVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -69,6 +70,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			StoreInVO storeInVO=new StoreInVO(storeInPO);
 			return storeInVO;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -87,6 +89,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			storeArea.add(storeArea4);
 			return Excel.exportToExcel(path, storeArea);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
     }
@@ -103,8 +106,7 @@ public class StockTackBLImpl implements StockTackBLService {
 			tackDataService.setTack(centerID, Integer.toString(localTimes));
 			return new StockTackVO(Calendar.getInstance(), Integer.toString(localTimes), currentModel);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

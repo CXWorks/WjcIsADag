@@ -3,6 +3,7 @@ package bl.blImpl.searchbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import po.orderdata.OrderPO;
 import rmi.orderdata.OrderDataService;
@@ -41,6 +42,7 @@ public class OrderHelper {
 			//
 			return new LogisticsVO(toSearch, location, time);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

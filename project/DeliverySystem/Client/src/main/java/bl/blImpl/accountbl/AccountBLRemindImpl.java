@@ -7,6 +7,7 @@ import rmi.accountdata.AccountDataService;
 import rmi.chatRemindService.ChatRemindService;
 import message.ChatMessage;
 import message.OperationMessage;
+import bl.NetReconnect.Reconnect;
 import bl.blService.accountblService.AccountBLRemindService;
 import bl.clientNetCache.CacheHelper;
 
@@ -30,6 +31,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 		try {
 			return chatRemindService.checkMessage(ID);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -42,6 +44,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 		try {
 			return chatRemindService.getMessage(ID);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

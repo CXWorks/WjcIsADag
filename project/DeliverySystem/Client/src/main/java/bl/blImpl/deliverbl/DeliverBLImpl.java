@@ -16,6 +16,7 @@ import message.OperationMessage;
 import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.deliverblService.DeliverBLService;
 import bl.clientNetCache.CacheHelper;
@@ -47,6 +48,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			String ID=deliverDataService.newID(unitID);
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -67,7 +69,8 @@ public class DeliverBLImpl implements DeliverBLService {
 		try {
 			DeliverPO po=(DeliverPO)vopoFactory.transVOtoPO(form);
 			return CacheHelper.getExamineSubmitService().submit(po);
-		} catch (Exception e) {
+		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -96,6 +99,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -109,6 +113,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			ArrayList<String> order=deliverDataService.available(hallID);
 			return order;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -126,8 +131,7 @@ public class DeliverBLImpl implements DeliverBLService {
 			}
 			return post;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 

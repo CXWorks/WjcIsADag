@@ -1,5 +1,6 @@
 package bl.blImpl.financebl;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.financeblService.RevenueBLService;
 import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
@@ -53,6 +54,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(orderPO);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -75,6 +77,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			String ID=revenueDataService.newID(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -86,6 +89,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			RevenueVO vo=(RevenueVO)vopoFactory.transPOtoVO(revenuePO);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -103,6 +107,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
         
@@ -121,6 +126,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -147,6 +153,7 @@ public class RevenueBLImpl implements RevenueBLService {
         try {
 			return examineSubmitService.submit(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -169,6 +176,7 @@ public class RevenueBLImpl implements RevenueBLService {
 			String num=po.getAmount();
 			return Double.parseDouble(num);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return 0;
 		}
 	}

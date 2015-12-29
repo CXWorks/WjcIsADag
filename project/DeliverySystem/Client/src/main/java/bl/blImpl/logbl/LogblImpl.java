@@ -12,6 +12,7 @@ import rmi.systemdata.LogDataService;
 import tool.vopo.VOPOFactory;
 import message.OperationMessage;
 import vo.systemvo.LogVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.logblService.LogblService;
 import bl.clientNetCache.CacheHelper;
 
@@ -47,7 +48,7 @@ public class LogblImpl implements LogblService {
 				now = logDataService.getByTime(start, end);
 			}
 		}catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 		}
 
 		ArrayList<LogVO> ans = new ArrayList<>();

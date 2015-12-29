@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.SalaryStrategyPO;
@@ -37,6 +38,7 @@ public class Salary {
 			//
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -47,6 +49,7 @@ public class Salary {
 		try {
 			return configurationDataService.modifySalaryStrategy(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}

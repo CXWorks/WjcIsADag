@@ -2,6 +2,7 @@ package bl.blImpl.storebl;
 
 import java.rmi.RemoteException;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import rmi.configurationdata.ConfigurationDataService;
 import userinfo.UserInfo;
@@ -20,7 +21,7 @@ public class StoreWarningChecker {
 		try {
 			this.warningLine=configurationDataService.getWarningline(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 		}
 	}
 	//
@@ -41,8 +42,7 @@ public class StoreWarningChecker {
 			}
 			return new OperationMessage(false, "unknown error");
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}

@@ -10,6 +10,7 @@ import rmi.orderdata.OrderDataService;
 import message.OperationMessage;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.deliverblService.CheckDeliverForm;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
@@ -42,6 +43,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -57,6 +59,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 				orderPO.finfished(each.getReceiveDate()	, each.getReceivePeople());
 				orderDataService.update(orderPO);
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return new OperationMessage(false, "net error");
 			}
 
@@ -83,8 +86,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 			}
 			return orderVOs;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -98,8 +100,7 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 		try {
 			return orderDataService.update(orderPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

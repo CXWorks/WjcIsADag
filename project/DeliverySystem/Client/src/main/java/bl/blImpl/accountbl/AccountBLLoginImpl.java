@@ -8,6 +8,7 @@ import rmi.memberdata.MemberDataService;
 import rmi.systemdata.SystemDataService;
 import userinfo.UserInfo;
 import message.OperationMessage;
+import bl.NetReconnect.Reconnect;
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
@@ -29,8 +30,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 			CacheHelper.initializeLogin();
 			this.accountDataService=CacheHelper.getAccountDataService();
 		} catch (NetInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 		}
 		
 	}
@@ -58,6 +58,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 			}
 
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -70,6 +71,7 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 		try {
 			return this.accountDataService.setAccount(UserInfo.getUserID(), false);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}

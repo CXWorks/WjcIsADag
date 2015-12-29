@@ -1,5 +1,6 @@
 package bl.blImpl.initbl;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.financeblService.BankAccountBLService;
 import bl.blService.initblService.InitializationBLService;
 import bl.blService.manageblService.ManageblCarService;
@@ -71,7 +72,7 @@ public class InitializationBLController implements InitializationBLService {
 			InitialDataPO initialDataPO=initialDataService.getInitialDataPO(version);
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 		}
     }
 
@@ -92,7 +93,6 @@ public class InitializationBLController implements InitializationBLService {
     }
 
     public OperationMessage addAccount(BankAccountVO avo) {
-    	System.out.println("_____________________________________________---------------------------");
         boolean re=initialDataVO.getBankAccounts().add(avo);
         return new OperationMessage(re,null);
 
@@ -233,7 +233,7 @@ public class InitializationBLController implements InitializationBLService {
 		this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(initialDataPO);
 		return this.initialDataVO;
 	} catch (RemoteException e) {
-		e.printStackTrace();
+		Reconnect reconnect=new Reconnect();
 		return null;
 	}
     }
@@ -247,8 +247,10 @@ public class InitializationBLController implements InitializationBLService {
 			this.initialDataVO=(InitialDataVO)vopoFactory.transPOtoVO(lastPO);
 			UserInfo.changeSystermState();
 			return re;
-		} catch (RemoteException | ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (RemoteException  e) {
+			Reconnect reconnect=new Reconnect();
+			return new OperationMessage(false, e.getMessage());
+		} catch (ClassNotFoundException e) {
 			return new OperationMessage(false, e.getMessage());
 		}
     }
@@ -261,7 +263,7 @@ public class InitializationBLController implements InitializationBLService {
 			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
     }
@@ -273,7 +275,7 @@ public class InitializationBLController implements InitializationBLService {
 		UserInfo.changeSystermState();
 		return res;
 	} catch (RemoteException e) {
-		e.printStackTrace();
+		Reconnect reconnect=new Reconnect();
 		return new OperationMessage(false, e.getMessage());
 	}
 
@@ -766,8 +768,7 @@ public class InitializationBLController implements InitializationBLService {
 			OrderPO orderPO=orderDataService.getFormPO(data);
 			return (OrderVO) vopoFactory.transPOtoVO(orderPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

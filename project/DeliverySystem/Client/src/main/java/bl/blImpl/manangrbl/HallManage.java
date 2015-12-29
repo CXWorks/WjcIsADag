@@ -9,6 +9,7 @@ import rmi.companydata.CompanyDataHallService;
 import tool.vopo.VOPOFactory;
 import vo.FormVO;
 import vo.managevo.institution.HallVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.manageblService.ManageblHallService;
 import bl.clientNetCache.CacheHelper;
 
@@ -40,6 +41,7 @@ public class HallManage implements ManageblHallService {
 			}
 			return result;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -53,6 +55,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.addHall(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -66,6 +69,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.modifyHall(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -79,6 +83,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			return hallService.deleteHall(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -108,6 +113,7 @@ public class HallManage implements ManageblHallService {
 				return null;
 			}
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 		
@@ -122,16 +128,11 @@ public class HallManage implements ManageblHallService {
 			String ID=hallService.newHallID(centerID.substring(0, 3));
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see blService.manageblService.ManageblHallService#newInstitutionDistance(java.lang.String, java.lang.Object)
-	 */
-	public OperationMessage newInstitutionDistance(String ID, Object ob) {
-		// TODO Auto-generated method stub
-		return new OperationMessage();
-	}
+
 
 }

@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.City2DPO;
@@ -33,8 +34,7 @@ public class Distance {
 		try {
 			return configurationDataService.newCity2D(city2dpo);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -44,8 +44,7 @@ public class Distance {
 		try {
 			return configurationDataService.deleteCity2D(city2dvo.getName());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -64,8 +63,7 @@ public class Distance {
 			
 			return ans;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -78,8 +76,7 @@ public class Distance {
 		try {
 			return configurationDataService.modifyCity2D(city2dpo);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

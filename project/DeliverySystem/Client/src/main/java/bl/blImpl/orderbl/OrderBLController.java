@@ -17,6 +17,7 @@ import rmi.orderdata.OrderDataService;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.configurationblService.ConfigurationBLService;
 import bl.blService.orderblService.OrderBLService;
@@ -75,9 +76,10 @@ public class OrderBLController implements OrderBLService{
 		// TODO Auto-generated method stub
 		try {
 			OrderDataService orderDataService=CacheHelper.getOrderDataService();
-			String id=orderDataService.newID("");
+			String id=orderDataService.newID(UserInfo.getInstitutionID());
 			return id;
-		} catch (Exception e) {
+		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 		
@@ -95,8 +97,7 @@ public class OrderBLController implements OrderBLService{
 				localCity=city2dpos.stream()
 						.filter(city->city.getID().equalsIgnoreCase(id)).findFirst().get().getName();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Reconnect reconnect=new Reconnect();
 			}
 		}
 		return localCity;
@@ -111,8 +112,7 @@ public class OrderBLController implements OrderBLService{
 			ArrayList<City2DPO> city2dpos=configurationDataService.getAllCity2D();
 			return city2dpos.stream().map(city->city.getName()).collect(Collectors.toList());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

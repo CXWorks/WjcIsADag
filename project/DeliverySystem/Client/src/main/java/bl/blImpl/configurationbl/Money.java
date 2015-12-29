@@ -3,6 +3,7 @@ package bl.blImpl.configurationbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
 import po.configurationdata.PackPO;
@@ -40,6 +41,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -53,6 +55,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -66,6 +69,7 @@ public class Money {
 			ans.add(vo);
 			return ans;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -78,6 +82,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyPrice(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -88,6 +93,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyProportion(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -98,6 +104,7 @@ public class Money {
 		try {
 			return configurationDataService.modifyPack(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
 	}

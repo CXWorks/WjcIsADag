@@ -17,6 +17,7 @@ import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.TransitVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.FormatCheckService.FormatCheckService;
 import bl.blService.receiveblService.ReceiveBLService;
 import bl.clientNetCache.CacheHelper;
@@ -47,6 +48,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 			ExamineSubmitService examineSubmitService=CacheHelper.getExamineSubmitService();
 			return examineSubmitService.submit(temp);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"net error");
 		}
 	}
@@ -68,6 +70,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 				return vo;
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return null;
 			}
 			
@@ -82,6 +85,7 @@ public class ReceiveblImpl implements ReceiveBLService {
 		try {
 			return receiveDataService.newID(UserInfo.getInstitutionID());
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

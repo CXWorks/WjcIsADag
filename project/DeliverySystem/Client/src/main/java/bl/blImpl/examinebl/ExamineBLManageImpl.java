@@ -10,6 +10,7 @@ import rmi.examineService.ExamineManageService;
 import message.OperationMessage;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.examineblService.ExamineblManageService;
 import bl.clientNetCache.CacheHelper;
 import tool.vopo.VOPOFactory;
@@ -65,6 +66,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			return examineManageService.passForm(po);
 			
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 
@@ -85,6 +87,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		try {
 			return examineManageService.deleteForm(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -115,6 +118,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		try {
 			return examineManageService.modifyForm(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -160,8 +164,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			}
 			return new OperationMessage();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, e.getMessage());
 		}
 	}

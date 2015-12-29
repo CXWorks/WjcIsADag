@@ -23,6 +23,7 @@ import userinfo.UserInfo;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.CenterOutVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.transportblService.TransportCenterBLService;
 import bl.clientNetCache.CacheHelper;
 import po.transportdata.CenterOutPO;
@@ -59,6 +60,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 			try {
 				return examineSubmitService.submit(po);
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return new OperationMessage(false, "net error");
 			}
 		}
@@ -72,6 +74,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				ID = centerOutDataService.newID(UserInfo.getInstitutionID());
 				return ID;
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return null;
 			}
 			
@@ -86,6 +89,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				OrderVO vo=(OrderVO)vopoFactory.transPOtoVO(po);
 				return vo;
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return null;
 			}
 		}
@@ -113,7 +117,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 						.collect(Collectors.toList()));
 				return ans;
 			} catch (RemoteException e) {
-				e.printStackTrace();
+				Reconnect reconnect=new Reconnect();
 				return null;
 			}
 			
@@ -130,6 +134,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 				String ans=centerOutDataService.newTransID(unitID);
 				return ans;
 			} catch (RemoteException e) {
+				Reconnect reconnect=new Reconnect();
 				return null;
 			}
 		}

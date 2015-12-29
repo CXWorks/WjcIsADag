@@ -22,6 +22,7 @@ public class UserInfo {
 	private static String IP="localhost";
 	private static String Port="2333";
 	private static String workPath;
+	private static boolean connected=true;
 	private UserInfo(){
 	}
 	//

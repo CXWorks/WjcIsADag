@@ -9,6 +9,7 @@ import tool.vopo.VOPOFactory;
 import message.OperationMessage;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.manageblService.ManageblCenterService;
 import bl.clientNetCache.CacheHelper;
 
@@ -40,6 +41,7 @@ public class CenterManage implements ManageblCenterService{
 			}
 			return result;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -53,6 +55,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.addCenter(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -66,6 +69,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.deleteCenter(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -79,6 +83,7 @@ public class CenterManage implements ManageblCenterService{
 		try {
 			return centerService.modifyCenter(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -108,6 +113,7 @@ public class CenterManage implements ManageblCenterService{
 				return null;
 			}
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -130,6 +136,7 @@ public class CenterManage implements ManageblCenterService{
 			String ID=centerService.newCenterID(city);
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 		

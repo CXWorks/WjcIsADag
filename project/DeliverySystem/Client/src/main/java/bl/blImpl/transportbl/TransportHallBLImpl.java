@@ -27,6 +27,7 @@ import vo.managevo.staff.DriverVO;
 import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.LoadVO;
+import bl.NetReconnect.Reconnect;
 import bl.blService.transportblService.TransportHallBLService;
 import bl.clientNetCache.CacheHelper;
 
@@ -80,6 +81,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			ID = loadDataService.newID(UserInfo.getInstitutionID());
 			return ID;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 
@@ -102,6 +104,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			}
 			return ans;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 
@@ -121,6 +124,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			OrderVO vo = (OrderVO) vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -145,6 +149,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -172,7 +177,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			}
 			return ans;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 
@@ -188,8 +193,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			String ans=loadDataService.newTransID(unitID);
 			return ans;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

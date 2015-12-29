@@ -1,5 +1,6 @@
 package bl.blImpl.financebl;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.financeblService.BankAccountBLService;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
@@ -44,6 +45,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -64,6 +66,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
         	po.setBankID(ID);
 			return bankAccountDataService.insert(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -74,6 +77,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
         try {
 			return bankAccountDataService.delete(ID);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -85,6 +89,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
         try {
 			return bankAccountDataService.update(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -100,6 +105,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
 			po.balanceOut(amount);
 			return bankAccountDataService.update(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
     }
@@ -111,6 +117,7 @@ public class BankAccountBLImpl implements BankAccountBLService {
  			po.balanceIn(amount);
  			return bankAccountDataService.update(po);
  		} catch (RemoteException e) {
+ 			Reconnect reconnect=new Reconnect();
  			return new OperationMessage(false, "net error");
  		}
     }

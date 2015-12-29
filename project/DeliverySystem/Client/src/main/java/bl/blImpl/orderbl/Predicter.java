@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
 import po.configurationdata.City2DPO;
 import po.configurationdata.PricePO;
@@ -44,6 +45,7 @@ public class Predicter {
 			PredictVO vo=new PredictVO(String.format("%.2f", price), date);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}

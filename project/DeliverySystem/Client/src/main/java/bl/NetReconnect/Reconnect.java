@@ -1,5 +1,11 @@
 package bl.NetReconnect;
 
+import java.rmi.RemoteException;
+
+import rmi.accountdata.AccountDataService;
+import userinfo.UserInfo;
+import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.NetInitException;
 import message.OperationMessage;
 
 /** 
@@ -9,10 +15,13 @@ import message.OperationMessage;
  * @version 1.0 
  */
 public class Reconnect implements Runnable{
+	private boolean reconnected;
 	
-	public static OperationMessage reconnect(){
-		
-		return new OperationMessage();
+	
+	public Reconnect() {
+		reconnected=false;
+		Thread thread=new Thread(this);
+		thread.start();
 	}
 
 	/* (non-Javadoc)
@@ -20,10 +29,20 @@ public class Reconnect implements Runnable{
 	 */
 	@Override
 	public void run() {
-		while (true) {
+		while (true&&!reconnected) {
 			try {
 				Thread.sleep(10000);
-				
+				try {
+					CacheHelper.reconnect();
+					//
+					AccountDataService accountDataService=CacheHelper.getAccountDataService();
+					OperationMessage op1=accountDataService.setAccount(UserInfo.getUserID(), true);
+					if (op1.operationResult) {
+						this.reconnected=true;
+					}
+				} catch (NetInitException | RemoteException e) {
+					continue;
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

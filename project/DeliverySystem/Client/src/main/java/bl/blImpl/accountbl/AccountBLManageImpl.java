@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.accountblService.AccountBLManageService;
 import bl.clientNetCache.CacheHelper;
 import message.OperationMessage;
@@ -46,6 +47,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 			}
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -64,6 +66,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 			AccountVO vo = (AccountVO) vopoFactory.transPOtoVO(po);
 			return vo;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 	}
@@ -85,6 +88,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 				return new OperationMessage(false, "系统中没有该员工信息");
 			}
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -102,6 +106,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 		try {
 			return accountDataService.delete(ID);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -119,6 +124,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 		try {
 			return accountDataService.update(po);
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false, "net error");
 		}
 	}
@@ -136,8 +142,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 					.collect(Collectors.toList());
 			return ans;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
 		

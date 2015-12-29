@@ -1,5 +1,6 @@
 package bl.blImpl.storebl;
 
+import bl.NetReconnect.Reconnect;
 import bl.blService.storeblService.StoreIOBLService;
 import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
@@ -53,8 +54,7 @@ public class StoreIOBLImpl implements StoreIOBLService {
 			}
 			return answer;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
     }
@@ -77,6 +77,7 @@ public class StoreIOBLImpl implements StoreIOBLService {
 	        
 	        return answer;
 		} catch (RemoteException e) {
+			Reconnect reconnect=new Reconnect();
 			return null;
 		}
         
