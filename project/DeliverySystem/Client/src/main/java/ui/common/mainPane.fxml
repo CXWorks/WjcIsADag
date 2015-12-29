@@ -32,7 +32,7 @@
             <VBox fx:id="tabs_VBox" alignment="CENTER" prefHeight="435.0" prefWidth="91.0" stylesheets="@../css/main.css" StackPane.alignment="CENTER" />
          </children>
       </StackPane>
-      <AnchorPane fx:id="personGFatherPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="179.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+      <AnchorPane fx:id="personGFatherPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="179.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <AnchorPane fx:id="personFatherPane" prefHeight="140.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0" />
          </children>

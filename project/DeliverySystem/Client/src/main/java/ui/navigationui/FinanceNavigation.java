@@ -2,6 +2,7 @@ package ui.navigationui;
 
 import factory.FinanceBLFactory;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Pair;
 import tool.ui.AnchorSet;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 public class FinanceNavigation {
 
     public static Parent launch() throws IOException {
-        Pane initPane = new Pane();
+        AnchorPane initPane = new AnchorPane();
         AnchorSet.set0(initPane);
         initPane.getChildren().add(
                 CheckInitInfoController.launch(initPane));

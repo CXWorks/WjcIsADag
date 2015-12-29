@@ -60,7 +60,7 @@ public class MainPaneController {
 		name_Label.setText(UserInfo.getStaffType().getChinese() + " : " + UserInfo.getUserName());
 
         try {
-            Pane personView = (Pane)PersonalAccountViewController.launch();
+            Pane personView = (Pane)PersonalAccountViewController.launch(this);
             personFatherPane.getChildren().add(personView);
             setAnchor(personView, 0.0, 0.0, 0.0, 0.0);
         } catch (IOException e) {

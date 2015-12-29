@@ -106,6 +106,7 @@ public class CheckInitInfoController {
 
         systemState_Label.setText(UserInfo.getSystemState().getChinese());
         initialDataVO = initBLService.getInitialDataVO();
+        AnchorSet.set0(info_TableView);
         showBankAccounts();
     }
 
@@ -224,6 +225,7 @@ public class CheckInitInfoController {
         Pane pane = null;
         try {
             pane = FXMLLoader.load(CheckStoreInitPane.class.getResource("checkStoreInitPane.fxml"));
+            AnchorSet.set0(pane);
         } catch (IOException e) {
             e.printStackTrace();
         }

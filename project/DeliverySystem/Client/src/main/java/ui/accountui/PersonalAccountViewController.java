@@ -5,6 +5,7 @@ import java.io.IOException;
 import bl.blService.accountblService.AccountBLManageService;
 import factory.AccountFactory;
 import main.Main;
+import ui.common.MainPaneController;
 import ui.financeui.AccountEditDialogController;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -27,11 +28,14 @@ public class PersonalAccountViewController {
     public Label staff_Label;
     public Label id_Label;
 
+    private MainPaneController mpc;
+
     AccountBLManageService accountManageService = AccountFactory.getManageService();
-	public static Parent launch() throws IOException {
+	public static Parent launch(MainPaneController mpc) throws IOException {
 		FXMLLoader loader = new FXMLLoader(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
         Pane pane = loader.load();
         PersonalAccountViewController controller = loader.getController();
+        controller.mpc = mpc;
 
         return pane;
     }
@@ -51,6 +55,7 @@ public class PersonalAccountViewController {
     }
 
     public void logout(ActionEvent actionEvent) {
+        mpc.popUpPersonView(null);
         Main.logOut();
     }
 }

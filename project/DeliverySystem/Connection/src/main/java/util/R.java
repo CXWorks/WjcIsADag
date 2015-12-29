@@ -11,6 +11,9 @@ public class R {
 
         public static final double MinStageWidth = 1146;
         public static final double MinStageHeight = 611;
+
+        public static final double LoginWidth = 821;
+        public static final double LoginHeight = 489;
     }
 
     public static class string{

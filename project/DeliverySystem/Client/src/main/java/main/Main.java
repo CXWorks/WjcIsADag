@@ -3,25 +3,19 @@
  */
 package main;
 
-import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
-import ui.accountui.ManageAccountController;
 import ui.loginui.LoginController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
 import util.R;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +44,8 @@ public class Main extends Application {
      * 返回登录界面
      */
     public static void logOut(){
+        primaryStage.setWidth(R.ui.LoginWidth);
+        primaryStage.setHeight(R.ui.LoginHeight);
         primaryStage.setScene(loginScene);
     }
 
@@ -97,8 +93,10 @@ public class Main extends Application {
             personScene.setRoot(pane);
         }
 
+        primaryStage.setWidth(R.ui.MinStageWidth);
+        primaryStage.setHeight(R.ui.MinStageHeight);
         primaryStage.setScene(personScene);
-        setDraggable();
+        enableDragAndResize(personScene);
     }
 
     private static double calX;
@@ -118,15 +116,13 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         primaryStage.setX(150);
-        primaryStage.setY(80);
+        primaryStage.setY(60);
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene(LoginController.launch());
-        // Test
-//        UserInfo.setInfo("06000001", StaffTypeEnum.DELIVER, "0251001", "wjr");
-//        loginScene = new Scene((Pane) ManageAccountController.launch());
 
         primaryStage.setScene(loginScene);
+        enableDrag(loginScene);
         primaryStage.show();
     }
 
@@ -189,11 +185,28 @@ public class Main extends Application {
         }
     }
 
+    static double ix;
+    static double iy;
+    private static void enableDrag(Scene scene){
+        scene.setOnMousePressed(
+                event -> {
+                    ix = event.getScreenX() - primaryStage.getX();
+                    iy = event.getScreenY() - primaryStage.getY();
+                }
+        );
+        scene.setOnMouseDragged(
+                event -> {
+                    primaryStage.setX(event.getScreenX() - ix);
+                    primaryStage.setY(event.getScreenY() - iy);
+                }
+        );
+    }
+
     /**
      * ！！！！！！！！！ 我必须要写注释，千万不要搞混 sceneX 和 screenX ！！！！！！！！！
      */
-    private static void setDraggable(){
-        primaryStage.getScene().setOnMousePressed(
+    private static void enableDragAndResize(Scene scene){
+        scene.setOnMousePressed(
                 me -> {
                     pressedArea = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
                     if (pressedArea == CURSOR_AREA.TITLE) {
@@ -216,7 +229,7 @@ public class Main extends Application {
                     }
                 }
         );
-        primaryStage.getScene().setOnMouseDragged(
+        scene.setOnMouseDragged(
                 me -> {
                     if (dragging) {
                         primaryStage.setX(me.getScreenX() - calX);
@@ -258,7 +271,7 @@ public class Main extends Application {
                 }
         );
         // change the look of the mouse when it is moved to the sides
-        primaryStage.getScene().setOnMouseMoved(
+        scene.setOnMouseMoved(
                 me -> {
                     CURSOR_AREA area = getCursorArea(me.getX(), me.getY(), primaryStage.getWidth(), primaryStage.getHeight());
                     Cursor cursor = Cursor.DEFAULT;
