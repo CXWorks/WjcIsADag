@@ -30,7 +30,7 @@ public class ExamineSubmitImpl extends UnicastRemoteObject implements
 	public synchronized OperationMessage submit(FormPO form)
 			throws RemoteException {
 		this.queue.addForm(form);
-		ChatMessage mes = new ChatMessage(form.getCreaterID(), managerID,
+		ChatMessage mes = new ChatMessage(form.getCreatorID(), managerID,
 				"有新的表单等待审批：" + form.getFormID());
 		addMessage.add(managerID, mes);
 		return new OperationMessage();

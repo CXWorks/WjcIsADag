@@ -223,7 +223,7 @@ public class BankAccountDataImpl extends UnicastRemoteObject implements BankAcco
 				pay = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
 						rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
 						rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
-						rs.getString("item"), rs.getString("note"));
+						rs.getString("item"), rs.getString("note"),rs.getString("creatorID"));
 				pay.setFormState(rs.getString("formState"));
 				result.add(pay);
 			}

@@ -28,7 +28,7 @@ public class StoreInVO extends StoreFormVO {
 	}
 
     public StoreInVO(StoreInPO po){
-    	this(po.getFormID(),po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation(),po.getCreaterID());
+    	this(po.getFormID(),po.getOrderID(),po.getDate(), po.getDestination(), po.getLocation(),po.getCreatorID());
     	this.setMoney(po.getMoney());
     }
     //

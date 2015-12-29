@@ -64,6 +64,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 				put("hallID", po.getHallID());
 				put("orderIDs", ids);
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -101,7 +102,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 				IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 			}
 			result = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-					rs.getString("deliverName"), rs.getString("hallID"), IDs);
+					rs.getString("deliverName"), rs.getString("hallID"), IDs,rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -210,7 +211,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), IDs);
+						rs.getString("deliverName"), rs.getString("hallID"), IDs,rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 
@@ -242,7 +243,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), IDs);
+						rs.getString("deliverName"), rs.getString("hallID"), IDs,rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 
@@ -270,7 +271,7 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
 				}
 				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
-						rs.getString("deliverName"), rs.getString("hallID"), IDs);
+						rs.getString("deliverName"), rs.getString("hallID"), IDs,rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

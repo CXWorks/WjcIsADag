@@ -73,6 +73,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				put("location", po.getLocation().getLocationForSQL());
 				put("money", po.getMoney());
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -107,6 +108,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				put("money", po.getMoney());
 				put("location", po.getLocation().getLocationForSQL());
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -274,7 +276,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			{
 				put("date_and_unit", target);
 			}
-		});		try {
+		});
+		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
@@ -307,7 +310,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-					rs.getString("destination"), rs.getString("location"));
+					rs.getString("destination"), rs.getString("location"), rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 			result.setMoney(rs.getString("money"));
 		} catch (SQLException e) {
@@ -332,7 +335,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-					rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"));
+					rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"),
+					rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 			result.setMoney(rs.getString("money"));
 			result.setLocation(rs.getString("location"));
@@ -346,7 +350,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.STORE_IN,null);
+		String selectAll = MySql.select(TableEnum.STORE_IN, null);
 		ResultSet rs = null;
 		StoreInPO temp = null;
 		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
@@ -355,7 +359,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("destination"), rs.getString("location"));
+						rs.getString("destination"), rs.getString("location"), rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				temp.setMoney(rs.getString("money"));
 				result.add(temp);
@@ -371,7 +375,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 	@Override
 	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.STORE_OUT,null);
+		String selectAll = MySql.select(TableEnum.STORE_OUT, null);
 		ResultSet rs = null;
 		StoreOutPO temp = null;
 		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
@@ -380,7 +384,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"));
+						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"),
+						rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				temp.setMoney(rs.getString("money"));
 				temp.setLocation(rs.getString("location"));
@@ -408,7 +413,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(selectIn);
 			while (rs.next()) {
 				in = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("destination"), rs.getString("location"));
+						rs.getString("destination"), rs.getString("location"), rs.getString("creatorID"));
 				in.setFormState(rs.getString("formState"));
 				in.setMoney(rs.getString("money"));
 				result.add(in);
@@ -417,7 +422,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			rs = statement.executeQuery(selectOut);
 			while (rs.next()) {
 				out = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"));
+						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"),
+						rs.getString("creatorID"));
 				out.setFormState(rs.getString("formState"));
 				out.setMoney(rs.getString("money"));
 				out.setLocation(rs.getString("location"));

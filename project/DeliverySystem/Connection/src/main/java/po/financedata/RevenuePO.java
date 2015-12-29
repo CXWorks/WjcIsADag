@@ -44,8 +44,8 @@ public class RevenuePO extends FormPO{
 	 * @param hallID
 	 */
 	public RevenuePO(String formID, Calendar date,
-			String amount, String deliverName, String hallID, ArrayList<String> orderIDs,String createrID) {
-		super(FormEnum.REVENUE, formID,createrID);
+			String amount, String deliverName, String hallID, ArrayList<String> orderIDs,String creatorID) {
+		super(FormEnum.REVENUE, formID,creatorID);
 		this.date = date;
 		this.amount = amount;
 		this.deliverName = deliverName;
@@ -53,8 +53,8 @@ public class RevenuePO extends FormPO{
 		this.orderIDs = orderIDs;
 	}
 	public RevenuePO(String formID, Timestamp date,
-			String amount, String deliverName, String hallID, ArrayList<String> orderIDs) {
-		super(FormEnum.REVENUE, formID);
+			String amount, String deliverName, String hallID, ArrayList<String> orderIDs,String creatorID) {
+		super(FormEnum.REVENUE, formID,creatorID);
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(date);
 		this.date = temp;

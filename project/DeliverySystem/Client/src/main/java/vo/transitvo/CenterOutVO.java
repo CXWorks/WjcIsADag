@@ -16,7 +16,7 @@ public class CenterOutVO extends TransitVO  {
 	public CenterOutVO(String formID,String createrID){
 		super(FormEnum.TRANSPORT_CENTER,formID,createrID);
 	}
-	
+
 	public CenterOutVO(String formID,String placeFrom,String TransportID,String shelfNum,
 			Calendar LoadDate,String expense,String placeTo,String	peopleSee,ArrayList<String> IDs,TransportationEnum transitState,String createrID){
 		this(formID,createrID);
@@ -32,15 +32,15 @@ public class CenterOutVO extends TransitVO  {
 	}
 	public CenterOutVO(CenterOutPO po){
 		this(po.getFormID(),po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),null
-				,po.getTransitState(),po.getCreaterID());
+				,po.getTransitState(),po.getCreatorID());
 		ArrayList<String> idClone=this.selfDeepClone(po.getIDs());
 		this.IDs=idClone;
-		
+
 	}
-	
+
 	public CenterOutPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
-		
+
 		CenterOutPO centerOutPO= new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO,createrID);
 		centerOutPO.setCache_OperatorID(UserInfo.getUserID());
 		return centerOutPO;

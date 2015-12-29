@@ -56,8 +56,8 @@ public class StoreInPO extends FormPO {
 	 * @param location
 	 */
 	public StoreInPO(String formID, String orderID, Calendar date,
-			String destination, StoreLocation location,String createrID) {
-		super(FormEnum.STORE_IN, formID,createrID);
+			String destination, StoreLocation location,String creatorID) {
+		super(FormEnum.STORE_IN, formID,creatorID);
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;
@@ -65,8 +65,8 @@ public class StoreInPO extends FormPO {
 	}
 
 	public StoreInPO(String formID, String orderID, Timestamp date,
-			String destination, String location) {
-		super(FormEnum.STORE_IN, formID);
+			String destination, String location,String creatorID) {
+		super(FormEnum.STORE_IN, formID,creatorID);
 		this.orderID = orderID;
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(date);

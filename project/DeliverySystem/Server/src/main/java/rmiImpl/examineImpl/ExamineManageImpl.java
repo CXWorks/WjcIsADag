@@ -98,8 +98,8 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 		default:
 			return new OperationMessage(false, "表单隐藏信息有问题");
 		}
-		ChatMessage mes = new ChatMessage(managerID, form.getCreaterID(), "表单被修改：" + form.getFormID());
-		addMessage.add(form.getCreaterID(), mes);
+		ChatMessage mes = new ChatMessage(managerID, form.getCreatorID(), "表单被修改：" + form.getFormID());
+		addMessage.add(form.getCreatorID(), mes);
 		log.insert(new LogPO(managerID, Calendar.getInstance(), "修改表单:" + form.getFormID()));
 		return result;
 	}
@@ -183,8 +183,8 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				mes.operationResult = false;
 				mes.addReason(tmp.getFormID());
 			} else {
-				ChatMessage chat = new ChatMessage(managerID, tmp.getCreaterID(), "表单通过：" + tmp.getFormID());
-				addMessage.add(tmp.getCreaterID(), chat);
+				ChatMessage chat = new ChatMessage(managerID, tmp.getCreatorID(), "表单通过：" + tmp.getFormID());
+				addMessage.add(tmp.getCreatorID(), chat);
 				log.insert(new LogPO(managerID, Calendar.getInstance(), "新建表单:" + tmp.getFormID()));
 			}
 		}
@@ -231,8 +231,8 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				mes.operationResult = false;
 				mes.addReason(tmp.getFormID());
 			} else {
-				ChatMessage chat = new ChatMessage(managerID, tmp.getCreaterID(), "表单被删除：" + tmp.getFormID());
-				addMessage.add(tmp.getCreaterID(), chat);
+				ChatMessage chat = new ChatMessage(managerID, tmp.getCreatorID(), "表单被删除：" + tmp.getFormID());
+				addMessage.add(tmp.getCreatorID(), chat);
 				log.insert(new LogPO(managerID, Calendar.getInstance(), "删除表单:" + tmp.getFormID()));
 			}
 		}

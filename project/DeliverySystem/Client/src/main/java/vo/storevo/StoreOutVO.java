@@ -29,7 +29,7 @@ public class StoreOutVO extends StoreFormVO {
 	}
     //
     public StoreOutVO(StoreOutPO po){
-    	this(po.getFormID(),po.getOrderID(), po.getDate(), po.getDestination(), po.getTransportation(), po.getTransID(),po.getCreaterID());
+    	this(po.getFormID(),po.getOrderID(), po.getDate(), po.getDestination(), po.getTransportation(), po.getTransID(),po.getCreatorID());
     	this.setMoney(po.getMoney());
     	this.setLocation(po.getLocation());
     }

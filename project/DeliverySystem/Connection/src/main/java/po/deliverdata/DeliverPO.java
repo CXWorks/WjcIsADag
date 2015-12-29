@@ -30,8 +30,8 @@ public class DeliverPO extends FormPO implements Serializable{
 	}
 
 
-	public DeliverPO(String formID,String orderID, Calendar date, String postman,String createrID) {
-		super(FormEnum.DELIVER,formID,createrID);
+	public DeliverPO(String formID,String orderID, Calendar date, String postman,String creatorID) {
+		super(FormEnum.DELIVER,formID,creatorID);
 		this.orderID = orderID;
 		this.date = date;
 		this.postman = postman;
@@ -39,8 +39,8 @@ public class DeliverPO extends FormPO implements Serializable{
 		this.finished=false;
 	}
 
-	public DeliverPO(String formID,String orderID, Timestamp date, String postman) {
-		super(FormEnum.DELIVER,formID);
+	public DeliverPO(String formID,String orderID, Timestamp date, String postman,String creatorID) {
+		super(FormEnum.DELIVER,formID,creatorID);
 		this.orderID = orderID;
 		Calendar temp=Calendar.getInstance();
 		temp.setTime(date);

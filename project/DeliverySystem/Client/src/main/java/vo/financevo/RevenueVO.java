@@ -40,7 +40,7 @@ public class RevenueVO extends FinanceFormVO {
 		this.orderIDs = orderIDs;
 	}
     public RevenueVO(RevenuePO po){
-    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderIDs(),po.getCreaterID());
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getDeliverName(), po.getHallID(), po.getOrderIDs(),po.getCreatorID());
     }
     //
     public RevenuePO toPO(){

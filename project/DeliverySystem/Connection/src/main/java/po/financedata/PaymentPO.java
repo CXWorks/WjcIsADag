@@ -23,7 +23,7 @@ public class PaymentPO extends FormPO {
     // 备注
     private String	note;
     //
-    
+
 	public Calendar getDate() {
 		return date;
 	}
@@ -83,8 +83,8 @@ public class PaymentPO extends FormPO {
 	public PaymentPO(String formID, Calendar date,
 			String amount, String payerAccID, String payerName,
 			String payerAccount, String receiverAccID, String receiverName,
-			String receiverAccount, FinancePayEnum item, String note,String createrID) {
-		super(FormEnum.PAYMENT, formID,createrID);
+			String receiverAccount, FinancePayEnum item, String note,String creatorID) {
+		super(FormEnum.PAYMENT, formID,creatorID);
 		this.date = date;
 		this.amount = amount;
 		this.payerAccID = payerAccID;
@@ -99,8 +99,8 @@ public class PaymentPO extends FormPO {
 	public PaymentPO(String formID, Timestamp date,
 			String amount, String payerAccID, String payerName,
 			String payerAccount, String receiverAccID, String receiverName,
-			String receiverAccount, String item, String note) {
-		super(FormEnum.PAYMENT, formID);
+			String receiverAccount, String item, String note,String creatorID) {
+		super(FormEnum.PAYMENT, formID,creatorID);
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(date);
 		this.date = temp;
@@ -130,7 +130,7 @@ public class PaymentPO extends FormPO {
 			return null;
 		}
 	}
-    
+
     //
-    
+
 }

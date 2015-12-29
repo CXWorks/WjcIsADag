@@ -13,7 +13,7 @@ import userinfo.UserInfo;
 import vo.FormVO;
 
 /**
- * 
+ *
  * @author CCharles_Meng 2015/10/24
  */
 
@@ -120,7 +120,7 @@ public class OrderVO extends FormVO {
 		this.pack = pack;
 	}
 	//
-	
+
 
 	//
 	public OrderVO(OrderPO po) {
@@ -131,17 +131,17 @@ public class OrderVO extends FormVO {
 						.getPhoneNumTo(), po.getTelNumFrom(), po.getTelNumTo(),
 				po.getGoodsNum(), po.getGoodsName(), po.getWeight(), po
 						.getVolume(),  po.getGoodsType(),po.getMoney(), po
-						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate(),po.getCreaterID());
+						.getType(), po.getPack(),po.getReceivePeople(),po.getReceiveDate(),po.getCreatorID());
 
 	}
 	//
-	
+
 
 	//
 	public OrderPO toPO() {
 		OrderPO orderPO= new OrderPO(formID, nameFrom, nameTo, unitFrom, unitTo,
 				addressFrom, addressTo, phoneNumFrom, phoneNumTo, telNumFrom,
-				telNumTo, goodsNum, goodsName, weight, volume, 
+				telNumTo, goodsNum, goodsName, weight, volume,
 				money,goodsType, type.name(), pack.name(), new ArrayList<String>(), null,receivePeople,receiveDate,createrID);
 		orderPO.setCache_OperatorID(UserInfo.getUserID());
 		return orderPO;
@@ -298,5 +298,5 @@ public class OrderVO extends FormVO {
 	public String getMainInfo() {
 		return nameTo+" "+nameFrom+" "+goodsName;
 	}
-	
+
 }

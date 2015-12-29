@@ -10,7 +10,7 @@ import po.receivedata.StateEnum;
 import util.DataType;
 
 /**
- * 
+ *
  * @author wjc 2015/10/24
  */
 
@@ -23,8 +23,8 @@ public class ReceivePO extends FormPO implements Serializable {
 	private StateEnum state;
 
 	public ReceivePO(String formID,String orderID, String transitID, Timestamp date,
-			String depature, String state) {
-		super(FormEnum.RECEIVE, formID);
+			String depature, String state,String creatorID) {
+		super(FormEnum.RECEIVE, formID,creatorID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		Calendar temp = Calendar.getInstance();
@@ -36,8 +36,8 @@ public class ReceivePO extends FormPO implements Serializable {
 	}
 
 	public ReceivePO(String formID,String orderID, String transitID, Calendar date,
-			String depature, String state,String createrID) {
-		super(FormEnum.RECEIVE,formID,createrID);
+			String depature, String state,String creatorID) {
+		super(FormEnum.RECEIVE,formID,creatorID);
 		this.orderID = orderID;
 		this.transitID = transitID;
 		this.date = date;

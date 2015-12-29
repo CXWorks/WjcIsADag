@@ -74,7 +74,7 @@ public class DeliverVO extends FormVO{
 		this.postman = postman;
 	}
 	public DeliverVO(DeliverPO po){
-		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman(),po.getCreaterID());
+		this(po.getFormID(),po.getOrderID(), (Calendar)po.getDate().clone(), po.getPostman(),po.getCreatorID());
 		if(po.isFinished()==1)
 			this.finished=true;
 		else

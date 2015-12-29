@@ -60,6 +60,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 				put("depature", po.getDepature());
 				put("state", po.getState().toString());
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -173,7 +174,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
-					rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"));
+					rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"),
+					rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -184,7 +186,7 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 	}
 
 	public ArrayList<ReceivePO> getAll() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.RECEIVE,null);
+		String selectAll = MySql.select(TableEnum.RECEIVE, null);
 		ResultSet rs = null;
 		ReceivePO temp = null;
 		ArrayList<ReceivePO> result = new ArrayList<ReceivePO>();
@@ -193,7 +195,8 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
-						rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"));
+						rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"),
+						rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 

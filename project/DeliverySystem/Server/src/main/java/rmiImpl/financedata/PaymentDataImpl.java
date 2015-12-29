@@ -59,6 +59,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 				put("item", po.getItem().toString());
 				put("note", po.getNote());
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -94,7 +95,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 			result = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
 					rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
 					rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
-					rs.getString("item"), rs.getString("note"));
+					rs.getString("item"), rs.getString("note"), rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -201,7 +202,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 				temp = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
 						rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
 						rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
-						rs.getString("item"), rs.getString("note"));
+						rs.getString("item"), rs.getString("note"),rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 
@@ -236,7 +237,7 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 				temp = new PaymentPO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
 						rs.getString("payerAccID"), rs.getString("payerName"), rs.getString("payerAccount"),
 						rs.getString("receiverAccID"), rs.getString("receiverName"), rs.getString("receiverAccount"),
-						rs.getString("item"), rs.getString("note"));
+						rs.getString("item"), rs.getString("note"),rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

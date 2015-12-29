@@ -9,31 +9,31 @@ public class FormPO extends CommonPO implements Serializable{
 	protected FormEnum formType;
 	protected  FormStateEnum formState;
 	protected  String formID;
-	
+
 	/*表单创建者的ID*/
-	protected String createrID;
-	
+	protected String creatorID;
+
 	public FormPO(FormEnum formEnum,String formID){
 		super(DataType.FORM);
 		this.formType=formEnum;
 		this.formState=FormStateEnum.CONSTRUCTED;
 		this.formID=formID;
 	}
-	
+
 	protected FormPO(FormEnum formEnum,String formID,String createrID){
 		super(DataType.FORM);
 		this.formType=formEnum;
 		this.formState=FormStateEnum.CONSTRUCTED;
 		this.formID=formID;
-		this.createrID=createrID;
-	}
-	
-	public String getCreaterID() {
-		return createrID;
+		this.creatorID=createrID;
 	}
 
-	public void setCreaterID(String createrID) {
-		this.createrID = createrID;
+	public String getCreatorID() {
+		return creatorID;
+	}
+
+	public void setCreatorID(String createrID) {
+		this.creatorID = createrID;
 	}
 
 	public FormEnum getFormType() {

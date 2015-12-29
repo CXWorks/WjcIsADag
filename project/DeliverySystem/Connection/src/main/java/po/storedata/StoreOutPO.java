@@ -84,8 +84,8 @@ public class StoreOutPO extends FormPO {
 	 */
 	public StoreOutPO(String formID, String orderID,
 			Calendar date, String destination,
-			TransportationEnum transportation, String transID,String createrID) {
-		super(FormEnum.STORE_OUT, formID ,createrID);
+			TransportationEnum transportation, String transID,String creatorID) {
+		super(FormEnum.STORE_OUT, formID ,creatorID);
 		this.orderID = orderID;
 		this.date = date;
 		this.destination = destination;
@@ -95,8 +95,8 @@ public class StoreOutPO extends FormPO {
 
 	public StoreOutPO(String formID, String orderID,
 			Timestamp date, String destination,
-			String transportation, String transID) {
-		super(FormEnum.STORE_OUT, formID);
+			String transportation, String transID,String creatorID) {
+		super(FormEnum.STORE_OUT, formID,creatorID);
 		this.orderID = orderID;
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(date);

@@ -58,6 +58,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 				put("date", po.getDateForSQL().toString());
 				put("finished", po.isFinished() + "");
 				put("date_and_unit", po.getFormID().substring(2, 17));
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -176,7 +177,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-					rs.getString("postman"));
+					rs.getString("postman"),rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 			result.setFinished(rs.getBoolean("finished"));
 		} catch (SQLException e) {
@@ -197,7 +198,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("postman"));
+						rs.getString("postman"),rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				temp.setFinished(rs.getBoolean("finished"));
 				result.add(temp);

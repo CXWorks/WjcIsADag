@@ -9,7 +9,7 @@ import po.receivedata.StateEnum;
 import vo.FormVO;
 
 /**
- * 
+ *
  * @author wjc
  *2015/10/24
  */
@@ -23,7 +23,7 @@ public class ReceiveVO extends FormVO{
 	}
 	//
 	public ReceiveVO(ReceivePO po){
-		this(po.getFormID(),po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState(),po.getCreaterID());
+		this(po.getFormID(),po.getOrderID(), po.getTransitID(), po.getDate(),po.getDepature(), po.getState(),po.getCreatorID());
 	}
 	public ReceiveVO(String formID,String orderID, String transitID, Calendar date,
 			String depature, StateEnum state,String createrID) {
@@ -34,14 +34,14 @@ public class ReceiveVO extends FormVO{
 		this.depature = depature;
 		this.orderState = state;
 	}
-	
+
 	private String orderID;
 	private String transitID;
 	private Calendar date;
 	private String depature;
 	private StateEnum orderState;
-	
-	
+
+
 	public String getOrderID() {
 		return orderID;
 	}
@@ -54,7 +54,7 @@ public class ReceiveVO extends FormVO{
 	public void setTransitID(String transitID) {
 		this.transitID = transitID;
 	}
-	
+
 	public Calendar getDate() {
 		return date;
 	}
@@ -67,7 +67,7 @@ public class ReceiveVO extends FormVO{
 	public void setDepature(String depature) {
 		this.depature = depature;
 	}
-	
+
 	public StateEnum getOrderState() {
 		return orderState;
 	}
@@ -81,5 +81,5 @@ public class ReceiveVO extends FormVO{
 	public String getMainInfo() {
 		return depature;
 	}
-	
+
 }

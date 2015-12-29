@@ -59,8 +59,8 @@ public class PaymentVO extends FinanceFormVO {
 		this.note = note;
 	}
     public PaymentVO(PaymentPO po){
-    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote(),po.getCreaterID());
-    	
+    	this(po.getFormID(),po.getDate(), po.getAmount(), po.getPayerAccID(), po.getPayerName(), po.getPayerAccount(), po.getReceiverAccID(), po.getReceiverName(), po.getReceiverAccount(), po.getItem(), po.getNote(),po.getCreatorID());
+
     }
     //
     public PaymentPO toPO(){
