@@ -6,42 +6,43 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
    <children>
-      <TableView fx:id="staffTable" layoutX="63.0" layoutY="173.0" prefHeight="312.0" prefWidth="632.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
+      <TableView fx:id="staff_TableView" layoutX="63.0" layoutY="173.0" prefHeight="312.0" prefWidth="632.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
         <columns>
-          <TableColumn fx:id="typeColumn" prefWidth="108.0" text="员工类型" />
-            <TableColumn fx:id="IDColumn" prefWidth="77.0" text="编号" />
-            <TableColumn fx:id="nameColumn" prefWidth="83.0" text="姓名" />
-            <TableColumn fx:id="sexcColumn" prefWidth="65.0" text="性别" />
-            <TableColumn fx:id="ageColumn" prefWidth="58.0" text="年龄" />
-            <TableColumn fx:id="institutionColumn" prefWidth="99.0" text="所属机构" />
-            <TableColumn prefWidth="75.0" text="身份证号" />
-            <TableColumn prefWidth="75.0" text="恋爱情况" />
+          <TableColumn fx:id="type_TableColumn" prefWidth="108.0" text="员工类型" />
+            <TableColumn fx:id="ID_TableColumn" prefWidth="77.0" text="编号" />
+            <TableColumn fx:id="name_TableColumn" prefWidth="83.0" text="姓名" />
+            <TableColumn fx:id="gender_TableColumn" prefWidth="65.0" text="性别" />
+            <TableColumn fx:id="age_TableColumn" prefWidth="58.0" text="年龄" />
+            <TableColumn fx:id="institution_TableColumn" prefWidth="99.0" text="所属机构" />
+            <TableColumn fx:id="personID_TableColumn" prefWidth="75.0" text="身份证号" />
+            <TableColumn fx:id="love_TableColumn" prefWidth="75.0" text="恋爱情况" />
         </columns>
       </TableView>
-      <Button fx:id="back_Btn" layoutX="64.0" layoutY="482.0" mnemonicParsing="false" text="back" AnchorPane.bottomAnchor="-162.0" AnchorPane.leftAnchor="64.0" />
-      <HBox layoutX="445.0" layoutY="44.0" spacing="16.0" AnchorPane.leftAnchor="445.0" AnchorPane.topAnchor="44.0">
+      <Button fx:id="back_Btn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="back" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+      <HBox layoutX="770.0" layoutY="56.0" spacing="16.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="56.0">
          <children>
             <Button layoutX="445.0" layoutY="44.0" mnemonicParsing="false" onAction="#newStaff" text="新建" />
-            <Button layoutX="512.0" layoutY="44.0" mnemonicParsing="false" text="修改" />
+            <Button layoutX="512.0" layoutY="44.0" mnemonicParsing="false" onAction="#editStaff" text="修改" />
             <Button layoutX="570.0" layoutY="44.0" mnemonicParsing="false" onAction="#deleteStaff" text="删除" />
          </children>
       </HBox>
-      <HBox layoutX="36.0" layoutY="133.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
+      <HBox alignment="CENTER" layoutX="48.0" layoutY="56.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="56.0">
          <children>
             <Label layoutX="36.0" layoutY="133.0" text="机构编号" />
-            <Label fx:id="institution" layoutX="122.0" layoutY="136.0" text="XX" />
+            <TextField fx:id="institution_Field" onAction="#fillStaffTable" />
+            <Button mnemonicParsing="false" onAction="#fillStaffTable" text="查询" />
          </children>
       </HBox>
-      <HBox layoutX="185.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="48.0">
+      <HBox layoutX="376.0" layoutY="60.0" spacing="16.0" AnchorPane.leftAnchor="376.0" AnchorPane.topAnchor="60.0">
          <children>
             <Label layoutX="248.0" layoutY="135.0" text="城市" />
-            <Label fx:id="city" layoutX="309.0" layoutY="132.0" text="YY" />
+            <Label fx:id="city_Label" layoutX="309.0" layoutY="132.0" text="YY" />
          </children>
       </HBox>
-      <HBox layoutX="300.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="48.0">
+      <HBox layoutX="470.0" layoutY="60.0" spacing="16.0" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="60.0">
          <children>
             <Label layoutX="414.0" layoutY="137.0" text="所在区域" />
-            <Label fx:id="area" layoutX="497.0" layoutY="135.0" text="ZZ" />
+            <Label fx:id="area_Label" layoutX="497.0" layoutY="135.0" text="ZZ" />
          </children>
       </HBox>
    </children>
