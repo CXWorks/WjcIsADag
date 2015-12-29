@@ -23,9 +23,10 @@ public class SettingDialogController {
 
     private Stage thisStage;
 
-    public static Stage newDialog(){
+    public static Stage newDialog(Stage owner){
         Stage stage = new Stage();
         stage.setTitle("系统设置");
+        stage.initOwner(owner);
 
         try {
             FXMLLoader loader = new FXMLLoader(SettingDialogController.class.getResource("settingDialog.fxml"));
@@ -39,6 +40,11 @@ public class SettingDialogController {
         }
 
         return stage;
+    }
+
+    @FXML
+    public void initialize(){
+        // TODO set the value used now
     }
 
     @FXML
@@ -58,7 +64,7 @@ public class SettingDialogController {
 
     @FXML
     public void commit(ActionEvent actionEvent) {
-        // TODO ask for service
+        // TODO call service
         thisStage.close();
     }
 }

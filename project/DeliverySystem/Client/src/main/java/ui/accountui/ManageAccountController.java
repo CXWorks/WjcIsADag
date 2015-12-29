@@ -100,9 +100,8 @@ public class ManageAccountController {
     @FXML
     public void add(ActionEvent actionEvent) {
         try {
-            Stage dialogStage = new Stage();
-            EditAccountDialogController controller = EditAccountDialogController.newDialog
-                    (dialogStage, EditAccountDialogController.EditType.NEW, null, informController);
+            Stage dialogStage = EditAccountDialogController.newDialog
+                    (EditAccountDialogController.EditType.NEW, null);
             dialogStage.showAndWait();
             refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {
@@ -140,9 +139,8 @@ public class ManageAccountController {
             return;
         }
         try {
-            Stage dialogStage = new Stage();
-            EditAccountDialogController controller = EditAccountDialogController.newDialog
-                    (dialogStage, EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo(), informController);
+            Stage dialogStage = EditAccountDialogController.newDialog
+                    (EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo());
             dialogStage.showAndWait();
             refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {

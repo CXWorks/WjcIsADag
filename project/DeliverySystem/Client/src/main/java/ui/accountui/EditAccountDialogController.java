@@ -23,36 +23,37 @@ public class EditAccountDialogController {
 		EDIT
 	}
 
-    public EditType type;
-    public Stage stage;
+    private EditType type;
+    private Stage stage;
     private AccountVO editVO;
 
 	public EngOnlyField id_Field;
 	public EngOnlyField password_Field;
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
-	 private InformController informController;
+    private InformController informController;
 
-    public static EditAccountDialogController newDialog(Stage stage, EditType type, AccountVO editVO, InformController informController) throws IOException {
+    public static Stage newDialog(EditType type, AccountVO editVO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(EditAccountDialogController.class.getResource("editAccountDialog.fxml"));
         Pane pane = loader.load();
 
+        Stage stage = new Stage();
         stage.setTitle(
                 type == EditType.EDIT ? "修改账户" : "新建账户"
         );
         stage.initOwner(Main.primaryStage);
 
-        EditAccountDialogController controller = (EditAccountDialogController)loader.getController();
-        controller.informController = informController;
-        stage.setScene(new Scene(pane));
-
+        EditAccountDialogController controller = loader.getController();
         controller.editVO = editVO == null ? new AccountVO() : editVO;
         controller.stage = stage;
         controller.type = type;
+        controller.informController = InformController.newInformController(pane);
         controller.init();
 
-        return controller;
+        stage.setScene(new Scene(controller.informController.stackPane));
+
+        return stage;
     }
 
     private void init() {

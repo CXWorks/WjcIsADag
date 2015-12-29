@@ -23,9 +23,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="institutionType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="institutionType" text="type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="编号" GridPane.rowIndex="3" />
-            <Label fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="ID" text="code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="areaLabel" text="区域" GridPane.rowIndex="4" />
             <TextField fx:id="area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label fx:id="nearCenterLabel" text="最近中心" GridPane.rowIndex="5" />

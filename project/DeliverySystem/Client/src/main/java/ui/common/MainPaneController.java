@@ -136,8 +136,7 @@ public class MainPaneController {
     }
 
     public void showSettingDialog(Event event) {
-        Stage stage = SettingDialogController.newDialog();
-        stage.initOwner(Main.primaryStage);
+        Stage stage = SettingDialogController.newDialog(Main.primaryStage);
         stage.showAndWait();
     }
 }

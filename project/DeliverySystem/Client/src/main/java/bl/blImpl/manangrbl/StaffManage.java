@@ -49,6 +49,8 @@ public class StaffManage implements ManageblStaffService {
 	 * @see blService.manageblService.ManageblStaffService#addStaff(vo.managevo.staff.StaffVO)
 	 */
 	public OperationMessage addStaff(StaffVO staff) {
+		String id = newStaffID(staff.getStaff(), staff.getInstitutionID());
+        staff.setID(id);
 		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		StaffPO po=(StaffPO)vopoFactory.transVOtoPO(staff);
 		try {

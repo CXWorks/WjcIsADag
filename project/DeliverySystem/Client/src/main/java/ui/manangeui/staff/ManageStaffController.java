@@ -25,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import message.OperationMessage;
 import model.store.StoreAreaCode;
 import po.InfoEnum;
 import po.memberdata.SexEnum;
@@ -59,6 +61,7 @@ public class ManageStaffController  {
 	private ManageblStaffService manageblStaffService;
 	private Pane selfPane;
 	private InformController informController;
+    private String institutionID;
 
     private static ManageStaffController launch() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -128,7 +131,11 @@ public class ManageStaffController  {
 
 	@FXML
 	public void fillStaffTable() {
-        InstitutionVO vo = manageblCenterService.searchCenter(institution_Field.getText());
+        fillStaffTable(institution_Field.getText());
+	}
+
+    public void fillStaffTable(String institutionID){
+        InstitutionVO vo = manageblCenterService.searchCenter(institutionID);
         if(vo == null){ // not in center
             vo = manageblHallService.searchHall(institution_Field.getText());
         }
@@ -136,11 +143,12 @@ public class ManageStaffController  {
             informController.inform("请输入正确的机构编号");
             return;
         }else{
+            this.institutionID = vo.getInstitutionID();
             initLabel(vo);
             List<StaffVO> staffVOs = manageblStaffService.getStaffByInstitution(vo.getInstitutionID());
             this.staff_TableView.setItems(FXCollections.observableList(staffVOs));
         }
-	}
+    }
 
     public void fillStaffTableWithVO(InstitutionVO vo){
         if(vo != null){
@@ -177,12 +185,31 @@ public class ManageStaffController  {
 	}
 
     public void newStaff(ActionEvent actionEvent) {
+        try {
+            Stage dialog = EditStaffDialogController.newDialog(null, EditStaffDialogController.EditType.NEW);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fillStaffTable(institutionID);
     }
 
     public void editStaff(ActionEvent actionEvent) {
+        StaffVO staffVO = staff_TableView.getSelectionModel().getSelectedItem();
+        try {
+            Stage dialog = EditStaffDialogController.newDialog(staffVO, EditStaffDialogController.EditType.EDIT);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fillStaffTable(institutionID);
     }
 
     public void deleteStaff(ActionEvent actionEvent) {
-
+        StaffVO staffVO = staff_TableView.getSelectionModel().getSelectedItem();
+        OperationMessage msg = manageblStaffService.dismissStaff(staffVO);
+        informController.inform(msg, "删除成功");
     }
 }
