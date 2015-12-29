@@ -27,7 +27,7 @@ public class CacheSaver {
 	private final String tail=".2333";
 	
 	public OperationMessage saveCache(CommonPO commonPO,String fileName){
-		String path=UserInfo.getInstitutionID()+"cache/";
+		String path=UserInfo.getWorkPath();
 		String filePath=path+fileName+tail;
 		try {
 			File file=new File(filePath);
@@ -49,7 +49,7 @@ public class CacheSaver {
 		if (src.isEmpty()) {
 			return new OperationMessage();
 		}else {
-			String path=UserInfo.getInstitutionID()+"cache/";
+			String path=UserInfo.getWorkPath();
 			String filePath=path+fileName+tail;
 			ObjectOutputStream writer;
 			try {

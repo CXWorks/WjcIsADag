@@ -57,6 +57,13 @@
             	</includes>
             </resource>
             <resource>
+            	<directory>src/main/java/userinfo</directory>
+            	<targetPath>userinfo</targetPath>
+            	<includes>
+            		<include>**/*.ini</include>
+            	</includes>
+            </resource>
+            <resource>
             	<directory>cache</directory>
             	<targetPath>bl/clientNetCache/save</targetPath>
             	<includes>

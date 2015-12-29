@@ -1,9 +1,15 @@
 package bl.NetReconnect;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
+
+
+import javafx.application.Platform;
 import rmi.accountdata.AccountDataService;
+import ui.connectui.ConnectDialogController;
 import userinfo.UserInfo;
+import bl.blService.accountblService.AccountBLRemindService;
 import bl.clientNetCache.CacheHelper;
 import bl.clientRMI.NetInitException;
 import message.OperationMessage;
@@ -16,12 +22,27 @@ import message.OperationMessage;
  */
 public class Reconnect implements Runnable{
 	private boolean reconnected;
-	
+	private ConnectDialogController connectDialogController;
 	
 	public Reconnect() {
 		reconnected=false;
+		try {
+
+			connectDialogController=ConnectDialogController.newConnectDialog();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		Thread thread=new Thread(this);
 		thread.start();
+		
+		
+	}
+	
+	public Reconnect(AccountBLRemindService key){
+		reconnected=false;
+		
 	}
 
 	/* (non-Javadoc)
@@ -29,6 +50,9 @@ public class Reconnect implements Runnable{
 	 */
 	@Override
 	public void run() {
+		Platform.runLater(
+				()->connectDialogController.showDialog()
+				);
 		while (true&&!reconnected) {
 			try {
 				Thread.sleep(10000);
@@ -39,7 +63,11 @@ public class Reconnect implements Runnable{
 					OperationMessage op1=accountDataService.setAccount(UserInfo.getUserID(), true);
 					if (op1.operationResult) {
 						this.reconnected=true;
+						Platform.runLater(
+								()->connectDialogController.closeDialog()
+								);
 					}
+					
 				} catch (NetInitException | RemoteException e) {
 					continue;
 				}

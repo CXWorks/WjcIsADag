@@ -59,8 +59,7 @@ public class OrderBLController implements OrderBLService{
 //			OrderDataService orderDataService=CacheHelper.getOrderDataService();
 //			return orderDataService.insert(ready);
 		} catch (Exception e) {
-			//TODO handle the exception
-			e.printStackTrace();
+			Reconnect reconnect=new Reconnect();
 			return new OperationMessage(false,"");
 		}
 	}

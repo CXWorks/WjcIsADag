@@ -1,5 +1,7 @@
 package userinfo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import bl.clientNetCache.CacheHelper;
@@ -13,16 +15,27 @@ import rmi.systemdata.SystemDataService;
  * @date 2015年11月23日 下午10:40:37
  * @version 1.0
  */
-public class UserInfo {
+public class UserInfo { 
+	static{
+		try {
+			configFileManager=new ConfigFileManager();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private static ConfigFileManager configFileManager;
 	private static String userID;
 	private static SystemState systemState = SystemState.NORMAL;
 	private static StaffTypeEnum staffType;
 	private static String institutionID;
 	private static String userName;
-	private static String IP="localhost";
-	private static String Port="2333";
-	private static String workPath;
-	private static boolean connected=true;
+	private static String IP=configFileManager.getIp();
+	private static String Port=configFileManager.getPort();
+	private static String workPath=configFileManager.getWorkpath();
 	private UserInfo(){
 	}
 	//
@@ -85,18 +98,22 @@ public class UserInfo {
 	}
 	public static void setIP(String iP) {
 		IP = iP;
+		configFileManager.setIp(iP);
 	}
 	public static String getPort() {
 		return Port;
+		
 	}
 	public static void setPort(String port) {
 		Port = port;
+		configFileManager.setPort(Port);
 	}
 	public static String getWorkPath() {
 		return workPath;
 	}
 	public static void setWorkPath(String workPath) {
 		UserInfo.workPath = workPath;
+		configFileManager.setWorkpath(workPath);
 	}
 	
 }
