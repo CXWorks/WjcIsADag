@@ -59,6 +59,7 @@ public class ViewFormDetailController {
                 result = NewOrderController.launchInHistory((OrderVO)formVO);
                 break;
             case DELIVER:
+
                 break;
             case PAYMENT:
                 result = PaymentFormController.launchInHistory((PaymentVO)formVO);

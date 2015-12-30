@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.organization.ManageOrganizationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.organization.ManageOrganizationController">
    <children>
       <GridPane layoutX="584.0" layoutY="67.0" prefHeight="387.0" prefWidth="342.0" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">
         <columnConstraints>

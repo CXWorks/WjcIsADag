@@ -10,7 +10,7 @@ import message.CheckFormMessage;
 public class CheckHallIDTasker extends CheckFieldTasker {
 
     public CheckHallIDTasker(Label err_Label, TextField field) {
-        super(err_Label, field);
+        super(field);
     }
 
     @Override

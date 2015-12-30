@@ -172,13 +172,13 @@ public class CheckFormController implements EventHandler<Event> {
 		try {
 			this.initSon();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String text = selectedTab.getText();
 		nowFormEnum = this.getFormEnum(text);
 		formTableController.change(nowFormEnum);
 		selectedTab.setContent(son);
+
 		if (son == null) {
 			System.out.println("null");
 		}

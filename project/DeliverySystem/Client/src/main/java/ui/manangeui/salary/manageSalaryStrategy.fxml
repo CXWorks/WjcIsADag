@@ -6,7 +6,7 @@
 <?import com.sun.javafx.scene.control.skin.TitledPaneSkin.TitleRegion?>
 <?import com.sun.javafx.scene.control.skin.TabPaneSkin.TabHeaderArea?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.salary.ManageSalaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.salary.ManageSalaryController">
    <children>
       <TabPane fx:id="tabPane" layoutX="39.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="541.0" prefWidth="931.0" styleClass="tabs-ul" tabClosingPolicy="UNAVAILABLE">
         <tabs>
