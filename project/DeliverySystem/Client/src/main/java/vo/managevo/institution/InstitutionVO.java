@@ -18,7 +18,8 @@ public abstract class InstitutionVO extends InfoVO {
 	 * 
 	 */ 
 	protected String institutionID;
-	protected String city;
+	protected String cityID;
+	protected String cityName;
 	protected InstitutionVO(InfoEnum infoEnum) {
 		super(infoEnum);
 	}
@@ -32,15 +33,21 @@ public abstract class InstitutionVO extends InfoVO {
 	public String getInstitutionID() {
 		return institutionID;
 	}
-	public String getCity() {
-		return city;
+	public String getCityID() {
+		return cityID;
 	}
 	public void setInstitutionID(String institutionID) {
 		this.institutionID = institutionID;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityID(String city) {
+		this.cityID = city;
 	}
-
+	
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 	public abstract int getStaffCount();
 }

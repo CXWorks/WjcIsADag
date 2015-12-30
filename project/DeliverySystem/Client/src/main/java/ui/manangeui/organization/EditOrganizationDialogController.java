@@ -102,7 +102,7 @@ public class EditOrganizationDialogController {
         if(editType == EditType.EDIT){
             // set city choiceBox
             for (City2DVO city2DVO : city_ChoiceBox.getItems()) {
-                if(city2DVO.getName().equals(institutionVO.getCity())){
+                if(city2DVO.getName().equals(institutionVO.getCityID())){
                     city_ChoiceBox.getSelectionModel().select(city2DVO);
                 }
             }
@@ -130,21 +130,21 @@ public class EditOrganizationDialogController {
         if(type_ChoiceBox.getSelectionModel().getSelectedItem().equals(HallChoice)){
             if(editType == EditType.EDIT){
                 ((HallVO)institutionVO).setArea(area_Field.getText());
-                institutionVO.setCity(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                institutionVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
                 msg = manageblHallService.modifyHall((HallVO)institutionVO);
             }else {
                 HallVO hallVO = new HallVO();
                 hallVO.setArea(area_Field.getText());
-                hallVO.setCity(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                hallVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
                 msg = manageblHallService.addHall(hallVO);
             }
         }else{
             if(editType == EditType.EDIT){
-                institutionVO.setCity(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                institutionVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
                 msg = manageblCenterService.addCenter((CenterVO)institutionVO);
             }else {
                 CenterVO centerVO = new CenterVO();
-                centerVO.setCity(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                centerVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
                 msg = manageblCenterService.addCenter(centerVO);
             }
         }

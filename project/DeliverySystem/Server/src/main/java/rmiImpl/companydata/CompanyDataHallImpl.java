@@ -58,7 +58,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		String insert = MySql.insert(TableEnum.HALL, new HashMap<String, String>() {
 			{
 				put("hallID", po.getHallID());
-				put("city", po.getCity());
+				put("city", po.getCityID());
 				put("area", po.getArea());
 				put("nearCenterID", po.getNearCenterID());
 				put("cityID", po.getHallID().substring(0, 3));

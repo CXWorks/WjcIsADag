@@ -13,14 +13,18 @@ import util.DataType;
 
 public class HallPO extends InfoPO implements Serializable{
 	private String hallID;
-	private String city;
+	private String cityID;
+	private String cityName;
 	private String area;
 	private String nearCenterID;
 	public String getHallID() {
 		return hallID;
 	}
-	public String getCity() {
-		return city;
+	public String getCityID() {
+		return cityID;
+	}
+	public String getCityName(){
+		return cityName;
 	}
 	public String getArea() {
 		return area;
@@ -35,13 +39,14 @@ public class HallPO extends InfoPO implements Serializable{
 	 * @param area
 	 * @param nearCenterID
 	 */
-	public HallPO(String hallID, String city, String area,
-			String nearCenterID) {
+	public HallPO(String hallID, String cityID, String area,
+			String nearCenterID,String cityName) {
 		super(InfoEnum.HALL);
 		this.hallID = hallID;
-		this.city = city;
+		this.cityID = cityID;
 		this.area = area;
 		this.nearCenterID = nearCenterID;
+		this.cityName=cityName;
 	}
 	
 }

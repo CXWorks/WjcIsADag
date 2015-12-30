@@ -94,7 +94,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		String insert = MySql.insert(TableEnum.CENTER, new HashMap<String, String>() {
 			{
 				put("centerID", po.getCenterID());
-				put("city", po.getCity());
+				put("city", po.getCityID());
 				put("cityID", po.getCenterID().substring(0, 3));
 			}
 		});

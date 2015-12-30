@@ -13,13 +13,17 @@ import util.DataType;
 
 public class CenterPO extends InfoPO implements Serializable{
 	private String centerID;
-	private String city;
+	private String cityID;
+	private String cityName;
 
 	public String getCenterID() {
 		return centerID;
 	}
-	public String getCity() {
-		return city;
+	public String getCityID() {
+		return cityID;
+	}
+	public String getCityName(){
+		return this.cityName;
 	}
 	public CenterPO(){
 		super(InfoEnum.CENTER);
@@ -29,10 +33,11 @@ public class CenterPO extends InfoPO implements Serializable{
 	 * @param centerID
 	 * @param city
 	 */
-	public CenterPO(String centerID, String city) {
+	public CenterPO(String centerID, String cityID,String cityName) {
 		this();
 		this.centerID = centerID;
-		this.city = city;
+		this.cityID = cityID;
+		this.cityName=cityName;
 	}
 
 }

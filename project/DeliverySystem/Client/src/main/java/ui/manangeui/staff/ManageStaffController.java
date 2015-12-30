@@ -163,10 +163,10 @@ public class ManageStaffController  {
 	private void initLabel(InstitutionVO institutionVO) {
 		if (institutionVO.getInfoEnum() == InfoEnum.CENTER) {
 			CenterVO centerVO = (CenterVO) institutionVO;
-			this.setLabel(centerVO.getCenterID(), centerVO.getCity(), null);
+			this.setLabel(centerVO.getCenterID(), centerVO.getCityID(), null);
 		} else {
 			HallVO hallVO = (HallVO) institutionVO;
-			this.setLabel(hallVO.getHallID(), hallVO.getCity(), hallVO.getArea());
+			this.setLabel(hallVO.getHallID(), hallVO.getCityID(), hallVO.getArea());
 		}
 	}
 
