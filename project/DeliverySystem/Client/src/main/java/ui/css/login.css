@@ -1,6 +1,6 @@
 .background {
 
-	-fx-background-image : url(login/log.png);
+	-fx-background-image : url(login/new/newback.png);
 	-fx-background-size: cover;
 	
 }
@@ -28,9 +28,9 @@
 }
 
 .table-view {
-    -fx-base: #c9c8c8;
-    -fx-control-inner-background: #c9c8c8;
-    -fx-background-color: #c9c8c8;
+    -fx-base: #111111;
+    -fx-control-inner-background: gray;
+    -fx-background-color: #111111;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -92,44 +92,61 @@
     -fx-background-color: black;
 }
 
-.text-field.id {
-
-    -fx-background-image : url(login/id.png);
+.text-field-log {
+    -fx-background-image:  url(login/new/login_Field.png);
+    -fx-background-color:#1e1e1e;
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;
-	-fx-color: black;
+	-fx-text-fill: white;
+    -fx-font-family: "方正幼线简体 常规";
+	
+}
+.text-field-search {
+    -fx-background-image:  url(login/new/search_Field.png);
+    -fx-background-color:#1e1e1e;
+	-fx-border-style :none;
+    -fx-size:13;
+    -fx-font-size: 10pt;
+	-fx-text-fill: white;
     -fx-font-family: "方正幼线简体 常规";
 	
 }
 
-.text-field.id:focused{
+.text-field:focused{
 
      -fx-border-style :none;
+	 -fx-outline:none;
 
 }
 
-.text-field.password {
 
-    -fx-background-image : url(login/pass.png);
-	-fx-border-style :none;
+.button-log {
     -fx-size:13;
+    -fx-background-image:  url(login/new/login.png);
+    -fx-border-style:none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
-	-fx-color:#cc6600;
-    -fx-font-family: "方正幼线简体 常规";
-	
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
 }
 
-.text-field.password:focused{
+.button-log:hover {
+-fx-background-image:  url(login/new/login-hover.png);
+}
 
-     -fx-border-style :none;
+.button-log:pressed {
+-fx-background-image:  url(login/new/login-pressed.png);
+}
 
+.button-log:focused {
+    -fx-border-style:none;
 }
 
 
 .button-search {
     -fx-size:13;
-    -fx-background-image:url(login/search.png);
+    -fx-background-image:  url(login/new/search.png);
     -fx-border-style:none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -138,41 +155,18 @@
 }
 
 .button-search:hover {
-        -fx-background-image:url(login/search-hover.png);
+-fx-background-image:  url(login/new/search-hover.png);
 }
 
 .button-search:pressed {
-       -fx-background-image:url(login/search-pressed.png);
+-fx-background-image:  url(login/new/search-pressed.png);
 }
 
 .button-search:focused {
-    -fx-background-image:url(login/search.png);
-
-}
-
-
-.button-sure {
-    -fx-size:13;
-    -fx-background-image:url(login/sure.png);
     -fx-border-style:none;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 10pt;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-	-fx-size:13;
 }
 
-.button-sure:hover {
-        -fx-background-image:url(login/sureHover.png);
-}
 
-.button-sure:pressed{
-       -fx-background-image:url(login/surePressed.png);
-}
-
-.button-sure:focused {
-    -fx-background-image:url(login/sure.png);
-
-}
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;

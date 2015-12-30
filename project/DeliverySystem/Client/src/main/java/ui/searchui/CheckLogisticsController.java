@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 
 public class CheckLogisticsController {
 
-	public TextField id_Field;
+	public TextField search_Field;
 
 	public TableView<Map.Entry<String, String>> logistics_TableView;
 	public TableColumn<Map.Entry<String, String>, String> time_Column;
@@ -49,9 +49,9 @@ public class CheckLogisticsController {
 
 	public void search(ActionEvent atcionEvent){
 		logistics_TableView.getItems().clear();
-		System.out.println("hhhhhhhhhhhh"+id_Field.getText());
+		System.out.println("hhhhhhhhhhhh"+search_Field.getText());
 		logisticsvo=searchblService.searchOrder(
-				id_Field.getText());
+				search_Field.getText());
 		System.out.println("logistics=="+logisticsvo);
         if(this.logisticsvo == null){
             return;
