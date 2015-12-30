@@ -6,6 +6,5 @@
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.formHistoryui.ViewFormDetailController">
    <children>
       <AnchorPane fx:id="contentFather" prefHeight="200.0" prefWidth="200.0" />
-      <AnchorPane fx:id="blockPane" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </StackPane>

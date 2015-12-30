@@ -123,7 +123,6 @@ public class InitialHelper {
 	public OperationMessage clearMysql() {
 		ArrayList<String> list = new ArrayList<String>() {
 			{
-				add("account");
 				add("bank_account");
 				add("car");
 				add("center");

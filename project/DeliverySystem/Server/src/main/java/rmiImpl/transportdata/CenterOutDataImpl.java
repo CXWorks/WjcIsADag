@@ -66,6 +66,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 				put("transitState", po.getTransitState().toString());
 				put("date_and_unit", po.getFormID().substring(2, 17));
 				put("creatorID", po.getCreatorID());
+				put("truckID", po.getNumberOfIndex());
 			}
 		});
 		try {
@@ -106,7 +107,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			result = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
 					rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 					rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs,
-					rs.getString("creatorID"));
+					rs.getString("creatorID"), rs.getString("truckID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -217,7 +218,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 				temp = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
 						rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 						rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs,
-						rs.getString("creatorID"));
+						rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}
@@ -323,7 +324,7 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 				temp = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
 						rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
 						rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs,
-						rs.getString("creatorID"));
+						rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}

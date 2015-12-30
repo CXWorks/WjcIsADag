@@ -21,6 +21,10 @@ public class R {
         public final static String CompanyAccount = "001";
     }
 
+    public static class num{
+        public final static int locsInShelf = 50;
+    }
+
     public static class path{
         public final static String InitialModelPath = "buffer/model/initialization.ser";
     }

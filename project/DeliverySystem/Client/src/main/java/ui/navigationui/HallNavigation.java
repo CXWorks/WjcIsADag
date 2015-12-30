@@ -1,12 +1,14 @@
 package ui.navigationui;
 
 import factory.CarFactory;
+import factory.FormFactory;
 import factory.StaffFactory;
 import javafx.scene.Parent;
 import javafx.util.Pair;
 import ui.accountui.PersonalAccountViewController;
 import ui.common.TabMaker;
 import ui.deliverui.deliverController;
+import ui.formHistoryui.FormHistoryController;
 import ui.hallui.ManageCarDriverController;
 import ui.hallui.RevenueFormController;
 import ui.messageui.CheckMessageController;
@@ -27,7 +29,8 @@ public class HallNavigation {
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
                 new Pair<String ,Parent>("填写派件单",deliverController.launch()),
-                new Pair<String, Parent>("填写装车单", LoadCarController.launch()),
+                new Pair<String, Parent>("填写装车单", LoadCarController.launchInNew()),
+                new Pair<String, Parent>("查看历史单据", FormHistoryController.launch(FormFactory.getTransportHallBLService())),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 

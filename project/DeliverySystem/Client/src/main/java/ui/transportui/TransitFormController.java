@@ -131,7 +131,7 @@ public class TransitFormController {
 		Calendar calendar = TimeConvert.convertDate(transit_DatePicker.getValue());
 		return new CenterOutVO(formID, departure_Field.getText(), transNumber_Field.getText(), cargo_Field.getText(),
 				calendar, fee_Label.getText(), arrival_Box.getValue(), supervisor_Field.getText(), ids, transitEnum,
-				UserInfo.getUserID());
+				UserInfo.getUserID(),transNumber_Field.getText());
 	}
 
 	public void commit(ActionEvent actionEvent) {

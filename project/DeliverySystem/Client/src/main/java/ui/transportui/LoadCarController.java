@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
 import tool.ui.SimpleEnumProperty;
+import tool.ui.VisibilityTool;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -34,7 +35,6 @@ import factory.FormFactory;
  */
 public class LoadCarController {
 
-	public TextField transitCarID_Field;
 	public DatePicker date_Picker;
 	public TextField monitor_Field;
 	public TextField guard_Field;
@@ -44,8 +44,12 @@ public class LoadCarController {
 	public TextField id_Field;
 	public ChoiceBox<String> arrival_ChoiceBox;
 	public ChoiceBox<String> carID_ChoiceBox;
+    public Button save_Btn;
+    public Button clear_Btn;
+    public Button commit_Btn;
+    public Button add_Btn;
 
-	ArrayList<String> ids = new ArrayList<String>();
+    ArrayList<String> ids = new ArrayList<String>();
 
 	TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
 
@@ -54,20 +58,45 @@ public class LoadCarController {
 
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(LoadCarController.class.getResource("loadCarForm.fxml"));
-		Pane pane = loader.load();
-		LoadCarController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static LoadCarController launch() {
+		try {
+            FXMLLoader loader = new FXMLLoader(LoadCarController.class.getResource("loadCarForm.fxml"));
+            Pane pane = loader.load();
+            LoadCarController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
 
+            return controller;
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+        }
+        return null;
+    }
+
+	public static Parent launchInNew() {
+		LoadCarController controller = launch();
 		return controller.informController.stackPane;
 	}
 
-	@FXML
+    public static Parent launchInHistory(LoadVO loadVO) {
+        LoadCarController controller = launch();
+        VisibilityTool.setInvisible(controller.add_Btn, controller.id_Field,
+                controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
+        controller.showDetail(loadVO);
+        return controller.informController.stackPane;
+    }
+
+    private void showDetail(LoadVO loadVO) {
+        date_Picker.setValue(TimeConvert.convertCalendar(loadVO.date));
+        arrival_ChoiceBox.setValue(loadVO.getPlaceTo());
+        monitor_Field.setText(loadVO.getPeopleSee());
+        guard_Field.setText(loadVO.peopletransport);
+        // TODO carID carID_ChoiceBox
+    }
+
+    @FXML
 	public void initialize() {
 		arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
 		carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
-		transitCarID_Field.setText(transportHallBLService.newID());
 		System.out.println(transportHallBLService.newID());
 		clear(null);
 	}
@@ -87,7 +116,6 @@ public class LoadCarController {
 	public void clear(ActionEvent actionEvent) {
 		date_Picker.setValue(LocalDate.now());
 		arrival_ChoiceBox.setValue(arrival_ChoiceBox.getItems().get(0));
-		transitCarID_Field.clear();
 		monitor_Field.clear();
 		guard_Field.clear();
 		orders_ListView.getItems().clear();
@@ -96,7 +124,7 @@ public class LoadCarController {
 	private LoadVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(date_Picker.getValue());
 		return new LoadVO(formID, carID_ChoiceBox.getValue().toString(), guard_Field.getText(), fee_Label.getText(),
-				calendar, transitCarID_Field.getText(), arrival_ChoiceBox.getValue().toString(),
+				calendar, transportHallBLService.newID(), arrival_ChoiceBox.getValue().toString(),
 				monitor_Field.getText(), ids, UserInfo.getUserID());
 	}
 
