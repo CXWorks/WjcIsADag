@@ -20,10 +20,8 @@ public class UserInfo {
 		try {
 			configFileManager=new ConfigFileManager();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -89,7 +87,6 @@ public class UserInfo {
 		try {
 			UserInfo.systemState=systemDataService.checkSystemState();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

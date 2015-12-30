@@ -79,27 +79,76 @@ public class NewOrderController {
 	public Label transit_errLabel2;
 	public Label departure_errLabel2;
     public AnchorPane outerPane;
+	public Button commit_Btn;
+	public Button save_Btn;
+	public Button clear_Btn;
+	public Button calculate_Btn;
+    public Label predictHead_Date;
 
     private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
+
+    // 总经理修改时用，其他时候不用
+    private OrderVO editVO;
 
 	int money = 0;// 预计运费
 	int day = 0;
 	String predictDate;// 预计送达日期
 
-	OrderBLService obl = FormFactory.getOrderBLService();
-
-	
+	private OrderBLService obl = FormFactory.getOrderBLService();
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
+	public static NewOrderController launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(NewOrderController.class.getResource("NewOrder.fxml"));
         Pane pane = loader.load();
         NewOrderController controller = loader.getController();
         controller.informController = InformController.newInformController(pane);
 
-        return controller.informController.stackPane;
+        return controller;
 	}
+
+    public static Parent launchInNew(){
+        try {
+            return launch().informController.stackPane;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Parent launchInManagerEdit(OrderVO orderVO){
+        try {
+            NewOrderController controller = launch();
+            controller.commit_Btn.setVisible(false);
+            controller.commit_Btn.setOnAction(
+                    actionEvent  -> {
+                        // TODO managerEdit
+                    }
+            );
+            controller.predictHead_Date.setVisible(false);
+            controller.showDetail(orderVO);
+            return controller.informController.stackPane;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+	public static Parent launchInHistory(OrderVO orderVO){
+        try {
+            NewOrderController controller = launch();
+            controller.calculate_Btn.setVisible(false);
+            controller.clear_Btn.setVisible(false);
+            controller.save_Btn.setVisible(false);
+            controller.commit_Btn.setVisible(false);
+            controller.predictHead_Date.setVisible(false);
+            controller.showDetail(orderVO);
+            return controller.informController.stackPane;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 	@FXML
 	public void initialize() {
@@ -162,6 +211,32 @@ public class NewOrderController {
 		predict_Date.setText(TimeConvert.getDisplayDate(predictVO.getPredictDate()));
 		predict_Expense.setText(predictVO.getExpense());
 	}
+
+    private void showDetail(OrderVO orderVO){
+        name_From.setText(orderVO.getNameFrom());
+        name_To.setText(orderVO.getNameTo());
+        // TODO city how to split ?
+        address_From.setText(orderVO.getAddressFrom());
+        address_To.setText(orderVO.getAddressTo());
+        unit_From.setText(orderVO.getUnitFrom());
+        unit_To.setText(orderVO.getUnitTo());
+        phone_From.setText(orderVO.getPhoneNumFrom());
+        phone_To.setText(orderVO.getPhoneNumTo());
+        tel_From.setText(orderVO.getTelNumFrom());
+        tel_To.setText(orderVO.getTelNumTo());
+        goods_Name.setText(orderVO.getGoodsName());
+        goods_Type.setText(orderVO.getGoodsType());
+        goods_Number.setText(orderVO.getGoodsNum());
+        goods_Weight.setText(orderVO.getWeight());
+        goods_V1.setText(orderVO.getLen() + "");
+        goods_V2.setText(orderVO.getWid() + "");
+        goods_V3.setText(orderVO.getHei() + "");
+
+        type_Box.getSelectionModel().select(new SimpleEnumProperty<DeliverTypeEnum>(orderVO.getType()));
+        pack_Box.getSelectionModel().select(new SimpleEnumProperty<PackingEnum>(orderVO.getPack()));
+        predict_Expense.setText(orderVO.getMoney());
+
+    }
 
 	public void clear(ActionEvent actionEvent) {
 		name_From.clear();

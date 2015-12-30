@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import userinfo.UserInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +45,9 @@ public class SettingDialogController {
 
     @FXML
     public void initialize(){
-        // TODO set the value used now
+        ip_Field.setText(UserInfo.getIP());
+        port_Field.setText(UserInfo.getPort());
+        workspace_Field.setText(UserInfo.getWorkPath());
     }
 
     @FXML
@@ -64,7 +67,9 @@ public class SettingDialogController {
 
     @FXML
     public void commit(ActionEvent actionEvent) {
-        // TODO call service
+        UserInfo.setIP(ip_Field.getText());
+        UserInfo.setPort(port_Field.getText());
+        UserInfo.setWorkPath(workspace_Field.getText());
         thisStage.close();
     }
 }

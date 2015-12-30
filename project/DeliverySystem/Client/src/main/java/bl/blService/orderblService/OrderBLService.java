@@ -19,7 +19,7 @@ public interface OrderBLService extends FormBLService<OrderVO>{
 	
 	/**
 	 * 计算运费和预计到达日期
-	 * @param po 新订单中的信息
+	 * @param vo 新订单中的信息
 	 * @return 运费和预计到达日期
 	 */
 	public PredictVO predict(OrderVO vo);
