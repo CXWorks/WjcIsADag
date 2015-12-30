@@ -1,9 +1,9 @@
 package bl.blService.accountblService;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import message.ChatMessage;
 import message.OperationMessage;
+import message.ChatMessage;
 
 /** 
  * Client//bl.blService.accountblService//AccountBLRemindService.java
@@ -23,6 +23,6 @@ public interface AccountBLRemindService {
 	 * @param ID
 	 * @return
 	 */
-	public ArrayList<ChatMessage> receive(String ID);
+	public List<ChatMessage> receive(String ID);
 
 }

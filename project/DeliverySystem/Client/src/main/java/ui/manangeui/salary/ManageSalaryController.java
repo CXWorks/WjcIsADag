@@ -7,6 +7,7 @@ package ui.manangeui.salary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.table.TableCellEditor;
@@ -54,7 +55,7 @@ public class ManageSalaryController {
 	}
 
 	private void initData() {
-		ArrayList<ConfigurationVO> vo = configurationBLService.get(InfoEnum.SALARY);
+		List<ConfigurationVO> vo = configurationBLService.get(InfoEnum.SALARY);
 		this.vo = new ArrayList<SalaryStrategyVO>(vo.size());
 		for (ConfigurationVO configurationVO : vo) {
 			this.vo.add((SalaryStrategyVO) configurationVO);

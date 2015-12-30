@@ -1,6 +1,5 @@
 package bl.blService.accountblService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import po.accountdata.AccountPO;
@@ -18,7 +17,7 @@ public interface AccountBLManageService {
 	 * 显示账户信息
 	 * @return 返回所有账户信息
 	 */
-	public ArrayList<AccountVO> getAccountVOs();
+	public List<AccountVO> getAccountVOs();
 	
 	/**
 	 * 显示ID对应账户信息

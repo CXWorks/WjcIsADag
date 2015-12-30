@@ -184,7 +184,7 @@ public class RevenueBLImpl implements RevenueBLService {
 	 * @see bl.blService.financeblService.RevenueBLService#getInstitutionDelivers()
 	 */
 	@Override
-	public ArrayList<StaffVO> getInstitutionDelivers() {
+	public List<StaffVO> getInstitutionDelivers() {
 		MemberDataService<StaffPO> memberDataService=CacheHelper.getMemberDataService_staff();
 		try {
 			

@@ -2,6 +2,7 @@ package ui.messageui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.ChatMessage;
 import message.OperationMessage;
@@ -87,7 +88,7 @@ public class CheckMessageController implements Runnable{
 			OperationMessage res = accountblremindService.checkMessage(UserInfo
 					.getUserID());
 			if (res.operationResult) {
-				ArrayList<ChatMessage> chatMessages = accountblremindService
+				List<ChatMessage> chatMessages = accountblremindService
 						.receive(UserInfo.getUserID());
 				message_View.getItems().addAll(chatMessages);
 			}

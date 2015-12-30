@@ -6,7 +6,6 @@ import vo.financevo.RevenueVO;
 import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,6 +26,6 @@ public interface RevenueBLService extends FormBLService<RevenueVO> {
     
     public double sum(String revenueID);
     
-    public ArrayList<StaffVO> getInstitutionDelivers();
+    public List<StaffVO> getInstitutionDelivers();
 
 }

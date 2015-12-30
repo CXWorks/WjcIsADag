@@ -2,7 +2,7 @@ package rmi.chatRemindService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.List;
 
 import message.ChatMessage;
 import message.OperationMessage;
@@ -30,6 +30,6 @@ public interface ChatRemindService extends Remote{
 	 * @param ID 员工的ID
 	 * @return 返回消息列表
 	 */
-	public ArrayList<ChatMessage> getMessage(String ID) throws RemoteException;
+	public List<ChatMessage> getMessage(String ID) throws RemoteException;
 	
 }

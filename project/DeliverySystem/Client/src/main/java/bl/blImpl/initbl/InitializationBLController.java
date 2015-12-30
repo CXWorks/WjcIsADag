@@ -495,7 +495,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.accountblService.AccountBLManageService#getAccountVOs()
 	 */
 	@Override
-	public ArrayList<AccountVO> getAccountVOs() {
+	public List<AccountVO> getAccountVOs() {
 		return initialDataVO.getAccountVOs();
 	}
 
@@ -545,7 +545,7 @@ public class InitializationBLController implements InitializationBLService {
 	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.InfoEnum)
 	 */
 	@Override
-	public ArrayList<ConfigurationVO> get(InfoEnum type) {
+	public List<ConfigurationVO> get(InfoEnum type) {
 		ArrayList<ConfigurationVO> ans=new ArrayList<ConfigurationVO>();
 		switch (type) {
 		case PACK:

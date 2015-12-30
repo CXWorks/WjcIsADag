@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import message.ChatMessage;
@@ -34,7 +35,7 @@ public class ChatRemindImpl extends UnicastRemoteObject implements ChatRemindSer
 		return new OperationMessage(true,"有新的消息");
 	}
 
-	public ArrayList<ChatMessage> getMessage(String ID) {
+	public List<ChatMessage> getMessage(String ID) {
 		ArrayList<ChatMessage> list = map.get(ID);
 		if(list==null)
 			list = new ArrayList<ChatMessage>();

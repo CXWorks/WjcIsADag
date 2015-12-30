@@ -203,13 +203,13 @@ public class ConfigurationController {
 	}
 	//
 	private void initializePrice(){
-		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PRICE);
+		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PRICE);
 		priceVO=(PriceVO)configurationVOs.get(0);
 		factor_Field.setText(Integer.toString(priceVO.getByType(DeliverTypeEnum.FAST)));
 	}
 	//
 	private void initializeProportion(){
-		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PROPORTION);
+		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PROPORTION);
 		proportionVO=(ProportionVO)configurationVOs.get(0);
 		slow_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.SLOW)));
 		normal_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.NORMAL)));
@@ -217,7 +217,7 @@ public class ConfigurationController {
 	}
 	//
 	private void initializePack(){
-		ArrayList<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PACK);
+		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PACK);
 		packVO=(PackVO)configurationVOs.get(0);
 		paper_Field.setText(Double.toString(packVO.getByType(PackEnum.PAPER)));
 		wood_Field.setText(Double.toString(packVO.getByType(PackEnum.WOOD)));
