@@ -16,8 +16,6 @@ import vo.FormVO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Sissel on 2015/12/30.
@@ -87,7 +85,7 @@ public class FormHistoryController {
         if(selectedFormVO == null){
             informController.inform("请选择一个表单");
         }else{
-            Stage stage = ViewFormDetailController.launch(selectedFormVO);
+            Stage stage = ViewFormDetailController.launchInHistory(selectedFormVO);
             stage.show();
         }
     }

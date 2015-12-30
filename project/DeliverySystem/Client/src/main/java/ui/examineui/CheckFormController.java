@@ -2,7 +2,10 @@ package ui.examineui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import po.FormEnum;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
@@ -17,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
+import ui.formHistoryui.ViewFormDetailController;
 import ui.informui.InformController;
 import vo.FormVO;
 
@@ -38,7 +42,6 @@ public class CheckFormController implements EventHandler<Event> {
 
 	public Button pass;
 	public Button deny;
-	public Button modify;
 
 	public TabPane tabPane;
 	public Tab selectedTab;
@@ -183,4 +186,14 @@ public class CheckFormController implements EventHandler<Event> {
 			System.out.println("null");
 		}
 	}
+
+    public void modify(ActionEvent actionEvent) {
+        List<FormVO> forms = formTableController.getSelected();
+        if(forms.size() != 1){
+            informController.inform("请选择一张表单修改");
+        }else {
+            Stage stage = ViewFormDetailController.launchInManagerModify(forms.get(0));
+            stage.showAndWait();
+        }
+    }
 }

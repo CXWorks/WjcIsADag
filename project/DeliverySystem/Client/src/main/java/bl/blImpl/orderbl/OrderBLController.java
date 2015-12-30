@@ -96,6 +96,8 @@ public class OrderBLController implements OrderBLService{
 						.filter(city->city.getID().equalsIgnoreCase(id)).findFirst().get().getName();
 			} catch (RemoteException e) {
 				Reconnect.ReConnectFactory();
+			} catch (Exception e){
+				return null;
 			}
 		}
 		return localCity;

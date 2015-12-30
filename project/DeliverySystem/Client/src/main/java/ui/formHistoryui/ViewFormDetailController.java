@@ -1,13 +1,13 @@
 package ui.formHistoryui;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
-import ui.common.checkFormat.field.FloatOnlyField;
 import ui.financeui.PaymentFormController;
 import ui.orderui.NewOrderController;
 import ui.receiveui.ReceiveFormController;
@@ -31,35 +31,78 @@ import java.io.IOException;
  */
 public class ViewFormDetailController {
     public AnchorPane contentFather;
+    public Stage stage;
 
     private FormVO formVO;
 
-    public static Stage launch(FormVO form){
+    public static ViewFormDetailController launch(){
         Stage stage = new Stage();
         stage.initOwner(Main.primaryStage);
 
         try {
             FXMLLoader loader = new FXMLLoader(ViewFormDetailController.class.getResource("viewFormDetail.fxml"));
-            Pane outerPane = loader.load();
+            Pane outestPane = loader.load();
+            stage.setScene(new Scene(outestPane));
             ViewFormDetailController controller = loader.getController();
-            controller.formVO = form;
-            controller.contentFather.getChildren().add(controller.getContentByType());
-            stage.setScene(new Scene(outerPane));
+            controller.stage = stage;
+
+            return controller;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return stage;
+        return null;
     }
 
-    public Parent getContentByType(){
+    public static Stage launchInHistory(FormVO form){
+        ViewFormDetailController controller = launch();
+        controller.formVO = form;
+        controller.contentFather.getChildren().add(controller.getHistoryByType());
+
+        return controller.stage;
+    }
+
+    public static Stage launchInManagerModify(FormVO form){
+        ViewFormDetailController controller = launch();
+        controller.formVO = form;
+        controller.contentFather.getChildren().add(controller.getManagerByType());
+
+        return controller.stage;
+    }
+
+    public Parent getManagerByType() {
+        Parent result = null;
+        switch (formVO.getFormType()){
+            case ORDER:
+                result = NewOrderController.launchInManagerEdit((OrderVO)formVO);
+                break;
+            case DELIVER:
+                break;
+            case PAYMENT:
+                break;
+            case REVENUE:
+                break;
+            case RECEIVE:
+                break;
+            case LOAD_CAR:
+                break;
+            case CENTER_TRANSPORT:
+                break;
+            case STORE_IN:
+                break;
+            case STORE_OUT:
+                break;
+        }
+        return result;
+    }
+
+    public Parent getHistoryByType(){
         Parent result = null;
         switch (formVO.getFormType()){
             case ORDER:
                 result = NewOrderController.launchInHistory((OrderVO)formVO);
                 break;
             case DELIVER:
-
                 break;
             case PAYMENT:
                 result = PaymentFormController.launchInHistory((PaymentVO)formVO);

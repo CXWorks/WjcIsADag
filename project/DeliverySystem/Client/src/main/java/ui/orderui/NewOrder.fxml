@@ -63,16 +63,11 @@
          </font>
       </Label>
       <TextField fx:id="phone_From" layoutX="176.0" layoutY="379.0" prefHeight="28.0" prefWidth="150.0" />
-      <Text layoutX="265.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
+      <Text layoutX="313.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Label fx:id="city_Label" layoutX="200.0" layoutY="200.0" prefHeight="19.0" prefWidth="51.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
       <Label layoutX="389.0" layoutY="147.0" text="姓名">
          <font>
             <Font size="14.0" />
@@ -103,8 +98,8 @@
          </font>
       </Label>
       <TextField fx:id="phone_To" layoutX="461.0" layoutY="380.0" prefHeight="28.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="city_Box" layoutX="461.0" layoutY="195.0" prefHeight="29.0" prefWidth="107.0" />
-      <Text layoutX="585.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
+      <ChoiceBox fx:id="city_Box" layoutX="461.0" layoutY="195.0" prefHeight="29.0" prefWidth="120.0" />
+      <Text layoutX="597.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
          <font>
             <Font size="13.0" />
          </font>
@@ -173,5 +168,6 @@
       <Text layoutX="855.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
       <TextField fx:id="goods_V2" layoutX="817.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="宽" />
       <TextField fx:id="goods_V3" layoutX="867.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="高" />
+      <ChoiceBox fx:id="cityFrom_Box" layoutX="176.0" layoutY="195.0" prefHeight="29.0" prefWidth="120.0" />
    </children>
 </AnchorPane>
