@@ -51,7 +51,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"));
+				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), rs.getString("cityID"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -183,7 +183,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new CenterPO(ID, rs.getString("city"));
+			result = new CenterPO(ID, rs.getString("city"),rs.getString("cityID"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();

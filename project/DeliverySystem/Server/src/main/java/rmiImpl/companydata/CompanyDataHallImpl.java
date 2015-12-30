@@ -43,7 +43,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"),
-						rs.getString("nearCenterID"));
+						rs.getString("nearCenterID"), rs.getString("cityID"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -147,7 +147,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"),
-					rs.getString("nearCenterID"));
+					rs.getString("nearCenterID"), rs.getString("cityID"));
 
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
