@@ -60,6 +60,8 @@ public class ServerView {
 		}
 	}
 
+
+
 	public void out(ActionEvent actionEvent) {
 		ConnecterHelper.deconnSQL();
 		System.exit(0);

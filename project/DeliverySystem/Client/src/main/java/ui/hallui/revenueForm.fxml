@@ -21,12 +21,12 @@
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font></Label>
-      <Button layoutX="229.0" layoutY="477.0" mnemonicParsing="false" onAction="#add" text="确认添加" textFill="WHITE" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="229.0" />
+      <Button layoutX="229.0" layoutY="477.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="80.0" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="229.0" />
       <HBox layoutX="684.0" layoutY="484.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" text="提交" />
+            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="80.0" text="保存草稿" />
+            <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="60.0" text="清空" />
+            <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="60.0" text="提交" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="760.0" layoutY="48.0" spacing="16.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">

@@ -6,14 +6,14 @@
 
 .background-head {
 
-	-fx-background-image : url(pic/fff.png);
+	-fx-background-image : url(pic/777.png);
 	-fx-background-size: cover;
 	
 }
 
 .background-left {
 
-	-fx-background-image : url(pic/buttons.png);
+	-fx-background-image : url(pic/999.png);
 	-fx-background-size: cover;
 	
 }
@@ -79,47 +79,57 @@
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
     -fx-size:150;
+	-fx-background-image:url(pic/button-left.png);
 	-fx-background-color:#393939;
     -fx-border-style :none;
     -fx-font-size: 15pt;
-	-fx-text-fill:#dcdbdb;
+	-fx-text-fill:#e1e1e1;
 	
 	
 }
 .toggle-button:hover{
--fx-background-color:#181818;
+	-fx-background-image:url(pic/button-left-hover.png);
+    -fx-background-color:#181818;
 }
 
 .toggle-button:selected{
 -fx-text-fill:#181818;
--fx-background-color:#e3e3e3;
+	-fx-background-image:url(pic/button-left-pressed.png);
+-fx-background-color:#272724;
 -fx-border-style:none;
 }
 
-/*
-.button-left{
-    -fx-size:80;
-	-fx-background-color:#393939;
+.button-person {
+    -fx-size:13;
+	-fx-background-image:url(pic/buttons/person.png);
     -fx-border-style :none;
-    -fx-font-size: 15pt;
-	-fx-font-color:#ffffff;
-}
-.button-left:hover{
--fx-background-color:#e9e9e9;
-}
-
-.button-left:pressed{
--fx-background-color:#0397c9;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
 }
 
-.button-left:focused{
--fx-background-color:#0397c9;
--fx-border-style:none;
+.button-person:hover {
+	-fx-background-image:url(pic/buttons/person-hover.png);
 }
-*/
+
+.button-person:pressed, .button-person:default:hover:pressed {
+	-fx-background-image:url(pic/buttons/person-pressed.png);
+}
+
+.button-person:focused {
+
+    -fx-border-style: none;
+
+}
+
+
+
+
+
 .button-close {
     -fx-size:13;
-	-fx-background-image:url(pic/close.png);
+	-fx-background-image:url(pic/buttons/close.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -128,22 +138,23 @@
 }
 
 .button-close:hover {
-	-fx-background-image:url(pic/closeHover.png);
+-fx-background-color:#0f0f0f;
+	-fx-background-image:url(pic/buttons/close-hover.png);
 }
 
 .button-close:pressed, .button-close:default:hover:pressed {
-	-fx-background-image:url(pic/closePressed.png);
+	-fx-background-image:url(pic/buttons/close-pressed.png);
 }
 
 .button-close:focused {
-
+	-fx-background-image:url(pic/buttons/close-pressed.png);
     -fx-border-style: none;
 
 }
 
 .button-max {
     -fx-size:13;
-	-fx-background-image:url(pic/max.png);
+	-fx-background-image:url(pic/buttons/da.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -152,11 +163,11 @@
 }
 
 .button-max:hover {
-	-fx-background-image:url(pic/maxHover.png);
+	-fx-background-image:url(pic/buttons/da-hover.png);
 }
 
 .button-max:pressed, .button-max:default:hover:pressed {
-	-fx-background-image:url(pic/maxPressed.png);
+	-fx-background-image:url(pic/buttons/da-pressed.png);
 }
 
 .button-max:focused {
@@ -164,7 +175,7 @@
 }
 .button-min {
     -fx-size:13;
-	-fx-background-image:url(pic/min.png);
+	-fx-background-image:url(pic/buttons/xiao.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -173,11 +184,11 @@
 }
 
 .button-min:hover {
-	-fx-background-image:url(pic/minHover.png);
+	-fx-background-image:url(pic/buttons/xiao-hover.png);
 }
 
 .button-min:pressed, .button-min:default:hover:pressed {
-	-fx-background-image:url(pic/minPressed.png);
+	-fx-background-image:url(pic/buttons/xiao-pressed.png);
 }
 
 .button-min:focused {
@@ -186,19 +197,19 @@
 
 .button-chi {
     -fx-size:13;
-	-fx-background-image:url(pic/setting.png);
+	-fx-background-image:url(pic/buttons/set.png);
 	-fx-background-color:#1c1c1c;
     -fx-border-style :none;
 	-fx-size:13;
 }
 
 .button-chi:hover {
-	-fx-background-image:url(pic/settingHover.png);
+	-fx-background-image:url(pic/buttons/set-hover.png);
 		-fx-background-color:#1c1c1c;
 }
 
 .button-chi:pressed, .button-chi:default:hover:pressed {
-	-fx-background-image:url(pic/settingPressed.png);
+	-fx-background-image:url(pic/buttons/set-pressed.png);
 		-fx-background-color:#1c1c1c;
 }
 
