@@ -15,14 +15,15 @@ public class CenterVO extends InstitutionVO{
 		super(InfoEnum.CENTER);
 	}
 	
-	public CenterVO(String centerID,String city){
+	public CenterVO(String centerID,String cityID,String cityName){
 		this();
 		this.institutionID=centerID;
-		this.city=city;
+		this.cityID=cityID;
+		this.cityName=cityName;
 	}
 	//
 	public CenterVO(CenterPO po){
-		this(po.getCenterID(), po.getCity());
+		this(po.getCenterID(), po.getCityID(),po.getCityName());
 	}
 	//
 
@@ -31,7 +32,7 @@ public class CenterVO extends InstitutionVO{
 	
 	public CenterPO toPO(){
 		
-		CenterPO centerPO= new CenterPO(institutionID, city);
+		CenterPO centerPO= new CenterPO(institutionID, cityID,cityName);
 		centerPO.setCache_OperatorID(UserInfo.getUserID());
 		return centerPO;
 	}
@@ -40,8 +41,8 @@ public class CenterVO extends InstitutionVO{
 		return institutionID;
 	}
 
-	public String getCity() {
-		return city;
+	public String getCityID() {
+		return cityID;
 	}
 
 	@Override

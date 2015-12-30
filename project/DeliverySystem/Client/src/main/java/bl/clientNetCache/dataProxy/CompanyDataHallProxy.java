@@ -16,11 +16,11 @@ import po.companydata.HallPO;
 import rmi.companydata.CompanyDataHallService;
 import sun.security.jca.GetInstance;
 
-/** 
+/**
  * Client//bl.clientNetCache.dataProxy//CompanyDataHallProxy.java
  * @author CXWorks
  * @date 2015年12月23日 下午8:03:47
- * @version 1.0 
+ * @version 1.0
  */
 public class CompanyDataHallProxy extends DataProxy implements
 		CompanyDataHallService {
@@ -64,15 +64,6 @@ public class CompanyDataHallProxy extends DataProxy implements
 		}
 		//
 		return proxy;
-	}
-
-	/* (non-Javadoc)
-	 * @see rmi.DataService#getConn()
-	 */
-	@Override
-	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/* (non-Javadoc)

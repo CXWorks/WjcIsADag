@@ -125,7 +125,7 @@ public class StockTackPaneController {
 			position_TableView.getItems().addAll(storeLocations);
 		});
 		position_TableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue == null) {
+			if (newValue == null||newValue.getOrderID()==null||newValue.getOrderID().length()!=10) {
 				return;
 			}
 			clear(message_TableView);
@@ -182,7 +182,6 @@ public class StockTackPaneController {
 	}
 
 	public void redirectArea(StoreAreaCode code) {
-		System.out.println(code);
 		storeArea = storeModel.getArea(code);
 		selectedRow.setValue(1);
 		selectedShelf.setValue(1);

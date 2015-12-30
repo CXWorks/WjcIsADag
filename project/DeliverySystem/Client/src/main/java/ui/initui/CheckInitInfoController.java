@@ -183,7 +183,7 @@ public class CheckInitInfoController {
                 }
         );
         city_TableColumn.setCellValueFactory(
-                cell -> new SimpleStringProperty(cell.getValue().getCity())
+                cell -> new SimpleStringProperty(cell.getValue().getCityID())
         );
         staff_TableColumn.setCellValueFactory(
                 cell -> new SimpleStringProperty(cell.getValue().getStaffCount()+"")

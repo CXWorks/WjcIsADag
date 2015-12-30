@@ -146,7 +146,7 @@ public class HallManage implements ManageblHallService {
 		try {
 			List<CenterPO> centerPOs=companyDataCenterService.getCenter();
 			String ans=centerPOs.stream()
-					.map(center->center.getCity())
+					.map(center->center.getCityID())
 					.filter(id->id.equalsIgnoreCase(cityID))
 					.findFirst().get();
 			return ans;

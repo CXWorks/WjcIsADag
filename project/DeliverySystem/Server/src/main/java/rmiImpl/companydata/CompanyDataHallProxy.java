@@ -25,18 +25,13 @@ public class CompanyDataHallProxy extends UnicastRemoteObject implements Company
 	CompanyDataHallService companyDataHallService = new CompanyDataHallImpl();
 	CacheLogService cacheLogService;
 	CacheDataService cacheDataService;
-	
+
 
 	public CompanyDataHallProxy() throws RemoteException {
 		super();
 		Logger logger=new CompanyDataHallLogger();
 		this.cacheDataService=logger;
 		this.cacheLogService=logger;
-	}
-
-	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
 	}
 
 	@Override

@@ -70,11 +70,6 @@ public class DeliverDataProxy extends CommonData<DeliverPO> implements DeliverDa
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<String> available(String HallID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return deliverDataService.available(HallID);

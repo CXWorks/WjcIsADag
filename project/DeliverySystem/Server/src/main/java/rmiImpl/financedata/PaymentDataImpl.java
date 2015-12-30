@@ -38,11 +38,6 @@ public class PaymentDataImpl extends UnicastRemoteObject implements PaymentDataS
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
-	@Override
 	public OperationMessage insert(PaymentPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String insert = MySql.insert(TableEnum.PAYMENT, new HashMap<String, String>() {

@@ -12,12 +12,13 @@ import vo.managevo.staff.StaffVO;
 
 public class HallVO extends InstitutionVO{
 	
-	public HallVO(String hallID,String city,String area,String nearCenterID){
+	public HallVO(String hallID,String city,String area,String nearCenterID,String cityName){
 		this();
 		this.institutionID=hallID;
-		this.city=city;
+		this.cityID=city;
 		this.area=area;
 		this.nearCenterID=nearCenterID;
+		this.cityName=cityName;
 	}
 	
 	private String area;
@@ -41,11 +42,11 @@ public class HallVO extends InstitutionVO{
 	}
 	//
 	public HallVO(HallPO po){
-		this(po.getHallID(), po.getCity(), po.getArea(), po.getNearCenterID());
+		this(po.getHallID(), po.getCityID(), po.getArea(), po.getNearCenterID(),po.getCityName());
 	}
 	//toPO
 	public HallPO toPO(){
-		HallPO hallPO= new HallPO(institutionID, city, area, nearCenterID);
+		HallPO hallPO= new HallPO(institutionID, cityID, area, nearCenterID,cityName);
 		hallPO.setCache_OperatorID(UserInfo.getUserID());
 		return hallPO;
 	}
@@ -53,8 +54,8 @@ public class HallVO extends InstitutionVO{
 	public String getHallID() {
 		return institutionID;
 	}
-	public String getCity() {
-		return city;
+	public String getCityID() {
+		return cityID;
 	}
 	public String getArea() {
 		return area;

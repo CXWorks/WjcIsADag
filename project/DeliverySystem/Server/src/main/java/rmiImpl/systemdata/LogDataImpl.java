@@ -37,11 +37,6 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService {
 		ID = this.getMaxID();
 	}
 
-	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
 	public int getMaxID() throws RemoteException {
 		String selectAll = MySql.select(TableEnum.LOG,null);
 		ResultSet rs = null;

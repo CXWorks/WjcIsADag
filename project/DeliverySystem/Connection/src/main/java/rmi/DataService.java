@@ -13,8 +13,8 @@ import po.FormPO;
  * @version 2015.10.31
  */
 public interface DataService<PO extends CommonPO > extends Remote {
-	
-	/** 获得SQL 的  Connection*/
-	public Connection getConn() throws RemoteException;
+
+//	/** 获得SQL 的  Connection*/
+//	public Connection getConn() throws RemoteException;
 
 }

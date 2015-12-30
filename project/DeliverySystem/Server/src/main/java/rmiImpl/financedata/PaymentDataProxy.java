@@ -71,11 +71,6 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getByTime(start, end);
