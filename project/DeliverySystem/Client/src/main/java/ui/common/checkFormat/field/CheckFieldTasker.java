@@ -6,6 +6,7 @@ import factory.FormFactory;
 import factory.FormatCheckFactory;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import message.CheckFormMessage;
 import ui.common.checkFormat.CheckTasker;
 
 /**
@@ -15,9 +16,20 @@ public abstract class CheckFieldTasker extends CheckTasker {
 
     protected TextField field;
 
-    protected CheckFieldTasker(Label err_Label, TextField field) {
-        super(err_Label);
+    protected CheckFieldTasker(TextField field) {
+        super();
         this.field = field;
+    }
+
+    @Override
+    public boolean handle(CheckFormMessage msg){
+        if(msg.getCheckResult()){
+            return true;
+        }else{
+            field.clear();
+            field.setPromptText(msg.getReason());
+            return false;
+        }
     }
 
 }

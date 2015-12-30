@@ -10,25 +10,12 @@ import message.CheckFormMessage;
  */
 public abstract class CheckTasker implements Checkable {
 
-    protected Label errLabel;
     protected FormatCheckService checkService;
 
-    protected CheckTasker(Label errLabel) {
+    protected CheckTasker() {
         this.checkService = FormatCheckFactory.getFormatCheckService();
-        this.errLabel = errLabel;
     }
 
-    public boolean handle(CheckFormMessage msg){
-        if(msg.getCheckResult()){
-            if(errLabel != null){
-                errLabel.setText("");
-            }
-            return true;
-        }else{
-            if(errLabel != null){
-                errLabel.setText(msg.getReason());  // clear error tips
-            }
-            return false;
-        }
-    }
+    protected abstract boolean handle(CheckFormMessage message);
+
 }

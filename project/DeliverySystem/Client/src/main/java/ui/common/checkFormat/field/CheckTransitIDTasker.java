@@ -10,7 +10,7 @@ import message.CheckFormMessage;
 public class CheckTransitIDTasker extends CheckFieldTasker {
 
     public CheckTransitIDTasker(Label err_Label, TextField field) {
-        super(err_Label, field);
+        super(field);
     }
 
     @Override
