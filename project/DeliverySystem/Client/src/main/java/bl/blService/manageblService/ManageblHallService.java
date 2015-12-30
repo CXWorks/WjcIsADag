@@ -26,4 +26,5 @@ public interface ManageblHallService {
 	
 	public String newHallID(String centerID);
 	
+	public String nearCenterID(String cityID);
 }

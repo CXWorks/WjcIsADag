@@ -2,9 +2,12 @@ package bl.blImpl.manangrbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
+import po.companydata.CenterPO;
 import po.companydata.HallPO;
+import rmi.companydata.CompanyDataCenterService;
 import rmi.companydata.CompanyDataHallService;
 import tool.vopo.VOPOFactory;
 import vo.FormVO;
@@ -127,6 +130,25 @@ public class HallManage implements ManageblHallService {
 		try {
 			String ID=hallService.newHallID(centerID.substring(0, 3));
 			return ID;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblHallService#nearCenterID(java.lang.String)
+	 */
+	@Override
+	public String nearCenterID(String cityID) {
+		CompanyDataCenterService companyDataCenterService=CacheHelper.getCompanyDataCenterService();
+		try {
+			List<CenterPO> centerPOs=companyDataCenterService.getCenter();
+			String ans=centerPOs.stream()
+					.map(center->center.getCity())
+					.filter(id->id.equalsIgnoreCase(cityID))
+					.findFirst().get();
+			return ans;
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();
 			return null;

@@ -804,4 +804,13 @@ public class InitializationBLController implements InitializationBLService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.manageblService.ManageblHallService#nearCenterID(java.lang.String)
+	 */
+	@Override
+	public String nearCenterID(String cityID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

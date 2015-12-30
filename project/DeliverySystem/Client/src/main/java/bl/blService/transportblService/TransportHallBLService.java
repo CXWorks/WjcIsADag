@@ -1,6 +1,8 @@
 package bl.blService.transportblService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import bl.blService.FormBLService;
 import message.CheckFormMessage;
@@ -49,4 +51,10 @@ public interface TransportHallBLService extends FormBLService<LoadVO> {
 	 * @return 新的汽运编号
 	 */
 	public String newTransID(String unitID);
+	/**
+	 * 自动装车
+	 * @param orderVOs
+	 * @return
+	 */
+	public Map<Boolean, List<String>> computeLoadCar(List<OrderVO> orderVOs);
 }

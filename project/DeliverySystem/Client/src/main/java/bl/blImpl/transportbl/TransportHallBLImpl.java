@@ -2,6 +2,8 @@ package bl.blImpl.transportbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
@@ -196,5 +198,14 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			Reconnect.ReConnectFactory();
 			return null;
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.transportblService.TransportHallBLService#computeLoadCar(java.util.List)
+	 */
+	@Override
+	public Map<Boolean, List<String>> computeLoadCar(List<OrderVO> orderVOs) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

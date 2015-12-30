@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import vo.ordervo.OrderVO;
 
@@ -16,7 +17,7 @@ import vo.ordervo.OrderVO;
 public class LoadHelper {
 	
 	private LoadService loadService;
-	public Map<Boolean, List<Integer>> greedy(List<OrderVO> src){
+	public Map<Boolean, List<String>> greedy(List<OrderVO> src){
 		double[][] num=new double[src.size()][6];
 		int index=0;
 		for (OrderVO orderVO:src) {
@@ -38,7 +39,12 @@ public class LoadHelper {
 			}
 		}
 		//
-		return loadService.algorithm(num);
+		Map<Boolean, List<Integer>> res= loadService.algorithm(num);
+		//
+		Map<Boolean, List<String>> ans=new HashMap<Boolean, List<String>>(2);
+		ans.put(true, res.get(true).stream().map(n->Integer.toString(n)).collect(Collectors.toList()));
+		ans.put(false, res.get(false).stream().map(n->Integer.toString(n)).collect(Collectors.toList()));
+		return ans;
 	}
 	private void weihu(double[] src){
 		for (int i = 0; i < 2; i++) {
