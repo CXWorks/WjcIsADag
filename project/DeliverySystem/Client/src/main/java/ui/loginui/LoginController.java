@@ -35,7 +35,7 @@ import vo.managevo.staff.StaffVO;
 public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
-    
+
     public TextField search_Field;
 
 	public TableView<Map.Entry<String, String>> logistics_TableView;
@@ -85,20 +85,20 @@ public class LoginController {
 
         password_Field.clear();
     }
-    
+
     public void search(ActionEvent atcionEvent){
 		logistics_TableView.getItems().clear();
-		System.out.println("hhhhhhhhhhhh"+search_Field.getText());
+//		System.out.println(search_Field.getText());
 		logisticsvo=searchblService.searchOrder(
 				search_Field.getText());
-		System.out.println("logistics=="+logisticsvo);
+//		System.out.println(logisticsvo.getLocation().toString());
         if(this.logisticsvo == null){
             return;
         }
-        
+
         LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
         LogisticsVO2ColumnHelper.setValueColumn(address_Column);
         logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
-       
+
 	}
 }

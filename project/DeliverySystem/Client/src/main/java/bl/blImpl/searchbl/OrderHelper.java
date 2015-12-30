@@ -11,30 +11,30 @@ import rmi.orderdata.OrderDataService;
 import userinfo.UserInfo;
 import vo.logisticsvo.LogisticsVO;
 
-/** 
+/**
  * Client//bl.blImpl.searchbl//OrderHelper.java
  * @author CXWorks
  * @date 2015年11月15日 下午5:12:30
- * @version 1.0 
+ * @version 1.0
  */
 public class OrderHelper {
 	private OrderPO toSearch;
 	private Intergrate intergrate;
 	public OrderHelper(){
-		
+
 		intergrate=new Intergrate();
 	}
-	
+
 	private void initNet(){
 		try {
 			CacheHelper.initializeLogin();
 		} catch (NetInitException e) {
 			Reconnect.ReConnectFactory();
 		}
-		
+
 	}
-	
-	
+
+
 	public LogisticsVO searchOrder(String orderID){
 		if (!UserInfo.isConnected()) {
 			this.initNet();
@@ -53,7 +53,7 @@ public class OrderHelper {
 				if (ans!=null) {
 					location.add(ans[0]);
 					time.add(ans[1]);
-				} 
+				}
 			}
 			//
 			return new LogisticsVO(toSearch, location, time);

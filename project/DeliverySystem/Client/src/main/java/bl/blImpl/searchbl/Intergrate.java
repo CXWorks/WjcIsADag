@@ -16,11 +16,11 @@ import rmi.transportdata.CenterOutDataService;
 import rmi.transportdata.LoadDataService;
 import tool.time.TimeConvert;
 
-/** 
+/**
  * Client//bl.blImpl.searchbl//Intergrate.java
  * @author CXWorks
  * @date 2015年11月15日 下午5:12:52
- * @version 1.0 
+ * @version 1.0
  */
 public class Intergrate {
 	public String[] search(String ID) throws RemoteException{
@@ -49,13 +49,13 @@ public class Intergrate {
 			DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 			DeliverPO deliverPO=deliverDataService.getFormPO(ID);
 			ans[0]=deliverPO.getFormID().substring(2, 9);
-			ans[1]=deliverPO.getDate().toString();
+			ans[1]=TimeConvert.getDisplayDate(deliverPO.getDate());
 			break;
 		case "03":
 			ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
 			ReceivePO receivePO=receiveDataService.getFormPO(ID);
-			ans[0]=TimeConvert.getDisplayDate(receivePO.getDate());
-			ans[1]=receivePO.getDepature();
+			ans[0]=receivePO.getDepature();
+			ans[1]=TimeConvert.getDisplayDate(receivePO.getDate());
 			break;
 
 		default:
