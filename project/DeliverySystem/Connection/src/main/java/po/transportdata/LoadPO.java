@@ -29,7 +29,7 @@ public class LoadPO extends TransportPO implements Serializable {
 
 	public LoadPO(String formID,String peopleTransport, Timestamp LoadDate,
 			String TransportID, String placeTo, String peopleSee,
-			String expense, ArrayList<String> IDs,String creatorID) {
+			String expense, ArrayList<String> IDs,String creatorID,String truckID) {
 		super(FormEnum.LOAD_CAR,formID,creatorID);
 
 		this.peopleTransport = peopleTransport;
@@ -42,6 +42,7 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.expense = expense;
 		this.IDs = IDs;
 		this.formType = FormEnum.LOAD_CAR;
+		this.numberOfIndex=truckID;
 	}
 
 	public String getPeopleTransport() {

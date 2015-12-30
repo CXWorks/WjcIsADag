@@ -101,7 +101,7 @@ public class RevenueFormController {
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");
 
-    	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText()));
+    	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText(),deliver_ChoiceBox.getValue()));
     	money_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getMoney())
                 );

@@ -33,7 +33,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 
 	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Timestamp LoadDate, String TransportID, String placeTo,
-			String peopleSee, String expense, ArrayList<String> IDs,String creatorID) {
+			String peopleSee, String expense, ArrayList<String> IDs,String creatorID,String truckID) {
 		super(FormEnum.CENTER_TRANSPORT,formID,creatorID);
 
 		this.placeFrom = placeFrom;
@@ -48,6 +48,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.expense = expense;
 		this.IDs = IDs;
 		this.formType = FormEnum.CENTER_TRANSPORT;
+		this.numberOfIndex=truckID;
 	}
 
 	public String getPlaceFrom() {
