@@ -109,23 +109,23 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	}
 
 	@Override
-	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
+	public ArrayList<StoreInPO> getAllStoreInPO(String centerID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return storeFormDataService.getAllStoreInPO();
+			return storeFormDataService.getAllStoreInPO(centerID);
 		return null;
 	}
 
 	@Override
-	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
+	public ArrayList<StoreOutPO> getAllStoreOutPO(String centerID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return storeFormDataService.getAllStoreOutPO();
+			return storeFormDataService.getAllStoreOutPO(centerID);
 		return null;
 	}
 
 	@Override
-	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
+	public ArrayList<FormPO> getInOutInfo(String centerID,Calendar start, Calendar end) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
-			return storeFormDataService.getInOutInfo(start, end);
+			return storeFormDataService.getInOutInfo(centerID,start, end);
 		return null;
 	}
 

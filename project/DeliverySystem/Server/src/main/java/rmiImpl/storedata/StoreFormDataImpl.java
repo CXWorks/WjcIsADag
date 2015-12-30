@@ -74,6 +74,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				put("money", po.getMoney());
 				put("date_and_unit", po.getFormID().substring(2, 17));
 				put("creatorID", po.getCreatorID());
+				put("centerID", po.getFormID().substring(2, 9));
 			}
 		});
 		try {
@@ -109,6 +110,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 				put("location", po.getLocation().getLocationForSQL());
 				put("date_and_unit", po.getFormID().substring(2, 17));
 				put("creatorID", po.getCreatorID());
+				put("centerID", po.getFormID().substring(2, 9));
 			}
 		});
 		try {
@@ -349,8 +351,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	}
 
 	@Override
-	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.STORE_IN, null);
+	public ArrayList<StoreInPO> getAllStoreInPO(String centerID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("centerID", centerID);
+			}
+		});
 		ResultSet rs = null;
 		StoreInPO temp = null;
 		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
@@ -374,8 +380,12 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	}
 
 	@Override
-	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException {
-		String selectAll = MySql.select(TableEnum.STORE_OUT, null);
+	public ArrayList<StoreOutPO> getAllStoreOutPO(String centerID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("centerID", centerID);
+			}
+		});
 		ResultSet rs = null;
 		StoreOutPO temp = null;
 		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
@@ -401,7 +411,7 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 	}
 
 	@Override
-	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
+	public ArrayList<FormPO> getInOutInfo(String centerID,Calendar start, Calendar end) throws RemoteException {
 		String selectIn = MySql.time(TableEnum.STORE_IN, "date", start, end);
 		String selectOut = MySql.time(TableEnum.STORE_OUT, "date", start, end);
 		ResultSet rs = null;
@@ -412,6 +422,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			statement = conn.prepareStatement(selectIn);
 			rs = statement.executeQuery(selectIn);
 			while (rs.next()) {
+				if(!rs.getString("centerID").equalsIgnoreCase(centerID))
+					continue;
 				in = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
 						rs.getString("destination"), rs.getString("location"), rs.getString("creatorID"));
 				in.setFormState(rs.getString("formState"));
@@ -421,6 +433,8 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 			statement = conn.prepareStatement(selectOut);
 			rs = statement.executeQuery(selectOut);
 			while (rs.next()) {
+				if(!rs.getString("centerID").equalsIgnoreCase(centerID))
+					continue;
 				out = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
 						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"),
 						rs.getString("creatorID"));

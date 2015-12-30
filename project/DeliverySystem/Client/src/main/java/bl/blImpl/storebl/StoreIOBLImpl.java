@@ -5,6 +5,7 @@ import bl.blService.storeblService.StoreIOBLService;
 import bl.clientNetCache.CacheHelper;
 import message.CheckFormMessage;
 import tool.vopo.VOPOFactory;
+import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.storevo.GoodsVO;
 import vo.storevo.StoreFormVO;
@@ -17,6 +18,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import po.FormPO;
 import po.orderdata.OrderPO;
 import po.storedata.StoreInPO;
 import po.storedata.StoreOutPO;
@@ -30,28 +32,16 @@ public class StoreIOBLImpl implements StoreIOBLService {
 	private VOPOFactory vopoFactory;
 	public StoreIOBLImpl(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		
+
 	}
     public List<StoreFormVO> getGoodsInfo(Calendar startDate,Calendar endDate) {
     	StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
-        LinkedList<StoreFormVO> answer=new LinkedList<StoreFormVO>();
+
         try {
-			ArrayList<StoreInPO> storeInPOs=storeFormDataService.getAllStoreInPO();
-			ArrayList<StoreOutPO> storeOutPOs=storeFormDataService.getAllStoreOutPO();
+			List<FormPO> storeInPOs=storeFormDataService.getInOutInfo(UserInfo.getInstitutionID(), startDate, endDate);
+
 			//
-			for (StoreInPO storeInPO : storeInPOs) {
-				if (this.comp(startDate, endDate, storeInPO.getDate())) {
-					StoreInVO storeInVO=(StoreInVO)vopoFactory.transPOtoVO(storeInPO);
-					answer.add(storeInVO);
-				}
-			}
-			//
-			for (StoreOutPO storeOutPO : storeOutPOs) {
-				if (this.comp(startDate, endDate, storeOutPO.getDate())) {
-					StoreOutVO storeOutVO=(StoreOutVO)vopoFactory.transPOtoVO(storeOutPO);
-					answer.add(storeOutVO);
-				}
-			}
+			List<StoreFormVO> answer=(List<StoreFormVO>) vopoFactory.transPOtoVO(storeInPOs);
 			return answer;
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();
@@ -73,14 +63,14 @@ public class StoreIOBLImpl implements StoreIOBLService {
 	        	StoreOutVO storeOutVO=(StoreOutVO)vopoFactory.transPOtoVO(storeOutPO);
 	        	answer.add(storeOutVO);
 			}
-	        
-	        
+
+
 	        return answer;
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();
 			return null;
 		}
-        
+
     }
 
     public List<CheckFormMessage> checkFormat(String inDate, String inTime, String outDate, String outTime) {

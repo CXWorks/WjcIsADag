@@ -96,17 +96,17 @@ public interface StoreFormDataService extends DataService<CommonPO>{
 	 * 展示全部in信息
 	 * @return 所有信息
 	 */
-	public ArrayList<StoreInPO> getAllStoreInPO() throws RemoteException;
+	public ArrayList<StoreInPO> getAllStoreInPO(String centerID) throws RemoteException;
 	/**
 	 * 展示全部out信息
 	 * @return 所有信息
 	 */
-	public ArrayList<StoreOutPO> getAllStoreOutPO() throws RemoteException;
+	public ArrayList<StoreOutPO> getAllStoreOutPO(String centerID) throws RemoteException;
 	/**
 	 * 查看某一时间段的出入记录
 	 * @return 所有信息
 	 */
-	public ArrayList<FormPO> getInOutInfo(Calendar start,Calendar end) throws RemoteException;
+	public ArrayList<FormPO> getInOutInfo(String centerID,Calendar start,Calendar end) throws RemoteException;
 
 	/**
 	 * 按照入库单的提交者查找历史
