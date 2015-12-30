@@ -14,7 +14,6 @@
     -fx-base: #1e1e1e;
     -fx-control-inner-background: #131313;
     -fx-background-color:  #1e1e1e;
-    -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
 }
