@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import message.OperationMessage;
 import po.FormPO;
@@ -130,6 +131,20 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	public ArrayList<FormPO> getInOutInfo(Calendar start, Calendar end) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.getInOutInfo(start, end);
+		return null;
+	}
+
+	@Override
+	public List<StoreInPO> getHistoryIn(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return storeFormDataService.getHistoryIn(creatorID);
+		return null;
+	}
+
+	@Override
+	public List<StoreOutPO> getHistoryOut(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return storeFormDataService.getHistoryOut(creatorID);
 		return null;
 	}
 

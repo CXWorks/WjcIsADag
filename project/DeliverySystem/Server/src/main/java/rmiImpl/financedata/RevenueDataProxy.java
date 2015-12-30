@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import message.OperationMessage;
 import po.financedata.RevenuePO;
@@ -85,6 +86,13 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	public ArrayList<RevenuePO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getByTime(start, end);
+		return null;
+	}
+
+	@Override
+	public List<RevenuePO> getHistory(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return revenueDataService.getHistory(creatorID);
 		return null;
 	}
 

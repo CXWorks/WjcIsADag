@@ -436,4 +436,64 @@ public class StoreFormDataImpl extends UnicastRemoteObject implements StoreFormD
 
 		return result;
 	}
+
+	@Override
+	public List<StoreInPO> getHistoryIn(String creatorID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.STORE_IN, new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		StoreInPO temp = null;
+		ArrayList<StoreInPO> result = new ArrayList<StoreInPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new StoreInPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"), rs.getString("location"), rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				temp.setMoney(rs.getString("money"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<StoreOutPO> getHistoryOut(String creatorID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.STORE_OUT, new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		StoreOutPO temp = null;
+		ArrayList<StoreOutPO> result = new ArrayList<StoreOutPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new StoreOutPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("destination"), rs.getString("transportation"), rs.getString("transID"),
+						rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				temp.setMoney(rs.getString("money"));
+				temp.setLocation(rs.getString("location"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

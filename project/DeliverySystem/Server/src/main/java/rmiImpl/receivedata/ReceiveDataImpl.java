@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import message.OperationMessage;
 import po.FormEnum;
@@ -193,6 +194,35 @@ public class ReceiveDataImpl extends CommonData<ReceivePO> implements ReceiveDat
 		try {
 			statement = conn.prepareStatement(selectAll);
 			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
+						rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"),
+						rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<ReceivePO> getHistory(String creatorID) throws RemoteException {
+		String select = MySql.select(TableEnum.RECEIVE,new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		ReceivePO temp = null;
+		ArrayList<ReceivePO> result = new ArrayList<ReceivePO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				temp = new ReceivePO(rs.getString("formID"), rs.getString("orderID"), rs.getString("transitID"),
 						rs.getTimestamp("date"), rs.getString("depature"), rs.getString("state"),

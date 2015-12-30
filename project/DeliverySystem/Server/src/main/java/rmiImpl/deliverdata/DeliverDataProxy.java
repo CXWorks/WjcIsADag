@@ -3,6 +3,7 @@ package rmiImpl.deliverdata;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.deliverdata.DeliverPO;
@@ -84,6 +85,13 @@ public class DeliverDataProxy extends CommonData<DeliverPO> implements DeliverDa
 	public ArrayList<String> searchAsPerson(String ID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return deliverDataService.searchAsPerson(ID);
+		return null;
+	}
+
+	@Override
+	public List<DeliverPO> getHistory(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return deliverDataService.getHistory(creatorID);
 		return null;
 	}
 

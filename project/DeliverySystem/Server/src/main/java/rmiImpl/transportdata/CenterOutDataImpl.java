@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import database.ConnecterHelper;
 import database.MySql;
@@ -299,5 +300,37 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<CenterOutPO> getHistory(String creatorID) throws RemoteException {
+		String select = MySql.select(TableEnum.CENTEROUT, new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		CenterOutPO temp = null;
+		ArrayList<CenterOutPO> result = new ArrayList<CenterOutPO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("IDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
+				}
+				temp = new CenterOutPO(rs.getString("formID"), rs.getString("placeFrom"), rs.getString("shelfNum"),
+						rs.getString("transitState"), rs.getTimestamp("LoadDate"), rs.getString("TransportID"),
+						rs.getString("placeTo"), rs.getString("peopleSee"), rs.getString("expense"), IDs,
+						rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

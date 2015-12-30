@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import message.OperationMessage;
 import po.FormEnum;
@@ -95,12 +96,12 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return result;
 	}
 
-//	public static void main(String[] args) throws RemoteException {
-//		DeliverDataImpl t = new DeliverDataImpl();
-//		DeliverPO po = t.getFormPO("040251001201512240000006");
-//		po.setFinished(false);
-//		t.update(po);
-//	}
+	// public static void main(String[] args) throws RemoteException {
+	// DeliverDataImpl t = new DeliverDataImpl();
+	// DeliverPO po = t.getFormPO("040251001201512240000006");
+	// po.setFinished(false);
+	// t.update(po);
+	// }
 
 	public OperationMessage update(DeliverPO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
@@ -177,7 +178,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			rs = statement.executeQuery(select);
 			rs.next();
 			result = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-					rs.getString("postman"),rs.getString("creatorID"));
+					rs.getString("postman"), rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 			result.setFinished(rs.getBoolean("finished"));
 		} catch (SQLException e) {
@@ -198,7 +199,7 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			rs = statement.executeQuery(selectAll);
 			while (rs.next()) {
 				temp = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
-						rs.getString("postman"),rs.getString("creatorID"));
+						rs.getString("postman"), rs.getString("creatorID"));
 				temp.setFormState(rs.getString("formState"));
 				temp.setFinished(rs.getBoolean("finished"));
 				result.add(temp);
@@ -257,6 +258,35 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
 				result.add(rs.getString("formID"));
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<DeliverPO> getHistory(String creatorID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.DELIVER, new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		DeliverPO temp = null;
+		ArrayList<DeliverPO> result = new ArrayList<DeliverPO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				temp = new DeliverPO(rs.getString("formID"), rs.getString("orderID"), rs.getTimestamp("date"),
+						rs.getString("postman"), rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				temp.setFinished(rs.getBoolean("finished"));
+				result.add(temp);
+
 			}
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");

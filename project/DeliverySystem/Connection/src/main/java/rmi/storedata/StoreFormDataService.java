@@ -107,4 +107,16 @@ public interface StoreFormDataService extends DataService<CommonPO>{
 	 * @return 所有信息
 	 */
 	public ArrayList<FormPO> getInOutInfo(Calendar start,Calendar end) throws RemoteException;
+
+	/**
+	 * 按照入库单的提交者查找历史
+	 * @return 对应查找信息
+	 */
+	public List<StoreInPO> getHistoryIn(String creatorID) throws RemoteException;
+
+	/**
+	 * 按照出库单的提交者查找历史
+	 * @return 对应查找信息
+	 */
+	public List<StoreOutPO> getHistoryOut(String creatorID) throws RemoteException;
 }

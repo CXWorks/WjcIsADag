@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import database.ConnecterHelper;
 import database.MySql;
@@ -79,6 +80,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 				put("FormIDs", final_IDs);
 				put("goodsType", po.getGoodsType());
 				put("pack", po.getPack().toString());
+				put("creatorID", po.getCreatorID());
 			}
 		});
 		try {
@@ -194,7 +196,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 					rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
 					rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"), rs.getString("money"),
 					rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"), FormIDs,
-					rs.getString("targetHallID"));
+					rs.getString("targetHallID"), rs.getString("creatorID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -223,7 +225,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 						rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
 						rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"),
 						rs.getString("money"), rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"),
-						FormIDs, rs.getString("targetHallID"));
+						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"));
 				;
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
@@ -256,6 +258,42 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "修改order时时出错：");
 			System.err.println("修改order时时出错：");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<OrderPO> getHistory(String creatorID) throws RemoteException {
+		String select = MySql.select(TableEnum.ORDER,  new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		OrderPO temp = null;
+		ArrayList<OrderPO> result = new ArrayList<OrderPO>();
+		try {
+			statement = conn.prepareStatement(select);
+			rs = statement.executeQuery(select);
+			while (rs.next()) {
+				ArrayList<String> FormIDs = new ArrayList<String>();
+				if (!rs.getString("FormIDs").equalsIgnoreCase("")) {
+					FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
+				}
+				temp = new OrderPO(rs.getString("formID"), rs.getString("nameFrom"), rs.getString("nameTo"),
+						rs.getString("unitFrom"), rs.getString("unitTo"), rs.getString("addressFrom"),
+						rs.getString("addressTo"), rs.getString("phoneNumFrom"), rs.getString("phoneNumTo"),
+						rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
+						rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"),
+						rs.getString("money"), rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"),
+						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"));
+				;
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
 		return result;

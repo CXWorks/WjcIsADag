@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import message.OperationMessage;
 import po.financedata.PaymentPO;
@@ -78,6 +79,13 @@ public class PaymentDataProxy extends UnicastRemoteObject implements PaymentData
 	public ArrayList<PaymentPO> getByTime(Calendar start, Calendar end) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return paymentDataService.getByTime(start, end);
+		return null;
+	}
+
+	@Override
+	public List<PaymentPO> getHistory(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return paymentDataService.getHistory(creatorID);
 		return null;
 	}
 

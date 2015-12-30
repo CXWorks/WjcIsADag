@@ -36,8 +36,8 @@ public class OrderPO extends FormPO implements Serializable {
 			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
 			String telNumFrom, String telNumTo, String goodsNum,
 			String goodsName, String weight, String volume,String money, String goodsType,
-			String type, String pack,ArrayList<String> formIDs, String targetHallID) {
-		super(FormEnum.ORDER,formID);
+			String type, String pack,ArrayList<String> formIDs, String targetHallID,String creatorID) {
+		super(FormEnum.ORDER,formID,creatorID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom=addressFrom;
@@ -104,8 +104,8 @@ public class OrderPO extends FormPO implements Serializable {
 			String goodsNum, String goodsName, String weight, String volume,
 			String money, String goodsType, String type,
 			String pack, ArrayList<String> formIDs, String targetHallID,
-			String receivePeople, Calendar receiveDate,String createrID) {
-		super(FormEnum.ORDER, formID,createrID);
+			String receivePeople, Calendar receiveDate,String creatorID) {
+		super(FormEnum.ORDER, formID,creatorID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom = addressFrom;

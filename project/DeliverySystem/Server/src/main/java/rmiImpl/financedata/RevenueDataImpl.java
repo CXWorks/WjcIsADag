@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import message.OperationMessage;
 import po.financedata.PaymentPO;
@@ -279,6 +280,38 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();
 		}
+		return result;
+	}
+
+	@Override
+	public List<RevenuePO> getHistory(String creatorID) throws RemoteException {
+		String selectAll = MySql.select(TableEnum.REVENUE,new HashMap<String, String>() {
+			{
+				put("creatorID", creatorID);
+			}
+		});
+		ResultSet rs = null;
+		RevenuePO temp = null;
+		ArrayList<RevenuePO> result = new ArrayList<RevenuePO>();
+		try {
+			statement = conn.prepareStatement(selectAll);
+			rs = statement.executeQuery(selectAll);
+			while (rs.next()) {
+				ArrayList<String> IDs = new ArrayList<String>();
+				if (!rs.getString("orderIDs").equalsIgnoreCase("")) {
+					IDs = new ArrayList<String>(Arrays.asList(rs.getString("orderIDs").split(" ")));
+				}
+				temp = new RevenuePO(rs.getString("formID"), rs.getTimestamp("date"), rs.getString("amount"),
+						rs.getString("deliverName"), rs.getString("hallID"), IDs,rs.getString("creatorID"));
+				temp.setFormState(rs.getString("formState"));
+				result.add(temp);
+
+			}
+		} catch (SQLException e) {
+			System.err.println("查找数据库时出错：");
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 

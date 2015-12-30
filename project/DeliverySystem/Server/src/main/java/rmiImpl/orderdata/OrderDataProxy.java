@@ -3,6 +3,7 @@ package rmiImpl.orderdata;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.orderdata.OrderPO;
@@ -91,6 +92,13 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 		// TODO Auto-generated method stub
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.setFinished(orderID);
+		return null;
+	}
+
+	@Override
+	public List<OrderPO> getHistory(String creatorID) throws RemoteException {
+		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return orderDataService.getHistory(creatorID);
 		return null;
 	}
 

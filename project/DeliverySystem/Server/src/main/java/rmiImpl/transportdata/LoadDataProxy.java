@@ -3,6 +3,7 @@ package rmiImpl.transportdata;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.systemdata.SystemState;
@@ -77,6 +78,13 @@ public class LoadDataProxy extends CommonData<LoadPO> implements LoadDataService
 	public String newTransID(String unitID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return loadDataService.newTransID(unitID);
+		return null;
+	}
+
+	@Override
+	public List<LoadPO> getHistory(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return loadDataService.getHistory(creatorID);
 		return null;
 	}
 

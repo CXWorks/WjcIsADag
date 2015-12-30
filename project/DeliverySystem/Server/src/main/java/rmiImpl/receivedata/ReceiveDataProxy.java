@@ -3,6 +3,7 @@ package rmiImpl.receivedata;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import message.OperationMessage;
 import po.receivedata.ReceivePO;
@@ -70,6 +71,13 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 
 	@Override
 	public Connection getConn() throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public List<ReceivePO> getHistory(String creatorID) throws RemoteException {
+		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
+			return receiveDataService.getHistory(creatorID);
 		return null;
 	}
 }
