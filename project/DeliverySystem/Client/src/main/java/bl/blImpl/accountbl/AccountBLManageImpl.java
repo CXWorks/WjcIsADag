@@ -35,7 +35,7 @@ public class AccountBLManageImpl implements AccountBLManageService {
 	 *
 	 * @see bl.blService.accountblService.AccountBLManageService#getAccountVOs()
 	 */
-	public ArrayList<AccountVO> getAccountVOs() {
+	public List<AccountVO> getAccountVOs() {
 		try {
 			AccountDataService accountDataService = CacheHelper.getAccountDataService();
 			ArrayList<AccountPO> po = accountDataService.getAccountPOs();

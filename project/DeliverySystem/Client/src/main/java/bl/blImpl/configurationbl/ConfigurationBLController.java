@@ -1,6 +1,5 @@
 package bl.blImpl.configurationbl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import message.OperationMessage;
@@ -37,7 +36,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	/* (non-Javadoc)
 	 * @see bl.blService.configurationblService.ConfigurationBLService#get(po.configurationdata.enums.ConfigurationEnum)
 	 */
-	public ArrayList<ConfigurationVO> get(InfoEnum type) {
+	public List<ConfigurationVO> get(InfoEnum type) {
 		switch (type) {
 		case PACK:
 			return money.getPack();

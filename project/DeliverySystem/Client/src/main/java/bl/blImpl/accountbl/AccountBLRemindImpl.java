@@ -1,14 +1,14 @@
 package bl.blImpl.accountbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.List;
 
 import rmi.chatRemindService.ChatRemindService;
-import message.ChatMessage;
 import message.OperationMessage;
 import bl.NetReconnect.ReconnectMe;
 import bl.blService.accountblService.AccountBLRemindService;
 import bl.clientNetCache.CacheHelper;
+import message.ChatMessage;
 
 /** 
  * Client//bl.blImpl.accountbl//AccountBLRemindImpl.java
@@ -38,7 +38,7 @@ public class AccountBLRemindImpl implements AccountBLRemindService {
 	/* (non-Javadoc)
 	 * @see bl.blService.accountblService.AccountBLRemindService#receive(java.lang.String)
 	 */
-	public ArrayList<ChatMessage> receive(String ID) {
+	public List<ChatMessage> receive(String ID) {
 		ChatRemindService chatRemindService=CacheHelper.getChatRemindService();
 		try {
 			return chatRemindService.getMessage(ID);

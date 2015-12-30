@@ -2,6 +2,7 @@ package bl.blImpl.examinebl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import po.FormEnum;
 import po.FormPO;
@@ -127,7 +128,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 	 * @see bl.blService.examineblService.ExamineblManageService#getForms(po.FormEnum)
 	 */
 	@Override
-	public ArrayList<FormVO> getForms(FormEnum formType) {
+	public List<FormVO> getForms(FormEnum formType) {
 		ArrayList<FormVO> result = new ArrayList<FormVO>();
 		for (int i = 0; i < formVOs.size(); i++) {
 			FormVO temp = formVOs.get(i);
