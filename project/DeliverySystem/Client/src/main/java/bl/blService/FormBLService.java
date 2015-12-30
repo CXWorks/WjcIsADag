@@ -21,5 +21,7 @@ public interface FormBLService<T extends FormVO> {
     public OperationMessage submit(T form);
     
     public ArrayList<CheckFormMessage> checkFormat(T form,boolean isFinal);
+    
+    public List<T> getHistory(String creatorID);
 
 }

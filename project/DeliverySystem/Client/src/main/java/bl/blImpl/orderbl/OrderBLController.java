@@ -115,6 +115,21 @@ public class OrderBLController implements OrderBLService{
 			return null;
 		}
 	}
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<OrderVO> getHistory(String creatorID) {
+		OrderDataService orderDataService=CacheHelper.getOrderDataService();
+		try {
+			List<OrderPO> orderPOs=orderDataService.getHistory(creatorID);
+			List<OrderVO> ans=(List<OrderVO>) vopoFactory.transPOtoVO(orderPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
 
 
 }

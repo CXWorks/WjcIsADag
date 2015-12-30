@@ -208,4 +208,20 @@ public class TransportHallBLImpl implements TransportHallBLService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<LoadVO> getHistory(String creatorID) {
+		LoadDataService loadDataService=CacheHelper.getLoadDataService();
+		try {
+			List<LoadPO> loadPOs=loadDataService.getHistory(creatorID);
+			List<LoadVO> ans=(List<LoadVO>) vopoFactory.transPOtoVO(loadPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
 }

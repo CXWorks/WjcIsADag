@@ -140,5 +140,22 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		}
 
 
+		/* (non-Javadoc)
+		 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+		 */
+		@Override
+		public List<CenterOutVO> getHistory(String creatorID) {
+			CenterOutDataService centerOutDataService=CacheHelper.getTransportDataService();
+			try {
+				List<CenterOutPO> centerOutPOs=centerOutDataService.getHistory(creatorID);
+				List<CenterOutVO> ans=(List<CenterOutVO>) vopoFactory.transPOtoVO(centerOutPOs);
+				return ans;
+			} catch (RemoteException e) {
+				Reconnect.ReConnectFactory();
+				return null;
+			}
+		}
+
+
 
 }

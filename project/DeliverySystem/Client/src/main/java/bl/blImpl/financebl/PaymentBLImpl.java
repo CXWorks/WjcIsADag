@@ -127,4 +127,19 @@ public class PaymentBLImpl implements PaymentBLService {
 			return true;
 		return false;
 	}
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<PaymentVO> getHistory(String creatorID) {
+		PaymentDataService paymentDataService=CacheHelper.getPaymentDataService();
+		try {
+			List<PaymentPO> paymentPOs=paymentDataService.getHistory(creatorID);
+			List<PaymentVO> ans=(List<PaymentVO>) vopoFactory.transPOtoVO(paymentPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
 }

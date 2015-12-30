@@ -3,6 +3,7 @@ package bl.blImpl.receivebl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import message.CheckFormMessage;
 import message.OperationMessage;
@@ -129,6 +130,24 @@ public class ReceiveblImpl implements ReceiveBLService {
 			boolean isFinal) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<ReceiveVO> getHistory(String creatorID) {
+		ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
+		try {
+			List<ReceivePO> receivePOs=receiveDataService.getHistory(creatorID);
+			List<ReceiveVO> ans=(List<ReceiveVO>) vopoFactory.transPOtoVO(receivePOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
 	}
 
 

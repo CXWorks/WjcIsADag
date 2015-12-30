@@ -127,4 +127,19 @@ public class StoreOutBLImpl implements StoreOutBLService {
 		return this.getNewStoreOutID(null);
 
 	}
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<StoreOutVO> getHistory(String creatorID) {
+		StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
+		try {
+			List<StoreOutPO> storeOutPOs=storeFormDataService.getHistoryOut(creatorID);
+			List<StoreOutVO> ans=(List<StoreOutVO>) vopoFactory.transPOtoVO(storeOutPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
 }

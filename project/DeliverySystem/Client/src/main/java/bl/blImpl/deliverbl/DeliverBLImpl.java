@@ -2,6 +2,7 @@ package bl.blImpl.deliverbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import po.FormEnum;
 import po.deliverdata.DeliverPO;
@@ -135,6 +136,21 @@ public class DeliverBLImpl implements DeliverBLService {
 			return null;
 		}
 
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<DeliverVO> getHistory(String creatorID) {
+		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
+		try {
+			List<DeliverPO> deliverPOs=deliverDataService.getHistory(creatorID);
+			List<DeliverVO> ans=(List<DeliverVO>) vopoFactory.transPOtoVO(deliverPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
 	}
 
 }

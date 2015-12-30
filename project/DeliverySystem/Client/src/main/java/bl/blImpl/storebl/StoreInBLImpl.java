@@ -20,6 +20,7 @@ import vo.storevo.StoreInVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import po.FormEnum;
 import po.orderdata.OrderPO;
@@ -123,5 +124,20 @@ public class StoreInBLImpl implements StoreInBLService {
 	public String newID() {
 		// TODO Auto-generated method stub
 		return this.getNewStoreInID(null);
+	}
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<StoreInVO> getHistory(String creatorID) {
+		StoreFormDataService storeFormDataService=CacheHelper.getStoreFormDataService();
+		try {
+			List<StoreInPO> storeInPOs=storeFormDataService.getHistoryIn(creatorID);
+			List<StoreInVO> ans=(List<StoreInVO>) vopoFactory.transPOtoVO(storeInPOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
 	}
 }

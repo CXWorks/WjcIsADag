@@ -202,4 +202,21 @@ public class RevenueBLImpl implements RevenueBLService {
 			return null;
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see bl.blService.FormBLService#getHistory(java.lang.String)
+	 */
+	@Override
+	public List<RevenueVO> getHistory(String creatorID) {
+		RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
+		try {
+			List<RevenuePO> revenuePOs=revenueDataService.getHistory(creatorID);
+			List<RevenueVO> ans=(List<RevenueVO>) vopoFactory.transPOtoVO(revenuePOs);
+			return ans;
+		} catch (RemoteException e) {
+			Reconnect.ReConnectFactory();
+			return null;
+		}
+	}
 }
