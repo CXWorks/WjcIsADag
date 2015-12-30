@@ -12,6 +12,7 @@ import model.examine.ExamineQueue;
 import model.store.StoreLocation;
 import po.FormEnum;
 import po.FormPO;
+import po.FormStateEnum;
 import po.deliverdata.DeliverPO;
 import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
@@ -109,6 +110,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 		for (FormPO tmp : forms) {
 			OperationMessage result = new OperationMessage();
 			FormEnum type = tmp.getFormType();
+			tmp.setFormState(FormStateEnum.PASS);
 			switch (type) {
 			case DELIVER:
 				DeliverPO dPo = (DeliverPO) tmp;

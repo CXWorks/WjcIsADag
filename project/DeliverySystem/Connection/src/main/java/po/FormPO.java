@@ -58,6 +58,9 @@ public class FormPO extends CommonPO implements Serializable{
 			break;
 		}
 	}
+	public void setFormState(FormStateEnum state) {
+		this.formState = state;
+	}
 	public String getFormID() {
 		return formID;
 	}
