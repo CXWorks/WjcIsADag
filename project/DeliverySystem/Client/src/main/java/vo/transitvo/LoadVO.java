@@ -9,8 +9,8 @@ import userinfo.UserInfo;
 
 public class LoadVO extends TransitVO {
 
-	String	peopletransport;
-	String	expense;
+	public String peopletransport;
+	public String expense;
 
 	public LoadVO(String formID,String createrID){
 		super(FormEnum.LOAD_CAR,formID,createrID);

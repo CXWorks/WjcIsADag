@@ -10,10 +10,12 @@ import main.Main;
 import ui.financeui.PaymentFormController;
 import ui.orderui.NewOrderController;
 import ui.storeui.StoreInFormController;
+import ui.transportui.LoadCarController;
 import vo.FormVO;
 import vo.financevo.PaymentVO;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
+import vo.transitvo.LoadVO;
 
 import java.io.IOException;
 
@@ -22,7 +24,6 @@ import java.io.IOException;
  */
 public class ViewFormDetailController {
     public AnchorPane contentFather;
-    public AnchorPane blockPane;
 
     private FormVO formVO;
 
@@ -36,7 +37,6 @@ public class ViewFormDetailController {
             ViewFormDetailController controller = loader.getController();
             controller.formVO = form;
             controller.contentFather.getChildren().add(controller.getContentByType());
-            controller.blockPane.requestFocus();
             stage.setScene(new Scene(outerPane));
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,6 +61,7 @@ public class ViewFormDetailController {
             case RECEIVE:
                 break;
             case LOAD_CAR:
+                result = LoadCarController.launchInHistory((LoadVO)formVO);
                 break;
             case CENTER_TRANSPORT:
                 break;
