@@ -11,10 +11,11 @@ import po.FormPO;
 public abstract class TransportPO extends FormPO implements Serializable {
 
 	protected Calendar LoadDate;// 装车日期
-	protected String TransportID;// 汽运编号、航班列次号 等
+	protected String TransportID;// 汽运编号、 等
 	protected String placeTo;// 到达地
 	protected String peopleSee;// 监装员
 	protected String expense;// 运费
+	protected String numberOfIndex;//航班列次号,汽车牌号
 	protected ArrayList<String> IDs;// 本次装箱所有托运单号
 	//
 	protected TransportPO(FormEnum formEnum,String formID,String createrID){
@@ -54,6 +55,10 @@ public abstract class TransportPO extends FormPO implements Serializable {
 
 	public void setIDs(ArrayList<String> iDs) {
 		IDs = iDs;
+	}
+
+	public String getNumberOfIndex() {
+		return numberOfIndex;
 	}
 	
 
