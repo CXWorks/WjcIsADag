@@ -19,12 +19,10 @@ import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
-import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
-import vo.receivevo.ReceiveVO;
 
 import java.awt.List;
 import java.awt.event.KeyEvent;
@@ -235,7 +233,6 @@ public class NewOrderController {
         type_Box.getSelectionModel().select(new SimpleEnumProperty<DeliverTypeEnum>(orderVO.getType()));
         pack_Box.getSelectionModel().select(new SimpleEnumProperty<PackingEnum>(orderVO.getPack()));
         predict_Expense.setText(orderVO.getMoney());
-
     }
 
 	public void clear(ActionEvent actionEvent) {

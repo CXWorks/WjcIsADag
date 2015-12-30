@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.FormEnum;
-import po.FormPO;
-import po.receivedata.StateEnum;
 
 public class CenterOutPO extends TransportPO implements Serializable {
 
@@ -18,7 +16,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Calendar LoadDate, String TransportID, String placeTo,
 			String peopleSee, String expense, ArrayList<String> IDs,String creatorID) {
-		super(FormEnum.TRANSPORT_CENTER,formID,creatorID);
+		super(FormEnum.CENTER_TRANSPORT,formID,creatorID);
 
 		this.placeFrom = placeFrom;
 		this.shelfNum = shelfNum;
@@ -29,13 +27,13 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
-		this.formType = FormEnum.TRANSPORT_CENTER;
+		this.formType = FormEnum.CENTER_TRANSPORT;
 	}
 
 	public CenterOutPO(String formID,String placeFrom, String shelfNum, String transitState,
 			Timestamp LoadDate, String TransportID, String placeTo,
 			String peopleSee, String expense, ArrayList<String> IDs,String creatorID) {
-		super(FormEnum.TRANSPORT_CENTER,formID,creatorID);
+		super(FormEnum.CENTER_TRANSPORT,formID,creatorID);
 
 		this.placeFrom = placeFrom;
 		this.shelfNum = shelfNum;
@@ -48,7 +46,7 @@ public class CenterOutPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
-		this.formType = FormEnum.TRANSPORT_CENTER;
+		this.formType = FormEnum.CENTER_TRANSPORT;
 	}
 
 	public String getPlaceFrom() {

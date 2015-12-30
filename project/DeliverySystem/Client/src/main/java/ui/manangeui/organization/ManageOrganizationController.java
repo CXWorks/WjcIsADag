@@ -148,12 +148,12 @@ public class ManageOrganizationController {
 		ArrayList<CenterVO> centerVOs = manageblCenterService.getCenter();
 		ArrayList<HallVO> hallVOs = manageblHallService.getHall();
 		ArrayList<InstitutionVO> ans=new ArrayList<InstitutionVO>(centerVOs.size()+hallVOs.size());
-		for (int i = 0; i < centerVOs.size(); i++) {
-			ans.add((InstitutionVO)centerVOs.get(i));
-		}
-		for (int i = 0; i < hallVOs.size(); i++) {
-			ans.add((InstitutionVO)hallVOs.get(i));
-		}
+        for (CenterVO centerVO : centerVOs) {
+            ans.add((InstitutionVO) centerVO);
+        }
+        for (HallVO hallVO : hallVOs) {
+            ans.add((InstitutionVO) hallVO);
+        }
 		return ans;
 	}
 
@@ -179,6 +179,7 @@ public class ManageOrganizationController {
                 .newDialog(institutionVO, EditOrganizationDialogController.EditType.EDIT,
                         configurationBLService, manageblHallService, manageblCenterService);
         dialog.showAndWait();
+        refreshTable();
 	}
 
 	public void newOrganization(ActionEvent actionEvent) {
@@ -186,5 +187,6 @@ public class ManageOrganizationController {
                 .newDialog(null, EditOrganizationDialogController.EditType.NEW,
                         configurationBLService, manageblHallService, manageblCenterService);
         dialog.showAndWait();
+        refreshTable();
 	}
 }

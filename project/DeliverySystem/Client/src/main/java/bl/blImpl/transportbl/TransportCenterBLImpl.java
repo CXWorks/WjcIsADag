@@ -20,13 +20,11 @@ import rmi.transportdata.CenterOutDataService;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
-import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.CenterOutVO;
 import bl.NetReconnect.Reconnect;
 import bl.blService.transportblService.TransportCenterBLService;
 import bl.clientNetCache.CacheHelper;
-import po.transportdata.CenterOutPO;
 
 public class TransportCenterBLImpl implements TransportCenterBLService {
 	private DraftService draftService;
@@ -39,7 +37,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 
 		
 		public CenterOutVO loadDraft() {
-			CenterOutVO vo=(CenterOutVO)draftService.getDraft(FormEnum.TRANSPORT_CENTER);
+			CenterOutVO vo=(CenterOutVO)draftService.getDraft(FormEnum.CENTER_TRANSPORT);
 			return vo;
 		}
 		public OperationMessage saveDraft(CenterOutVO form) {

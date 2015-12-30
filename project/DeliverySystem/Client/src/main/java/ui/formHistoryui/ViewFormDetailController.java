@@ -7,7 +7,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import ui.financeui.PaymentFormController;
+import ui.orderui.NewOrderController;
+import ui.storeui.StoreInFormController;
 import vo.FormVO;
+import vo.financevo.PaymentVO;
+import vo.ordervo.OrderVO;
+import vo.storevo.StoreInVO;
 
 import java.io.IOException;
 
@@ -30,6 +36,7 @@ public class ViewFormDetailController {
             ViewFormDetailController controller = loader.getController();
             controller.formVO = form;
             controller.contentFather.getChildren().add(controller.getContentByType());
+            controller.blockPane.requestFocus();
             stage.setScene(new Scene(outerPane));
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,26 +46,30 @@ public class ViewFormDetailController {
     }
 
     public Parent getContentByType(){
+        Parent result = null;
         switch (formVO.getFormType()){
             case ORDER:
+                result = NewOrderController.launchInHistory((OrderVO)formVO);
                 break;
             case DELIVER:
                 break;
             case PAYMENT:
+                result = PaymentFormController.launchInHistory((PaymentVO)formVO);
                 break;
             case REVENUE:
                 break;
             case RECEIVE:
                 break;
-            case TRANSPORT_HALL:
+            case LOAD_CAR:
                 break;
-            case TRANSPORT_CENTER:
+            case CENTER_TRANSPORT:
                 break;
             case STORE_IN:
+                result = StoreInFormController.launchInHistory((StoreInVO)formVO);
                 break;
             case STORE_OUT:
                 break;
         }
-        return null;
+        return result;
     }
 }

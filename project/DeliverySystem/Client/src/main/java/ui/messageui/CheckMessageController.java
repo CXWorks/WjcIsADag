@@ -28,7 +28,7 @@ import javafx.scene.layout.Pane;
  */
 public class CheckMessageController implements Runnable{
 	public TableView<ChatMessage> message_View;
-//    public TableColumn<ChatMessage,String> check_TableColumn;
+    public TableColumn<ChatMessage,String> check_TableColumn;
     public TableColumn<ChatMessage,String> time_TableColumn;
     public TableColumn<ChatMessage,String> message_TableColumn;
 

@@ -14,6 +14,9 @@ import userinfo.UserInfo;
 import vo.FormVO;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,19 +30,19 @@ public class FormHistoryController {
     public TableColumn<FormVO, String> creator_TableColumn;
     public TextField formID_Field;
 
-    private FormBLService formBLService;
+    private FormBLService[] formBLServices;
     private InformController informController;
     private FormVO selectedFormVO;
 
-    public static Pane launch(FormBLService formBLService){
+    public static Pane launch(FormBLService...formBLServices){
         try {
             FXMLLoader loader = new FXMLLoader(FormHistoryController.class.getResource("formHistory.fxml"));
             Pane pane = loader.load();
 
             FormHistoryController controller = loader.getController();
-            controller.formBLService = formBLService;
+            controller.formBLServices = formBLServices;
             controller.informController = InformController.newInformController(pane);
-            controller.fillTable(formBLService.getHistory(UserInfo.getUserID()));
+            controller.search(null);
 
             return controller.informController.stackPane;
         } catch (IOException e) {
@@ -59,13 +62,25 @@ public class FormHistoryController {
         );
     }
 
-    private void fillTable(List<FormVO> forms){
+    private void fillTable(Collection<FormVO> forms){
         forms_TableView.getItems().clear();
         forms_TableView.getItems().addAll(forms);
     }
 
     public void search(ActionEvent actionEvent) {
-        fillTable(formBLService.getHistory(UserInfo.getUserID()));
+        String filters = formID_Field.getText();
+        ArrayList<FormVO> formVOs = new ArrayList<>();
+        for (FormBLService formBLService : formBLServices) {
+            formVOs.addAll(formBLService.getHistory(UserInfo.getUserID()));
+        }
+        for (int i = 0; i < formVOs.size(); i++) {
+            FormVO formVO = formVOs.get(i);
+            if(!formVO.getFormID().contains(filters)){
+                formVOs.remove(formVO);
+                --i;
+            }
+        }
+        fillTable(formVOs);
     }
 
     public void viewDetail(ActionEvent actionEvent) {

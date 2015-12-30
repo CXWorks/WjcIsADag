@@ -13,7 +13,7 @@ public class LoadVO extends TransitVO {
 	String	expense;
 
 	public LoadVO(String formID,String createrID){
-		super(FormEnum.TRANSPORT_HALL,formID,createrID);
+		super(FormEnum.LOAD_CAR,formID,createrID);
 	}
 
 	public LoadVO(String formID,String truckID,String peopletransport,String expense,

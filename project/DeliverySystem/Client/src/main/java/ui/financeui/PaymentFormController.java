@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import po.financedata.FinancePayEnum;
@@ -30,8 +27,9 @@ import java.util.Calendar;
  */
 public class PaymentFormController {
 
-	private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
-
+    public Button save_Btn;
+    public Button clear_Btn;
+    public Button commit_Btn;
 	public TextField payerName_Field;
 	public TextField payerAccount_Field;
 	public TextField receiverAccount_Field;
@@ -42,15 +40,35 @@ public class PaymentFormController {
 	public ChoiceBox<SimpleEnumProperty<FinancePayEnum>> item_ChoiceBox;
 
 	private InformController informController;
+    private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(PaymentFormController.class.getResource("paymentForm.fxml"));
-		Pane pane = loader.load();
-		PaymentFormController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static PaymentFormController launch() {
+        try {
+            FXMLLoader loader = new FXMLLoader(PaymentFormController.class.getResource("paymentForm.fxml"));
+            Pane pane = loader.load();
+            PaymentFormController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
+            return controller;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return controller.informController.stackPane;
+		return null;
 	}
+
+    public static Parent launchInNew() {
+        PaymentFormController controller = launch();
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInHistory(PaymentVO paymentVO) {
+        PaymentFormController controller = launch();
+        controller.save_Btn.setVisible(false);
+        controller.clear_Btn.setVisible(false);
+        controller.commit_Btn.setVisible(false);
+        controller.showDetail(paymentVO);
+        return controller.informController.stackPane;
+    }
 
 	@FXML
 	public void initialize() {
@@ -72,17 +90,18 @@ public class PaymentFormController {
 		note_TextArea.clear();
 		payment_DatePicker.setValue(LocalDate.now());
 		item_ChoiceBox.setValue(item_ChoiceBox.getItems().get(0));
-
-		//  test
-//		payerAccount_Field.setText("bill_gates");
-//		payerName_Field.setText("biergaici");
-//		receiverName_Field.setText("吴君如");
-//		receiverAccount_Field.setText("wjr");
-//		money_Field.setText("99");
-//		payment_DatePicker.setValue(LocalDate.of(2015, 12, 9));
-//		item_ChoiceBox.getSelectionModel().select(3);
-//		note_TextArea.setText("I have too much money");
 	}
+
+    public void showDetail(PaymentVO paymentVO){
+        payerAccount_Field.setText(paymentVO.payerAccID);
+        payerName_Field.setText(paymentVO.payerName);
+        receiverAccount_Field.setText(paymentVO.receiverAccID);
+        receiverName_Field.setText(paymentVO.receiverName);
+        money_Field.setText(paymentVO.amount);
+        note_TextArea.setText(paymentVO.note);
+        payment_DatePicker.setValue(TimeConvert.convertCalendar(paymentVO.date));
+        item_ChoiceBox.setValue(new SimpleEnumProperty<>(paymentVO.item));
+    }
 
 	public void commit(ActionEvent actionEvent) {
 		OperationMessage msg = paymentBLService.submit(generatePaymentVO());

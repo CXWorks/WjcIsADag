@@ -22,9 +22,9 @@ public class PaymentVO extends FinanceFormVO {
     public String	receiverName;
     public String	receiverAccount;
     // 条目
-    private FinancePayEnum	item;
+	public FinancePayEnum	item;
     // 备注
-    private String	note;
+	public String	note;
     //
     public PaymentVO(String formID,String createrID){
     	super(FormEnum.PAYMENT,FormStateEnum.CONSTRUCTED,formID,createrID);

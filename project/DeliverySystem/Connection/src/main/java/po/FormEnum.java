@@ -11,8 +11,8 @@ public enum FormEnum implements Serializable, EnumObservable<FormEnum> {
     PAYMENT("付款单"),
     REVENUE("收款单"),
     RECEIVE("到达单"),
-    TRANSPORT_HALL("中转单"),
-    TRANSPORT_CENTER("中转单"),
+    LOAD_CAR("装车单"),
+    CENTER_TRANSPORT("中转单"),
     STORE_IN("入库单"),
     STORE_OUT("出库单");
 

@@ -19,7 +19,7 @@
         </rowConstraints>
          <children>
             <Label text="订单号" />
-            <Label fx:id="storeout_DatePicker" text="入库日期" GridPane.rowIndex="1" />
+            <Label text="入库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
             <DatePicker fx:id="storeIn_DatePicker" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
@@ -39,10 +39,10 @@
       <Label layoutX="721.0" layoutY="48.0" text="订单预览" AnchorPane.leftAnchor="721.0" AnchorPane.topAnchor="48.0" />
       <HBox layoutX="519.0" layoutY="467.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="394.0" layoutY="398.0" mnemonicParsing="false" onAction="#fillPosition" text="自动填充位置" />
-            <Button layoutX="532.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="653.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="fillPos_Btn" layoutX="394.0" layoutY="398.0" mnemonicParsing="false" onAction="#fillPosition" text="自动填充位置" />
+            <Button fx:id="save_Btn" layoutX="532.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button fx:id="clear_Btn" layoutX="653.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="commit_Btns" layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <GridPane layoutX="387.0" layoutY="104.0" prefHeight="273.0" prefWidth="250.0" AnchorPane.bottomAnchor="164.0" AnchorPane.leftAnchor="387.0" AnchorPane.topAnchor="104.0">

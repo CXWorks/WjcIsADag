@@ -32,7 +32,6 @@ import vo.storevo.StoreInVO;
  * Created by Sissel on 2015/11/26.
  */
 public class StoreInFormController {
-	public Label storein_DatePicker;
 	public DatePicker storeIn_DatePicker;
 	public TextField orderID_Field;
 	public TextField destination_Field;
@@ -43,6 +42,10 @@ public class StoreInFormController {
 	public ChoiceBox<SimpleEnumProperty<StoreAreaCode>> area_ChoiceBox;
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
 	public TableColumn<Map.Entry<String, String>, String> value_Column;
+	public Button fillPos_Btn;
+	public Button save_Btn;
+	public Button clear_Btn;
+	public Button commit_Btns;
 
 	private StoreAreaCode area = StoreAreaCode.FLEX;
 
@@ -50,14 +53,46 @@ public class StoreInFormController {
 
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(StoreInFormController.class.getResource("storeInForm.fxml"));
-		Pane pane = loader.load();
-		StoreInFormController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static StoreInFormController launch() {
+        try {
+            FXMLLoader loader = new FXMLLoader(StoreInFormController.class.getResource("storeInForm.fxml"));
+            Pane pane = loader.load();
+            StoreInFormController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
 
-		return controller.informController.stackPane;
+            return controller;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
 	}
+
+	public static Parent launchInNew(){
+        StoreInFormController controller = launch();
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInHistory(StoreInVO storeInVO){
+        StoreInFormController controller = launch();
+        controller.fillPos_Btn.setVisible(false);
+        controller.save_Btn.setVisible(false);
+        controller.clear_Btn.setVisible(false);
+        controller.commit_Btns.setVisible(false);
+        controller.showDetail(storeInVO);
+        return controller.informController.stackPane;
+    }
+
+    private void showDetail(StoreInVO storeInVO){
+        orderID_Field.setText(storeInVO.getOrderID());
+        storeIn_DatePicker.setValue(TimeConvert.convertCalendar(storeInVO.getDate()));
+        destination_Field.setText(storeInVO.getDestination());
+        StoreLocation storeLocation = storeInVO.getLocation();
+        area_ChoiceBox.setValue(new SimpleEnumProperty<>(storeLocation.getArea()));
+        row_Field.setText(storeLocation.getRow()+"");
+        shelf_Field.setText(storeLocation.getShelf()+"");
+        position_Field.setText(storeLocation.getPosition()+"");
+        fillOrderTable();
+    }
 
 	@FXML
 	public void initialize() {
@@ -122,13 +157,6 @@ public class StoreInFormController {
 
 	private void fillOrderTable() {
 		OrderVO orderVO = storeInBLService.loadOrder(orderID_Field.getText());
-
-		// OrderVO orderVO =
-		// new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
-		// "18351890356", "13724456739", "3", "图书", "", "", "", null, null,
-		// null,
-		// DeliverTypeEnum.NORMAL, PackingEnum.BAG);
-
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 }

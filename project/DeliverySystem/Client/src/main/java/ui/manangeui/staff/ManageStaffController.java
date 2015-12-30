@@ -151,6 +151,7 @@ public class ManageStaffController  {
     }
 
     public void fillStaffTableWithVO(InstitutionVO vo){
+        institutionID = vo.getInstitutionID();
         if(vo != null){
             initLabel(vo);
             List<StaffVO> staffVOs = manageblStaffService.getStaffByInstitution(vo.getInstitutionID());

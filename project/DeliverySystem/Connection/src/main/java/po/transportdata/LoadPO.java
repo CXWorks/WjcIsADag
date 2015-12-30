@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.FormEnum;
-import po.FormPO;
 
 public class LoadPO extends TransportPO implements Serializable {
 
@@ -15,7 +14,7 @@ public class LoadPO extends TransportPO implements Serializable {
 	public LoadPO(String formID,String peopleTransport, Calendar LoadDate,
 			String TransportID, String placeTo, String peopleSee,
 			String expense, ArrayList<String> IDs,String creatorID) {
-		super(FormEnum.TRANSPORT_HALL,formID,creatorID);
+		super(FormEnum.LOAD_CAR,formID,creatorID);
 
 		this.peopleTransport = peopleTransport;
 		this.LoadDate = LoadDate;
@@ -24,13 +23,13 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
-		this.formType = FormEnum.TRANSPORT_HALL;
+		this.formType = FormEnum.LOAD_CAR;
 	}
 
 	public LoadPO(String formID,String peopleTransport, Timestamp LoadDate,
 			String TransportID, String placeTo, String peopleSee,
 			String expense, ArrayList<String> IDs,String creatorID) {
-		super(FormEnum.TRANSPORT_HALL,formID,creatorID);
+		super(FormEnum.LOAD_CAR,formID,creatorID);
 
 		this.peopleTransport = peopleTransport;
 		Calendar temp=Calendar.getInstance();
@@ -41,7 +40,7 @@ public class LoadPO extends TransportPO implements Serializable {
 		this.peopleSee = peopleSee;
 		this.expense = expense;
 		this.IDs = IDs;
-		this.formType = FormEnum.TRANSPORT_HALL;
+		this.formType = FormEnum.LOAD_CAR;
 	}
 
 	public String getPeopleTransport() {

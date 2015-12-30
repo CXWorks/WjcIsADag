@@ -2,13 +2,11 @@ package ui.examineui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import po.FormEnum;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,13 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
-import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
-import ui.loginui.LoginController;
 import vo.FormVO;
 
 public class CheckFormController implements EventHandler<Event> {
@@ -142,9 +137,9 @@ public class CheckFormController implements EventHandler<Event> {
 		case "到达单":
 			return FormEnum.RECEIVE;
 		case "营业厅中转单":
-			return FormEnum.TRANSPORT_HALL;
+			return FormEnum.LOAD_CAR;
 		case "中转中心中转单":
-			return FormEnum.TRANSPORT_CENTER;
+			return FormEnum.CENTER_TRANSPORT;
 		case "入库单":
 			return FormEnum.STORE_IN;
 		case "出库单":

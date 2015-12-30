@@ -79,8 +79,8 @@ public class TestDraftController {
 		assertNotNull(draftService.getDraft(FormEnum.REVENUE));
 		assertNotNull(draftService.getDraft(FormEnum.STORE_IN));
 		assertNotNull(draftService.getDraft(FormEnum.STORE_OUT));
-		assertNotNull(draftService.getDraft(FormEnum.TRANSPORT_CENTER));
-		assertNotNull(draftService.getDraft(FormEnum.TRANSPORT_HALL));
+		assertNotNull(draftService.getDraft(FormEnum.CENTER_TRANSPORT));
+		assertNotNull(draftService.getDraft(FormEnum.LOAD_CAR));
 	}
 
 }

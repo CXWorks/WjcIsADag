@@ -11,7 +11,6 @@ import po.FormEnum;
 import po.companydata.CarPO;
 import po.companydata.HallPO;
 import po.memberdata.DriverPO;
-import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
 import po.orderdata.OrderPO;
 import po.transportdata.LoadPO;
@@ -24,9 +23,7 @@ import rmi.transportdata.LoadDataService;
 import tool.draft.DraftService;
 import tool.vopo.VOPOFactory;
 import userinfo.UserInfo;
-import vo.managevo.car.CarVO;
 import vo.managevo.staff.DriverVO;
-import vo.managevo.staff.StaffVO;
 import vo.ordervo.OrderVO;
 import vo.transitvo.LoadVO;
 import bl.NetReconnect.Reconnect;
@@ -44,7 +41,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 	}
 
 	public LoadVO loadDraft() {
-		LoadVO vo = (LoadVO) draftService.getDraft(FormEnum.TRANSPORT_HALL);
+		LoadVO vo = (LoadVO) draftService.getDraft(FormEnum.LOAD_CAR);
 		return vo;
 	}
 

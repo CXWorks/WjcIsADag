@@ -14,7 +14,7 @@ public class CenterOutVO extends TransitVO  {
 	private String	shelfNum;//货柜号
 	private TransportationEnum transitState;//转运类型
 	public CenterOutVO(String formID,String createrID){
-		super(FormEnum.TRANSPORT_CENTER,formID,createrID);
+		super(FormEnum.CENTER_TRANSPORT,formID,createrID);
 	}
 
 	public CenterOutVO(String formID,String placeFrom,String TransportID,String shelfNum,

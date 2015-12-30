@@ -3,6 +3,7 @@ package bl.blImpl.manangrbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import message.OperationMessage;
 import po.companydata.CenterPO;
@@ -153,7 +154,10 @@ public class HallManage implements ManageblHallService {
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();
 			return null;
-		}
+		} catch (NoSuchElementException e){
+            e.printStackTrace();
+            return cityID + "0000";
+        }
 	}
 
 

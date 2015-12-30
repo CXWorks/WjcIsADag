@@ -71,9 +71,9 @@
       <TextArea fx:id="note_TextArea" layoutX="359.0" layoutY="206.0" prefHeight="242.0" prefWidth="562.0" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="206.0" />
       <HBox layoutX="689.0" layoutY="460.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="577.0" layoutY="407.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="715.0" layoutY="407.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="save_Btn" layoutX="577.0" layoutY="407.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button fx:id="clear_Btn" layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="commit_Btn" layoutX="715.0" layoutY="407.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
    </children>

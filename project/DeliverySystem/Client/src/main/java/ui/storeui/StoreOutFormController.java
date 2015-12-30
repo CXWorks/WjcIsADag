@@ -56,7 +56,6 @@ public class StoreOutFormController {
 	public TableColumn<Map.Entry<String, String>, String> value_Column_t;
 
 	TransportationEnum tran = TransportationEnum.CAR;
-
 	StoreOutBLService storeOutBLService = FormFactory.getStoreOutBLService();
 
 	private InformController informController;
@@ -127,13 +126,6 @@ public class StoreOutFormController {
 
 	private void fillOrderTable() {
 		OrderVO orderVO = storeOutBLService.loadOrder(orderID_Field.getText());
-
-		// OrderVO orderVO =
-		// new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
-		// "18351890356", "13724456739", "3", "图书", "", "", "", null, null,
-		// null,
-		// DeliverTypeEnum.NORMAL, PackingEnum.BAG);
-
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 

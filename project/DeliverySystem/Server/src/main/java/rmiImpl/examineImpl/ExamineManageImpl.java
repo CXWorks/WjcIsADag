@@ -90,10 +90,10 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
 			pass_helper.getStoreModelDataService().setLocation(form.getFormID().substring(2, 9), sOutPO.getLocation());// 改变数据库中这个位置的状态
 			break;
-		case TRANSPORT_CENTER:
+		case CENTER_TRANSPORT:
 			result = pass_helper.getTransportDataService().update((CenterOutPO) form);
 			break;
-		case TRANSPORT_HALL:
+		case LOAD_CAR:
 			result = pass_helper.getLoadDataService().update((LoadPO) form);
 			break;
 		default:
@@ -162,7 +162,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9), location);// 改变数据库中这个位置的状态
 				pass_helper.getOrderDataService().addFormID(sOutPO.getOrderID(), tmp.getFormID());
 				break;
-			case TRANSPORT_CENTER:
+			case CENTER_TRANSPORT:
 				CenterOutPO cPo = (CenterOutPO) tmp;
 				result = pass_helper.getTransportDataService().insert(cPo);
 				if (result.operationResult) {
@@ -170,7 +170,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 						pass_helper.getOrderDataService().addFormID(ope, tmp.getFormID());
 				}
 				break;
-			case TRANSPORT_HALL:
+			case LOAD_CAR:
 				LoadPO hPo = (LoadPO) tmp;
 				result = pass_helper.getLoadDataService().insert(hPo);
 				if (result.operationResult) {
@@ -220,10 +220,10 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 			case STORE_OUT:
 				result = pass_helper.getStoreFormDataService().deleteStoreOutPO(tmp.getFormID());
 				break;
-			case TRANSPORT_CENTER:
+			case CENTER_TRANSPORT:
 				result = pass_helper.getTransportDataService().delete(tmp.getFormID());
 				break;
-			case TRANSPORT_HALL:
+			case LOAD_CAR:
 				result = pass_helper.getLoadDataService().delete(tmp.getFormID());
 				break;
 			default:

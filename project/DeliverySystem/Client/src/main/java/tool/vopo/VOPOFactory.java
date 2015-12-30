@@ -7,7 +7,6 @@ import vo.FormVO;
 import vo.InfoVO;
 import vo.accountvo.AccountVO;
 import vo.configurationvo.City2DVO;
-import vo.configurationvo.CityDistanceVO;
 import vo.configurationvo.PackVO;
 import vo.configurationvo.PriceVO;
 import vo.configurationvo.ProportionVO;
@@ -35,7 +34,6 @@ import po.companydata.CarPO;
 import po.companydata.CenterPO;
 import po.companydata.HallPO;
 import po.configurationdata.City2DPO;
-import po.configurationdata.CityDistancePO;
 import po.configurationdata.PackPO;
 import po.configurationdata.PricePO;
 import po.configurationdata.ProportionPO;
@@ -120,9 +118,9 @@ public class VOPOFactory {
 				return new RevenueVO((RevenuePO)form);
 			case RECEIVE:
 				return new ReceiveVO((ReceivePO)form);
-			case TRANSPORT_CENTER:
+			case CENTER_TRANSPORT:
 				return new CenterOutVO((CenterOutPO)form);
-			case TRANSPORT_HALL:
+			case LOAD_CAR:
 				return new LoadVO((LoadPO)form);
 			case STORE_IN:
 				return new StoreInVO((StoreInPO)form);
@@ -183,9 +181,9 @@ public class VOPOFactory {
 				return ((RevenueVO)vo).toPO();
 			case RECEIVE:
 				return ((ReceiveVO)vo).toPO();
-			case TRANSPORT_CENTER:
+			case CENTER_TRANSPORT:
 				return ((CenterOutVO)vo).toPO();
-			case TRANSPORT_HALL:
+			case LOAD_CAR:
 				return ((LoadVO)vo).toPO();
 			case STORE_IN:
 				return ((StoreInVO)vo).toPO();
