@@ -3,26 +3,26 @@ package ui.manangeui.organization;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
+import factory.ConfigurationFactory;
+import factory.InitBLFactory;
+import factory.InstitutionFactory;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import po.InfoEnum;
 import bl.blService.configurationblService.ConfigurationBLService;
 import bl.blService.manageblService.ManageblCenterService;
 import bl.blService.manageblService.ManageblHallService;
+import javafx.stage.Stage;
+import po.InfoEnum;
 import ui.common.MainPaneController;
 import ui.manangeui.staff.ManageStaffController;
 import vo.configurationvo.City2DVO;
-import vo.configurationvo.ConfigurationVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.HallVO;
 import vo.managevo.institution.InstitutionVO;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,154 +33,107 @@ import javafx.scene.Parent;
  * @date 2015年12月8日 上午8:51:57
  * @version 1.0 
  */
-public class ManageOrganizationController implements ChangeListener<InstitutionVO>{
-	public Label institutionType;
-	public Label ID;
-	public TextField area;
-	public TextField nearCenter;
-	public Label areaLabel;
-	public Label nearCenterLabel;
-	
-	public ChoiceBox<String> cityChoiceBox;
-	public Label cityID;
-	
-	public InstitutionVO institutionVO;
-	
-	public ArrayList<InstitutionVO> institutionVOs;
-	
+public class ManageOrganizationController {
+	public Label type_Label;
+	public Label id_Label;
+	public Label area_Label;
+	public Label nearCenter_Label;
 	public TableView<InstitutionVO> tableView;
 	public TableColumn<InstitutionVO, String> cityColumn;
 	public TableColumn<InstitutionVO, String> typecColumn;
 	public TableColumn<InstitutionVO, String> institutionIDColumn;
-	public boolean isNew=false;
 	public Button back_Btn;
+	public Label area_HeadLabel;
+	public Label nearCenter_HeadLabel;
+	public Label city_Label;
+	public HBox buttons_HBox;
+	public Button manageStaff_Btn;
+
+	private Pane selfPane;
+	private InstitutionVO institutionVO;
+	private ArrayList<InstitutionVO> institutionVOs;
+
 	private ManageblHallService manageblHallService;
 	private ManageblCenterService manageblCenterService;
-	private ConfigurationBLService configurationBLService;
-    private ManageStaffController staffController;
-    private List<City2DVO> cities;
-    private String selectedCityID;
-	private MainPaneController mpc;
+    private ConfigurationBLService configurationBLService;
 
-	public static Parent launch
-			(Pane father, Pane before, ManageStaffController staffController, MainPaneController mpc,
-			 ManageblHallService hallService, ManageblCenterService centerService,ConfigurationBLService configurationBLService) throws IOException
-    {
+	private MainPaneController mpc;
+	private ManageStaffController staffController;
+
+	public static ManageOrganizationController launch() {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(ManageOrganizationController.class.getResource("manageOrganization.fxml"));
-		Pane pane = fxmlLoader.load();
-
-        ManageOrganizationController controller = fxmlLoader.getController();
-        controller.manageblHallService = hallService;
-        controller.manageblCenterService = centerService;
-        controller.configurationBLService = configurationBLService;
-        controller.staffController = staffController;
-		controller.mpc = mpc;
-        controller.continueInit();
-
-		if(father == null){
-			pane.getChildren().remove(controller.back_Btn);
-            controller.back_Btn.setVisible(false);
-		}else{
-			controller.back_Btn.setOnAction(
-					o -> {
-						father.getChildren().clear();
-						father.getChildren().add(before);}
-			);
+		try {
+			Pane pane = fxmlLoader.load();
+			ManageOrganizationController controller = fxmlLoader.getController();
+			controller.selfPane = pane;
+			return controller;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		return pane;
+
+		return null;
+	}
+
+	public static Parent launchInInit(Pane father, Pane before){
+		ManageOrganizationController controller = ManageOrganizationController.launch();
+		controller.back_Btn.setOnAction(
+                o -> {
+                    father.getChildren().clear();
+                    father.getChildren().add(before);
+                }
+        );
+		controller.buttons_HBox.getChildren().remove(controller.manageStaff_Btn);
+		controller.manageStaff_Btn.setVisible(false);
+
+		controller.manageblCenterService = InitBLFactory.getInitializationBLService();
+		controller.manageblHallService = InitBLFactory.getInitializationBLService();
+        controller.configurationBLService = InitBLFactory.getInitializationBLService();
+
+		controller.continueInit();
+
+		return controller.selfPane;
+	}
+
+	public static Parent launchInManager(ManageStaffController staffController, MainPaneController mpc){
+		ManageOrganizationController controller = ManageOrganizationController.launch();
+		controller.selfPane.getChildren().remove(controller.back_Btn);
+		controller.back_Btn.setVisible(false);
+
+		controller.staffController = staffController;
+		controller.mpc = mpc;
+		controller.manageblCenterService = InstitutionFactory.getManageblCenterService();
+		controller.manageblHallService = InstitutionFactory.getManageblHallService();
+        controller.configurationBLService = ConfigurationFactory.getConfigurationBLService();
+
+		controller.continueInit();
+
+		return controller.selfPane;
 	}
 	
 	public void continueInit(){
-		this.initCityChoice();
-		institutionVOs=this.getInstitutionVOs();
+		institutionVOs = this.getInstitutionVOs();
 		tableView.setItems(FXCollections.observableList(institutionVOs));
-		tableView.getSelectionModel().selectedItemProperty().addListener(this);
+
 		tableView.getSelectionModel().selectFirst();
-		institutionVO=tableView.getSelectionModel().getSelectedItem();
-		
+		institutionVO = tableView.getSelectionModel().getSelectedItem();
+		showDetail();
 	}
 	
 	public void initialize(){
-		cityColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getCity()));
-		typecColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfoEnum().getChinese()));
-		institutionIDColumn.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInstitutionID()));
-		//
-		this.center_textfield();
-	}
-	private InstitutionVO makeInstitutionVO(){
-		if (Objects.equals(institutionType.getText(), "中转中心")) {
-			return new CenterVO(manageblCenterService.newCenterID(cityID.getText()), cityID.getText());
-		}
-		else {
-			return new HallVO(manageblHallService.newHallID(nearCenter.getText()), cityID.getText(), area.getText(), nearCenter.getText());
-		}
-	}
-	private void initCityChoice(){
-		this.cities=configurationBLService.getCity();
-		cityChoiceBox.setItems(FXCollections
-				.observableList(cities.stream()
-						.map(city->city.getName()).collect(Collectors.toList())));
-		cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-				(obser,old,New)->{
-					selectedCityID=cities.stream()
-							.filter(city->{return city.getName().equalsIgnoreCase(New);})
-							.findFirst().get().getID();
-				cityID.setText(selectedCityID);
-				});
-		//
-		
-	}
-	
-	public void newCenter(){
-		this.clear();
-		this.institutionType.setText(InfoEnum.CENTER.getChinese());
-		this.center_textfield();
-		isNew=true;
-	}
-	public void newHall(){
-		this.clear();
-		this.institutionType.setText(InfoEnum.HALL.getChinese());
-		this.hall_textfield();
-		isNew=true;
-	}
-	public void clear(){
-		this.ID.setText(null);
-		this.institutionType.setText(null);
-		this.area.clear();
-		this.cityChoiceBox.getSelectionModel().clearAndSelect(0);
-		this.nearCenter.clear();
-	}
-	public void sure(){
-		if (isNew) {
-			institutionVO =this.makeInstitutionVO();
-			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
-				manageblHallService.addHall((HallVO) institutionVO);
-			}
-			else {
-				manageblCenterService.addCenter((CenterVO) institutionVO);
-			}
-			isNew=false;
-		}
-		else {
-			institutionVO.setCity(cityID.getText());
-			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
-				((HallVO) institutionVO).setArea(area.getText());
-			}
-			if (institutionVO.getInfoEnum()==InfoEnum.HALL) {
-				manageblHallService.modifyHall((HallVO) institutionVO);
-			}
-			else {
-				manageblCenterService.modifyCenter((CenterVO) institutionVO);
-			}
-		}
-		this.clear();
-		this.refreshTable();
+		cityColumn.setCellValueFactory(cell -> new SimpleStringProperty(configurationBLService.cityID2Name(cell.getValue().getCity())));
+		typecColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getInfoEnum().getChinese()));
+		institutionIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getInstitutionID()));
+		tableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    institutionVO = newValue;
+                    showDetail();
+                }
+        );
 	}
 
 	public void refreshTable(){
-		institutionVOs=this.getInstitutionVOs();
+		institutionVOs = this.getInstitutionVOs();
 		this.tableView.setItems(FXCollections.observableList(institutionVOs));
 	}
 
@@ -188,11 +141,10 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
         mpc.jumpTo(staffController.getSelfPane());
         staffController.fillStaffTableWithVO(institutionVO);
 	}
-	
+
 	private ArrayList<InstitutionVO> getInstitutionVOs(){
-		
-		ArrayList<CenterVO> centerVOs=manageblCenterService.getCenter();
-		ArrayList<HallVO> hallVOs=manageblHallService.getHall();
+		ArrayList<CenterVO> centerVOs = manageblCenterService.getCenter();
+		ArrayList<HallVO> hallVOs = manageblHallService.getHall();
 		ArrayList<InstitutionVO> ans=new ArrayList<InstitutionVO>(centerVOs.size()+hallVOs.size());
 		for (int i = 0; i < centerVOs.size(); i++) {
 			ans.add((InstitutionVO)centerVOs.get(i));
@@ -203,50 +155,34 @@ public class ManageOrganizationController implements ChangeListener<InstitutionV
 		return ans;
 	}
 
+	private void showDetail(){
+		boolean isHall = institutionVO.getInfoEnum() == InfoEnum.HALL;
+		area_HeadLabel.setVisible(isHall);
+		area_Label.setVisible(isHall);
+		nearCenter_HeadLabel.setVisible(isHall);
+		nearCenter_Label.setVisible(isHall);
 
-	/* (non-Javadoc)
-	 * @see javafx.beans.value.ChangeListener#changed(javafx.beans.value.ObservableValue, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public void changed(ObservableValue<? extends InstitutionVO> observable,
-			InstitutionVO oldValue, InstitutionVO newValue) {
-		institutionVO =newValue;
-		this.setText(institutionVO);
-	}
-	private void setText(InstitutionVO src){
-		this.clear();
-		if (src==null) {
-			return;
-		}
-		ID.setText(src.getInstitutionID());
-		institutionType.setText(src.getInfoEnum().getChinese());
-		int index=0;
-		while (index<cities.size()) {
-			if (cities.get(index).getName().equalsIgnoreCase(src.getCity())) {
-				break;
-			}
-			index++;
-		}
-		cityChoiceBox.getSelectionModel().clearAndSelect(index);
-		if (src.getInfoEnum()==InfoEnum.HALL) {
-			this.hall_textfield();
-			area.setText(((HallVO)src).getArea());
-		}
-		else {
-			this.center_textfield();
+		city_Label.setText(configurationBLService.cityID2Name(institutionVO.getCity()));
+		type_Label.setText(institutionVO.getInfoEnum().getChinese());
+		id_Label.setText(institutionVO.getInstitutionID());
+
+		if(isHall){
+			area_Label.setText(((HallVO)institutionVO).getArea());
+			nearCenter_Label.setText(((HallVO)institutionVO).getNearCenterID());
 		}
 	}
-	//
-	private void hall_textfield(){
-		areaLabel.setVisible(true);
-		nearCenterLabel.setVisible(true);
-		area.setVisible(true);
-		nearCenter.setVisible(true);
+
+	public void modifyOrganization(ActionEvent actionEvent) {
+        Stage dialog = EditOrganizationDialogController
+                .newDialog(institutionVO, EditOrganizationDialogController.EditType.EDIT,
+                        configurationBLService, manageblHallService, manageblCenterService);
+        dialog.showAndWait();
 	}
-	private void center_textfield(){
-		areaLabel.setVisible(false);
-		nearCenterLabel.setVisible(false);
-		area.setVisible(false);
-		nearCenter.setVisible(false);
+
+	public void newOrganization(ActionEvent actionEvent) {
+        Stage dialog = EditOrganizationDialogController
+                .newDialog(null, EditOrganizationDialogController.EditType.NEW,
+                        configurationBLService, manageblHallService, manageblCenterService);
+        dialog.showAndWait();
 	}
 }

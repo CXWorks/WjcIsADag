@@ -43,6 +43,8 @@ public class InformController {
     public void inform(String info){
         content_Label.setText(info);
         informPane.setVisible(true);
+        // debug
+        System.out.println(info);
         // sleep for a while
         new Thread(
                 () -> {

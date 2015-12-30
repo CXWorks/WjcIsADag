@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import main.Main;
 import ui.common.checkFormat.field.FloatOnlyField;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;

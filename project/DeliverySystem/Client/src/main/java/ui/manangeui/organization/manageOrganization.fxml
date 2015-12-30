@@ -23,26 +23,25 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="institutionType" text="type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="type_Label" text="type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="编号" GridPane.rowIndex="3" />
-            <Label fx:id="ID" text="code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="areaLabel" text="区域" GridPane.rowIndex="4" />
-            <TextField fx:id="area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="nearCenterLabel" text="最近中心" GridPane.rowIndex="5" />
-            <TextField fx:id="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox fx:id="cityChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="id_Label" text="code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="area_HeadLabel" text="区域" GridPane.rowIndex="4" />
+            <Label fx:id="nearCenter_HeadLabel" text="最近中心" GridPane.rowIndex="5" />
             <Label text="城市" GridPane.rowIndex="1" />
             <Label text="类型" GridPane.rowIndex="2" />
             <Label text="机构信息" />
+            <Label fx:id="city_Label" text="cityName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="area_Label" text="area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="nearCenter_Label" text="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button layoutX="508.0" layoutY="477.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-      <Button layoutX="558.0" layoutY="477.0" mnemonicParsing="false" onAction="#sure" text="确认" />
-      <HBox layoutX="555.0" layoutY="329.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
+      <HBox fx:id="buttons_HBox" layoutX="555.0" layoutY="329.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="555.0" layoutY="329.0" mnemonicParsing="false" onAction="#newCenter" text="新建中心" />
-            <Button layoutX="643.0" layoutY="329.0" mnemonicParsing="false" onAction="#newHall" text="新建营业厅" />
-            <Button layoutX="757.0" layoutY="329.0" mnemonicParsing="false" onAction="#manageStaff" text="管理员工" />
+            <Button layoutX="555.0" layoutY="329.0" mnemonicParsing="false" onAction="#modifyOrganization" text="修改机构" />
+            <Button mnemonicParsing="false" text="删除机构" />
+            <Button layoutX="643.0" layoutY="329.0" mnemonicParsing="false" onAction="#newOrganization" text="新建机构" />
+            <Button fx:id="manageStaff_Btn" layoutX="757.0" layoutY="329.0" mnemonicParsing="false" onAction="#manageStaff" text="管理员工" />
          </children>
       </HBox>
       <TableView fx:id="tableView" layoutX="79.0" layoutY="98.0" prefHeight="433.0" prefWidth="429.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="60.0">
@@ -53,6 +52,5 @@
         </columns>
       </TableView>
       <Button fx:id="back_Btn" layoutX="20.0" layoutY="17.0" mnemonicParsing="false" text="back" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
-      <Label fx:id="cityID" layoutX="725.0" layoutY="82.0" />
    </children>
 </AnchorPane>

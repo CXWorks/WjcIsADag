@@ -259,7 +259,7 @@ public class InitializationBLController implements InitializationBLService {
     	InitialDataService initialDataService = CacheHelper.getInitialDataService();
     	InitialDataPO po=(InitialDataPO)vopoFactory.transVOtoPO(initialDataVO);
         try {
-			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(),po);
+			OperationMessage re=initialDataService.uploadInitialData(UserInfo.getUserID(), po);
 			UserInfo.changeSystermState();
 			return re;
 		} catch (RemoteException e) {
@@ -682,7 +682,9 @@ public class InitializationBLController implements InitializationBLService {
 	@Override
 	public OperationMessage dismissStaff(DriverVO staff) {
 		this.initialDataVO.getDrivers()
-		.removeIf(dri->{return dri.getID().equalsIgnoreCase(staff.getID());});
+		.removeIf(dri -> {
+			return dri.getID().equalsIgnoreCase(staff.getID());
+		});
 		return new OperationMessage();
 	}
 
@@ -692,6 +694,18 @@ public class InitializationBLController implements InitializationBLService {
 	@Override
 	public List<City2DVO> getCity() {
 		return initialDataVO.getCity2dvos();
+	}
+
+	@Override
+	public String cityName2ID(String cityName) {
+		List<City2DVO> cities = getCity();
+		return cities.stream().filter(city2DVO -> city2DVO.getName().equals(cityName)).findFirst().get().getID();
+	}
+
+	@Override
+	public String cityID2Name(String cityID) {
+		List<City2DVO> cities = getCity();
+		return cities.stream().filter(city2DVO -> city2DVO.getID().equals(cityID)).findFirst().get().getName();
 	}
 
 	/* (non-Javadoc)

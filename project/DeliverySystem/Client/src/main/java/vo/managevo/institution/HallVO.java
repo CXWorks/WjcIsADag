@@ -21,6 +21,15 @@ public class HallVO extends InstitutionVO{
 	}
 	
 	private String area;
+
+	public String getNearCenterID() {
+		return nearCenterID;
+	}
+
+	public void setNearCenterID(String nearCenterID) {
+		this.nearCenterID = nearCenterID;
+	}
+
 	private String nearCenterID;
 	public HallVO(){
 		super(InfoEnum.HALL);

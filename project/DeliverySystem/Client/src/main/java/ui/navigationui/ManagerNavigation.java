@@ -43,10 +43,8 @@ public class ManagerNavigation {
         ManageStaffController staffController = ManageStaffController.launchInManage();
         TabMaker.addLeftTab(mpc, new Pair<String, Parent>("管理员工", staffController.getSelfPane()));
 
-        Tab organizationTab = new Tab("管理机构");
-        organizationTab.setContent(ManageOrganizationController.launch
-                (null, null, staffController, mpc,
-                        InstitutionFactory.getManageblHallService(), InstitutionFactory.getManageblCenterService(), ConfigurationFactory.getConfigurationBLService()));
+        Parent organizationP = ManageOrganizationController.launchInManager(staffController, mpc);
+        TabMaker.addLeftTab(mpc, new Pair<String, Parent>("管理机构", organizationP));
 
         return mpc.getOuterPane();
     }

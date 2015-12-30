@@ -74,6 +74,18 @@ public class ConfigurationBLController implements ConfigurationBLService {
 		}
 	}
 
+	@Override
+	public String cityName2ID(String cityName) {
+		List<City2DVO> cities = getCity();
+		return cities.stream().filter(city2DVO -> city2DVO.getName().equals(cityName)).findFirst().get().getID();
+	}
+
+	@Override
+	public String cityID2Name(String cityID) {
+		List<City2DVO> cities = getCity();
+		return cities.stream().filter(city2DVO -> city2DVO.getID().equals(cityID)).findFirst().get().getName();
+	}
+
 	/* (non-Javadoc)
 	 * @see bl.blService.configurationblService.ConfigurationBLService#getCity()
 	 */
