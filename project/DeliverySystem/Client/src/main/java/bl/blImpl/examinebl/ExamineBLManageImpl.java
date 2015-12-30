@@ -113,10 +113,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		ExamineManageService examineManageService=CacheHelper.getExamineManageService();
 		ArrayList<FormVO> temp=new ArrayList<FormVO>(1);
 		temp.add(form);
-		//
-		this.formVOs.removeIf(f->f.formID.equalsIgnoreCase(form.formID));
-		formVOs.add(form);
-		//
+		this.maintainData(temp);
 		FormPO po=(FormPO)vopoFactory.transVOtoPO(form);
 		try {
 			return examineManageService.modifyForm(po);
