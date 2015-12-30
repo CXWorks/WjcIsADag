@@ -64,6 +64,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				put("date_and_unit", po.getFormID().substring(2, 17));
 				put("peopleTrans", po.getPeopleTransport());
 				put("creatorID", po.getCreatorID());
+				put("truckID", po.getNumberOfIndex());
 			}
 		});
 		try {
@@ -103,7 +104,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 			}
 			result = new LoadPO(rs.getString("formID"), rs.getString("peopleTrans"), rs.getTimestamp("LoadDate"),
 					rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
-					rs.getString("expense"), IDs, rs.getString("creatorID"));
+					rs.getString("expense"), IDs, rs.getString("creatorID"), rs.getString("truckID"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -213,7 +214,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				}
 				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
-						rs.getString("expense"), IDs, rs.getString("creatorID"));
+						rs.getString("expense"), IDs, rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}
@@ -318,7 +319,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				}
 				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
-						rs.getString("expense"), IDs, rs.getString("creatorID"));
+						rs.getString("expense"), IDs, rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
 			}
