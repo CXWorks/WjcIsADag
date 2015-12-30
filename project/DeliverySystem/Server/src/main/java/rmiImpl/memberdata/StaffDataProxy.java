@@ -24,11 +24,6 @@ public class StaffDataProxy extends UnicastRemoteObject implements MemberDataSer
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<StaffPO> getStaffByInstitution(String institutionID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return staffDataService.getStaffByInstitution(institutionID);

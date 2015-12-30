@@ -37,11 +37,6 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public OperationMessage newCity2D(City2DPO po) throws RemoteException {
 		OperationMessage res = null;
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)) {
@@ -78,8 +73,8 @@ public class ConfigurationDataProxy extends UnicastRemoteObject implements Confi
 	public OperationMessage modifyCity2D(City2DPO po) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL)){
 			OperationMessage res =configurationDataService.modifyCity2D(po);
-		
-		
+
+
 			if (res != null && res.operationResult) {
 				cacheLogService.addNewOperation(Operation.build(
 						OperationTypeEnum.MODIFY, po));

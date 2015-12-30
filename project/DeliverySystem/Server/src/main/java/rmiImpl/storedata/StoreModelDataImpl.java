@@ -41,11 +41,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		conn = ConnecterHelper.getConn();
 	}
 
-	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
 	public void setTableName(StoreAreaCode code) throws RemoteException {
 		if (code.equals(StoreAreaCode.AIR))
 			area = "AIR";

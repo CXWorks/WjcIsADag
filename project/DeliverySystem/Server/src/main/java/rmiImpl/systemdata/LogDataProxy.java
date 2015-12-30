@@ -21,11 +21,6 @@ public class LogDataProxy extends UnicastRemoteObject implements LogDataService 
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public OperationMessage insert(LogPO po) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return logDataService.insert(po);
