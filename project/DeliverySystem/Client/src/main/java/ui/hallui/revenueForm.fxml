@@ -21,18 +21,18 @@
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font></Label>
-      <Button layoutX="229.0" layoutY="477.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="80.0" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="229.0" />
+      <Button layoutX="199.0" layoutY="466.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="102.0" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="199.0" />
       <HBox layoutX="684.0" layoutY="484.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="80.0" text="保存草稿" />
+            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="105.0" text="保存草稿" />
             <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="60.0" text="清空" />
             <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="60.0" text="提交" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="760.0" layoutY="48.0" spacing="16.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">
          <children>
-            <Text layoutX="760.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="总金额" />
-            <Label fx:id="total_Label" layoutX="843.0" layoutY="48.0" text="Label" textAlignment="RIGHT" />
+            <Label text="总金额：" />
+            <Label fx:id="total_Label" layoutX="843.0" layoutY="48.0" textAlignment="RIGHT" />
          </children>
       </HBox>
       <GridPane hgap="24.0" layoutX="25.0" layoutY="127.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="96.0">

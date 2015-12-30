@@ -8,9 +8,21 @@
 	-fx-background-size: cover;
 }
 
-.label {
-    -fx-font-size: 11pt;
+
+.text {
+    -fx-font-size: 13pt;
     -fx-font-family: "方正幼线简体 常规";
+	-fx-font-color:#dcdbdb;
+    -fx-text-fill: #dcdbdb;
+    -fx-opacity: 1;
+}
+
+
+
+.label {
+    -fx-font-size: 13pt;
+    -fx-font-family: "方正幼线简体 常规";
+	-fx-font-color:#dcdbdb;
     -fx-text-fill: #dcdbdb;
     -fx-opacity: 1;
 }
