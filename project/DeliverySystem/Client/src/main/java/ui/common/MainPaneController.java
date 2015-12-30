@@ -11,6 +11,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.Main;
+import message.ChatMessage;
+import message.OperationMessage;
 import ui.accountui.PersonalAccountViewController;
 import userinfo.UserInfo;
 
@@ -18,6 +20,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import factory.AccountFactory;
+import bl.blService.accountblService.AccountBLRemindService;
 import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
 import util.R;
 
@@ -31,11 +35,16 @@ public class MainPaneController {
     public VBox tabs_VBox;
     public AnchorPane outerPane;
     public Label name_Label;
+    public Label Message_Label;
     public AnchorPane personGFatherPane;
     public AnchorPane personFatherPane;
 
+    int numOfMessages=0;
+    
     List<ToggleButton> toggleTabs = new LinkedList<>();
 
+    AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
+    
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
         AnchorPane pane = loader.load();
@@ -139,4 +148,32 @@ public class MainPaneController {
         Stage stage = SettingDialogController.newDialog(Main.primaryStage);
         stage.showAndWait();
     }
+    
+    public void showMessage(ActionEvent actionEvent){
+    	//TODO
+    	//显示消息界面
+    	
+    }
+    
+    
+    
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(30000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			OperationMessage res = accountblremindService.checkMessage(UserInfo
+					.getUserID());
+			if (res.operationResult) {
+				List<ChatMessage> chatMessages = accountblremindService
+						.receive(UserInfo.getUserID());
+				numOfMessages=chatMessages.size();
+				Message_Label.setText(numOfMessages+"");
+				
+			}
+		}
+	}
+    
 }
