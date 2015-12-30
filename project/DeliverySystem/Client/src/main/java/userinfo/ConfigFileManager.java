@@ -18,10 +18,6 @@ public class ConfigFileManager {
 
 	private static final String PATH=ConfigFileManager.class.getResource("").getPath();
 	private static final String FILE_NAME="2333.ini";
-	
-	public static void main(String[] args) {
-		System.out.println(PATH+FILE_NAME);
-	}
 	private String ip;
 	private String port;
 	private String workpath;
@@ -49,20 +45,26 @@ public class ConfigFileManager {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+		write();
 	}
 	public void setPort(String port) {
 		this.port = port;
+		write();
 	}
 	public void setWorkpath(String workpath) {
 		this.workpath = workpath;
+		write();
 	}
-	private void write() throws IOException{
+	private void write() {
 		File file=new File(PATH+FILE_NAME);
-		
+		try{
 		PrintWriter writer=new PrintWriter(new FileOutputStream(file,false));
 		writer.println(ip);
 		writer.println(port);
 		writer.println(workpath);
 		writer.close();
+		}catch(IOException e){
+			
+		}
 	}
 }

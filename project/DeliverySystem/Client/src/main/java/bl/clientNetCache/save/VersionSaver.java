@@ -25,7 +25,7 @@ public class VersionSaver {
 	private final String tail=".2333";
 	//
 	public OperationMessage saveVersion(long version,String fileName){
-		String path=UserInfo.getWorkPath()+"cache/";
+		String path=UserInfo.getWorkPath();
 		String filePath=path+fileName+tail;
 		
 		try {

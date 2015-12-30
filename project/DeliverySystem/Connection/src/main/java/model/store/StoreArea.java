@@ -22,7 +22,7 @@ public class StoreArea implements Serializable {
 		int used=(int) list.stream().filter(loca->{return loca.getOrderID().length()>0;}).count();
 		return used/(double)total;
 	}
-	
+
 	public OperationMessage checkCanIn(double warningline){
 		if (this.getUsedProportion()<warningline) {
 			return new OperationMessage();

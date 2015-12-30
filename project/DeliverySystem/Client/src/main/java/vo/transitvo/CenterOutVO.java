@@ -18,7 +18,7 @@ public class CenterOutVO extends TransitVO  {
 	}
 
 	public CenterOutVO(String formID,String placeFrom,String TransportID,String shelfNum,
-			Calendar LoadDate,String expense,String placeTo,String	peopleSee,ArrayList<String> IDs,TransportationEnum transitState,String createrID){
+			Calendar LoadDate,String expense,String placeTo,String	peopleSee,ArrayList<String> IDs,TransportationEnum transitState,String createrID,String truckID){
 		this(formID,createrID);
 		this.placeFrom = placeFrom;
 		this.TransportID = TransportID;
@@ -29,10 +29,11 @@ public class CenterOutVO extends TransitVO  {
 		this.transitState =transitState;
 		this.expense = expense;
 		this.IDs=IDs;
+		this.numberOfIndex=truckID;
 	}
 	public CenterOutVO(CenterOutPO po){
 		this(po.getFormID(),po.getPlaceFrom(), po.getTransportID(), po.getShelfNum(),po.getLoadDate(), po.getExpense(), po.getPlaceTo(), po.getPeopleSee(),null
-				,po.getTransitState(),po.getCreatorID());
+				,po.getTransitState(),po.getCreatorID(),po.getNumberOfIndex());
 		ArrayList<String> idClone=this.selfDeepClone(po.getIDs());
 		this.IDs=idClone;
 
@@ -41,7 +42,7 @@ public class CenterOutVO extends TransitVO  {
 	public CenterOutPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
 
-		CenterOutPO centerOutPO= new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO,createrID);
+		CenterOutPO centerOutPO= new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO,createrID,numberOfIndex);
 		centerOutPO.setCache_OperatorID(UserInfo.getUserID());
 		return centerOutPO;
 	}

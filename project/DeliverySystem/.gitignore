@@ -4,3 +4,4 @@
 *.iml
 /.idea/
 **/.settings/
+/Client/src/main/java/userinfo/*.ini
