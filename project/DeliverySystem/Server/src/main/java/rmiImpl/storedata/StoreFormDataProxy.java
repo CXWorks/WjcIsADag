@@ -25,11 +25,6 @@ public class StoreFormDataProxy extends UnicastRemoteObject implements StoreForm
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public OperationMessage insertStoreInPO(StoreInPO po) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeFormDataService.insertStoreInPO(po);

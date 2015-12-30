@@ -34,11 +34,6 @@ public class CompanyDataCenterProxy extends UnicastRemoteObject implements Compa
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public CenterPO getCenterByID(String ID) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCenterService.getCenterByID(ID);

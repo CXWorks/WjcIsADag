@@ -26,11 +26,6 @@ public class StoreModelDataProxy extends UnicastRemoteObject implements StoreMod
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public OperationMessage setLocation(String centerID, StoreLocation location) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return storeModelDataService.setLocation(centerID, location);

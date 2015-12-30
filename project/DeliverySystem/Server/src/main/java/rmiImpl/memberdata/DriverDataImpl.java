@@ -35,11 +35,6 @@ public class DriverDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
-	@Override
 	public ArrayList<DriverPO> getStaff(StaffTypeEnum staffTypeEnum) throws RemoteException {
 		String selectAll = MySql.select(TableEnum.DRIVER, null);
 		ResultSet rs = null;

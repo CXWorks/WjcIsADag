@@ -32,11 +32,6 @@ public class TackDataImpl extends UnicastRemoteObject implements TackDataService
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
-	@Override
 	public int getTack(String centerID) throws RemoteException {
 		ResultSet rs = null;
 		Timestamp date = null;

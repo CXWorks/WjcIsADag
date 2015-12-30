@@ -71,11 +71,6 @@ public class RevenueDataProxy extends UnicastRemoteObject implements RevenueData
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<RevenuePO> getByHallID(String ID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return revenueDataService.getByHallID(ID);

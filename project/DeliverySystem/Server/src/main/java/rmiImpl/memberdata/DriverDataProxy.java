@@ -24,11 +24,6 @@ public class DriverDataProxy extends UnicastRemoteObject implements MemberDataSe
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<DriverPO> getStaffByInstitution(String institutionID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return driverDataService.getStaffByInstitution(institutionID);

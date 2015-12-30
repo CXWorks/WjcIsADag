@@ -75,11 +75,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public OperationMessage addFormID(String orderID, String formID) throws RemoteException {
 		// TODO Auto-generated method stub
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
