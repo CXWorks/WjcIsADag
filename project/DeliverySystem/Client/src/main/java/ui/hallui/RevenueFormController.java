@@ -13,6 +13,7 @@ import bl.blService.financeblService.RevenueBLService;
 import po.orderdata.DeliverTypeEnum;
 import tool.time.TimeConvert;
 import tool.ui.SimpleEnumProperty;
+import tool.ui.VisibilityTool;
 import ui.accountui.ManageAccountController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -28,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import vo.receivevo.ReceiveVO;
 
 /**
  * Created by Sissel on 2015/11/27.
@@ -39,9 +41,12 @@ public class RevenueFormController {
     public DatePicker revenue_DatePicker;
     public TextField money_Field;
     public TextField order_Field;
-
     public Label total_Label;
     public ChoiceBox<String> deliver_ChoiceBox;
+    public Button add_Btn;
+    public Button save_Btn;
+    public Button clear_Btn;
+    public Button commit_Btn;
 
     private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
     DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
@@ -53,20 +58,40 @@ public class RevenueFormController {
 
     private InformController informController;
 
-	public static Parent launch() throws IOException {
-        FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
-        Pane pane = loader.load();
-        RevenueFormController controller = loader.getController();
-        controller.informController = InformController.newInformController(pane);
+	public static RevenueFormController launch(){
+        try {
+            FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
+            Pane pane = loader.load();
+            RevenueFormController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
 
+            return controller;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Parent launchInNew(){
+        RevenueFormController controller = launch();
         return controller.informController.stackPane;
     }
 
-	@FXML
+    public static Parent launchInHistory(ReceiveVO receiveVO){
+        RevenueFormController controller = launch();
+        VisibilityTool.setInvisible(controller.add_Btn, controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
+        controller.showDetail(receiveVO);
+        return controller.informController.stackPane;
+    }
+
+    private void showDetail(ReceiveVO receiveVO) {
+
+    }
+
+    @FXML
 	public void initialize(){
 		postmans= deliverBLService.getPostman(institutionID);
 		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
-//		deliver_ChoiceBox.getItems().get(0);
 		revenue_DatePicker.setValue(LocalDate.now());
 	}
 
@@ -112,7 +137,6 @@ public class RevenueFormController {
 
     }
 
-
     public void clear(ActionEvent actionEvent) {
     	revenue_DatePicker.setValue(LocalDate.now());
     	money_Field.clear();
@@ -124,8 +148,4 @@ public class RevenueFormController {
 
     	revenues_TableView.getItems().clear();
     }
-
-
-
-
 }

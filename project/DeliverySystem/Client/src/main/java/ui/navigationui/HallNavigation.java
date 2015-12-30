@@ -26,11 +26,12 @@ public class HallNavigation {
         Parent node = TabMaker.newLeftTabPane("填写到达单", Arrays.asList(
                 new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch
                         (null, null, CarFactory.getCarService(), StaffFactory.getManageblDriverService())),
-                new Pair<String, Parent>("填写到达单", ReceiveFormController.launch()),
+                new Pair<String, Parent>("填写到达单", ReceiveFormController.launchInNew()),
                 new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
                 new Pair<String ,Parent>("填写派件单",deliverController.launch()),
                 new Pair<String, Parent>("填写装车单", LoadCarController.launchInNew()),
-                new Pair<String, Parent>("查看历史单据", FormHistoryController.launch(FormFactory.getTransportHallBLService())),
+                new Pair<String, Parent>("查看历史单据", FormHistoryController.launch
+                        (FormFactory.getTransportHallBLService(), FormFactory.getReceiveBLService())),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));
 

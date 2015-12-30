@@ -10,9 +10,9 @@ import userinfo.UserInfo;
 
 public class CenterOutVO extends TransitVO  {
 	
-	private String	placeFrom;//出发地
-	private String	shelfNum;//货柜号
-	private TransportationEnum transitState;//转运类型
+	public String	placeFrom;//出发地
+	public String	shelfNum;//货柜号
+	public TransportationEnum transitState;//转运类型
 	public CenterOutVO(String formID,String createrID){
 		super(FormEnum.CENTER_TRANSPORT,formID,createrID);
 	}

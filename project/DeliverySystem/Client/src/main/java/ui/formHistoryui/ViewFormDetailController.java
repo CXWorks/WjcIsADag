@@ -7,14 +7,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import ui.common.checkFormat.field.FloatOnlyField;
 import ui.financeui.PaymentFormController;
 import ui.orderui.NewOrderController;
+import ui.receiveui.ReceiveFormController;
 import ui.storeui.StoreInFormController;
+import ui.storeui.StoreOutFormController;
 import ui.transportui.LoadCarController;
+import ui.transportui.TransitFormController;
 import vo.FormVO;
 import vo.financevo.PaymentVO;
 import vo.ordervo.OrderVO;
+import vo.receivevo.ReceiveVO;
 import vo.storevo.StoreInVO;
+import vo.storevo.StoreOutVO;
+import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 
 import java.io.IOException;
@@ -59,16 +66,19 @@ public class ViewFormDetailController {
             case REVENUE:
                 break;
             case RECEIVE:
+                result = ReceiveFormController.launchInHistory((ReceiveVO)formVO);
                 break;
             case LOAD_CAR:
                 result = LoadCarController.launchInHistory((LoadVO)formVO);
                 break;
             case CENTER_TRANSPORT:
+                result = TransitFormController.launchInHistory((CenterOutVO)formVO);
                 break;
             case STORE_IN:
                 result = StoreInFormController.launchInHistory((StoreInVO)formVO);
                 break;
             case STORE_OUT:
+                result = StoreOutFormController.launchInHistory((StoreOutVO)formVO);
                 break;
         }
         return result;
