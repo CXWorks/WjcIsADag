@@ -3,6 +3,7 @@ package ui.examineui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
@@ -50,7 +51,7 @@ public class FormTableController {
     public AnchorPane anchorFatherPane;
 
 	//
-	public ArrayList<FormVO> formVOs;
+	public List<FormVO> formVOs;
     private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	//
 	private InformController informController;
