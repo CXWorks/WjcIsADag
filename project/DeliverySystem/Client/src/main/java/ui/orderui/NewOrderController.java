@@ -64,9 +64,6 @@ public class NewOrderController {
 	public Label predict_Expense;
 	public Label predict_Date;
 	
-	public Label city_Label;
-	
-	
 	public Label date_ErrLabel;
 	public Label transit_errLabel;
 	public Label departure_errLabel;
@@ -82,6 +79,7 @@ public class NewOrderController {
 	public Button clear_Btn;
 	public Button calculate_Btn;
     public Label predictHead_Date;
+    public ChoiceBox<String> cityFrom_Box;
 
     private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
@@ -117,10 +115,9 @@ public class NewOrderController {
     public static Parent launchInManagerEdit(OrderVO orderVO){
         try {
             NewOrderController controller = launch();
-            controller.commit_Btn.setVisible(false);
             controller.commit_Btn.setOnAction(
-                    actionEvent  -> {
-                        // TODO managerEdit
+                    actionEvent -> {
+                        System.out.println("now do this thing");
                     }
             );
             controller.predictHead_Date.setVisible(false);
@@ -152,18 +149,21 @@ public class NewOrderController {
 	public void initialize() {
         outerPane.setOnKeyTyped(
                 event -> {
-                    if(event.getCharacter().equals("\r")){
+                    if (event.getCharacter().equals("\r")) {
                         System.out.println("key press ENTER");
                     }
-                    if(event.isControlDown() && event.getCharacter().equals("k")){
+                    if (event.isControlDown() && event.getCharacter().equals("k")) {
                         System.out.println("key press K");
                     }
                 }
         );
-        
-        city_Label.setText(obl.localCity());
-		// initialize the choice box
+
+        // initialize the choice box
         citys=(ArrayList) obl.getAvaliableCity();
+        cityFrom_Box.setItems(FXCollections.observableArrayList(citys));
+        if(obl.localCity() != null){
+            cityFrom_Box.setValue(obl.localCity());
+        }
         city_Box.setItems(FXCollections.observableArrayList(citys));
         city_Box.setValue(city_Box.getItems().get(0));
 		type_Box.setItems(Enum2ObservableList.transit(DeliverTypeEnum.values()));
@@ -182,8 +182,8 @@ public class NewOrderController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-
-		OperationMessage msg = obl.submit(generateVO(obl.newID()));
+        System.out.println("normal commit");
+        OperationMessage msg = obl.submit(generateVO(obl.newID()));
 
 		if (msg.operationResult) {
 			System.out.println("commit successfully");
@@ -196,15 +196,14 @@ public class NewOrderController {
 
 	private OrderVO generateVO(String FormID) {
 		return new OrderVO(FormID, name_From.getText(), name_To.getText(), unit_From.getText(), unit_To.getText(),
-				city_Label.getText()+address_From.getText(), city_Box.getValue()+address_To.getText(), tel_From.getText(), tel_To.getText(),
+				cityFrom_Box.getValue()+address_From.getText(), city_Box.getValue()+address_To.getText(), tel_From.getText(), tel_To.getText(),
 				phone_From.getText(), phone_To.getText(), goods_Number.getText(), goods_Name.getText(),
 				goods_Weight.getText(), goods_V1.getText()+"*"+goods_V2.getText()+"*"+goods_V3.getText(), predict_Expense.getText(), goods_Type.getText(),
 				deliverType, packing, UserInfo.getUserID());
 	}
 
 	@FXML
-	private void fillPrediction(ActionEvent actionEvent) {
-
+	public void fillPrediction(ActionEvent actionEvent) {
 		PredictVO predictVO = obl.predict(generateVO(null));
 		predict_Date.setText(TimeConvert.getDisplayDate(predictVO.getPredictDate()));
 		predict_Expense.setText(predictVO.getExpense());
