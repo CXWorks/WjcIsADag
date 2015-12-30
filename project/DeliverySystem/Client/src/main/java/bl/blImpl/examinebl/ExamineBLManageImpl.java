@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import po.FormEnum;
 import po.FormPO;
+import po.FormStateEnum;
 import po.transportdata.LoadPO;
 import rmi.examineService.ExamineManageService;
 import message.OperationMessage;
@@ -159,7 +160,7 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 			ArrayList<FormPO> formPOs=examineManageService.getForms();
 			for (FormPO formPO : formPOs) {
 				FormVO vo=(FormVO)vopoFactory.transPOtoVO(formPO);
-				System.out.println(vo.formID);
+				vo.state=FormStateEnum.SUBMIT;
 				formVOs.add(vo);
 			}
 			return new OperationMessage();
