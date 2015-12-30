@@ -17,7 +17,7 @@ public class LoadHelper {
 	
 	private LoadService loadService;
 	public Map<Boolean, List<Integer>> greedy(List<OrderVO> src){
-		int[][] num=new int[src.size()][6];
+		double[][] num=new double[src.size()][6];
 		int index=0;
 		for (OrderVO orderVO:src) {
 			orderVO.calculateVolume();
@@ -40,11 +40,11 @@ public class LoadHelper {
 		//
 		return loadService.algorithm(num);
 	}
-	private void weihu(int[] src){
+	private void weihu(double[] src){
 		for (int i = 0; i < 2; i++) {
 			for (int j = i+1; j < 3; j++) {
 				if (src[i]<src[j]) {
-					int te=src[i];
+					double te=src[i];
 					src[i]=src[j];
 					src[j]=te;
 				}
@@ -52,7 +52,7 @@ public class LoadHelper {
 		}
 	}
 	
-	private boolean comp(int[] a,int[] b){
+	private boolean comp(double[] a,double[] b){
 		if (a[3]>b[3]) {
 			return true;
 		}
@@ -65,8 +65,8 @@ public class LoadHelper {
 	}
 	
 	//
-	private void swap(int[] a,int[] b){
-		int[] tep=new int[a.length];
+	private void swap(double[] a,double[] b){
+		double[] tep=new double[a.length];
 		for (int i = 0; i < tep.length; i++) {
 			tep[i]=a[i];
 		}

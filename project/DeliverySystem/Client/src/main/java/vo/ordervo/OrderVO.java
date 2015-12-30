@@ -39,39 +39,45 @@ public class OrderVO extends FormVO {
 	private String receivePeople;
 	private Calendar receiveDate;
 	//
-	private int len;
-	private int wid;
-	private int hei;
-	private int V;
-	private int W;
+	private double len;
+	private double wid;
+	private double hei;
+	private double V;
+	private double W;
+	
+	public double getWeightORVolume(){
+		this.calculateVolume();
+		return (W>V/5000)?W:V/5000;
+	}
+	
 
 	public OrderVO(String formID,String createrID) {
 		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID,createrID);
 	}
 	public void calculateVolume(){
 		StringTokenizer stringTokenizer=new StringTokenizer(volume, "*, ");
-		len=Integer.parseInt(stringTokenizer.nextToken());
-		wid=Integer.parseInt(stringTokenizer.nextToken());
-		hei=Integer.parseInt(stringTokenizer.nextToken());
+		len=Double.parseDouble(stringTokenizer.nextToken());
+		wid=Double.parseDouble(stringTokenizer.nextToken());
+		hei=Double.parseDouble(stringTokenizer.nextToken());
 		V=len*wid*hei;
-		W=Integer.parseInt(weight);
+		W=Double.parseDouble(weight);
 	}
-	public int getV(){
+	public double getV(){
 		return V;
 	}
 	public int getFormIDInt(){
 		return Integer.parseInt(formID);
 	}
-	public int getLen() {
+	public double getLen() {
 		return len;
 	}
-	public int getWid() {
+	public double getWid() {
 		return wid;
 	}
-	public int getHei() {
+	public double getHei() {
 		return hei;
 	}
-	public int getW() {
+	public double getW() {
 		return W;
 	}
 	/**

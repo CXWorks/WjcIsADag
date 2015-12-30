@@ -16,5 +16,5 @@ public interface LoadService {
 	static final int CAR_LEN=40;
 	static final int CAR_WIDTH=30;
 	static final int MAX_LOAD=3000;
-	public Map<Boolean, List<Integer>> algorithm(int[][] src);
+	public Map<Boolean, List<Integer>> algorithm(double[][] src);
 }

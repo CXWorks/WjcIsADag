@@ -24,9 +24,9 @@ public class Greedy implements LoadService {
 	 * @param src 第一行为商品，接着为长、宽、高、体积\重量\ID
 	 * @return 返回车辆编号与商品顺序的map
 	 */
-	public Map<Boolean, List<Integer>> algorithm(int src[][]){
+	public Map<Boolean, List<Integer>> algorithm(double src[][]){
 		Map<Boolean, List<Integer>> ans=new HashMap<Boolean, List<Integer>>();
-		LinkedList<int[]> avaliable=new LinkedList<int[]>();
+		LinkedList<double[]> avaliable=new LinkedList<double[]>();
 		int w=0;//质量已占用
 		List<Integer> in=new LinkedList<Integer>();
 		List<Integer> out=new LinkedList<Integer>();
@@ -36,21 +36,21 @@ public class Greedy implements LoadService {
 			boolean flag=false;
 			if (this.checkWeight(w, src[i][4])) {
 				for (int j = 0; j < avaliable.size(); j++) {
-					int[] po=avaliable.get(j);
+					double[] po=avaliable.get(j);
 					if (this.checkCanIn(po, src[i])) {
 						flag=true;
 						if (po[0]+src[i][0]<CAR_LEN) {
-							int[] te={po[0]+src[i][0],po[1],po[2]};
+							double[] te={po[0]+src[i][0],po[1],po[2]};
 							avaliable.add(te);
 						}
 						//
 						if (po[1]+src[i][1]<CAR_WIDTH) {
-							int[] te={po[0],po[1]+src[i][1],po[2]};
+							double[] te={po[0],po[1]+src[i][1],po[2]};
 							avaliable.add(te);
 						}
 						//
 						if (po[2]+src[i][2]<CAR_H) {
-							int[] te={po[0],po[1],po[2]+src[i][2]};
+							double[] te={po[0],po[1],po[2]+src[i][2]};
 							avaliable.add(te);
 						}
 						//
@@ -74,7 +74,7 @@ public class Greedy implements LoadService {
 		ans.put(false, out);
 		return ans;
 	}
-	private boolean comp(int[] a,int[] b){
+	private boolean comp(double[] a,double[] b){
 		if (a[3]>b[3]) {
 			return true;
 		}
@@ -87,8 +87,8 @@ public class Greedy implements LoadService {
 	}
 	
 	//
-	private void swap(int[] a,int[] b){
-		int[] tep=new int[a.length];
+	private void swap(double[] a,double[] b){
+		double[] tep=new double[a.length];
 		for (int i = 0; i < tep.length; i++) {
 			tep[i]=a[i];
 		}
@@ -103,10 +103,10 @@ public class Greedy implements LoadService {
 	
 	
 	//
-	private boolean checkWeight(int now,int tar){
+	private boolean checkWeight(double now,double tar){
 		return now+tar<=MAX_LOAD;
 	}
-	private boolean checkCanIn(int position[],int tar[]){
-		return position[0]+tar[0]<=CAR_LEN&&position[1]+tar[1]<=CAR_WIDTH&&position[2]+tar[2]<=CAR_H;
+	private boolean checkCanIn(double[] po,double[] src){
+		return po[0]+src[0]<=CAR_LEN&&po[1]+src[1]<=CAR_WIDTH&&po[2]+src[2]<=CAR_H;
 	}
 }

@@ -29,6 +29,7 @@ public class Predicter {
 	public PredictVO calculatePredict(OrderVO orderVO){
 		ConfigurationDataService configurationDataService=CacheHelper.getConfigurationDataService();
 		try {
+			double weight=orderVO.getWeightORVolume();
 			PricePO pricePO=configurationDataService.getPrice();
 			int priceKM=pricePO.getByType(orderVO.getType());
 			//
@@ -38,7 +39,7 @@ public class Predicter {
 			if (distance==0.0) {
 				distance=30;
 			}
-			double price=priceKM*distance/1000;
+			double price=priceKM*distance/1000*weight;
 			Calendar date=Calendar.getInstance();
 			date.add(Calendar.DAY_OF_MONTH, (int) (distance/400+1));
 			//

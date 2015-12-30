@@ -25,10 +25,10 @@ public class Heuristic implements LoadService {
 	 * @return
 	 */
 	@Override
-	public Map<Boolean, List<Integer>> algorithm(int[][] src) {
+	public Map<Boolean, List<Integer>> algorithm(double[][] src) {
 		Map<Boolean, List<Integer>> ans=new HashMap<Boolean, List<Integer>>(2);
 		//组合，此步后不考虑高度问题
-		int[] used=new int[src.length+1];//不相交集，感觉飞起
+		double[] used=new double[src.length+1];//不相交集，感觉飞起
 		for (int i = 0; i < used.length; i++) {
 			used[i]=-1;
 		}
@@ -40,8 +40,8 @@ public class Heuristic implements LoadService {
 			else {
 				continue;
 			}
-			int sq=src[i][0]*src[i][1];
-			int h=src[i][2];
+			double sq=src[i][0]*src[i][1];
+			double h=src[i][2];
 			for (int j = i+1; j < src.length&&h<CAR_H; j++) {
 				if (used[j+1]==-1) {
 					if (check(sq, src[j], h)) {//可以组合
@@ -72,18 +72,18 @@ public class Heuristic implements LoadService {
 		}
 		LinkedList<Integer> in=new LinkedList<Integer>();
 		//之后为二维平面问题
-		LinkedList<int[]> position=new LinkedList<int[]>();
-		int[] init={0,0,CAR_LEN,CAR_WIDTH};
+		LinkedList<double[]> position=new LinkedList<double[]>();
+		double[] init={0,0,CAR_LEN,CAR_WIDTH};
 		position.add(init);
 		for (int i = 0; i < head.size(); i++) {
-			int[] temp=src[head.get(i)];
+			double[] temp=src[head.get(i)];
 			boolean flag=false;
 			for (int j = 0; j < position.size()&&!flag; j++) {
-				int[] posit=position.get(i);
+				double[] posit=position.get(i);
 				if (this.checkIn(posit, temp)) {
 					flag=true;
 					position.remove(posit);
-					int[][] ttemp=this.generateLo(posit, temp);
+					double[][] ttemp=this.generateLo(posit, temp);
 					position.add(ttemp[0]);
 					position.add(ttemp[1]);
 					in.add(head.get(i));
@@ -110,22 +110,22 @@ public class Heuristic implements LoadService {
 		return ans;
 	}
 	
-	private boolean checkIn(int[] posit,int[] src){
+	private boolean checkIn(double[] posit,double[] src){
 		if (src[0]+posit[0]<posit[2]&&posit[1]+src[1]<posit[3]) {
 			return true;
 		}
 		return false;
 	}
 	
-	private boolean check(int sq,int[] info,int h){
-		if (info[0]*info[1]<=sq&&h+info[2]<CAR_H) {
+	private boolean check(double sq,double[] src,double h){
+		if (src[0]*src[1]<=sq&&h+src[2]<CAR_H) {
 			return true;	
 		}
 		return false;
 	}
 	
-	private int[][] generateLo(int[] posit,int[] src){
-		int[][] ans=new int[2][4];
+	private double[][] generateLo(double[] posit,double[] src){
+		double[][] ans=new double[2][4];
 		if ((posit[2]-posit[0]-src[0])*src[1]>=(posit[3]-posit[1]-src[1])*src[0]) {
 			ans[0][0]=src[0]+posit[0];
 			ans[0][1]=posit[1];
