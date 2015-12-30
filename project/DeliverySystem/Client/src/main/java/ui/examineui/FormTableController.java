@@ -7,12 +7,15 @@ import java.util.Calendar;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import main.Main;
 import po.FormEnum;
 import tool.ui.AnchorSet;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import factory.ExamineFactory;
 import bl.blService.examineblService.ExamineblManageService;
+import util.R;
 import vo.FormVO;
 import vo.delivervo.DeliverVO;
 import javafx.beans.Observable;
@@ -43,11 +46,12 @@ public class FormTableController {
 	public TableColumn<FormVO, String> creatorIDColumn;
 	public TableColumn<FormVO, String> infoColumn;
 	public TableColumn check_TableColumn;
-	public AnchorPane fatherPane;
+	public StackPane fatherPane;
+    public AnchorPane anchorFatherPane;
 
 	//
 	public ArrayList<FormVO> formVOs;
-	private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
+    private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	//
 	private InformController informController;
 
@@ -102,6 +106,10 @@ public class FormTableController {
 		typeColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().formType.getChinese()));
 
         AnchorSet.set0(fatherPane);
+        fatherPane.prefHeightProperty().bind(Main.primaryStage.heightProperty());
+        fatherPane.prefWidthProperty().bind(Main.primaryStage.widthProperty().subtract(R.ui.LeftTabsWidth));
+        anchorFatherPane.prefWidthProperty().bind(fatherPane.widthProperty());
+        anchorFatherPane.prefHeightProperty().bind(fatherPane.heightProperty());
 	}
 
 	//
