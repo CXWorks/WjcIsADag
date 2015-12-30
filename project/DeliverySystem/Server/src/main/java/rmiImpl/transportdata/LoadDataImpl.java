@@ -212,7 +212,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				if (!rs.getString("IDs").equalsIgnoreCase("")) {
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
 				}
-				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
+				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTrans"), rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
 						rs.getString("expense"), IDs, rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
@@ -317,7 +317,7 @@ public class LoadDataImpl extends CommonData<LoadPO> implements LoadDataService 
 				if (!rs.getString("IDs").equalsIgnoreCase("")) {
 					IDs = new ArrayList<String>(Arrays.asList(rs.getString("IDs").split(" ")));
 				}
-				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTransport"), rs.getTimestamp("LoadDate"),
+				temp = new LoadPO(rs.getString("formID"), rs.getString("peopleTrans"), rs.getTimestamp("LoadDate"),
 						rs.getString("TransportID"), rs.getString("placeTo"), rs.getString("peopleSee"),
 						rs.getString("expense"), IDs, rs.getString("creatorID"), rs.getString("truckID"));
 				temp.setFormState(rs.getString("formState"));
