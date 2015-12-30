@@ -77,14 +77,14 @@ public class RevenueFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInHistory(ReceiveVO receiveVO){
+    public static Parent launchInHistory(RevenueVO revenueVO){
         RevenueFormController controller = launch();
         VisibilityTool.setInvisible(controller.add_Btn, controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
-        controller.showDetail(receiveVO);
+        controller.showDetail(revenueVO);
         return controller.informController.stackPane;
     }
 
-    private void showDetail(ReceiveVO receiveVO) {
+    private void showDetail(RevenueVO revenueVO) {
 
     }
 

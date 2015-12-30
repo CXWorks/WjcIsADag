@@ -9,12 +9,16 @@
    <children>
       <TableView fx:id="tableView" prefHeight="450.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="34.0" />
-          <TableColumn fx:id="calendarColumn" prefWidth="96.0" text="时间" />
-            <TableColumn fx:id="typeColumn" prefWidth="86.0" text="类型" />
-            <TableColumn fx:id="formIDColumn" prefWidth="128.0" text="编号" />
-            <TableColumn fx:id="creatorIDColumn" prefWidth="100.0" text="申请人编号" />
+          <TableColumn fx:id="check_TableColumn" maxWidth="34.0" minWidth="34.0" prefWidth="34.0" resizable="false" />
+            <TableColumn fx:id="typeColumn" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" text="类型" />
+          <TableColumn fx:id="calendarColumn" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" text="时间" />
+            <TableColumn fx:id="formIDColumn" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" text="编号" />
+            <TableColumn fx:id="creatorIDColumn" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" text="申请人编号" />
+            <TableColumn fx:id="infoColumn" prefWidth="75.0" text="信息摘要" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>

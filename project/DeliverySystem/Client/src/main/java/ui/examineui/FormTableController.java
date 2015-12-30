@@ -8,6 +8,7 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import javafx.scene.layout.AnchorPane;
 import po.FormEnum;
+import tool.ui.AnchorSet;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import factory.ExamineFactory;
@@ -41,9 +42,11 @@ public class FormTableController {
 	public TableColumn<FormVO, String> formIDColumn;
 	public TableColumn<FormVO, String> creatorIDColumn;
 	public TableColumn<FormVO, String> infoColumn;
+	public TableColumn check_TableColumn;
+	public AnchorPane fatherPane;
+
 	//
 	public ArrayList<FormVO> formVOs;
-	public AnchorPane fatherPane;
 	private ExamineblManageService examineblManageService = ExamineFactory.getExamineblManageService();
 	//
 	private InformController informController;
@@ -67,7 +70,6 @@ public class FormTableController {
 			return;
 		}
 		infoColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMainInfo()));
-		tableView.getColumns().add(infoColumn);
 	}
 
 	private ArrayList<FormVO> transObervableList2List(ObservableList<FormVO> observableList) {
@@ -98,6 +100,8 @@ public class FormTableController {
 		creatorIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCreaterID()));
 		formIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().formID));
 		typeColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().formType.getChinese()));
+
+        AnchorSet.set0(fatherPane);
 	}
 
 	//

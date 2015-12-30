@@ -27,7 +27,7 @@ public class HallNavigation {
                 new Pair<String, Parent>("管理司机车辆", ManageCarDriverController.launch
                         (null, null, CarFactory.getCarService(), StaffFactory.getManageblDriverService())),
                 new Pair<String, Parent>("填写到达单", ReceiveFormController.launchInNew()),
-                new Pair<String, Parent>("填写收款单", RevenueFormController.launch()),
+                new Pair<String, Parent>("填写收款单", RevenueFormController.launchInNew()),
                 new Pair<String ,Parent>("填写派件单",deliverController.launch()),
                 new Pair<String, Parent>("填写装车单", LoadCarController.launchInNew()),
                 new Pair<String, Parent>("查看历史单据", FormHistoryController.launch
