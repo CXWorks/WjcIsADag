@@ -105,9 +105,6 @@ public class CheckRevenueFormController {
 
     public void search(ActionEvent actionEvent) {
 
-        // TODO test
-        hall_Field.setText("0251001");
-        revenue_DatePicker.setValue(LocalDate.of(2015, 12, 12));
 
         List<RevenueVO> revenueVOs = revenueBLService.getRevenueVOs
                 (TimeConvert.convertDate(revenue_DatePicker.getValue()), hall_Field.getText());
