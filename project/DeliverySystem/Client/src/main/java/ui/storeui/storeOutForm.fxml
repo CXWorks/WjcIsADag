@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreOutFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreOutFormController">
    <children>
       <Label layoutX="39.0" layoutY="48.0" text="出库信息" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
       <GridPane layoutX="48.0" layoutY="84.0" prefHeight="395.0" prefWidth="231.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="84.0">
@@ -44,9 +44,9 @@
       <Label layoutX="721.0" layoutY="39.0" text="订单预览" AnchorPane.topAnchor="49.0" />
       <HBox layoutX="517.0" layoutY="398.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="517.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="633.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="save_Btn" layoutX="517.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button fx:id="clear_Btn" layoutX="633.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="commit_Btn" layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <TableView fx:id="transit_TableView" layoutX="386.0" layoutY="94.0" prefHeight="338.0" prefWidth="224.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="94.0">
@@ -58,16 +58,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane layoutX="48.0" layoutY="348.0" prefHeight="162.0" prefWidth="201.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
       <Label layoutX="386.0" layoutY="49.0" text="运单预览" />
    </children>
 </AnchorPane>

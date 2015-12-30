@@ -42,13 +42,13 @@
       <Label fx:id="fee_Label" layoutX="881.0" layoutY="58.0" text="0元" textAlignment="JUSTIFY" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="56.0" />
       <HBox layoutX="720.0" layoutY="479.0" prefHeight="23.0" spacing="20.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="save_Btn" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button fx:id="clear_Btn" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="commit_Btn" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <TextField fx:id="id_Field" layoutX="504.0" layoutY="105.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="109.0" />
-      <Button layoutX="709.0" layoutY="107.0" mnemonicParsing="false" onAction="#add" text="添加" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="109.0" />
+      <Button fx:id="add_Btn" layoutX="709.0" layoutY="107.0" mnemonicParsing="false" onAction="#add" text="添加" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="109.0" />
       <ListView fx:id="orders_ListView" layoutX="494.0" layoutY="154.0" prefHeight="291.0" prefWidth="499.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="161.0" />
    </children>
 </AnchorPane>

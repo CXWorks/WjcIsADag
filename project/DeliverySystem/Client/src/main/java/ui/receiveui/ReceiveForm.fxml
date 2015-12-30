@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.receiveui.ReceiveFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.receiveui.ReceiveFormController">
    <children>
       <GridPane layoutX="48.0" layoutY="100.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="295.0" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
@@ -83,9 +83,9 @@
       </TableView>
       <HBox layoutX="709.0" layoutY="498.0" spacing="16.0" AnchorPane.bottomAnchor="48.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button layoutX="709.0" layoutY="498.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="782.0" layoutY="498.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="881.0" layoutY="498.0" mnemonicParsing="false" onAction="#commit" text="提交" />
+            <Button fx:id="clear_Btn" layoutX="709.0" layoutY="498.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="save_Btn" layoutX="782.0" layoutY="498.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
+            <Button fx:id="commit_Btn" layoutX="881.0" layoutY="498.0" mnemonicParsing="false" onAction="#commit" text="提交" />
          </children>
       </HBox>
    </children>

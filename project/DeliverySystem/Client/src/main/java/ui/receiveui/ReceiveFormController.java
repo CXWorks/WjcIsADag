@@ -15,6 +15,7 @@ import po.receivedata.StateEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import tool.ui.VisibilityTool;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
@@ -42,6 +43,9 @@ public class ReceiveFormController {
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
 	public TableColumn<Map.Entry<String, String>, String> value_Column;
 	public Label err_Label;
+	public Button clear_Btn;
+	public Button save_Btn;
+	public Button commit_Btn;
 
 	private StateEnum stateEnum = StateEnum.Complete;
 
@@ -49,14 +53,40 @@ public class ReceiveFormController {
 
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(ReceiveFormController.class.getResource("ReceiveForm.fxml"));
-		Pane pane = loader.load();
-		ReceiveFormController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static ReceiveFormController launch() {
+		try {
+            FXMLLoader loader = new FXMLLoader(ReceiveFormController.class.getResource("ReceiveForm.fxml"));
+            Pane pane = loader.load();
+            ReceiveFormController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
 
-		return controller.informController.stackPane;
-	}
+            return controller;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+	public static Parent launchInNew() {
+        ReceiveFormController controller = launch();
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInHistory(ReceiveVO receiveVO) {
+        ReceiveFormController controller = launch();
+        VisibilityTool.setInvisible(controller.clear_Btn, controller.commit_Btn, controller.save_Btn);
+        controller.showDetail(receiveVO);
+        return controller.informController.stackPane;
+    }
+
+    private void showDetail(ReceiveVO receiveVO){
+        order_Field.setText(receiveVO.getOrderID());
+        transitID_Field.setText(receiveVO.getTransitID());
+        arrive_DatePicker.setValue(TimeConvert.convertCalendar(receiveVO.getDate()));
+        departure_Field.setText(receiveVO.getDepature());
+        arriveState_Box.setValue(new SimpleEnumProperty<>(receiveVO.getOrderState()));
+        fillOrderTable();
+    }
 
 	@FXML
 	public void initialize() {
@@ -107,7 +137,6 @@ public class ReceiveFormController {
 
 	private void fillOrderTable() {
 		OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
-
 		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 

@@ -34,8 +34,8 @@ public class StoreOutVO extends StoreFormVO {
     	this.setLocation(po.getLocation());
     }
 
-    private TransportationEnum transportation;
-    private String	transID;
+    public TransportationEnum transportation;
+    public String	transID;
 
 	//
     public StoreOutPO toPO(){

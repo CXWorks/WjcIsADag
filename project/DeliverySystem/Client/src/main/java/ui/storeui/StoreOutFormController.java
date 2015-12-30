@@ -13,26 +13,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
 import po.transportdata.TransportationEnum;
 import tool.time.TimeConvert;
-import tool.ui.Enum2ObservableList;
-import tool.ui.OrderVO2ColumnHelper;
-import tool.ui.SimpleEnumProperty;
-import tool.ui.TransitVO2ColumnHelper;
+import tool.ui.*;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.ordervo.OrderVO;
+import vo.ordervo.PredictVO;
 import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 import vo.transitvo.TransitVO;
@@ -54,22 +47,52 @@ public class StoreOutFormController {
 	public TableColumn<Map.Entry<String, String>, String> value_Column_o;
 	public TableColumn<Map.Entry<String, String>, String> key_Column_t;
 	public TableColumn<Map.Entry<String, String>, String> value_Column_t;
+	public Button save_Btn;
+	public Button clear_Btn;
+	public Button commit_Btn;
 
 	TransportationEnum tran = TransportationEnum.CAR;
 	StoreOutBLService storeOutBLService = FormFactory.getStoreOutBLService();
 
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(StoreOutFormController.class.getResource("storeOutForm.fxml"));
-		Pane pane = loader.load();
-		StoreOutFormController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static StoreOutFormController launch() {
+		try {
+            FXMLLoader loader = new FXMLLoader(StoreOutFormController.class.getResource("storeOutForm.fxml"));
+            Pane pane = loader.load();
+            StoreOutFormController controller = loader.getController();
+            controller.informController = InformController.newInformController(pane);
 
-		return controller.informController.stackPane;
+            return controller;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
 	}
 
-	@FXML
+	public static Parent launchInNew() {
+        StoreOutFormController controller = launch();
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInHistory(StoreOutVO storeOutVO) {
+        StoreOutFormController controller = launch();
+        VisibilityTool.setInvisible(controller.clear_Btn, controller.commit_Btn, controller.save_Btn);
+        controller.showDetail(storeOutVO);
+        return controller.informController.stackPane;
+    }
+
+    private void showDetail(StoreOutVO storeOutVO) {
+        orderID_Field.setText(storeOutVO.getOrderID());
+        transitID_Field.setText(storeOutVO.transID);
+        storeOut_DatePicker.setValue(TimeConvert.convertCalendar(storeOutVO.getDate()));
+        destination_Field.setText(storeOutVO.getDestination());
+        LoadType_ChoiceBox.setValue(new SimpleEnumProperty<>(storeOutVO.transportation));
+        fillOrderTable();
+        fillTransitTable();
+    }
+
+    @FXML
 	public void initialize() {
 		// initialize the choice box
 		LoadType_ChoiceBox.setItems(Enum2ObservableList.transit(TransportationEnum.values()));

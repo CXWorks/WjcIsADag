@@ -3,13 +3,22 @@ package ui.hallui;
 public class Revenue {
 	private String order;
 	private String money;
-	
-	
-    Revenue(String order,String money){
-    	this.money=money;
-    	this.order=order;
-    	
+    private String deliver;
+
+    public String getDeliver() {
+        return deliver;
     }
+
+    public void setDeliver(String deliver) {
+        this.deliver = deliver;
+    }
+	
+    Revenue(String order,String money, String deliver){
+        this.deliver = deliver;
+    	this.money = money;
+    	this.order = order;
+    }
+
 	public String getOrder() {
 		return order;
 	}
