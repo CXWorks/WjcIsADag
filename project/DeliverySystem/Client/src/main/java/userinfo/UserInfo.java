@@ -34,7 +34,7 @@ public class UserInfo {
 	private static String IP=configFileManager.getIp();
 	private static String Port=configFileManager.getPort();
 	private static String workPath=configFileManager.getWorkpath();
-	private static boolean connected=true;
+	private static boolean connected=false;
 	private UserInfo(){
 	}
 	//

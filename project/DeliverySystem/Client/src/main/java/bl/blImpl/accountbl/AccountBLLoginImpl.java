@@ -38,7 +38,11 @@ public class AccountBLLoginImpl implements AccountBLLoginService {
 	 */
 	public OperationMessage checkAccount(String id, String password) {
 		try {
-			this.initNet();
+			if (!UserInfo.isConnected()) {
+				this.initNet();
+				UserInfo.setConnected(true);
+			}
+			
 			AccountDataService accountDataService=CacheHelper.getAccountDataService();
 			OperationMessage check=accountDataService.checkAccount(id, password);
 			if (check.operationResult) {

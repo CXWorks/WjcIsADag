@@ -54,7 +54,7 @@ public class HallManage implements ManageblHallService {
 	 */
 	public OperationMessage addHall(HallVO hall) {
 		CompanyDataHallService hallService=CacheHelper.getCompanyDataHallService();
-		hall.setInstitutionID(newHallID(nearCenterID(hall.getCity())));
+		hall.setInstitutionID(newHallID(nearCenterID(hall.getCityID())));
 		HallPO po=(HallPO)vopoFactory.transVOtoPO(hall);
 		try {
 			return hallService.addHall(po);

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import bl.NetReconnect.Reconnect;
 import bl.clientNetCache.CacheHelper;
+import bl.clientRMI.NetInitException;
 import po.orderdata.OrderPO;
 import rmi.orderdata.OrderDataService;
+import userinfo.UserInfo;
 import vo.logisticsvo.LogisticsVO;
 
 /** 
@@ -23,7 +25,21 @@ public class OrderHelper {
 		intergrate=new Intergrate();
 	}
 	
+	private void initNet(){
+		try {
+			CacheHelper.initializeLogin();
+		} catch (NetInitException e) {
+			Reconnect.ReConnectFactory();
+		}
+		
+	}
+	
+	
 	public LogisticsVO searchOrder(String orderID){
+		if (!UserInfo.isConnected()) {
+			this.initNet();
+			UserInfo.setConnected(true);
+		}
 		OrderDataService orderDataService=CacheHelper.getOrderDataService();
 		try {
 			this.toSearch=orderDataService.getFormPO(orderID);
