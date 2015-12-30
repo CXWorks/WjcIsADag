@@ -95,9 +95,7 @@ public class NewOrderController {
 	int day = 0;
 	String predictDate;// 预计送达日期
 
-	OrderBLService obl = FormFactory.getOrderBLService();
-
-	
+	private OrderBLService obl = FormFactory.getOrderBLService();
 	private InformController informController;
 
 	public static NewOrderController launch() throws IOException {

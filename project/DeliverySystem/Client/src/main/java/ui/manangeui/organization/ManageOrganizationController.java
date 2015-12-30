@@ -123,7 +123,7 @@ public class ManageOrganizationController {
 	}
 	
 	public void initialize(){
-		cityColumn.setCellValueFactory(cell -> new SimpleStringProperty(configurationBLService.cityID2Name(cell.getValue().getCity())));
+		cityColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCity()));
 		typecColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getInfoEnum().getChinese()));
 		institutionIDColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getInstitutionID()));
 		tableView.getSelectionModel().selectedItemProperty().addListener(
@@ -164,7 +164,7 @@ public class ManageOrganizationController {
 		nearCenter_HeadLabel.setVisible(isHall);
 		nearCenter_Label.setVisible(isHall);
 
-		city_Label.setText(configurationBLService.cityID2Name(institutionVO.getCity()));
+		city_Label.setText(institutionVO.getCity());
 		type_Label.setText(institutionVO.getInfoEnum().getChinese());
 		id_Label.setText(institutionVO.getInstitutionID());
 

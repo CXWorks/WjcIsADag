@@ -37,7 +37,4 @@ public interface ConfigurationBLService {
 	 */
 	public OperationMessage modify(ConfigurationVO after);
 
-	public String cityName2ID(String cityName);
-
-	public String cityID2Name(String cityID);
 }
