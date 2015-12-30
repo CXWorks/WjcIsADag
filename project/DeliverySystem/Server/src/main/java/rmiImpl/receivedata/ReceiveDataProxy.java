@@ -70,11 +70,6 @@ public class ReceiveDataProxy extends CommonData<ReceivePO> implements ReceiveDa
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public List<ReceivePO> getHistory(String creatorID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return receiveDataService.getHistory(creatorID);

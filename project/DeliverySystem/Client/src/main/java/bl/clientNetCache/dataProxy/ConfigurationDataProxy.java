@@ -22,11 +22,11 @@ import po.configurationdata.SalaryStrategyPO;
 import rmi.configurationdata.ConfigurationDataService;
 import userinfo.UserInfo;
 
-/** 
+/**
  * Client//bl.clientNetCache.dataProxy//ConfigurationDataProxy.java
  * @author CXWorks
  * @date 2015年12月17日 下午11:36:39
- * @version 1.0 
+ * @version 1.0
  */
 public class ConfigurationDataProxy extends DataProxy implements ConfigurationDataService {
 	private static ConfigurationDataProxy proxy;
@@ -47,7 +47,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 	private ProportionPO proportion;
 	private PackPO pack;
 	private double warningLine;
-	
+
 	private ConfigurationDataProxy(){}
 	//
 	public static ConfigurationDataService getInstance() throws RemoteException{
@@ -103,15 +103,6 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 		cacheSaver.saveCache(proxy.proportion, PROPORTION);
 		cacheSaver.saveCache(proxy.city, CITY);
 		cacheSaver.saveCache(proxy.salary, SALARY);
-	}
-
-	/* (non-Javadoc)
-	 * @see rmi.DataService#getConn()
-	 */
-	@Override
-	public Connection getConn() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/* (non-Javadoc)
@@ -385,7 +376,7 @@ public class ConfigurationDataProxy extends DataProxy implements ConfigurationDa
 				//do nothing
 			}
 		}
-		
+
 	}
 
 }

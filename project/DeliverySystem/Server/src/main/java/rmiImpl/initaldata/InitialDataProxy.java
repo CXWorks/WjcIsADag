@@ -34,11 +34,6 @@ public class InitialDataProxy extends UnicastRemoteObject implements InitialData
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public InitialDataPO getInitialDataPO(String version) throws RemoteException {
 		return InitialDataService.getInitialDataPO(version);
 	}

@@ -39,11 +39,6 @@ public class RevenueDataImpl extends UnicastRemoteObject implements RevenueDataS
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return conn;
-	}
-
-	@Override
 	public OperationMessage insert(RevenuePO po) throws RemoteException {
 		OperationMessage result = new OperationMessage();
 		String IDs = "";

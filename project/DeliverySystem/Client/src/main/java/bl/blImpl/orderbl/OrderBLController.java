@@ -72,7 +72,6 @@ public class OrderBLController implements OrderBLService{
 	 * @see bl.blService.FormBLService#newID()
 	 */
 	public String newID() {
-		// TODO Auto-generated method stub
 		try {
 			OrderDataService orderDataService=CacheHelper.getOrderDataService();
 			String id=orderDataService.newID(UserInfo.getInstitutionID());

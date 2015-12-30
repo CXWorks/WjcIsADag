@@ -23,11 +23,6 @@ public class AccountDataProxy extends UnicastRemoteObject implements AccountData
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public AccountPO getAccountPO(String accountID) throws RemoteException {
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return accountDataService.getAccountPO(accountID);

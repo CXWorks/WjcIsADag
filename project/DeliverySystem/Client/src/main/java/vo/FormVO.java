@@ -11,6 +11,7 @@ import util.DataType;
  * Created by Sissel on 2015/10/24.
  */
 public abstract class FormVO extends CommonVO {
+	public Calendar date;
     public FormEnum formType;
     public FormStateEnum state;
     public String formID;

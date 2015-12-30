@@ -25,10 +25,10 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button defaultButton="true" layoutX="820.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="28.0" prefWidth="73.0" styleClass="button-commit" />
-      <Button layoutX="736.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="28.0" prefWidth="73.0" styleClass="button-save" />
-      <Button layoutX="653.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="28.0" prefWidth="73.0" styleClass="button-clear" textAlignment="CENTER" />
-      <Button layoutX="509.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="28.0" prefWidth="107.0" text="计算运费日期" />
+      <Button fx:id="commit_Btn" defaultButton="true" layoutX="820.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="28.0" prefWidth="73.0" styleClass="button-commit" />
+      <Button fx:id="save_Btn" layoutX="736.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="28.0" prefWidth="73.0" styleClass="button-save" />
+      <Button fx:id="clear_Btn" layoutX="653.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="28.0" prefWidth="73.0" styleClass="button-clear" textAlignment="CENTER" />
+      <Button fx:id="calculate_Btn" layoutX="509.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="28.0" prefWidth="107.0" text="计算运费日期" />
       <Label layoutX="125.0" layoutY="148.0" text="姓名">
          <font>
             <Font size="14.0" />
@@ -163,7 +163,7 @@
          </font>
       </Label>
       <Label fx:id="predict_Expense" layoutX="786.0" layoutY="402.0" text="123" />
-      <Label layoutX="675.0" layoutY="430.0" text="预计到达日期">
+      <Label fx:id="predictHead_Date" layoutX="675.0" layoutY="430.0" text="预计到达日期">
          <font>
             <Font size="14.0" />
          </font>

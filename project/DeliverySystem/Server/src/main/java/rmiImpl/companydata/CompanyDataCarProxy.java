@@ -23,11 +23,6 @@ public class CompanyDataCarProxy extends UnicastRemoteObject implements CompanyD
 	}
 
 	@Override
-	public Connection getConn() throws RemoteException {
-		return null;
-	}
-
-	@Override
 	public ArrayList<CarPO> getCars(String unitID) throws RemoteException {
 		if(InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return companyDataCarService.getCars(unitID);
