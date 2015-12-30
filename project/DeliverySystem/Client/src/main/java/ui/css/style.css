@@ -1,17 +1,17 @@
 ﻿.background{
-	-fx-background-image: url(pic/banner1.png);
+	-fx-background-image: url(pic/Back.png);
 	-fx-background-size: cover;
 }
 
 .background-add{
-	-fx-background-image: url(pic/banner5.png);
+	-fx-background-image: url(pic/Back.png);
 	-fx-background-size: cover;
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: #1c1c1c;
+    -fx-text-fill: #dcdbdb;
     -fx-opacity: 1;
 }
 
@@ -41,7 +41,7 @@
     -fx-base:gray;
     -fx-control-inner-background: #c9c8c8;
     -fx-background-color: #c9c8c8;
-	-fx-opacity:0.7;
+	-fx-opacity:1;
     -fx-table-cell-border-color: none;
     -fx-table-header-border-color: transparent;
 	-fx-padding: 0;  
@@ -152,28 +152,30 @@
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
     -fx-size:10;
+	-fx-background-image:url(pic/buttons/normal.png);
+	-fx-background-size:cover;
+	-fx-background-repeat:no-repeat;
 	-fx-background-color:#393939;
     -fx-border-style :none;
     -fx-font-size: 10pt;
-	-fx-text-fill:#dcdbdb;
+	-fx-text-fill:black;
+	-fx-font-style:bold;
 }
 .button:hover{
--fx-background-color:#181818;
+	-fx-background-image:url(pic/buttons/hover.png);
+    -fx-background-color:#181818;
 }
 
 .button:pressed{
+-fx-background-image:url(pic/buttons/pressed.png);
 -fx-background-color:#e8e8e8;
--fx-text-fill:#181818;
+	-fx-text-fill:#dcdbdb;
 }
 
 .button:focused{
     -fx-border-style :none;
 }
 
-.button:released{
-	-fx-background-color:#393939;
-
-}
 /*
 .button-left{
     -fx-size:80;
