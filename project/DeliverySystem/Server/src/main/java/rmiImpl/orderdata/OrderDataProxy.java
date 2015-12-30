@@ -81,7 +81,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OperationMessage addFormID(String orderID, String formID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.addFormID(orderID, formID);
 		return null;
@@ -89,7 +88,6 @@ public class OrderDataProxy extends CommonData<OrderPO> implements OrderDataServ
 
 	@Override
 	public OperationMessage setFinished(String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
 		if (InitialDataProxy.getState().equals(SystemState.NORMAL))
 			return orderDataService.setFinished(orderID);
 		return null;

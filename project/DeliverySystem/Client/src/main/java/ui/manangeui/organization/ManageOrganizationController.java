@@ -117,7 +117,9 @@ public class ManageOrganizationController {
 
 		tableView.getSelectionModel().selectFirst();
 		institutionVO = tableView.getSelectionModel().getSelectedItem();
-		showDetail();
+        if(tableView.getItems().size() != 0){
+            showDetail();
+        }
 	}
 	
 	public void initialize(){

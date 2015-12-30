@@ -171,24 +171,24 @@ public class InitialHelper {
 		return result;
 	}
 
-	// public static void main(String[] args) throws RemoteException,
-	// ClassNotFoundException {
-	// InitialHelper p = new InitialHelper();
-	// ArrayList<AccountPO> list = new ArrayList<AccountPO>();
-	// list.add(new AccountPO("admin", "HAVE", "admin"));
-	// InitialDataPO po = new InitialDataPO("0", "空版本",
-	// p.storeModelDataService.getModels(),
-	// new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(),
-	// new ArrayList<StaffPO>(), new ArrayList<HallPO>(),
-	// new ArrayList<CenterPO>(),
-	// p.configurationDataService.getAllCity2D(),
-	// p.configurationDataService.getPrice(),
-	// p.configurationDataService.getProportion(),
-	// p.configurationDataService.getSalaryStrategy(),
-	// p.configurationDataService.getPack(), list,
-	// new ArrayList<DriverPO>());
-	// p.saveFile(po);
-	// }
+	 public static void main(String[] args) throws RemoteException,
+	 ClassNotFoundException {
+	 InitialHelper p = new InitialHelper();
+	 ArrayList<AccountPO> list = new ArrayList<AccountPO>();
+	 list.add(new AccountPO("admin", "HAVE", "admin"));
+	 InitialDataPO po = new InitialDataPO("0", "空版本",
+	 p.storeModelDataService.getModels(),
+	 new ArrayList<BankAccountPO>(), new ArrayList<CarPO>(),
+	 new ArrayList<StaffPO>(), new ArrayList<HallPO>(),
+	 new ArrayList<CenterPO>(),
+	 p.configurationDataService.getAllCity2D(),
+	 p.configurationDataService.getPrice(),
+	 p.configurationDataService.getProportion(),
+	 p.configurationDataService.getSalaryStrategy(),
+	 p.configurationDataService.getPack(), list,
+	 new ArrayList<DriverPO>());
+	 p.saveFile(po);
+	 }
 
 	public InitialDataPO saveMysql(String dbName) throws ClassNotFoundException, RemoteException {
 		ArrayList<HallPO> halls = companyDataHallService.getHall();

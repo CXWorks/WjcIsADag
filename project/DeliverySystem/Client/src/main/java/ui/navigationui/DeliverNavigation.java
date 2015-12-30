@@ -20,7 +20,7 @@ public class DeliverNavigation {
     public static Parent launch() throws IOException {
         Parent node = TabMaker.newLeftTabPane("填写收件单", Arrays.asList(
                 new Pair<String, Parent>("填写收件单", PeopleReceiveFormController.launch()),
-                new Pair<String, Parent>("新建订单", NewOrderController.launch()),
+                new Pair<String, Parent>("新建订单", NewOrderController.launchInNew()),
                 new Pair<String, Parent>("物流信息查询", CheckLogisticsController.launch()),
                 new Pair<String, Parent>("消息通知", CheckMessageController.launch())
         ));

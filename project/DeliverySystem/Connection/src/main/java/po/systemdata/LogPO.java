@@ -15,7 +15,6 @@ public class LogPO extends InfoPO implements Serializable{
 	
 	protected LogPO(InfoEnum infoEnum) {
 		super(infoEnum);
-		// TODO Auto-generated constructor stub
 	}
 
 	public LogPO( String personID, Calendar time, String info) {

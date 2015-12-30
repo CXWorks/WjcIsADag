@@ -9,7 +9,7 @@ import po.transportdata.TransportationEnum;
 import userinfo.UserInfo;
 
 public class CenterOutVO extends TransitVO  {
-
+	
 	private String	placeFrom;//出发地
 	private String	shelfNum;//货柜号
 	private TransportationEnum transitState;//转运类型

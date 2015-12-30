@@ -51,6 +51,7 @@ public class CenterManage implements ManageblCenterService{
 	 */
 	public OperationMessage addCenter(CenterVO center) {
 		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
+		center.setInstitutionID(newCenterID(center.getCity()));
 		CenterPO po=(CenterPO)vopoFactory.transVOtoPO(center);
 		try {
 			return centerService.addCenter(po);
