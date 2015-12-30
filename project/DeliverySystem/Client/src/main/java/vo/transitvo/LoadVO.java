@@ -11,6 +11,7 @@ public class LoadVO extends TransitVO {
 
 	String	peopletransport;
 	String	expense;
+	
 
 	public LoadVO(String formID,String createrID){
 		super(FormEnum.LOAD_CAR,formID,createrID);
@@ -27,10 +28,11 @@ public class LoadVO extends TransitVO {
 		this.placeTo = placeTo;
 		this.peopleSee = peopleSee;
 		this.IDs=IDs;
+		this.numberOfIndex=truckID;
 	}
 
 	public LoadVO(LoadPO po){
-		this(po.getFormID(),po.getTransportID(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
+		this(po.getFormID(),po.getNumberOfIndex(), po.getPeopleTransport(), po.getExpense(),po.getLoadDate(), po.getTransportID(), po.getPlaceTo(), po.getPeopleSee()
 				,null,po.getCreatorID());
 		ArrayList<String> idClone=this.selfDeepClone(po.getIDs());
 		this.IDs=idClone;
@@ -38,7 +40,7 @@ public class LoadVO extends TransitVO {
 	public LoadPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
 
-		LoadPO loadPO= new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO,createrID);
+		LoadPO loadPO= new LoadPO(formID, peopletransport, LoadDate, TransportID, placeTo, peopleSee, expense, idPO,createrID,numberOfIndex);
 		loadPO.setCache_OperatorID(UserInfo.getUserID());
 		return loadPO;
 	}

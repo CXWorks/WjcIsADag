@@ -10,10 +10,11 @@ import vo.FormVO;
 
 public abstract class TransitVO extends FormVO{
 	protected Calendar LoadDate;//装车日期
-	protected String  TransportID;//汽运编号、航班列次号 等
+	protected String  TransportID;//汽运编号 等
 	protected String	placeTo;//到达地
 	protected String	peopleSee;//监装员
 	protected String  expense;//运费
+	protected String numberOfIndex;//航班列次号,车辆班次号
 	protected ArrayList<String> IDs;//本次装箱所有托运单号
 	//
 
@@ -45,6 +46,9 @@ public abstract class TransitVO extends FormVO{
 	}
 	public ArrayList<String> getIDs() {
 		return IDs;
+	}
+	public String getNumberOfIndex() {
+		return numberOfIndex;
 	}
 
 
