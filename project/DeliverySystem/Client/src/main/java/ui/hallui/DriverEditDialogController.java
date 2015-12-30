@@ -82,7 +82,7 @@ public class DriverEditDialogController {
     	carUnit_Field.setText(editVO.getInstitutionID());
     	birth_Picker.setValue(timeconvert.convertCalendar(editVO.getBirth()));
     	licencePeriod_Picker.setValue(timeconvert.convertCalendar(editVO.getLicence_period()));
-
+    	sex_Box.getSelectionModel().clearAndSelect(editVO.getSex().getNum());
 	}
 
 
@@ -97,7 +97,8 @@ public class DriverEditDialogController {
 		editVO.setPersonID(personID_Field.getText());
 		editVO.setTel(tel_Field.getText());
 		editVO.setLicence_period(timeconvert.convertDate(licencePeriod_Picker.getValue()));
-
+		
+		
 		stage.close();
 	}
 
