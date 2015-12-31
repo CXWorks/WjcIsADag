@@ -15,6 +15,7 @@ import tool.time.TimeConvert;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
 import ui.accountui.ManageAccountController;
+import ui.common.checkFormat.FormatCheckQueue;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
@@ -55,6 +56,8 @@ public class RevenueFormController {
 	ArrayList<String> postmans;
 	ArrayList<String> orderIDs=new ArrayList<String>();
     int money=0;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     private InformController informController;
 

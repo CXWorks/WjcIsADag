@@ -116,7 +116,10 @@ public class ExamineBLManageImpl implements ExamineblManageService {
 		ArrayList<FormVO> temp=new ArrayList<FormVO>(1);
 		temp.add(form);
 		//
-		this.formVOs.removeIf(f->f.getFormID().equalsIgnoreCase(form.formID));
+		FormVO formOrigin=this.formVOs.stream()
+				.filter(f->f.formID.equalsIgnoreCase(form.formID))
+				.findFirst().get();
+		form.setCreaterID(formOrigin.getCreaterID());
 		formVOs.add(form);
 		//
 		FormPO po=(FormPO)vopoFactory.transVOtoPO(form);
