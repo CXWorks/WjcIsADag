@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class AddInitialShelfDialogController {
     private Stage stage;
     private String modelID;
     private String defaultRowNum;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     public static Parent launch(String modelID, StoreAreaCode areaCode, String rowNum, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(AddInitialShelfDialogController.class.getResource("addInitialShelfDialog.fxml"));
@@ -58,6 +62,12 @@ public class AddInitialShelfDialogController {
                 area_ChoiceBox.setValue(enumProperty);
             }
         }
+        //init check
+        formatCheckQueue=new FormatCheckQueue();
+        formatCheckQueue.addTasker(
+        		new CheckIsNullTasker(rowNum_Field),
+        		new CheckIsNullTasker(shelvesNum_Field)
+        		);
     }
 
     public void cancel(ActionEvent actionEvent) {
@@ -65,7 +75,10 @@ public class AddInitialShelfDialogController {
     }
 
     public void commit(ActionEvent actionEvent) {
-        // TODO check
+        // check
+    	if (!formatCheckQueue.startCheck()) {
+			return ;
+		}
         initService.addShelves(modelID,
                 area_ChoiceBox.getSelectionModel().getSelectedItem().getEnum(),
                 rowNum_Field.getText(),

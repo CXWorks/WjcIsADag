@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import model.store.StoreAreaCode;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 
 import java.io.IOException;
@@ -30,6 +32,8 @@ public class AddInitialRowDialogController {
     private StoreAreaCode defaultAreaCode;
     private Stage stage;
     private String modelID;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     public static Parent launch(String modelID, StoreAreaCode areaCode, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(AddInitialRowDialogController.class.getResource("addInitialRowDialog.fxml"));
@@ -56,6 +60,12 @@ public class AddInitialRowDialogController {
                 area_ChoiceBox.setValue(enumProperty);
             }
         }
+        //init check
+        formatCheckQueue=new FormatCheckQueue();
+        formatCheckQueue.addTasker(
+        		new CheckIsNullTasker(rowNum_Field),
+        		new CheckIsNullTasker(shelvesNum_Field)
+        		);
     }
 
     public void cancel(ActionEvent actionEvent) {
@@ -63,7 +73,10 @@ public class AddInitialRowDialogController {
     }
 
     public void commit(ActionEvent actionEvent) {
-        // TODO check format
+        // check
+    	if (!formatCheckQueue.startCheck()) {
+			return ;
+		}
         initService.addRows(modelID,
                         area_ChoiceBox.getSelectionModel().getSelectedItem().getEnum(),
                         rowNum_Field.getText(),

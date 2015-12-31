@@ -18,6 +18,8 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import vo.managevo.staff.StaffVO;
 
@@ -45,6 +47,8 @@ public class EditStaffDialogController {
     private ManageblStaffService manageblStaffService = StaffFactory.getManageService();
     private EditType editType;
     private InformController informController;
+    
+    private FormatCheckQueue  formatCheckQueue;
 
     public static Stage newDialog(StaffVO staffVO, EditType editType) throws IOException {
         FXMLLoader loader = new FXMLLoader(EditStaffDialogController.class.getResource("editStaffDialog.fxml"));
@@ -75,6 +79,7 @@ public class EditStaffDialogController {
     }
 
     private void init(){
+    	
         if(editType == EditType.EDIT){
             name_Field.setText(staffVO.getName());
             institutionID_Field.setText(staffVO.getInstitutionID());
@@ -95,6 +100,16 @@ public class EditStaffDialogController {
         }
 
         name_Field.requestFocus();
+        
+        //init check
+        formatCheckQueue=new FormatCheckQueue();
+        formatCheckQueue.addTasker(
+        		new CheckIsNullTasker(age_Field),
+        		new CheckIsNullTasker(institutionID_Field),
+        		new CheckIsNullTasker(love_Field),
+        		new CheckIsNullTasker(name_Field),
+        		new CheckIsNullTasker(personID_Field)
+        		);
     }
 
     public void cancel(ActionEvent actionEvent) {
@@ -102,6 +117,10 @@ public class EditStaffDialogController {
     }
 
     public void commit(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueue.startCheck()) {
+			return;
+		}
         staffVO.setStaff(staffType_ChoiceBox.getSelectionModel().getSelectedItem().getEnum());
         staffVO.setName(name_Field.getText());
         staffVO.setSex(sex_ChoiceBox.getSelectionModel().getSelectedItem().getEnum());
