@@ -45,6 +45,7 @@
             <Button fx:id="save_Btn" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button fx:id="clear_Btn" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button fx:id="commit_Btn" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="load_Btn1" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
          </children>
       </HBox>
       <TextField fx:id="id_Field" layoutX="504.0" layoutY="105.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="109.0" />

@@ -154,7 +154,9 @@ public class ReceiveFormController {
 	public void saveDraft(ActionEvent actionEvent) {
 		receiveBLService.saveDraft(generateVO(null));
 	}
-
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(receiveBLService.loadDraft());
+	}
 	private ReceiveVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
 		return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(), calendar,

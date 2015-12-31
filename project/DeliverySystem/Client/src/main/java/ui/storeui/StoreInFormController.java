@@ -138,6 +138,10 @@ public class StoreInFormController {
 		storeInBLService.saveDraft(generateVO(null));
 	}
 
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(storeInBLService.loadDraft());
+	}
+
 	public void clear(ActionEvent actionEvent) {
 		storeIn_DatePicker.setValue(LocalDate.now());
 		orderID_Field.clear();

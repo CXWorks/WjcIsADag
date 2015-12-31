@@ -189,6 +189,10 @@ public class TransitFormController {
 
 	}
 
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(transportCenterBLService.loadDraft());
+	}
+
 	public void clear(ActionEvent actionEvent) {
 		transit_DatePicker.setValue(LocalDate.now());
 		transitType_ChoiceBox.setValue(transitType_ChoiceBox.getItems().get(0));

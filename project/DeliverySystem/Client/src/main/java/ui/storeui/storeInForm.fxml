@@ -45,6 +45,7 @@
       <HBox layoutX="519.0" layoutY="467.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
             <Button fx:id="fillPos_Btn" layoutX="394.0" layoutY="398.0" mnemonicParsing="false" onAction="#fillPosition" text="自动填充位置" />
+            <Button fx:id="load_Btn1" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
             <Button fx:id="save_Btn" layoutX="532.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button fx:id="clear_Btn" layoutX="653.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button fx:id="commit_Btns" layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />

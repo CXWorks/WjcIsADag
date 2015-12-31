@@ -88,6 +88,7 @@
       <HBox layoutX="709.0" layoutY="498.0" spacing="16.0" AnchorPane.bottomAnchor="48.0" AnchorPane.rightAnchor="48.0">
          <children>
             <Button fx:id="clear_Btn" layoutX="709.0" layoutY="498.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+            <Button fx:id="save_Btn1" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
             <Button fx:id="save_Btn" layoutX="782.0" layoutY="498.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button fx:id="commit_Btn" layoutX="881.0" layoutY="498.0" mnemonicParsing="false" onAction="#commit" text="提交" />
          </children>

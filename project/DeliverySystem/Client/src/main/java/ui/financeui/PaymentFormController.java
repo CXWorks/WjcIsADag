@@ -94,9 +94,9 @@ public class PaymentFormController {
 	@FXML
 	public void initialize() {
 		item_ChoiceBox.setItems(Enum2ObservableList.transit(FinancePayEnum.values()));
-		
+
 		clear(null);
-		
+
 		//init check
 		formatCheckQueueNotNull=new FormatCheckQueue();
 		formatCheckQueueNotNull.addTasker(
@@ -110,6 +110,10 @@ public class PaymentFormController {
 
 	public void saveDraft(ActionEvent actionEvent) {
 		paymentBLService.saveDraft(generatePaymentVO(null));
+	}
+
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(paymentBLService.loadDraft());
 	}
 
 	public void clear(ActionEvent actionEvent) {

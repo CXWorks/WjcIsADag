@@ -87,7 +87,7 @@ public class NewOrderController {
 
 	private OrderBLService obl = FormFactory.getOrderBLService();
 	private InformController informController;
-	
+
 	private FormatCheckQueue formatCheckQueue;
 
 	public static NewOrderController launch() throws IOException {
@@ -282,6 +282,10 @@ public class NewOrderController {
 
 		OrderVO ovo = generateVO(null);
 		obl.saveDraft(ovo);
+	}
+
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(obl.loadDraft());
 	}
 
 }

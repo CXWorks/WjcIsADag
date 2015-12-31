@@ -43,6 +43,7 @@
       <ListView fx:id="orders_ListView" layoutX="423.0" layoutY="179.0" prefHeight="265.0" prefWidth="499.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="161.0" />
       <HBox layoutX="712.0" layoutY="482.0" spacing="24.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
+            <Button fx:id="load_Btn1" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
             <Button fx:id="save_Btn" layoutX="535.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button fx:id="clear_Btn" layoutX="639.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button fx:id="commit_Btn" layoutX="716.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" text="确认" />

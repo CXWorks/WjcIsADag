@@ -140,6 +140,10 @@ public class LoadCarController {
 		transportHallBLService.saveDraft(generateVO(null));
 	}
 
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(transportHallBLService.loadDraft());
+	}
+
 	public void clear(ActionEvent actionEvent) {
 		date_Picker.setValue(LocalDate.now());
 		arrival_ChoiceBox.setValue(arrival_ChoiceBox.getItems().get(0));
