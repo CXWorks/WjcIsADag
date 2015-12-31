@@ -59,16 +59,36 @@ public class deliverController {
 
 	private InformController informController;
 
-	public static Parent launch() throws IOException {
-		FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
-		Pane pane = loader.load();
-		deliverController controller = loader.getController();
-		controller.informController = InformController.newInformController(pane);
+	public static deliverController launch() {
+		try	{
+			FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
+			Pane pane = loader.load();
+			deliverController controller = loader.getController();
+			controller.informController = InformController.newInformController(pane);
 
+			return controller;
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+    public static Parent launchInNew(){
+        deliverController controller = launch();
+        return controller.informController.stackPane;
+    }
+
+	public static Parent launchInManagerEdit(DeliverVO deliverVO){
+		deliverController controller = launch();
+        controller.showDetail(deliverVO);
 		return controller.informController.stackPane;
 	}
 
-	@FXML
+    private void showDetail(DeliverVO deliverVO) {
+
+    }
+
+    @FXML
 	public void initialize() {
 		// toSend.add("123"); toSend.add("456");toSend.add("789");
 		// postmans.add("wjc");postmans.add("cx");
@@ -94,13 +114,6 @@ public class deliverController {
 
 	private void fillOrderTable() {
 		OrderVO orderVO = deliverBLService.getOrderVO(idToSend);
-
-		// OrderVO orderVO =
-		// new OrderVO("11","程翔", "王嘉琛", "南京", "北京", "", "",
-		// "18351890356", "13724456739", "3", "图书", "", "", "", null, null,
-		// null,
-		// DeliverTypeEnum.NORMAL, PackingEnum.BAG);
-
 		info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 

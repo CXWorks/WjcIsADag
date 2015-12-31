@@ -1,7 +1,9 @@
 package ui.orderui;
 
 import bl.blImpl.orderbl.OrderBLController;
+import bl.blService.examineblService.ExamineblManageService;
 import bl.blService.orderblService.OrderBLService;
+import factory.ExamineFactory;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -19,8 +21,10 @@ import po.orderdata.PackingEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import tool.ui.VisibilityTool;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 
@@ -30,6 +34,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -112,12 +117,13 @@ public class NewOrderController {
         return null;
     }
 
-    public static Parent launchInManagerEdit(OrderVO orderVO){
+    public static Parent launchInManagerEdit(OrderVO orderVO, Collection<FormVO> formVOs){
         try {
             NewOrderController controller = launch();
             controller.commit_Btn.setOnAction(
                     actionEvent -> {
-                        System.out.println("now do this thing");
+                        ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                        service.modifyForm(controller.generateVO(orderVO.formID));
                     }
             );
             controller.predictHead_Date.setVisible(false);
@@ -132,11 +138,8 @@ public class NewOrderController {
 	public static Parent launchInHistory(OrderVO orderVO){
         try {
             NewOrderController controller = launch();
-            controller.calculate_Btn.setVisible(false);
-            controller.clear_Btn.setVisible(false);
-            controller.save_Btn.setVisible(false);
-            controller.commit_Btn.setVisible(false);
-            controller.predictHead_Date.setVisible(false);
+            VisibilityTool.setInvisible(controller.calculate_Btn, controller.clear_Btn, controller.save_Btn,
+                    controller.commit_Btn, controller.predictHead_Date);
             controller.showDetail(orderVO);
             return controller.informController.stackPane;
         } catch (IOException e) {
@@ -182,7 +185,6 @@ public class NewOrderController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-        System.out.println("normal commit");
         OperationMessage msg = obl.submit(generateVO(obl.newID()));
 
 		if (msg.operationResult) {

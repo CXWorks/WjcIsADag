@@ -16,11 +16,13 @@ import tool.ui.SimpleEnumProperty;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.financevo.PaymentVO;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collection;
 
 /**
  * Created by Sissel on 2015/11/24.
@@ -70,6 +72,19 @@ public class PaymentFormController {
         return controller.informController.stackPane;
     }
 
+    public static Parent launchInManagerEdit(PaymentVO paymentVO, Collection<FormVO> formVOs) {
+        PaymentFormController controller = launch();
+        controller.showDetail(paymentVO);
+        controller.commit_Btn.setOnAction(
+                event -> {
+                    formVOs.remove(paymentVO);
+                    PaymentVO newVO = controller.generatePaymentVO(paymentVO.formID);
+                    formVOs.add(newVO);
+                }
+        );
+        return controller.informController.stackPane;
+    }
+
 	@FXML
 	public void initialize() {
 		item_ChoiceBox.setItems(Enum2ObservableList.transit(FinancePayEnum.values()));
@@ -78,7 +93,7 @@ public class PaymentFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		paymentBLService.saveDraft(generatePaymentVO());
+		paymentBLService.saveDraft(generatePaymentVO(null));
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -104,7 +119,8 @@ public class PaymentFormController {
     }
 
 	public void commit(ActionEvent actionEvent) {
-		OperationMessage msg = paymentBLService.submit(generatePaymentVO());
+        String newID = paymentBLService.getNewPaymentID(TimeConvert.getDisplayDate(Calendar.getInstance()));
+		OperationMessage msg = paymentBLService.submit(generatePaymentVO(newID));
 		if (msg.operationResult) {
 			System.out.println("add successfully");
 		} else {
@@ -112,9 +128,9 @@ public class PaymentFormController {
 		}
 	}
 
-	private PaymentVO generatePaymentVO() {
-		return new PaymentVO(paymentBLService.getNewPaymentID(TimeConvert.getDisplayDate(Calendar.getInstance())),
-				TimeConvert.convertDate(payment_DatePicker.getValue()), money_Field.getText(), null,
+	private PaymentVO generatePaymentVO(String formID) {
+		return new PaymentVO(formID,
+                TimeConvert.convertDate(payment_DatePicker.getValue()), money_Field.getText(), null,
 				payerName_Field.getText(), payerAccount_Field.getText(), null, receiverName_Field.getText(),
 				receiverAccount_Field.getText(), item_ChoiceBox.getValue().getEnum(), note_TextArea.getText(),
 				UserInfo.getUserID());

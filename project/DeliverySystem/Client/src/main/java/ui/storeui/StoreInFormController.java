@@ -3,6 +3,7 @@ package ui.storeui;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Map;
 
 import bl.blService.storeblService.StoreInBLService;
@@ -22,9 +23,11 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
+import tool.ui.VisibilityTool;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
 
@@ -74,11 +77,21 @@ public class StoreInFormController {
 
     public static Parent launchInHistory(StoreInVO storeInVO){
         StoreInFormController controller = launch();
-        controller.fillPos_Btn.setVisible(false);
-        controller.save_Btn.setVisible(false);
-        controller.clear_Btn.setVisible(false);
-        controller.commit_Btns.setVisible(false);
+        VisibilityTool.setInvisible
+                (controller.fillPos_Btn, controller.save_Btn, controller.clear_Btn, controller.commit_Btns);
         controller.showDetail(storeInVO);
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInManagerEdit(StoreInVO storeInVO, Collection<FormVO> formVOs){
+        StoreInFormController controller = launch();
+        controller.showDetail(storeInVO);
+        controller.commit_Btns.setOnAction(
+                event -> {
+                    formVOs.remove(storeInVO);
+                    formVOs.add(controller.generateVO(storeInVO.formID));
+                }
+        );
         return controller.informController.stackPane;
     }
 

@@ -1,9 +1,11 @@
 package ui.transportui;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 import message.OperationMessage;
 import factory.FormFactory;
@@ -19,6 +21,7 @@ import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import ui.receiveui.ReceiveFormController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.InstitutionVO;
 import vo.receivevo.ReceiveVO;
@@ -88,6 +91,18 @@ public class TransitFormController {
         VisibilityTool.setInvisible(controller.id_Field, controller.add_Btn,
                 controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
         controller.showDetail(transitVO);
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInManagerEdit(CenterOutVO transitVO, Collection<FormVO> formVOs){
+        TransitFormController controller = launch();
+        controller.showDetail(transitVO);
+        controller.commit_Btn.setOnAction(
+                event -> {
+                    formVOs.remove(transitVO);
+                    formVOs.add(controller.generateVO(transitVO.formID));
+                }
+        );
         return controller.informController.stackPane;
     }
 

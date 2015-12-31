@@ -13,6 +13,7 @@ import tool.ui.VisibilityTool;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.managevo.car.CarVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 import po.transportdata.TransportationEnum;
@@ -82,6 +84,18 @@ public class LoadCarController {
         VisibilityTool.setInvisible(controller.add_Btn, controller.id_Field,
                 controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
         controller.showDetail(loadVO);
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInManagerEdit(LoadVO loadVO, Collection<FormVO> formVOs) {
+        LoadCarController controller = launch();
+        controller.showDetail(loadVO);
+        controller.commit_Btn.setOnAction(
+                event -> {
+                    formVOs.remove(loadVO);
+                    formVOs.add(controller.generateVO(loadVO.formID));
+                }
+        );
         return controller.informController.stackPane;
     }
 

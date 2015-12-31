@@ -3,6 +3,7 @@ package ui.storeui;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Map;
 
 import bl.blService.storeblService.StoreInBLService;
@@ -24,6 +25,7 @@ import tool.ui.*;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
 import vo.storevo.StoreInVO;
@@ -79,6 +81,18 @@ public class StoreOutFormController {
         StoreOutFormController controller = launch();
         VisibilityTool.setInvisible(controller.clear_Btn, controller.commit_Btn, controller.save_Btn);
         controller.showDetail(storeOutVO);
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInManagerEdit(StoreOutVO storeOutVO, Collection<FormVO> formVOs) {
+        StoreOutFormController controller = launch();
+        controller.showDetail(storeOutVO);
+        controller.commit_Btn.setOnAction(
+                event -> {
+                    formVOs.remove(storeOutVO);
+                    formVOs.add(controller.generateVO(storeOutVO.formID));
+                }
+        );
         return controller.informController.stackPane;
     }
 

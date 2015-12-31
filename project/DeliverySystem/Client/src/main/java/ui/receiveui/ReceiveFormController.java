@@ -18,12 +18,14 @@ import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -76,6 +78,18 @@ public class ReceiveFormController {
         ReceiveFormController controller = launch();
         VisibilityTool.setInvisible(controller.clear_Btn, controller.commit_Btn, controller.save_Btn);
         controller.showDetail(receiveVO);
+        return controller.informController.stackPane;
+    }
+
+    public static Parent launchInManagerEdit(ReceiveVO receiveVO, Collection<FormVO> formVOs) {
+        ReceiveFormController controller = launch();
+        controller.showDetail(receiveVO);
+        controller.commit_Btn.setOnAction(
+                event -> {
+                    formVOs.remove(receiveVO);
+                    formVOs.add(controller.generateVO(receiveVO.formID));
+                }
+        );
         return controller.informController.stackPane;
     }
 

@@ -23,8 +23,10 @@ import vo.storevo.StoreInVO;
 import vo.storevo.StoreOutVO;
 import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
+import vo.transitvo.TransitVO;
 
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Created by Sissel on 2015/12/30.
@@ -62,35 +64,47 @@ public class ViewFormDetailController {
         return controller.stage;
     }
 
-    public static Stage launchInManagerModify(FormVO form){
+    /**
+     *
+     * @param form
+     * @param formVOs : remove the old form and add back the new one
+     * @return
+     */
+    public static Stage launchInManagerModify(FormVO form, Collection<FormVO> formVOs){
         ViewFormDetailController controller = launch();
         controller.formVO = form;
-        controller.contentFather.getChildren().add(controller.getManagerByType());
+        controller.contentFather.getChildren().add(controller.getManagerByType(formVOs));
 
         return controller.stage;
     }
 
-    public Parent getManagerByType() {
+    public Parent getManagerByType(Collection<FormVO> formVOs) {
         Parent result = null;
         switch (formVO.getFormType()){
             case ORDER:
-                result = NewOrderController.launchInManagerEdit((OrderVO)formVO);
+                result = NewOrderController.launchInManagerEdit((OrderVO)formVO, formVOs);
                 break;
             case DELIVER:
                 break;
             case PAYMENT:
+                result = PaymentFormController.launchInManagerEdit((PaymentVO)formVO, formVOs);
                 break;
             case REVENUE:
                 break;
             case RECEIVE:
+                result = ReceiveFormController.launchInManagerEdit((ReceiveVO)formVO, formVOs);
                 break;
             case LOAD_CAR:
+                result = LoadCarController.launchInManagerEdit((LoadVO)formVO, formVOs);
                 break;
             case CENTER_TRANSPORT:
+                result = TransitFormController.launchInManagerEdit((CenterOutVO)formVO, formVOs);
                 break;
             case STORE_IN:
+                result = StoreInFormController.launchInManagerEdit((StoreInVO)formVO, formVOs);
                 break;
             case STORE_OUT:
+                result = StoreOutFormController.launchInManagerEdit((StoreOutVO)formVO, formVOs);
                 break;
         }
         return result;
