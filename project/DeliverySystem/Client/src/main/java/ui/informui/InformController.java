@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import main.Main;
@@ -18,18 +19,20 @@ import java.io.IOException;
 public class InformController {
     public AnchorPane stackPane;
     public Label content_Label;
-    public Pane informPane;
+    public HBox informPane;
 
     public static InformController newInformController(Pane contentPane) {
         FXMLLoader loader = new FXMLLoader(InformController.class.getResource("inform.fxml"));
         try {
-            Pane informPane = loader.load();
+            HBox informPane = loader.load();
             InformController controller = loader.getController();
             controller.stackPane = new AnchorPane(contentPane);
             AnchorSet.set0(contentPane);
             AnchorSet.set0(controller.stackPane);
             controller.stackPane.getChildren().add(informPane);
             AnchorPane.setTopAnchor(informPane, 0.0);
+            AnchorPane.setLeftAnchor(informPane, 0.0);
+            AnchorPane.setRightAnchor(informPane, 0.0);
             informPane.setVisible(false);
             controller.informPane = informPane;
 

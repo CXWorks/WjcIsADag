@@ -50,6 +50,7 @@ public class RevenueFormController {
     public Button save_Btn;
     public Button clear_Btn;
     public Button commit_Btn;
+    public Label dateErr_Label;
 
     private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
     DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
