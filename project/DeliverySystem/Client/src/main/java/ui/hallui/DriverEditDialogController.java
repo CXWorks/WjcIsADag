@@ -96,11 +96,7 @@ public class DriverEditDialogController {
     			new CheckIsNullTasker(carUnit_Field),
     			new CheckIsNullTasker(name_Field),
     			new CheckIsNullTasker(personID_Field),
-<<<<<<< HEAD
     			new CheckPhoneTasker( tel_Field)
-=======
-    			new CheckPhoneTasker(tel_Field)
->>>>>>> dc977f66437f9a196e3982ce1242a80b93600de9
     			);
 	}
 

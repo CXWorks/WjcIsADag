@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class CarEditDialogController {
 
@@ -41,6 +42,7 @@ public class CarEditDialogController {
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 
@@ -64,11 +66,7 @@ public class CarEditDialogController {
 		//init check
 		formatCheckQueue=new FormatCheckQueue();
 		formatCheckQueue.addTasker(new CheckIsNullTasker(nameID_Field),
-<<<<<<< HEAD
 				new CheckCarIDTasker( carID_Field));
-=======
-				new CheckCarIDTasker(carID_Field));
->>>>>>> dc977f66437f9a196e3982ce1242a80b93600de9
 
 	}
 
