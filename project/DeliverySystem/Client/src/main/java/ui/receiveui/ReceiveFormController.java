@@ -165,7 +165,7 @@ public class ReceiveFormController {
 				departure_Field.getText(), stateEnum, UserInfo.getUserID());
 	}
 
-	private void fillOrderTable() {
+	public void fillOrderTable() {
         if(!formatCheckQueueOrder.startCheck()){
             order_Table.getItems().clear();
             return;

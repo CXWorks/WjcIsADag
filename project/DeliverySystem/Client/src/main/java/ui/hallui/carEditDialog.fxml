@@ -6,22 +6,22 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.CarEditDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.CarEditDialogController">
    <children>
-      <GridPane layoutX="25.0" layoutY="27.0" prefHeight="196.0" prefWidth="200.0">
+      <GridPane layoutX="25.0" layoutY="36.0" prefHeight="196.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="车辆代号" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="车牌号" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="发动机号" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="底盘号" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="购买时间" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="服役开始时间" GridPane.rowIndex="5" />
             <TextField fx:id="carID_Field" GridPane.columnIndex="1" />
             <TextField fx:id="nameID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="engineID_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="chassisID_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="buyTime_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="engineID_Label" styleClass="label-small" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="chassisID_Label" styleClass="label-small" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="buyTime_Label" styleClass="label-small" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <DatePicker fx:id="useTime_Picker" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label styleClass="label-small" text="车辆代号" />
+            <Label styleClass="label-small" text="车牌号" GridPane.rowIndex="1" />
+            <Label styleClass="label-small" text="发动机号" GridPane.rowIndex="2" />
+            <Label styleClass="label-small" text="底盘号" GridPane.rowIndex="3" />
+            <Label styleClass="label-small" text="购买时间" GridPane.rowIndex="4" />
+            <Label styleClass="label-small" text="服役开始时间" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

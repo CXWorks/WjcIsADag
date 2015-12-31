@@ -4,12 +4,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.organization.EditOrganizationDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="300.0" styleClass="background-add" stylesheets="@../../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.organization.EditOrganizationDialogController">
    <children>
-      <GridPane layoutX="43.0" layoutY="30.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="16.0">
+      <GridPane layoutX="43.0" layoutY="39.0" prefHeight="153.0" prefWidth="236.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="39.0">
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="73.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="163.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -19,13 +19,13 @@
          <children>
             <Label layoutX="43.0" layoutY="34.0" text="城市" />
             <Label layoutX="43.0" layoutY="71.0" text="类型" GridPane.rowIndex="1" />
-            <TextField fx:id="area_Field" layoutX="113.0" layoutY="116.0" prefHeight="23.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="type_ChoiceBox" layoutX="113.0" layoutY="75.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="area_Field" layoutX="113.0" layoutY="116.0" maxWidth="180.0" prefHeight="28.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="type_ChoiceBox" layoutX="113.0" layoutY="75.0" prefHeight="35.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label layoutX="43.0" layoutY="112.0" text="区域" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="city_ChoiceBox" layoutX="113.0" layoutY="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="city_ChoiceBox" layoutX="113.0" layoutY="30.0" prefHeight="35.0" prefWidth="180.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <HBox layoutX="133.0" layoutY="163.0" spacing="16.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="16.0">
+      <HBox layoutX="162.0" layoutY="215.0" spacing="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="32.0">
          <children>
             <Button layoutX="133.0" layoutY="163.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
             <Button layoutX="208.0" layoutY="163.0" mnemonicParsing="false" onAction="#commit" text="确认" />

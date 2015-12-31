@@ -4,16 +4,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="272.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.AddInitialShelfDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="281.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.initui.AddInitialShelfDialogController">
    <children>
-      <Label layoutX="14.0" layoutY="69.0" text="所在区域" />
-      <ChoiceBox fx:id="area_ChoiceBox" layoutX="97.0" layoutY="65.0" prefHeight="23.0" prefWidth="161.0" />
-      <Label layoutX="14.0" layoutY="126.0" text="所在排" />
+      <Label layoutX="14.0" layoutY="69.0" text="所在区域" AnchorPane.rightAnchor="197.0" />
+      <ChoiceBox fx:id="area_ChoiceBox" layoutX="119.0" layoutY="65.0" prefHeight="28.0" prefWidth="141.0" AnchorPane.rightAnchor="21.0" />
+      <Label layoutX="14.0" layoutY="128.0" text="所在排" />
       <Label layoutX="14.0" layoutY="188.0" text="新增架子数" />
-      <TextField fx:id="rowNum_Field" layoutX="97.0" layoutY="122.0" />
-      <TextField fx:id="shelvesNum_Field" layoutX="97.0" layoutY="184.0" />
-      <Button layoutX="158.0" layoutY="266.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
-      <Button layoutX="218.0" layoutY="266.0" mnemonicParsing="false" onAction="#commit" text="确定" />
+      <TextField fx:id="rowNum_Field" layoutX="119.0" layoutY="127.0" prefHeight="28.0" prefWidth="141.0" AnchorPane.rightAnchor="21.0" />
+      <TextField fx:id="shelvesNum_Field" layoutX="119.0" layoutY="184.0" prefHeight="28.0" prefWidth="141.0" AnchorPane.rightAnchor="21.0" />
+      <Button layoutX="155.0" layoutY="243.0" mnemonicParsing="false" onAction="#cancel" text="取消" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="81.0" />
+      <Button layoutX="215.0" layoutY="243.0" mnemonicParsing="false" onAction="#commit" text="确定" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="18.0" />
    </children>
 </AnchorPane>
