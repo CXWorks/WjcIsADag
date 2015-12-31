@@ -43,9 +43,9 @@ public class deliverController {
 	public TextField id_Field;
 	public DatePicker date_DatePicker;
 	public ChoiceBox<String> postman_Box;
-    public Label dateErr_Label;
+	public Label dateErr_Label;
 
-    private String idToSend = "";
+	private String idToSend = "";
 	private String postman = new String();
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
@@ -62,35 +62,35 @@ public class deliverController {
 	private InformController informController;
 
 	public static deliverController launch() {
-		try	{
+		try {
 			FXMLLoader loader = new FXMLLoader(deliverController.class.getResource("deliver.fxml"));
 			Pane pane = loader.load();
 			deliverController controller = loader.getController();
 			controller.informController = InformController.newInformController(pane);
 
 			return controller;
-		}catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-    public static Parent launchInNew(){
-        deliverController controller = launch();
-        return controller.informController.stackPane;
-    }
-
-	public static Parent launchInManagerEdit(DeliverVO deliverVO){
+	public static Parent launchInNew() {
 		deliverController controller = launch();
-        controller.showDetail(deliverVO);
 		return controller.informController.stackPane;
 	}
 
-    private void showDetail(DeliverVO deliverVO) {
+	public static Parent launchInManagerEdit(DeliverVO deliverVO) {
+		deliverController controller = launch();
+		controller.showDetail(deliverVO);
+		return controller.informController.stackPane;
+	}
 
-    }
+	private void showDetail(DeliverVO deliverVO) {
+		// TODO
+	}
 
-    @FXML
+	@FXML
 	public void initialize() {
 		// toSend.add("123"); toSend.add("456");toSend.add("789");
 		// postmans.add("wjc");postmans.add("cx");
@@ -104,20 +104,20 @@ public class deliverController {
 		date_DatePicker.setValue(LocalDate.now());
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 		ids_ListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // TODO test
+			// TODO test
 
-            idToSend = newValue;
-            id_Field.setText(newValue.toString());
-            fillOrderTable();
-        });
+			idToSend = newValue;
+			id_Field.setText(newValue.toString());
+			fillOrderTable();
+		});
 		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
 		//
-		formatCheckQueueSearch=new FormatCheckQueue();
+		formatCheckQueueSearch = new FormatCheckQueue();
 		formatCheckQueueSearch.addTasker(new CheckOrderTasker(id_Search_Field));
-		formatCheckQueueSubmit=new FormatCheckQueue();
+		formatCheckQueueSubmit = new FormatCheckQueue();
 		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(id_Field),
-                new CheckPreDateTasker(dateErr_Label, date_DatePicker));
+				new CheckPreDateTasker(dateErr_Label, date_DatePicker));
 	}
 
 	private void fillOrderTable() {
@@ -130,14 +130,12 @@ public class deliverController {
 		ids_ListView.getItems().clear();
 		toSend = deliverBLService.getUnhandledOrderID(UserInfo.getInstitutionID());
 		toSend = new ArrayList<String>(
-		toSend.stream().filter(string ->
-			!alreadySend.contains(string)
-		).collect(Collectors.toList()));
+				toSend.stream().filter(string -> !alreadySend.contains(string)).collect(Collectors.toList()));
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 	}
 
 	public void search(ActionEvent actionEvent) {
-		//check first
+		// check first
 		if (!formatCheckQueueSearch.startCheck()) {
 			return;
 		}
@@ -152,9 +150,9 @@ public class deliverController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-		//check first
+		// check first
 		if (!formatCheckQueueSubmit.startCheck()) {
-			return ;
+			return;
 		}
 		DeliverVO vo = generateVO(deliverBLService.newID());
 		OperationMessage msg = deliverBLService.submit(vo);
@@ -185,4 +183,7 @@ public class deliverController {
 		clear(null);
 	}
 
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(deliverBLService.loadDraft());
+	}
 }

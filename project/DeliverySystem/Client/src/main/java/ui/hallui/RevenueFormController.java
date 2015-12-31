@@ -39,131 +39,128 @@ import vo.receivevo.ReceiveVO;
  * Created by Sissel on 2015/11/27.
  */
 public class RevenueFormController {
-    public TableView<Revenue> revenues_TableView;
-    public TableColumn<Revenue,String> money_TableColumn;
-    public TableColumn<Revenue,String> order_TableColumn;
-    public DatePicker revenue_DatePicker;
-    public TextField money_Field;
-    public TextField order_Field;
-    public Label total_Label;
-    public ChoiceBox<String> deliver_ChoiceBox;
-    public Button add_Btn;
-    public Button save_Btn;
-    public Button clear_Btn;
-    public Button commit_Btn;
-    public Label dateErr_Label;
+	public TableView<Revenue> revenues_TableView;
+	public TableColumn<Revenue, String> money_TableColumn;
+	public TableColumn<Revenue, String> order_TableColumn;
+	public DatePicker revenue_DatePicker;
+	public TextField money_Field;
+	public TextField order_Field;
+	public Label total_Label;
+	public ChoiceBox<String> deliver_ChoiceBox;
+	public Button add_Btn;
+	public Button save_Btn;
+	public Button clear_Btn;
+	public Button commit_Btn;
+	public Label dateErr_Label;
 
-    private RevenueBLService revenueBLService= FinanceBLFactory.getRevenueBLService();
-    DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
+	private RevenueBLService revenueBLService = FinanceBLFactory.getRevenueBLService();
+	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
-    String institutionID=UserInfo.getInstitutionID();
+	String institutionID = UserInfo.getInstitutionID();
 	ArrayList<String> postmans;
-	ArrayList<String> orderIDs=new ArrayList<String>();
-    int money=0;
-    
-    private FormatCheckQueue formatCheckQueue;
+	ArrayList<String> orderIDs = new ArrayList<String>();
+	int money = 0;
 
-    private InformController informController;
+	private FormatCheckQueue formatCheckQueue;
 
-	public static RevenueFormController launch(){
-        try {
-            FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
-            Pane pane = loader.load();
-            RevenueFormController controller = loader.getController();
-            controller.informController = InformController.newInformController(pane);
+	private InformController informController;
 
-            return controller;
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+	public static RevenueFormController launch() {
+		try {
+			FXMLLoader loader = new FXMLLoader(RevenueFormController.class.getResource("revenueForm.fxml"));
+			Pane pane = loader.load();
+			RevenueFormController controller = loader.getController();
+			controller.informController = InformController.newInformController(pane);
 
-    public static Parent launchInNew(){
-        RevenueFormController controller = launch();
-        return controller.informController.stackPane;
-    }
-
-    public static Parent launchInHistory(RevenueVO revenueVO){
-        RevenueFormController controller = launch();
-        VisibilityTool.setInvisible(controller.add_Btn, controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
-        controller.showDetail(revenueVO);
-        return controller.informController.stackPane;
-    }
-
-    private void showDetail(RevenueVO revenueVO) {
-
-    }
-
-    @FXML
-	public void initialize(){
-		postmans= deliverBLService.getPostman(institutionID);
-		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
-		revenue_DatePicker.setValue(LocalDate.now());
-		
-		//init check
-		formatCheckQueue=new FormatCheckQueue();
-		formatCheckQueue.addTasker(
-                new CheckOrderTasker(order_Field),
-                new CheckIsNullTasker(money_Field),
-                new CheckPreDateTasker(dateErr_Label, revenue_DatePicker)
-        );
+			return controller;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-    public void add(ActionEvent actionEvent) {
-    	//check
-    	if (!formatCheckQueue.startCheck()) {
+	public static Parent launchInNew() {
+		RevenueFormController controller = launch();
+		return controller.informController.stackPane;
+	}
+
+	public static Parent launchInHistory(RevenueVO revenueVO) {
+		RevenueFormController controller = launch();
+		VisibilityTool.setInvisible(controller.add_Btn, controller.save_Btn, controller.clear_Btn,
+				controller.commit_Btn);
+		controller.showDetail(revenueVO);
+		return controller.informController.stackPane;
+	}
+
+	private void showDetail(RevenueVO revenueVO) {
+		// TODO
+	}
+
+	@FXML
+	public void initialize() {
+		postmans = deliverBLService.getPostman(institutionID);
+		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
+		revenue_DatePicker.setValue(LocalDate.now());
+
+		// init check
+		formatCheckQueue = new FormatCheckQueue();
+		formatCheckQueue.addTasker(new CheckOrderTasker(order_Field), new CheckIsNullTasker(money_Field),
+				new CheckPreDateTasker(dateErr_Label, revenue_DatePicker));
+	}
+
+	public void add(ActionEvent actionEvent) {
+		// check
+		if (!formatCheckQueue.startCheck()) {
 			return;
 		}
-    	orderIDs.add(order_Field.getText());
-    	money+=Integer.parseInt(money_Field.getText());
-    	total_Label.setText(money+"");
+		orderIDs.add(order_Field.getText());
+		money += Integer.parseInt(money_Field.getText());
+		total_Label.setText(money + "");
 
-    	revenues_TableView.getItems().add(new Revenue(order_Field.getText(),money_Field.getText(),deliver_ChoiceBox.getValue()));
-    	money_TableColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getMoney())
-                );
-    	order_TableColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getOrder())
-                );
+		revenues_TableView.getItems()
+				.add(new Revenue(order_Field.getText(), money_Field.getText(), deliver_ChoiceBox.getValue()));
+		money_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMoney()));
+		order_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrder()));
 
-    	order_Field.clear();
-    	money_Field.clear();
-    }
+		order_Field.clear();
+		money_Field.clear();
+	}
 
-    public void saveDraft(ActionEvent actionEvent) {
-    	revenueBLService.saveDraft(generateRevenueVO(null));
-    }
+	public void saveDraft(ActionEvent actionEvent) {
+		revenueBLService.saveDraft(generateRevenueVO(null));
+	}
 
-    public void commit(ActionEvent actionEvent) {
-    	OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.newID()));
-    	clear(null);
-        if(msg.operationResult){
-            System.out.println("commit successfully");
-            clear(null);
-        }else{
-            System.out.println("commit fail: " + msg.getReason());
-        }
-    }
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(revenueBLService.loadDraft());
+	}
 
-    private RevenueVO generateRevenueVO(String formID){
-    	 Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
-        return new RevenueVO(
-                formID,calendar,total_Label.getText(),
-                deliver_ChoiceBox.getValue().toString(),institutionID,orderIDs,UserInfo.getUserID()
-        );
+	public void commit(ActionEvent actionEvent) {
+		OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.newID()));
+		clear(null);
+		if (msg.operationResult) {
+			System.out.println("commit successfully");
+			clear(null);
+		} else {
+			System.out.println("commit fail: " + msg.getReason());
+		}
+	}
 
-    }
+	private RevenueVO generateRevenueVO(String formID) {
+		Calendar calendar = TimeConvert.convertDate(revenue_DatePicker.getValue());
+		return new RevenueVO(formID, calendar, total_Label.getText(), deliver_ChoiceBox.getValue().toString(),
+				institutionID, orderIDs, UserInfo.getUserID());
 
-    public void clear(ActionEvent actionEvent) {
-    	revenue_DatePicker.setValue(LocalDate.now());
-    	money_Field.clear();
-    	order_Field.clear();
-    	deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
-    	orderIDs.clear();
-    	money=0;
-    	total_Label.setText(money+"");
+	}
 
-    	revenues_TableView.getItems().clear();
-    }
+	public void clear(ActionEvent actionEvent) {
+		revenue_DatePicker.setValue(LocalDate.now());
+		money_Field.clear();
+		order_Field.clear();
+		deliver_ChoiceBox.setValue(deliver_ChoiceBox.getItems().get(0));
+		orderIDs.clear();
+		money = 0;
+		total_Label.setText(money + "");
+
+		revenues_TableView.getItems().clear();
+	}
 }

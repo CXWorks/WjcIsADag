@@ -87,7 +87,7 @@ public class NewOrderController {
 
 	private OrderBLService obl = FormFactory.getOrderBLService();
 	private InformController informController;
-	
+
 	private FormatCheckQueue formatCheckQueue;
 
 	public static NewOrderController launch() throws IOException {
@@ -186,8 +186,13 @@ public class NewOrderController {
 				new CheckIsNullTasker(goods_V2),
 				new CheckIsNullTasker(goods_V3),
 				new CheckIsNullTasker(goods_Weight),
+<<<<<<< HEAD
 				new CheckPhoneTasker( phone_From),
 				new CheckPhoneTasker( phone_To)
+=======
+				new CheckPhoneTasker(phone_From),
+				new CheckPhoneTasker(phone_To)
+>>>>>>> dc977f66437f9a196e3982ce1242a80b93600de9
 				);
 	}
 
@@ -282,6 +287,10 @@ public class NewOrderController {
 
 		OrderVO ovo = generateVO(null);
 		obl.saveDraft(ovo);
+	}
+
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(obl.loadDraft());
 	}
 
 }

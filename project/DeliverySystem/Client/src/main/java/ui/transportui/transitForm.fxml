@@ -30,17 +30,12 @@
             <Label fx:id="transNumber_Label" text="航班号" GridPane.rowIndex="5" />
             <Label fx:id="cargo_Label" text="货柜号" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="transitType_ChoiceBox" prefHeight="29.0" prefWidth="223.0" GridPane.columnIndex="1" />
-            <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <DatePicker fx:id="transit_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="dateErr_Label" text="Label" />
-               </children>
-            </VBox>
+            <DatePicker fx:id="transit_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="supervisor_Field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="transNumber_Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="cargo_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="arrival_Box" prefHeight="29.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label layoutX="504.0" layoutY="56.0" text="所有订单号" AnchorPane.leftAnchor="423.0" AnchorPane.topAnchor="48.0" />
@@ -50,6 +45,7 @@
             <Button fx:id="save_Btn" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
             <Button fx:id="clear_Btn" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button fx:id="commit_Btn" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="load_Btn1" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
          </children>
       </HBox>
       <TextField fx:id="id_Field" layoutX="504.0" layoutY="105.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="109.0" />

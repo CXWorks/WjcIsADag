@@ -143,6 +143,10 @@ public class StoreOutFormController {
 		storeOutBLService.saveDraft(generateVO(null));
 	}
 
+	public void loadDraft(ActionEvent actionEvent) {
+		this.showDetail(storeOutBLService.loadDraft());
+	}
+
 	private StoreOutVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(storeOut_DatePicker.getValue());
 		StoreOutVO vo = new StoreOutVO(formID, orderID_Field.getText(), calendar, destination_Field.getText(), tran,

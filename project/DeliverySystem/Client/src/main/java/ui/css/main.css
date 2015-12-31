@@ -50,6 +50,7 @@
 	-fx-border-top-right-radius:0px;
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
+		-fx-cursor:hand;
     -fx-size:150;
 	-fx-background-color:purple;
     -fx-border-style :none;
@@ -79,7 +80,7 @@
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
     -fx-size:150;
-
+	-fx-cursor:hand;
     -fx-border-style :none;
     -fx-font-size: 15pt;
 
@@ -102,6 +103,7 @@
 
 .button-person {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/person.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -126,6 +128,7 @@
 
 .button-message {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/message.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -153,6 +156,7 @@
 
 .button-close {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/close.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -178,6 +182,7 @@
 
 .button-max {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/da.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -199,6 +204,7 @@
 }
 .button-min {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/xiao.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -221,6 +227,7 @@
 
 .button-chi {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/buttons/set.png);
 	-fx-background-color:#1c1c1c;
     -fx-border-style :none;
