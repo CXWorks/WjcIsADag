@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.store.StoreAreaCode;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
@@ -40,6 +41,7 @@ public class AddInitialRowDialogController {
         Pane pane = loader.load();
         AddInitialRowDialogController controller = loader.getController();
 
+        stage.initStyle(StageStyle.UNDECORATED);
         controller.defaultAreaCode = areaCode;
         controller.stage = stage;
         controller.modelID = modelID;

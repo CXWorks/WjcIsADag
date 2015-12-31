@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import ui.common.checkFormat.FormatCheckQueue;
 import ui.common.checkFormat.field.CheckIsNullTasker;
@@ -54,6 +55,8 @@ public class AccountEditDialogController {
         Pane pane = loader.load();
 
         Stage stage = new Stage();
+        
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle(
                 type == EditType.EDIT ? "修改账户" : "新建账户"
         );

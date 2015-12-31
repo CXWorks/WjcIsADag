@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import userinfo.UserInfo;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class SettingDialogController {
 
     public static Stage newDialog(Stage owner){
         Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("系统设置");
         stage.initOwner(owner);
 

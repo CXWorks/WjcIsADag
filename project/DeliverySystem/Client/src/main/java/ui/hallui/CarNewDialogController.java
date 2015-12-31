@@ -16,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class CarNewDialogController {
 
@@ -40,6 +41,7 @@ public class CarNewDialogController {
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 

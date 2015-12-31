@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import ui.common.SettingDialogController;
 
@@ -23,6 +24,9 @@ public class ConnectDialogController {
         ConnectDialogController controller = loader.getController();
 
         controller.dialog = new Stage();
+        
+        controller.dialog.initStyle(StageStyle.UNDECORATED);
+        
         controller.dialog.initOwner(Main.primaryStage);
         controller.dialog.setScene(new Scene(pane));
 

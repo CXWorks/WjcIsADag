@@ -15,6 +15,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import message.OperationMessage;
 import po.InfoEnum;
@@ -64,7 +65,8 @@ public class EditOrganizationDialogController {
 
             Stage stage = new Stage();
             stage.initOwner(Main.primaryStage);
-
+            stage.initStyle(StageStyle.UNDECORATED);
+            
             EditOrganizationDialogController controller = loader.getController();
             controller.dialog = stage;
             controller.institutionVO = institutionVO;

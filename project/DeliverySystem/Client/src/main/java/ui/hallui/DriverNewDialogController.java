@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
@@ -50,6 +51,7 @@ public class DriverNewDialogController {
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 

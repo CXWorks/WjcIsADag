@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import message.OperationMessage;
 import po.memberdata.SexEnum;
@@ -55,9 +56,11 @@ public class EditStaffDialogController {
         Pane pane = loader.load();
 
         Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UNDECORATED);
         dialog.setTitle(
                 editType == EditType.EDIT ? "修改账户" : "新建账户"
         );
+        
         dialog.initOwner(Main.primaryStage);
 
         EditStaffDialogController controller = loader.getController();
