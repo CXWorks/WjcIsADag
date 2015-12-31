@@ -1,7 +1,12 @@
 package ui.loginui;
 
 import java.io.IOException;
-import java.util.Map;
+
+
+
+
+
+
 
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.blService.accountblService.AccountBLManageService;
@@ -11,6 +16,7 @@ import factory.AccountFactory;
 import factory.LoginFactory;
 import factory.SearchFactory;
 import factory.StaffFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,9 +30,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import main.Main;
 import message.OperationMessage;
-import tool.ui.LogisticsVO2ColumnHelper;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import vo.logisticsvo.LogisticsInfo;
 import vo.logisticsvo.LogisticsVO;
 import vo.managevo.staff.StaffVO;
 
@@ -39,13 +45,12 @@ public class LoginController {
 
     public TextField search_Field;
 
-	public TableView<Map.Entry<String, String>> logistics_TableView;
-	public TableColumn<Map.Entry<String, String>, String> time_Column;
-	public TableColumn<Map.Entry<String, String>, String> address_Column;
+	public TableView<LogisticsInfo> logistics_TableView;
+	public TableColumn<LogisticsInfo, String> time_Column;
+	public TableColumn<LogisticsInfo, String> address_Column;
 
 	SearchBLService searchblService = SearchFactory.getSearchBLService();
 
-	private LogisticsVO logisticsvo=new LogisticsVO();
 
     private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     private ManageblStaffService manageblStaffService;
@@ -60,8 +65,11 @@ public class LoginController {
 
     @FXML
     public void initialize(){
-    	LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
-        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
+    	time_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getTime()));
+    	address_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfo()));
+    	logistics_TableView.getColumns().clear();
+    	logistics_TableView.getColumns().add(time_Column);
+    	logistics_TableView.getColumns().add(address_Column);
     }
 
     public void login(ActionEvent actionEvent) {
@@ -88,18 +96,15 @@ public class LoginController {
         password_Field.clear();
     }
 
-    public void search(ActionEvent atcionEvent){
+    public void search(){
 		logistics_TableView.getItems().clear();
-//		System.out.println(search_Field.getText());
-		logisticsvo=searchblService.searchOrder(
+		LogisticsVO logisticsvo=searchblService.searchOrder(
 				search_Field.getText());
-        if(this.logisticsvo == null){
+        if(logisticsvo == null){
             return;
         }
-//        System.out.println(logisticsvo.getLocation().toString());
-//		System.out.println(logisticsvo.getTime().toString());
-
-        logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
-
+       System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        logistics_TableView.getItems().addAll(logisticsvo.getInfoForTableView());
+        
 	}
 }

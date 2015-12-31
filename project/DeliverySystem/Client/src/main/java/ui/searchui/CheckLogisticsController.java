@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import po.financedata.FinancePayEnum;
-import tool.ui.LogisticsVO2ColumnHelper;
 import ui.receiveui.ReceiveFormController;
 import vo.financevo.PaymentVO;
 import vo.logisticsvo.LogisticsVO;
@@ -57,9 +56,9 @@ public class CheckLogisticsController {
             return;
         }
         
-        LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
-        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
-        logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
+//        LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
+//        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
+//        logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
        
 	}
 	

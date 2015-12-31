@@ -27,6 +27,14 @@ public class LogisticsVO extends InfoVO{
 	  public LogisticsVO(){
 		  super(InfoEnum.LOGISTICS);
 	  }
+	  
+	  public List<LogisticsInfo> getInfoForTableView(){
+		  List<LogisticsInfo> ans=new ArrayList<LogisticsInfo>(time.size());
+		  for (int i = 0; i < ans.size(); i++) {
+			ans.add(LogisticsInfo.build(time.get(i), location.get(i)));
+		  }
+		  return ans;
+	  }
 	  //
 	/**
 	 * @param infoEnum
