@@ -121,6 +121,11 @@ public class DriverEditDialogController {
 		stage.close();
 	}
 
+	public void age(ActionEvent actionEvent){
+		int age=LocalDate.now().getYear()-birth_Picker.getValue().getYear();
+		age_Label.setText(age+"");
+	}
+	
 	public void cancel(ActionEvent actionEvent){
 		stage.close();
 	}

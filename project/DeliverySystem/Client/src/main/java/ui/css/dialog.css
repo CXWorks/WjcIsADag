@@ -7,6 +7,11 @@
 	-fx-background-image: url(pic/dialog.png);
 }
 
+.background-big{
+	-fx-background-image: url(pic/dialog.png);
+	-fx-background-size:cover;
+	-fx-background-repeat:no-repeat;
+}
 
 .label {
     -fx-font-size: 13pt;
@@ -16,6 +21,13 @@
     -fx-opacity: 1;
 }
 
+.label-small {
+    -fx-font-size: 10pt;
+    -fx-font-family: "方正幼线简体 常规";
+	-fx-font-color:#dcdbdb;
+    -fx-text-fill: #dcdbdb;
+    -fx-opacity: 1;
+}
 
 .label-header {
     -fx-font-size: 20pt;
@@ -27,8 +39,20 @@
 -fx-focus-color:white;
 }
 
+.date-picker-small{
+-fx-size:8;
+-fx-base:gray;
+-fx-focus-color:white;
+}
+
 .choice-box{
 -fx-size:10;
+-fx-base:gray;
+-fx-focus-color:white;
+}
+
+.choice-box-small{
+-fx-size:8;
 -fx-base:gray;
 -fx-focus-color:white;
 }
@@ -53,6 +77,20 @@
 	 -fx-outline:none;
 	 
 }
+
+.text-field-small {
+
+	-fx-border-style :none;
+	-fx-background-color:gray;
+    -fx-size:8;
+    -fx-font-size: 9pt;
+	-fx-text-fill: #1c1c1c;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-border-style :none;
+	-fx-outline:none;
+}
+
+
 
 .button{
     -fx-border-top-left-radius:0px;

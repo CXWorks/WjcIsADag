@@ -4,9 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.EditStaffDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="582.0" styleClass="background-big" stylesheets="@../../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.EditStaffDialogController">
    <children>
-      <GridPane layoutY="33.0" prefHeight="315.0" prefWidth="260.0">
+      <GridPane layoutY="67.0" prefHeight="281.0" prefWidth="260.0">
          <children>
             <Label text="员工类型" />
             <Label text="姓名" GridPane.rowIndex="1" />
@@ -28,10 +28,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <GridPane layoutX="300.0" layoutY="33.0" prefHeight="235.0" prefWidth="240.0">
+      <GridPane layoutX="300.0" layoutY="68.0" prefHeight="220.0" prefWidth="241.0">
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="101.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="139.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="115.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="129.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
@@ -47,7 +47,7 @@
             <TextField fx:id="age_Field" layoutX="372.0" layoutY="78.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <HBox layoutX="444.0" layoutY="315.0" spacing="16.0">
+      <HBox layoutX="434.0" layoutY="310.0" spacing="16.0" AnchorPane.bottomAnchor="14.0">
          <children>
             <Button layoutX="420.0" layoutY="315.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
             <Button layoutX="485.0" layoutY="315.0" mnemonicParsing="false" onAction="#commit" text="确认" />
