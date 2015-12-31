@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import message.OperationMessage;
 import po.accountdata.AuthorityEnum;
@@ -40,7 +41,6 @@ public class EditAccountDialogController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(EditAccountDialogController.class.getResource("editAccountDialog.fxml"));
         Pane pane = loader.load();
-
         Stage stage = new Stage();
         stage.setTitle(
                 type == EditType.EDIT ? "修改账户" : "新建账户"
@@ -53,7 +53,7 @@ public class EditAccountDialogController {
         controller.type = type;
         controller.informController = InformController.newInformController(pane);
         controller.init();
-
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(controller.informController.stackPane));
 
         return stage;

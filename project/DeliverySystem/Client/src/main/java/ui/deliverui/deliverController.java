@@ -2,6 +2,7 @@ package ui.deliverui;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
@@ -9,10 +10,12 @@ import java.util.stream.Collectors;
 
 import javafx.scene.control.*;
 import message.OperationMessage;
+import po.orderdata.DeliverTypeEnum;
 import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
+import tool.ui.SimpleEnumProperty;
 import ui.common.checkFormat.FormatCheckQueue;
 import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
@@ -87,7 +90,14 @@ public class deliverController {
 	}
 
 	private void showDetail(DeliverVO deliverVO) {
-		// TODO
+		this.refresh(null);
+		OrderVO orderVO = deliverBLService.getOrderVO(deliverVO.getOrderID());
+		info_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
+		id_Field.setText(deliverVO.getOrderID());
+		date_DatePicker.setValue(
+				deliverVO.getReceiveDate().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		if (postmans.indexOf(deliverVO.getPostman()) != -1)
+			postman_Box.setValue(postman_Box.getItems().get(postmans.indexOf(deliverVO.getPostman())));
 	}
 
 	@FXML

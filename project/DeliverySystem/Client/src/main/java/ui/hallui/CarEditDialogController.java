@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class CarEditDialogController {
 
@@ -41,6 +42,7 @@ public class CarEditDialogController {
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
 		stage.initOwner(Main.primaryStage);
 		stage.setScene(new Scene(pane));
 
