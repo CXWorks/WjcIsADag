@@ -13,6 +13,7 @@ import factory.SearchFactory;
 import factory.StaffFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
@@ -57,10 +58,11 @@ public class LoginController {
     }
 
 
-//    @FXML
-//    public void initialize(){
-//    	back_ImageView.setImage(Image_Back);
-//    }
+    @FXML
+    public void initialize(){
+    	LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
+        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
+    }
 
     public void login(ActionEvent actionEvent) {
 
@@ -91,13 +93,12 @@ public class LoginController {
 //		System.out.println(search_Field.getText());
 		logisticsvo=searchblService.searchOrder(
 				search_Field.getText());
-//		System.out.println(logisticsvo.getLocation().toString());
         if(this.logisticsvo == null){
             return;
         }
+//        System.out.println(logisticsvo.getLocation().toString());
+//		System.out.println(logisticsvo.getTime().toString());
 
-        LogisticsVO2ColumnHelper.setKeyColumn(time_Column);
-        LogisticsVO2ColumnHelper.setValueColumn(address_Column);
         logistics_TableView.setItems(FXCollections.observableArrayList(new LogisticsVO2ColumnHelper().VO2Entries(logisticsvo)));
 
 	}

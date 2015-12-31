@@ -1,0 +1,10 @@
+package ui.loginui
+
+import javafx.geometry.*
+import javafx.scene.image.*
+import javafx.scene.control.*
+import java.lang.*
+import javafx.scene.layout.*
+import javafx.scene.layout.BorderPane
+
+component logIn controlledby ui.loginui.LoginController{AnchorPane{maxHeight:-Infinity,maxWidth:-Infinity,minHeight:-Infinity,minWidth:-Infinity,prefHeight:541.0,prefWidth:970.0,styleClass:"background",stylesheets:location"../css/login.css",children:[TextField id id_Field{layoutX:732.0,layoutY:219.0,prefHeight:55.0,prefWidth:220.0,promptText:"员工编号输入框",styleClass:"text-field-log"},PasswordField id password_Field{layoutX:732.0,layoutY:290.0,onAction:controllermethod login,prefHeight:55.0,prefWidth:220.0,promptText:"密码输入框",styleClass:"text-field-log"},TableView id logistics_TableView{fixedCellSize:1.0,layoutX:237.0,layoutY:275.0,opacity:0.0,prefHeight:182.0,prefWidth:231.0,columns:TableColumn id time_Column{prefWidth:90.66668701171875,text:"时间"},columns:TableColumn id address_Column{prefWidth:176.33331298828125,text:"状态"}},TextField id search_Field{layoutX:49.0,layoutY:79.0,prefHeight:54.0,prefWidth:223.0,promptText:"请输入快递单号以查询",styleClass:"text-field-search"},Button{layoutX:54.0,layoutY:154.0,mnemonicParsing:false,onAction:controllermethod search,prefHeight:60.0,prefWidth:220.0,styleClass:"button-search"},TableView id order_Table{layoutX:464.0,layoutY:389.0,opacity:0.0,prefHeight:153.0,prefWidth:143.0,columns:TableColumn id key_Column{prefWidth:75.0},columns:TableColumn id value_Column{prefWidth:109.0}},Button{layoutX:732.0,layoutY:360.0,mnemonicParsing:false,onAction:controllermethod login,prefHeight:60.0,prefWidth:220.0,styleClass:"button-log"}]}}
