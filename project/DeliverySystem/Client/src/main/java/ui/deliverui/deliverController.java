@@ -7,12 +7,14 @@ import java.util.Calendar;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javafx.scene.control.*;
 import message.OperationMessage;
 import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
 import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -26,12 +28,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 public class deliverController {
@@ -47,8 +43,9 @@ public class deliverController {
 	public TextField id_Field;
 	public DatePicker date_DatePicker;
 	public ChoiceBox<String> postman_Box;
+    public Label dateErr_Label;
 
-	private String idToSend = "";
+    private String idToSend = "";
 	private String postman = new String();
 	DeliverBLService deliverBLService = FormFactory.getDeliverBLService();
 
@@ -107,19 +104,20 @@ public class deliverController {
 		date_DatePicker.setValue(LocalDate.now());
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 		ids_ListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			// TODO test
-			
-			idToSend = newValue;
-			id_Field.setText(newValue.toString());
-			fillOrderTable();
-		});
+            // TODO test
+
+            idToSend = newValue;
+            id_Field.setText(newValue.toString());
+            fillOrderTable();
+        });
 		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
 		//
 		formatCheckQueueSearch=new FormatCheckQueue();
 		formatCheckQueueSearch.addTasker(new CheckOrderTasker(null, id_Search_Field));
 		formatCheckQueueSubmit=new FormatCheckQueue();
-		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(null, id_Field));
+		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(null, id_Field),
+                new CheckPreDateTasker(dateErr_Label, date_DatePicker));
 	}
 
 	private void fillOrderTable() {

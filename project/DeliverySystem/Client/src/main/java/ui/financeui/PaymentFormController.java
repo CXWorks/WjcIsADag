@@ -14,6 +14,7 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -42,8 +43,9 @@ public class PaymentFormController {
 	public DatePicker payment_DatePicker;
 	public TextArea note_TextArea;
 	public ChoiceBox<SimpleEnumProperty<FinancePayEnum>> item_ChoiceBox;
-	
-	private FormatCheckQueue formatCheckQueueNotNull;
+    public Label dateErr_Label;
+
+    private FormatCheckQueue formatCheckQueueNotNull;
 
 	private InformController informController;
     private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
@@ -102,7 +104,8 @@ public class PaymentFormController {
 				new CheckIsNullTasker(payerAccount_Field),
 				new CheckIsNullTasker(payerName_Field),
 				new CheckIsNullTasker(receiverAccount_Field),
-				new CheckIsNullTasker(receiverName_Field));
+				new CheckIsNullTasker(receiverName_Field),
+                new CheckPreDateTasker(dateErr_Label, payment_DatePicker));
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
