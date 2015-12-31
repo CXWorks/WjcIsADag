@@ -25,10 +25,10 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="commit_Btn" defaultButton="true" layoutX="820.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="28.0" prefWidth="73.0" styleClass="button-commit" />
-      <Button fx:id="save_Btn" layoutX="736.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="28.0" prefWidth="73.0" styleClass="button-save" />
-      <Button fx:id="clear_Btn" layoutX="653.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="28.0" prefWidth="73.0" styleClass="button-clear" textAlignment="CENTER" />
-      <Button fx:id="calculate_Btn" layoutX="509.0" layoutY="481.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="28.0" prefWidth="107.0" text="计算运费日期" />
+      <Button fx:id="commit_Btn" defaultButton="true" layoutX="864.0" layoutY="481.0" mnemonicParsing="false" onAction="#commit" prefHeight="28.0" prefWidth="73.0" text="确认" />
+      <Button fx:id="save_Btn" layoutX="780.0" layoutY="481.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="28.0" prefWidth="73.0" text="保存" />
+      <Button fx:id="clear_Btn" layoutX="611.0" layoutY="481.0" mnemonicParsing="false" onAction="#clear" prefHeight="28.0" prefWidth="73.0" text="清空" textAlignment="CENTER" />
+      <Button fx:id="calculate_Btn" layoutX="885.0" layoutY="397.0" mnemonicParsing="false" onAction="#fillPrediction" prefHeight="56.0" prefWidth="52.0" text="预计" textAlignment="JUSTIFY" />
       <Label layoutX="125.0" layoutY="148.0" text="姓名">
          <font>
             <Font size="14.0" />
@@ -169,5 +169,6 @@
       <TextField fx:id="goods_V2" layoutX="817.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="宽" />
       <TextField fx:id="goods_V3" layoutX="867.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="高" />
       <ChoiceBox fx:id="cityFrom_Box" layoutX="176.0" layoutY="195.0" prefHeight="29.0" prefWidth="120.0" />
+      <Button fx:id="save_Btn1" layoutX="698.0" layoutY="481.0" mnemonicParsing="false" onAction="#loadDraft" prefHeight="28.0" prefWidth="73.0" text="载入" />
    </children>
 </AnchorPane>

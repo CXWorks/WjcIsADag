@@ -171,6 +171,7 @@
     -fx-size:13;
     -fx-font-size: 10pt;
 	-fx-prompt-text-fill:#ff4800;
+	-fx-prompt-text-style:bold;
     -fx-font-family: "方正幼线简体 常规";
     -fx-border-style :none;
 	-fx-outline:none;
