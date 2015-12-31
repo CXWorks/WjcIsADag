@@ -22,6 +22,11 @@ import model.store.StoreLocation;
 import po.transportdata.TransportationEnum;
 import tool.time.TimeConvert;
 import tool.ui.*;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
+import ui.common.checkFormat.field.CheckTransitIDTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -52,11 +57,14 @@ public class StoreOutFormController {
 	public Button save_Btn;
 	public Button clear_Btn;
 	public Button commit_Btn;
+    public Label dateErr_Label;
 
-	TransportationEnum tran = TransportationEnum.CAR;
-	StoreOutBLService storeOutBLService = FormFactory.getStoreOutBLService();
-
+    private TransportationEnum tran = TransportationEnum.CAR;
+	private StoreOutBLService storeOutBLService = FormFactory.getStoreOutBLService();
 	private InformController informController;
+    private FormatCheckQueue formatCheckQueueOrder;
+    private FormatCheckQueue formatCheckQueueTrans;
+    private FormatCheckQueue formatCheckQueueCommit;
 
 	public static StoreOutFormController launch() {
 		try {
@@ -111,22 +119,24 @@ public class StoreOutFormController {
 		// initialize the choice box
 		LoadType_ChoiceBox.setItems(Enum2ObservableList.transit(TransportationEnum.values()));
 		LoadType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			tran = newValue.getEnum();
-		});
+            tran = newValue.getEnum();
+        });
 		clear(null);
-
-		orderID_Field.setOnAction(uselessParam -> {
-			fillOrderTable();
-		});
 
 		OrderVO2ColumnHelper.setKeyColumn(key_Column_o);
 		OrderVO2ColumnHelper.setValueColumn(value_Column_o);
 
-		transitID_Field.setOnAction(uselessParam -> {
-			fillTransitTable();
-		});
 		TransitVO2ColumnHelper.setKeyColumn(key_Column_t);
 		TransitVO2ColumnHelper.setValueColumn(value_Column_t);
+
+        formatCheckQueueOrder = new FormatCheckQueue(new CheckOrderTasker(orderID_Field));
+        formatCheckQueueTrans = new FormatCheckQueue(new CheckTransitIDTasker(transitID_Field));
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckTransitIDTasker(transitID_Field),
+                new CheckOrderTasker(orderID_Field),
+                new CheckPreDateTasker(dateErr_Label, storeOut_DatePicker),
+                new CheckIsNullTasker(destination_Field)
+        );
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
@@ -161,12 +171,12 @@ public class StoreOutFormController {
 		}
 	}
 
-	private void fillOrderTable() {
+	public void fillOrderTable() {
 		OrderVO orderVO = storeOutBLService.loadOrder(orderID_Field.getText());
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 
-	private void fillTransitTable() {
+	public void fillTransitTable() {
 		TransitVO transitVO = storeOutBLService.getTransportVO(transitID_Field.getText());
 		transit_TableView
 				.setItems(FXCollections.observableArrayList(new TransitVO2ColumnHelper().VO2Entries(transitVO)));

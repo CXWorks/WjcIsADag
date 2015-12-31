@@ -2,20 +2,19 @@ package ui.transportui;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
-import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
-import ui.hallui.RevenueFormController;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.FormVO;
-import vo.managevo.car.CarVO;
-import vo.transitvo.CenterOutVO;
 import vo.transitvo.LoadVO;
 
 import java.io.IOException;
@@ -23,11 +22,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.List;
 
-import po.transportdata.TransportationEnum;
 import message.OperationMessage;
-import bl.blService.transportblService.TransportCenterBLService;
 import bl.blService.transportblService.TransportHallBLService;
 import factory.FormFactory;
 
@@ -51,13 +47,12 @@ public class LoadCarController {
     public Button commit_Btn;
     public Button add_Btn;
 
-    ArrayList<String> ids = new ArrayList<String>();
-
-	TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
-
-	ArrayList<String> arrivals = transportHallBLService.getLocation(UserInfo.getInstitutionID());
-	ArrayList<String> cars = transportHallBLService.getCars(UserInfo.getInstitutionID());
-
+    private FormatCheckQueue formatCheckQueueCommit;
+    private FormatCheckQueue formatCheckQueueAddOrder;
+    private ArrayList<String> ids = new ArrayList<String>();
+	private TransportHallBLService transportHallBLService = FormFactory.getTransportHallBLService();
+	private ArrayList<String> arrivals;
+	private ArrayList<String> cars;
 	private InformController informController;
 
 	public static LoadCarController launch() {
@@ -76,11 +71,13 @@ public class LoadCarController {
 
 	public static Parent launchInNew() {
 		LoadCarController controller = launch();
+        controller.init(UserInfo.getInstitutionID());
 		return controller.informController.stackPane;
 	}
 
     public static Parent launchInHistory(LoadVO loadVO) {
         LoadCarController controller = launch();
+        controller.init(UserInfo.getInstitutionID());
         VisibilityTool.setInvisible(controller.add_Btn, controller.id_Field,
                 controller.save_Btn, controller.clear_Btn, controller.commit_Btn);
         controller.showDetail(loadVO);
@@ -89,6 +86,7 @@ public class LoadCarController {
 
     public static Parent launchInManagerEdit(LoadVO loadVO, Collection<FormVO> formVOs) {
         LoadCarController controller = launch();
+        // controller.init(); TODO need institutionID
         controller.showDetail(loadVO);
         controller.commit_Btn.setOnAction(
                 event -> {
@@ -107,15 +105,30 @@ public class LoadCarController {
         // TODO carID carID_ChoiceBox
     }
 
-    @FXML
-	public void initialize() {
+    public void initialize(){
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckPreDateTasker(date_errLabel, date_Picker),
+                new CheckIsNullTasker(guard_Field),
+                new CheckIsNullTasker(monitor_Field)
+        );
+        formatCheckQueueAddOrder = new FormatCheckQueue(
+                new CheckOrderTasker(id_Field)
+        );
+    }
+
+	public void init(String institutionID) {
+        arrivals = transportHallBLService.getLocation(institutionID);
+        cars = transportHallBLService.getCars(institutionID);
 		arrival_ChoiceBox.setItems(FXCollections.observableArrayList(arrivals));
 		carID_ChoiceBox.setItems(FXCollections.observableArrayList(cars));
-		System.out.println(transportHallBLService.newID());
 		clear(null);
 	}
 
 	public void add(ActionEvent actionEvent) {
+        if(!formatCheckQueueAddOrder.startCheck()){
+            return;
+        }
+
 		String orderID = id_Field.getText();
 		System.out.println("add" + orderID);
 		ids.add(orderID);
@@ -143,7 +156,9 @@ public class LoadCarController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
 		OperationMessage msg = transportHallBLService.submit(generateVO(transportHallBLService.newID()));
 
 		if (msg.operationResult) {

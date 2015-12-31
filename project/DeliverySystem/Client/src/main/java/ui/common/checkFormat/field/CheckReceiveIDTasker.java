@@ -9,7 +9,7 @@ import message.CheckFormMessage;
  */
 public class CheckReceiveIDTasker extends CheckFieldTasker {
 
-    public CheckReceiveIDTasker(Label err_Label, TextField field) {
+    public CheckReceiveIDTasker(TextField field) {
         super(field);
     }
 

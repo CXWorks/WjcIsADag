@@ -114,9 +114,9 @@ public class deliverController {
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
 		//
 		formatCheckQueueSearch=new FormatCheckQueue();
-		formatCheckQueueSearch.addTasker(new CheckOrderTasker(null, id_Search_Field));
+		formatCheckQueueSearch.addTasker(new CheckOrderTasker(id_Search_Field));
 		formatCheckQueueSubmit=new FormatCheckQueue();
-		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(null, id_Field),
+		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(id_Field),
                 new CheckPreDateTasker(dateErr_Label, date_DatePicker));
 	}
 

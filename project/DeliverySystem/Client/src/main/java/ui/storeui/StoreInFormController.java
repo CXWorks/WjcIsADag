@@ -18,13 +18,15 @@ import javafx.scene.layout.Pane;
 import message.OperationMessage;
 import model.store.StoreAreaCode;
 import model.store.StoreLocation;
-import po.receivedata.StateEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
-import ui.hallui.RevenueFormController;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.FormVO;
@@ -49,12 +51,13 @@ public class StoreInFormController {
 	public Button save_Btn;
 	public Button clear_Btn;
 	public Button commit_Btns;
+    public Label dateErr_Label;
 
-	private StoreAreaCode area = StoreAreaCode.FLEX;
-
+    private StoreAreaCode area = StoreAreaCode.FLEX;
 	private StoreInBLService storeInBLService = FormFactory.getStoreInBLService();
-
 	private InformController informController;
+    private FormatCheckQueue formatCheckQueueCommit;
+    private FormatCheckQueue formatCheckQueueOrder;
 
 	public static StoreInFormController launch() {
         try {
@@ -112,16 +115,23 @@ public class StoreInFormController {
 		// initialize the choice box
 		area_ChoiceBox.setItems(Enum2ObservableList.transit(StoreAreaCode.values()));
 		area_ChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			area = newValue.getEnum();
-		});
+            area = newValue.getEnum();
+        });
 		clear(null);
-
-		orderID_Field.setOnAction(uselessParam -> {
-			fillOrderTable();
-		});
 
 		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
+
+        formatCheckQueueOrder = new FormatCheckQueue(new CheckOrderTasker(orderID_Field));
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckOrderTasker(orderID_Field),
+                new CheckPreDateTasker(dateErr_Label, storeIn_DatePicker),
+                new CheckIsNullTasker(destination_Field),
+                new CheckIsNullTasker(row_Field),
+                new CheckIsNullTasker(shelf_Field),
+                new CheckIsNullTasker(position_Field)
+        );
+
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
@@ -140,8 +150,11 @@ public class StoreInFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-		OperationMessage msg = storeInBLService.submit(generateVO(storeInBLService.newID()));
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
 
+		OperationMessage msg = storeInBLService.submit(generateVO(storeInBLService.newID()));
 		informController.inform(msg, "单据提交成功");
 	}
 
@@ -168,7 +181,12 @@ public class StoreInFormController {
 		position_Field.setText("" + location.getPosition());
 	}
 
-	private void fillOrderTable() {
+	public void fillOrderTable() {
+        if(!formatCheckQueueOrder.startCheck()){
+            order_TableView.getItems().clear();
+            return;
+        }
+
 		OrderVO orderVO = storeInBLService.loadOrder(orderID_Field.getText());
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}

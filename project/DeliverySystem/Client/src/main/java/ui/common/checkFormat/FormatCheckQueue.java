@@ -10,6 +10,10 @@ public class FormatCheckQueue {
 
     private List<Checkable> checkableList = new LinkedList<>();
 
+    public FormatCheckQueue(Checkable...checkable) {
+        this.addTasker(checkable);
+    }
+
     public void addTasker(Checkable...checkable){
         for (Checkable checkable1 : checkable) {
             checkableList.add(checkable1);

@@ -8,7 +8,12 @@ import bl.blService.deliverblService.CheckDeliverForm;
 import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
+import javafx.scene.control.*;
 import tool.time.TimeConvert;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -19,10 +24,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 public class PeopleReceiveFormController {
@@ -35,11 +36,14 @@ public class PeopleReceiveFormController {
 	public TableColumn<OrderVO, String> name_Column;
 
 	public TextField id_Field;
+    public Label dateErr_Label;
 
-	private OrderVO selected = null;
+    private OrderVO selected = null;
 	private List<OrderVO> orderVOs;
 
 	private InformController informController;
+    private FormatCheckQueue formatCheckQueueSearch;
+	private FormatCheckQueue formatCheckQueueCommit;
 
 	CheckDeliverForm checkDeliver = DeliverFactory.getCheckDeliverForm();
 	// ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
@@ -59,18 +63,26 @@ public class PeopleReceiveFormController {
 		address_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddressTo()));
 		name_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNameTo()));
 		order_TableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			name_Field.clear();
-			receive_DatePicker.setValue(LocalDate.now());
-			selected = newValue;
-		});
+            name_Field.clear();
+            receive_DatePicker.setValue(LocalDate.now());
+            selected = newValue;
+        });
+
+        formatCheckQueueSearch = new FormatCheckQueue(new CheckOrderTasker(id_Field));
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckIsNullTasker(name_Field),
+                new CheckPreDateTasker(dateErr_Label, receive_DatePicker)
+        );
 	}
 
 	public void search(ActionEvent actionEvent) {
+        if(!formatCheckQueueSearch.startCheck()){
+            return;
+        }
 		String id = id_Field.getText();
 		if (id.isEmpty()) {
 			refresh(null);
 		}
-//		ordervo=checkDeliver.
 	}
 
 	public void refresh(ActionEvent actionEvent) {
@@ -80,7 +92,10 @@ public class PeopleReceiveFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-		// TODO check
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
+
 		DeliverVO deliverVO = new DeliverVO(null, selected.formID,
 				TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText(), UserInfo.getUserID());
 		checkDeliver.finishDelivery(deliverVO);

@@ -17,6 +17,10 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import ui.receiveui.ReceiveFormController;
@@ -56,16 +60,16 @@ public class TransitFormController {
     public Button clear_Btn;
     public Button commit_Btn;
     public Button add_Btn;
+    public Label dateErr_Label;
 
     private int fee = 0;
 	private ArrayList<String> ids = new ArrayList<String>();
-
 	private TransportationEnum transitEnum = TransportationEnum.TRAIN;
 	private TransportCenterBLService transportCenterBLService = FormFactory.getTransportCenterBLService();
-
 	private ArrayList<String> arrivals = transportCenterBLService.getLocation(UserInfo.getInstitutionID());
-
 	private InformController informController;
+    private FormatCheckQueue formatCheckQueueAddOrder;
+    private FormatCheckQueue formatCheckQueueCommit;
 
 	public static TransitFormController launch() {
 		try {
@@ -153,15 +157,30 @@ public class TransitFormController {
 		if(arrival_Box.getItems().size() != 0){
 			arrival_Box.setValue(arrival_Box.getItems().get(0));
 		}
+
+        formatCheckQueueAddOrder = new FormatCheckQueue(
+                new CheckOrderTasker(id_Field)
+        );
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckOrderTasker(id_Field),
+                new CheckPreDateTasker(dateErr_Label, transit_DatePicker),
+                new CheckIsNullTasker(departure_Field),
+                new CheckIsNullTasker(supervisor_Field),
+                new CheckIsNullTasker(transNumber_Field),
+                new CheckIsNullTasker(cargo_Field)
+        );
 	}
 
 	public void add(ActionEvent actionEvent) {
+        if(!formatCheckQueueAddOrder.startCheck()){
+            return;
+        }
+
 		String a = id_Field.getText();
 		System.out.println("add" + a);
 		ids.add(a);
 		orders_ListView.getItems().add(a);
 		id_Field.clear();
-		// fee+=
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
@@ -187,7 +206,11 @@ public class TransitFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
 		OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
+
 		ids.clear();
 		// orders_ListView=new ListView<>();
 		orders_ListView.getItems().clear();

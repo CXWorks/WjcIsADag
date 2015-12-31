@@ -23,13 +23,18 @@
             <Label text="订单号" />
             <Label fx:id="storeout_DatePicker" text="出库日期" GridPane.rowIndex="2" />
             <Label text="目的地" GridPane.rowIndex="3" />
-            <DatePicker fx:id="storeOut_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
+            <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <DatePicker fx:id="storeOut_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="dateErr_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </VBox>
+            <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="装运方式" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="LoadType_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="运单编号" GridPane.rowIndex="1" />
-            <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="transitID_Field" onAction="#fillTransitTable" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <TableView fx:id="order_TableView" layoutX="712.0" layoutY="94.0" prefHeight="338.0" prefWidth="201.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="721.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="94.0">

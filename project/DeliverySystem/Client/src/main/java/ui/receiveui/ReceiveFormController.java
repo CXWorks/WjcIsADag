@@ -16,6 +16,11 @@ import tool.ui.Enum2ObservableList;
 import tool.ui.OrderVO2ColumnHelper;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
+import ui.common.checkFormat.field.CheckTransitIDTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.FormVO;
@@ -40,16 +45,15 @@ public class ReceiveFormController {
 	public TableView<Map.Entry<String, String>> order_Table;
 	public TextField order_Field;
 	public Label date_ErrLabel;
-	public Label transit_errLabel;
-	public Label departure_errLabel;
 	public TableColumn<Map.Entry<String, String>, String> key_Column;
 	public TableColumn<Map.Entry<String, String>, String> value_Column;
-	public Label err_Label;
 	public Button clear_Btn;
 	public Button save_Btn;
 	public Button commit_Btn;
 
 	private StateEnum stateEnum = StateEnum.Complete;
+    private FormatCheckQueue formatCheckQueueOrder;
+    private FormatCheckQueue formatCheckQueueCommit;
 
 	ReceiveBLService receiveBLService = FormFactory.getReceiveBLService();
 
@@ -107,19 +111,27 @@ public class ReceiveFormController {
 		// initialize the choice box
 		arriveState_Box.setItems(Enum2ObservableList.transit(StateEnum.values()));
 		arriveState_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			stateEnum = newValue.getEnum();
-		});
+            stateEnum = newValue.getEnum();
+        });
 		clear(null);
-
-		order_Field.setOnAction(uselessParam -> {
-			fillOrderTable();
-		});
 
 		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
+
+        formatCheckQueueOrder = new FormatCheckQueue(new CheckOrderTasker(order_Field));
+        formatCheckQueueCommit = new FormatCheckQueue(
+                new CheckOrderTasker(order_Field),
+                new CheckPreDateTasker(date_ErrLabel, arrive_DatePicker),
+                new CheckTransitIDTasker(transitID_Field),
+                new CheckIsNullTasker(departure_Field)
+        );
 	}
 
 	public void commit(ActionEvent actionEvent) {
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
+
 		OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
 
 		if (msg.operationResult) {
@@ -150,6 +162,10 @@ public class ReceiveFormController {
 	}
 
 	private void fillOrderTable() {
+        if(!formatCheckQueueOrder.startCheck()){
+            order_Table.getItems().clear();
+            return;
+        }
 		OrderVO orderVO = receiveBLService.getOrderVO(order_Field.getText());
 		order_Table.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}

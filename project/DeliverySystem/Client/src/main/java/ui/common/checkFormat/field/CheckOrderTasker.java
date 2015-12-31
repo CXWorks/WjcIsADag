@@ -9,7 +9,7 @@ import message.CheckFormMessage;
  */
 public class CheckOrderTasker extends CheckFieldTasker {
 
-    public CheckOrderTasker(Label err_Label, TextField field) {
+    public CheckOrderTasker(TextField field) {
         super(field);
     }
 

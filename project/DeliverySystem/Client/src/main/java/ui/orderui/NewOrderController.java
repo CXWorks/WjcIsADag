@@ -49,13 +49,11 @@ public class NewOrderController {
 	public TextField unit_From;
 	public TextField tel_From;
 	public TextField phone_From;
-
 	public TextField name_To;
 	public TextField address_To;
 	public TextField unit_To;
 	public TextField tel_To;
 	public TextField phone_To;
-
 	public TextField goods_Number;
 	public TextField goods_Weight;
 	public TextField goods_V1;
@@ -63,24 +61,11 @@ public class NewOrderController {
 	public TextField goods_V3;
 	public TextField goods_Name;
 	public TextField goods_Type;
-
 	public ChoiceBox<SimpleEnumProperty<DeliverTypeEnum>> type_Box;
 	public ChoiceBox<SimpleEnumProperty<PackingEnum>> pack_Box;
 	public ChoiceBox<String> city_Box;
-	public ArrayList citys;
-	
 	public Label predict_Expense;
 	public Label predict_Date;
-	
-	public Label date_ErrLabel;
-	public Label transit_errLabel;
-	public Label departure_errLabel;
-	public Label date_ErrLabel1;
-	public Label transit_errLabel1;
-	public Label departure_errLabel1;
-	public Label date_ErrLabel2;
-	public Label transit_errLabel2;
-	public Label departure_errLabel2;
     public AnchorPane outerPane;
 	public Button commit_Btn;
 	public Button save_Btn;
@@ -91,6 +76,7 @@ public class NewOrderController {
 
     private DeliverTypeEnum deliverType = DeliverTypeEnum.NORMAL;
 	private PackingEnum packing = PackingEnum.PAPER;
+    private ArrayList citys;
 
     // 总经理修改时用，其他时候不用
     private OrderVO editVO;

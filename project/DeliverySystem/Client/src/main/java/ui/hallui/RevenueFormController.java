@@ -16,6 +16,7 @@ import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
 import ui.accountui.ManageAccountController;
 import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
@@ -103,11 +104,11 @@ public class RevenueFormController {
 		//init check
 		formatCheckQueue=new FormatCheckQueue();
 		formatCheckQueue.addTasker(
-				new CheckOrderTasker(null,order_Field),
-				new CheckIsNullTasker(money_Field)
-				);
+                new CheckOrderTasker(order_Field),
+                new CheckIsNullTasker(money_Field),
+                new CheckPreDateTasker(dateErr_Label, revenue_DatePicker)
+        );
 	}
-
 
     public void add(ActionEvent actionEvent) {
     	//check
@@ -128,7 +129,7 @@ public class RevenueFormController {
 
     	order_Field.clear();
     	money_Field.clear();
-    	}
+    }
 
     public void saveDraft(ActionEvent actionEvent) {
     	revenueBLService.saveDraft(generateRevenueVO(null));

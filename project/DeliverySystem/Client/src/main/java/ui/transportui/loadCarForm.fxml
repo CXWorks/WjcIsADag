@@ -25,7 +25,12 @@
             <Label text="押运员" GridPane.rowIndex="3" />
             <Label text="监装员" GridPane.rowIndex="2" />
             <Label text="车辆代号" GridPane.rowIndex="4" />
-            <DatePicker fx:id="date_Picker" GridPane.columnIndex="1" />
+            <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1">
+               <children>
+                  <DatePicker fx:id="date_Picker" GridPane.columnIndex="1" />
+                  <Label fx:id="date_errLabel" text="Label" GridPane.columnIndex="1" />
+               </children>
+            </VBox>
             <ChoiceBox fx:id="arrival_ChoiceBox" prefHeight="29.0" prefWidth="168.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="carID_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="monitor_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />

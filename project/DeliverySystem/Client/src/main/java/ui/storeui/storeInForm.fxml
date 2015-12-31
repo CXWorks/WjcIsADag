@@ -21,8 +21,13 @@
             <Label text="订单号" />
             <Label text="入库日期" GridPane.rowIndex="1" />
             <Label text="目的地" GridPane.rowIndex="2" />
-            <DatePicker fx:id="storeIn_DatePicker" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="orderID_Field" GridPane.columnIndex="1" />
+            <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <DatePicker fx:id="storeIn_DatePicker" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="dateErr_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </VBox>
+            <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
             <TextField fx:id="destination_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

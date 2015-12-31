@@ -41,7 +41,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <DatePicker fx:id="arrive_DatePicker" GridPane.columnIndex="1" />
+            <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1">
+               <children>
+                  <DatePicker fx:id="arrive_DatePicker" GridPane.columnIndex="1" />
+                  <Label fx:id="date_ErrLabel" text="Label" GridPane.columnIndex="1" />
+               </children>
+            </VBox>
             <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="departure_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="arriveState_Box" prefHeight="23.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -68,8 +73,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="order_Field" layoutX="482.0" layoutY="116.0" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="116.0" />
-            <Label fx:id="err_Label" text="Label" />
+            <TextField fx:id="order_Field" layoutX="482.0" layoutY="116.0" onAction="#fillOrderTable" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="116.0" />
          </children>
       </HBox>
       <TableView fx:id="order_Table" layoutX="387.0" layoutY="126.0" prefHeight="303.0" prefWidth="535.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="126.0">
