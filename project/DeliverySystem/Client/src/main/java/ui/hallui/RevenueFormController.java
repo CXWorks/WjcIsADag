@@ -93,7 +93,14 @@ public class RevenueFormController {
 	}
 
 	private void showDetail(RevenueVO revenueVO) {
-		// TODO
+//		clear(null);
+//		for(String id:revenueVO.getOrderIDs()){
+//
+//		}
+//		revenues_TableView.getItems()
+//				.add(new Revenue(order_Field.getText(), money_Field.getText(), deliver_ChoiceBox.getValue()));
+//		money_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMoney()));
+//		order_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrder()));
 	}
 
 	@FXML
