@@ -23,7 +23,9 @@
                </font>
             </Label>
             <Button layoutX="874.0" layoutY="16.0" mnemonicParsing="false" onAction="#showSettingDialog" prefHeight="15.0" prefWidth="35.0" styleClass="button-chi" />
-            <Button layoutX="125.0" mnemonicParsing="false" onAction="#popUpPersonView" prefHeight="68.0" prefWidth="57.0" styleClass="button-person" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="126.0" layoutY="1.0" mnemonicParsing="false" onAction="#popUpPersonView" prefHeight="68.0" prefWidth="57.0" styleClass="button-person" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="Message_Label" layoutX="83.0" layoutY="27.0" />
+            <Button layoutX="61.0" layoutY="1.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="56.0" styleClass="button-message" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="content_Pane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="70.0" />

@@ -13,6 +13,8 @@ import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -40,6 +42,8 @@ public class PaymentFormController {
 	public DatePicker payment_DatePicker;
 	public TextArea note_TextArea;
 	public ChoiceBox<SimpleEnumProperty<FinancePayEnum>> item_ChoiceBox;
+	
+	private FormatCheckQueue formatCheckQueueNotNull;
 
 	private InformController informController;
     private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
@@ -88,8 +92,17 @@ public class PaymentFormController {
 	@FXML
 	public void initialize() {
 		item_ChoiceBox.setItems(Enum2ObservableList.transit(FinancePayEnum.values()));
-
+		
 		clear(null);
+		
+		//init check
+		formatCheckQueueNotNull=new FormatCheckQueue();
+		formatCheckQueueNotNull.addTasker(
+				new CheckIsNullTasker(money_Field),
+				new CheckIsNullTasker(payerAccount_Field),
+				new CheckIsNullTasker(payerName_Field),
+				new CheckIsNullTasker(receiverAccount_Field),
+				new CheckIsNullTasker(receiverName_Field));
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
@@ -120,6 +133,10 @@ public class PaymentFormController {
 
 	public void commit(ActionEvent actionEvent) {
         String newID = paymentBLService.getNewPaymentID(TimeConvert.getDisplayDate(Calendar.getInstance()));
+		//check first
+		if (!this.formatCheckQueueNotNull.startCheck()) {
+			return ;
+		}
 		OperationMessage msg = paymentBLService.submit(generatePaymentVO(newID));
 		if (msg.operationResult) {
 			System.out.println("add successfully");

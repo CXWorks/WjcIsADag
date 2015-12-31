@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import main.Main;
 import tool.time.TimeConvert;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckCarIDTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import vo.managevo.car.CarVO;
 import javafx.event.ActionEvent;
@@ -26,6 +29,8 @@ public class CarNewDialogController {
 
 	private CarVO editVO = new CarVO();
 	public Stage stage;
+	
+	private FormatCheckQueue formatCheckQueue;
 
 	TimeConvert timeconvert = new TimeConvert();
 
@@ -42,13 +47,30 @@ public class CarNewDialogController {
 
 		controller.editVO = editVO;
 		controller.stage = stage;
+		controller.intit();
+		
 
 		return controller;
 
 	}
+	private void intit(){
+		//init check
+		formatCheckQueue=new FormatCheckQueue();
+		formatCheckQueue.addTasker(
+				new CheckCarIDTasker(null, carID_Field),
+				new CheckIsNullTasker(chassisID_Field),
+				new CheckIsNullTasker(engineID_Field),
+				new CheckIsNullTasker(nameID_Field)
+				);
+	}
+	
 
 	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent) {
+		//check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
 
 		editVO.setCarID(carID_Field.getText());
 		editVO.setNameID(nameID_Field.getText());

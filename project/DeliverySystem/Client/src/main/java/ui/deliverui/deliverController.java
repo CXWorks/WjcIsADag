@@ -12,6 +12,8 @@ import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
@@ -56,6 +58,9 @@ public class deliverController {
 
 	// ArrayList<String> toSend = new ArrayList<String>();
 	// ArrayList<String> postmans = new ArrayList<String>();
+
+	private FormatCheckQueue formatCheckQueueSearch;
+	private FormatCheckQueue formatCheckQueueSubmit;
 
 	private InformController informController;
 
@@ -103,13 +108,18 @@ public class deliverController {
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 		ids_ListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			// TODO test
-			System.out.println("selected " + newValue.toString());
+			
 			idToSend = newValue;
 			id_Field.setText(newValue.toString());
 			fillOrderTable();
 		});
 		OrderVO2ColumnHelper.setKeyColumn(key_Column);
 		OrderVO2ColumnHelper.setValueColumn(value_Column);
+		//
+		formatCheckQueueSearch=new FormatCheckQueue();
+		formatCheckQueueSearch.addTasker(new CheckOrderTasker(null, id_Search_Field));
+		formatCheckQueueSubmit=new FormatCheckQueue();
+		formatCheckQueueSubmit.addTasker(new CheckOrderTasker(null, id_Field));
 	}
 
 	private void fillOrderTable() {
@@ -129,6 +139,11 @@ public class deliverController {
 	}
 
 	public void search(ActionEvent actionEvent) {
+		//check first
+		if (!formatCheckQueueSearch.startCheck()) {
+			return;
+		}
+		//
 		String filter = id_Search_Field.getText();
 
 		OrderVO orderVO = deliverBLService.getOrderVO(filter);
@@ -139,6 +154,10 @@ public class deliverController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
+		//check first
+		if (!formatCheckQueueSubmit.startCheck()) {
+			return ;
+		}
 		DeliverVO vo = generateVO(deliverBLService.newID());
 		OperationMessage msg = deliverBLService.submit(vo);
 		alreadySend.add(vo.getOrderID());

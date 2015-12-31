@@ -15,6 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckHallIDTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.Services;
@@ -50,6 +53,8 @@ public class CheckRevenueFormController {
 
     FormatCheckService formatCheckService;
     RevenueBLService revenueBLService;
+    
+    private FormatCheckQueue formatCheckQueueNotNull;
 
     private InformController informController;
 
@@ -101,9 +106,16 @@ public class CheckRevenueFormController {
         // set resize properties
         revenue_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(2));
         detail_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(4));
+        //init check
+        formatCheckQueueNotNull=new FormatCheckQueue();
+        formatCheckQueueNotNull.addTasker(new CheckHallIDTasker(hall_errLabel, hall_Field));
     }
 
     public void search(ActionEvent actionEvent) {
+    	//check first
+    	if (!formatCheckQueueNotNull.startCheck()) {
+			return;
+		}
 
 
         List<RevenueVO> revenueVOs = revenueBLService.getRevenueVOs

@@ -19,6 +19,9 @@ import main.Main;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckPhoneTasker;
 import ui.informui.InformController;
 import vo.managevo.staff.DriverVO;
 
@@ -39,7 +42,9 @@ public class DriverEditDialogController {
 	private SexEnum sexEnum = SexEnum.MAN;
 	private DriverVO editVO =new DriverVO();
 	public Stage stage;
-
+	
+	private FormatCheckQueue formatCheckQueue;
+	
 	TimeConvert timeconvert = new TimeConvert();
 
 	public static DriverEditDialogController newDialog(DriverVO editVO) throws IOException {
@@ -83,12 +88,26 @@ public class DriverEditDialogController {
     	birth_Picker.setValue(timeconvert.convertCalendar(editVO.getBirth()));
     	licencePeriod_Picker.setValue(timeconvert.convertCalendar(editVO.getLicence_period()));
     	sex_Box.getSelectionModel().clearAndSelect(editVO.getSex().getNum());
+    	
+    	//init check
+    	formatCheckQueue=new FormatCheckQueue();
+    	formatCheckQueue.addTasker(
+    			new CheckIsNullTasker(ID_Field),
+    			new CheckIsNullTasker(carUnit_Field),
+    			new CheckIsNullTasker(name_Field),
+    			new CheckIsNullTasker(personID_Field),
+    			new CheckPhoneTasker(null, tel_Field)
+    			);
 	}
 
 
 
 	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent){
+		//check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
 		//TODO solve sex and Picker
 		editVO.setID(ID_Field.getText());
 		editVO.setName(name_Field.getText());
