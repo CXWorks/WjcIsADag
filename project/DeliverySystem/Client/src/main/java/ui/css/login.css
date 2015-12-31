@@ -28,39 +28,33 @@
 }
 
 .table-view {
-    -fx-base: #111111;
-    -fx-control-inner-background: gray;
-    -fx-background-color: #111111;
-    -fx-table-header-border-color: transparent;
+    -fx-background-color:clear color;
+	-fx-text-fill:black;
     -fx-padding: 5;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color:clear color;
 }
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color: 
-        transparent
-        transparent
-        derive(-fx-base, 80%) 
-        transparent;
+    -fx-border-color: clear color;
     -fx-border-insets: 0 10 1 0;
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 15pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
+		-fx-text-fill:black;
+    -fx-alignment: center;
     -fx-opacity: 1;
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: clear color;
 }
 
 .split-pane:horizontal > .split-pane-divider {
@@ -122,6 +116,7 @@
 
 .button-log {
     -fx-size:13;
+		-fx-cursor:hand;
     -fx-background-image:  url(login/new/login.png);
     -fx-border-style:none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -145,6 +140,7 @@
 
 .button-search {
     -fx-size:13;
+		-fx-cursor:hand;
     -fx-background-image:  url(login/new/search.png);
     -fx-border-style:none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;

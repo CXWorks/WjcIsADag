@@ -8,14 +8,6 @@
 }
 
 
-.text {
-    -fx-font-size: 13pt;
-    -fx-font-family: "方正幼线简体 常规";
-	-fx-font-color:#dcdbdb;
-    -fx-text-fill: #dcdbdb;
-    -fx-opacity: 1;
-}
-
 .label {
     -fx-font-size: 13pt;
     -fx-font-family: "方正幼线简体 常规";
@@ -49,8 +41,8 @@
     -fx-font-size: 10pt;
 	-fx-text-fill: #1c1c1c;
     -fx-font-family: "方正幼线简体 常规";
-     -fx-border-style :none;
-	 -fx-outline:none;
+    -fx-border-style :none;
+	-fx-outline:none;
 }
 
 .text-field:focused{
@@ -63,13 +55,16 @@
 }
 
 .button{
-	-fx-width:50;
-	-fx-height:25;
+    -fx-border-top-left-radius:0px;
+	-fx-border-top-right-radius:0px;
+    -fx-border-bottom-left-radius:0px;
+	-fx-border-bottom-right-radius:0px;
+	-fx-cursor:hand;
+    -fx-size:10;
 	-fx-background-color:gray;
     -fx-border-style :none;
     -fx-font-size: 10pt;
 	-fx-text-fill:#e6e6e6;
-	-fx-text-fill:10pt;
 }
 .button:hover{
     -fx-background-color:#181818;
@@ -83,6 +78,7 @@
 .button:focused{
     -fx-border-style :none;
 }
+
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
