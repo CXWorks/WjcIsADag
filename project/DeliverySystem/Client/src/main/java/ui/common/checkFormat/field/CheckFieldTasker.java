@@ -27,6 +27,7 @@ public abstract class CheckFieldTasker extends CheckTasker {
             return true;
         }else{
             field.clear();
+            field.getStyleClass().add("text-field-check");
             field.setPromptText(msg.getReason());
             return false;
         }

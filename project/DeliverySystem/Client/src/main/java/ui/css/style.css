@@ -47,9 +47,9 @@
 }
 
 .table-view {
-    -fx-base:#c9c8c8;
-    -fx-control-inner-background: #c9c8c8;
-    -fx-background-color: #c9c8c8;
+    -fx-base: gray;
+    -fx-control-inner-background: #131313;
+    -fx-background-color:  gray;
 	-fx-opacity:1;
     -fx-table-header-border-color: transparent;
 	-fx-padding: 0;  
@@ -84,10 +84,10 @@
     -fx-alignment: center;
     -fx-opacity: 1;
 }
-/*
+
 .table-view:focused .table-row-cell:filled:focused:selected {
     -fx-background-color: white;
-}*/
+}
 
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
@@ -132,21 +132,31 @@
 }
 
 
+
+
+
+
+
 .text-field {
 
 	-fx-border-style :none;
-	-fx-background-color:#e1e1e1;
+	-fx-background-color:gray;
     -fx-size:13;
     -fx-font-size: 10pt;
 	-fx-text-fill: #1c1c1c;
     -fx-font-family: "方正幼线简体 常规";
 	
-     -fx-border-style :none;
-	 -fx-outline:none;
+    -fx-border-style :none;
+	-fx-outline:none;
+}
+
+.text-field:hover{
+-fx-cursor:text;
+
 }
 
 .text-field:focused{
-
+-fx-background-color:#bfbfbf;
      -fx-border-style :none;
 	 -fx-border-outline:none;
 	 -fx-outline-style:none;
@@ -154,11 +164,25 @@
 	 
 }
 
+.text-field-check {
+
+	-fx-border-style :none;
+	-fx-background-color:gray;
+    -fx-size:13;
+    -fx-font-size: 10pt;
+	-fx-prompt-text-fill:#ff4800;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-border-style :none;
+	-fx-outline:none;
+	
+}
+
 .button{
     -fx-border-top-left-radius:0px;
 	-fx-border-top-right-radius:0px;
     -fx-border-bottom-left-radius:0px;
 	-fx-border-bottom-right-radius:0px;
+	-fx-cursor:hand;
     -fx-size:10;
 	-fx-background-color:gray;
     -fx-border-style :none;
@@ -203,6 +227,7 @@
     -fx-size:13;
 	-fx-background-image:url(pic/commit.png);
     -fx-border-style :none;
+		-fx-cursor:hand;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -225,6 +250,7 @@
 
 .button-save {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/saveee.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -247,6 +273,7 @@
 
 .button-clear {
     -fx-size:13;
+		-fx-cursor:hand;
 	-fx-background-image:url(pic/clear.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;

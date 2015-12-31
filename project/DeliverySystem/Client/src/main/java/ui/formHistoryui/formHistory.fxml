@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.formHistoryui.FormHistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.formHistoryui.FormHistoryController">
    <children>
       <TableView fx:id="forms_TableView" layoutX="299.0" layoutY="262.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
         <columns>
@@ -16,7 +16,7 @@
       </TableView>
       <HBox alignment="CENTER" layoutX="43.0" layoutY="44.0" spacing="8.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
       <HBox alignment="CENTER" layoutX="167.0" layoutY="137.0" spacing="8.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="48.0" />
-      <HBox layoutX="264.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="48.0">
+      <HBox layoutX="286.0" layoutY="48.0" spacing="16.0" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="48.0">
          <children>
             <Button layoutX="430.0" layoutY="82.0" mnemonicParsing="false" onAction="#search" text="Search" />
             <Button layoutX="499.0" layoutY="82.0" mnemonicParsing="false" onAction="#viewDetail" text="查看详情" />
