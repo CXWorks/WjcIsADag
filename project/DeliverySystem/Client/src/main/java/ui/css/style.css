@@ -27,6 +27,7 @@
 .date-picker{
 -fx-base:gray;
 -fx-focus-color:white;
+
 }
 
 .choice-box{
@@ -86,7 +87,8 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: white;
+    -fx-background-color: gray;
+	-fx-border-color:transparent;
 }
 
 .split-pane:horizontal > .split-pane-divider {

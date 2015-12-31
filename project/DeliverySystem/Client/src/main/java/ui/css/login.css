@@ -28,7 +28,7 @@
 }
 
 .table-view {
-    -fx-background-color:clear color;
+    -fx-background-color:null;
 	-fx-text-fill:black;
     -fx-padding: 5;
 }
