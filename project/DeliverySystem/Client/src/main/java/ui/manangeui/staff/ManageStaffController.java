@@ -33,6 +33,8 @@ import po.memberdata.SexEnum;
 import po.memberdata.StaffTypeEnum;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.managevo.institution.CenterVO;
@@ -62,6 +64,8 @@ public class ManageStaffController  {
 	private Pane selfPane;
 	private InformController informController;
     private String institutionID;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     private static ManageStaffController launch() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -126,11 +130,18 @@ public class ManageStaffController  {
 		love_TableColumn.setCellValueFactory(
 				cell -> new SimpleStringProperty(cell.getValue().getLove())
 		);
+		//init check
+		formatCheckQueue=new FormatCheckQueue();
+		formatCheckQueue.addTasker(new CheckIsNullTasker(institution_Field));
 
 	}
 
 	@FXML
 	public void fillStaffTable() {
+		//check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
         fillStaffTable(institution_Field.getText());
 	}
 

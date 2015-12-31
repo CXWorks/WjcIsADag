@@ -22,6 +22,9 @@ import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckPhoneTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.FormVO;
@@ -98,6 +101,8 @@ public class NewOrderController {
 
 	private OrderBLService obl = FormFactory.getOrderBLService();
 	private InformController informController;
+	
+	private FormatCheckQueue formatCheckQueue;
 
 	public static NewOrderController launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(NewOrderController.class.getResource("NewOrder.fxml"));
@@ -181,10 +186,29 @@ public class NewOrderController {
         });
 
 		clear(null);
-
+		//init check
+		formatCheckQueue=new FormatCheckQueue();
+		formatCheckQueue.addTasker(
+				new CheckIsNullTasker(name_From),
+				new CheckIsNullTasker(name_To),
+				new CheckIsNullTasker(address_From),
+				new CheckIsNullTasker(address_To),
+				new CheckIsNullTasker(goods_Name),
+				new CheckIsNullTasker(goods_Number),
+				new CheckIsNullTasker(goods_Type),
+				new CheckIsNullTasker(goods_V1),
+				new CheckIsNullTasker(goods_V2),
+				new CheckIsNullTasker(goods_V3),
+				new CheckIsNullTasker(goods_Weight),
+				new CheckPhoneTasker(null, phone_From),
+				new CheckPhoneTasker(null, phone_To)
+				);
 	}
 
 	public void commit(ActionEvent actionEvent) {
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
         OperationMessage msg = obl.submit(generateVO(obl.newID()));
 
 		if (msg.operationResult) {
