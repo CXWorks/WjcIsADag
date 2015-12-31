@@ -1,6 +1,8 @@
 package ui.receiveui;
 
+import bl.blService.examineblService.ExamineblManageService;
 import bl.blService.receiveblService.ReceiveBLService;
+import factory.ExamineFactory;
 import tool.time.TimeConvert;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
@@ -85,13 +87,13 @@ public class ReceiveFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(ReceiveVO receiveVO, Collection<FormVO> formVOs) {
+    public static Parent launchInManagerEdit(ReceiveVO receiveVO) {
         ReceiveFormController controller = launch();
         controller.showDetail(receiveVO);
         controller.commit_Btn.setOnAction(
                 event -> {
-                    formVOs.remove(receiveVO);
-                    formVOs.add(controller.generateVO(receiveVO.formID));
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generateVO(receiveVO.formID));
                 }
         );
         return controller.informController.stackPane;

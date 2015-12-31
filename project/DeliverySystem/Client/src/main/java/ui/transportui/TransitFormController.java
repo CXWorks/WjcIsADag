@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
+import bl.blService.examineblService.ExamineblManageService;
+import factory.ExamineFactory;
 import message.OperationMessage;
 import factory.FormFactory;
 import bl.blService.transportblService.TransportCenterBLService;
@@ -98,13 +100,13 @@ public class TransitFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(CenterOutVO transitVO, Collection<FormVO> formVOs){
+    public static Parent launchInManagerEdit(CenterOutVO transitVO){
         TransitFormController controller = launch();
         controller.showDetail(transitVO);
         controller.commit_Btn.setOnAction(
                 event -> {
-                    formVOs.remove(transitVO);
-                    formVOs.add(controller.generateVO(transitVO.formID));
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generateVO(transitVO.formID));
                 }
         );
         return controller.informController.stackPane;

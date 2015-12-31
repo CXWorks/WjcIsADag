@@ -18,6 +18,7 @@ import main.Main;
 import tool.time.TimeConvert;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
+import userinfo.UserInfo;
 import vo.systemvo.LogVO;
 
 import java.io.File;
@@ -55,9 +56,8 @@ public class CheckLogController {
 
 	@FXML
 	public void exportTXT(ActionEvent actionEvent) {
-		// TODO 记下用户上次存文件的位置
 		FileChooser fileChooser = new FileChooser();
-		// fileChooser.setInitialDirectory(new File("g:/develop"));
+		fileChooser.setInitialDirectory(new File(UserInfo.getWorkPath()));
 
 		fileChooser.setInitialFileName("Log--" + TimeConvert.getDisplayDate(begin_DatePicker.getValue()) + "--"
 				+ TimeConvert.getDisplayDate(end_DatePicker.getValue()) + ".txt");

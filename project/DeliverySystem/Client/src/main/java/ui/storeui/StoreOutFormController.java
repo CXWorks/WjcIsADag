@@ -6,8 +6,10 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Map;
 
+import bl.blService.examineblService.ExamineblManageService;
 import bl.blService.storeblService.StoreInBLService;
 import bl.blService.storeblService.StoreOutBLService;
+import factory.ExamineFactory;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -92,13 +94,13 @@ public class StoreOutFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(StoreOutVO storeOutVO, Collection<FormVO> formVOs) {
+    public static Parent launchInManagerEdit(StoreOutVO storeOutVO) {
         StoreOutFormController controller = launch();
         controller.showDetail(storeOutVO);
         controller.commit_Btn.setOnAction(
                 event -> {
-                    formVOs.remove(storeOutVO);
-                    formVOs.add(controller.generateVO(storeOutVO.formID));
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generateVO(storeOutVO.formID));
                 }
         );
         return controller.informController.stackPane;

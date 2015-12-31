@@ -108,7 +108,7 @@ public class NewOrderController {
         return null;
     }
 
-    public static Parent launchInManagerEdit(OrderVO orderVO, Collection<FormVO> formVOs){
+    public static Parent launchInManagerEdit(OrderVO orderVO){
         try {
             NewOrderController controller = launch();
             controller.commit_Btn.setOnAction(
@@ -186,13 +186,8 @@ public class NewOrderController {
 				new CheckIsNullTasker(goods_V2),
 				new CheckIsNullTasker(goods_V3),
 				new CheckIsNullTasker(goods_Weight),
-<<<<<<< HEAD
-				new CheckPhoneTasker( phone_From),
-				new CheckPhoneTasker( phone_To)
-=======
 				new CheckPhoneTasker(phone_From),
 				new CheckPhoneTasker(phone_To)
->>>>>>> dc977f66437f9a196e3982ce1242a80b93600de9
 				);
 	}
 

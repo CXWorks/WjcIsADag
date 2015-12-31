@@ -1,5 +1,7 @@
 package ui.transportui;
 
+import bl.blService.examineblService.ExamineblManageService;
+import factory.ExamineFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -84,14 +86,14 @@ public class LoadCarController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(LoadVO loadVO, Collection<FormVO> formVOs) {
+    public static Parent launchInManagerEdit(LoadVO loadVO) {
         LoadCarController controller = launch();
         // controller.init(); TODO need institutionID
         controller.showDetail(loadVO);
         controller.commit_Btn.setOnAction(
                 event -> {
-                    formVOs.remove(loadVO);
-                    formVOs.add(controller.generateVO(loadVO.formID));
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generateVO(loadVO.formID));
                 }
         );
         return controller.informController.stackPane;

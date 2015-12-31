@@ -16,6 +16,9 @@ import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckDualDateTasker;
+import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import vo.financevo.*;
@@ -31,9 +34,11 @@ import java.util.Set;
  */
 public class CheckFinanceChartController {
 
+
     private FinanceChartBLService financeChartBLService = FinanceBLFactory.getFinanceChartBLService();
 
     // controls
+    public Label dateErr_Label;
     public DatePicker begin_DatePicker;
     public DatePicker end_DatePicker;
     public Label outcome_Label;
@@ -47,6 +52,7 @@ public class CheckFinanceChartController {
     public ChoiceBox<SimpleEnumProperty<FinanceBaseChartType>> lineType_ChoiceBox;
 
     private InformController informController;
+    private FormatCheckQueue formatCheckQueue;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(CheckFinanceChartController.class.getResource("checkFinanceChart.fxml"));
@@ -63,37 +69,42 @@ public class CheckFinanceChartController {
         pieType_ChoiceBox.setItems(Enum2ObservableList.transit(FinancePieChartType.values()));
         pieType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) ->
-                    refreshPieChart()
+                        refreshPieChart()
         );
 
         barType_ChoiceBox.setItems(Enum2ObservableList.transit(FinanceBaseChartType.values()));
         barType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) ->
-                    refreshBarChart()
+                        refreshBarChart()
         );
 
         lineType_ChoiceBox.setItems(Enum2ObservableList.transit(FinanceBaseChartType.values()));
         lineType_ChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) ->
-                    refreshLineChart()
+                        refreshLineChart()
         );
 
+        formatCheckQueue = new FormatCheckQueue(
+                new CheckDualDateTasker(dateErr_Label, begin_DatePicker, end_DatePicker),
+                new CheckPreDateTasker(dateErr_Label, begin_DatePicker),
+                new CheckPreDateTasker(dateErr_Label, end_DatePicker)
+        );
     }
 
     public void search(ActionEvent actionEvent) {
-        // TODO check date
+        if(!formatCheckQueue.startCheck()){
+            return;
+        }
 
         CalculateVO calculateVO = financeChartBLService.getCompanyState(getBegin(), getEnd());
         outcome_Label.setText(calculateVO.companyPayment + "元");
         income_Label.setText(calculateVO.companyRevenue + "元");
         profit_Label.setText(calculateVO.companyProfit + "元");
 
-        	refreshPieChart();
-            refreshBarChart();
-            refreshLineChart();
-
-
-
+        refreshPieChart();
+        refreshBarChart();
+        refreshLineChart();
+        dateErr_Label.setText("");
     }
 
     private void refreshLineChart() {

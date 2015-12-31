@@ -1,6 +1,8 @@
 package ui.financeui;
 
+import bl.blService.examineblService.ExamineblManageService;
 import bl.blService.financeblService.PaymentBLService;
+import factory.ExamineFactory;
 import factory.FinanceBLFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,14 +80,13 @@ public class PaymentFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(PaymentVO paymentVO, Collection<FormVO> formVOs) {
+    public static Parent launchInManagerEdit(PaymentVO paymentVO) {
         PaymentFormController controller = launch();
         controller.showDetail(paymentVO);
         controller.commit_Btn.setOnAction(
                 event -> {
-                    formVOs.remove(paymentVO);
-                    PaymentVO newVO = controller.generatePaymentVO(paymentVO.formID);
-                    formVOs.add(newVO);
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generatePaymentVO(paymentVO.formID));
                 }
         );
         return controller.informController.stackPane;
@@ -100,11 +101,11 @@ public class PaymentFormController {
 		//init check
 		formatCheckQueueNotNull=new FormatCheckQueue();
 		formatCheckQueueNotNull.addTasker(
-				new CheckIsNullTasker(money_Field),
-				new CheckIsNullTasker(payerAccount_Field),
-				new CheckIsNullTasker(payerName_Field),
-				new CheckIsNullTasker(receiverAccount_Field),
-				new CheckIsNullTasker(receiverName_Field),
+                new CheckIsNullTasker(money_Field),
+                new CheckIsNullTasker(payerAccount_Field),
+                new CheckIsNullTasker(payerName_Field),
+                new CheckIsNullTasker(receiverAccount_Field),
+                new CheckIsNullTasker(receiverName_Field),
                 new CheckPreDateTasker(dateErr_Label, payment_DatePicker));
 	}
 

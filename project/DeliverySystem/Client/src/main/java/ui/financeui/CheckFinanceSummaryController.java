@@ -14,6 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import tool.time.TimeConvert;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.date.CheckDualDateTasker;
+import ui.common.checkFormat.date.CheckPreDateTasker;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import vo.financevo.CalculateVO;
@@ -30,6 +34,7 @@ import java.util.Comparator;
  */
 public class CheckFinanceSummaryController {
 
+    public Label dateErr_Label;
     private PaymentBLService paymentBLService = FinanceBLFactory.getPaymentBLService();
     private RevenueBLService revenueBLService = FinanceBLFactory.getRevenueBLService();
     private FinanceChartBLService financeChartBLService = FinanceBLFactory.getFinanceChartBLService();
@@ -46,6 +51,7 @@ public class CheckFinanceSummaryController {
     public TableColumn<FinanceFormVO, String> money_Column;
 
     private InformController informController;
+    private FormatCheckQueue formatCheckQueue;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(CheckFinanceSummaryController.class.getResource("checkFinanceSummary.fxml"));
@@ -70,10 +76,17 @@ public class CheckFinanceSummaryController {
 
         begin_DatePicker.setValue(LocalDate.now());
         end_DatePicker.setValue(LocalDate.now());
+        formatCheckQueue = new FormatCheckQueue(
+                new CheckDualDateTasker(dateErr_Label, begin_DatePicker, end_DatePicker),
+                new CheckPreDateTasker(dateErr_Label, begin_DatePicker),
+                new CheckPreDateTasker(dateErr_Label, end_DatePicker)
+        );
     }
 
     public void search(ActionEvent actionEvent) {
-        // TODO check date
+        if(!formatCheckQueue.startCheck()){
+            return;
+        }
 
         Calendar begin = TimeConvert.convertDate(begin_DatePicker.getValue());
         Calendar end = TimeConvert.convertDate(end_DatePicker.getValue());
@@ -92,6 +105,7 @@ public class CheckFinanceSummaryController {
         outcome_Label.setText(calculateVO.companyPayment + "元");
         income_Label.setText(calculateVO.companyRevenue + "元");
         profit_Label.setText(calculateVO.companyProfit + "元");
+        dateErr_Label.setText("");
     }
 
 

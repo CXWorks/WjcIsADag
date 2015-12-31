@@ -104,8 +104,6 @@ public class deliverController {
 		date_DatePicker.setValue(LocalDate.now());
 		ids_ListView.setItems(FXCollections.observableArrayList(toSend));
 		ids_ListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			// TODO test
-
 			idToSend = newValue;
 			id_Field.setText(newValue.toString());
 			fillOrderTable();

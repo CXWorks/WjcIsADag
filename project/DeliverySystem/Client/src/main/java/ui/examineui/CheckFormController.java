@@ -192,8 +192,7 @@ public class CheckFormController implements EventHandler<Event> {
         if(forms.size() != 1){
             informController.inform("请选择一张表单修改");
         }else {
-            Stage stage = ViewFormDetailController.launchInManagerModify
-                    (forms.get(0), formTableController.tableView.getItems());
+            Stage stage = ViewFormDetailController.launchInManagerModify(forms.get(0));
             stage.showAndWait();
         }
     }

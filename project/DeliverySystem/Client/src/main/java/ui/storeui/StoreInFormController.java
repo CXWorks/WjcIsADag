@@ -6,7 +6,9 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Map;
 
+import bl.blService.examineblService.ExamineblManageService;
 import bl.blService.storeblService.StoreInBLService;
+import factory.ExamineFactory;
 import factory.FormFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -86,13 +88,13 @@ public class StoreInFormController {
         return controller.informController.stackPane;
     }
 
-    public static Parent launchInManagerEdit(StoreInVO storeInVO, Collection<FormVO> formVOs){
+    public static Parent launchInManagerEdit(StoreInVO storeInVO){
         StoreInFormController controller = launch();
         controller.showDetail(storeInVO);
         controller.commit_Btns.setOnAction(
                 event -> {
-                    formVOs.remove(storeInVO);
-                    formVOs.add(controller.generateVO(storeInVO.formID));
+                    ExamineblManageService service = ExamineFactory.getExamineblManageService();
+                    service.modifyForm(controller.generateVO(storeInVO.formID));
                 }
         );
         return controller.informController.stackPane;
@@ -106,7 +108,7 @@ public class StoreInFormController {
         area_ChoiceBox.setValue(new SimpleEnumProperty<>(storeLocation.getArea()));
         row_Field.setText(storeLocation.getRow()+"");
         shelf_Field.setText(storeLocation.getShelf()+"");
-        position_Field.setText(storeLocation.getPosition()+"");
+        position_Field.setText(storeLocation.getPosition() + "");
         fillOrderTable();
     }
 
