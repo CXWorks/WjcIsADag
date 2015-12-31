@@ -23,9 +23,14 @@ public class R {
 
     public static class num{
         public final static int locsInShelf = 50;
+        public final static long CheckMessageGap = 5000;
     }
 
     public static class path{
         public final static String InitialModelPath = "buffer/model/initialization.ser";
+    }
+
+    public static class messageKey{
+        public final static String Notification = "notification233";
     }
 }

@@ -29,8 +29,8 @@ public class PersonalAccountViewController {
     public Label id_Label;
 
     private MainPaneController mpc;
+    private AccountBLManageService accountManageService = AccountFactory.getManageService();
 
-    AccountBLManageService accountManageService = AccountFactory.getManageService();
 	public static Parent launch(MainPaneController mpc) throws IOException {
 		FXMLLoader loader = new FXMLLoader(PersonalAccountViewController.class.getResource("personAccountView.fxml"));
         Pane pane = loader.load();

@@ -98,20 +98,14 @@ public class ManageSalaryController {
 				for (SalaryStrategyVO salaryStrategyVO : vo) {
 					System.out.println(salaryStrategyVO.getStaff().getChinese() + " " + tab.getText());
 					if (salaryStrategyVO.getStaff().getChinese().equalsIgnoreCase(tab.getText())) {
-						FXMLLoader fxmlLoader = new FXMLLoader();
-						fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
-						Parent son = fxmlLoader.load();
-						this.staffTypeSalaryController = (StaffTypeSalaryController) fxmlLoader.getController();
-						tab.setContent(son);
+						this.staffTypeSalaryController = StaffTypeSalaryController.launch();
+						tab.setContent(staffTypeSalaryController.selfPane);
 						this.staffTypeSalaryController.change(salaryStrategyVO);
 						return;
 					}
 				}
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(StaffTypeSalaryController.class.getResource("salary.fxml"));
-				Parent son = fxmlLoader.load();
-				this.staffTypeSalaryController = (StaffTypeSalaryController) fxmlLoader.getController();
-				tab.setContent(son);
+				this.staffTypeSalaryController = StaffTypeSalaryController.launch();
+				tab.setContent(staffTypeSalaryController.selfPane);
 				staffTypeSalaryController.setStaffEnum(this.getStaffTypeEnum(tab.getText()));
 				return;
 			}

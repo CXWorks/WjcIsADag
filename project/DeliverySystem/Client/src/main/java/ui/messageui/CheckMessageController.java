@@ -6,11 +6,13 @@ import java.util.List;
 
 import message.ChatMessage;
 import message.OperationMessage;
+import tool.messageQueue.GlobalMessageQueue;
 import tool.time.TimeConvert;
 import ui.financeui.ManageBankAccountController;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.financevo.BankAccountVO;
 import bl.blService.accountblService.AccountBLRemindService;
 import factory.AccountFactory;
@@ -33,10 +35,9 @@ public class CheckMessageController implements Runnable{
     public TableColumn<ChatMessage,String> time_TableColumn;
     public TableColumn<ChatMessage,String> message_TableColumn;
 
-
-    AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
-
+    private AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
     private InformController informController;
+    private GlobalMessageQueue messageQueue = GlobalMessageQueue.getInstance();
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(CheckMessageController.class.getResource("checkMessage.fxml"));
@@ -49,15 +50,13 @@ public class CheckMessageController implements Runnable{
 
     @FXML
     public void initialize(){
-
-    	
     	time_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(TimeConvert.getDisplayDate(cellData.getValue().getTime()))
                 );
     	message_TableColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getMessage())
                 );
-    	Thread checkThread=new Thread(this);
+    	Thread checkThread = new Thread(this);
     	checkThread.start();
     }
 
@@ -81,16 +80,15 @@ public class CheckMessageController implements Runnable{
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(30000);
+				Thread.sleep(R.num.CheckMessageGap);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			OperationMessage res = accountblremindService.checkMessage(UserInfo
-					.getUserID());
+			OperationMessage res = accountblremindService.checkMessage(UserInfo.getUserID());
 			if (res.operationResult) {
-				List<ChatMessage> chatMessages = accountblremindService
-						.receive(UserInfo.getUserID());
+				List<ChatMessage> chatMessages = accountblremindService.receive(UserInfo.getUserID());
 				message_View.getItems().addAll(chatMessages);
+                messageQueue.addMessage(R.messageKey.Notification, ""+chatMessages.size());
 			}
 		}
 	}
