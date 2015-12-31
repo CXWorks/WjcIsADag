@@ -55,12 +55,17 @@
             <TextField fx:id="money_Field" layoutX="390.0" layoutY="81.0" prefHeight="23.0" prefWidth="132.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="596.0" layoutY="90.0" spacing="8.0" AnchorPane.leftAnchor="596.0" AnchorPane.topAnchor="90.0">
+      <VBox alignment="CENTER_RIGHT" layoutX="596.0" layoutY="90.0" spacing="8.0">
          <children>
-            <Label layoutX="572.0" layoutY="85.0" text="付款日期" />
-            <DatePicker fx:id="payment_DatePicker" layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
+            <HBox alignment="CENTER" layoutX="596.0" layoutY="90.0" spacing="8.0" AnchorPane.leftAnchor="596.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <Label layoutX="572.0" layoutY="85.0" text="付款日期" />
+                  <DatePicker fx:id="payment_DatePicker" layoutX="632.0" layoutY="81.0" prefHeight="23.0" prefWidth="154.0" />
+               </children>
+            </HBox>
+            <Label fx:id="dateErr_Label" layoutX="781.0" layoutY="134.0" text="Label" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="134.0" />
          </children>
-      </HBox>
+      </VBox>
       <HBox alignment="CENTER" layoutX="360.0" layoutY="134.0" spacing="8.0" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="134.0">
          <children>
             <Label layoutX="359.0" layoutY="128.0" text="条目" />

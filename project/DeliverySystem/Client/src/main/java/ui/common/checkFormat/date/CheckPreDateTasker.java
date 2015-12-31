@@ -12,7 +12,7 @@ import java.util.Calendar;
  */
 public class CheckPreDateTasker extends CheckDateTasker {
 
-    protected CheckPreDateTasker(Label errLabel, DatePicker datePicker) {
+    public CheckPreDateTasker(Label errLabel, DatePicker datePicker) {
         super(errLabel, datePicker);
     }
 
