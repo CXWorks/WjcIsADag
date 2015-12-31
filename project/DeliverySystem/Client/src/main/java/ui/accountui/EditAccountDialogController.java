@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import main.Main;
 import message.OperationMessage;
 import po.accountdata.AuthorityEnum;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.EngOnlyField;
 import ui.informui.InformController;
 import vo.accountvo.AccountVO;
@@ -27,8 +29,9 @@ public class EditAccountDialogController {
     private Stage stage;
     private AccountVO editVO;
 
-	public EngOnlyField id_Field;
-	public EngOnlyField password_Field;
+	public TextField id_Field;
+	public TextField password_Field;
+    private FormatCheckQueue formatCheckQueue;
 
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
     private InformController informController;
@@ -70,6 +73,11 @@ public class EditAccountDialogController {
         }
 
         id_Field.requestFocus();
+
+        formatCheckQueue = new FormatCheckQueue(
+                new CheckIsNullTasker(id_Field),
+                new CheckIsNullTasker(password_Field)
+        );
     }
 
 	public void cancel(ActionEvent actionEvent) {
@@ -77,6 +85,10 @@ public class EditAccountDialogController {
 	}
 
     public void commit(ActionEvent actionEvent) {
+        if(!formatCheckQueue.startCheck()){
+            return;
+        }
+
         OperationMessage msg;
         if(type == EditType.EDIT){
             msg = accountBLManageService.modifyAccount(editAccountVO());
@@ -95,7 +107,6 @@ public class EditAccountDialogController {
 	}
 
     private AccountVO editAccountVO(){
-        // TODO check
         if(type == EditType.NEW){
             return new AccountVO(id_Field.getText(), password_Field.getText(), AuthorityEnum.DONT_HAVE);
         }

@@ -4,18 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import ui.common.checkFormat.field.EngOnlyField?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.EditAccountDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.EditAccountDialogController">
    <children>
-      <HBox layoutX="135.0" layoutY="263.0" spacing="20.0">
+      <HBox layoutX="135.0" layoutY="263.0" spacing="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
             <Button layoutX="316.0" layoutY="209.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
             <Button layoutX="384.0" layoutY="209.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
-      <Label layoutX="14.0" layoutY="99.0" text="账户名" />
-      <Label layoutX="20.0" layoutY="174.0" text="密码"  />
-      <EngOnlyField fx:id="id_Field" layoutX="75.0" layoutY="95.0" />
-      <EngOnlyField fx:id="password_Field" layoutX="75.0" layoutY="170.0" onAction="#commit"/>
+      <TextField fx:id="id_Field" layoutX="74.0" layoutY="61.0" />
+      <Label layoutX="11.0" layoutY="65.0" text="账户名" />
+      <TextField fx:id="password_Field" layoutX="74.0" layoutY="115.0" onAction="#commit" />
+      <Label layoutX="17.0" layoutY="119.0" text="密码" />
    </children>
 </AnchorPane>
