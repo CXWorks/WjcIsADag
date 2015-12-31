@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.store.StoreModel;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.storeui.StockTackPaneController;
 
 import java.io.IOException;
@@ -24,8 +26,14 @@ public class CheckStoreInitPane {
 
     private InitializationBLService initService = InitBLFactory.getInitializationBLService();
     private StockTackPaneController stockTackPaneController;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     public void loadStore(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueue.startCheck()) {
+			return;
+		}
         String storeID = storeID_Field.getText();
         StoreModel model = initService.searchModel(storeID);
         stockTackPaneController.setStoreModel(model);
@@ -42,6 +50,11 @@ public class CheckStoreInitPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //init check
+        formatCheckQueue=new FormatCheckQueue();
+        formatCheckQueue.addTasker(
+        		new CheckIsNullTasker(storeID_Field)
+        		);
     }
 
 }

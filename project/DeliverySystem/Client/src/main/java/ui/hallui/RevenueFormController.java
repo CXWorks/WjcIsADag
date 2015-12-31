@@ -16,6 +16,8 @@ import tool.ui.SimpleEnumProperty;
 import tool.ui.VisibilityTool;
 import ui.accountui.ManageAccountController;
 import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.financevo.BankAccountVO;
@@ -96,10 +98,21 @@ public class RevenueFormController {
 		postmans= deliverBLService.getPostman(institutionID);
 		deliver_ChoiceBox.setItems(FXCollections.observableArrayList(postmans));
 		revenue_DatePicker.setValue(LocalDate.now());
+		
+		//init check
+		formatCheckQueue=new FormatCheckQueue();
+		formatCheckQueue.addTasker(
+				new CheckOrderTasker(null,order_Field),
+				new CheckIsNullTasker(money_Field)
+				);
 	}
 
 
     public void add(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueue.startCheck()) {
+			return;
+		}
     	orderIDs.add(order_Field.getText());
     	money+=Integer.parseInt(money_Field.getText());
     	total_Label.setText(money+"");

@@ -3,6 +3,8 @@ package ui.manangeui.salary;
 import java.io.IOException;
 
 import po.memberdata.StaffTypeEnum;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import factory.ConfigurationFactory;
@@ -32,18 +34,30 @@ public class StaffTypeSalaryController {
 	private StaffTypeEnum nowSelected;
 	//
 	private InformController informController;
+	
+	private FormatCheckQueue formatCheckQueue;
 
 	public static Parent launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(StaffTypeSalaryController.class.getResource("salary.fxml"));
 		Pane pane = loader.load();
 		StaffTypeSalaryController controller = loader.getController();
 		controller.informController = InformController.newInformController(pane);
+		//init check
+		controller.formatCheckQueue=new FormatCheckQueue();
+		controller.formatCheckQueue.addTasker(new CheckIsNullTasker(controller.base),
+				new CheckIsNullTasker(controller.bonus),
+				new CheckIsNullTasker(controller.commission)
+				);
 
 		return controller.informController.stackPane;
 	}
 
 	//
 	public void change(SalaryStrategyVO salaryStrategyVO) {
+		// check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
 		this.salaryStrategyVO = salaryStrategyVO;
 		type.setText(salaryStrategyVO.getStaff().getChinese());
 		base.setText(Integer.toString(salaryStrategyVO.getBase()));
@@ -63,6 +77,10 @@ public class StaffTypeSalaryController {
 
 	@FXML
 	private void modify() {
+		//check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
 
 		boolean changed = false;
 		if (salaryStrategyVO == null) {

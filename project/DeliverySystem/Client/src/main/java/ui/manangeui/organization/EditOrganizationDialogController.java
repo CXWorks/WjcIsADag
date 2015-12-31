@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import main.Main;
 import message.OperationMessage;
 import po.InfoEnum;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.financeui.AccountEditDialogController;
 import ui.informui.InformController;
 import vo.configurationvo.City2DVO;
@@ -50,6 +52,8 @@ public class EditOrganizationDialogController {
     private Stage dialog;
     private EditType editType;
     private InformController informController;
+    
+    private FormatCheckQueue formatCheckQueue;
 
     public static Stage newDialog
             (InstitutionVO institutionVO, EditType editType,
@@ -95,6 +99,10 @@ public class EditOrganizationDialogController {
                     }
                 }
         );
+        
+        //init check
+        formatCheckQueue=new FormatCheckQueue();
+        formatCheckQueue.addTasker(new CheckIsNullTasker(area_Field));
     }
 
     public void init(){
@@ -126,6 +134,10 @@ public class EditOrganizationDialogController {
     }
 
     public void commit(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueue.startCheck()) {
+			return;
+		}
         OperationMessage msg;
         if(type_ChoiceBox.getSelectionModel().getSelectedItem().equals(HallChoice)){
             if(editType == EditType.EDIT){

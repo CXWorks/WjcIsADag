@@ -24,6 +24,9 @@ import javafx.scene.layout.Pane;
 import main.Main;
 import message.OperationMessage;
 import tool.ui.LogisticsVO2ColumnHelper;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.logisticsvo.LogisticsVO;
@@ -48,6 +51,9 @@ public class LoginController {
 
     private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     private ManageblStaffService manageblStaffService;
+    
+    private FormatCheckQueue formatCheckQueueLogin;
+    private FormatCheckQueue formatCheckQueueSearch;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
@@ -57,12 +63,21 @@ public class LoginController {
     }
 
 
-//    @FXML
-//    public void initialize(){
-//    	back_ImageView.setImage(Image_Back);
-//    }
+
+    public void initialize(){
+    	formatCheckQueueLogin=new FormatCheckQueue();
+    	formatCheckQueueLogin.addTasker(new CheckIsNullTasker(id_Field),
+    		new CheckIsNullTasker(password_Field)
+    			);
+    	formatCheckQueueSearch=new FormatCheckQueue();
+    	formatCheckQueueSearch.addTasker(new CheckOrderTasker(null, search_Field));
+    }
 
     public void login(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueueLogin.startCheck()) {
+			return;
+		}
 
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
 
@@ -87,6 +102,11 @@ public class LoginController {
     }
 
     public void search(ActionEvent atcionEvent){
+    	//check
+    	if (!formatCheckQueueSearch.startCheck()) {
+			return;
+		}
+    	
 		logistics_TableView.getItems().clear();
 //		System.out.println(search_Field.getText());
 		logisticsvo=searchblService.searchOrder(
