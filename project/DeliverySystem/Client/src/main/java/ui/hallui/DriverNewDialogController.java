@@ -19,6 +19,9 @@ import main.Main;
 import tool.time.TimeConvert;
 import tool.ui.Enum2ObservableList;
 import tool.ui.SimpleEnumProperty;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
+import ui.common.checkFormat.field.CheckPhoneTasker;
 import userinfo.UserInfo;
 import vo.managevo.staff.DriverVO;
 
@@ -38,6 +41,8 @@ public class DriverNewDialogController {
 	private SexEnum sexEnum = SexEnum.MAN;
 	private DriverVO editVO =new DriverVO();
 	public Stage stage;
+	
+	private FormatCheckQueue formatCheckQueue;
 
 	public static DriverNewDialogController newDialog(DriverVO editVO) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -70,12 +75,25 @@ public class DriverNewDialogController {
 		);
     	licencePeriod_Picker.setValue(LocalDate.now());
     	carUnit_Field.setText(UserInfo.getInstitutionID());
+    	//init check
+    	formatCheckQueue=new FormatCheckQueue();
+    	formatCheckQueue.addTasker(
+    			new CheckIsNullTasker(ID_Field),
+    			new CheckIsNullTasker(carUnit_Field),
+    			new CheckIsNullTasker(name_Field),
+    			new CheckIsNullTasker(personID_Field),
+    			new CheckPhoneTasker(null, tel_Field)
+    			);
 
     }
 
 
 	@SuppressWarnings("static-access")
 	public void ok(ActionEvent actionEvent){
+		//check
+		if (!formatCheckQueue.startCheck()) {
+			return;
+		}
 		//TODO solve sex and Picker
 
 		editVO.setID(ID_Field.getText());

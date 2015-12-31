@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import po.financedata.FinancePayEnum;
 import tool.time.TimeConvert;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
@@ -65,6 +67,7 @@ public class ManageBankAccountController {
                         father.getChildren().add(before);}
             );
         }
+        
 
         return controller.informController.stackPane;
     }
@@ -175,5 +178,6 @@ public class ManageBankAccountController {
 
         accounts_TableView.prefWidthProperty().bind(fatherPane.widthProperty().divide(3));
         history_TableView.prefWidthProperty().bind(fatherPane.widthProperty().multiply(0.446));
+       
     }
 }

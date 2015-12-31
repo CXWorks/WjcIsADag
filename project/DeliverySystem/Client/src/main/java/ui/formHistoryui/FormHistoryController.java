@@ -9,6 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.FormVO;
@@ -31,6 +33,8 @@ public class FormHistoryController {
     private FormBLService[] formBLServices;
     private InformController informController;
     private FormVO selectedFormVO;
+    
+    private FormatCheckQueue formatCheckQueueNotNull;
 
     public static Pane launch(FormBLService...formBLServices){
         try {
@@ -58,6 +62,9 @@ public class FormHistoryController {
         forms_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selectedFormVO = newValue
         );
+        //inti check
+        formatCheckQueueNotNull=new FormatCheckQueue();
+        formatCheckQueueNotNull.addTasker(new CheckIsNullTasker(formID_Field));
     }
 
     private void fillTable(Collection<FormVO> forms){
@@ -66,6 +73,10 @@ public class FormHistoryController {
     }
 
     public void search(ActionEvent actionEvent) {
+    	//check
+    	if (!formatCheckQueueNotNull.startCheck()) {
+			return ;
+		}
         String filters = formID_Field.getText();
         ArrayList<FormVO> formVOs = new ArrayList<>();
         for (FormBLService formBLService : formBLServices) {

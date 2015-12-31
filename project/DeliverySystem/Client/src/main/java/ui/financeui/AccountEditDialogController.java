@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.Main;
+import ui.common.checkFormat.FormatCheckQueue;
+import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
 import vo.accountvo.AccountVO;
 import vo.financevo.BankAccountVO;
@@ -36,6 +38,8 @@ public class AccountEditDialogController {
     // VO that is passed in by the creator
     private BankAccountVO editVO;
     private BankAccountBLService bankAccountBLService;
+    
+    private FormatCheckQueue formatCheckQueueNotNull;
 
     /**
      *
@@ -67,6 +71,10 @@ public class AccountEditDialogController {
     }
 
     private void init(){
+    	this.formatCheckQueueNotNull=new FormatCheckQueue();
+    	formatCheckQueueNotNull.addTasker(new CheckIsNullTasker(editName_Field),new CheckIsNullTasker(editBalance_Field));
+    	
+    	
         switch (type){
             case EDIT:
                 editName_Field.setText(editVO.getAccountName());
@@ -81,7 +89,10 @@ public class AccountEditDialogController {
     }
 
     public void ok(ActionEvent actionEvent) {
-        // TODO check
+        // check
+    	if (!formatCheckQueueNotNull.startCheck()) {
+			return;
+		}
 
         if(type == EditType.EDIT){
             bankAccountBLService.editAccount(editVO, editName_Field.getText());

@@ -155,10 +155,10 @@ public class FormatCheckImpl implements FormatCheckService {
 	 */
 	@Override
 	public CheckFormMessage checkIsNull(String in) {
-		if (in==null) {
-			return new CheckFormMessage();
+		if (in==null||in.length()==0) {
+			return new CheckFormMessage(false, "不应为空");
 		} else {
-			return new CheckFormMessage(false, "不是空");
+			return new CheckFormMessage();
 		}
 	}
 

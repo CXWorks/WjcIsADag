@@ -7,8 +7,11 @@ import message.CheckFormMessage;
  * Created by Sissel on 2015/12/31.
  */
 public class CheckIsNullTasker extends CheckFieldTasker {
+	private CheckIsNullTasker(){
+		super(null);
+	}
 
-    protected CheckIsNullTasker(TextField field) {
+    public CheckIsNullTasker(TextField field) {
         super(field);
     }
 
