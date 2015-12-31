@@ -64,7 +64,7 @@ public class CarEditDialogController {
 		//init check
 		formatCheckQueue=new FormatCheckQueue();
 		formatCheckQueue.addTasker(new CheckIsNullTasker(nameID_Field),
-				new CheckCarIDTasker(null, carID_Field));
+				new CheckCarIDTasker(carID_Field));
 
 	}
 

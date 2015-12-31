@@ -57,7 +57,7 @@ public class CarNewDialogController {
 		//init check
 		formatCheckQueue=new FormatCheckQueue();
 		formatCheckQueue.addTasker(
-				new CheckCarIDTasker(null, carID_Field),
+				new CheckCarIDTasker(carID_Field),
 				new CheckIsNullTasker(chassisID_Field),
 				new CheckIsNullTasker(engineID_Field),
 				new CheckIsNullTasker(nameID_Field)

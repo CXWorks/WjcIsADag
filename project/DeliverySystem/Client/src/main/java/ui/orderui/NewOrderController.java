@@ -186,8 +186,8 @@ public class NewOrderController {
 				new CheckIsNullTasker(goods_V2),
 				new CheckIsNullTasker(goods_V3),
 				new CheckIsNullTasker(goods_Weight),
-				new CheckPhoneTasker(null, phone_From),
-				new CheckPhoneTasker(null, phone_To)
+				new CheckPhoneTasker(phone_From),
+				new CheckPhoneTasker(phone_To)
 				);
 	}
 
