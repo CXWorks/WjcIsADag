@@ -42,8 +42,7 @@ public class PersonalAccountViewController {
 
 	@FXML
     public void initialize(){
-	    staff_Label.setText(UserInfo.getStaffType().toString());
-	    id_Label.setText(UserInfo.getUserID());
+	    id_Label.setText("ID: "+UserInfo.getUserID());
 	}
 
 

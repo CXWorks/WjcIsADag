@@ -1,6 +1,6 @@
 .background {
 
-	-fx-background-image : url(server/server.png);
+	-fx-background-image : url(server/server-back.png);
 	-fx-background-color:#ea8827;
 	-fx-background-size: cover;
 	
@@ -24,17 +24,17 @@
 
 
 .button-out {
-	-fx-background-image : url(server/stop.png);
+	-fx-background-image : url(server/stopp.png);
 	-fx-background-color: #282828;
 	-fx-border-style:none;
 }
 
 .button-out:hover {
-   -fx-background-image : url(server/stopHover.png);
+   -fx-background-image : url(server/stop-hover.png);
 }
 
 .button-out:pressed, .button-out:default:hover:pressed {
-   -fx-background-image : url(server/stopPressed.png);
+   -fx-background-image : url(server/stop-pressed.png);
 }
 
 .button-out:focused{
@@ -43,17 +43,17 @@
 
 
 .button-begin {
-	-fx-background-image : url(server/begin.png);
+	-fx-background-image : url(server/start.png);
 	-fx-background-color: #282828;
 	-fx-border-style:none;
 }
 
 .button-begin:hover {
-   -fx-background-image : url(server/beginHover.png);
+   -fx-background-image : url(server/start-hover.png);
 }
 
 .button-begin:pressed, .button-begin:default:hover:pressed {
-   -fx-background-image : url(server/beginPressed.png);
+   -fx-background-image : url(server/start-pressed.png);
 }
 
 .button-begin:focused{

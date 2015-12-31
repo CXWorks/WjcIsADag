@@ -97,6 +97,7 @@
     -fx-background-image:  url(login/new/login_Field.png);
     -fx-background-color:#1e1e1e;
 	-fx-border-style :none;
+	-fx-alignment:center-left;
     -fx-size:13;
     -fx-font-size: 10pt;
 	-fx-text-fill: white;
@@ -106,6 +107,7 @@
 .text-field-search {
     -fx-background-image:  url(login/new/search_Field.png);
     -fx-background-color:#1e1e1e;
+	-fx-alignment:center-left;
 	-fx-border-style :none;
     -fx-size:13;
     -fx-font-size: 10pt;

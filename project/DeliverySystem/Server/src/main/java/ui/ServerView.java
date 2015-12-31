@@ -34,7 +34,7 @@ public class ServerView {
 		if (!isON) {
 			new Server().start();
 			isON = true;
-			state.setText("当前状态：启动");
+			state.setText(" 启动");
 			SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String TimeString = time.format(new java.util.Date());
 			start_time.setText(TimeString);
@@ -48,7 +48,7 @@ public class ServerView {
 			if (isON) {
 				isON = false;
 				RMIHelper.closeServer();
-				state.setText("当前状态：停止");
+				state.setText(" 停止");
 				start_time.setText("");
 			}
 		} catch (RemoteException e) {
