@@ -51,6 +51,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.poi.ss.formula.functions.Count;
+
 /**
  * Created by Sissel on 2015/10/26.
  */
@@ -466,7 +468,16 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newCenterID(String city) {
-		return null;
+		int coun=1;
+		coun=initialDataVO.getCenters().stream()
+				.filter(center->center.getCenterID().contains(city))
+				.map(id->Integer.parseInt(id.getCenterID()))
+				.max((a,b)->
+					  (a-b)/Math.abs(a-b)
+				).get();
+		
+		coun++;
+		return Integer.toString(coun);
 	}
 
 	/* (non-Javadoc)
@@ -488,7 +499,17 @@ public class InitializationBLController implements InitializationBLService {
 	 */
 	@Override
 	public String newHallID(String centerID) {
-		return null;
+		String city=centerID.substring(0, 3)+"1";
+		int coun=1;
+		coun=initialDataVO.getHalls().stream()
+				.filter(hall->hall.getHallID().contains(city))
+				.map(id->Integer.parseInt(id.getHallID()))
+				.max((a,b)->
+					  (a-b)/Math.abs(a-b)
+				).get();
+		
+		coun++;
+		return Integer.toString(coun);
 	}
 
 	/* (non-Javadoc)
