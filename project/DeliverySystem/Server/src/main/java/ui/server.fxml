@@ -27,5 +27,7 @@
          </font>
       </Label>
       <Button layoutX="476.0" layoutY="231.0" mnemonicParsing="false" onAction="#stop" prefHeight="85.0" prefWidth="260.0" styleClass="button-out" />
+      <Button layoutX="901.0" layoutY="14.0" mnemonicParsing="false" onAction="#out" prefHeight="40.0" prefWidth="40.0" styleClass="button-close" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+      <Button layoutX="841.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimizeStage" prefHeight="37.0" prefWidth="37.0" styleClass="button-min" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="6.0" />
    </children>
 </AnchorPane>

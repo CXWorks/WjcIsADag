@@ -60,3 +60,47 @@
    -fx-border-style:none;
 }
 
+
+
+.button-min{
+    -fx-size:13;
+	-fx-cursor:hand;
+    -fx-background-image:  url(server/server-min.png);
+    -fx-border-style:none;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-min:hover {
+-fx-background-image:  url(server/server-min-hover.png);
+}
+
+.button-min:pressed {
+-fx-background-image:  url(server/server-min-pressed.png);
+}
+
+.button-min:focused {
+    -fx-border-style:none;
+}
+
+
+.button-close{
+    -fx-size:13;
+		-fx-cursor:hand;
+    -fx-background-image:  url(server/server-close.png);
+    -fx-border-style:none;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-close:hover {
+-fx-background-image:  url(server/server-close-hover.png);
+}
+
+.button-close:pressed {
+-fx-background-image:  url(server/server-close-pressed.png);
+}
+
+.button-close:focused {
+    -fx-border-style:none;
+}

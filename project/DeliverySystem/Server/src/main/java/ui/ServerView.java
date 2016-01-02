@@ -66,6 +66,10 @@ public class ServerView {
 		ConnecterHelper.deconnSQL();
 		System.exit(0);
 	}
+	  public void minimizeStage(ActionEvent actionEvent) {
+		  
+	    }
+
 }
 
 /**
