@@ -5,17 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<?import ui.common.checkFormat.field.PasswordOnlyField?>
-<AnchorPane maxHeight="-Infinity" maxWidth="170.0"  minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="170.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.personAccountViewEditDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="244.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="209.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.personAccountViewEditDialogController">
    <children>
-      <GridPane layoutX="25.0" layoutY="31.0" prefHeight="179.0" prefWidth="150.0">
+      <GridPane layoutX="25.0" layoutY="31.0" prefHeight="223.0" prefWidth="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
             <Label styleClass="label-small" text="请输入原始密码" />
             <Label styleClass="label-small" text="请输入新密码" GridPane.rowIndex="2" />
             <Label styleClass="label-small" text="请再次输入新密码以确认" GridPane.rowIndex="4" />
-            <PasswordOnlyField fx:id="originalPassWord_Field" GridPane.rowIndex="1" />
-            <PasswordOnlyField fx:id="newPassWord_Field" GridPane.rowIndex="3" />
-            <PasswordOnlyField fx:id="againNewPassWord_Field" GridPane.rowIndex="5" onAction="#ok" />
+            <TextField fx:id="originalPassWord_Field" GridPane.rowIndex="1" />
+            <TextField fx:id="newPassWord_Field" GridPane.rowIndex="3" />
+            <TextField fx:id="againNewPassWord_Field" onAction="#ok" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,7 +28,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <HBox layoutX="85.0" layoutY="245.0" spacing="15.0">
+      <HBox layoutX="83.0" layoutY="280.0" spacing="15.0">
          <children>
             <Button mnemonicParsing="false" onAction="#ok" text="确认" />
             <Button mnemonicParsing="false" onAction="#cancel" text="取消" />

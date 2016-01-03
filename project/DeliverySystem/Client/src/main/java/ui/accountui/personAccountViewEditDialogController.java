@@ -24,9 +24,9 @@ import javafx.stage.Stage;
 
 public class personAccountViewEditDialogController {
 
-	public PasswordOnlyField originalPassWord_Field;
-	public PasswordOnlyField newPassWord_Field;
-	public PasswordOnlyField againNewPassWord_Field;
+	public TextField originalPassWord_Field;
+	public TextField newPassWord_Field;
+	public TextField againNewPassWord_Field;
 
 	public Label attention_Label;
 
