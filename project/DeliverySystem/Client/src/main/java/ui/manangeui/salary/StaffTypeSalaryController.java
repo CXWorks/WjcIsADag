@@ -55,7 +55,7 @@ public class StaffTypeSalaryController {
 	//
 	public void change(SalaryStrategyVO salaryStrategyVO) {
 		// check
-		if (!formatCheckQueue.startCheck()) {
+		if (formatCheckQueue!=null&&!formatCheckQueue.startCheck()) {
 			return;
 		}
 		this.salaryStrategyVO = salaryStrategyVO;

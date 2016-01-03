@@ -51,8 +51,8 @@ public class OrderHelper {
 				String each=formID.get(i);
 				String[] ans=intergrate.search(each);
 				if (ans!=null) {
-					location.add(ans[0]);
-					time.add(ans[1]);
+					location.add(ans[0].substring(0));
+					time.add(ans[1].substring(0));
 				}
 			}
 			//
