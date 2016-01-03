@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.ManageStaffController">
    <children>
       <TableView fx:id="staff_TableView" layoutX="63.0" layoutY="173.0" prefHeight="312.0" prefWidth="632.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
         <columns>
@@ -33,13 +33,13 @@
             <Button mnemonicParsing="false" onAction="#fillStaffTable" text="查询" />
          </children>
       </HBox>
-      <HBox layoutX="376.0" layoutY="60.0" spacing="16.0" AnchorPane.leftAnchor="376.0" AnchorPane.topAnchor="60.0">
+      <HBox layoutX="405.0" layoutY="59.0" spacing="16.0" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="59.0">
          <children>
             <Label layoutX="248.0" layoutY="135.0" text="城市" />
             <Label fx:id="city_Label" layoutX="309.0" layoutY="132.0" text="YY" />
          </children>
       </HBox>
-      <HBox layoutX="470.0" layoutY="60.0" spacing="16.0" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="60.0">
+      <HBox layoutX="499.0" layoutY="59.0" spacing="16.0" AnchorPane.leftAnchor="499.0" AnchorPane.topAnchor="59.0">
          <children>
             <Label layoutX="414.0" layoutY="137.0" text="所在区域" />
             <Label fx:id="area_Label" layoutX="497.0" layoutY="135.0" text="ZZ" />
