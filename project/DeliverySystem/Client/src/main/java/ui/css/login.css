@@ -213,6 +213,32 @@
     -fx-border-style:none;
 }
 
+
+
+.button-set{
+    -fx-size:13;
+		-fx-cursor:hand;
+    -fx-background-image:  url(login/new/set.png);
+    -fx-border-style:none;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-set:hover {
+-fx-background-image:  url(login/new/set-hover.png);
+}
+
+.button-set:pressed {
+-fx-background-image:  url(login/new/set-pressed.png);
+}
+
+.button-set:focused {
+    -fx-border-style:none;
+}
+
+
+
+
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
     -fx-background-color: #1d1d1d;
