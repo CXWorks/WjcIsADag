@@ -9,6 +9,7 @@ import java.io.IOException;
 
 
 
+
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.blService.accountblService.AccountBLManageService;
 import bl.blService.manageblService.ManageblStaffService;
@@ -21,6 +22,7 @@ import factory.StaffFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,8 +32,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.Main;
 import message.OperationMessage;
+import ui.common.SettingDialogController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
 import vo.logisticsvo.LogisticsInfo;
@@ -114,5 +118,10 @@ public class LoginController {
 
     public void minimizeStage(ActionEvent actionEvent) {
         Main.primaryStage.toBack();
+    }
+    
+    public void showSettingDialog(Event event) {
+        Stage stage = SettingDialogController.newDialog(Main.primaryStage);
+        stage.showAndWait();
     }
 }
