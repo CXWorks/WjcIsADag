@@ -46,9 +46,9 @@
       </HBox>
       <TableView fx:id="tableView" layoutX="79.0" layoutY="98.0" prefHeight="433.0" prefWidth="429.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="60.0">
         <columns>
-          <TableColumn fx:id="cityColumn" prefWidth="94.0" text="城市" />
-          <TableColumn fx:id="typecColumn" prefWidth="89.33334350585938" text="机构类型" />
-            <TableColumn fx:id="institutionIDColumn" prefWidth="111.66665649414062" text="编号" />
+          <TableColumn fx:id="cityColumn" prefWidth="108.0" text="城市" />
+          <TableColumn fx:id="typecColumn" prefWidth="113.0" text="机构类型" />
+            <TableColumn fx:id="institutionIDColumn" prefWidth="208.0" text="编号" />
         </columns>
       </TableView>
       <Button fx:id="back_Btn" layoutX="20.0" layoutY="17.0" mnemonicParsing="false" text="back" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />

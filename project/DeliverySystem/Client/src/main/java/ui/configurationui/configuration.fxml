@@ -23,7 +23,7 @@
                                       <columns>
                                         <TableColumn fx:id="cityNameColumn" prefWidth="81.0" text="城市" />
                                         <TableColumn fx:id="cityIDColumn" prefWidth="64.0" text="编号" />
-                                          <TableColumn fx:id="cityLocationcColumn" prefWidth="128.0" text="坐标" />
+                                          <TableColumn fx:id="cityLocationcColumn" prefWidth="143.0" text="坐标" />
                                       </columns>
                                     </TableView>
                                     <HBox alignment="CENTER" layoutX="80.0" layoutY="443.0" spacing="16.0">
@@ -77,20 +77,38 @@
               <content>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="970.0">
                      <children>
-                        <GridPane AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="48.0">
+                        <GridPane layoutX="49.0" layoutY="48.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="48.0">
                            <children>
                               <Label layoutX="75.0" layoutY="395.0" text="包装费用" GridPane.rowIndex="2" />
                               <GridPane layoutX="247.0" layoutY="338.0" prefHeight="161.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="纸箱" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="木箱" GridPane.rowIndex="1" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="快递袋" GridPane.rowIndex="2" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="纸箱">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="木箱" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="快递袋" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
                                     <TextField fx:id="paper_Field" GridPane.columnIndex="1" />
                                     <TextField fx:id="wood_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="bag_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
@@ -105,15 +123,30 @@
                               </GridPane>
                               <Label layoutX="75.0" layoutY="77.0" text="快递费用" />
                               <Label layoutX="75.0" layoutY="233.0" text="收费比例" GridPane.rowIndex="1" />
-                              <GridPane layoutX="220.0" layoutY="196.0" prefHeight="93.0" prefWidth="374.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <GridPane layoutX="220.0" layoutY="196.0" prefHeight="74.0" prefWidth="493.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <TextField fx:id="slow_Field" layoutX="239.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.rowIndex="1" />
                                     <TextField fx:id="fast_Field" layoutX="462.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Text fill="WHITE" layoutX="377.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递" GridPane.columnIndex="2" />
-                                    <Text fill="WHITE" layoutX="337.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Text fill="WHITE" layoutX="265.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="经济快递" />
-                                    <Text fill="WHITE" layoutX="488.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="特快专递" GridPane.columnIndex="4" />
-                                    <Text fill="WHITE" layoutX="448.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Text fill="WHITE" layoutX="377.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" layoutX="337.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" layoutX="265.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="经济快递">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" layoutX="488.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="特快专递" GridPane.columnIndex="4">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" layoutX="448.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
                                     <TextField fx:id="normal_Field" layoutX="351.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                                  <columnConstraints>
@@ -130,17 +163,32 @@
                               </GridPane>
                               <GridPane GridPane.columnIndex="1">
                                  <children>
-                                    <Text fill="WHITE" layoutX="63.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递的运费价格" />
+                                    <Text fill="WHITE" layoutX="63.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递的运费价格">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER" layoutX="276.0" layoutY="182.0" prefHeight="50.0" prefWidth="67.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Text fill="WHITE" layoutX="373.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="公里数" />
+                                          <Text fill="WHITE" layoutX="373.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="公里数">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font></Text>
                                           <Text fill="WHITE" layoutX="366.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="————" wrappingWidth="52.765625" />
                                           <Label layoutX="376.0" layoutY="186.0" text="1000" />
                                        </children>
                                     </VBox>
-                                    <Text fill="WHITE" layoutX="384.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" GridPane.columnIndex="3" />
-                                    <Text fill="WHITE" layoutX="526.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="元/公斤" GridPane.columnIndex="5" />
-                                    <Label layoutX="207.0" layoutY="176.0" text="=" GridPane.columnIndex="1" />
+                                    <Text fill="WHITE" layoutX="384.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" GridPane.columnIndex="3">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
+                                    <Text fill="WHITE" layoutX="526.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="元/公斤" GridPane.columnIndex="5">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <Label layoutX="207.0" layoutY="176.0" text="=" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Label>
                                     <TextField fx:id="factor_Field" layoutX="435.0" layoutY="174.0" prefHeight="23.0" prefWidth="57.0" GridPane.columnIndex="4" />
                                  </children>
                                  <columnConstraints>
@@ -166,7 +214,7 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Button layoutX="868.0" layoutY="460.0" mnemonicParsing="false" onAction="#submitAllExpense" text="确认" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0" />
+                        <Button defaultButton="true" layoutX="813.0" layoutY="450.0" mnemonicParsing="false" onAction="#submitAllExpense" text="确认" AnchorPane.bottomAnchor="34.0" AnchorPane.rightAnchor="112.0" />
                      </children>
                   </AnchorPane>
               </content>
