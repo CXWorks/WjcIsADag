@@ -1,0 +1,46 @@
+
+
+.data0.chart-bar { 
+-fx-bar-color: turquoise; 
+-fx-font-color:white;
+-fx-text-fill:white;
+}
+
+
+
+.data1.chart-bar { -fx-bar-color: aquamarine; 
+-fx-font-color:white;
+-fx-text-fill:white;}
+
+.data2.chart-bar { -fx-bar-color: cornflowerblue; 
+-fx-font-color:white;
+-fx-text-fill:white;}
+
+.data3.chart-bar { -fx-bar-color: blue; 
+-fx-font-color:white;
+-fx-text-fill:white;}
+
+.data4.chart-bar { -fx-bar-color: cadetblue; 
+-fx-font-color:white;
+-fx-text-fill:white;}
+
+.data5.chart-bar { -fx-bar-color: navy; }
+
+.data6.chart-bar { -fx-bar-color: deepskyblue; }
+
+.data7.chart-bar { -fx-bar-color: cyan; }
+
+.data8.chart-bar { -fx-bar-color: steelblue; }
+
+.data9.chart-bar { -fx-bar-color: teal; }
+
+.data10.chart-bar { -fx-bar-color: royalblue; }
+
+.data11.chart-bar { -fx-bar-color: dodgerblue; }
+
+ 
+.chart-bar-label-line{
+-fx-text-fill:white;
+-fx-font-color:white;
+}
+.chart-legend { -fx-background-color: #171717; }

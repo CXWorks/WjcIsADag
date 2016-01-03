@@ -41,6 +41,7 @@
 .choice-box{
     -fx-base:gray;
     -fx-focus-color:white;
+	-fx-font-color:white;
 	-fx-font-size:12pt;
 }
 
