@@ -153,7 +153,7 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				OrderPO orderPO = pass_helper.getOrderDataService().getFormPO(sOutPO.getOrderID());
 				sOutPO.setMoney(orderPO.getMoney());
 				ArrayList<String> IDs = orderPO.getFormIDs();
-				String inID = IDs.get(IDs.size() - 1);
+				String inID = IDs.get(IDs.size() - 2);
 				sOutPO.setLocation(pass_helper.getStoreFormDataService().getStoreInPO(inID).getLocation());
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
 				StoreLocation location = sOutPO.getLocation();

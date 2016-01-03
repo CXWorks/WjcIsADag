@@ -229,10 +229,17 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 		return result;
 	}
 
+	public static void main(String[] args) throws RemoteException {
+		CenterOutDataImpl t = new CenterOutDataImpl();
+		System.out.println(t.newTransID("0210001"));
+	}
+
 	@Override
 	public String newTransID(String unitID) throws RemoteException {
 		ResultSet rs = null;
 		Timestamp date = null;
+		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
+		String today = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 		String select = MySql.select(TableEnum.TRANS, new HashMap<String, String>() {
 			{
 				put("unitID", unitID);
@@ -242,15 +249,31 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			date = rs.getTimestamp("date");
+			if (rs != null) {
+				date = rs.getTimestamp("date");
+			}
 		} catch (SQLException e) {
 			System.err.println("访问数据库时出错：");
 			e.printStackTrace();
 		}
+		if (date == null) {
+			String insert = MySql.insert(TableEnum.TRANS, new HashMap<String, String>() {
+				{
+					put("unitID", unitID);
+					put("num", 0 + "");
+				}
+			});
+			try {
+				statement = conn.prepareStatement(insert);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				System.err.println("新建时出错：");
+				e.printStackTrace();
+			}
+			return unitID + today + String.format("%05d", 1);
+		}
 		String date_in_sql = date.toString().substring(0, 10);
 		date_in_sql = date_in_sql.substring(0, 4) + date_in_sql.substring(5, 7) + date_in_sql.substring(8);
-		String temp = new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
-		String today = temp.substring(0, 4) + temp.substring(5, 7) + temp.substring(8);
 
 		// update date
 		String update = MySql.update(TableEnum.TRANS, "date", new Timestamp(System.currentTimeMillis()).toString(),
@@ -277,8 +300,8 @@ public class CenterOutDataImpl extends CommonData<CenterOutPO> implements Center
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			this.setNum(unitID, num + "");
-			return unitID + today + String.format("%05d", num++);
+			this.setNum(unitID, ++num + "");
+			return unitID + today + String.format("%05d", num);
 		} else {// 当前日期与缓存日期不一致
 			this.setNum(unitID, 1 + "");
 			return unitID + today + String.format("%05d", 1);
