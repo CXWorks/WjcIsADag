@@ -14,6 +14,15 @@
 }
 
 
+.label {
+    -fx-font-size: 13pt;
+    -fx-font-family: "方正幼线简体 常规";
+	-fx-font-color:#dcdbdb;
+    -fx-text-fill: #dcdbdb;
+    -fx-opacity: 1;
+}
+
+
 .label-small {
     -fx-font-size: 10pt;
     -fx-font-family: "方正幼线简体 常规";
