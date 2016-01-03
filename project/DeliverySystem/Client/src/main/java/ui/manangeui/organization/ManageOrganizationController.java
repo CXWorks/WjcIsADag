@@ -118,7 +118,7 @@ public class ManageOrganizationController {
 		tableView.getSelectionModel().selectFirst();
 		institutionVO = tableView.getSelectionModel().getSelectedItem();
         if(tableView.getItems().size() != 0){
-            showDetail();
+            showDetail(institutionVO);
         }
 	}
 	
@@ -129,13 +129,15 @@ public class ManageOrganizationController {
 		tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     institutionVO = newValue;
-                    showDetail();
+                    
+                    showDetail(newValue);
                 }
         );
 	}
 
 	public void refreshTable(){
 		institutionVOs = this.getInstitutionVOs();
+		this.tableView.getItems().clear();
 		this.tableView.setItems(FXCollections.observableList(institutionVOs));
 	}
 
@@ -157,8 +159,13 @@ public class ManageOrganizationController {
 		return ans;
 	}
 
-	private void showDetail(){
-		boolean isHall = institutionVO.getInfoEnum() == InfoEnum.HALL;
+	private void showDetail(InstitutionVO institutionVO){
+		boolean isHall=false;
+		if(institutionVO==null)
+			return;
+		if(institutionVO.getInfoEnum()!=null)
+		 isHall = institutionVO.getInfoEnum() == InfoEnum.HALL;
+		
 		area_HeadLabel.setVisible(isHall);
 		area_Label.setVisible(isHall);
 		nearCenter_HeadLabel.setVisible(isHall);
@@ -189,4 +196,7 @@ public class ManageOrganizationController {
         dialog.showAndWait();
         refreshTable();
 	}
+	
+	
+	
 }

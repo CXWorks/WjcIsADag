@@ -24,8 +24,6 @@
       <Button layoutX="199.0" layoutY="466.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="102.0" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="199.0" />
       <HBox layoutX="684.0" layoutY="484.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#loadDraft" prefHeight="39.0" prefWidth="105.0" text="载入草稿" />
-            <Button layoutX="684.0" layoutY="484.0" mnemonicParsing="false" onAction="#saveDraft" prefHeight="39.0" prefWidth="105.0" text="保存草稿" />
             <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="60.0" text="清空" />
             <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="60.0" text="提交" />
          </children>

@@ -150,6 +150,8 @@ public class EditOrganizationDialogController {
                 HallVO hallVO = new HallVO();
                 hallVO.setArea(area_Field.getText());
                 hallVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                hallVO.setNearCenterID(manageblHallService.nearCenterID(hallVO.getCityID()));
+                hallVO.setCityName(city_ChoiceBox.getSelectionModel().getSelectedItem().getName());
                 msg = manageblHallService.addHall(hallVO);
             }
         }else{
@@ -159,6 +161,7 @@ public class EditOrganizationDialogController {
             }else {
                 CenterVO centerVO = new CenterVO();
                 centerVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());
+                centerVO.setCityName(city_ChoiceBox.getSelectionModel().getSelectedItem().getName());
                 msg = manageblCenterService.addCenter(centerVO);
             }
         }
