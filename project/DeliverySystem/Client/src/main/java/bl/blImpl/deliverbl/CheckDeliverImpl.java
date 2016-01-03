@@ -8,6 +8,7 @@ import po.orderdata.OrderPO;
 import rmi.deliverdata.DeliverDataService;
 import rmi.orderdata.OrderDataService;
 import message.OperationMessage;
+import userinfo.UserInfo;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
 import bl.NetReconnect.Reconnect;
@@ -51,8 +52,20 @@ public class CheckDeliverImpl implements CheckDeliverForm {
 		DeliverPO po;
 		DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
 			po=(DeliverPO)vopoFactory.transVOtoPO(each);
+			
 			po.setFinished(true);
 			try {
+				ArrayList<String> ID=deliverDataService.searchAsPerson(UserInfo.getUserID());
+				for (String string : ID) {
+					po=deliverDataService.getFormPO(string);
+					if (po.getOrderID().equalsIgnoreCase(each.getOrderID())) {
+						po.setFinished(true);
+						break;
+					}
+				}
+				
+				//
+				
 				deliverDataService.update(po);
 				OrderDataService orderDataService=CacheHelper.getOrderDataService();
 				OrderPO orderPO=orderDataService.getFormPO(each.getOrderID());

@@ -98,6 +98,7 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 		 */
 		@Override
 		public ArrayList<String> getLocation(String centerID) {
+			System.out.println(centerID);
 			ArrayList<String> ans=new ArrayList<String>();
 			CompanyDataCenterService companyDataCenterService=CacheHelper.getCompanyDataCenterService();
 			CompanyDataHallService companyDataHallService=CacheHelper.getCompanyDataHallService();
@@ -109,10 +110,11 @@ public class TransportCenterBLImpl implements TransportCenterBLService {
 						.collect(Collectors.toList()));
 				//
 				ArrayList<HallPO> hallPOs=companyDataHallService.getHall();
-				ans.addAll(hallPOs.stream()
-						.map(hall->hall.getNearCenterID())
-						.filter(id->id.equalsIgnoreCase(centerID))
-						.collect(Collectors.toList()));
+				for (HallPO hallPO : hallPOs) {
+					if (hallPO.getNearCenterID().equalsIgnoreCase(centerID)) {
+						ans.add(hallPO.getHallID());
+					}
+				}
 				return ans;
 			} catch (RemoteException e) {
 				Reconnect.ReConnectFactory();

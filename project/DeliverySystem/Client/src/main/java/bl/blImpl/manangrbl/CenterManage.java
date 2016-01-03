@@ -96,23 +96,15 @@ public class CenterManage implements ManageblCenterService{
 		CompanyDataCenterService centerService=CacheHelper.getCompanyDataCenterService();
 		String ID=center;
 		try {
-			ArrayList<CenterPO> po=centerService.getCenter();
+			
+			
 			CenterPO each=null;
-			boolean found=false;
-			for (int i = 0; i < po.size(); i++) {
-				each=po.get(i);
-				if (each.getCenterID().equalsIgnoreCase(ID)) {
-					found=true;
-					break;
-				}
-			}
+			each=centerService.getCenterByID(center);
 			//
-			if (found) {
+			
 				CenterVO vo=(CenterVO)vopoFactory.transPOtoVO(each);
 				return vo;
-			} else {
-				return null;
-			}
+			
 		} catch (RemoteException e) {
 			Reconnect.ReConnectFactory();
 			return null;

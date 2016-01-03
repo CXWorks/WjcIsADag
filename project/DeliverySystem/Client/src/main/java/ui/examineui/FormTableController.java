@@ -97,6 +97,9 @@ public class FormTableController {
 			if (type == FormEnum.ORDER) {
 				Calendar now = Calendar.getInstance();
 				ans = Integer.toString(now.get(Calendar.YEAR)) + formID.substring(0, 4);
+			} else if (type==FormEnum.CENTER_TRANSPORT) {
+				System.out.println(formID);
+				ans=formID.substring(7, 15);
 			} else {
 				ans = formID.substring(9, 17);
 			}

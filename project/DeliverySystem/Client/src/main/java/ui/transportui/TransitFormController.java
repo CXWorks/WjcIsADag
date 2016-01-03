@@ -212,9 +212,7 @@ public class TransitFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-        if(!formatCheckQueueCommit.startCheck()){
-            return;
-        }
+       
 		OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
 
 		ids.clear();

@@ -42,7 +42,9 @@ public class CenterOutVO extends TransitVO  {
 	public CenterOutPO toPO(){
 		ArrayList<String> idPO=this.selfDeepClone(IDs);
 
-		CenterOutPO centerOutPO= new CenterOutPO(placeFrom, placeFrom, shelfNum, transitState.name(), LoadDate, placeFrom, placeFrom, shelfNum, placeFrom, idPO,createrID,numberOfIndex);
+		CenterOutPO centerOutPO= new CenterOutPO(formID,placeFrom, shelfNum, 
+				 transitState.name(), LoadDate, TransportID, placeTo, 
+				peopleSee, expense, idPO,createrID,numberOfIndex);
 		centerOutPO.setCache_OperatorID(UserInfo.getUserID());
 		return centerOutPO;
 	}

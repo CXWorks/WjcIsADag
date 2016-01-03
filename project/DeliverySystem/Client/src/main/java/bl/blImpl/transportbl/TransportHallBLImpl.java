@@ -170,7 +170,7 @@ public class TransportHallBLImpl implements TransportHallBLService {
 			ans.add(centerID);
 			ArrayList<HallPO> hallPOs = companyDataHallService.getHall();
 			for (HallPO hallPO : hallPOs) {
-				if (hallPO.getNearCenterID() == centerID && hallPO.getHallID() != hallID) {
+				if (hallPO.getNearCenterID().equalsIgnoreCase(centerID) && !hallPO.getHallID().equalsIgnoreCase(hallID)) {
 					ans.add(hallPO.getHallID());
 				}
 			}

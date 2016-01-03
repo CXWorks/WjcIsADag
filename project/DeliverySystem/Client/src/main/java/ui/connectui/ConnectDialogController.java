@@ -40,6 +40,7 @@ public class ConnectDialogController {
     }
 
     public void exitSystem(ActionEvent actionEvent) {
+    	System.exit(0);
 
     }
 

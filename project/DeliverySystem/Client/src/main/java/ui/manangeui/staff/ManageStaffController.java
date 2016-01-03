@@ -146,9 +146,13 @@ public class ManageStaffController  {
 	}
 
     public void fillStaffTable(String institutionID){
-        InstitutionVO vo = manageblCenterService.searchCenter(institutionID);
-        if(vo == null){ // not in center
-            vo = manageblHallService.searchHall(institution_Field.getText());
+    	InstitutionVO vo =null;
+    	if (institutionID.charAt(3)=='0') {
+    		vo = manageblCenterService.searchCenter(institutionID);
+		}
+        
+    	else{ // not in center
+    		vo=manageblHallService.searchHall(institution_Field.getText());
         }
         if(vo == null){ // neither in center nor in hall
             informController.inform("请输入正确的机构编号");

@@ -37,6 +37,7 @@ public class PeopleReceiveFormController {
 
 	public TextField id_Field;
     public Label dateErr_Label;
+    private String id;
 
     private OrderVO selected = null;
 	private List<OrderVO> orderVOs;
@@ -66,6 +67,7 @@ public class PeopleReceiveFormController {
             name_Field.clear();
             receive_DatePicker.setValue(LocalDate.now());
             selected = newValue;
+            id=newValue.formID;
         });
 
         formatCheckQueueSearch = new FormatCheckQueue(new CheckOrderTasker(id_Field));
@@ -73,6 +75,8 @@ public class PeopleReceiveFormController {
                 new CheckIsNullTasker(name_Field),
                 new CheckPreDateTasker(dateErr_Label, receive_DatePicker)
         );
+        
+        
 	}
 
 
@@ -88,7 +92,7 @@ public class PeopleReceiveFormController {
         }
 
 		DeliverVO deliverVO = new DeliverVO(null, selected.formID,
-				TimeConvert.convertDate(receive_DatePicker.getValue()), id_Field.getText(), UserInfo.getUserID());
+				TimeConvert.convertDate(receive_DatePicker.getValue()), id, UserInfo.getUserID());
 		checkDeliver.finishDelivery(deliverVO);
 	}
 
