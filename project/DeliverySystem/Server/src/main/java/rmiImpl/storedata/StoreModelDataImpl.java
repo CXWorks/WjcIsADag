@@ -90,11 +90,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 				this.getArea(centerID, StoreAreaCode.FLEX));
 	}
 
-	// public static void main(String[] args) throws RemoteException {
-	// StoreModelDataImpl t = new StoreModelDataImpl();
-	// t.newShelf("0040001", StoreAreaCode.RAIL, 1, 1);
-	// }
-
 	@Override
 	public OperationMessage newShelf(String centerID, StoreAreaCode code, int row, int shelf) throws RemoteException {
 		this.setTableName(code);
@@ -186,13 +181,6 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		return result;
 	}
 
-	public static void main(String[] args) throws RemoteException {
-		StoreModelDataImpl t = new StoreModelDataImpl();
-
-		StoreLocation location = new StoreLocation(StoreAreaCode.FLEX, 1, 1, 1, "hhh");
-		t.setLocation("0250001", location);
-	}
-
 	@Override
 	public String getLocation(String centerID, StoreAreaCode code, int row, int shelf, int position)
 			throws RemoteException {
@@ -245,18 +233,4 @@ public class StoreModelDataImpl extends UnicastRemoteObject implements StoreMode
 		}
 		return result;
 	}
-
-	// public static void main(String[] args) {
-	// try {
-	// StoreModelDataImpl tDataImpl = new StoreModelDataImpl();
-	// StoreLocation location = new StoreLocation(StoreAreaCode.ROAD, 1, 1, 1,
-	// "1208000001");
-	// tDataImpl.setLocation("0250001", location);
-	//// tDataImpl.getLocation("0250001", StoreAreaCode.ROAD, 1, 1, 1);
-	//
-	// } catch (RemoteException e) {
-	// e.printStackTrace();
-	// }
-
-	// }
 }

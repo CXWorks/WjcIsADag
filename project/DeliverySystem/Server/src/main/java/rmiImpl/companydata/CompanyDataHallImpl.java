@@ -42,8 +42,8 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				temp = new HallPO(rs.getString("hallID"), rs.getString("city"), rs.getString("area"),
-						rs.getString("nearCenterID"), rs.getString("cityID"));
+				temp = new HallPO(rs.getString("hallID"), rs.getString("cityID"), rs.getString("area"),
+						rs.getString("nearCenterID"), rs.getString("city"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -58,7 +58,7 @@ public class CompanyDataHallImpl extends UnicastRemoteObject implements CompanyD
 		String insert = MySql.insert(TableEnum.HALL, new HashMap<String, String>() {
 			{
 				put("hallID", po.getHallID());
-				put("city", po.getCityID());
+				put("city", po.getCityName());
 				put("area", po.getArea());
 				put("nearCenterID", po.getNearCenterID());
 				put("cityID", po.getHallID().substring(0, 3));

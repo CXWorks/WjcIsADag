@@ -53,7 +53,7 @@ public class EditOrganizationDialogController {
     private Stage dialog;
     private EditType editType;
     private InformController informController;
-    
+
     private FormatCheckQueue formatCheckQueue;
 
     public static Stage newDialog
@@ -66,7 +66,7 @@ public class EditOrganizationDialogController {
             Stage stage = new Stage();
             stage.initOwner(Main.primaryStage);
             stage.initStyle(StageStyle.UNDECORATED);
-            
+
             EditOrganizationDialogController controller = loader.getController();
             controller.dialog = stage;
             controller.institutionVO = institutionVO;
@@ -101,7 +101,7 @@ public class EditOrganizationDialogController {
                     }
                 }
         );
-        
+
         //init check
         formatCheckQueue=new FormatCheckQueue();
         formatCheckQueue.addTasker(new CheckIsNullTasker(area_Field));
@@ -137,11 +137,12 @@ public class EditOrganizationDialogController {
 
     public void commit(ActionEvent actionEvent) {
     	//check
-    	if (!formatCheckQueue.startCheck()) {
-			return;
-		}
+
         OperationMessage msg;
         if(type_ChoiceBox.getSelectionModel().getSelectedItem().equals(HallChoice)){
+        	if (!formatCheckQueue.startCheck()) {
+    			return;
+    		}
             if(editType == EditType.EDIT){
                 ((HallVO)institutionVO).setArea(area_Field.getText());
                 institutionVO.setCityID(city_ChoiceBox.getSelectionModel().getSelectedItem().getID());

@@ -158,8 +158,6 @@ public class ExamineManageImpl extends UnicastRemoteObject implements ExamineMan
 				result = pass_helper.getStoreFormDataService().updateStoreOutPO(sOutPO);
 				StoreLocation location = sOutPO.getLocation();
 				location.setOrderID("");
-//				System.out.println(location.getLocationForSQL());
-				pass_helper.getStoreModelDataService().setLocation(tmp.getFormID().substring(2, 9), location);// 改变数据库中这个位置的状态
 				pass_helper.getOrderDataService().addFormID(sOutPO.getOrderID(), tmp.getFormID());
 				break;
 			case CENTER_TRANSPORT:

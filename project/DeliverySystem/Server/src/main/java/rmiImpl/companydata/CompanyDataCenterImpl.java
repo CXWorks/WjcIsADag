@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import message.OperationMessage;
+import model.store.StoreAreaCode;
 import po.companydata.CenterPO;
 import po.memberdata.StaffPO;
 import po.memberdata.StaffTypeEnum;
@@ -20,12 +21,14 @@ import po.systemdata.LogPO;
 import po.transportdata.CenterOutPO;
 import rmi.companydata.CompanyDataCenterService;
 import rmi.memberdata.MemberDataService;
+import rmi.storedata.StoreModelDataService;
 import database.ConnecterHelper;
 import database.MySql;
 import database.RMIHelper;
 import database.enums.TableEnum;
 import rmiImpl.memberdata.DriverDataImpl;
 import rmiImpl.memberdata.StaffDataImpl;
+import rmiImpl.storedata.StoreModelDataImpl;
 
 public class CompanyDataCenterImpl extends UnicastRemoteObject implements CompanyDataCenterService {
 	private static final long serialVersionUID = 1L;
@@ -51,7 +54,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) {
-				temp = new CenterPO(rs.getString("centerID"), rs.getString("city"), rs.getString("cityID"));
+				temp = new CenterPO(rs.getString("centerID"),  rs.getString("cityID"),rs.getString("city"));
 				result.add(temp);
 			}
 		} catch (SQLException e) {
@@ -94,7 +97,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 		String insert = MySql.insert(TableEnum.CENTER, new HashMap<String, String>() {
 			{
 				put("centerID", po.getCenterID());
-				put("city", po.getCityID());
+				put("city", po.getCityName());
 				put("cityID", po.getCenterID().substring(0, 3));
 			}
 		});
@@ -123,7 +126,13 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			System.err.println("新建时出错：");
 			e.printStackTrace();
 		}
-
+		StoreModelDataService t = new StoreModelDataImpl();
+		t.newShelf(po.getCenterID(), StoreAreaCode.RAIL, 1, 1);
+		t.newShelf(po.getCenterID(), StoreAreaCode.ROAD, 1, 1);
+		t.newShelf(po.getCenterID(), StoreAreaCode.AIR, 1, 1);
+		t.newShelf(po.getCenterID(), StoreAreaCode.FLEX, 1, 1);
+		t.newShelf(po.getCenterID(), StoreAreaCode.FLEX, 1, 2);
+		t.newShelf(po.getCenterID(), StoreAreaCode.FLEX, 1, 3);
 		return result;
 	}
 
@@ -183,7 +192,7 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			rs.next();
-			result = new CenterPO(ID, rs.getString("city"),rs.getString("cityID"));
+			result = new CenterPO(ID, rs.getString("cityID"),rs.getString("city"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
 			e.printStackTrace();

@@ -17,17 +17,17 @@ import bl.NetReconnect.Reconnect;
 import bl.blService.manageblService.ManageblHallService;
 import bl.clientNetCache.CacheHelper;
 
-/** 
+/**
  * Client//blImpl.manangrbl//ManageblHallImpl.java
  * @author CXWorks
  * @date 2015年10月26日 上午8:34:07
- * @version 1.0 
+ * @version 1.0
  */
 public class HallManage implements ManageblHallService {
 	private VOPOFactory vopoFactory;
 	public HallManage(VOPOFactory vopoFactory){
 		this.vopoFactory=vopoFactory;
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -121,7 +121,7 @@ public class HallManage implements ManageblHallService {
 			Reconnect.ReConnectFactory();
 			return null;
 		}
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -145,6 +145,7 @@ public class HallManage implements ManageblHallService {
 	public String nearCenterID(String cityID) {
 		CompanyDataCenterService companyDataCenterService=CacheHelper.getCompanyDataCenterService();
 		try {
+			System.out.println(cityID);
 			List<CenterPO> centerPOs=companyDataCenterService.getCenter();
 			String ans=centerPOs.stream()
 					.map(center->center.getCenterID())
