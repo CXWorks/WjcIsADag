@@ -13,13 +13,6 @@
 	-fx-background-repeat:no-repeat;
 }
 
-.label {
-    -fx-font-size: 13pt;
-    -fx-font-family: "方正幼线简体 常规";
-	-fx-font-color:#dcdbdb;
-    -fx-text-fill: #dcdbdb;
-    -fx-opacity: 1;
-}
 
 .label-small {
     -fx-font-size: 10pt;
@@ -34,34 +27,127 @@
 }
 
 .date-picker{
--fx-size:10;
--fx-base:gray;
--fx-focus-color:white;
+    -fx-base:gray;
+    -fx-focus-color:white;
+
 }
 
-.date-picker-small{
--fx-size:8;
--fx-base:gray;
--fx-focus-color:white;
+.check-box-one{
+    -fx-base:gray;
+    -fx-focus-color:white;
+    -fx-text-fill:#dcdbdb;
 }
 
 .choice-box{
--fx-size:10;
--fx-base:gray;
--fx-focus-color:white;
+    -fx-base:gray;
+    -fx-focus-color:white;
+	-fx-font-color:white;
+	-fx-font-size:12pt;
 }
 
-.choice-box-small{
--fx-size:8;
--fx-base:gray;
--fx-focus-color:white;
+.list-view{
+    -fx-base:gray;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
+}
+
+.text-area{
+    -fx-base:gray;
+    -fx-control-inner-background: #c9c8c8;
+    -fx-background-color: #c9c8c8;
+}
+
+.table-view {
+    -fx-base: gray;
+    -fx-control-inner-background: #131313;
+    -fx-background-color:  gray;
+	-fx-opacity:1;
+    -fx-table-header-border-color: transparent;
+	-fx-padding: 0;  
+    -fx-background-insets: 0;  
+}
+
+
+.table-column{
+    -fx-alignment : center;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 20;
+    -fx-border-width: 1 1 1 1;
+    -fx-background-color: transparent;
+    -fx-border-color: 
+        transparent
+        transparent
+        derive(-fx-base, 80%) 
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "方正幼线简体 常规";
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: gray;
+	-fx-border-color:transparent;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
+    -fx-background-color: transparent, derive(#1d1d1d,20%);
+}
+
+.split-pane {
+    -fx-padding: 1 0 0 0;
+}
+
+.menu-bar {
+    -fx-background-color: derive(#1d1d1d,20%);
+}
+
+.context-menu {
+    -fx-background-color: derive(#1d1d1d,50%);
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+.check-box{
+     -fx-border-style :none;
+	 -fx-text-fill:white;
+	 -fx-outline:none;
+}
+
+.check-box:selected{
+     -fx-border-style :none;
+	 -fx-outline:none;
+}
+.check-box:armed{
+     -fx-border-style :none;
+	 -fx-outline:none;
 }
 
 .text-field {
-
 	-fx-border-style :none;
 	-fx-background-color:gray;
-    -fx-size:10;
+    -fx-size:13;
     -fx-font-size: 10pt;
 	-fx-text-fill: #1c1c1c;
     -fx-font-family: "方正幼线简体 常规";
@@ -69,8 +155,12 @@
 	-fx-outline:none;
 }
 
+.text-field:hover{
+-fx-cursor:text;
+}
+
 .text-field:focused{
-	-fx-background-color:#bfbfbf;
+     -fx-background-color:#bfbfbf;
      -fx-border-style :none;
 	 -fx-border-outline:none;
 	 -fx-outline-style:none;
@@ -78,19 +168,17 @@
 	 
 }
 
-.text-field-small {
-
+.text-field-check {
 	-fx-border-style :none;
 	-fx-background-color:gray;
-    -fx-size:8;
-    -fx-font-size: 9pt;
-	-fx-text-fill: #1c1c1c;
+    -fx-size:13;
+    -fx-font-size: 10pt;
+	-fx-prompt-text-fill:#ff4800;
+	-fx-prompt-text-style:bold;
     -fx-font-family: "方正幼线简体 常规";
     -fx-border-style :none;
 	-fx-outline:none;
 }
-
-
 
 .button{
     -fx-border-top-left-radius:0px;
@@ -109,7 +197,7 @@
 }
 
 .button:pressed{
--fx-background-color:#6e6e6e;
+    -fx-background-color:#6e6e6e;
 	-fx-text-fill:#232323;
 }
 
@@ -117,6 +205,76 @@
     -fx-border-style :none;
 }
 
+.button-commit {
+    -fx-size:13;
+	-fx-background-image:url(pic/commit.png);
+    -fx-border-style :none;
+	-fx-cursor:hand;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-commit:hover {
+	-fx-background-image:url(pic/commit.png);
+}
+
+.button-commit:pressed, .button-commit:default:hover:pressed {
+	-fx-background-image:url(pic/commit.png);
+}
+
+.button-commit:focused {
+
+    -fx-border-style: none;
+
+}
+
+.button-save {
+    -fx-size:13;
+	-fx-cursor:hand;
+	-fx-background-image:url(pic/saveee.png);
+    -fx-border-style :none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-save:hover {
+	-fx-background-image:url(pic/saveee.png);
+}
+
+.button-save:pressed, .button-save:default:hover:pressed {
+	-fx-background-image:url(pic/saveee.png);
+}
+
+.button-save:focused {
+    -fx-border-style: none;
+}
+
+.button-clear {
+    -fx-size:13;
+	-fx-cursor:hand;
+	-fx-background-image:url(pic/clear.png);
+    -fx-border-style :none;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+	-fx-size:13;
+}
+
+.button-clear:hover {
+	-fx-background-image:url(pic/minHover.png);
+}
+
+.button-clear:pressed, .button-clear:default:hover:pressed {
+	-fx-background-image:url(pic/minPressed.png);
+}
+
+.button-clear:focused {
+    -fx-border-style: none;
+}
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;

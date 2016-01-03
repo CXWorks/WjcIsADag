@@ -25,22 +25,20 @@
 }
 
 .date-picker{
--fx-base:gray;
--fx-focus-color:white;
+    -fx-base:gray;
+    -fx-focus-color:white;
 
 }
 
 .check-box-one{
--fx-base:gray;
--fx-focus-color:white;
--fx-text-fill:#dcdbdb;
+    -fx-base:gray;
+    -fx-focus-color:white;
+    -fx-text-fill:#dcdbdb;
 }
 
-
-
 .choice-box{
--fx-base:gray;
--fx-focus-color:white;
+    -fx-base:gray;
+    -fx-focus-color:white;
 }
 
 .list-view{
@@ -67,7 +65,7 @@
 
 
 .table-column{
--fx-alignment : center;
+    -fx-alignment : center;
 }
 
 .table-view .column-header-background {
@@ -129,6 +127,7 @@
 
 .check-box{
      -fx-border-style :none;
+	 -fx-text-fill:white;
 	 -fx-outline:none;
 }
 
@@ -141,32 +140,23 @@
 	 -fx-outline:none;
 }
 
-
-
-
-
-
-
 .text-field {
-
 	-fx-border-style :none;
 	-fx-background-color:gray;
     -fx-size:13;
     -fx-font-size: 10pt;
 	-fx-text-fill: #1c1c1c;
     -fx-font-family: "方正幼线简体 常规";
-	
     -fx-border-style :none;
 	-fx-outline:none;
 }
 
 .text-field:hover{
 -fx-cursor:text;
-
 }
 
 .text-field:focused{
--fx-background-color:#bfbfbf;
+     -fx-background-color:#bfbfbf;
      -fx-border-style :none;
 	 -fx-border-outline:none;
 	 -fx-outline-style:none;
@@ -175,7 +165,6 @@
 }
 
 .text-field-check {
-
 	-fx-border-style :none;
 	-fx-background-color:gray;
     -fx-size:13;
@@ -185,7 +174,6 @@
     -fx-font-family: "方正幼线简体 常规";
     -fx-border-style :none;
 	-fx-outline:none;
-	
 }
 
 .button{
@@ -205,7 +193,7 @@
 }
 
 .button:pressed{
--fx-background-color:#6e6e6e;
+    -fx-background-color:#6e6e6e;
 	-fx-text-fill:#232323;
 }
 
@@ -213,32 +201,11 @@
     -fx-border-style :none;
 }
 
-/*
-.button-left{
-    -fx-size:80;
-	-fx-background-color:#393939;
-    -fx-border-style :none;
-    -fx-font-size: 15pt;
-	-fx-font-color:#ffffff;
-}
-.button-left:hover{
--fx-background-color:#e9e9e9;
-}
-
-.button-left:pressed{
--fx-background-color:#0397c9;
-}
-
-.button-left:focused{
--fx-background-color:#0397c9;
--fx-border-style:none;
-}
-*/
 .button-commit {
     -fx-size:13;
 	-fx-background-image:url(pic/commit.png);
     -fx-border-style :none;
-		-fx-cursor:hand;
+	-fx-cursor:hand;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -261,7 +228,7 @@
 
 .button-save {
     -fx-size:13;
-		-fx-cursor:hand;
+	-fx-cursor:hand;
 	-fx-background-image:url(pic/saveee.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -284,7 +251,7 @@
 
 .button-clear {
     -fx-size:13;
-		-fx-cursor:hand;
+	-fx-cursor:hand;
 	-fx-background-image:url(pic/clear.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;

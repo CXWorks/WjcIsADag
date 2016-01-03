@@ -35,9 +35,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="订单号" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="到达日期" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="快递员" GridPane.rowIndex="2" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="订单号">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="到达日期" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="快递员" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
             <ChoiceBox fx:id="postman_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
@@ -57,7 +66,7 @@
          </children>
       </HBox>
       <ListView fx:id="ids_ListView" layoutX="48.0" layoutY="141.0" prefHeight="321.0" prefWidth="151.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="141.0" />
-      <Text layoutX="48.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="待派送订单号" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="107.75">
+      <Text fill="WHITE" layoutX="48.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="待派送订单号" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="107.75">
          <font>
             <Font size="16.0" />
          </font>

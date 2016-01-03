@@ -162,7 +162,8 @@ public class MainPaneController implements Runnable {
 				e.printStackTrace();
 			}
 			int origin = message_Label.getText().equals("") ?
-                    0 : Integer.parseInt(message_Label.getText());
+                    0 : //Integer.parseInt(message_Label.getText());
+                    	1;
             String gotNotification = messageQueue.readMessage(R.messageKey.Notification);
             int add = gotNotification == null ?
                     0 : Integer.parseInt(gotNotification);
