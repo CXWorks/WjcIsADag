@@ -75,15 +75,6 @@ public class PeopleReceiveFormController {
         );
 	}
 
-	public void search(ActionEvent actionEvent) {
-        if(!formatCheckQueueSearch.startCheck()){
-            return;
-        }
-		String id = id_Field.getText();
-		if (id.isEmpty()) {
-			refresh(null);
-		}
-	}
 
 	public void refresh(ActionEvent actionEvent) {
 		orderVOs = checkDeliver.getDeliverOrder(UserInfo.getUserID());

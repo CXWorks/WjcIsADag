@@ -40,7 +40,7 @@
             <Button layoutX="703.0" layoutY="62.0" mnemonicParsing="false" onAction="#searchDriver" prefHeight="28.0" prefWidth="48.0" text="搜索" />
          </children>
       </HBox>
-      <CheckBox fx:id="all_Car_CheckBox" layoutX="48.0" layoutY="68.0" mnemonicParsing="false" onAction="#selectAllCar" text="全选" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="68.0" />
+      <CheckBox fx:id="all_Car_CheckBox" layoutX="48.0" layoutY="68.0" mnemonicParsing="false" onAction="#selectAllCar" styleClass="check-box-one" text="全选" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="68.0" />
       <CheckBox fx:id="all_Driver_CheckBox" layoutX="525.0" layoutY="68.0" mnemonicParsing="false" onAction="#selectAllDriver" text="全选" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="68.0" />
       <HBox layoutX="768.0" layoutY="62.0" spacing="8.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="62.0">
          <children>

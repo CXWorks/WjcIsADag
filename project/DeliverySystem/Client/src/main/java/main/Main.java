@@ -29,7 +29,6 @@ import java.util.Map;
  */
 
 public class Main extends Application {
-
     private static Map<StaffTypeEnum, Parent> panes = new HashMap<>();
 
     public static Scene loginScene;

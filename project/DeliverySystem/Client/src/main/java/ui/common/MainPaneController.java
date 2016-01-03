@@ -1,5 +1,6 @@
 package ui.common;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import main.Main;
 import message.ChatMessage;
 import message.OperationMessage;
+import tool.messageQueue.GlobalMessageQueue;
 import ui.accountui.PersonalAccountViewController;
 import userinfo.UserInfo;
 
@@ -28,23 +30,20 @@ import util.R;
 /**
  * Created by Sissel on 2015/12/19.
  */
-public class MainPaneController {
+public class MainPaneController implements Runnable {
     public AnchorPane title_Pane;
     public StackPane left_TabsPane;
     public AnchorPane content_Pane;
     public VBox tabs_VBox;
     public AnchorPane outerPane;
     public Label name_Label;
-    public Label Message_Label;
+    public Label message_Label;
     public AnchorPane personGFatherPane;
     public AnchorPane personFatherPane;
 
-    int numOfMessages=0;
-    
-    List<ToggleButton> toggleTabs = new LinkedList<>();
+    private List<ToggleButton> toggleTabs = new LinkedList<>();
+    private GlobalMessageQueue messageQueue = GlobalMessageQueue.getInstance();
 
-    AccountBLRemindService accountblremindService = AccountFactory.getRemindService();
-    
     public static MainPaneController launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(MainPaneController.class.getResource("mainPane.fxml"));
         AnchorPane pane = loader.load();
@@ -61,6 +60,8 @@ public class MainPaneController {
                 .bind(Main.primaryStage.heightProperty().subtract(R.ui.TitleHeight));
         controller.title_Pane.prefWidthProperty()
                 .bind(Main.primaryStage.widthProperty());
+
+        new Thread(controller).start();
 
         return controller;
     }
@@ -150,30 +151,27 @@ public class MainPaneController {
     }
     
     public void showMessage(ActionEvent actionEvent){
-    	//TODO
-    	//显示消息界面
-    	
+    	this.selectButton("消息通知");
     }
-    
-    
     
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(30000);
+				Thread.sleep(R.num.CheckMessageGap);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			OperationMessage res = accountblremindService.checkMessage(UserInfo
-					.getUserID());
-			if (res.operationResult) {
-				List<ChatMessage> chatMessages = accountblremindService
-						.receive(UserInfo.getUserID());
-				numOfMessages=chatMessages.size();
-				Message_Label.setText(numOfMessages+"");
-				
-			}
-		}
+			int origin = message_Label.getText().equals("") ?
+                    0 : Integer.parseInt(message_Label.getText());
+            String gotNotification = messageQueue.readMessage(R.messageKey.Notification);
+            int add = gotNotification == null ?
+                    0 : Integer.parseInt(gotNotification);
+            if((origin + add) != 0){
+                Platform.runLater(() -> message_Label.setText(origin + add + ""));
+            }else {
+                Platform.runLater(() -> message_Label.setText(""));
+            }
+        }
 	}
     
 }

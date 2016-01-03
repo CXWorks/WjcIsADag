@@ -5,14 +5,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="179.0" styleClass="background" stylesheets="@../css/accountView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.PersonalAccountViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="179.0" styleClass="background" stylesheets="@../css/accountView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.PersonalAccountViewController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="41.0" prefWidth="179.0" spacing="13.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
-         <children>
-            <Label fx:id="id_Label" text="ID：141250094" />
-            <Button mnemonicParsing="false" onAction="#editPassword" text="修改密码" />
-            <Button mnemonicParsing="false" onAction="#logout" text="注销" />
-         </children>
-      </VBox>
+      <VBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="0.0" prefWidth="179.0" spacing="13.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0" />
+      <Button layoutX="67.0" layoutY="64.0" mnemonicParsing="false" onAction="#logout" text="注销" />
+      <Button layoutX="54.0" layoutY="30.0" mnemonicParsing="false" onAction="#editPassword" text="修改密码" />
+      <Label fx:id="id_Label" layoutX="53.0" layoutY="10.0" prefHeight="15.0" prefWidth="102.0" text="ID：141250094" />
    </children>
 </AnchorPane>

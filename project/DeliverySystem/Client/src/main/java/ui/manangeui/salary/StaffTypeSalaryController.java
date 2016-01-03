@@ -34,10 +34,10 @@ public class StaffTypeSalaryController {
 	private StaffTypeEnum nowSelected;
 	//
 	private InformController informController;
-	
+	public Pane selfPane;
 	private FormatCheckQueue formatCheckQueue;
 
-	public static Parent launch() throws IOException {
+	public static StaffTypeSalaryController launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(StaffTypeSalaryController.class.getResource("salary.fxml"));
 		Pane pane = loader.load();
 		StaffTypeSalaryController controller = loader.getController();
@@ -47,10 +47,13 @@ public class StaffTypeSalaryController {
 		controller.formatCheckQueue.addTasker(new CheckIsNullTasker(controller.base),
 				new CheckIsNullTasker(controller.bonus),
 				new CheckIsNullTasker(controller.commission)
-				);
+		);
+        controller.selfPane = controller.informController.stackPane;
 
-		return controller.informController.stackPane;
+		return controller;
 	}
+
+
 
 	//
 	public void change(SalaryStrategyVO salaryStrategyVO) {
@@ -63,7 +66,6 @@ public class StaffTypeSalaryController {
 		base.setText(Integer.toString(salaryStrategyVO.getBase()));
 		commission.setText(Integer.toString(salaryStrategyVO.getCommission()));
 		bonus.setText(Integer.toString(salaryStrategyVO.getBonus()));
-
 	}
 
 	//

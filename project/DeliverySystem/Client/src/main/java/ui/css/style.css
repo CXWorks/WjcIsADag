@@ -30,6 +30,14 @@
 
 }
 
+.check-box-one{
+-fx-base:gray;
+-fx-focus-color:white;
+-fx-text-fill:#dcdbdb;
+}
+
+
+
 .choice-box{
 -fx-base:gray;
 -fx-focus-color:white;

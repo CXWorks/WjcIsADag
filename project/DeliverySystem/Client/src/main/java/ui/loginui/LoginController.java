@@ -8,10 +8,12 @@ import java.io.IOException;
 
 
 
+
 import bl.blService.accountblService.AccountBLLoginService;
 import bl.blService.accountblService.AccountBLManageService;
 import bl.blService.manageblService.ManageblStaffService;
 import bl.blService.searchblService.SearchBLService;
+import bl.clientNetCache.dataProxy.ConfigurationDataProxy;
 import factory.AccountFactory;
 import factory.LoginFactory;
 import factory.SearchFactory;
@@ -57,6 +59,7 @@ public class LoginController {
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
+        
         Pane content = loader.load();
 
         return content;
@@ -77,19 +80,16 @@ public class LoginController {
         OperationMessage msg = loginService.checkAccount(id_Field.getText(), password_Field.getText());
 
         if(msg.operationResult){
-        	manageblStaffService=StaffFactory.getManageService();
+        	manageblStaffService = StaffFactory.getManageService();
             StaffVO staffVO = manageblStaffService.searchStaff(id_Field.getText());
             if(staffVO == null){
                 // not yet make the staff by manager
-                // TODO : display tips
                 System.out.println("ask the manager to new a staff for you");
             }
-
-            // TODO : display tips
+            UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID(), staffVO.getName());
             System.out.println("login successfully");
             Main.logIn();
         }else{
-            // TODO : display tips
             System.out.println("login fail: " + msg.getReason());
         }
 
@@ -104,7 +104,15 @@ public class LoginController {
             return;
         }
        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        logistics_TableView.getItems().addAll(logisticsvo.getInfoForTableView());
-        
+        logistics_TableView.getItems().addAll(logisticsvo.getInfoForTableView());   
 	}
+    
+    public void closeStage(ActionEvent actionEvent) {
+        Main.primaryStage.close();
+        System.exit(0);
+    }
+
+    public void minimizeStage(ActionEvent actionEvent) {
+        Main.primaryStage.toBack();
+    }
 }
