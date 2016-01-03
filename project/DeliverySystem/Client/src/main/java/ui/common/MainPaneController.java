@@ -167,7 +167,7 @@ public class MainPaneController implements Runnable {
             int add = gotNotification == null ?
                     0 : Integer.parseInt(gotNotification);
             if((origin + add) != 0){
-                Platform.runLater(() -> message_Label.setText(origin + add + ""));
+                Platform.runLater(() -> message_Label.setText(origin + add + "●"));
             }else {
                 Platform.runLater(() -> message_Label.setText(""));
             }

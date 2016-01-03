@@ -13,9 +13,9 @@
         <tabs>
           <Tab fx:id="distance_Tab" text="城市距离">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background-add">
                      <children>
-                        <SplitPane dividerPositions="0.4" layoutY="1.0" prefHeight="515.0" prefWidth="970.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.4" layoutY="1.0" prefHeight="515.0" prefWidth="970.0" styleClass="background-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
@@ -60,14 +60,11 @@
                                           <TextField fx:id="cityYTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <VBox layoutX="372.0" layoutY="174.0" spacing="28.0">
-                                       <children>
-                                          <Button layoutX="383.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearCity" text="清空" />
-                                          <Button layoutX="383.0" layoutY="118.0" mnemonicParsing="false" onAction="#clearCity" text="新建" />
-                                          <Button layoutX="383.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteCity" text="删除" />
-                                          <Button layoutX="383.0" layoutY="219.0" mnemonicParsing="false" onAction="#submitCity" text="确认" />
-                                       </children>
-                                    </VBox>
+                                    <VBox layoutX="340.0" layoutY="279.0" spacing="28.0" />
+                                    <Button defaultButton="true" layoutX="494.0" layoutY="448.0" mnemonicParsing="false" onAction="#submitCity" text="确认" />
+                                    <Button layoutX="310.0" layoutY="448.0" mnemonicParsing="false" onAction="#deleteCity" text="删除" />
+                                    <Button layoutX="433.0" layoutY="448.0" mnemonicParsing="false" onAction="#clearCity" text="新建" />
+                                    <Button layoutX="372.0" layoutY="448.0" mnemonicParsing="false" onAction="#clearCity" text="清空" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -85,15 +82,15 @@
                               <Label layoutX="75.0" layoutY="395.0" text="包装费用" GridPane.rowIndex="2" />
                               <GridPane layoutX="247.0" layoutY="338.0" prefHeight="161.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="纸箱" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="木箱" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="快递袋" GridPane.rowIndex="2" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="纸箱" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="木箱" GridPane.rowIndex="1" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="快递袋" GridPane.rowIndex="2" />
                                     <TextField fx:id="paper_Field" GridPane.columnIndex="1" />
                                     <TextField fx:id="wood_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="bag_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="元" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
@@ -112,11 +109,11 @@
                                  <children>
                                     <TextField fx:id="slow_Field" layoutX="239.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.rowIndex="1" />
                                     <TextField fx:id="fast_Field" layoutX="462.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Text layoutX="377.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递" GridPane.columnIndex="2" />
-                                    <Text layoutX="337.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Text layoutX="265.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="经济快递" />
-                                    <Text layoutX="488.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="特快专递" GridPane.columnIndex="4" />
-                                    <Text layoutX="448.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="：" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Text fill="WHITE" layoutX="377.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递" GridPane.columnIndex="2" />
+                                    <Text fill="WHITE" layoutX="337.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Text fill="WHITE" layoutX="265.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="经济快递" />
+                                    <Text fill="WHITE" layoutX="488.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="特快专递" GridPane.columnIndex="4" />
+                                    <Text fill="WHITE" layoutX="448.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     ：" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <TextField fx:id="normal_Field" layoutX="351.0" layoutY="168.0" prefHeight="23.0" prefWidth="99.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                                  <columnConstraints>
@@ -133,16 +130,16 @@
                               </GridPane>
                               <GridPane GridPane.columnIndex="1">
                                  <children>
-                                    <Text layoutX="63.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递的运费价格" />
+                                    <Text fill="WHITE" layoutX="63.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标准快递的运费价格" />
                                     <VBox alignment="CENTER" layoutX="276.0" layoutY="182.0" prefHeight="50.0" prefWidth="67.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Text layoutX="373.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="公里数" />
-                                          <Text layoutX="366.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="————" wrappingWidth="52.765625" />
+                                          <Text fill="WHITE" layoutX="373.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="公里数" />
+                                          <Text fill="WHITE" layoutX="366.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="————" wrappingWidth="52.765625" />
                                           <Label layoutX="376.0" layoutY="186.0" text="1000" />
                                        </children>
                                     </VBox>
-                                    <Text layoutX="384.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" GridPane.columnIndex="3" />
-                                    <Text layoutX="526.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="元/公斤" GridPane.columnIndex="5" />
+                                    <Text fill="WHITE" layoutX="384.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" GridPane.columnIndex="3" />
+                                    <Text fill="WHITE" layoutX="526.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="元/公斤" GridPane.columnIndex="5" />
                                     <Label layoutX="207.0" layoutY="176.0" text="=" GridPane.columnIndex="1" />
                                     <TextField fx:id="factor_Field" layoutX="435.0" layoutY="174.0" prefHeight="23.0" prefWidth="57.0" GridPane.columnIndex="4" />
                                  </children>
