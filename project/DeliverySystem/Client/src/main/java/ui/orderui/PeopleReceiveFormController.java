@@ -75,8 +75,8 @@ public class PeopleReceiveFormController {
                 new CheckIsNullTasker(name_Field),
                 new CheckPreDateTasker(dateErr_Label, receive_DatePicker)
         );
-        
-        
+
+
 	}
 
 
@@ -92,8 +92,10 @@ public class PeopleReceiveFormController {
         }
 
 		DeliverVO deliverVO = new DeliverVO(null, selected.formID,
-				TimeConvert.convertDate(receive_DatePicker.getValue()), id, UserInfo.getUserID());
+				null, null, null);
+		deliverVO.finfished(TimeConvert.convertDate(receive_DatePicker.getValue()), name_Field.getText());
 		checkDeliver.finishDelivery(deliverVO);
+		clear(null);
 	}
 
 	public void clear(ActionEvent actionEvent) {

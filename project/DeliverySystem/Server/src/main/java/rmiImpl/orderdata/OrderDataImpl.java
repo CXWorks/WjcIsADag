@@ -81,6 +81,10 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 				put("goodsType", po.getGoodsType());
 				put("pack", po.getPack().toString());
 				put("creatorID", po.getCreatorID());
+				if (po.getReceivePeople() != null)
+					put("receivePeople", po.getReceivePeople());
+				if (po.getReceiveDate() != null)
+					put("receiveDate", po.getDateForSQL().toString());
 			}
 		});
 		try {
@@ -196,7 +200,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 					rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
 					rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"), rs.getString("money"),
 					rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"), FormIDs,
-					rs.getString("targetHallID"), rs.getString("creatorID"));
+					rs.getString("targetHallID"), rs.getString("creatorID"), rs.getString("receivePeople"),
+					rs.getTimestamp("receiveDate"));
 			result.setFormState(rs.getString("formState"));
 		} catch (SQLException e) {
 			System.err.println("查找数据库时出错：");
@@ -225,7 +230,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 						rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
 						rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"),
 						rs.getString("money"), rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"),
-						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"));
+						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"), rs.getString("receivePeople"),
+						rs.getTimestamp("receiveDate"));
 				;
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);
@@ -265,7 +271,7 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 
 	@Override
 	public List<OrderPO> getHistory(String creatorID) throws RemoteException {
-		String select = MySql.select(TableEnum.ORDER,  new HashMap<String, String>() {
+		String select = MySql.select(TableEnum.ORDER, new HashMap<String, String>() {
 			{
 				put("creatorID", creatorID);
 			}
@@ -287,7 +293,8 @@ public class OrderDataImpl extends CommonData<OrderPO> implements OrderDataServi
 						rs.getString("telNumFrom"), rs.getString("telNumTo"), rs.getString("goodsNum"),
 						rs.getString("goodsName"), rs.getString("weight"), rs.getString("volume"),
 						rs.getString("money"), rs.getString("goodsType"), rs.getString("type"), rs.getString("pack"),
-						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"));
+						FormIDs, rs.getString("targetHallID"), rs.getString("creatorID"), rs.getString("receivePeople"),
+						rs.getTimestamp("receiveDate"));
 				;
 				temp.setFormState(rs.getString("formState"));
 				result.add(temp);

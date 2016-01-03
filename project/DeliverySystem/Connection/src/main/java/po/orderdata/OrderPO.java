@@ -1,6 +1,7 @@
 package po.orderdata;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -32,16 +33,16 @@ public class OrderPO extends FormPO implements Serializable {
 	private String receivePeople;
 	private Calendar receiveDate;
 
-	public OrderPO(String formID,String nameFrom, String nameTo, String unitFrom,
-			String unitTo,  String addressFrom,String addressTo,String phoneNumFrom, String phoneNumTo,
-			String telNumFrom, String telNumTo, String goodsNum,
-			String goodsName, String weight, String volume,String money, String goodsType,
-			String type, String pack,ArrayList<String> formIDs, String targetHallID,String creatorID) {
-		super(FormEnum.ORDER,formID,creatorID);
+	public OrderPO(String formID, String nameFrom, String nameTo, String unitFrom, String unitTo, String addressFrom,
+			String addressTo, String phoneNumFrom, String phoneNumTo, String telNumFrom, String telNumTo,
+			String goodsNum, String goodsName, String weight, String volume, String money, String goodsType,
+			String type, String pack, ArrayList<String> formIDs, String targetHallID, String creatorID,
+			String receivePeople, Timestamp receiveDate) {
+		super(FormEnum.ORDER, formID, creatorID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
-		this.addressFrom=addressFrom;
-		this.addressTo=addressTo;
+		this.addressFrom = addressFrom;
+		this.addressTo = addressTo;
 		this.unitFrom = unitFrom;
 		this.unitTo = unitTo;
 		this.phoneNumFrom = phoneNumFrom;
@@ -52,7 +53,7 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsName = goodsName;
 		this.weight = weight;
 		this.volume = volume;
-		this.money=money;
+		this.money = money;
 		this.goodsType = goodsType;
 		this.setType(type);
 		this.setPack(pack);
@@ -60,10 +61,11 @@ public class OrderPO extends FormPO implements Serializable {
 		this.targetHallID = targetHallID;
 		this.formType = FormEnum.ORDER;
 	}
+
 	//
-	public void finfished(Calendar receiveCalendar,String signPeople){
-		this.receiveDate=receiveCalendar;
-		this.receivePeople=signPeople;
+	public void finfished(Calendar receiveCalendar, String signPeople) {
+		this.receiveDate = receiveCalendar;
+		this.receivePeople = signPeople;
 	}
 
 	//
@@ -97,15 +99,12 @@ public class OrderPO extends FormPO implements Serializable {
 	 * @param receivePeople
 	 * @param receiveDate
 	 */
-	public OrderPO(String formID, String nameFrom,
-			String nameTo, String addressFrom, String addressTo,
-			String unitFrom, String unitTo, String phoneNumFrom,
-			String phoneNumTo, String telNumFrom, String telNumTo,
-			String goodsNum, String goodsName, String weight, String volume,
-			String money, String goodsType, String type,
-			String pack, ArrayList<String> formIDs, String targetHallID,
-			String receivePeople, Calendar receiveDate,String creatorID) {
-		super(FormEnum.ORDER, formID,creatorID);
+	public OrderPO(String formID, String nameFrom, String nameTo, String addressFrom, String addressTo, String unitFrom,
+			String unitTo, String phoneNumFrom, String phoneNumTo, String telNumFrom, String telNumTo, String goodsNum,
+			String goodsName, String weight, String volume, String money, String goodsType, String type, String pack,
+			ArrayList<String> formIDs, String targetHallID, String receivePeople, Calendar receiveDate,
+			String creatorID) {
+		super(FormEnum.ORDER, formID, creatorID);
 		this.nameFrom = nameFrom;
 		this.nameTo = nameTo;
 		this.addressFrom = addressFrom;
@@ -124,11 +123,12 @@ public class OrderPO extends FormPO implements Serializable {
 		this.goodsType = goodsType;
 		this.setType(type);
 		this.setPack(pack);
-        FormIDs = formIDs == null ? new ArrayList<>() : formIDs;
+		FormIDs = formIDs == null ? new ArrayList<>() : formIDs;
 		this.targetHallID = targetHallID;
 		this.receivePeople = receivePeople;
 		this.receiveDate = receiveDate;
 	}
+
 	public String getNameTo() {
 		return nameTo;
 	}
@@ -141,11 +141,11 @@ public class OrderPO extends FormPO implements Serializable {
 		return unitTo;
 	}
 
-	public String getAddressFrom(){
+	public String getAddressFrom() {
 		return addressFrom;
 	}
 
-	public String getAddressTo(){
+	public String getAddressTo() {
 		return addressTo;
 	}
 
@@ -189,10 +189,9 @@ public class OrderPO extends FormPO implements Serializable {
 		return type;
 	}
 
-	public PackingEnum getPack(){
+	public PackingEnum getPack() {
 		return pack;
 	}
-
 
 	public String getMoney() {
 		return money;
@@ -215,16 +214,16 @@ public class OrderPO extends FormPO implements Serializable {
 	public void setPack(String pack) {
 		switch (pack) {
 		case "PAPER":
-			this.pack=PackingEnum.PAPER;
+			this.pack = PackingEnum.PAPER;
 			break;
 		case "WOOD":
-			this.pack=PackingEnum.WOOD;
+			this.pack = PackingEnum.WOOD;
 			break;
 		case "BAG":
-			this.pack=PackingEnum.BAG;
+			this.pack = PackingEnum.BAG;
 			break;
 		case "OTHER":
-			this.pack=PackingEnum.OTHER;
+			this.pack = PackingEnum.OTHER;
 			break;
 		}
 	}
@@ -238,35 +237,36 @@ public class OrderPO extends FormPO implements Serializable {
 	}
 	//
 
-
 	public String getReceivePeople() {
 		return receivePeople;
 	}
-
 
 	public void setReceivePeople(String receivePeople) {
 		this.receivePeople = receivePeople;
 	}
 
-
 	public Calendar getReceiveDate() {
 		return receiveDate;
 	}
 
-
 	public void setReceiveDate(Calendar receiveDate) {
 		this.receiveDate = receiveDate;
 	}
-	public Calendar getOrderDate(){
-		Calendar ans=Calendar.getInstance();
-		int m=Integer.parseInt(formID.substring(0, 2));
-		int d=Integer.parseInt(formID.substring(2, 4));
+
+	public Calendar getOrderDate() {
+		Calendar ans = Calendar.getInstance();
+		int m = Integer.parseInt(formID.substring(0, 2));
+		int d = Integer.parseInt(formID.substring(2, 4));
 		ans.set(Calendar.MONTH, m);
 		ans.set(Calendar.DAY_OF_MONTH, d);
 		return ans;
 	}
-	public void addFormID(String formID){
+
+	public void addFormID(String formID) {
 		this.FormIDs.add(formID);
 	}
 
+	public Timestamp getDateForSQL() {
+		return new Timestamp(this.receiveDate.getTimeInMillis());
+	}
 }

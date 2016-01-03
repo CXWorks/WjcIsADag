@@ -213,6 +213,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 		return result;
 	}
 
+//	public static void main(String[] args) throws RemoteException {
+//		DeliverDataImpl t = new DeliverDataImpl();
+//		System.out.println(t.searchAsPerson("06000003").toString());
+//	}
+
 	@Override
 	public ArrayList<String> available(String HallID) throws RemoteException {
 		ArrayList<String> result = new ArrayList<String>();
@@ -223,12 +228,11 @@ public class DeliverDataImpl extends CommonData<DeliverPO> implements DeliverDat
 			}
 		});
 		ResultSet rs = null;
-
 		try {
 			statement = conn.prepareStatement(select);
 			rs = statement.executeQuery(select);
 			while (rs.next()) { // 遍历order表，查其中FromIDs中是否有为targetHallID的到达单
-				if(rs.getString("FormIDs").equalsIgnoreCase(""))
+				if (rs.getString("FormIDs").equalsIgnoreCase(""))
 					continue;
 				ArrayList<String> FormIDs = new ArrayList<String>(Arrays.asList(rs.getString("FormIDs").split(" ")));
 				String last = FormIDs.get(FormIDs.size() - 1);
