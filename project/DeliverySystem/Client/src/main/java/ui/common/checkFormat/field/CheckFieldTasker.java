@@ -24,6 +24,7 @@ public abstract class CheckFieldTasker extends CheckTasker {
     @Override
     public boolean handle(CheckFormMessage msg){
         if(msg.getCheckResult()){
+        	field.setPromptText(null);
             return true;
         }else{
             field.clear();

@@ -208,8 +208,8 @@ public class NewOrderController {
 
 	private OrderVO generateVO(String FormID) {
 		return new OrderVO(FormID, name_From.getText(), name_To.getText(), unit_From.getText(), unit_To.getText(),
-				cityFrom_Box.getValue()+address_From.getText(), city_Box.getValue()+address_To.getText(), tel_From.getText(), tel_To.getText(),
-				phone_From.getText(), phone_To.getText(), goods_Number.getText(), goods_Name.getText(),
+				cityFrom_Box.getValue()+address_From.getText(), city_Box.getValue()+address_To.getText(), 
+				phone_From.getText(), phone_To.getText(),tel_From.getText(), tel_To.getText(), goods_Number.getText(), goods_Name.getText(),
 				goods_Weight.getText(), goods_V1.getText()+"*"+goods_V2.getText()+"*"+goods_V3.getText(), predict_Expense.getText(), goods_Type.getText(),
 				deliverType, packing, UserInfo.getUserID());
 	}
