@@ -24,7 +24,7 @@ public class CheckDualDateTasker extends CheckTasker {
 
     @Override
     public boolean check() {
-        return false;
+        return true;
     }
 
     @Override
