@@ -61,7 +61,7 @@
             <VBox alignment="TOP_CENTER" layoutX="676.0" layoutY="130.0" spacing="36.0" GridPane.columnIndex="2">
                <children>
                   <ChoiceBox fx:id="lineType_ChoiceBox" layoutX="656.0" layoutY="130.0" prefWidth="150.0" />
-                  <LineChart fx:id="lineChart" layoutX="656.0" layoutY="191.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="48.0">
+                  <LineChart fx:id="lineChart" layoutX="656.0" layoutY="191.0" prefHeight="250.0" prefWidth="250.0" stylesheets="@../css/chart%20line.css" AnchorPane.rightAnchor="48.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" />
                      </xAxis>

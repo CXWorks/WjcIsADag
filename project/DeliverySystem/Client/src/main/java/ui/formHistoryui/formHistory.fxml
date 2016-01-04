@@ -8,10 +8,10 @@
    <children>
       <TableView fx:id="forms_TableView" layoutX="299.0" layoutY="262.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="96.0">
         <columns>
-            <TableColumn fx:id="creator_TableColumn" prefWidth="75.0" text="创建者" />
-            <TableColumn fx:id="formID_TableColumn" prefWidth="75.0" text="单据号" />
-            <TableColumn fx:id="formType_TableColumn" prefWidth="75.0" text="单据类型" />
-          <TableColumn fx:id="formState_TableColumn" prefWidth="75.0" text="状态" />
+            <TableColumn fx:id="creator_TableColumn" prefWidth="119.0" text="创建者" />
+            <TableColumn fx:id="formID_TableColumn" prefWidth="224.0" text="单据号" />
+            <TableColumn fx:id="formType_TableColumn" prefWidth="172.0" text="单据类型" />
+          <TableColumn fx:id="formState_TableColumn" prefWidth="359.0" text="状态" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="43.0" layoutY="44.0" spacing="8.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />

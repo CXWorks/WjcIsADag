@@ -21,7 +21,7 @@
             <Tab fx:id="Revenue_Tab" text="收款单" />
          </tabs>
       </TabPane>
-      <HBox layoutX="338.0" layoutY="51.0" spacing="48.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="24.0">
+      <HBox layoutX="63.0" layoutY="23.0" spacing="48.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="23.0">
          <children>
             <HBox alignment="CENTER" layoutX="338.0" layoutY="51.0" spacing="16.0">
                <children>
