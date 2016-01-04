@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.FloatOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StorePartitionController">
    <children>
       <Label layoutX="35.0" layoutY="32.0" text="分区选择" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
@@ -38,7 +39,7 @@
             <HBox alignment="CENTER" layoutX="239.0" layoutY="406.0" spacing="8.0">
                <children>
                   <Label layoutX="239.0" layoutY="410.0" text="库存警戒比例" />
-                  <TextField fx:id="warnLine_Field" layoutX="330.0" layoutY="406.0" prefHeight="23.0" prefWidth="100.0" />
+                  <FloatOnlyField fx:id="warnLine_Field" layoutX="330.0" layoutY="406.0" prefHeight="23.0" prefWidth="100.0" />
                </children>
             </HBox>
             <Button layoutX="449.0" layoutY="406.0" mnemonicParsing="false" onAction="#reajust" text="重新调整" />
