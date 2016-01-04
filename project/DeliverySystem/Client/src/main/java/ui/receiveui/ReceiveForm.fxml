@@ -44,7 +44,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1">
                <children>
                   <DatePicker fx:id="arrive_DatePicker" GridPane.columnIndex="1" />
-                  <Label fx:id="date_ErrLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="date_ErrLabel" GridPane.columnIndex="1" />
                </children>
             </VBox>
             <TextField fx:id="transitID_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
