@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
@@ -116,6 +117,7 @@ public class Main extends Application {
 
         primaryStage.setX(150);
         primaryStage.setY(60);
+        primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/ui/css/pic/logo-client.png")));
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene(LoginController.launch());

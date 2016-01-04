@@ -74,9 +74,6 @@ public class LoginController {
     public void initialize(){
     	time_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getTime()));
     	address_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfo()));
-    	logistics_TableView.getColumns().clear();
-    	logistics_TableView.getColumns().add(time_Column);
-    	logistics_TableView.getColumns().add(address_Column);
     }
 
     public void login(ActionEvent actionEvent) {
@@ -102,13 +99,12 @@ public class LoginController {
 
     public void search(){
 		logistics_TableView.getItems().clear();
-		LogisticsVO logisticsvo=searchblService.searchOrder(
+		LogisticsVO logisticsvo = searchblService.searchOrder(
 				search_Field.getText());
         if(logisticsvo == null){
             return;
         }
-       System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        logistics_TableView.getItems().addAll(logisticsvo.getInfoForTableView());   
+        logistics_TableView.getItems().addAll(logisticsvo.getInfoForTableView());
 	}
     
     public void closeStage(ActionEvent actionEvent) {

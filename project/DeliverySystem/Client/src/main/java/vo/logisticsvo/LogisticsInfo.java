@@ -12,9 +12,9 @@ public class LogisticsInfo {
 	private String info;
 	private LogisticsInfo(){}
 	public static LogisticsInfo build(String time,String info){
-		LogisticsInfo ans=new LogisticsInfo();
-		ans.time=new String(time);
-		ans.info=new String(info);
+		LogisticsInfo ans = new LogisticsInfo();
+		ans.time = new String(time);
+		ans.info = new String(info);
 		return ans;
 	}
 	public String getTime() {

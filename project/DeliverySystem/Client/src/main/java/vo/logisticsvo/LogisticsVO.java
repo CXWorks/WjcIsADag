@@ -29,8 +29,8 @@ public class LogisticsVO extends InfoVO{
 	  }
 	  
 	  public List<LogisticsInfo> getInfoForTableView(){
-		  List<LogisticsInfo> ans=new ArrayList<LogisticsInfo>(time.size());
-		  for (int i = 0; i < ans.size(); i++) {
+		  List<LogisticsInfo> ans = new ArrayList<LogisticsInfo>(time.size());
+		  for (int i = 0; i < time.size(); i++) {
 			ans.add(LogisticsInfo.build(time.get(i), location.get(i)));
 		  }
 		  return ans;

@@ -31,19 +31,19 @@ public class Intergrate {
 			RevenueDataService revenueDataService=CacheHelper.getRevenueDataService();
 			RevenuePO revenuePO=revenueDataService.getFormPO(ID);
 			ans[0]=revenuePO.getHallID();
-			ans[1]=revenuePO.getDate().toString();
+			ans[1]=TimeConvert.getDisplayDate(revenuePO.getDate());
 			break;
 		case "08":
 			LoadDataService loadDataService=CacheHelper.getLoadDataService();
 			LoadPO loadPO=loadDataService.getFormPO(ID);
 			ans[0]=loadPO.getPlaceTo();
-			ans[1]=loadPO.getLoadDate().toString();
+			ans[1]=TimeConvert.getDisplayDate(loadPO.getLoadDate());
 			break;
 		case "07":
 			CenterOutDataService centerOutDataService=CacheHelper.getTransportDataService();
 			CenterOutPO centerOutPO=centerOutDataService.getFormPO(ID);
 			ans[0]=centerOutPO.getPlaceTo();
-			ans[1]=centerOutPO.getFormID().substring(9, 17);
+			ans[1]=TimeConvert.getDisplayDate(centerOutPO.getLoadDate());
 			break;
 		case "04":
 			DeliverDataService deliverDataService=CacheHelper.getDeliverDataService();
