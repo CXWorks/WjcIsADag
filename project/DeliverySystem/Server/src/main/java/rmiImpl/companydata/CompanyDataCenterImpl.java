@@ -153,12 +153,19 @@ public class CompanyDataCenterImpl extends UnicastRemoteObject implements Compan
 				put("centerID", center.getCenterID());
 			}
 		});
+		String store = MySql.delete(TableEnum.STORE_MODEL, new HashMap<String, String>() {
+			{
+				put("centerID", center.getCenterID());
+			}
+		});
 		try {
 			statement = conn.prepareStatement(delete);
 			statement.executeUpdate();
 			statement = conn.prepareStatement(warningline);
 			statement.executeUpdate();
 			statement = conn.prepareStatement(tack);
+			statement.executeUpdate();
+			statement = conn.prepareStatement(store);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			result = new OperationMessage(false, "删除时出错：");
