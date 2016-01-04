@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<HBox fx:id="informPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.informui.InformController">
+<HBox fx:id="informPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="450.0" stylesheets="@../css/inform.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.informui.InformController">
    <children>
-      <Label fx:id="content_Label" alignment="CENTER" text="这是一条通知" textAlignment="CENTER">
+      <Label fx:id="content_Label" alignment="CENTER" text="这是一条通知" textAlignment="CENTER" textFill="WHITE">
          <effect>
             <Glow level="0.54" />
          </effect>
+         <font>
+            <Font size="13.0" />
+         </font>
       </Label>
    </children>
 </HBox>

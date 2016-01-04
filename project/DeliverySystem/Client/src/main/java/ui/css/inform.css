@@ -1,0 +1,18 @@
+.background{
+-fx-background-color: black; 
+}
+
+.background-right{
+-fx-background-color:#99bb94;
+}
+
+.background-wrong{
+-fx-background-color:#eb4a5f;
+}
+
+
+.label{
+-fx-text-fill:white;
+-fx-font-size:13px;
+-fx-font-color:white;
+}
