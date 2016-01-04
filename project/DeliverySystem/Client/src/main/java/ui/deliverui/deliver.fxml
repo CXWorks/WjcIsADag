@@ -59,10 +59,10 @@
       </GridPane>
       <HBox layoutX="587.0" layoutY="385.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
+            <Button layoutX="668.0" layoutY="385.0" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
             <Button layoutX="587.0" layoutY="385.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button layoutX="668.0" layoutY="385.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button layoutX="721.0" layoutY="385.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button defaultButton="true" layoutX="721.0" layoutY="385.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <ListView fx:id="ids_ListView" layoutX="48.0" layoutY="141.0" prefHeight="321.0" prefWidth="151.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="141.0" />

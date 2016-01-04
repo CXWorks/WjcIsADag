@@ -27,7 +27,7 @@
       <HBox alignment="BOTTOM_RIGHT" layoutX="292.0" layoutY="473.0" prefWidth="600.0" spacing="8.0">
          <children>
             <Button mnemonicParsing="false" onAction="#clear" prefHeight="23.0" prefWidth="52.0" text="清空" textAlignment="CENTER" />
-            <Button fx:id="ok_Btn" mnemonicParsing="false" onAction="#commit" prefHeight="23.0" prefWidth="52.0" text="确认" />
+            <Button fx:id="ok_Btn" defaultButton="true" mnemonicParsing="false" onAction="#commit" prefHeight="23.0" prefWidth="52.0" text="确认" />
          </children>
       </HBox>
       <TableView fx:id="order_TableView" layoutX="67.0" layoutY="122.0" prefHeight="385.0" prefWidth="556.0">

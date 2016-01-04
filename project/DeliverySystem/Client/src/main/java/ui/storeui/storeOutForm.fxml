@@ -49,10 +49,10 @@
       <Label layoutX="721.0" layoutY="39.0" text="订单预览" AnchorPane.topAnchor="49.0" />
       <HBox layoutX="517.0" layoutY="398.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
          <children>
+            <Button fx:id="clear_Btn" layoutX="633.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
             <Button fx:id="saveload" mnemonicParsing="false" onAction="#loadDraft" text="载入草稿" />
             <Button fx:id="save_Btn" layoutX="517.0" layoutY="398.0" mnemonicParsing="false" onAction="#saveDraft" text="保存草稿" />
-            <Button fx:id="clear_Btn" layoutX="633.0" layoutY="398.0" mnemonicParsing="false" onAction="#clear" text="清空" />
-            <Button fx:id="commit_Btn" layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
+            <Button fx:id="commit_Btn" defaultButton="true" layoutX="733.0" layoutY="398.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
       <TableView fx:id="transit_TableView" layoutX="386.0" layoutY="94.0" prefHeight="338.0" prefWidth="224.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="94.0">
