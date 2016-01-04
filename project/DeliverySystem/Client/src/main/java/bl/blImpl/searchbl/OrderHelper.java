@@ -22,12 +22,13 @@ public class OrderHelper {
 	private Intergrate intergrate;
 	public OrderHelper(){
 
-		intergrate=new Intergrate();
+		
 	}
 
 	private void initNet(){
 		try {
 			CacheHelper.initializeLogin();
+			CacheHelper.initCacheService();
 		} catch (NetInitException e) {
 			Reconnect.ReConnectFactory();
 		}
@@ -36,10 +37,13 @@ public class OrderHelper {
 
 
 	public LogisticsVO searchOrder(String orderID){
+		
 		if (!UserInfo.isConnected()) {
 			this.initNet();
 			UserInfo.setConnected(true);
 		}
+		
+		intergrate=new Intergrate();
 		OrderDataService orderDataService=CacheHelper.getOrderDataService();
 		try {
 			this.toSearch=orderDataService.getFormPO(orderID);
