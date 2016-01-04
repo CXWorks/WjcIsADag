@@ -5,6 +5,10 @@
 	
 }
 
+.background-table{
+-fx-background-color:silver;
+
+}
 
 .label {
     -fx-font-size: 11pt;
@@ -28,6 +32,7 @@
 }
 
 .table-view {
+    -fx-base:silver;
     -fx-background-fills:null;
     -fx-background-color:null;
 	-fx-text-fill:white;
@@ -37,7 +42,7 @@
 .table-view.table-column{
     -fx-background-fills:null;
     -fx-background-color:null;
-    -fx-alignment : center;
+    -fx-alignment:center;
 }
 
 .table-view .column-header-background {
@@ -49,11 +54,6 @@
     -fx-size: 20;
     -fx-border-width: 1 1 1 1;
     -fx-background-color: null;
-    -fx-border-color: 
-        transparent
-        transparent
-        derive(-fx-base, 80%) 
-        transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: null;
+    -fx-background-color: gray;
 }
 
 .split-pane:horizontal > .split-pane-divider {

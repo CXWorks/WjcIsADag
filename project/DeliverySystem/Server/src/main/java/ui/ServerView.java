@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 
+import serverMain.ServerMain;
 import database.ConnecterHelper;
 import database.RMIHelper;
 import javafx.event.ActionEvent;
@@ -68,7 +69,7 @@ public class ServerView {
 		System.exit(0);
 	}
 	  public void minimizeStage(ActionEvent actionEvent) {
-		  
+		  ServerMain.primaryStage.toBack();
 	    }
 
 }

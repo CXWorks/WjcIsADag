@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import message.OperationMessage;
 import ui.ServerView;
 
@@ -33,6 +34,7 @@ public class ServerMain extends Application {
 		ServerMain.primaryStage = primaryStage;
 
 		primaryStage.setTitle("Server");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/ui/server/logo-server.png"))); 
 		primaryStage.setX(150);
 		primaryStage.setY(150);

@@ -10,7 +10,7 @@
 .label {
     -fx-font-size: 13pt;
     -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: black;
+	-fx-text-fill: #353535;
     -fx-opacity: 1;
 }
 
@@ -18,7 +18,7 @@
 .label-header {
     -fx-font-size: 20pt;
     -fx-font-family: "方正幼线简体 常规";
-    -fx-text-fill: black;
+    -fx-text-fill: #353535;
     -fx-opacity: 1;
 }
 
