@@ -10,22 +10,19 @@ import java.util.stream.Collectors;
 
 import javafx.scene.control.*;
 import message.OperationMessage;
-import po.orderdata.DeliverTypeEnum;
 import bl.blService.deliverblService.DeliverBLService;
 import factory.FormFactory;
 import tool.time.TimeConvert;
 import tool.ui.OrderVO2ColumnHelper;
-import tool.ui.SimpleEnumProperty;
 import ui.common.checkFormat.FormatCheckQueue;
 import ui.common.checkFormat.date.CheckPreDateTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
-import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import util.R.string;
 import vo.delivervo.DeliverVO;
 import vo.ordervo.OrderVO;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -166,12 +163,10 @@ public class deliverController {
 		OperationMessage msg = deliverBLService.submit(vo);
 		alreadySend.add(vo.getOrderID());
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
 			refresh(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
+		informController.inform(msg, "提交成功");
 	}
 
 	private DeliverVO generateVO(String formID) {
@@ -187,11 +182,17 @@ public class deliverController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		deliverBLService.saveDraft(generateVO(null));
+		OperationMessage msg = deliverBLService.saveDraft(generateVO(null));
+        informController.inform(msg, string.SaveDraftSuccess);
 		clear(null);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(deliverBLService.loadDraft());
+        DeliverVO loaded = deliverBLService.loadDraft();
+        if(loaded != null){
+            this.showDetail(loaded);
+        }else {
+            informController.inform(string.LoadDraftFail);
+        }
 	}
 }

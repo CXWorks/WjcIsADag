@@ -64,7 +64,7 @@ public class FormHistoryController {
         );
         //inti check
         formatCheckQueueNotNull=new FormatCheckQueue();
-        formatCheckQueueNotNull.addTasker(new CheckIsNullTasker(formID_Field));
+        formatCheckQueueNotNull.addTasker();
     }
 
     private void fillTable(Collection<FormVO> forms){

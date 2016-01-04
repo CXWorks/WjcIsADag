@@ -25,6 +25,7 @@ import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.common.checkFormat.field.CheckTransitIDTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.receivevo.ReceiveVO;
@@ -136,11 +137,9 @@ public class ReceiveFormController {
 		OperationMessage msg = receiveBLService.submit(generateVO(receiveBLService.newID()));
 
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
+        informController.inform(msg, "提交到达单成功");
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -153,11 +152,18 @@ public class ReceiveFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		receiveBLService.saveDraft(generateVO(null));
+		OperationMessage msg = receiveBLService.saveDraft(generateVO(null));
+        informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(receiveBLService.loadDraft());
+		ReceiveVO vo = receiveBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
+
 	private ReceiveVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(arrive_DatePicker.getValue());
 		return new ReceiveVO(formID, order_Field.getText(), transitID_Field.getText(), calendar,

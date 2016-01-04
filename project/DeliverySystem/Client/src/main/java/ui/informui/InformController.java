@@ -45,22 +45,23 @@ public class InformController {
 
     public void inform(String info){
         content_Label.setText(info);
+        if(! informPane.isVisible()){ // do not new another thread if is already shown
+            new Thread(
+                    () -> {
+                        try {
+                            Thread.sleep(3000);
+                            Platform.runLater(
+                                    () -> informPane.setVisible(false)
+                            );
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            ).start();
+        }
         informPane.setVisible(true);
         // debug
         System.out.println(info);
-        // sleep for a while
-        new Thread(
-                () -> {
-                    try {
-                        Thread.sleep(1700);
-                        Platform.runLater(
-                                () -> informPane.setVisible(false)
-                        );
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-        ).start();
     }
 
     public void inform(OperationMessage msg, String successWord){

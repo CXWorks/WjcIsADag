@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.Main;
+import message.OperationMessage;
+import operation.Operation;
 import ui.common.checkFormat.FormatCheckQueue;
 import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.informui.InformController;
@@ -39,7 +41,7 @@ public class AccountEditDialogController {
     // VO that is passed in by the creator
     private BankAccountVO editVO;
     private BankAccountBLService bankAccountBLService;
-    
+    private InformController informController;
     private FormatCheckQueue formatCheckQueueNotNull;
 
     /**
@@ -49,7 +51,8 @@ public class AccountEditDialogController {
      * @return
      * @throws IOException
      */
-    public static AccountEditDialogController newDialog(EditType type, BankAccountVO editVO, BankAccountBLService bankAccountBLService) throws IOException {
+    public static AccountEditDialogController newDialog
+    (EditType type, BankAccountVO editVO, BankAccountBLService bankAccountBLService, InformController informController) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(AccountEditDialogController.class.getResource("accountEditDialog.fxml"));
         Pane pane = loader.load();
@@ -67,6 +70,7 @@ public class AccountEditDialogController {
         controller.editVO = editVO;
         controller.stage = stage;
         controller.type = type;
+        controller.informController = informController;
         controller.bankAccountBLService = bankAccountBLService;
         controller.init();
 
@@ -97,14 +101,16 @@ public class AccountEditDialogController {
 			return;
 		}
 
+        OperationMessage msg;
         if(type == EditType.EDIT){
-            bankAccountBLService.editAccount(editVO, editName_Field.getText());
+            msg = bankAccountBLService.editAccount(editVO, editName_Field.getText());
         }else{
             editVO.accountName = editName_Field.getText();
             editVO.balance = editBalance_Field.getText();
 
-            bankAccountBLService.addAccount(editVO);
+            msg = bankAccountBLService.addAccount(editVO);
         }
+        informController.inform(msg, "修改账户成功");
 
         stage.close();
     }

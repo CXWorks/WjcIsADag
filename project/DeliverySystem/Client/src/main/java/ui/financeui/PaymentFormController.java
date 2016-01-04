@@ -21,6 +21,7 @@ import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.financevo.PaymentVO;
 
@@ -110,11 +111,17 @@ public class PaymentFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		paymentBLService.saveDraft(generatePaymentVO(null));
+        OperationMessage msg = paymentBLService.saveDraft(generatePaymentVO(null));
+        informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(paymentBLService.loadDraft());
+		PaymentVO vo = paymentBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -146,11 +153,10 @@ public class PaymentFormController {
 			return ;
 		}
 		OperationMessage msg = paymentBLService.submit(generatePaymentVO(newID));
-		if (msg.operationResult) {
-			System.out.println("add successfully");
-		} else {
-			System.out.println("fail: " + msg.getReason());
-		}
+		if(msg.operationResult){
+            clear(null);
+        }
+        informController.inform(msg, "付款单提交成功");
 	}
 
 	private PaymentVO generatePaymentVO(String formID) {

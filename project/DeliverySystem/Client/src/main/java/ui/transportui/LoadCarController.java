@@ -16,6 +16,7 @@ import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.transitvo.LoadVO;
 
@@ -139,11 +140,17 @@ public class LoadCarController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		transportHallBLService.saveDraft(generateVO(null));
+		OperationMessage msg = transportHallBLService.saveDraft(generateVO(null));
+        informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(transportHallBLService.loadDraft());
+		LoadVO vo = transportHallBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -168,10 +175,8 @@ public class LoadCarController {
 		OperationMessage msg = transportHallBLService.submit(generateVO(transportHallBLService.newID()));
 
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
+        informController.inform(msg, "提交装车单成功");
 	}
 }

@@ -27,6 +27,7 @@ import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import ui.receiveui.ReceiveFormController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.managevo.institution.CenterVO;
 import vo.managevo.institution.InstitutionVO;
@@ -186,13 +187,17 @@ public class TransitFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		transportCenterBLService.saveDraft(generateVO(null));
-		clear(null);
-
+		OperationMessage msg = transportCenterBLService.saveDraft(generateVO(null));
+        informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(transportCenterBLService.loadDraft());
+        CenterOutVO vo = transportCenterBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -212,17 +217,14 @@ public class TransitFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
-       
-		OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
 
-		ids.clear();
-		// orders_ListView=new ListView<>();
-		orders_ListView.getItems().clear();
+		OperationMessage msg = transportCenterBLService.submit(generateVO(transportCenterBLService.newID()));
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
+        informController.inform(msg, "提交中转单成功");
 	}
 }
