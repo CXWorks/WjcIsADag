@@ -118,9 +118,9 @@ public class CheckFinanceChartController {
                 .getLineChart(getBegin(), getEnd(), type);
 
         // set Axis and Title
-        NumberAxis yAxis = new NumberAxis();
-        CategoryAxis xAxis = new CategoryAxis();
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        NumberAxis yAxis = (NumberAxis)lineChart.getYAxis();
+        CategoryAxis xAxis = (CategoryAxis)lineChart.getXAxis();
+//        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle(lineChartVO.title);
         // set labels
         xAxis.setLabel(lineChartVO.mainXType);
@@ -153,8 +153,8 @@ public class CheckFinanceChartController {
                 .getBarChart(getBegin(), getEnd(), type);
 
         // set Axis and Title
-        NumberAxis yAxis = new NumberAxis();
-        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = (NumberAxis)barChart.getYAxis();
+        CategoryAxis xAxis = (CategoryAxis)barChart.getXAxis();
         barChart.setTitle(barChartVO.title);
         // set labels
         xAxis.setLabel(barChartVO.mainXType);
