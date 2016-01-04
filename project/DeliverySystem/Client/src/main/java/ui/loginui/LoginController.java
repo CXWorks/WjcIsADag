@@ -19,6 +19,7 @@ import factory.AccountFactory;
 import factory.LoginFactory;
 import factory.SearchFactory;
 import factory.StaffFactory;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -48,22 +49,19 @@ import vo.managevo.staff.StaffVO;
 public class LoginController {
     public TextField id_Field;
     public PasswordField password_Field;
-
     public TextField search_Field;
 
 	public TableView<LogisticsInfo> logistics_TableView;
 	public TableColumn<LogisticsInfo, String> time_Column;
 	public TableColumn<LogisticsInfo, String> address_Column;
 
-	SearchBLService searchblService = SearchFactory.getSearchBLService();
-
+	private SearchBLService searchblService = SearchFactory.getSearchBLService();
 
     private AccountBLLoginService loginService = LoginFactory.getAccountBLLoginService();
     private ManageblStaffService manageblStaffService;
 
     public static Parent launch() throws IOException {
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("logIn.fxml"));
-        
         Pane content = loader.load();
 
         return content;
@@ -72,8 +70,8 @@ public class LoginController {
 
     @FXML
     public void initialize(){
-    	time_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getTime()));
-    	address_Column.setCellValueFactory(cell->new SimpleStringProperty(cell.getValue().getInfo()));
+    	time_Column.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getTime()));
+    	address_Column.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getInfo()));
     }
 
     public void login(ActionEvent actionEvent) {
@@ -89,9 +87,22 @@ public class LoginController {
             }
             UserInfo.setInfo(staffVO.getID(), staffVO.getStaff(), staffVO.getInstitutionID(), staffVO.getName());
             System.out.println("login successfully");
-            Main.logIn();
+
+            Main.loading();
+
+            new Thread(
+                    () -> {
+                        try {
+                            Thread.sleep(100);
+                            Platform.runLater( () -> Main.logIn() );
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            ).start();
         }else{
-            System.out.println("login fail: " + msg.getReason());
+            password_Field.clear();
+            password_Field.setPromptText(msg.getReason());
         }
 
         password_Field.clear();

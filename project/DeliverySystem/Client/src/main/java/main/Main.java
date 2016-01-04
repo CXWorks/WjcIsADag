@@ -5,13 +5,16 @@ package main;
 
 import bl.clientRMI.NetInitException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.memberdata.StaffTypeEnum;
+import ui.loginui.LoadingController;
 import ui.loginui.LoginController;
 import ui.navigationui.*;
 import userinfo.UserInfo;
@@ -34,6 +37,7 @@ public class Main extends Application {
 
     public static Scene loginScene;
     public static Scene personScene;
+    public static Scene loadingScene;
     public static Stage primaryStage;
 
     public static void main(String[] args) throws NetInitException {
@@ -73,13 +77,15 @@ public class Main extends Application {
         return null;
     }
 
+    public static void loading(){
+        primaryStage.setScene(loadingScene);
+    }
+
     /**
      * 根据UserInfo加载对应的界面
      */
     public static void logIn(){
-
         StaffTypeEnum staffTypeEnum = UserInfo.getStaffType();
-
         Parent pane = panes.get(staffTypeEnum);
 
         if(pane == null){
@@ -121,6 +127,10 @@ public class Main extends Application {
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         loginScene = new Scene(LoginController.launch());
+
+        // prepare loadingScene
+        Pane loadingPane = LoadingController.launch();
+        loadingScene = new Scene(loadingPane);
 
         primaryStage.setScene(loginScene);
         enableDrag(loginScene);
