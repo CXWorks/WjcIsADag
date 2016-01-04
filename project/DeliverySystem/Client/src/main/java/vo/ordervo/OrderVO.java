@@ -36,7 +36,7 @@ public class OrderVO extends FormVO {
 	private String money;
 	private DeliverTypeEnum type;
 	private PackingEnum pack;
-	private String receivePeople;
+	private String receivePeople = "";
 	private Calendar receiveDate;
 	//
 	private double len;
@@ -44,12 +44,12 @@ public class OrderVO extends FormVO {
 	private double hei;
 	private double V;
 	private double W;
-	
+
 	public double getWeightORVolume(){
 		this.calculateVolume();
 		return (W>V/5000)?W:V/5000;
 	}
-	
+
 
 	public OrderVO(String formID,String createrID) {
 		super(FormEnum.ORDER, FormStateEnum.CONSTRUCTED, formID,createrID);

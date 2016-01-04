@@ -10,8 +10,8 @@ public class MySql {
 
 	public static String time(TableEnum table,String target,Calendar start, Calendar end) {
 		String select = "select * from `" + table.getName() + "` where '" + start.getTime().getTime() / 1000
-				+ "' < UNIX_TIMESTAMP(`" + target + "`) " + "and '" + end.getTime().getTime() / 1000
-				+ "' > UNIX_TIMESTAMP(`" + target + "`)";
+				+ "' <= UNIX_TIMESTAMP(`" + target + "`) " + "and '" + end.getTime().getTime() / 1000
+				+ "' >= UNIX_TIMESTAMP(`" + target + "`)";
 
 		return select;
 	}
