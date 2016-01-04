@@ -8,6 +8,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.FloatOnlyField?>
+<?import ui.common.checkFormat.field.NumberOnlyField?>
 <AnchorPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.orderui.NewOrderController">
    <children>
       <Label layoutX="131.0" layoutY="70.0" styleClass="label-header" text="寄件人信息" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="70.0">
@@ -57,13 +59,13 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tel_From" layoutX="176.0" layoutY="332.0" prefHeight="28.0" prefWidth="150.0" />
+      <NumberOnlyField fx:id="tel_From" layoutX="176.0" layoutY="332.0" prefHeight="28.0" prefWidth="150.0" />
       <Label layoutX="125.0" layoutY="383.0" text="手机">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="phone_From" layoutX="176.0" layoutY="379.0" prefHeight="28.0" prefWidth="150.0" />
+      <NumberOnlyField fx:id="phone_From" layoutX="176.0" layoutY="379.0" prefHeight="28.0" prefWidth="150.0" />
       <Text fill="WHITE" layoutX="313.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
          <font>
             <Font size="13.0" />
@@ -93,13 +95,13 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tel_To" layoutX="461.0" layoutY="333.0" prefHeight="28.0" prefWidth="150.0" />
+      <NumberOnlyField fx:id="tel_To" layoutX="461.0" layoutY="333.0" prefHeight="28.0" prefWidth="150.0" />
       <Label layoutX="386.0" layoutY="384.0" text="手机">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="phone_To" layoutX="461.0" layoutY="380.0" prefHeight="28.0" prefWidth="150.0" />
+      <NumberOnlyField fx:id="phone_To" layoutX="461.0" layoutY="380.0" prefHeight="28.0" prefWidth="150.0" />
       <Text fill="WHITE" layoutX="597.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="市">
          <font>
             <Font size="13.0" />
@@ -134,15 +136,15 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="goods_Weight" layoutX="768.0" layoutY="249.0" prefHeight="28.0" prefWidth="150.0" />
+      <FloatOnlyField fx:id="goods_Weight" layoutX="768.0" layoutY="249.0" prefHeight="28.0" prefWidth="150.0" />
       <Label layoutX="674.0" layoutY="290.0" text="体积">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="goods_V1" layoutX="768.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="长" />
-      <TextField fx:id="goods_V2" layoutX="817.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="宽" />
-      <TextField fx:id="goods_V3" layoutX="867.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="高" />
+      <FloatOnlyField fx:id="goods_V1" layoutX="768.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="长" />
+      <FloatOnlyField fx:id="goods_V2" layoutX="817.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="宽" />
+      <FloatOnlyField fx:id="goods_V3" layoutX="867.0" layoutY="285.0" prefHeight="28.0" prefWidth="35.0" promptText="高" />
       <Label layoutX="674.0" layoutY="325.0" text="快递类型">
          <font>
             <Font size="14.0" />

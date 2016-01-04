@@ -23,17 +23,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="type_Label" text="type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="type_Label" text="???" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="编号" GridPane.rowIndex="3" />
-            <Label fx:id="id_Label" text="code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="id_Label" text="???" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="area_HeadLabel" text="区域" GridPane.rowIndex="4" />
             <Label fx:id="nearCenter_HeadLabel" text="最近中心" GridPane.rowIndex="5" />
             <Label text="城市" GridPane.rowIndex="1" />
             <Label text="类型" GridPane.rowIndex="2" />
             <Label text="机构信息" />
-            <Label fx:id="city_Label" text="cityName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="area_Label" text="area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="nearCenter_Label" text="nearCenter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="city_Label" text="???" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="area_Label" text="???" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="nearCenter_Label" text="???" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <HBox fx:id="buttons_HBox" layoutX="555.0" layoutY="329.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">

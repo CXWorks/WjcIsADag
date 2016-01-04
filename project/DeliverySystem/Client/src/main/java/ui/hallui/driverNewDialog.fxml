@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import ui.common.checkFormat.field.NumberOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="348.0" styleClass="background-big" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hallui.DriverNewDialogController">
    <children>
       <GridPane layoutX="25.0" layoutY="12.0" prefHeight="319.0" prefWidth="226.0" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="64.0">
@@ -63,8 +64,8 @@
                </font></Text>
             <TextField fx:id="ID_Field" GridPane.columnIndex="1" />
             <TextField fx:id="name_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tel_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="personID_Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <NumberOnlyField fx:id="tel_Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <NumberOnlyField fx:id="personID_Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label fx:id="age_Label" styleClass="label-small" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="sex_Box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="birth_Picker" onAction="#age" GridPane.columnIndex="1" GridPane.rowIndex="3" />

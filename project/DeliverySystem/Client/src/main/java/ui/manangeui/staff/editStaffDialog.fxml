@@ -4,6 +4,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.NumberOnlyField?>
+<?import ui.common.checkFormat.field.IntOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="582.0" styleClass="background-big" stylesheets="@../../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.manangeui.staff.EditStaffDialogController">
    <children>
       <GridPane layoutY="67.0" prefHeight="281.0" prefWidth="260.0">
@@ -41,10 +43,10 @@
          <children>
             <Label layoutX="314.0" layoutY="131.0" text="身份证号" GridPane.rowIndex="1" />
             <Label layoutX="331.0" layoutY="194.0" text="恋爱情况" GridPane.rowIndex="2" />
-            <TextField fx:id="personID_Field" layoutX="394.0" layoutY="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <NumberOnlyField fx:id="personID_Field" layoutX="394.0" layoutY="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label layoutX="322.0" layoutY="77.0" text="年龄" />
             <TextField fx:id="love_Field" layoutX="395.0" layoutY="197.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="age_Field" layoutX="372.0" layoutY="78.0" GridPane.columnIndex="1" />
+            <IntOnlyField fx:id="age_Field" layoutX="372.0" layoutY="78.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <HBox layoutX="434.0" layoutY="310.0" spacing="16.0" AnchorPane.bottomAnchor="14.0">

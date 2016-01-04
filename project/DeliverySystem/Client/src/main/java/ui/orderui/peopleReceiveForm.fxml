@@ -45,6 +45,6 @@
       </Text>
       <VBox alignment="CENTER_RIGHT" layoutX="724.0" layoutY="383.0" />
       <DatePicker fx:id="receive_DatePicker" layoutX="753.0" layoutY="309.0" prefHeight="28.0" prefWidth="145.0" />
-      <Label fx:id="dateErr_Label" layoutX="848.0" layoutY="350.0" text="Label" />
+      <Label fx:id="dateErr_Label" layoutX="848.0" layoutY="350.0" />
    </children>
 </AnchorPane>

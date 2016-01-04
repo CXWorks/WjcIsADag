@@ -4,6 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.EngOnlyField?>
 <AnchorPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.ManageAccountController">
    <children>
       <HBox layoutX="32.0" layoutY="48.0" spacing="48.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="48.0">
@@ -18,7 +19,7 @@
             </HBox>
             <HBox layoutX="312.0" layoutY="48.0" spacing="16.0">
                <children>
-                  <TextField fx:id="search_Field" layoutX="517.0" layoutY="62.0" />
+                  <EngOnlyField fx:id="search_Field" layoutX="517.0" layoutY="62.0" />
                   <Button layoutX="701.0" layoutY="62.0" mnemonicParsing="false" onAction="#search" text="查找" />
                </children>
             </HBox>

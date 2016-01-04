@@ -5,16 +5,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="250.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.EditShelfDialogController">
+<?import ui.common.checkFormat.field.IntOnlyField?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="250.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.EditShelfDialogController">
    <children>
       <Label layoutX="43.0" layoutY="53.0" text="修改货架数">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="number_Field" layoutX="43.0" layoutY="101.0" />
-      <Button layoutX="120.0" layoutY="193.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
-      <Button layoutX="177.0" layoutY="193.0" mnemonicParsing="false" onAction="#commit" text="确定" />
-      <Label fx:id="err_Label" layoutX="43.0" layoutY="155.0" text="d" textFill="#f50202" />
+      <IntOnlyField fx:id="number_Field" layoutX="41.0" layoutY="107.0" />
+      <Button layoutX="125.0" layoutY="172.0" mnemonicParsing="false" onAction="#cancel" text="取消" />
+      <Button layoutX="182.0" layoutY="172.0" mnemonicParsing="false" onAction="#commit" text="确定" />
    </children>
 </AnchorPane>

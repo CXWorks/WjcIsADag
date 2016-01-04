@@ -7,10 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import ui.common.checkFormat.field.PasswordOnlyField?>
+<?import ui.common.checkFormat.field.EngOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginui.LoginController">
    <children>
-      <TextField fx:id="id_Field" layoutX="732.0" layoutY="219.0" prefHeight="55.0" prefWidth="220.0" promptText="员工编号输入框" styleClass="text-field-log" />
-      <PasswordField fx:id="password_Field" layoutX="732.0" layoutY="290.0" onAction="#login" prefHeight="55.0" prefWidth="220.0" promptText="密码输入框" styleClass="text-field-log" />
+      <EngOnlyField fx:id="id_Field" layoutX="732.0" layoutY="219.0" prefHeight="55.0" prefWidth="220.0" promptText="员工编号输入框" styleClass="text-field-log" />
+      <PasswordOnlyField fx:id="password_Field" layoutX="732.0" layoutY="290.0" onAction="#login" prefHeight="55.0" prefWidth="220.0" promptText="密码输入框" styleClass="text-field-log" />
       <TextField fx:id="search_Field" layoutX="49.0" layoutY="79.0" prefHeight="54.0" prefWidth="223.0" promptText="请输入快递单号以查询" styleClass="text-field-search" />
       <Button layoutX="54.0" layoutY="154.0" mnemonicParsing="false" onAction="#search" prefHeight="60.0" prefWidth="220.0" styleClass="button-search" />
       <Button layoutX="732.0" layoutY="360.0" mnemonicParsing="false" onAction="#login" prefHeight="60.0" prefWidth="220.0" styleClass="button-log" />

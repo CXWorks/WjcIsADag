@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.EngOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="245.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.accountui.EditAccountDialogController">
    <children>
       <HBox layoutX="135.0" layoutY="263.0" spacing="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
@@ -12,7 +13,7 @@
             <Button layoutX="384.0" layoutY="209.0" mnemonicParsing="false" onAction="#commit" text="确认" />
          </children>
       </HBox>
-      <TextField fx:id="id_Field" layoutX="84.0" layoutY="60.0" prefHeight="28.0" prefWidth="135.0" />
+      <EngOnlyField fx:id="id_Field" layoutX="84.0" layoutY="60.0" prefHeight="28.0" prefWidth="135.0" />
       <Label layoutX="21.0" layoutY="64.0" text="账户名" />
       <TextField fx:id="password_Field" layoutX="84.0" layoutY="114.0" onAction="#commit" prefHeight="28.0" prefWidth="135.0" />
       <Label layoutX="27.0" layoutY="118.0" text="密码" />

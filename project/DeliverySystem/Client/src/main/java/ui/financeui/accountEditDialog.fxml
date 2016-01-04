@@ -5,6 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.FloatOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" styleClass="background-add" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.financeui.AccountEditDialogController">
    <children>
       <GridPane layoutX="25.0" layoutY="31.0" prefHeight="179.0" prefWidth="201.0">
@@ -21,7 +22,7 @@
             <Label text="账户名" />
             <Label text="余额" GridPane.rowIndex="2" />
             <TextField fx:id="editName_Field" GridPane.rowIndex="1" />
-            <TextField fx:id="editBalance_Field" onAction="#ok" GridPane.rowIndex="3" />
+            <FloatOnlyField fx:id="editBalance_Field" onAction="#ok" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <HBox layoutX="126.0" layoutY="245.0" spacing="20.0">

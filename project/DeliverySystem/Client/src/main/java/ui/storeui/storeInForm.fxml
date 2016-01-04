@@ -4,6 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import ui.common.checkFormat.field.IntOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.storeui.StoreInFormController">
    <children>
       <Label layoutX="39.0" layoutY="48.0" text="入库信息" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0" />
@@ -24,7 +25,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <DatePicker fx:id="storeIn_DatePicker" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="dateErr_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="dateErr_Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </VBox>
             <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />
@@ -67,9 +68,9 @@
             <Label text="排号" GridPane.rowIndex="1" />
             <Label text="架号" GridPane.rowIndex="2" />
             <Label text="位号" GridPane.rowIndex="3" />
-            <TextField fx:id="row_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="shelf_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="position_Field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <IntOnlyField fx:id="row_Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <IntOnlyField fx:id="shelf_Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <IntOnlyField fx:id="position_Field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="area_ChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>

@@ -6,11 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import ui.common.checkFormat.field.NumberOnlyField?>
+<?import ui.common.checkFormat.field.EngOnlyField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="970.0" styleClass="background-add" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.deliverui.deliverController">
    <children>
       <HBox layoutX="53.0" layoutY="50.0" spacing="16.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="48.0">
          <children>
-            <TextField fx:id="id_Search_Field" layoutX="53.0" layoutY="50.0" prefHeight="28.0" prefWidth="183.0" promptText="请输入订单号" />
+            <NumberOnlyField fx:id="id_Search_Field" layoutX="53.0" layoutY="50.0" prefHeight="28.0" prefWidth="183.0" promptText="请输入订单号" />
             <Button layoutX="186.0" layoutY="50.0" mnemonicParsing="false" onAction="#search" text="搜索" />
             <Button layoutX="246.0" layoutY="50.0" mnemonicParsing="false" onAction="#refresh" text="刷新" />
          </children>
@@ -54,7 +56,7 @@
                   <Label fx:id="dateErr_Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </VBox>
-            <TextField fx:id="id_Field" GridPane.columnIndex="1" />
+            <EngOnlyField fx:id="id_Field" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <HBox layoutX="587.0" layoutY="385.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
