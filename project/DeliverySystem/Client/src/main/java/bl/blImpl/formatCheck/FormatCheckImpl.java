@@ -44,6 +44,7 @@ public class FormatCheckImpl implements FormatCheckService {
 	@Override
 	public CheckFormMessage checkPostDate(Calendar date) {
 		Calendar now=Calendar.getInstance();
+		now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH)-1);
 		if (!now.after(date)) {
 			return new CheckFormMessage();
 		}
@@ -58,6 +59,7 @@ public class FormatCheckImpl implements FormatCheckService {
 	@Override
 	public CheckFormMessage checkPreDate(Calendar date) {
 		Calendar now=Calendar.getInstance();
+		now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH)+1);
 		if (!now.before(date)) {
 			return new CheckFormMessage();
 		}
