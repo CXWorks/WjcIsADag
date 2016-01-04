@@ -104,7 +104,7 @@
 .button-person {
     -fx-size:13;
 		-fx-cursor:hand;
-	-fx-background-image:url(pic/buttons/person.png);
+	-fx-background-image:url(pic/buttons/silver-person.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -113,11 +113,11 @@
 }
 
 .button-person:hover {
-	-fx-background-image:url(pic/buttons/person-hover.png);
+	-fx-background-image:url(pic/buttons/silver-person-hover.png);
 }
 
 .button-person:pressed, .button-person:default:hover:pressed {
-	-fx-background-image:url(pic/buttons/person-pressed.png);
+	-fx-background-image:url(pic/buttons/silver-person-pressed.png);
 }
 
 .button-person:focused {
@@ -129,7 +129,7 @@
 .button-message {
     -fx-size:13;
 		-fx-cursor:hand;
-	-fx-background-image:url(pic/buttons/message.png);
+	-fx-background-image:url(pic/buttons/silver-message.png);
     -fx-border-style :none;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 10pt;
@@ -138,11 +138,11 @@
 }
 
 .button-message:hover {
-	-fx-background-image:url(pic/buttons/message-hover.png);
+	-fx-background-image:url(pic/buttons/silver-message-hover.png);
 }
 
 .button-message:pressed, .button-message:default:hover:pressed {
-	-fx-background-image:url(pic/buttons/message-pressed.png);
+	-fx-background-image:url(pic/buttons/silver-message-pressed.png);
 }
 
 .button-message:focused {
