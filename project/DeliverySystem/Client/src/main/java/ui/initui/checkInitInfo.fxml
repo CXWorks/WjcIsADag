@@ -16,7 +16,7 @@
       <HBox alignment="CENTER" layoutX="263.0" layoutY="43.0" spacing="16.0" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="43.0">
          <children>
             <Label layoutX="331.0" layoutY="35.0" text="查看分支" />
-            <ChoiceBox fx:id="initType_ChoiceBox" layoutX="404.0" layoutY="31.0" prefHeight="23.0" prefWidth="112.0" />
+            <ChoiceBox fx:id="initType_ChoiceBox" layoutX="404.0" layoutY="31.0" prefHeight="35.0" prefWidth="163.0" />
          </children>
       </HBox>
       <AnchorPane fx:id="content_Pane" layoutX="26.0" layoutY="85.0" prefHeight="420.0" prefWidth="874.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="85.0" />

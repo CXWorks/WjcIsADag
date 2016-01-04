@@ -84,15 +84,28 @@ public class MainPaneController implements Runnable {
         tabButton.setMaxWidth(9999999);
         toggleTabs.add(tabButton);
         tabs_VBox.getChildren().add(tabButton);
-        tabButton.setOnAction(
-                actionEvent -> {
-                    disSelectAllTabs();
-                    tabButton.setSelected(true);
-                    content_Pane.getChildren().clear();
-                    content_Pane.getChildren().add(content);
-                    setAnchor(content, 0.0, 0.0, 0.0, 0.0);
-                }
-        );
+        if(name.equals("消息通知")){
+            tabButton.setOnAction(
+                    actionEvent -> {
+                        message_Label.setText("");
+                        disSelectAllTabs();
+                        tabButton.setSelected(true);
+                        content_Pane.getChildren().clear();
+                        content_Pane.getChildren().add(content);
+                        setAnchor(content, 0.0, 0.0, 0.0, 0.0);
+                    }
+            );
+        }else {
+            tabButton.setOnAction(
+                    actionEvent -> {
+                        disSelectAllTabs();
+                        tabButton.setSelected(true);
+                        content_Pane.getChildren().clear();
+                        content_Pane.getChildren().add(content);
+                        setAnchor(content, 0.0, 0.0, 0.0, 0.0);
+                    }
+            );
+        }
     }
 
     private void disSelectAllTabs(){
@@ -105,8 +118,10 @@ public class MainPaneController implements Runnable {
         for (ToggleButton toggleTab : toggleTabs) {
             if(toggleTab.getText().equals(tabText)){
                 toggleTab.getOnAction().handle(null);
+                break;
             }
         }
+
     }
 
     public void jumpTo(Pane content){
@@ -157,7 +172,7 @@ public class MainPaneController implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(R.num.CheckMessageGap);
+				Thread.sleep(233);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

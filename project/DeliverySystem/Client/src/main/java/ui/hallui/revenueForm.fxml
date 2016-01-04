@@ -50,7 +50,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <DatePicker fx:id="revenue_DatePicker" layoutX="99.0" layoutY="200.0" prefHeight="23.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="dateErr_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="dateErr_Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </VBox>
             <Label layoutX="25.0" layoutY="252.0" text="收款金额" GridPane.rowIndex="3" />

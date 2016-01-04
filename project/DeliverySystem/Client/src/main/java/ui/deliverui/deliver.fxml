@@ -51,7 +51,7 @@
             <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <DatePicker fx:id="date_DatePicker" prefHeight="23.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="dateErr_Label" text="err" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="dateErr_Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </VBox>
             <TextField fx:id="id_Field" GridPane.columnIndex="1" />

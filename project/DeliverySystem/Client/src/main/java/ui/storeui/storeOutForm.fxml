@@ -26,7 +26,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <DatePicker fx:id="storeOut_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="dateErr_Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="dateErr_Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </VBox>
             <TextField fx:id="orderID_Field" onAction="#fillOrderTable" GridPane.columnIndex="1" />

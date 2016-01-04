@@ -28,7 +28,7 @@
             <VBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.columnIndex="1">
                <children>
                   <DatePicker fx:id="date_Picker" GridPane.columnIndex="1" />
-                  <Label fx:id="date_errLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="date_errLabel" GridPane.columnIndex="1" />
                </children>
             </VBox>
             <ChoiceBox fx:id="arrival_ChoiceBox" prefHeight="29.0" prefWidth="168.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

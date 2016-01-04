@@ -46,6 +46,8 @@ public class ManagerNavigation {
         Parent organizationP = ManageOrganizationController.launchInManager(staffController, mpc);
         TabMaker.addLeftTab(mpc, new Pair<String, Parent>("管理机构", organizationP));
 
+        mpc.selectButton("审批表单");
+
         return mpc.getOuterPane();
     }
 }

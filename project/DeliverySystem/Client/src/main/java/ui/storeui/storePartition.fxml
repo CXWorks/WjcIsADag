@@ -46,22 +46,22 @@
       </HBox>
       <GridPane layoutX="36.0" layoutY="107.0" prefHeight="325.0" prefWidth="160.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="107.0">
          <children>
-            <RadioButton fx:id="button_road" mnemonicParsing="false" onAction="#selectRoad" text="公路区" GridPane.rowIndex="2">
+            <RadioButton fx:id="button_road" mnemonicParsing="false" onAction="#selectRoad" text="公路区" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_rail" mnemonicParsing="false" onAction="#selectRail" text="铁路区" GridPane.rowIndex="1">
+            <RadioButton fx:id="button_rail" mnemonicParsing="false" onAction="#selectRail" text="铁路区" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_air" mnemonicParsing="false" onAction="#selectAir" text="航运区">
+            <RadioButton fx:id="button_air" mnemonicParsing="false" onAction="#selectAir" text="航运区" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_flex" mnemonicParsing="false" onAction="#selectFlex" text="机动区" GridPane.rowIndex="3">
+            <RadioButton fx:id="button_flex" mnemonicParsing="false" onAction="#selectFlex" text="机动区" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
                </font>
