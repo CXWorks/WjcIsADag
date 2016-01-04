@@ -94,7 +94,7 @@ public class FormHistoryController {
 
     public void viewDetail(ActionEvent actionEvent) {
         if(selectedFormVO == null){
-            informController.inform("请选择一个表单");
+            informController.informWrong("请选择一个表单");
         }else{
             Stage stage = ViewFormDetailController.launchInHistory(selectedFormVO);
             stage.show();

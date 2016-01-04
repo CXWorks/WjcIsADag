@@ -192,7 +192,7 @@ public class deliverController {
         if(loaded != null){
             this.showDetail(loaded);
         }else {
-            informController.inform(string.LoadDraftFail);
+            informController.informWrong(string.LoadDraftFail);
         }
 	}
 }

@@ -155,7 +155,7 @@ public class ManageStaffController  {
     		vo=manageblHallService.searchHall(institution_Field.getText());
         }
         if(vo == null){ // neither in center nor in hall
-            informController.inform("请输入正确的机构编号");
+            informController.informWrong("请输入正确的机构编号");
             return;
         }else{
             this.institutionID = vo.getInstitutionID();

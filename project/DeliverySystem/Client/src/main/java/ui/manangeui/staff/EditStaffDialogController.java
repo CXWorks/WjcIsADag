@@ -140,13 +140,7 @@ public class EditStaffDialogController {
             msg = manageblStaffService.addStaff(staffVO);
         }
 
-        if(msg.operationResult){
-            informController.inform("账户修改成功");
-            System.out.println("commit successfully");
-        }else{
-            informController.inform("账户修改失败: " + msg.getReason());
-            System.out.println("fail: " + msg.getReason());
-        }
+        informController.inform(msg, "账户修改成功");
 
         dialog.close();
     }

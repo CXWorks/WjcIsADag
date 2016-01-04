@@ -190,7 +190,7 @@ public class CheckFormController implements EventHandler<Event> {
     public void modify(ActionEvent actionEvent) {
         List<FormVO> forms = formTableController.getSelected();
         if(forms.size() != 1){
-            informController.inform("请选择一张表单修改");
+            informController.informWrong("请选择一张表单修改");
         }else {
             Stage stage = ViewFormDetailController.launchInManagerModify(forms.get(0));
             stage.showAndWait();

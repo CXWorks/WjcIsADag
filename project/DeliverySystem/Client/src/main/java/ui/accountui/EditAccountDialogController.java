@@ -96,11 +96,7 @@ public class EditAccountDialogController {
             msg  = accountBLManageService.addAccount(editAccountVO());
         }
 
-        if(msg.operationResult){
-            informController.inform("账户修改成功");
-        }else{
-            informController.inform("账户修改失败: " + msg.getReason());
-        }
+        informController.inform(msg, "账户修改成功");
         stage.close();
 	}
 
