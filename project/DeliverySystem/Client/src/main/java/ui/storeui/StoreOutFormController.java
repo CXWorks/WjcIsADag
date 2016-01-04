@@ -32,6 +32,7 @@ import ui.common.checkFormat.field.CheckTransitIDTasker;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
@@ -142,12 +143,18 @@ public class StoreOutFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		storeOutBLService.saveDraft(generateVO(null));
+		OperationMessage msg = storeOutBLService.saveDraft(generateVO(null));
+		informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(storeOutBLService.loadDraft());
-	}
+		StoreOutVO vo = storeOutBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
+    }
 
 	private StoreOutVO generateVO(String formID) {
 		Calendar calendar = TimeConvert.convertDate(storeOut_DatePicker.getValue());
@@ -167,22 +174,29 @@ public class StoreOutFormController {
 	}
 
 	public void commit(ActionEvent actionEvent) {
+        if(!formatCheckQueueCommit.startCheck()){
+            return;
+        }
 		OperationMessage msg = storeOutBLService.submit(generateVO(storeOutBLService.newID()));
 
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
+        informController.inform(msg, "提交出库单成功");
 	}
 
 	public void fillOrderTable() {
+        if(!formatCheckQueueOrder.startCheck()){
+            return;
+        }
 		OrderVO orderVO = storeOutBLService.loadOrder(orderID_Field.getText());
 		order_TableView.setItems(FXCollections.observableArrayList(new OrderVO2ColumnHelper().VO2Entries(orderVO)));
 	}
 
 	public void fillTransitTable() {
+        if(!formatCheckQueueTrans.startCheck()){
+            return;
+        }
 		TransitVO transitVO = storeOutBLService.getTransportVO(transitID_Field.getText());
 		transit_TableView
 				.setItems(FXCollections.observableArrayList(new TransitVO2ColumnHelper().VO2Entries(transitVO)));

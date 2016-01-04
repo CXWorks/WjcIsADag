@@ -31,6 +31,7 @@ import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.storevo.StoreInVO;
@@ -137,11 +138,17 @@ public class StoreInFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		storeInBLService.saveDraft(generateVO(null));
+		OperationMessage msg = storeInBLService.saveDraft(generateVO(null));
+        informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(storeInBLService.loadDraft());
+		StoreInVO vo = storeInBLService.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
 
 	public void clear(ActionEvent actionEvent) {
@@ -159,9 +166,11 @@ public class StoreInFormController {
         if(!formatCheckQueueCommit.startCheck()){
             return;
         }
-
 		OperationMessage msg = storeInBLService.submit(generateVO(storeInBLService.newID()));
-		informController.inform(msg, "单据提交成功");
+        if(msg.operationResult){
+            clear(null);
+        }
+		informController.inform(msg, "提交入库单成功");
 	}
 
 	private StoreInVO generateVO(String formID) {

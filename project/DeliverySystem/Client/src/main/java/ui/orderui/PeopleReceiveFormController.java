@@ -9,6 +9,7 @@ import bl.blService.receiveblService.ReceiveBLService;
 import factory.DeliverFactory;
 import factory.FormFactory;
 import javafx.scene.control.*;
+import message.OperationMessage;
 import tool.time.TimeConvert;
 import ui.common.checkFormat.FormatCheckQueue;
 import ui.common.checkFormat.date.CheckPreDateTasker;
@@ -75,8 +76,6 @@ public class PeopleReceiveFormController {
                 new CheckIsNullTasker(name_Field),
                 new CheckPreDateTasker(dateErr_Label, receive_DatePicker)
         );
-
-
 	}
 
 
@@ -94,8 +93,11 @@ public class PeopleReceiveFormController {
 		DeliverVO deliverVO = new DeliverVO(null, selected.formID,
 				null, null, null);
 		deliverVO.finfished(TimeConvert.convertDate(receive_DatePicker.getValue()), name_Field.getText());
-		checkDeliver.finishDelivery(deliverVO);
-		clear(null);
+		OperationMessage msg = checkDeliver.finishDelivery(deliverVO);
+        if(msg.operationResult){
+            clear(null);
+        }
+		informController.inform(msg, "提交订单成功");
 	}
 
 	public void clear(ActionEvent actionEvent) {

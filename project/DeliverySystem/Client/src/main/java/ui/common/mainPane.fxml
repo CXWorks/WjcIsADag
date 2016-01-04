@@ -17,7 +17,7 @@
                   <Button layoutX="1095.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeStage" prefHeight="35.0" prefWidth="35.0" styleClass="button-close" AnchorPane.topAnchor="17.0" />
                </children>
             </HBox>
-            <Label fx:id="name_Label" layoutX="239.0" layoutY="14.0" prefHeight="42.0" prefWidth="227.0" textFill="#e8e8e8">
+            <Label fx:id="name_Label" layoutX="239.0" layoutY="14.0" prefHeight="42.0" prefWidth="227.0" textFill="#e8e8e8" AnchorPane.rightAnchor="680.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="14.0" />
                </font>

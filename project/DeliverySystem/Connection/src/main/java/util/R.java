@@ -19,6 +19,9 @@ public class R {
     public static class string{
         public final static String LocalHost = "127.0.0.1";
         public final static String CompanyAccount = "001";
+        public final static String LoadDraftFail = "载入草稿失败";
+        public final static String LoadDraftSuccess = "载入草稿成功";
+        public final static String SaveDraftSuccess = "保存草稿成功";
     }
 
     public static class num{

@@ -12,6 +12,7 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 
 import javafx.event.ActionEvent;
+import message.OperationMessage;
 import po.InfoEnum;
 import po.configurationdata.enums.PackEnum;
 import po.orderdata.DeliverTypeEnum;
@@ -116,7 +117,8 @@ public class ConfigurationController {
 		try {
 			int price=Integer.parseInt(expense);
 			priceVO.setByType(DeliverTypeEnum.NORMAL, price);
-			configurationBLService.modify(priceVO);
+			OperationMessage msg = configurationBLService.modify(priceVO);
+			informController.inform(msg, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -133,7 +135,8 @@ public class ConfigurationController {
 			packVO.setByType(PackEnum.WOOD, wood);
 			packVO.setByType(PackEnum.PACKAGE, bag);
 			packVO.setByType(PackEnum.PAPER, paper);
-			configurationBLService.modify(packVO);
+			OperationMessage msg = configurationBLService.modify(packVO);
+            informController.inform(msg, "修改成功");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,7 +154,8 @@ public class ConfigurationController {
 			proportionVO.setByType(DeliverTypeEnum.FAST, fast);
 			proportionVO.setByType(DeliverTypeEnum.NORMAL, normal);
 			proportionVO.setByType(DeliverTypeEnum.SLOW, slow);
-			configurationBLService.modify(proportionVO);
+			OperationMessage msg = configurationBLService.modify(proportionVO);
+            informController.inform(msg, "修改成功");
 		} catch (Exception e) {
             e.printStackTrace();
 		}
@@ -189,10 +193,10 @@ public class ConfigurationController {
 		this.cityXTextField.setText(Double.toString(city2dvo.getX()));
 		this.cityYTextField.setText(Double.toString(city2dvo.getY()));
 		//
-		List<City2DVO> chosable=city2dvos.stream().filter(city->{
+		List<City2DVO> choosable = city2dvos.stream().filter(city->{
 			return !city.getID().equalsIgnoreCase(city2dvo.getID());
 		}).collect(Collectors.toList());
-		this.cityChoiceBox.setItems(FXCollections.observableList(chosable));
+		this.cityChoiceBox.setItems(FXCollections.observableList(choosable));
 		this.cityChoiceBox.getSelectionModel().selectedItemProperty().addListener((obser,old,New)->{
 			this.city2=New;
 			if (city1!=null) {
@@ -203,13 +207,13 @@ public class ConfigurationController {
 	}
 	//
 	private void initializePrice(){
-		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PRICE);
+		List<ConfigurationVO> configurationVOs = configurationBLService.get(InfoEnum.PRICE);
 		priceVO=(PriceVO)configurationVOs.get(0);
 		factor_Field.setText(Integer.toString(priceVO.getByType(DeliverTypeEnum.FAST)));
 	}
 	//
 	private void initializeProportion(){
-		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PROPORTION);
+		List<ConfigurationVO> configurationVOs = configurationBLService.get(InfoEnum.PROPORTION);
 		proportionVO=(ProportionVO)configurationVOs.get(0);
 		slow_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.SLOW)));
 		normal_Field.setText(Integer.toString(proportionVO.getByType(DeliverTypeEnum.NORMAL)));
@@ -217,7 +221,7 @@ public class ConfigurationController {
 	}
 	//
 	private void initializePack(){
-		List<ConfigurationVO> configurationVOs=configurationBLService.get(InfoEnum.PACK);
+		List<ConfigurationVO> configurationVOs = configurationBLService.get(InfoEnum.PACK);
 		packVO=(PackVO)configurationVOs.get(0);
 		paper_Field.setText(Double.toString(packVO.getByType(PackEnum.PAPER)));
 		wood_Field.setText(Double.toString(packVO.getByType(PackEnum.WOOD)));
@@ -233,7 +237,8 @@ public class ConfigurationController {
 	}
 	//
 	public void deleteCity(){
-		configurationBLService.deleteCity(city1);
+		OperationMessage msg = configurationBLService.deleteCity(city1);
+        informController.inform(msg, "删除成功");
 		this.initializeDistance();
 	}
 	private City2DVO generateCity(){
@@ -248,11 +253,13 @@ public class ConfigurationController {
 		boolean isNew=!city2dvos.stream().anyMatch(city->{
 			return city.getID().equalsIgnoreCase(city2dvo.getID())||city.getName().equalsIgnoreCase(city2dvo.getName());
 		});
+        OperationMessage msg;
 		if (isNew) {
-			configurationBLService.newCity(city2dvo);
+			msg = configurationBLService.newCity(city2dvo);
 		}else {
-			configurationBLService.modifyCity(city2dvo);
+			msg = configurationBLService.modifyCity(city2dvo);
 		}
+        informController.inform(msg, "操作成功");
 		this.initializeDistance();
 	}
 

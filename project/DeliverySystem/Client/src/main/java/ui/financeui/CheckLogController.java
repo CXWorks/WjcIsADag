@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import main.Main;
+import message.OperationMessage;
 import tool.time.TimeConvert;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -64,7 +65,8 @@ public class CheckLogController {
 		File file = fileChooser.showSaveDialog(Main.primaryStage);
 
 		if (file != null) {
-			logblService.exportToTXT(file.getAbsolutePath());
+			OperationMessage msg = logblService.exportToTXT(file.getAbsolutePath());
+			informController.inform(msg, "导出日志成功");
 		}
 	}
 

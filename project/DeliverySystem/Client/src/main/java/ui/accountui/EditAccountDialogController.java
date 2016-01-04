@@ -37,7 +37,7 @@ public class EditAccountDialogController {
 	private AccountBLManageService accountBLManageService = AccountFactory.getManageService();
     private InformController informController;
 
-    public static Stage newDialog(EditType type, AccountVO editVO) throws IOException {
+    public static Stage newDialog(EditType type, AccountVO editVO, InformController ifc) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(EditAccountDialogController.class.getResource("editAccountDialog.fxml"));
         Pane pane = loader.load();
@@ -51,10 +51,10 @@ public class EditAccountDialogController {
         controller.editVO = editVO == null ? new AccountVO() : editVO;
         controller.stage = stage;
         controller.type = type;
-        controller.informController = InformController.newInformController(pane);
+        controller.informController = ifc;
         controller.init();
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(controller.informController.stackPane));
+        stage.setScene(new Scene(pane));
 
         return stage;
     }
@@ -98,10 +98,8 @@ public class EditAccountDialogController {
 
         if(msg.operationResult){
             informController.inform("账户修改成功");
-            System.out.println("commit successfully");
         }else{
             informController.inform("账户修改失败: " + msg.getReason());
-            System.out.println("fail: " + msg.getReason());
         }
         stage.close();
 	}

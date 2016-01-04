@@ -21,6 +21,7 @@ import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.CheckOrderTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.financevo.BankAccountVO;
 import vo.financevo.PaymentVO;
 import vo.financevo.RevenueVO;
@@ -62,7 +63,6 @@ public class RevenueFormController {
 	int money = 0;
 
 	private FormatCheckQueue formatCheckQueue;
-
 	private InformController informController;
 
 	public static RevenueFormController launch() {
@@ -112,7 +112,7 @@ public class RevenueFormController {
 		// init check
 		formatCheckQueue = new FormatCheckQueue();
 		formatCheckQueue.addTasker(new CheckOrderTasker(order_Field), new CheckIsNullTasker(money_Field),
-				new CheckPreDateTasker(dateErr_Label, revenue_DatePicker));
+                new CheckPreDateTasker(dateErr_Label, revenue_DatePicker));
 	}
 
 	public void add(ActionEvent actionEvent) {
@@ -134,22 +134,25 @@ public class RevenueFormController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-		revenueBLService.saveDraft(generateRevenueVO(null));
+		OperationMessage msg = revenueBLService.saveDraft(generateRevenueVO(null));
+		informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(revenueBLService.loadDraft());
+		RevenueVO vo = revenueBLService.loadDraft();
+		if(vo != null){
+			this.showDetail(vo);
+		}else {
+			informController.inform(R.string.LoadDraftFail);
+		}
 	}
 
 	public void commit(ActionEvent actionEvent) {
 		OperationMessage msg = revenueBLService.submit(generateRevenueVO(revenueBLService.getNewRevenueID(Calendar.getInstance())));
-		clear(null);
-		if (msg.operationResult) {
-			System.out.println("commit successfully");
-			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
-		}
+		if(msg.operationResult){
+            clear(null);
+        }
+		informController.inform(msg, "提交收款单成功");
 	}
 
 	private RevenueVO generateRevenueVO(String formID) {

@@ -27,6 +27,7 @@ import ui.common.checkFormat.field.CheckIsNullTasker;
 import ui.common.checkFormat.field.CheckPhoneTasker;
 import ui.informui.InformController;
 import userinfo.UserInfo;
+import util.R;
 import vo.FormVO;
 import vo.ordervo.OrderVO;
 import vo.ordervo.PredictVO;
@@ -196,14 +197,10 @@ public class NewOrderController {
 			return;
 		}
         OperationMessage msg = obl.submit(generateVO(obl.newID()));
-
 		if (msg.operationResult) {
-			System.out.println("commit successfully");
 			clear(null);
-		} else {
-			System.out.println("commit fail: " + msg.getReason());
 		}
-
+        informController.inform(msg, "提交订单成功 ");
 	}
 
 	private OrderVO generateVO(String FormID) {
@@ -279,13 +276,18 @@ public class NewOrderController {
 	}
 
 	public void saveDraft(ActionEvent actionEvent) {
-
 		OrderVO ovo = generateVO(null);
-		obl.saveDraft(ovo);
+		OperationMessage msg = obl.saveDraft(ovo);
+		informController.inform(msg, R.string.SaveDraftSuccess);
 	}
 
 	public void loadDraft(ActionEvent actionEvent) {
-		this.showDetail(obl.loadDraft());
+		OrderVO vo = obl.loadDraft();
+        if(vo != null){
+            this.showDetail(vo);
+        }else {
+            informController.inform(R.string.LoadDraftFail);
+        }
 	}
 
 }

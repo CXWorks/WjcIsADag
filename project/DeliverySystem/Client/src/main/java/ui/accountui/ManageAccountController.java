@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import main.Main;
+import message.OperationMessage;
 import ui.common.checkFormat.field.FloatOnlyField;
 import ui.hallui.RevenueFormController;
 import ui.informui.InformController;
@@ -102,7 +103,7 @@ public class ManageAccountController {
     public void add(ActionEvent actionEvent) {
         try {
             Stage dialogStage = EditAccountDialogController.newDialog
-                    (EditAccountDialogController.EditType.NEW, null);
+                    (EditAccountDialogController.EditType.NEW, null, informController);
             dialogStage.showAndWait();
             refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {
@@ -119,13 +120,20 @@ public class ManageAccountController {
 
     @FXML
 	public void delete(ActionEvent actionEvent) {
+        boolean informed = false;
         for (int i = 0; i < accounts.size(); i++) {
             if(accounts.get(i).getSelected()){
                 accounts.remove(accounts.get(i));
                 ObservableList<AccountCheckItem> list = accounts_TableView.getItems();
-                accountBLManageService.deleteAccount(list.get(i).getVo());
-                list.remove(list.get(i));
-                --i;
+                OperationMessage msg = accountBLManageService.deleteAccount(list.get(i).getVo());
+                if(msg.operationResult) {
+                    list.remove(list.get(i));
+                    --i;
+                }
+                if(!informed){
+                    informController.inform(msg, "删除成功");
+                    informed = true;
+                }
             }
         }
         refreshItems(accountBLManageService.getAccountVOs());
@@ -141,7 +149,7 @@ public class ManageAccountController {
         }
         try {
             Stage dialogStage = EditAccountDialogController.newDialog
-                    (EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo());
+                    (EditAccountDialogController.EditType.EDIT,  checkItems.get(0).getVo(), informController);
             dialogStage.showAndWait();
             refreshItems(accountBLManageService.getAccountVOs());
         } catch (IOException e) {

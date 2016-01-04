@@ -157,13 +157,8 @@ public class ManageCarDriverController {
 
 		;
 		OperationMessage msg = manageblCarService.addCar(car);
-		if (msg.operationResult) {
-			System.out.println("add successfully");
-			refresh();
-		} else {
-			System.out.println("add fail: " + msg.getReason());
-		}
-
+		refresh();
+		informController.inform(msg, "新增车辆成功");
 	}
 
 	@FXML
@@ -197,12 +192,8 @@ public class ManageCarDriverController {
 				// car_TableView.getItems().remove(i);
 
 				OperationMessage msg = manageblCarService.deleteCar(cars.get(i).getVo());
-				if (msg.operationResult) {
-					System.out.println("delete successfully");
-					refresh();
-				} else {
-					System.out.println("delete fail: " + msg.getReason());
-				}
+                refresh();
+                informController.inform(msg, "删除车辆成功");
 			}
 		}
 	}
@@ -218,12 +209,8 @@ public class ManageCarDriverController {
 		// car_TableView.getItems().add(car);
 
 		OperationMessage msg = manageblCarService.modifyCar(selected);
-		if (msg.operationResult) {
-			System.out.println("edit successfully");
-			refresh();
-		} else {
-			System.out.println("edit fail: " + msg.getReason());
-		}
+		refresh();
+        informController.inform(msg, "修改车辆信息成功");
 	}
 
 	private boolean isAllCarSelected() {
@@ -294,12 +281,8 @@ public class ManageCarDriverController {
 		// driver_TableView.getItems().add(selected);
 
 		OperationMessage msg = manageblDriverService.addStaff(driver);
-		if (msg.operationResult) {
-			System.out.println("add successfully");
-			refresh();
-		} else {
-			System.out.println("add fail: " + msg.getReason());
-		}
+        refresh();
+        informController.inform(msg, "新增司机成功");
 	}
 
 	@FXML
@@ -331,12 +314,8 @@ public class ManageCarDriverController {
 			if (drivers.get(i).getSelected()) {
 				System.out.println("I saw ya !!!"+drivers.get(i).getVo().getName());
 				OperationMessage msg = manageblDriverService.dismissStaff(drivers.get(i).getVo());
-				if (msg.operationResult) {
-					System.out.println("delete successfully");
-					refresh();
-				} else {
-					System.out.println("delete fail: " + msg.getReason());
-				}
+                refresh();
+                informController.inform(msg, "删除司机成功");
 			}
 		}
 	}
@@ -349,12 +328,8 @@ public class ManageCarDriverController {
 		controller.stage.showAndWait();
 
 		OperationMessage msg = manageblDriverService.modifyStaff(selected);
-		if (msg.operationResult) {
-			System.out.println("edit successfully");
-			refresh();
-		} else {
-			System.out.println("edit fail: " + msg.getReason());
-		}
+        refresh();
+        informController.inform(msg, "修改司机信息成功");
 	}
 
 	private boolean isAllDriverSelected() {
