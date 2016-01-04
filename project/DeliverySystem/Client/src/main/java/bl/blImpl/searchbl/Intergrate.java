@@ -67,7 +67,7 @@ public class Intergrate {
 		case "03":
 			ReceiveDataService receiveDataService=CacheHelper.getReceiveDataService();
 			ReceivePO receivePO=receiveDataService.getFormPO(ID);
-			ans[0]=receivePO.getDepature()+" 接收单";
+			ans[0]=(receivePO.getDepature().contains("0"))?(this.transID2Name(receivePO.getDepature().substring(0, 3))):(receivePO.getDepature())+" 接收单";
 			ans[1]=TimeConvert.getDisplayDate(receivePO.getDate());
 			break;
 
