@@ -30,7 +30,7 @@ public class InformController {
             AnchorSet.set0(contentPane);
             AnchorSet.set0(controller.stackPane);
             controller.stackPane.getChildren().add(informPane);
-            AnchorPane.setTopAnchor(informPane, 0.0);
+            AnchorPane.setBottomAnchor(informPane, 0.0);
             AnchorPane.setLeftAnchor(informPane, 0.0);
             AnchorPane.setRightAnchor(informPane, 0.0);
             informPane.setVisible(false);
@@ -43,7 +43,13 @@ public class InformController {
         }
     }
 
-    public void inform(String info){
+    public void informWrong(String errInfo){
+        informPane.getStyleClass().clear();
+        informPane.getStyleClass().add("background-wrong");
+        this.inform(errInfo);
+    }
+
+    private void inform(String info){
         content_Label.setText(info);
         if(! informPane.isVisible()){ // do not new another thread if is already shown
             new Thread(
@@ -66,8 +72,12 @@ public class InformController {
 
     public void inform(OperationMessage msg, String successWord){
         if(msg.operationResult){
+            informPane.getStyleClass().clear();
+            informPane.getStyleClass().add("background-right");
             this.inform(successWord);
         }else{
+            informPane.getStyleClass().clear();
+            informPane.getStyleClass().add("background-wrong");
             this.inform("操作失败： " + msg.getReason());
         }
     }

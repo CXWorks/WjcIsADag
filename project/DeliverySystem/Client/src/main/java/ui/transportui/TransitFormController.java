@@ -196,7 +196,7 @@ public class TransitFormController {
         if(vo != null){
             this.showDetail(vo);
         }else {
-            informController.inform(R.string.LoadDraftFail);
+            informController.informWrong(R.string.LoadDraftFail);
         }
 	}
 

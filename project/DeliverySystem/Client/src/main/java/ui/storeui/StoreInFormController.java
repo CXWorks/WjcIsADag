@@ -147,7 +147,7 @@ public class StoreInFormController {
         if(vo != null){
             this.showDetail(vo);
         }else {
-            informController.inform(R.string.LoadDraftFail);
+            informController.informWrong(R.string.LoadDraftFail);
         }
 	}
 
@@ -187,7 +187,7 @@ public class StoreInFormController {
 	public void fillPosition(ActionEvent actionEvent) {
 		StoreLocation location = storeInBLService.getAvailableLocation(area);
 		if (location == null) {
-			informController.inform("该区域无空缺位置");
+			informController.informWrong("该区域无空缺位置");
 			System.out.println("no available location");
 			return;
 		}

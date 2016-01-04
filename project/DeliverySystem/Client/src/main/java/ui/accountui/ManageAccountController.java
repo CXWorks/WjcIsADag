@@ -143,7 +143,7 @@ public class ManageAccountController {
 	public void edit(ActionEvent actionEvent) {
         ObservableList<AccountCheckItem> checkItems = accounts_TableView.getSelectionModel().getSelectedItems();
         if(checkItems.size() != 1){
-            informController.inform("请选择一个账户");
+            informController.informWrong("请选择一个账户");
             System.out.println("please choose one item");
             return;
         }
