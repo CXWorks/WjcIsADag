@@ -21,11 +21,11 @@
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font></Label>
-      <Button layoutX="199.0" layoutY="466.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="102.0" text="确认添加" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="199.0" />
-      <HBox layoutX="684.0" layoutY="484.0" spacing="16.0" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.0">
+      <Button layoutX="234.0" layoutY="472.0" mnemonicParsing="false" onAction="#add" prefHeight="23.0" prefWidth="80.0" text="确认添加" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="234.0" />
+      <HBox layoutX="786.0" layoutY="472.0" prefHeight="28.0" prefWidth="136.0" spacing="16.0" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="48.0">
          <children>
             <Button layoutX="787.0" layoutY="484.0" mnemonicParsing="false" onAction="#clear" prefHeight="39.0" prefWidth="60.0" text="清空" />
-            <Button layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="60.0" text="提交" />
+            <Button defaultButton="true" layoutX="858.0" layoutY="484.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="60.0" text="提交" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="760.0" layoutY="48.0" spacing="16.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="48.0">
