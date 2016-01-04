@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import javax.print.attribute.HashAttributeSet;
 
@@ -13,6 +14,7 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import po.financedata.FinancePayEnum;
 import po.financedata.PaymentPO;
 import po.financedata.RevenuePO;
+import util.R.num;
 import vo.financevo.PieChartVO;
 
 /** 
@@ -27,6 +29,7 @@ public class PieChartMaker {
 	}
 	
 	public PieChartVO monthPay(ArrayList<PaymentPO> paymentPO){
+		try{
 		Calendar begin=paymentPO.stream()
 				.map(pay->pay.getDate())
 				.min(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
@@ -35,6 +38,8 @@ public class PieChartMaker {
 				.map(pay->pay.getDate())
 				.max(Comparator.comparing((Calendar cal)->cal.getTimeInMillis()))
 				.get();
+		
+		
 		PieChartVO pieChartVO=new PieChartVO();
 		pieChartVO.title="各个月支出统计";
 		pieChartVO.valueType="月份";
@@ -82,6 +87,10 @@ public class PieChartMaker {
 		}
 		
 		return pieChartVO;
+	}
+		catch(NoSuchElementException e){
+			return null;
+		}
 		
 	}
 	
