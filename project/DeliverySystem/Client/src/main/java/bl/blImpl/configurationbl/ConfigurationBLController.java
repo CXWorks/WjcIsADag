@@ -23,14 +23,15 @@ import tool.vopo.VOPOFactory;
  * @version 1.0
  */
 public class ConfigurationBLController implements ConfigurationBLService {
-	private Distance distance;
-	private Money money;
-	private Salary salary;
+	private Distance distance;    					//计算城市距离
+	private Money money;							//计算运费、包装费、收费比例
+	private Salary salary;							//计算薪水策略
 	public ConfigurationBLController(VOPOFactory vopoFactory){
-		
-		this.distance=new Distance(vopoFactory);
-		this.money=new Money(vopoFactory);
-		this.salary=new Salary(vopoFactory);
+
+		this.distance=new Distance(vopoFactory);	//新建距离成员
+
+		this.money=new Money(vopoFactory);			//新建价格成员
+		this.salary=new Salary(vopoFactory);		//新建薪水策略的帮助成员
 	}
 
 	/* (non-Javadoc)
@@ -38,15 +39,15 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	public List<ConfigurationVO> get(InfoEnum type) {
 		switch (type) {
-		case PACK:
+		case PACK:			//包装费用
 			return money.getPack();
-		case PROPORTION:
+		case PROPORTION:	//收费比例
 			return money.getProportion();
-		case PRICE:
+		case PRICE:			//价格运费
 			return money.getPrice();
-		case SALARY:
+		case SALARY:		//薪水数目
 			return salary.getSalary();
-		default:
+		default:			//如果不是以上3者，应该是传错了，返回空
 			return null;
 		}
 	}
@@ -56,19 +57,19 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	public OperationMessage modify(ConfigurationVO after) {
 		switch (after.getInfoEnum()) {
-		case PRICE:
+		case PRICE:			//价格
 			PriceVO priceVO=(PriceVO)after;
 			return money.modifyPrice(priceVO);
-		case PROPORTION:
+		case PROPORTION:	//收费比例
 			ProportionVO proportionVO=(ProportionVO)after;
 			return money.modifyProportion(proportionVO);
-		case PACK:
+		case PACK:			//包装费用
 			PackVO packVO=(PackVO)after;
 			return money.modifyPack(packVO);
-		case SALARY:
+		case SALARY:		//薪水策略
 			SalaryStrategyVO salaryStrategyVO=(SalaryStrategyVO)after;
 			return salary.modify(salaryStrategyVO);
-		default:
+		default:			//返回失败信息，并给出理由
 			return new OperationMessage(false, "unknown type");
 		}
 	}
@@ -78,6 +79,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	@Override
 	public List<City2DVO> getCity() {
+		//获得城市距离
 		return distance.getCityDistance();
 	}
 
@@ -86,6 +88,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	@Override
 	public OperationMessage modifyCity(City2DVO city2dvo) {
+		//修改城市信息
 		return distance.modifyCityDistance(city2dvo);
 	}
 
@@ -94,6 +97,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	@Override
 	public OperationMessage newCity(City2DVO city2dvo) {
+		//新建城市信息
 		return distance.newCity(city2dvo);
 	}
 
@@ -102,6 +106,7 @@ public class ConfigurationBLController implements ConfigurationBLService {
 	 */
 	@Override
 	public OperationMessage deleteCity(City2DVO city2dvo) {
+		//删除城市信息
 		return distance.deleteCity(city2dvo);
 	}
 
