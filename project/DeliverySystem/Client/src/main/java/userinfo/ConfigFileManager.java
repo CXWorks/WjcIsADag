@@ -6,32 +6,36 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-/** 
+/**
  * Client//userinfo//ConfigFileManager.java
  * @author CXWorks
  * @date Dec 29, 2015 5:41:24 PM
- * @version 1.0 
+ * @version 1.0
  */
 public class ConfigFileManager {
 
 	private static final String PATH=ConfigFileManager.class.getResource("").getPath();
 	private static final String FILE_NAME="2333.ini";
+	private static final InputStream is = ConfigFileManager.class.getResourceAsStream("2333.ini");
 	private String ip;
 	private String port;
 	private String workpath;
 	public ConfigFileManager() throws FileNotFoundException,IOException{
-		File file=new File(PATH+FILE_NAME);
-		if (!file.exists()) {
-			throw new FileNotFoundException();
-		}
-		BufferedReader reader=new BufferedReader(new FileReader(file));
+//		File file=new File(PATH+FILE_NAME);
+//		if (!file.exists()) {
+//			throw new FileNotFoundException();
+//		}
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+//		BufferedReader reader=new BufferedReader(new FileReader(file));
 		ip=reader.readLine();
 		port=reader.readLine();
 		workpath=reader.readLine();
 		reader.close();
-		
+
 	}
 	//
 	public String getIp() {
@@ -64,7 +68,7 @@ public class ConfigFileManager {
 		writer.println(workpath);
 		writer.close();
 		}catch(IOException e){
-			
+
 		}
 	}
 }
