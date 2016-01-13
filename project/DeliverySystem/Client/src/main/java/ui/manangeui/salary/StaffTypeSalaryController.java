@@ -35,7 +35,7 @@ public class StaffTypeSalaryController {
 	//
 	private InformController informController;
 	public Pane selfPane;
-	private FormatCheckQueue formatCheckQueue;
+//	private FormatCheckQueue formatCheckQueue;
 
 	public static StaffTypeSalaryController launch() throws IOException {
 		FXMLLoader loader = new FXMLLoader(StaffTypeSalaryController.class.getResource("salary.fxml"));
@@ -43,11 +43,11 @@ public class StaffTypeSalaryController {
 		StaffTypeSalaryController controller = loader.getController();
 		controller.informController = InformController.newInformController(pane);
 		//init check
-		controller.formatCheckQueue=new FormatCheckQueue();
-		controller.formatCheckQueue.addTasker(new CheckIsNullTasker(controller.base),
-				new CheckIsNullTasker(controller.bonus),
-				new CheckIsNullTasker(controller.commission)
-		);
+//		controller.formatCheckQueue=new FormatCheckQueue();
+//		controller.formatCheckQueue.addTasker(new CheckIsNullTasker(controller.base),
+//				new CheckIsNullTasker(controller.bonus),
+//				new CheckIsNullTasker(controller.commission)
+//		);
         controller.selfPane = controller.informController.stackPane;
 
 		return controller;
@@ -58,9 +58,9 @@ public class StaffTypeSalaryController {
 	//
 	public void change(SalaryStrategyVO salaryStrategyVO) {
 		// check
-		if (formatCheckQueue!=null&&!formatCheckQueue.startCheck()) {
-			return;
-		}
+//		if (formatCheckQueue!=null&&!formatCheckQueue.startCheck()) {
+//			return;
+//		}
 		this.salaryStrategyVO = salaryStrategyVO;
 		type.setText(salaryStrategyVO.getStaff().getChinese());
 		base.setText(Integer.toString(salaryStrategyVO.getBase()));
@@ -80,9 +80,9 @@ public class StaffTypeSalaryController {
 	@FXML
 	private void modify() {
 		//check
-		if (!formatCheckQueue.startCheck()) {
-			return;
-		}
+//		if (!formatCheckQueue.startCheck()) {
+//			return;
+//		}
 
 		boolean changed = false;
 		if (salaryStrategyVO == null) {

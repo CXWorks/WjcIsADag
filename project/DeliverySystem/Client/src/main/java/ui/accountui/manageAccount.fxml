@@ -30,7 +30,6 @@
             <TableColumn fx:id="check_TableColumn" prefWidth="64.0" resizable="false" text="勾选" />
             <TableColumn fx:id="id_TableColumn" prefWidth="75.0" text="账号" />
             <TableColumn fx:id="password_TableColumn" prefWidth="75.0" text="密码" />
-            <TableColumn fx:id="staff_TableColumn" prefWidth="75.0" text="身份" />
          </columns>
       </TableView>
    </children>

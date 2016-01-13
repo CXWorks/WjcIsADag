@@ -37,7 +37,6 @@ public class ManageAccountController {
     public TableColumn<AccountCheckItem, AccountCheckItem> check_TableColumn;
     public TableColumn<AccountCheckItem, String> id_TableColumn;
     public TableColumn<AccountCheckItem, String> password_TableColumn;
-    public TableColumn<AccountCheckItem, String> staff_TableColumn;
 
 	public TextField search_Field;
     public CheckBox all_CheckBox;
@@ -96,7 +95,6 @@ public class ManageAccountController {
         ObservableValue<Number> width =  accounts_TableView.widthProperty().subtract(70).divide(3);
         id_TableColumn.prefWidthProperty().bind(width);
         password_TableColumn.prefWidthProperty().bind(width);
-        staff_TableColumn.prefWidthProperty().bind(width);
     }
 
     @FXML
